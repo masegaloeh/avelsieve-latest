@@ -11,670 +11,645 @@ msgstr ""
 "Last-Translator: Vadim Kozlov <vad@tomsknet.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=koi8-r\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "You have to define at least one header match text."
-msgstr "Вы должны определить хотя бы одну строку соответствия заголовка."
+msgstr "п▓я▀ п╢п╬п╩п╤п╫я▀ п╬п©я─п╣п╢п╣п╩п╦я┌я▄ я┘п╬я┌я▐ п╠я▀ п╬п╢п╫я┐ я│я┌я─п╬п╨я┐ я│п╬п╬я┌п╡п╣я┌я│я┌п╡п╦я▐ п╥п╟пЁп╬п╩п╬п╡п╨п╟."
 
-#, fuzzy
 msgid "You have not defined the name for the new folder."
-msgstr "Вы должны определить хотя бы одну строку соответствия заголовка."
+msgstr "п▓я▀ п╫п╣ я┐п╨п╟п╥п╟п╩п╦ п╦п╪я▐ п╢п╩я▐ п╫п╬п╡п╬п╧ п©п╟п©п╨п╦."
 
 msgid "Please try again."
-msgstr ""
+msgstr "п÷п╬п╤п╟п╩я┐п╧я│я┌п╟, п©п╬п©я─п╬п╠я┐п╧я┌п╣ п╣я┴я▒ я─п╟п╥."
 
 msgid "Illegal folder name.  Please select a different name"
-msgstr ""
+msgstr "п²п╣п╢п╬п©я┐я│я┌п╦п╪п╬п╣ п╦п╪я▐ п©п╟п©п╨п╦. п÷п╬п╤п╟п╩я┐п╧я│я┌п╟, п╡я▀п╠п╣я─п╦я┌п╣ п╢я─я┐пЁп╬п╣ п╦п╪я▐"
 
-#, fuzzy
 msgid "Add New Rule"
-msgstr "Добавить новое правило"
+msgstr "п■п╬п╠п╟п╡п╦я┌я▄ п╫п╬п╡п╬п╣ п©я─п╟п╡п╦п╩п╬"
 
 msgid "New Rule Wizard - Step"
-msgstr "Построитель правил - шаг"
+msgstr "п÷п╬я│я┌я─п╬п╦я┌п╣п╩я▄ п©я─п╟п╡п╦п╩ - я┬п╟пЁ"
 
 msgid "of"
-msgstr "из"
+msgstr "п╦п╥"
 
 msgid "Rule Type"
-msgstr "Тип правила"
+msgstr "п╒п╦п© п©я─п╟п╡п╦п╩п╟"
 
-#, fuzzy
 msgid "Condition"
-msgstr "Подтверждение"
+msgstr "пёя│п╩п╬п╡п╦п╣"
 
-#, fuzzy
 msgid "Action"
-msgstr "Отпуск"
+msgstr "п■п╣п╧я│я┌п╡п╦п╣"
 
 msgid "Confirmation"
-msgstr "Подтверждение"
+msgstr "п÷п╬п╢я┌п╡п╣я─п╤п╢п╣п╫п╦п╣"
 
 msgid ""
 "<p>You have chosen to keep every mail. This is the default action anyway, so "
 "you might want to start over with a rule that makes more sense. Select &quot;"
 "finished&quot; to save this rule nonetheless.</p>"
-msgstr ""
+msgstr "<p>п▓п╟я┬п╣ п©я─п╟п╡п╦п╩п╬ я│п╡п╬п╢п╦я┌я│я▐ п╨ я│п╬я┘я─п╟п╫п╣п╫п╦я▌ я│п╬п╬п╠я┴п╣п╫п╦я▐ п╡ п©п╬я┤я┌п╬п╡п╬п╪ я▐я┴п╦п╨п╣; я█я┌п╬ "
+"п╢п╣п╧я│я┌п╡п╦п╣ п©п╬ я┐п╪п╬п╩я┤п╟п╫п╦я▌, я┌п╟п╨ я┤я┌п╬ п╡я▀ п╪п╬п╤п╣я┌п╣ п╥п╟п╪п╣п╫п╦я┌я▄ я█я┌п╬ п©я─п╟п╡п╦п╩п╬ п╠п╬п╩п╣п╣ п╬я│п╪я▀я│п╩п╣п╫п╫я▀п╪. п▓я▀п╠п╣я─п╦я┌п╣ &quot;"
+"finished&quot; п╢п╩я▐ я┌п╬пЁп╬, я┤я┌п╬п╠я▀ я│п╬я┘я─п╟п╫п╦я┌я▄ п©я─п╟п╡п╦п╩п╬ п╫п╣я│п╪п╬я┌я─я▐ п╫п╦ п╫п╟ я┤я┌п╬.</p>"
 
 msgid ""
 "Please use the buttons on the bottom instead of your browser's reload, back "
 "and forward buttons, to build a rule."
-msgstr ""
+msgstr "п÷п╬п╤п╟п╩я┐п╧я│я┌п╟, п╢п╩я▐ п©п╬я│я┌я─п╬п╣п╫п╦я▐ п©я─п╟п╡п╦п╩п╟ п╦я│п©п╬п╩я▄п╥я┐п╧я┌п╣ п╨п╫п╬п©п╨п╦ п╡п╫п╦п╥я┐ п╡п╪п╣я│я┌п╬ "
+"п╨п╫п╬п©п╬п╨ п╬п╠п╫п╬п╡п╦я┌я▄, п╡п©п╣я─я▒п╢ п╦ п╫п╟п╥п╟п╢ п╡п╟я┬п╣пЁп╬ п╠я─п╟я┐п╥п╣я─п╟."
 
 msgid "Clear this Form"
-msgstr "Очистить форму"
+msgstr "п·я┤п╦я│я┌п╦я┌я▄ я└п╬я─п╪я┐"
 
 msgid "Start Over"
-msgstr "Начать заново"
+msgstr "п²п╟я┤п╟я┌я▄ п╥п╟п╫п╬п╡п╬"
 
 msgid "Cancel"
-msgstr "отказаться"
+msgstr "п·я┌п╨п╟п╥п╟я┌я▄я│я▐"
 
-#, fuzzy
 msgid "Add SPAM Rule"
-msgstr "Добавить новое правило"
+msgstr "п■п╬п╠п╟п╡п╦я┌я▄ п╫п╬п╡п╬п╣ п©я─п╟п╡п╦п╩п╬ п╢п╩я▐ я└п╦п╩я▄я┌я─п╟я├п╦п╦ я│п©п╟п╪п╟"
 
 msgid "Move back to step"
-msgstr "Вернуться на шаг "
+msgstr "п▓п╣я─п╫я┐я┌я▄я│я▐ п╫п╟ я┬п╟пЁ "
 
 msgid "Finished"
-msgstr "Готово"
+msgstr "п⌠п╬я┌п╬п╡п╬"
 
 msgid "Move on to step"
-msgstr "Следующий шаг "
+msgstr "п║п╩п╣п╢я┐я▌я┴п╦п╧ я┬п╟пЁ "
 
 msgid "What kind of rule would you like to add?"
-msgstr "Правило какого типа Вы хотели бы добавить?"
+msgstr "п÷я─п╟п╡п╦п╩п╬ п╨п╟п╨п╬пЁп╬ я┌п╦п©п╟ п▓я▀ я┘п╬я┌п╣п╩п╦ п╠я▀ п╢п╬п╠п╟п╡п╦я┌я▄?"
 
 msgid ""
 "The rule will trigger if the following addresses appear anywhere in the "
 "message's headers:"
 msgstr ""
-"правило срабатывает, если следующие адреса имеются в каком-либо заголовке "
-"сообщения"
+"п©я─п╟п╡п╦п╩п╬ я│я─п╟п╠п╟я┌я▀п╡п╟п╣я┌, п╣я│п╩п╦ я│п╩п╣п╢я┐я▌я┴п╦п╣ п╟п╢я─п╣я│п╟ п╦п╪п╣я▌я┌я│я▐ п╡ п╨п╟п╨п╬п╪-п╩п╦п╠п╬ п╥п╟пЁп╬п╩п╬п╡п╨п╣ "
+"я│п╬п╬п╠я┴п╣п╫п╦я▐"
 
 msgid "AND (Every item must match)"
-msgstr "И (выполнение всех условий)"
+msgstr "п≤ (п╡я▀п©п╬п╩п╫п╣п╫п╦п╣ п╡я│п╣я┘ я┐я│п╩п╬п╡п╦п╧)"
 
 msgid "OR (Either item will match)"
-msgstr "ИЛИ (выполнение любого условия)"
+msgstr "п≤п⌡п≤ (п╡я▀п©п╬п╩п╫п╣п╫п╦п╣ п╩я▌п╠п╬пЁп╬ я┐я│п╩п╬п╡п╦я▐)"
 
 msgid "The condition for the following rules is:"
-msgstr "Условием для этого правила является: "
+msgstr "пёя│п╩п╬п╡п╦п╣п╪ п╢п╩я▐ я█я┌п╬пЁп╬ п©я─п╟п╡п╦п╩п╟ я▐п╡п╩я▐п╣я┌я│я▐: "
 
 msgid "The header "
-msgstr "Заголовок "
+msgstr "п≈п╟пЁп╬п╩п╬п╡п╬п╨ "
 
 msgid "Less..."
-msgstr "Убавить..."
+msgstr "п°п╣п╫я▄я┬п╣..."
 
 msgid "More..."
-msgstr "Добавить..."
+msgstr "п▒п╬п╩я▄я┬п╣..."
 
 msgid "This rule will trigger if message is"
-msgstr "Это правило сработает, если сообщение "
+msgstr "п╜я┌п╬ п©я─п╟п╡п╦п╩п╬ я│я─п╟п╠п╬я┌п╟п╣я┌, п╣я│п╩п╦ я│п╬п╬п╠я┴п╣п╫п╦п╣ "
 
 msgid "bigger"
-msgstr "больше"
+msgstr "п╠п╬п╩я▄я┬п╣"
 
 msgid "smaller"
-msgstr "меньше"
+msgstr "п╪п╣п╫я▄я┬п╣"
 
 msgid "than"
-msgstr "чем"
+msgstr "я┤п╣п╪"
 
 msgid "KB (kilobytes)"
-msgstr "KB (килобайт)"
+msgstr "KB (п╨п╦п╩п╬п╠п╟п╧я┌)"
 
 msgid "MB (megabytes)"
-msgstr "MB (мегабайт)"
+msgstr "MB (п╪п╣пЁп╟п╠п╟п╧я┌)"
 
 msgid ""
 "The following action will be applied to <strong>all</strong> incoming "
 "messages that do not match any of the previous rules."
-msgstr ""
+msgstr "п║п╩п╣п╢я┐я▌я┴п╣п╣ п╢п╣п╧я│я┌п╡п╦п╣ п╠я┐п╢п╣я┌ п©я─п╦п╪п╣п╫п╣п╫п╬ п╨п╬ <strong>п╡я│п╣п╪</strong> "
+"п╡я┘п╬п╢я▐я┴п╦п╪ я│п╬п╬п╠я┴п╣п╫п╦я▐п╪, п╫п╣ п©п╬п╢п©п╟п╢п╟я▌я┴п╦п╪ п©п╬п╢ п╢п╣п╧я│я┌п╡п╦п╣ п╫п╦ п╬п╢п╫п╬пЁп╬ п╦п╥ п©я─п╣п╢я▀п╢я┐я┴п╦я┘ п©я─п╟п╡п╦п╩."
 
 msgid ""
 "This rule will trigger upon the occurrence of one or more strings in the "
 "body of an e-mail message. "
-msgstr ""
+msgstr "п╜я┌п╬ п©я─п╟п╡п╦п╩п╬ я│я─п╟п╠п╬я┌п╟п╣я┌ п╡ я│п╩я┐я┤п╟п╣, п╣я│п╩п╦ п╡ я┌п╣п╩п╣ я│п╬п╬п╠я┴п╣п╫п╦я▐ п╠я┐п╢я┐я┌ п╫п╟п╧п╢п╣п╫я▀ "
+"п╬п╢п╫п╟ п╦п╩п╦ п╠п╬п╩п╣п╣ я│я┌я─п╬п╨. "
 
 msgid "Choose what to do when this rule triggers, from one of the following:"
-msgstr "Выберите действие, выполняющееся когда срабатывает данное правило:"
+msgstr "п▓я▀п╠п╣я─п╦я┌п╣ п╢п╣п╧я│я┌п╡п╦п╣, п╡я▀п©п╬п╩п╫я▐я▌я┴п╣п╣я│я▐ п╨п╬пЁп╢п╟ я│я─п╟п╠п╟я┌я▀п╡п╟п╣я┌ п╢п╟п╫п╫п╬п╣ п©я─п╟п╡п╦п╩п╬:"
 
 msgid "Keep (Default action)"
-msgstr "Сохранить (по умолчанию)"
+msgstr "п║п╬я┘я─п╟п╫п╦я┌я▄ (п©п╬ я┐п╪п╬п╩я┤п╟п╫п╦я▌)"
 
 msgid "Discard Silently"
-msgstr "Молча уничтожить"
+msgstr "п°п╬п╩я┤п╟ я┐п╫п╦я┤я┌п╬п╤п╦я┌я▄"
 
 msgid "Reject, sending this excuse to the sender:"
-msgstr "Вернуть отправителю с пояснением:"
+msgstr "п▓п╣я─п╫я┐я┌я▄ п╬я┌п©я─п╟п╡п╦я┌п╣п╩я▌ я│ п©п╬я▐я│п╫п╣п╫п╦п╣п╪:"
 
 msgid "Please do not send me large attachments."
-msgstr "Пожалуйста, не отправляйте мне больших вложений."
+msgstr "п÷п╬п╤п╟п╩я┐п╧я│я┌п╟, п╫п╣ п╬я┌п©я─п╟п╡п╩я▐п╧я┌п╣ п╪п╫п╣ п╠п╬п╩я▄я┬п╦я┘ п╡п╩п╬п╤п╣п╫п╦п╧."
 
 msgid "Redirect to the following email address:"
-msgstr "Перенаправить на следующий адрес:"
+msgstr "п÷п╣я─п╣п╫п╟п©я─п╟п╡п╦я┌я▄ п╫п╟ я│п╩п╣п╢я┐я▌я┴п╦п╧ п╟п╢я─п╣я│:"
 
 msgid "someone@example.org"
 msgstr "someone@example.org"
 
 msgid "Move message into"
-msgstr "Переместить сообщение в"
+msgstr "п÷п╣я─п╣п╪п╣я│я┌п╦я┌я▄ я│п╬п╬п╠я┴п╣п╫п╦п╣ п╡"
 
 msgid "the existing folder"
-msgstr "существующую папку "
+msgstr "я│я┐я┴п╣я│я┌п╡я┐я▌я┴я┐я▌ п©п╟п©п╨я┐ "
 
 msgid "a new folder, named"
-msgstr "новую папку "
+msgstr "п╫п╬п╡я┐я▌ п©п╟п©п╨я┐ "
 
 msgid "created as a subfolder of"
-msgstr " созданную в папке "
+msgstr " я│п╬п╥п╢п╟п╫п╫я┐я▌ п╡ п©п╟п©п╨п╣ "
 
 msgid "Also keep copy in INBOX, marked as deleted."
-msgstr ""
+msgstr "п╒п╟п╨п╤п╣ я│п╬я┘я─п╟п╫п╦я┌я▄ п╡п╬ п▓я┘п╬п╢я▐я┴п╦я┘, п©п╬п╪п╣я┌п╦п╡ п╨п╟п╨ я┐п╢п╟п╩я▒п╫п╫п╬п╣."
 
 msgid "Vacation"
-msgstr "Отпуск"
+msgstr "п·я┌п©я┐я│п╨"
 
 msgid ""
 "The notice will be sent only once to each person that sends you mail, and "
 "will not be sent to a mailing list address."
 msgstr ""
-"Уведомление будет отправлено только один раз каждому корреспонденту и не "
-"будет отправляться в списки рассылки."
+"пёп╡п╣п╢п╬п╪п╩п╣п╫п╦п╣ п╠я┐п╢п╣я┌ п╬я┌п©я─п╟п╡п╩п╣п╫п╬ я┌п╬п╩я▄п╨п╬ п╬п╢п╦п╫ я─п╟п╥ п╨п╟п╤п╢п╬п╪я┐ п╨п╬я─я─п╣я│п©п╬п╫п╢п╣п╫я┌я┐ п╦ п╫п╣ "
+"п╠я┐п╢п╣я┌ п╬я┌п©я─п╟п╡п╩я▐я┌я▄я│я▐ п╡ я│п©п╦я│п╨п╦ я─п╟я│я│я▀п╩п╨п╦."
 
 msgid "Addresses: Only reply if sent to these addresses:"
-msgstr "Адреса: отвечать, если отправлено на эти адреса: "
+msgstr "п░п╢я─п╣я│п╟: п╬я┌п╡п╣я┤п╟я┌я▄, п╣я│п╩п╦ п╬я┌п©я─п╟п╡п╩п╣п╫п╬ п╫п╟ я█я┌п╦ п╟п╢я─п╣я│п╟: "
 
 msgid "Days: Reply message will be resent after"
-msgstr "Дней: Ответное сообщение будет выслано через"
+msgstr "п÷п╣я─п╦п╬п╢п╦я┤п╫п╬я│я┌я▄: п·я┌п╡п╣я┌п╫п╬п╣ я│п╬п╬п╠я┴п╣п╫п╦п╣ п╠я┐п╢п╣я┌ п╡я▀я│п╩п╟п╫п╬ п©п╬п╡я┌п╬я─п╫п╬ я┤п╣я─п╣п╥"
 
 msgid "days"
-msgstr "дней"
+msgstr "п╢п╫п╣п╧"
 
 msgid "Use the following message:"
-msgstr "Использовать следующее сообщение:"
+msgstr "п≤я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ я│п╩п╣п╢я┐я▌я┴п╣п╣ я│п╬п╬п╠я┴п╣п╫п╦п╣:"
 
 msgid ""
 "This is an automated reply; I am away and will not be able to reply to you "
 "immediately."
 msgstr ""
-"Это автоматический ответ; В данный момент я отсутствую и не смогу ответить "
-"Вам немедленно."
+"п╜я┌п╬ п╟п╡я┌п╬п╪п╟я┌п╦я┤п╣я│п╨п╦п╧ п╬я┌п╡п╣я┌; п▓ п╢п╟п╫п╫я▀п╧ п╪п╬п╪п╣п╫я┌ я▐ п╬я┌я│я┐я┌я│я┌п╡я┐я▌ п╦ п╫п╣ я│п╪п╬пЁя┐ п╬я┌п╡п╣я┌п╦я┌я▄ "
+"п▓п╟п╪ п╫п╣п╪п╣п╢п╩п╣п╫п╫п╬."
 
 msgid "I will get back to you as soon as I return."
-msgstr "Я отвечу Вам когда вернусь"
+msgstr "п╞ п╬я┌п╡п╣я┤я┐ п▓п╟п╪, п╨п╬пЁп╢п╟ п╡п╣я─п╫я┐я│я▄"
 
 msgid "Additional Actions"
-msgstr ""
+msgstr "п■п╬п©п╬п╩п╫п╦я┌п╣п╩я▄п╫я▀п╣ п╢п╣п╧я│я┌п╡п╦я▐"
 
 msgid "STOP"
-msgstr "ЗАКОНЧИТЬ"
+msgstr "п≈п░п п·п²п╖п≤п╒п╛"
 
 msgid "If this rule matches, do not check any rules after it."
-msgstr "Если это правило срабатывает, не проверять другие правила после него"
+msgstr "п∙я│п╩п╦ я█я┌п╬ п©я─п╟п╡п╦п╩п╬ я│я─п╟п╠п╟я┌я▀п╡п╟п╣я┌, п╫п╣ п©я─п╬п╡п╣я─я▐я┌я▄ п╢я─я┐пЁп╦п╣ п©я─п╟п╡п╦п╩п╟ п©п╬я│п╩п╣ п╫п╣пЁп╬"
 
 msgid "Notify me, using the following method:"
-msgstr ""
+msgstr "п║п╬п╬п╠я┴п╦я┌я▄ п╪п╫п╣, п╦я│п©п╬п╩я▄п╥я┐я▐ я│п╩п╣п╢я┐я▌я┴п╦п╧ п╪п╣я┌п╬п╢:"
 
 msgid "Notification ID"
 msgstr ""
 
 msgid "Destination"
-msgstr ""
+msgstr "п²п╟п╥п╫п╟я┤п╣п╫п╦п╣"
 
-#, fuzzy
 msgid "Message"
-msgstr "Все сообщения"
+msgstr "п║п╬п╬п╠я┴п╣п╫п╦п╣"
 
 msgid "Help: Valid variables are:"
-msgstr ""
+msgstr "п║п©я─п╟п╡п╨п╟: п■п╬п©я┐я│я┌п╦п╪я▀п╪п╦ п©п╣я─п╣п╪п╣п╫п╫я▀п╪п╦ я▐п╡п╩я▐я▌я┌я│я▐:"
 
 msgid "Your new rule states:"
-msgstr "Ваше новое правило гласит:"
+msgstr "п▓п╟я┬п╣ п╫п╬п╡п╬п╣ п©я─п╟п╡п╦п╩п╬ пЁп╩п╟я│п╦я┌:"
 
 msgid ""
 "If this is what you wanted, select Finished. You can also start over or "
 "cancel adding a rule altogether."
-msgstr "вообще отказаться от добавления правила"
+msgstr "п∙я│п╩п╦ я█я┌п╬ я┌п╬, я┤я┌п╬ п╡я▀ я┘п╬я┌п╣п╩п╦, п╡я▀п╠п╣я─п╦я┌п╣ Finished. п▓я▀ п╪п╬п╤п╣я┌п╣ я┌п╟п╨п╤п╣ "
+"п╫п╟я┤п╟я┌я▄ п╥п╟п╫п╬п╡п╬ п╦п╩п╦ п╡п╬п╬п╠я┴п╣ п╬я┌п╨п╟п╥п╟я┌я▄я│я▐ п╬я┌ п╢п╬п╠п╟п╡п╩п╣п╫п╦я▐ п©я─п╟п╡п╦п╩п╟"
 
 msgid "Configure Anti-SPAM Protection"
-msgstr ""
+msgstr "п п╬п╫я└п╦пЁя┐я─п╦я─п╬п╡п╟п╫п╦п╣ п╥п╟я┴п╦я┌я▀ п╬я┌ я│п©п╟п╪п╟"
 
 msgid ""
 "All incoming mail is checked for unsolicited commercial content (SPAM) and "
 "marked accordingly. This special rule allows you to configure what to do "
 "with such messages once they arrive to your Inbox."
-msgstr ""
+msgstr "п▓я│я▐ п╡я┘п╬п╢я▐я┴п╟я▐ п©п╬я┤я┌п╟ п©я─п╬п╡п╣я─я▐п╣я┌я│я▐ п╫п╟ п©я─п╣п╢п╪п╣я┌ я│п©п╟п╪п╟ п╦ п©п╬п╪п╣я┤п╟п╣я┌я│я▐ "
+"я│п╬п╬я┌п╡п╣я┌я│я┌п╡п╣п╫п╫п╬. п╜я┌п╬ я│п©п╣я├п╦п╟п╩я▄п╫п╬п╣ п©я─п╟п╡п╦п╩п╬ п©п╬п╥п╡п╬п╩я▐п╣я┌ п╡п╟п╪ я┐п╨п╟п╥п╟я┌я▄, я┤я┌п╬ п╢п╣п╩п╟я┌я▄ "
+"я│ я┌п╟п╨п╦п╪п╦ я│п╬п╬п╠я┴п╣п╫п╦я▐п╪п╦, п╨п╬пЁп╢п╟ п╬п╫п╦ п©я─п╦я┘п╬п╢я▐я┌ п╡ п╡п╟я┬ п©п╬я┤я┌п╬п╡я▀п╧ я▐я┴п╦п╨."
 
 #, php-format
 msgid ""
 "Select %s to add the predefined rule, or select the advanced SPAM filter to "
 "customize the rule."
-msgstr ""
+msgstr "п▓я▀п╠п╣я─п╦я┌п╣ %s п╢п╩я▐ п╢п╬п╠п╟п╡п╩п╣п╫п╦я▐ пЁп╬я┌п╬п╡п╬пЁп╬ п©я─п╟п╡п╦п╩п╟ п╦п╩п╦ п╡я▀п╠п╣я─п╦я┌п╣ я─п╟я│я┬п╦я─п╣п╫п╫я▀п╧ "
+"я│п©п╟п╪-я└п╦п╩я▄я┌я─ п╢п╩я▐ я│п╬п╥п╢п╟п╫п╦я▐ я│п╬п╠я│я┌п╡п╣п╫п╫п╬пЁп╬."
 
-#, fuzzy
 msgid "Add Spam Rule"
-msgstr "Добавить новое правило"
+msgstr "п■п╬п╠п╟п╡п╦я┌я▄ п©я─п╟п╡п╦п╩п╬ п╡ я│п©п╟п╪-я└п╦п╩я▄я┌я─"
 
 msgid "Advanced Spam Filter..."
-msgstr ""
+msgstr "п═п╟я│я┬п╦я─п╣п╫п╫я▀п╧ я│п©п╟п╪-я└п╦п╩я▄я┌я─..."
 
 msgid "Target Score"
-msgstr ""
+msgstr "пёя─п╬п╡п╣п╫я▄ я│п╬п╬я┌п╡п╣я│я┌п╡п╦я▐"
 
 #, php-format
 msgid ""
 "Messages with SPAM-Score higher than the target value, the maximum value "
 "being %s, will be considered SPAM."
-msgstr ""
+msgstr "п║п╬п╬п╠я┴п╣п╫п╦я▐ я│ я┐я─п╬п╡п╫п╣п╪ я│п╬п╬я┌п╡п╣я┌я│я┌п╡п╦я▐ п╡я▀я┬п╣, я┤п╣п╪ п╢п╟п╫п╫п╬п╣ п╥п╫п╟я┤п╣п╫п╦п╣, п╫п╟я┤п╦п╫п╟я▐ "
+"я│ %s, п╠я┐п╢я┐я┌ я│я┤п╦я┌п╟я┌я▄я│я▐ я│п©п╟п╪п╬п╪."
 
 msgid "SPAM Lists to check against"
-msgstr ""
+msgstr "п╖я▒я─п╫я▀п╣ я│п©п╦я│п╨п╦ п╢п╩я▐ п©я─п╬п╡п╣я─п╨п╦"
 
 msgid "Error Encountered"
-msgstr ""
+msgstr "п▓я│я┌я─п╣я┤п╣п╫п╬ п╬я┬п╦п╠п╬п╨"
 
 msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "Для <strong>ВСЕХ<strong> входящих сообщений; "
+msgstr "п■п╩я▐ <strong>п▓п║п∙п╔<strong> п╡я┘п╬п╢я▐я┴п╦я┘ я│п╬п╬п╠я┴п╣п╫п╦п╧; "
 
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
 "messages)"
-msgstr ""
+msgstr "п▓я│п╣ я│п╬п╬п╠я┴п╣п╫п╦я▐, п╬я┌п╪п╣я┤п╣п╫п╫я▀п╣ п╨п╟п╨ <strong>я│п©п╟п╪</strong>"
 
 msgid "matching the Spam List(s):"
-msgstr ""
+msgstr "я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐п╣я┌ я┤я▒я─п╫я▀п╪ я│п©п╦я│п╨п╟п╪:"
 
 #, php-format
 msgid "and with score greater than %s"
-msgstr ""
+msgstr "п╦ я│ я┐я─п╬п╡п╫п╣п╪ я│п╬п╬я┌п╡п╣я┌я│я┌п╡п╦я▐ п╠п╬п╩я▄я┬п╣ я┤п╣п╪ %s"
 
 msgid "will be"
-msgstr ""
+msgstr "п╠я┐п╢я┐я┌"
 
 msgid "stored in the Junk Folder."
-msgstr ""
+msgstr "п©п╬п╪п╣я┴п╣п╫я▀ п╡ п©п╟п©п╨я┐ Junk"
 
 msgid "stored in the Trash Folder."
-msgstr ""
+msgstr "п©п╬п╪п╣я┴п╟п╫я▀ п╡ п©п╟п©п╨я┐ Trash"
 
-#, fuzzy
 msgid "discarded."
-msgstr "<em>уничтожить на сервере</em>"
+msgstr "п╬я┌п╪п╣п╫п╣п╫п╬"
 
 msgid "If"
-msgstr "Если"
+msgstr "п╣я│п╩п╦"
 
 msgid "<em>any</em> of the following mail headers match: "
-msgstr "<em>любой</em> из перечисленных почтовых заголовков соответствует: "
+msgstr "<em>п╩я▌п╠п╬п╧</em> п╦п╥ я│п╩п╣п╢я┐я▌я┴п╦я┘ п©п╬я┤я┌п╬п╡я▀я┘ п╥п╟пЁп╬п╩п╬п╡п╨п╬п╡ я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐п╣я┌: "
 
 msgid "<em>all</em> of the following mail headers match: "
-msgstr "<em>все</em> перечисленные почтовые заголовки соответствуют: "
+msgstr "<em>п╡я│п╣</em> я│п╩п╣п╢я┐я▌я┴п╦п╣ п©п╬я┤я┌п╬п╡я▀п╣ п╥п╟пЁп╬п╩п╬п╡п╨п╦ я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐я▌я┌: "
 
 msgid "the header"
-msgstr "заголовок"
+msgstr "п╥п╟пЁп╬п╩п╬п╡п╬п╨"
 
 msgid "is"
-msgstr "совпадает"
+msgstr "я│п╬п╡п©п╟п╢п╟п╣я┌"
 
 msgid "is not"
-msgstr "не совпадает"
+msgstr "п╫п╣ я│п╬п╡п©п╟п╢п╟п╣я┌"
 
 msgid "contains"
-msgstr "содержит"
+msgstr "я│п╬п╢п╣я─п╤п╦я┌"
 
 msgid "does not contain"
-msgstr "не содержит"
+msgstr "п╫п╣ я│п╬п╢п╣я─п╤п╦я┌"
 
 msgid "matches"
-msgstr ""
+msgstr "я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐п╣я┌"
 
-#, fuzzy
 msgid "does not match"
-msgstr "не содержит"
+msgstr "п╫п╣ я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐п╣я┌"
 
 msgid "is greater than"
-msgstr ""
+msgstr "п╠п╬п╩я▄я┬п╣ я┤п╣п╪"
 
 msgid "is greater or equal to"
-msgstr ""
+msgstr "п╠п╬п╩я▄я┬п╣ п╦п╩п╦ я─п╟п╡п╫п╬"
 
 msgid "is lower than"
-msgstr ""
+msgstr "п╪п╣п╫я▄я┬п╣ я┤п╣п╪"
 
 msgid "is lower or equal to"
-msgstr ""
+msgstr "п╪п╣п╫я▄я┬п╣ п╦п╩п╦ я─п╟п╡п╫п╬"
 
 msgid "is equal to"
-msgstr ""
+msgstr "я─п╟п╡п╫п╬"
 
 msgid "is not equal to"
-msgstr ""
+msgstr "п╫п╣ я─п╟п╡п╫п╬"
 
 msgid "matches the regural expression"
-msgstr ""
+msgstr "я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐п╣я┌ я─п╣пЁя┐п╩я▐я─п╫п╬п╪я┐ п╡я▀я─п╟п╤п╣п╫п╦я▌"
 
 msgid "does not match the regural expression"
-msgstr ""
+msgstr "п╫п╣ я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐п╣я┌ я─п╣пЁя┐п╩я▐я─п╫п╬п╪я┐ п╡я▀я─п╟п╤п╣п╫п╦я▌"
 
 msgid "exists"
-msgstr ""
+msgstr "я│я┐я┴п╣я│я┌п╡я┐п╣я┌"
 
-#, fuzzy
 msgid "does not exist"
-msgstr "не содержит"
+msgstr "п╫п╣ я│я┐я┴п╣я│я┌п╡я┐п╣я┌"
 
 msgid "the size of the message is"
-msgstr "размер сообщения"
+msgstr "я─п╟п╥п╪п╣я─ я│п╬п╬п╠я┴п╣п╫п╦я▐"
 
 msgid " bigger"
-msgstr " больше"
+msgstr " п╠п╬п╩я▄я┬п╣"
 
 msgid " smaller"
-msgstr " меньше"
+msgstr " п╪п╣п╫я▄я┬п╣"
 
 msgid "then"
-msgstr "то"
+msgstr "я┌п╬"
 
 msgid "<em>keep</em> it."
-msgstr "<em>сохранить</em>"
+msgstr "<em>я│п╬я┘я─п╟п╫п╦я┌я▄</em>"
 
 msgid "<em>discard</em> it."
-msgstr "<em>уничтожить на сервере</em>"
+msgstr "<em>я┐п╫п╦я┤я┌п╬п╤п╦я┌я▄ п╫п╟ я│п╣я─п╡п╣я─п╣</em>"
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
-msgstr "<em>вернуть отправителю</em> с пояснением: "
+msgstr "<em>п╡п╣я─п╫я┐я┌я▄ п╬я┌п©я─п╟п╡п╦я┌п╣п╩я▌</em> я│ п©п╬я▐я│п╫п╣п╫п╦п╣п╪: "
 
 msgid "<em>redirect</em> it to the email address"
-msgstr "<em>перенаправить</em> на адрес"
+msgstr "<em>п©п╣я─п╣п╫п╟п©я─п╟п╡п╦я┌я▄</em> п╫п╟ п╟п╢я─п╣я│"
 
 msgid "<em>file</em> it into the folder <strong>"
-msgstr "<em>сохранить</em> в папке <strong>"
+msgstr "<em>я│п╬я┘я─п╟п╫п╦я┌я▄</em> п╡ п©п╟п©п╨п╣ <strong>"
 
 msgid "reply with this vacation message: "
-msgstr "ответить этим сообщением:"
+msgstr "п╬я┌п╡п╣я┌п╦я┌я▄ я█я┌п╦п╪ я│п╬п╬п╠я┴п╣п╫п╦п╣п╪:"
 
 msgid " Also keep a copy in INBOX, marked as deleted."
-msgstr ""
+msgstr "п╒п╟п╨п╤п╣ я│п╬я┘я─п╟п╫п╦я┌я▄ п╨п╬п©п╦я▌ п╡п╬ п╡я┘п╬п╢я▐я┴п╦я┘, п©п╬п╪п╣я┌п╦п╡ п╨п╟п╨ я┐п╢п╟п╩я▒п╫п╫п╬п╣."
 
 msgid " Also notify using the method"
-msgstr ""
+msgstr "п╒п╟п╨п╤п╣ я┐п╡п╣п╢п╬п╪п╦я┌я▄, п╦я│п©п╬п╩я▄п╥я┐я▐ я│п╩п╣п╢я┐я▌я┴п╦п╧ п╪п╣я┌п╬п╢"
 
 msgid "with"
-msgstr ""
+msgstr "я│"
 
 msgid "priority and the message"
-msgstr ""
+msgstr "п©я─п╦п╬я─п╦я┌п╣я┌п╬п╪ п╦ я│п╬п╬п╠я┴п╣п╫п╦п╣п╪"
 
 msgid " Then <strong>STOP</strong> processing rules."
-msgstr "Затем <strong>ОСТАНОВИТЬ<strong> обработку правил."
+msgstr "п≈п╟я┌п╣п╪ <strong>п·п║п╒п░п²п·п▓п≤п╒п╛<strong> п╬п╠я─п╟п╠п╬я┌п╨я┐ п©я─п╟п╡п╦п╩."
 
 msgid "Address Match"
-msgstr "Сравнение адреса"
+msgstr "п║я─п╟п╡п╫п╣п╫п╦п╣ п╟п╢я─п╣я│п╟"
 
-#, fuzzy
 msgid ""
 "Perform an action depending on email addresses appearing in message headers."
-msgstr "Выполнить действие в зависимости от размера сообщения."
+msgstr "п▓я▀п©п╬п╩п╫п╦я┌я▄ п╢п╣п╧я│я┌п╡п╦п╣ п╡ п╥п╟п╡п╦я│п╦п╪п╬я│я┌п╦ email-п╟п╢я─п╣я│п╬п╡ п╡ п╥п╟пЁп╬п╩п╬п╡п╨п╟я┘ я│п╬п╬п╠я┴п╣п╫п╦я▐."
 
 msgid "Header Match"
-msgstr "Сравнение заголовков"
+msgstr "п║я─п╟п╡п╫п╣п╫п╦п╣ п╥п╟пЁп╬п╩п╬п╡п╨п╬п╡"
 
 msgid ""
 "Perform an action on messages matching a specified header (From, To etc.)."
-msgstr "Выполнить действие по результатам анализа заголовков сообщения"
+msgstr "п▓я▀п©п╬п╩п╫п╦я┌я▄ п╢п╣п╧я│я┌п╡п╦п╣ п©п╬ я─п╣п╥я┐п╩я▄я┌п╟я┌п╟п╪ п╟п╫п╟п╩п╦п╥п╟ п╥п╟пЁп╬п╩п╬п╡п╨п╬п╡ я│п╬п╬п╠я┴п╣п╫п╦я▐ (From, To п╦ я┌.п╢.)."
 
 msgid "Size"
-msgstr "Размер"
+msgstr "п═п╟п╥п╪п╣я─"
 
 msgid "Perform an action on messages depending on their size."
-msgstr "Выполнить действие в зависимости от размера сообщения."
+msgstr "п▓я▀п©п╬п╩п╫п╦я┌я▄ п╢п╣п╧я│я┌п╡п╦п╣ п╡ п╥п╟п╡п╦я│п╦п╪п╬я│я┌п╦ п╬я┌ я─п╟п╥п╪п╣я─п╟ я│п╬п╬п╠я┴п╣п╫п╦я▐."
 
 msgid "All Messages"
-msgstr "Все сообщения"
+msgstr "п▓я│п╣ я│п╬п╬п╠я┴п╣п╫п╦я▐"
 
 msgid "Perform an action on <strong>all</strong> incoming messages."
-msgstr "Выполнить действие для <strong>всех</strong> входящих сообщений."
+msgstr "п▓я▀п©п╬п╩п╫п╦я┌я▄ п╢п╣п╧я│я┌п╡п╦п╣ п╢п╩я▐ <strong>п╡я│п╣я┘</strong> п╡я┘п╬п╢я▐я┴п╦я┘ я│п╬п╬п╠я┴п╣п╫п╦п╧."
 
-#, fuzzy
 msgid "Body Match"
-msgstr "Сравнение заголовков"
+msgstr "п║я─п╟п╡п╫п╣п╫п╦п╣ я│п╬п╢п╣я─п╤п╟п╫п╦я▐"
 
-#, fuzzy
 msgid "Perform an action on messages depending on their content (body text)."
-msgstr "Выполнить действие в зависимости от размера сообщения."
+msgstr "п▓я▀п©п╬п╩п╫п╦я┌я▄ п╢п╣п╧я│я┌п╡п╦п╣ п╡ п╥п╟п╡п╦я│п╦п╪п╬я│я┌п╦ п╬я┌ я│п╬п╢п╣я─п╤п╟п╫п╦я▐ (я┌п╣п╨я│я┌п╟ я│п╬п╬п╠я┴п╣п╫п╦я▐)."
 
 msgid "wildcard"
-msgstr ""
+msgstr "я┬п╟п╠п╩п╬п╫"
 
 msgid "regexp"
-msgstr ""
+msgstr "я─п╣пЁя┐п╩я▐я─п╫п╬п╣ п╡я▀я─п╟п╤п╣п╫п╦п╣"
 
 msgid "verbose"
-msgstr ""
+msgstr "п╢п╣я┌п╟п╩я▄п╫п╬"
 
-#, fuzzy
 msgid "terse"
-msgstr "Фильтры"
+msgstr "п╨я─п╟я┌п╨п╬"
 
 msgid "Mobile Phone Message (SMS)"
-msgstr ""
+msgstr "п÷п╬я│п╩п╟я┌я▄ SMS"
 
 msgid "Email notification"
-msgstr ""
+msgstr "пёп╡п╣п╢п╬п╪п╩п╣п╫п╦п╣ я┤п╣я─п╣п╥ email"
 
 msgid "Notification via Zephyr"
-msgstr ""
+msgstr "пёп╡п╣п╢п╬п╪п╩п╣п╫п╦п╣ я┤п╣я─п╣п╥ Zephyr"
 
 msgid "Notification via ICQ"
-msgstr ""
+msgstr "пёп╡п╣п╢п╬п╪п╩п╣п╫п╦п╣ я┤п╣я─п╣п╥ ICQ"
 
 msgid "Low"
-msgstr ""
+msgstr "п²п╦п╥п╨п╦п╧"
 
 msgid "Normal"
-msgstr ""
+msgstr "п²п╬я─п╪п╟п╩я▄п╫я▀п╧"
 
 msgid "High"
-msgstr ""
+msgstr "п▓я▀я│п╬п╨п╦п╧"
 
 msgid "Delete"
-msgstr ""
+msgstr "пёп╢п╟п╩п╦я┌я▄"
 
 msgid "Edit"
-msgstr ""
+msgstr "п═п╣п╢п╟п╨я┌п╦я─п╬п╡п╟я┌я▄"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "п║п╨п╬п©п╦я─п╬п╡п╟я┌я▄"
 
 msgid "Move Up"
-msgstr ""
+msgstr "п÷п╣я─п╣п╪п╣я│я┌п╦я┌я▄ п╡я▀я┬п╣"
 
-#, fuzzy
 msgid "Move to Top"
-msgstr "Следующий шаг "
+msgstr "п÷п╣я─п╣п╪п╣я│я┌п╦я┌я▄ п╫п╟ я│п╟п╪я▀п╧ п╡п╣я─я┘"
 
 msgid "Move Down"
-msgstr ""
+msgstr "п÷п╣я─п╣п╪п╣я│я┌п╦я┌я▄ п╫п╦п╤п╣"
 
-#, fuzzy
 msgid "Move to Bottom"
-msgstr "Следующий шаг "
+msgstr "п÷п╣я─п╣п╪п╣я│я┌п╦я┌я▄ п╡ я│п╟п╪я▀п╧ п╫п╦п╥"
 
 msgid "Junk Folder"
-msgstr ""
+msgstr "п÷п╟п©п╨п╟ Junk"
 
 #, php-format
 msgid ""
 "Store SPAM message in your Junk Folder. Messages older than %s days will be "
 "deleted automatically."
-msgstr ""
+msgstr "п÷п╬п╪п╣я┴п╟я┌я▄ я│п©п╟п╪ п╡ п©п╟п©п╨я┐ Junk. п║п╬п╬п╠я┴п╣п╫п╦я▐, я│я┌п╟я─я┬п╣ я┤п╣п╪ %s п╢п╫п╣п╧, п╠я┐п╢я┐я┌ "
+"я┐п╢п╟п╩п╣п╫я▀ п╟п╡я┌п╬п╪п╟я┌п╦я┤п╣я│п╨п╦."
 
 msgid "Trash Folder"
-msgstr ""
+msgstr "п÷п╟п©п╨п╟ Trash"
 
 msgid ""
 "Store SPAM message in your Trash Folder. You will have to purge the folder "
 "yourself."
-msgstr ""
+msgstr "п÷п╬п╪п╣я┴п╟я┌я▄ я│п©п╟п╪ п╡ п©п╟п©п╨я┐ Trash. п▓я▀ п╢п╬п╩п╤п╫я▀ п╠я┐п╢п╣я┌п╣ п╬я┤п╦я┴п╟я┌я▄ п╣я▒ я│п╟п╪п╬я│я┌п╬я▐я┌п╣п╩я▄п╫п╬."
 
-#, fuzzy
 msgid "Discard"
-msgstr "Молча уничтожить"
+msgstr "пёп╫п╦я┤я┌п╬п╤п╦я┌я▄"
 
 msgid ""
 "Discard SPAM message. You will get no indication that the message ever "
 "arrived."
-msgstr ""
+msgstr "пёп╫п╦я┤я┌п╬п╤п╦я┌я▄ я│п©п╟п╪. п▓я▀ п╫п╣ я┐п╡п╦п╢п╦я┌п╣, я┤я┌п╬ я┌п╟п╨п╬п╣ я│п╬п╬п╠я┴п╣п╫п╦п╣ п╡п╬п╬п╠я┴п╣ п©я─п╦я┘п╬п╢п╦п╩п╬."
 
-#, fuzzy
 msgid "Editing Mail Filtering Rule"
-msgstr "Имеющиеся правила фильтрации"
+msgstr "п═п╣п╢п╟п╨я┌п╦я─п╬п╡п╟п╫п╦п╣ п©я─п╟п╡п╦п╩п╟ я└п╦п╩я▄я┌я─п╟я├п╦п╦"
 
-#, fuzzy
 msgid "Apply Changes"
-msgstr "Сохранить изменения"
+msgstr "п║п╬я┘я─п╟п╫п╦я┌я▄ п╦п╥п╪п╣п╫п╣п╫п╦я▐"
 
 msgid "Message Filters"
-msgstr "Фильтры сообщений"
+msgstr "п╓п╦п╩я▄я┌я─я▀ я│п╬п╬п╠я┴п╣п╫п╦п╧"
 
 msgid ""
 "Server-Side mail filtering enables you to add criteria in order to "
 "automatically forward, delete or place a given message into a folder."
 msgstr ""
-"Фильтрация почты на сервере позволяет Вам определить критерии в соответствии "
-"с которыми данное сообщение будет автоматически пренаправлено, удалено или "
-"помещено в конкретную папку (IMAP)"
+"п╓п╦п╩я▄я┌я─п╟я├п╦я▐ п©п╬я┤я┌я▀ п╫п╟ я│п╣я─п╡п╣я─п╣ п©п╬п╥п╡п╬п╩я▐п╣я┌ п▓п╟п╪ п╬п©я─п╣п╢п╣п╩п╦я┌я▄ п╨я─п╦я┌п╣я─п╦п╦ п╡ я│п╬п╬я┌п╡п╣я┌я│я┌п╡п╦п╦ "
+"я│ п╨п╬я┌п╬я─я▀п╪п╦ п╢п╟п╫п╫п╬п╣ я│п╬п╬п╠я┴п╣п╫п╦п╣ п╠я┐п╢п╣я┌ п╟п╡я┌п╬п╪п╟я┌п╦я┤п╣я│п╨п╦ п©я─п╣п╫п╟п©я─п╟п╡п╩п╣п╫п╬, я┐п╢п╟п╩п╣п╫п╬ п╦п╩п╦ "
+"п©п╬п╪п╣я┴п╣п╫п╬ п╡ п╨п╬п╫п╨я─п╣я┌п╫я┐я▌ п©п╟п©п╨я┐ (IMAP)"
 
 msgid "Filters"
-msgstr "Фильтры"
+msgstr "п╓п╦п╩я▄я┌я─я▀"
 
 msgid "Unable to load script to server."
-msgstr ""
+msgstr "п²п╣ п╪п╬пЁя┐ п╥п╟пЁя─я┐п╥п╦я┌я▄ я└п╦п╩я▄я┌я─ п╫п╟ я│п╣я─п╡п╣я─."
 
 msgid "Server responded with:"
-msgstr ""
+msgstr "п║п╣я─п╡п╣я─ п╬я┌п╡п╣я┌п╦п╩:"
 
 msgid "Please contact your administrator."
-msgstr ""
+msgstr "п÷п╬п╤п╟п╩я┐п╧я│я┌п╟, я│п╬п╬п╠я┴п╦я┌п╣ п╡п╟я┬п╣п╪я┐ п╟п╢п╪п╦п╫п╦я│я┌я─п╟я┌п╬я─я┐."
 
 msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr ""
+msgstr "п²п╣ п╪п╬пЁя┐ я│п╬п╣п╢п╦п╫п╦я┌я│я▐ я│ п╢п╣п╪п╬п╫п╬п╪ timsiaved п╫п╟ п╡п╟я┬п╣п╪ я│п╣я─п╡п╣я─п╣ IMAP"
 
 msgid "Current Mail Filtering Rules"
-msgstr "Имеющиеся правила фильтрации"
+msgstr "п≤п╪п╣я▌я┴п╦п╣я│я▐ п©я─п╟п╡п╦п╩п╟ я└п╦п╩я▄я┌я─п╟я├п╦п╦"
 
 msgid "No Filtering Rules Defined Yet"
-msgstr ""
+msgstr "п÷я─п╟п╡п╦п╩п╟ я└п╦п╩я▄я┌я─п╟я├п╦п╦ п╫п╣ п╬п©я─п╣п╢п╣п╩п╣п╫я▀"
 
 msgid "in order to save your rules."
-msgstr ""
+msgstr "п╢п╩я▐ я┌п╬пЁп╬, я┤я┌п╬п╠я▀ я│п╬я┘я─п╟п╫п╦я┌я▄ п╡п╟я┬п╦ п©я─п╟п╡п╦п╩п╟."
 
 msgid "Could not set active script on your IMAP server"
-msgstr ""
+msgstr "п²п╣ п╪п╬пЁя┐ я│п╢п╣п╩п╟я┌я▄ я│п╨я─п╦п©я┌ п╟п╨я┌п╦п╡п╫я▀п╪ п╫п╟ п╡п╟я┬п╣п╪ я│п╣я─п╡п╣я─п╣ IMAP"
 
 msgid "Could not get SIEVE script from your IMAP server"
-msgstr ""
+msgstr "п²п╣ п╪п╬пЁя┐ п©п╬п╩я┐я┤п╦я┌я▄ я│п╨я─п╦п©я┌ я│ п╡п╟я┬п╣пЁп╬ я│п╣я─п╡п╣я─п╟ IMAP"
 
 msgid "(Probably the script is size null)."
-msgstr ""
+msgstr "(п▓п╬п╥п╪п╬п╤п╫п╬, я│п╨я─п╦п©я┌ п╦п╪п╣п╣я┌ п╫я┐п╩п╣п╡п╬п╧ я─п╟п╥п╪п╣я─)."
 
 msgid "All your rules have been deleted"
-msgstr "Все Ваши правила были удалены"
+msgstr "п▓я│п╣ п▓п╟я┬п╦ п©я─п╟п╡п╦п╩п╟ п╠я▀п╩п╦ я┐п╢п╟п╩п╣п╫я▀"
 
 msgid "Delete Selected"
-msgstr ""
+msgstr "пёп╢п╟п╩п╦я┌я▄ п╡я▀п╠я─п╟п╫п╫п╬п╣"
 
 msgid "Server-Side Mail Filtering"
-msgstr "Фильтрация почты на сервере"
+msgstr "п╓п╦п╩я▄я┌я─п╟я├п╦я▐ п©п╬я┤я┌я▀ п╫п╟ я│п╣я─п╡п╣я─п╣"
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
 "filters will always apply to your incoming mail, wherever you check your "
 "email."
 msgstr ""
-"Здесь Вы можете добавить или удалить правила фильтрации для Вашего почтового "
-"ящика. Фильтры будут применяться ко всей Вашей входящей почте."
+"п≈п╢п╣я│я▄ п▓я▀ п╪п╬п╤п╣я┌п╣ п╢п╬п╠п╟п╡п╦я┌я▄ п╦п╩п╦ я┐п╢п╟п╩п╦я┌я▄ п©я─п╟п╡п╦п╩п╟ я└п╦п╩я▄я┌я─п╟я├п╦п╦ п╢п╩я▐ п▓п╟я┬п╣пЁп╬ п©п╬я┤я┌п╬п╡п╬пЁп╬ "
+"я▐я┴п╦п╨п╟. п╓п╦п╩я▄я┌я─я▀ п╠я┐п╢я┐я┌ п©я─п╦п╪п╣п╫я▐я┌я▄я│я▐ п╨п╬ п╡я│п╣п╧ п▓п╟я┬п╣п╧ п╡я┘п╬п╢я▐я┴п╣п╧ п©п╬я┤я┌п╣."
 
 msgid ""
 "You don't have any rules yet. Feel free to add any with the button &quot;Add "
 "a New Rule&quot;. When you are done, please select &quot;Save Changes&quot; "
 "to get back to the main options screen."
 msgstr ""
-"Пока у Вас нет правил. Вы можете их добавить при помощи кнопки &quot;"
-"Добавить новое правило&quot;. Когда Вы закончите добавление, нажмите, "
-"пожалуйста, кнопку &quot;Сохранить изменения&quot; для возврата на основную "
-"страницу настроек."
+"п÷п╬п╨п╟ я┐ п▓п╟я│ п╫п╣я┌ п©я─п╟п╡п╦п╩. п▓я▀ п╪п╬п╤п╣я┌п╣ п╦я┘ п╢п╬п╠п╟п╡п╦я┌я▄ п©я─п╦ п©п╬п╪п╬я┴п╦ п╨п╫п╬п©п╨п╦ &quot;"
+"п■п╬п╠п╟п╡п╦я┌я▄ п╫п╬п╡п╬п╣ п©я─п╟п╡п╦п╩п╬&quot;. п п╬пЁп╢п╟ п▓я▀ п╥п╟п╨п╬п╫я┤п╦я┌п╣ п╢п╬п╠п╟п╡п╩п╣п╫п╦п╣, п╫п╟п╤п╪п╦я┌п╣, "
+"п©п╬п╤п╟п╩я┐п╧я│я┌п╟, п╨п╫п╬п©п╨я┐ &quot;п║п╬я┘я─п╟п╫п╦я┌я▄ п╦п╥п╪п╣п╫п╣п╫п╦я▐&quot; п╢п╩я▐ п╡п╬п╥п╡я─п╟я┌п╟ п╫п╟ п╬я│п╫п╬п╡п╫я┐я▌ "
+"я│я┌я─п╟п╫п╦я├я┐ п╫п╟я│я┌я─п╬п╣п╨."
 
-#, fuzzy
 msgid ""
 "When you are done with editing, <strong>remember to select &quot;Save "
 "Changes&quot;</strong> to activate your changes!"
 msgstr ""
-"Завершив редактирование, <strong>не забудьте</strong> нажать &quot;Сохранить "
-"изменения&quot;, чтобы они вступили в силу"
+"п≈п╟п╡п╣я─я┬п╦п╡ я─п╣п╢п╟п╨я┌п╦я─п╬п╡п╟п╫п╦п╣, <strong>п╫п╣ п╥п╟п╠я┐п╢я▄я┌п╣</strong> п╫п╟п╤п╟я┌я▄ &quot;п║п╬я┘я─п╟п╫п╦я┌я▄ "
+"п╦п╥п╪п╣п╫п╣п╫п╦я▐&quot;, я┤я┌п╬п╠я▀ п╬п╫п╦ п╡я│я┌я┐п©п╦п╩п╦ п╡ я│п╦п╩я┐"
 
 msgid "Successfully added new rule."
-msgstr ""
+msgstr "п²п╬п╡п╬п╣ п©я─п╟п╡п╦п╩п╬ я┐я│п©п╣я┬п╫п╬ п╢п╬п╠п╟п╡п╩п╣п╫п╬."
 
 msgid "Successfully updated rule #"
-msgstr ""
+msgstr "п÷я─п╟п╡п╦п╩п╬ п╫п╬п╪п╣я─ # я┐я│п©п╣я┬п╫п╬ п╬п╠п╫п╬п╡п╩п╣п╫п╬"
 
 msgid "Successfully deleted rules #"
-msgstr ""
+msgstr "пёя│п©п╣я┬п╫п╬ я┐п╢п╟п╩п╣п╫я▀ п©я─п╟п╡п╦п╩п╟ #"
 
 msgid "Successfully deleted rule #"
-msgstr ""
+msgstr "пёя│п©п╣я┬п╫п╬ я┐п╢п╟п╩п╣п╫п╬ п©я─п╟п╡п╦п╩п╬ #"
 
 msgid "The following table summarizes your current mail filtering rules."
 msgstr ""
-"В таблице представлены текущие правила фильтрации Ваших почтовых сообщений"
+"п▓ я┌п╟п╠п╩п╦я├п╣ п©я─п╣п╢я│я┌п╟п╡п╩п╣п╫я▀ я┌п╣п╨я┐я┴п╦п╣ п©я─п╟п╡п╦п╩п╟ я└п╦п╩я▄я┌я─п╟я├п╦п╦ п▓п╟я┬п╦я┘ п©п╬я┤я┌п╬п╡я▀я┘ я│п╬п╬п╠я┴п╣п╫п╦п╧"
 
 msgid "No"
-msgstr "N правила"
+msgstr "N п©я─п╟п╡п╦п╩п╟"
 
 msgid "Description of Rule"
-msgstr "Описание правила"
+msgstr "п·п©п╦я│п╟п╫п╦п╣ п©я─п╟п╡п╦п╩п╟"
 
 msgid "Display as:"
-msgstr ""
+msgstr "п÷п╬п╨п╟п╥я▀п╡п╟я┌я▄ п╨п╟п╨"
 
 msgid "Options"
-msgstr "Настройки"
+msgstr "п²п╟я│я┌я─п╬п╧п╨п╦"
 
 msgid "Add a New Rule"
-msgstr "Добавить новое правило"
+msgstr "п■п╬п╠п╟п╡п╦я┌я▄ п╫п╬п╡п╬п╣ п©я─п╟п╡п╦п╩п╬"
 
 msgid ""
 "When you are done, please click the button below to return to your webmail."
-msgstr "Нажмите эту кнопку когда закончите редактировать правила"
+msgstr "п²п╟п╤п╪п╦я┌п╣ я█я┌я┐ п╨п╫п╬п©п╨я┐, п╨п╬пЁп╢п╟ п╥п╟п╨п╬п╫я┤п╦я┌п╣ я─п╣п╢п╟п╨я┌п╦я─п╬п╡п╟п╫п╦п╣"
 
 msgid "Save Changes"
-msgstr "Сохранить изменения"
+msgstr "п║п╬я┘я─п╟п╫п╦я┌я▄ п╦п╥п╪п╣п╫п╣п╫п╦я▐"
 
 msgid "Created:"
-msgstr ""
+msgstr "п║п╬п╥п╢п╟п╫п╬:"
 
 msgid "Last modified:"
-msgstr ""
+msgstr "п≤п╥п╪п╣п╫п╣п╫п╬:"
 
-#, fuzzy
-#~ msgid "does not match regexp"
-#~ msgstr "не содержит"
-
-#, fuzzy
-#~ msgid "does not match wildcard"
-#~ msgstr "не содержит"
-
-#~ msgid "Size Match"
-#~ msgstr "Сравнение размера"
-
-#~ msgid "Action to Take"
-#~ msgstr "Выполняемое действие"
-
-#~ msgid "Here is your script."
-#~ msgstr "Это Ваш скрипт"
