@@ -1,57 +1,30 @@
 <?php
-
-/*
- * $Id: sieve-php.lib.php,v 1.3 2003/10/27 11:37:42 avel Exp $ 
+/**
+ * sieve-php.lib.php
  *
- * Copyright 2001 Dan Ellis <danellis@rushmore.com>
+ * $Id: sieve-php.lib.php,v 1.4 2003/12/18 14:08:28 avel Exp $ 
  *
- * See the enclosed file COPYING for license information (GPL).  If you
- * did not receive this file, see http://www.fsf.org/copyleft/gpl.html.
+ * Copyright 2001-2003 Dan Ellis <danellis@rushmore.com>
+ *
+ * This program is released under the GNU Public License.  See the enclosed
+ * file COPYING for license information. If you did not receive this file, see
+ * http://www.fsf.org/copyleft/gpl.html.
+ *
+ * You should have received a copy of the GNU Public License along with this
+ * package; if not, write to the Free Software Foundation, Inc., 59 Temple
+ * Place - Suite 330, Boston, MA 02111-1307, USA.        
+ *
+ * See CHANGES for updates since last release
+ *
+ * @author Dan Ellis
+ * @package sieve-php
+ * @copyright Copyright 2002-2003, Dan Ellis, All Rights Reserved.  
+ * @version 0.1.0
  */
 
-/*
-
-SIEVE-PHP.LIB VERSION 0.1.0cvs
-
-(C) 2001 Dan Ellis.
-
-PLEASE READ THE README FILE FOR MORE INFORMATION.
-
-Basically, this is the first re-release.  Things are much better than before.
-
-Notes:
-This program/libary has bugs.
-	.	This was quickly hacked out, so please let me know what is wrong and if you feel ambitious submit
-		a patch :).
-
-Todo:
-	.	remove ::status() and dependencies
-	.	Provide better error diagnostics.  			(mostly done with ver 0.0.5)
-	.	Allow other auth mechanisms besides plain		(in progress)
-	.	Have timing mechanism when port problems arise.		(not done yet)
-	.	Maybe add the NOOP function.				(not done yet)
-	.	Other top secret stuff....				(some done, believe me?)
-
-Dan Ellis (danellis@rushmore.com)
-
-This program is released under the GNU Public License.
-
-You should have received a copy of the GNU Public
- License along with this package; if not, write to the
- Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- Boston, MA 02111-1307, USA.        
-
-See CHANGES for updates since last release
-
-Contributers of patches:
-	Atif Ghaffar
-	Andrew Sterling Hanenkamp <sterling@hanenkamp.com>
-	"Ilya Pizik" <polzun@scar.jinr.ru> (AUTH LOGIN)
-	Scott Russell <lnxgeek@us.ibm.com> (DIGEST-MD5 & CRAM-MD5)
-	Alexandros Vellis <avel@noc.uoa.gr>
-
-*/
-
+/**
+ * Constants
+ */
 define ("F_NO", 0);		
 define ("F_OK", 1);
 define ("F_DATA", 2);
@@ -62,14 +35,57 @@ define ("EC_QUOTA", 10);
 define ("EC_NOSCRIPTS", 20);
 define ("EC_UNKNOWN", 255);
 
-class sieve
-{
+/**
+ * SIEVE class - A Class that implements MANAGESIEVE in PHP4|5.
+ *
+ * This program provides a handy interface into the Cyrus timsieved server
+ * under php4.  It is tested with Sieve server included in Cyrus 2.0, but it
+ * has been upgraded (not tested) to work with older Sieve server versions.
+ *
+ * All functions will return either true or false and will fill in
+ * $sieve->error with a defined error code like EC_QUOTA, raw server errors in
+ * $sieve->error_raw, and successful responses in $sieve->responses.
+ *
+ * NOTE: a major change since version (0.0.5) is the inclusion of a standard
+ * method to retrieve  server responses.  All functions will return either true
+ * or false and will fill in $sieve->error with a defined error code like
+ * EC_QUOTA, raw server errors in $sieve->error_raw, and successful responses
+ * in $sieve->responses.
+ *
+ * Usage is pretty simple.  The basics is login, do what you need and logout.
+ * There are two sample files (which suck) test.php and testsieve.php.
+ * test.php allows you to create/delete/view scripts and testsieve.php is a
+ * very basic sieve server test.
+ *
+ * Please let us know of any bugs, problems or ideas at sieve-php development
+ * list:  sieve-php-devel@lists.sourceforge.net. A web interface to subscribe
+ * to this list is available at:
+ * https://lists.sourceforge.net/mailman/listinfo/sieve-php-devel
+ *
+ * @author Dan Ellis
+ * @example simple_example.php A simple example that shows usage of sieve-php
+ * class.
+ * @example vacationset-sieve.php A more elaborate example of vacation script
+ * handling.
+ * @version 0.1.0
+ * @package sieve-php
+ * @todo Maybe add the NOOP function.
+ * @todo Have timing mechanism when port problems arise.
+ * @todo Provide better error diagnostics. 
+ */
+class sieve {
   var $host;
   var $port;
   var $user;
   var $pass;
-  var $auth_types;		/* a comma seperated list of allowed auth types, in order of preference */
-  var $auth_in_use;		/* type of authentication attempted */
+  /**
+   * a comma seperated list of allowed auth types, in order of preference
+   */
+  var $auth_types;
+  /**
+   * type of authentication attempted
+   */
+  var $auth_in_use;
   
   var $line;
   var $fp;
@@ -88,7 +104,9 @@ class sieve
   //maybe we should add an errorlvl that the user will pass to new sieve = sieve(,,,,E_WARN)
   //so we can decide how to handle certain errors?!?
 
-
+  /**
+   * get response
+   */
   function get_response()
   {
     if($this->loggedin == false or feof($this->fp)){
@@ -201,8 +219,39 @@ class sieve
     } /* end else */   
   } /* end get_response() */
 
-  function sieve($host, $port, $user, $pass, $auth="", $auth_types="PLAIN")
-  {
+  /**
+   * Initialization of the SIEVE class.
+   * 
+   * It will return
+   * false if it fails, true if all is well.  This also loads some arrays up
+   * with some handy information:
+   *
+   * @param $host string hostname to connect to. Usually the IMAP server where
+   * a SIEVE daemon, such as timsieved, is listening.
+   *
+   * @param $port string Numeric port to connect to. SIEVE daemons usually
+   * listen to port 2000.
+   *
+   * @param $user string is a super-user or proxy-user that has ACL rights to
+   * login on behalf of the $auth.
+   *
+   * @param $pass string password to use for authentication
+   *
+   * @param $auth string is the authorized user identity for which the SIEVE
+   * scripts will be managed.
+   *
+   * @param $auth_types string a string containing all the allowed
+   * authentication types allowed in order of preference, seperated by spaces.
+   * (ex.  "PLAIN DIGEST-MD5 CRAM-MD5"  The method the library will try first
+   * is PLAIN.) The default for this value is PLAIN.
+   *
+   * Note: $user, if included, is the account name (and $pass will be the
+   * password) of an administrator account that can act on behalf of the user.
+   * If you are using Cyrus, you must make sure that the admin account has
+   * rights to admin the user.  This is to allow admins to edit/view users
+   * scripts without having to know the user's password.  Very handy.
+   */
+  function sieve($host, $port, $user, $pass, $auth="", $auth_types='PLAIN') {
     $this->host=$host;
     $this->port=$port;
     $this->user=$user;
@@ -224,9 +273,13 @@ class sieve
     $this->error_raw="";
   }
 
-  function parse_for_quotes($string)
-  {
-      /* This function tokenizes a line of input by quote marks and returns them as an array */
+   /**
+    * Tokenize a line of input by quote marks and return them as an array
+    *
+    * @param $string string Input line to parse for quotes
+    * @return array Array of broken by quotes parts of original string
+    */
+  function parse_for_quotes($string) {
 
       $start = -1;
       $index = 0;
@@ -252,9 +305,15 @@ class sieve
           return false;
   } /* end function */            
 
-  function status($string)
-  {
-      //this should probably be replaced by a smarter parser.
+  /**
+   * Parser for status responses.
+   *
+   * This should probably be replaced by a smarter parser.
+   *
+   * @param $string string Input that contains status responses.
+   * @todo remove this function and dependencies
+   */
+  function status($string) {
 
       /*  Need to remove this and all dependencies from the class */
 
@@ -269,18 +328,40 @@ class sieve
           default:
               switch ($string[0]){
                   case "{":
-                      //do parse here for {}'s  maybe modify parse_for_quotes to handle any parse delimiter?
+                      //do parse here for curly braces - maybe modify
+                      //parse_for_quotes to handle any parse delimiter?
                       return F_HEAD;
                       break;
                   default:
                       return F_DATA;
                       break;
-              } /* end switch */
-        } /* end switch */
-  } /* end status() */
-
-  function sieve_login()
-  {
+              }
+        }
+  }
+  
+  /**
+   * Attemp to log in to the sieve server.
+   * 
+   * It will return false if it fails, true if all is well.  This also loads
+   * some arrays up with some handy information:
+   *
+   * capabilities["implementation"] contains the sieve version information
+   * 
+   * capabilities["auth"] contains the supported authentication modes by the
+   * SIEVE server.
+   * 
+   * capabilities["modules"] contains the built in modules like "reject",
+   * "redirect", etc.
+   * 
+   * capabilities["starttls"] , if is set and equal to true, will show that the
+   * server supports the STARTTLS extension.
+   * 
+   * capabilities["unknown"] contains miscellaneous/extraneous header info sieve
+   * may have sent
+   *
+   * @return boolean
+   */
+  function sieve_login() {
 
     $this->fp=fsockopen($this->host,$this->port);
     if($this->fp == false)
@@ -382,8 +463,12 @@ class sieve
 
   }
 
-  function sieve_logout()
-  {
+  /**
+   * Log out of the sieve server.
+   *
+   * @return boolean Always returns true at this point.
+   */
+  function sieve_logout() {
     if($this->loggedin==false)
         return false;
 
@@ -393,8 +478,18 @@ class sieve
     return true;
   }
 
-  function sieve_sendscript($scriptname, $script)
-  {
+  /**
+   * Send the script contained in $script to the server.
+   *
+   * It will return any error results it finds (in $sieve->error and
+   * $sieve->error_raw), and return true if it is successfully sent.  The
+   * function does _not_ automatically make the script the active script.
+   *
+   * @param $scriptname string The name of the SIEVE script.
+   * @param $script The script to be uploaded.
+   * @return boolean Returns true if script has been successfully uploaded.
+   */
+  function sieve_sendscript($scriptname, $script) {
     if($this->loggedin==false)
         return false;
     $this->script=stripslashes($script);
@@ -406,19 +501,37 @@ class sieve
 
   }  
   
-  //it appears the timsieved does not honor the NUMBER type.  see lex.c in timsieved src.
-  //don't expect this function to work yet.  I might have messed something up here, too.
-  function sieve_havespace($scriptname, $scriptsize)
-  {
+  /**
+   * Check if there is enough space for a script to be uploaded. 
+   *
+   * This function returns true or false based on whether the sieve server will
+   * allow your script to be sent and your quota has not been exceeded.  This
+   * function does not currently work due to a believed bug in timsieved.  It
+   * could be my code too.
+   *
+   * It appears the timsieved does not honor the NUMBER type.  see lex.c in
+   * timsieved src.  don't expect this function to work yet.  I might have
+   * messed something up here, too.
+   *
+   * @param $scriptname string The name of the SIEVE script.
+   * @param $scriptsize integer The size of the SIEVE script.
+   * @return boolean
+   * @todo Does not work; bug fix and test.
+   */
+  function sieve_havespace($scriptname, $scriptsize)   {
     if($this->loggedin==false)
         return false;
     fputs($this->fp, "HAVESPACE \"$scriptname\" $scriptsize\r\n");
     return sieve::get_response();
-
   }  
 
-  function sieve_setactivescript($scriptname)
-  {
+  /**
+   * Set the script active on the sieve server.
+   *
+   * @param $scriptname string The name of the SIEVE script.
+   * @return boolean
+   */
+  function sieve_setactivescript($scriptname)   {
     if($this->loggedin==false)
         return false;
 
@@ -427,20 +540,34 @@ class sieve
 
   }
   
-  function sieve_getscript($scriptname)
-  {
+  /**
+   * Return the contents of the requested script.
+   * 
+   * If you want to display the script, you will need to change all CrLf to
+   * '.'.
+   *
+   * @param $scriptname string The name of the SIEVE script.
+   * @return arr SIEVE script data.
+   */
+  function sieve_getscript($scriptname) {
     unset($this->script);
     if($this->loggedin==false)
         return false;
 
     fputs($this->fp, "GETSCRIPT \"$scriptname\"\r\n");
     return sieve::get_response();
-   
   }
 
-
-  function sieve_deletescript($scriptname)
-  {
+  /**
+   * Attempt to delete the script requested.
+   *
+   * If the script is currently active, the server will not have any active
+   * script after the deletion.
+   *
+   * @param $scriptname string The name of the SIEVE script.
+   * @return mixed
+   */
+  function sieve_deletescript($scriptname)   {
     if($this->loggedin==false)
         return false;
 
@@ -450,8 +577,16 @@ class sieve
   }
 
   
-  function sieve_listscripts() 
-   { 
+  /**
+   * List available scripts on the SIEVE server.
+   *
+   * This function returns true or false.  $sieve->response will be filled
+   * with the names of the scripts found.  If a script is active, the
+   * $sieve->response["ACTIVE"] will contain the name of the active script.
+   *
+   * @return boolean
+   */
+  function sieve_listscripts() { 
      fputs($this->fp, "LISTSCRIPTS\r\n"); 
      sieve::get_response();		//should always return true, even if there are no scripts...
      if(isset($this->found_script) and $this->found_script)
@@ -463,8 +598,16 @@ class sieve
      }
    }
 
-  function sieve_alive()
-  {
+
+  /**
+   * Check availability of connection to the SIEVE server.
+   *
+   * This function returns true or false based on whether the connection to the
+   * sieve server is still alive.
+   *
+   * @return boolean
+   */
+  function sieve_alive()   {
       if(!isset($this->fp) or $this->fp==0){
           $this->error = EC_NOT_LOGGED_IN;
           return false;
@@ -477,8 +620,14 @@ class sieve
           return true;
   }
 
-  function authenticate()
-  {
+  /**
+   * Perform SASL authentication to SIEVE server.
+   *
+   * Attempts to authenticate to SIEVE, using some SASL authentication method
+   * such as PLAIN or DIGEST-MD5.
+   *
+   */
+  function authenticate() {
 
     switch ($this->auth_in_use) {
 
@@ -575,41 +724,39 @@ class sieve
              break;
 
 	case "LOGIN":
-	    /*
-	    // Untested code!
-
-	    $login=base64_encode($this->user);
-	    $pass=base64_encode($this->pass);
-
-	    fputs($this->fp, "AUTHENTICATE \"LOGIN\" {0+}\r\n\r\n");
-	    fputs($this->fp, "{".strlen($login)."+}\r\n");
-	    fputs($this->fp, "$login\r\n");
-	    fputs($this->fp, "{".strlen($pass)."+}\r\n");
-	    fputs($this->fp, "$pass\r\n");
-
-	    $this->line=fgets($this->fp,1024);
-	    while(sieve::status($this->line) == F_DATA)
-		$this->line=fgets($this->fp,1024);
-
-	    if(sieve::status($this->line) == F_NO)
-		return false;
-	    $this->loggedin=true;
-		return true;
-	break;
-	*/
+ 	     $login=base64_encode($this->user);
+ 	     $pass=base64_encode($this->pass);
+ 	
+ 	     fputs($this->fp, "AUTHENTICATE \"LOGIN\"\r\n");
+ 	     fputs($this->fp, "{".strlen($login)."+}\r\n");
+ 	     fputs($this->fp, "$login\r\n");
+ 	     fputs($this->fp, "{".strlen($pass)."+}\r\n");
+ 	     fputs($this->fp, "$pass\r\n");
+ 
+	     $this->line=fgets($this->fp,1024);
+ 	     while(sieve::status($this->line) == F_HEAD ||
+ 	           sieve::status($this->line) == F_DATA)
+ 	         $this->line=fgets($this->fp,1024);
+ 	
+ 	     if(sieve::status($this->line) == F_NO)
+ 	         return false;
+ 	     $this->loggedin=true;
+ 	     return true;
+ 	     break;
 
         default:
             return false;
             break;
 
     }//end switch
+  }
 
-
-  }//end authenticate()
-  
-  /* This function returns an array of available capabilities */
-  function sieve_get_capability()
-  {
+  /**
+   * Return an array of available capabilities.
+   *
+   * @return array
+   */
+  function sieve_get_capability() {
     if($this->loggedin==false)
         return false;
     fputs($this->fp, "CAPABILITY\r\n"); 
@@ -680,15 +827,20 @@ class sieve
     return $this->modules;
   }
 
-
 }
 
 
-/* Support functions follow. */
+/**
+ * The following functions are support functions and might be handy to the
+ * sieve class.
+ */
 
 if(!function_exists('hmac_md5')) {
 
-/** Creates a HMAC digest that can be used for auth purposes.
+/**
+ * Creates a HMAC digest that can be used for auth purposes.
+ * See RFCs 2104, 2617, 2831
+ * Uses mhash() extension if available
  *
  * Squirrelmail has this function in functions/auth.php, and it might have been
  * included already. However, it helps remove the dependancy on mhash.so PHP
@@ -697,6 +849,11 @@ if(!function_exists('hmac_md5')) {
  *
  * This function is Copyright (c) 1999-2003 The SquirrelMail Project Team
  * Licensed under the GNU GPL. For full terms see the file COPYING.
+ *
+ * @param string $data Data to apply hash function to.
+ * @param string $key Optional key, which, if supplied, will be used to
+ * calculate data's HMAC.
+ * @return string HMAC Digest string
  */
 function hmac_md5($data, $key='') {
     // See RFCs 2104, 2617, 2831
@@ -724,9 +881,13 @@ function hmac_md5($data, $key='') {
 }
 }
 
-/** FIXME: this function is a hack to decode the challenge from timsieved
- * 1.1.0. It may not work with other versions and most certainly won't work
+/**
+ * A hack to decode the challenge from timsieved 1.1.0.
+ * 
+ * This function may not work with other versions and most certainly won't work
  * with other DIGEST-MD5 implentations
+ *
+ * @param $input string Challenge supplied by timsieved.
  */
 function decode_challenge ($input) {
     $input = base64_decode($input);
