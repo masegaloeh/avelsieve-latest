@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.2 2004/11/03 11:22:58 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.3 2004/11/12 11:27:39 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -223,14 +223,22 @@ class avelsieve_html_rules extends avelsieve_html {
 			$mo = getLongDateString($scriptinfo['modified']);
 			bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 			textdomain ('avelsieve');
+			
+			$out = '<p><em>'. _("Last modified:").'</em> <strong>'.$mo.'</strong></p>';
 		
+			/*
 			$out = '<p><em>'._("Created:").'</em> '.$cr.'.<br /><em>'.
 			_("Last modified:").'</em> <strong>'.$mo.'</strong></p>';
+			*/
 		
 		} else {
+			/* Pretty useless information to be displayed every time */
+			$dummy = _("Created:");
+			/*
 			$out = '<p><em>'._("Created:").'</em> '.
 			date("Y-m-d H:i:s",$scriptinfo['created']).'. <em>'.
-			_("Last modified:").'</em> <strong>'.
+			*/
+			$out = _("Last modified:").'</em> <strong>'.
 			date("Y-m-d H:i:s",$scriptinfo['modified']).'</strong></p>';
 		}
 	
