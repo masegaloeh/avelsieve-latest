@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: addspamrule.php,v 1.4 2004/03/26 18:29:23 avel Exp $
+ * $Id: addspamrule.php,v 1.5 2004/03/30 18:26:37 avel Exp $
  */
 
 /**
@@ -33,33 +33,33 @@ sqsession_is_active();
 if(isset($_POST['cancel'])) {
 	header("Location: ./table.php");
 	exit;
-
 }
 
 if(isset($_GET['edit'])) {
 	$edit = $_GET['edit'];
-
+} elseif(isset($_POST['edit'])) {
+	$edit = $_POST['edit'];
+}
+if(isset($edit)) {
 	/* Have this handy: type of current rule */
 	$type = $_SESSION['rules'][$edit]['type'];
-	
 	/* and the rule itself */
 	$rule = $_SESSION['rules'][$edit];
-
 	if($type != 10) {
 		header("Location: edit.php?edit=$edit");
 	}
-
 	if(isset($_GET['dup'])) {
 		$dup = true;
 	}
 }
 
 if(isset($_POST['spamrule_advanced'])) {
-	$spamrule_advanced = $_POST['spamrule_advanced'];
-} elseif (isset($edit)) {  /* TODO - check advanced mode */
 	$spamrule_advanced = true;
+} elseif (isset($edit) && isset($rule['advanced'])) {
+	$spamrule_advanced = true;
+} else {
+	$spamrule_advanced = false;
 }
-
 
 $spamrule = true;
 global $spamrule;
@@ -96,6 +96,21 @@ if(isset($_POST['score'])) {
 	$score = $spamrule_score_default;
 }
 
+if(isset($_POST['whitelist_add']) || isset($_POST['whitelistvalue'])) {
+	$j=0;
+	for($i=0; $i<sizeof($_POST['whitelistvalue']); $i++) {
+		if(empty($_POST['whitelistvalue'][$i])){
+			continue;
+		}
+		$whitelist[$j]['header'] = $_POST['header'][$i];
+		$whitelist[$j]['headermatch'] = $_POST['whitelistvalue'][$i];
+		$whitelist[$j]['matchtype'] = $_POST['whitelistmatch'][$i];
+		$j++;
+	}
+} elseif (isset($edit) && isset($rule['whitelist'])) {
+	$whitelist = $rule['whitelist'];
+}
+
 if(isset($_POST['action']))  {
 	$action = $_POST['action'];
 } elseif (isset($edit) && isset($rule['action'])) {
@@ -126,6 +141,12 @@ if(isset($_POST['finished']) || isset($_POST['apply'])) {
 	$newrule['tests'] = $tests;
 	$newrule['score'] = $score;
 	$newrule['action'] = $action;
+	if(isset($whitelist)) {
+		$newrule['whitelist'] = $whitelist;
+	}
+	if($spamrule_advanced) {
+		$newrule['advanced'] = 1;
+	}
 	if(isset($stop) && $stop) {
 		$newrule['stop'] = $stop;
 	}
@@ -168,7 +189,7 @@ print_section_start( _("Configure Anti-SPAM Protection") );
 print '<p>' . _("All incoming mail is checked for unsolicited commercial content (SPAM) and marked accordingly. This special rule allows you to configure what to do with such messages once they arrive to your Inbox.") . '</p>';
 
 
-if(!isset($spamrule_advanced)) {
+if(!$spamrule_advanced) {
 	print '<p>'. sprintf( _("Select %s to add the predefined rule, or select the advanced SPAM filter to customize the rule."), '<strong>' . _("Add Spam Rule") . '</strong>' ) . '</p>';
 
 
@@ -249,8 +270,39 @@ if(!isset($spamrule_advanced)) {
 	}
 	*/
 	}
+	print '</p><br />';
+
+	/**
+	 * Whitelist
+	 * Emails with these header-criteria will never end up in Junk / Trash
+	 * / discard.
+	 */
 	
-	print '</p><br /><li><strong>';
+	print '<li><strong>' . _("Whitelist") . '</strong></li>'.
+		'<p>'. _("Messages that match any of these header rules will never end up in Junk Folders or regarded as SPAM.") . '</p>';
+
+	print '<p>';
+	$i=0;
+	if(isset($whitelist) && sizeof($whitelist) >0 ){
+		for($i =0; $i<sizeof($whitelist); $i++) {
+			print_header_listbox($whitelist[$i]['header'], $i);
+			print_matchtype_listbox($whitelist[$i]['matchtype'], $i, 'whitelistmatch');
+			print '<input name="whitelistvalue['.$i.']" value="'.$whitelist[$i]['headermatch'].'" size="18" />';
+			print '<br/>';
+		}
+	}
+	print_header_listbox('From', $i);
+	print_matchtype_listbox('', $i, 'whitelistmatch');
+	print '<input name="whitelistvalue['.$i.']" value="" size="18" />';
+	print '<br/>';
+	print '<input type="submit" name="whitelist_add" value="'._("More...").'"/>';
+
+	print '</p><br />';
+
+	/**
+	 * Action
+	 */
+	print '<li><strong>';
 	print _("Action");
 	print '</strong></li><br />';
 	
