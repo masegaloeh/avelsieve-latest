@@ -11,18 +11,14 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table.php,v 1.16 2004/11/15 16:42:30 avel Exp $
+ * table.php: main routine that shows a table of all the rules and allows
+ * manipulation.
  *
- * @version $Id: table.php,v 1.16 2004/11/15 16:42:30 avel Exp $
+ * @version $Id: table.php,v 1.17 2004/11/19 13:16:02 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
- */
-
-/**
- * table.php: main routine that shows a table of all the rules and allows
- * manipulation.
  */
 
 define('AVELSIEVE_DEBUG',0);
