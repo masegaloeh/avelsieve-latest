@@ -3,26 +3,24 @@
 # Copyright (C) 2003 Alexandros Vellis
 # This file is distributed under the same license as the PACKAGE package.
 # Tomas Kuliavas <tokul@users.sourceforge.net>, 2003.
+# $Id: avelsieve.po,v 1.3 2003/10/10 10:00:36 avel Exp $
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: $Id: avelsieve.po,v 1.1.1.1 2003/10/03 14:42:59 avel Exp "
-"$ (avelsieve 0.9.2)\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: (avelsieve 0.9.7)\n"
 "POT-Creation-Date: 2003-10-09 17:00+0300\n"
-"PO-Revision-Date: 2003-06-11 16:53+0300\n"
+"PO-Revision-Date: 2003-10-09 19:56+0200\n"
 "Last-Translator: Tomas Kuliavas <tokul@users.sourceforge.net>\n"
-"Language-Team: SquirrelMail I18N Team <squirrelmail-i18n@lists.sourceforge."
-"net>\n"
+"Language-Team: SquirrelMail I18N Team <squirrelmail-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=cp1257\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "You have to define at least one header match text."
-msgstr "Jûs turite nurodyti bent vienà antrağtæ atitinkanèià teksto eilutæ."
+msgstr "JÅ«s turite nurodyti bent vienÄ… antraÅ¡tÄ™ atitinkanÄiÄ… teksto eilutÄ™."
 
 msgid "You have not defined the name for the new folder."
-msgstr "Jûs nenurodëte naujo aplanko vardo."
+msgstr "JÅ«s nenurodÄ—te naujo aplanko vardo."
 
 msgid "Please try again."
 msgstr "Pabandykite dar karta."
@@ -31,19 +29,19 @@ msgid "Illegal folder name.  Please select a different name"
 msgstr "Netinkamas aplanko vardas. Pasirinkite kita"
 
 msgid "Add New Rule"
-msgstr "Pridëti naujà taisyklæ"
+msgstr "PridÄ—ti naujÄ… taisyklÄ™"
 
 msgid "New Rule Wizard - Step"
-msgstr "Naujos taisyklës kûrimo pagalbininkas - Şingsnis"
+msgstr "Naujos taisyklÄ—s kÅ«rimo pagalbininkas - Å½ingsnis"
 
 msgid "of"
-msgstr "iğ"
+msgstr "iÅ¡"
 
 msgid "Rule Type"
-msgstr "Taisyklës tipas"
+msgstr "TaisyklÄ—s tipas"
 
 msgid "Condition"
-msgstr "Sàlyga"
+msgstr "SÄ…lyga"
 
 msgid "Action"
 msgstr "Veiksmas"
@@ -51,171 +49,140 @@ msgstr "Veiksmas"
 msgid "Confirmation"
 msgstr "Patvirtinimas"
 
-msgid ""
-"<p>You have chosen to keep every mail. This is the default action anyway, so "
-"you might want to start over with a rule that makes more sense. Select &quot;"
-"finished&quot; to save this rule nonetheless.</p>"
-msgstr ""
-"<p>Jûs pasirinkote iğsaugoti visas şinutes nepakeistas. Kadangi tai yra "
-"standartinis veiksmas pagal nutylëjimà, jis yra beprasmis. Gal vertëtø "
-"suformuoti taisyklæ iğ naujo? Pasirinkite &quot;Baigti&quot;, jei vis tik "
-"norite iğsaugoti ğià taisyklæ.</p>"
+msgid "<p>You have chosen to keep every mail. This is the default action anyway, so you might want to start over with a rule that makes more sense. Select &quot;finished&quot; to save this rule nonetheless.</p>"
+msgstr "<p>JÅ«s pasirinkote iÅ¡saugoti visas Å¾inutes nepakeistas. Kadangi tai yra standartinis veiksmas pagal nutylÄ—jimÄ…, jis yra beprasmis. Gal vertÄ—tÅ³ suformuoti taisyklÄ™ iÅ¡ naujo? Pasirinkite &quot;Baigti&quot;, jei vis tik norite iÅ¡saugoti Å¡iÄ… taisyklÄ™.</p>"
 
-msgid ""
-"Please use the buttons on the bottom instead of your browser's reload, back "
-"and forward buttons, to build a rule."
-msgstr ""
-"Norëdami sukurti taisyklæ naudokitës şemiau esanèiais navigacijos "
-"mytgtukais, o ne narğyklës puslapio perkrovimo mygtuku ar komanda."
+msgid "Please use the buttons on the bottom instead of your browser's reload, back and forward buttons, to build a rule."
+msgstr "NorÄ—dami sukurti taisyklÄ™ naudokitÄ—s Å¾emiau esanÄiais navigacijos mytgtukais, o ne narÅ¡yklÄ—s puslapio perkrovimo mygtuku ar komanda."
 
 msgid "Clear this Form"
-msgstr "Iğvalyti ğià formà"
+msgstr "IÅ¡valyti Å¡iÄ… formÄ…"
 
 msgid "Start Over"
-msgstr "Pradëti iğ naujo"
+msgstr "PradÄ—ti iÅ¡ naujo"
 
 msgid "Cancel"
-msgstr "Atğaukti"
+msgstr "AtÅ¡aukti"
 
-#, fuzzy
 msgid "Add SPAM Rule"
-msgstr "Pridëti naujà taisyklæ"
+msgstr "PridÄ—ti naujÄ… SPAM'o taisyklÄ™"
 
 msgid "Move back to step"
-msgstr "Gráşti atgal"
+msgstr "GrÄ¯Å¾ti atgal"
 
 msgid "Finished"
 msgstr "Baigti"
 
 msgid "Move on to step"
-msgstr "Perğokti á şingsná"
+msgstr "PerÅ¡okti Ä¯ Å¾ingsnÄ¯"
 
 msgid "What kind of rule would you like to add?"
-msgstr "Kokio tipo taisyklæ jûs norite sukurti?"
+msgstr "Kokio tipo taisyklÄ™ jÅ«s norite sukurti?"
 
-msgid ""
-"The rule will trigger if the following addresses appear anywhere in the "
-"message's headers:"
-msgstr ""
-"Taisyklë sureaguos jei taip şinutës antrağèiø pasirodys nurodyti adresai:"
+msgid "The rule will trigger if the following addresses appear anywhere in the message's headers:"
+msgstr "TaisyklÄ— sureaguos jei taip Å¾inutÄ—s antraÅ¡ÄiÅ³ pasirodys nurodyti adresai:"
 
 msgid "AND (Every item must match)"
-msgstr "IR (Turi sutapti visi poşymiai)"
+msgstr "IR (Turi sutapti visi poÅ¾ymiai)"
 
 msgid "OR (Either item will match)"
-msgstr "ARBA (Turi sutapti bent vienas poşymis)"
+msgstr "ARBA (Turi sutapti bent vienas poÅ¾ymis)"
 
 msgid "The condition for the following rules is:"
-msgstr "Ğios taisyklës sàlyga yra:"
+msgstr "Å ios taisyklÄ—s sÄ…lyga yra:"
 
 msgid "The header "
-msgstr "Antrağtë"
+msgstr "AntraÅ¡tÄ—"
 
 msgid "Less..."
-msgstr "Maşiau..."
+msgstr "MaÅ¾iau..."
 
 msgid "More..."
 msgstr "Daugiau..."
 
 msgid "This rule will trigger if message is"
-msgstr "Ği taisyklë suveiks jei şinutë yra"
+msgstr "Å i taisyklÄ— suveiks jei Å¾inutÄ— yra"
 
 msgid "bigger"
-msgstr "didesnë"
+msgstr "didesnÄ—"
 
 msgid "smaller"
-msgstr "maşesnë"
+msgstr "maÅ¾esnÄ—"
 
 msgid "than"
 msgstr "nei"
 
 msgid "KB (kilobytes)"
-msgstr "KB (kilobaitø)"
+msgstr "KB (kilobaitÅ³)"
 
 msgid "MB (megabytes)"
-msgstr "MB (megabaitø)"
+msgstr "MB (megabaitÅ³)"
 
-msgid ""
-"The following action will be applied to <strong>all</strong> incoming "
-"messages that do not match any of the previous rules."
-msgstr ""
-"Ğis veiksmas bus pritaikytas <strong>visoms</strong> atëjusios şinutëms, "
-"kurios neatitiks nei vienos iğ ankstesniø taisykliø."
+msgid "The following action will be applied to <strong>all</strong> incoming messages that do not match any of the previous rules."
+msgstr "Å is veiksmas bus pritaikytas <strong>visoms</strong> atÄ—jusios Å¾inutÄ—ms, kurios neatitiks nei vienos iÅ¡ ankstesniÅ³ taisykliÅ³."
 
-msgid ""
-"This rule will trigger upon the occurrence of one or more strings in the "
-"body of an e-mail message. "
-msgstr ""
-"Ği taisyklë suveiks jei şinutës tekste ar antrağtëse bus viena ar kelios "
-"nurodytos simboliø sekos. "
+msgid "This rule will trigger upon the occurrence of one or more strings in the body of an e-mail message. "
+msgstr "Å i taisyklÄ— suveiks jei Å¾inutÄ—s tekste ar antraÅ¡tÄ—se bus viena ar kelios nurodytos simboliÅ³ sekos. "
 
 msgid "Choose what to do when this rule triggers, from one of the following:"
-msgstr "Pasirinkite kà daryti, kai taisyklë suveikia, iğ galimø veiksmø: "
+msgstr "Pasirinkite kÄ… daryti, kai taisyklÄ— suveikia, iÅ¡ galimÅ³ veiksmÅ³: "
 
 msgid "Keep (Default action)"
-msgstr "Iğsaugoti nepakeista (standartinis veiksmas)"
+msgstr "IÅ¡saugoti nepakeista (standartinis veiksmas)"
 
 msgid "Discard Silently"
-msgstr "Tyliai iğtrinti"
+msgstr "Tyliai iÅ¡trinti"
 
 msgid "Reject, sending this excuse to the sender:"
-msgstr "Atmesti, graşinant siuntëjui nurodytà praneğimà:"
+msgstr "Atmesti, graÅ¾inant siuntÄ—jui nurodytÄ… praneÅ¡imÄ…:"
 
 msgid "Please do not send me large attachments."
-msgstr "Prağau nesiøsti man dideliø priedø."
+msgstr "PraÅ¡au nesiÅ³sti man dideliÅ³ priedÅ³."
 
 msgid "Redirect to the following email address:"
-msgstr "Persiøsti á nurodytà adresà:"
+msgstr "PersiÅ³sti Ä¯ nurodytÄ… adresÄ…:"
 
 msgid "someone@example.org"
-msgstr ""
+msgstr "kazkas@example.org"
 
 msgid "Move message into"
-msgstr "Perkelti şinutæ á"
+msgstr "Perkelti Å¾inutÄ™ Ä¯"
 
 msgid "the existing folder"
-msgstr "egzistuojantá aplankà"
+msgstr "egzistuojantÄ¯ aplankÄ…"
 
 msgid "a new folder, named"
-msgstr "naujà aplankà, pavadintà"
+msgstr "naujÄ… aplankÄ…, pavadintÄ…"
 
 msgid "created as a subfolder of"
-msgstr "sukurtà aplanke"
+msgstr "sukurtÄ… aplanke"
 
 msgid "Also keep copy in INBOX, marked as deleted."
-msgstr "Kartu iğsaugoti kopijà tarp INBOX, paşymëtà kaip iğtrintà."
+msgstr "Kartu iÅ¡saugoti kopijÄ… tarp INBOX, paÅ¾ymÄ—tÄ… kaip iÅ¡trintÄ…."
 
 msgid "Vacation"
 msgstr "Atostogos"
 
-msgid ""
-"The notice will be sent only once to each person that sends you mail, and "
-"will not be sent to a mailing list address."
-msgstr ""
-"Perspëjimas bus nusiøstas vienà kartà kiekvienam asmeniui, kuris bandys jums "
-"atsiøsti laiğkà, bet nebus siunèiamas á susirağinëjimo sàrağus."
+msgid "The notice will be sent only once to each person that sends you mail, and will not be sent to a mailing list address."
+msgstr "PerspÄ—jimas bus nusiÅ³stas vienÄ… kartÄ… kiekvienam asmeniui, kuris bandys jums atsiÅ³sti laiÅ¡kÄ…, bet nebus siunÄiamas Ä¯ susiraÅ¡inÄ—jimo sÄ…raÅ¡us."
 
 msgid "Addresses: Only reply if sent to these addresses:"
 msgstr "Adresai: Atsakyti tik nurodytiems adresams:"
 
 msgid "Days: Reply message will be resent after"
-msgstr "Dienos: Pakartotinai perspëjimas bus nusiøstas po"
+msgstr "Dienos: Pakartotinai perspÄ—jimas bus nusiÅ³stas po"
 
 msgid "days"
-msgstr "dienos(ø)"
+msgstr "dienos(Å³)"
 
 msgid "Use the following message:"
-msgstr "Naudoti nurodytà praneğimà:"
+msgstr "Naudoti nurodytÄ… praneÅ¡imÄ…:"
 
-msgid ""
-"This is an automated reply; I am away and will not be able to reply to you "
-"immediately."
-msgstr ""
-"Tai yra autoatsakiklis. Ağ ğiuo metu esu toli ir negaliu tuoj pat atsakyti á "
-"jûsø şinutæ."
+msgid "This is an automated reply; I am away and will not be able to reply to you immediately."
+msgstr "Tai yra autoatsakiklis. AÅ¡ Å¡iuo metu esu toli ir negaliu tuoj pat atsakyti Ä¯ jÅ«sÅ³ Å¾inutÄ™."
 
 msgid "I will get back to you as soon as I return."
-msgstr "Atsakysiu jums kai tik galësiu."
+msgstr "Atsakysiu jums kai tik galÄ—siu."
 
 msgid "Additional Actions"
 msgstr "Papildomi veikmai"
@@ -224,115 +191,100 @@ msgid "STOP"
 msgstr "Sustoti"
 
 msgid "If this rule matches, do not check any rules after it."
-msgstr "Jei taisyklë sutampa, nebetikrinti kitø taisykliø."
+msgstr "Jei taisyklÄ— sutampa, nebetikrinti kitÅ³ taisykliÅ³."
 
 msgid "Notify me, using the following method:"
-msgstr "Praneğkite man nurodytu metodu:"
+msgstr "PraneÅ¡kite man nurodytu metodu:"
 
 msgid "Notification ID"
-msgstr "Praneğimo ID"
+msgstr "PraneÅ¡imo ID"
 
 msgid "Destination"
-msgstr ""
+msgstr "Adresatas"
 
 msgid "Message"
-msgstr "şinutë"
+msgstr "Å¾inutÄ—"
 
 msgid "Help: Valid variables are:"
 msgstr "Pagalba: Tinkami kintamieji yra:"
 
 msgid "Your new rule states:"
-msgstr "Jûsø nauja taisyklë teigia:"
+msgstr "JÅ«sÅ³ nauja taisyklÄ— teigia:"
 
-msgid ""
-"If this is what you wanted, select Finished. You can also start over or "
-"cancel adding a rule altogether."
-msgstr ""
-"Jei tai yra tai, ko jûs norite, pasirinkite Baigti. Tai pat jûs galite "
-"pradëti iğ naujo arba visai atğaukti ğià taisyklæ."
+msgid "If this is what you wanted, select Finished. You can also start over or cancel adding a rule altogether."
+msgstr "Jei tai yra tai, ko jÅ«s norite, pasirinkite Baigti. Tai pat jÅ«s galite pradÄ—ti iÅ¡ naujo arba visai atÅ¡aukti Å¡iÄ… taisyklÄ™."
 
 msgid "Configure Anti-SPAM Protection"
-msgstr ""
+msgstr "Nustatyti prieÅ¡spaminÄ™ apsaugÄ…"
 
-msgid ""
-"All incoming mail is checked for unsolicited commercial content (SPAM) and "
-"marked accordingly. This special rule allows you to configure what to do "
-"with such messages once they arrive to your Inbox."
-msgstr ""
+msgid "All incoming mail is checked for unsolicited commercial content (SPAM) and marked accordingly. This special rule allows you to configure what to do with such messages once they arrive to your Inbox."
+msgstr "Visos gaunamos Å¾inutÄ—s yra tikrinamos dÄ—l galimÅ³ nesankcionuotÅ³ komerciniÅ³ praneÅ¡imÅ³ (SPAM) poÅ¾ymiÅ³ ir atitinkamai suÅ¾ymimos. Å i speciali taisyklÄ— leidÅ¾ia nustatyti tai, kÄ… sistema turÄ—tÅ³ daryti su tokiomis Å¾inutÄ—mis pasiekianÄiomis JÅ«sÅ³ paÅ¡to dÄ—Å¾Ä™."
 
 #, php-format
-msgid ""
-"Select %s to add the predefined rule, or select the advanced SPAM filter to "
-"customize the rule."
-msgstr ""
+msgid "Select %s to add the predefined rule, or select the advanced SPAM filter to customize the rule."
+msgstr "Pasirinkite %s tam, kad pridÄ—ti standartinÄ™ taisyklÄ™ arba specialÅ³ spamo filtrÄ…, jei norite nustatyti specialias spamo apdorojimo taisykles."
 
-#, fuzzy
 msgid "Add Spam Rule"
-msgstr "Pridëti naujà taisyklæ"
+msgstr "PridÄ—ti SPAM'o taisyklÄ™"
 
 msgid "Advanced Spam Filter..."
-msgstr ""
+msgstr "Specialus spamo filtras..."
 
 msgid "Target Score"
-msgstr ""
+msgstr "Nustatytas Ä¯vertinimas"
 
 #, php-format
-msgid ""
-"Messages with SPAM-Score higher than the target value, the maximum value "
-"being %s, will be considered SPAM."
-msgstr ""
+msgid "Messages with SPAM-Score higher than the target value, the maximum value being %s, will be considered SPAM."
+msgstr "Å½inutÄ—s su spamo Ä¯vertinimu didesniu nei nurodyta reikÅ¡mÄ— bus laikomos spamu. DidÅ¾iausia nustatymo reikÅ¡mÄ— yra %s."
 
 msgid "SPAM Lists to check against"
-msgstr ""
+msgstr "SPAM sÄ…raÅ¡ai naudojami tikrinant"
 
 msgid "Error Encountered"
-msgstr "Ávyko klaida"
+msgstr "Ä®vyko klaida"
 
 msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "<strong>VISOMS</strong> ateinanèioms şinutëms; "
+msgstr "<strong>VISOMS</strong> ateinanÄioms Å¾inutÄ—ms; "
 
-msgid ""
-"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
-"messages)"
-msgstr ""
+msgid "All messages considered as <strong>SPAM</strong> (unsolicited commercial messages)"
+msgstr "Visos Å¾inutÄ—s turinÄios <strong>SPAM</strong> (nesankcionuoti komerciniai praneÅ¡imai) poÅ¾ymius"
 
 msgid "matching the Spam List(s):"
-msgstr ""
+msgstr "atitinkanÄios Spamo sÄ…raÅ¡Ä…(us):"
 
-#, fuzzy, php-format
+#, php-format
 msgid "and with score greater than %s"
-msgstr "yra didesnë nei"
+msgstr "ir Ä¯vertinimu didesniu nei %s"
 
 msgid "will be"
-msgstr ""
+msgstr "bus"
 
 msgid "stored in the Junk Folder."
-msgstr ""
+msgstr "patalpinta Å lamÅ¡to aplanke."
 
 msgid "stored in the Trash Folder."
-msgstr ""
+msgstr "patalpinta Å lamÅ¡to aplanke."
 
-#, fuzzy
 msgid "discarded."
-msgstr "<em>atsikratyti</em>"
+msgstr "iÅ¡mesta."
 
 msgid "If"
 msgstr "Jei"
 
 msgid "<em>any</em> of the following mail headers match: "
-msgstr "<em>bent viena</em> iğ nurodytø antrağèiø atitinka: "
+msgstr "<em>bent viena</em> iÅ¡ nurodytÅ³ antraÅ¡ÄiÅ³ atitinka: "
 
 msgid "<em>all</em> of the following mail headers match: "
-msgstr "<em>visos</em> nurodytos pağto antrağtos atitinka: "
+msgstr "<em>visos</em> nurodytos paÅ¡to antraÅ¡tos atitinka: "
 
 msgid "the header"
-msgstr "antrağtë"
+msgstr "antraÅ¡tÄ—"
 
 msgid "is"
 msgstr "yra"
 
 msgid "is not"
-msgstr "nëra"
+msgstr "nÄ—ra"
 
 msgid "contains"
 msgstr "turi"
@@ -347,16 +299,16 @@ msgid "does not match"
 msgstr "neatitinka"
 
 msgid "is greater than"
-msgstr "yra didesnë nei"
+msgstr "yra didesnÄ— nei"
 
 msgid "is greater or equal to"
-msgstr "yra didesnë arba lygi"
+msgstr "yra didesnÄ— arba lygi"
 
 msgid "is lower than"
-msgstr "yra maşesnë nei"
+msgstr "yra maÅ¾esnÄ— nei"
 
 msgid "is lower or equal to"
-msgstr "yra maşesnë arba lygi"
+msgstr "yra maÅ¾esnÄ— arba lygi"
 
 msgid "is equal to"
 msgstr "yra lygi"
@@ -365,10 +317,10 @@ msgid "is not equal to"
 msgstr "yra nelygi"
 
 msgid "matches the regural expression"
-msgstr "atitinka iğraiğkà"
+msgstr "atitinka iÅ¡raiÅ¡kÄ…"
 
 msgid "does not match the regural expression"
-msgstr "neatitinka iğraiğkos"
+msgstr "neatitinka iÅ¡raiÅ¡kos"
 
 msgid "exists"
 msgstr "egzistuoja"
@@ -377,46 +329,46 @@ msgid "does not exist"
 msgstr "neegzistuoja"
 
 msgid "the size of the message is"
-msgstr "şinutës dydis yra"
+msgstr "Å¾inutÄ—s dydis yra"
 
 msgid " bigger"
 msgstr "didesnis"
 
 msgid " smaller"
-msgstr "maşesnis"
+msgstr "maÅ¾esnis"
 
 msgid "then"
 msgstr "nei"
 
 msgid "<em>keep</em> it."
-msgstr "<em>iğsaugoti</em>"
+msgstr "<em>iÅ¡saugoti</em>"
 
 msgid "<em>discard</em> it."
 msgstr "<em>atsikratyti</em>"
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
-msgstr "<em>atmesti</em> siuntëjui su nurodytu praneğimu:"
+msgstr "<em>atmesti</em> siuntÄ—jui su nurodytu praneÅ¡imu:"
 
 msgid "<em>redirect</em> it to the email address"
-msgstr "<em>persiøsti</em> á nurodytà adresà"
+msgstr "<em>persiÅ³sti</em> Ä¯ nurodytÄ… adresÄ…"
 
 msgid "<em>file</em> it into the folder <strong>"
-msgstr "<em>iğsaugoti</em> aplanke <strong>"
+msgstr "<em>iÅ¡saugoti</em> aplanke <strong>"
 
 msgid "reply with this vacation message: "
-msgstr "atsakyti su atostogø şinute: "
+msgstr "atsakyti su atostogÅ³ Å¾inute: "
 
 msgid " Also keep a copy in INBOX, marked as deleted."
-msgstr "Iğsaugoti kopijà tarp INBOX, paşymëti kaip iğtrintà."
+msgstr "IÅ¡saugoti kopijÄ… tarp INBOX, paÅ¾ymÄ—ti kaip iÅ¡trintÄ…."
 
 msgid " Also notify using the method"
-msgstr "Taip pat informuoti naudojant metodà"
+msgstr "Taip pat informuoti naudojant metodÄ…"
 
 msgid "with"
 msgstr "su"
 
 msgid "priority and the message"
-msgstr "prioritetu ir şinute"
+msgstr "prioritetu ir Å¾inute"
 
 msgid " Then <strong>STOP</strong> processing rules."
 msgstr "Tada <strong>LIAUTIS</strong> apdoroti kitas taisykles."
@@ -424,77 +376,68 @@ msgstr "Tada <strong>LIAUTIS</strong> apdoroti kitas taisykles."
 msgid "Address Match"
 msgstr "Adreso sutapimas"
 
-#, fuzzy
-msgid ""
-"Perform an action depending on email addresses appearing in message headers."
-msgstr "Atlikti veiksmus su şinutëmis priklausomai nuo jø dydşio."
+msgid "Perform an action depending on email addresses appearing in message headers."
+msgstr "Atlikti veiksmus su Å¾inutÄ—mis priklausomai nuo elektroninio paÅ¡to adresÅ³, esanÄiÅ³ antraÅ¡tÄ—se."
 
 msgid "Header Match"
-msgstr "Antrağtës sutapimas"
+msgstr "AntraÅ¡tÄ—s sutapimas"
 
-msgid ""
-"Perform an action on messages matching a specified header (From, To etc.)."
-msgstr ""
-"Atlikti veiksmus su şinutëmis turinèiomis atitinkamas antrağtes (Nuo, Kam ir "
-"kt.)."
+msgid "Perform an action on messages matching a specified header (From, To etc.)."
+msgstr "Atlikti veiksmus su Å¾inutÄ—mis turinÄiomis atitinkamas antraÅ¡tes (Nuo, Kam ir kt.)."
 
 msgid "Size"
 msgstr "Dydis"
 
 msgid "Perform an action on messages depending on their size."
-msgstr "Atlikti veiksmus su şinutëmis priklausomai nuo jø dydşio."
+msgstr "Atlikti veiksmus su Å¾inutÄ—mis priklausomai nuo jÅ³ dydÅ¾io."
 
 msgid "All Messages"
-msgstr "Visos şinutës"
+msgstr "Visos Å¾inutÄ—s"
 
 msgid "Perform an action on <strong>all</strong> incoming messages."
-msgstr "Apdoroti <strong>visas</strong> ateinanèias şinutes."
+msgstr "Apdoroti <strong>visas</strong> ateinanÄias Å¾inutes."
 
 msgid "Body Match"
 msgstr "Turinio sutapimas"
 
 msgid "Perform an action on messages depending on their content (body text)."
-msgstr ""
-"Atlikti veiksmus su şinutëmis priklausomai nuo jø turinio (viso şinutës "
-"teksto)."
+msgstr "Atlikti veiksmus su Å¾inutÄ—mis priklausomai nuo jÅ³ turinio (viso Å¾inutÄ—s teksto)."
 
-#, fuzzy
 msgid "wildcard"
-msgstr "atitinka apibrëşimà"
+msgstr "apytikslis apibrÄ—Å¾imas"
 
-#, fuzzy
 msgid "regexp"
-msgstr "atitinkà iğraiğkà"
+msgstr "speciali iÅ¡raiÅ¡ka"
 
 msgid "verbose"
-msgstr "iğsamus"
+msgstr "iÅ¡samus"
 
 msgid "terse"
 msgstr "trumpas"
 
 msgid "Mobile Phone Message (SMS)"
-msgstr "Praneğimas á mobilø (SMS)"
+msgstr "PraneÅ¡imas Ä¯ mobilÅ³ (SMS)"
 
 msgid "Email notification"
-msgstr "Praneğimas á pağtà"
+msgstr "PraneÅ¡imas Ä¯ paÅ¡tÄ…"
 
 msgid "Notification via Zephyr"
-msgstr "Praneğimas per Zephyr sistemà"
+msgstr "PraneÅ¡imas per Zephyr sistemÄ…"
 
 msgid "Notification via ICQ"
-msgstr "Praneğimas per ICQ sistemà"
+msgstr "PraneÅ¡imas per ICQ sistemÄ…"
 
 msgid "Low"
-msgstr "Şemas"
+msgstr "Å½emas"
 
 msgid "Normal"
 msgstr "Normalus"
 
 msgid "High"
-msgstr "Aukğtas"
+msgstr "AukÅ¡tas"
 
 msgid "Delete"
-msgstr "Iğtrinti"
+msgstr "IÅ¡trinti"
 
 msgid "Edit"
 msgstr "Taisyti"
@@ -503,149 +446,119 @@ msgid "Duplicate"
 msgstr "Dubliuoti"
 
 msgid "Move Up"
-msgstr "Perkelti aukğtyn"
+msgstr "Perkelti aukÅ¡tyn"
 
-#, fuzzy
 msgid "Move to Top"
-msgstr "Perğokti á şingsná"
+msgstr "PerÅ¡okti Ä¯ virÅ¡Å³"
 
 msgid "Move Down"
-msgstr "Perkelti şemyn"
+msgstr "Perkelti Å¾emyn"
 
-#, fuzzy
 msgid "Move to Bottom"
-msgstr "Perğokti á şingsná"
+msgstr "PerÅ¡okti Ä¯ apaÄiÄ…"
 
 msgid "Junk Folder"
-msgstr ""
+msgstr "Å lamÅ¡to aplankas"
 
 #, php-format
-msgid ""
-"Store SPAM message in your Junk Folder. Messages older than %s days will be "
-"deleted automatically."
-msgstr ""
+msgid "Store SPAM message in your Junk Folder. Messages older than %s days will be deleted automatically."
+msgstr "IÅ¡saugoti Ä¯tartinÄ… Å¾inutÄ™ Å¡lamÅ¡to aplanke. Å½inutÄ—s senesnÄ—s nei %s diena(Å³) bus trinamos automatiÅ¡kai."
 
 msgid "Trash Folder"
-msgstr ""
+msgstr "Å iukÅ¡liÅ³ aplankas"
 
-msgid ""
-"Store SPAM message in your Trash Folder. You will have to purge the folder "
-"yourself."
-msgstr ""
+msgid "Store SPAM message in your Trash Folder. You will have to purge the folder yourself."
+msgstr "IÅ¡saugoti Ä¯tartinÄ… Å¾inutÄ™ Å¡iukÅ¡liÅ³ aplanke. JÅ«s turÄ—site patys jÄ… galutinai iÅ¡trinti."
 
-#, fuzzy
 msgid "Discard"
-msgstr "atitinka apibrëşimà"
+msgstr "Tyliai iÅ¡trinti"
 
-msgid ""
-"Discard SPAM message. You will get no indication that the message ever "
-"arrived."
-msgstr ""
+msgid "Discard SPAM message. You will get no indication that the message ever arrived."
+msgstr "Atsikratyti SPAM primenanÄios Å¾inutÄ—s. JÅ«s negausite jokio perspÄ—jimo, kad tokia Å¾inutÄ— buvo atÄ—jusi."
 
 msgid "Editing Mail Filtering Rule"
-msgstr "Taisoma pağto filtravimo taisyklë"
+msgstr "Taisoma paÅ¡to filtravimo taisyklÄ—"
 
 msgid "Apply Changes"
-msgstr "Iğsaugoti pakeitimus"
+msgstr "IÅ¡saugoti pakeitimus"
 
 msgid "Message Filters"
-msgstr "Şinuèiø filtrai"
+msgstr "Å½inuÄiÅ³ filtrai"
 
-msgid ""
-"Server-Side mail filtering enables you to add criteria in order to "
-"automatically forward, delete or place a given message into a folder."
-msgstr ""
-"Serverio pusës filtrai leidşia jums nustatyti kriterijus, kurias remiantis "
-"pağto sistema automatiğkai persiøs, iğtrins ar patalpins gautas şinutes á "
-"nurodytà aplankà."
+msgid "Server-Side mail filtering enables you to add criteria in order to automatically forward, delete or place a given message into a folder."
+msgstr "Serverio pusÄ—s filtrai leidÅ¾ia jums nustatyti kriterijus, kurias remiantis paÅ¡to sistema automatiÅ¡kai persiÅ³s, iÅ¡trins ar patalpins gautas Å¾inutes Ä¯ nurodytÄ… aplankÄ…."
 
 msgid "Filters"
 msgstr "Filtrai"
 
 msgid "Unable to load script to server."
-msgstr ""
+msgstr "Nepavyko patalpinti programos serveryje."
 
 msgid "Server responded with:"
-msgstr ""
+msgstr "Serveris atsakÄ—"
 
 msgid "Please contact your administrator."
-msgstr "Susisiekite su jûsø pağto administratoriumi."
+msgstr "Susisiekite su jÅ«sÅ³ paÅ¡to administratoriumi."
 
 msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Nepavyko prisijungti prie jûsø IMAP serverio timsieved posistemës"
+msgstr "Nepavyko prisijungti prie jÅ«sÅ³ IMAP serverio timsieved posistemÄ—s"
 
 msgid "Current Mail Filtering Rules"
-msgstr "Esamos pağto filtravimo taisyklës"
+msgstr "Esamos paÅ¡to filtravimo taisyklÄ—s"
 
 msgid "No Filtering Rules Defined Yet"
-msgstr "Nëra jokiø pağto filtravimo taisykliø"
+msgstr "NÄ—ra jokiÅ³ paÅ¡to filtravimo taisykliÅ³"
 
 msgid "in order to save your rules."
-msgstr "norint iğsaugoti jûsø taisykles."
+msgstr "norint iÅ¡saugoti jÅ«sÅ³ taisykles."
 
 msgid "Could not set active script on your IMAP server"
-msgstr "Nepavyko nustatyti aktyvaus skripto jûsø IMAP serveryje"
+msgstr "Nepavyko nustatyti aktyvaus skripto jÅ«sÅ³ IMAP serveryje"
 
 msgid "Could not get SIEVE script from your IMAP server"
-msgstr "Nepavyko gauti SIEVE skripto iğ jûsø IMAP serverio"
+msgstr "Nepavyko gauti SIEVE skripto iÅ¡ jÅ«sÅ³ IMAP serverio"
 
 msgid "(Probably the script is size null)."
-msgstr "(Greièiausiai skripto dydis yra nulinis)."
+msgstr "(GreiÄiausiai skripto dydis yra nulinis)."
 
 msgid "All your rules have been deleted"
-msgstr "Visos jûsø taisyklës iğtrintos"
+msgstr "Visos jÅ«sÅ³ taisyklÄ—s iÅ¡trintos"
 
 msgid "Delete Selected"
-msgstr "Iğtrinti pasirinktà"
+msgstr "IÅ¡trinti pasirinktÄ…"
 
 msgid "Server-Side Mail Filtering"
-msgstr "Serverio pusës pağto filtravimas"
+msgstr "Serverio pusÄ—s paÅ¡to filtravimas"
 
-msgid ""
-"Here you can add or delete filtering rules for your email account. These "
-"filters will always apply to your incoming mail, wherever you check your "
-"email."
-msgstr ""
-"Èia jûs galite pridëti ar pağalinti filtravimo taisykles galiojanèias jûsø "
-"pağtui. Filtrai suveiks su kiekviena jums atëjusia şinute, kai tik jûs "
-"patikrinsite savo pağtà."
+msgid "Here you can add or delete filtering rules for your email account. These filters will always apply to your incoming mail, wherever you check your email."
+msgstr "ÄŒia jÅ«s galite pridÄ—ti ar paÅ¡alinti filtravimo taisykles galiojanÄias jÅ«sÅ³ paÅ¡tui. Filtrai suveiks su kiekviena jums atÄ—jusia Å¾inute, kai tik jÅ«s patikrinsite savo paÅ¡tÄ…."
 
-msgid ""
-"You don't have any rules yet. Feel free to add any with the button &quot;Add "
-"a New Rule&quot;. When you are done, please select &quot;Save Changes&quot; "
-"to get back to the main options screen."
-msgstr ""
-"Jûs neturite nei vienos taisyklës. Galite jas sukurit pasinaudomi &quot;"
-"Pridëti naujà taisyklæ&quot; mygtuku. Pabaigæ iğsaugokite savo pakeitimus, "
-"kad gráşti á pradiná langà."
+msgid "You don't have any rules yet. Feel free to add any with the button &quot;Add a New Rule&quot;. When you are done, please select &quot;Save Changes&quot; to get back to the main options screen."
+msgstr "JÅ«s neturite nei vienos taisyklÄ—s. Galite jas sukurit pasinaudomi &quot;PridÄ—ti naujÄ… taisyklÄ™&quot; mygtuku. PabaigÄ™ iÅ¡saugokite savo pakeitimus, kad grÄ¯Å¾ti Ä¯ pradinÄ¯ langÄ…."
 
-msgid ""
-"When you are done with editing, <strong>remember to select &quot;Save "
-"Changes&quot;</strong> to activate your changes!"
-msgstr ""
-"Pabaigæ taisykliø kûrimà <strong>nepamirğkite jø iğsaugoti</strong>, kad "
-"pakeitimai suveiktø!"
+msgid "When you are done with editing, <strong>remember to select &quot;Save Changes&quot;</strong> to activate your changes!"
+msgstr "PabaigÄ™ taisykliÅ³ kÅ«rimÄ… <strong>nepamirÅ¡kite jÅ³ iÅ¡saugoti</strong>, kad pakeitimai suveiktÅ³!"
 
 msgid "Successfully added new rule."
-msgstr "Sëkmingai pridëta nauja taisyklë."
+msgstr "SÄ—kmingai pridÄ—ta nauja taisyklÄ—."
 
 msgid "Successfully updated rule #"
-msgstr "Sëkmingai atnaujinta taisyklë Nr."
+msgstr "SÄ—kmingai atnaujinta taisyklÄ— Nr."
 
 msgid "Successfully deleted rules #"
-msgstr "Sëkmingai iğtrintos taisyklës Nr."
+msgstr "SÄ—kmingai iÅ¡trintos taisyklÄ—s Nr."
 
 msgid "Successfully deleted rule #"
-msgstr "Sëkmingai iğtrinta taisyklë Nr."
+msgstr "SÄ—kmingai iÅ¡trinta taisyklÄ— Nr."
 
 msgid "The following table summarizes your current mail filtering rules."
-msgstr "Ği lentelë apibendrina jûsø dabartines pağto filtravimo taisykles."
+msgstr "Å i lentelÄ— apibendrina jÅ«sÅ³ dabartines paÅ¡to filtravimo taisykles."
 
 msgid "No"
 msgstr "Ne"
 
 msgid "Description of Rule"
-msgstr "Taisyklës aprağymas"
+msgstr "TaisyklÄ—s apraÅ¡ymas"
 
 msgid "Display as:"
 msgstr "Parodyti kaip:"
@@ -654,28 +567,17 @@ msgid "Options"
 msgstr "Nustatymai"
 
 msgid "Add a New Rule"
-msgstr "Pridëti naujà taisyklæ"
+msgstr "PridÄ—ti naujÄ… taisyklÄ™"
 
-msgid ""
-"When you are done, please click the button below to return to your webmail."
-msgstr ""
-"Kai baigsite, paspauskite şemiau esantá mygtukà, kad gráşti á savo pağtà."
+msgid "When you are done, please click the button below to return to your webmail."
+msgstr "Kai baigsite, paspauskite Å¾emiau esantÄ¯ mygtukÄ…, kad grÄ¯Å¾ti Ä¯ savo paÅ¡tÄ…."
 
 msgid "Save Changes"
-msgstr "Iğsaugoti pakeitimus"
+msgstr "IÅ¡saugoti pakeitimus"
 
 msgid "Created:"
-msgstr ""
+msgstr "Sukurta:"
 
 msgid "Last modified:"
-msgstr ""
+msgstr "PaskutinÄ¯ kartÄ… taisyta:"
 
-#~ msgid "Parameters"
-#~ msgstr "Nustatymai"
-
-#, fuzzy
-#~ msgid "does not match regexp"
-#~ msgstr "neatitinka"
-
-#~ msgid "does not match wildcard"
-#~ msgstr "neatitinka apibrëşimo"
