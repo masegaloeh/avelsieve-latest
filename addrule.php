@@ -1,22 +1,20 @@
 <?php
-/*
+/**
  * User-friendly interface to SIEVE server-side mail filtering.
  * Plugin for Squirrelmail 1.4+
  *
- * Copyright (c) 2002-2003 Alexandros Vellis <avel@users.sourceforge.net>
- *
- * Based on Dan Ellis' test scripts that came with sieve-php.lib
- * <danellis@rushmore.com> <URL:http://sieve-php.sourceforge.net>
+ * Wizard-like form for adding new rules.
  *
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: addrule.php,v 1.5 2004/01/21 14:56:43 avel Exp $
+ * @version $Id: addrule.php,v 1.6 2004/11/03 11:24:07 avel Exp $
+ * @author Alexandros Vellis <avel@users.sourceforge.net>
+ * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
+ * @package plugins
+ * @subpackage avelsieve
  */
 
-/**
- * Wizard-like form for adding new rules.
- */
 define('AVELSIEVE_DEBUG',0);
 
 define('SM_PATH','../../');
@@ -25,27 +23,22 @@ require_once(SM_PATH . 'include/load_prefs.php');
 require_once(SM_PATH . 'functions/page_header.php');
 require_once(SM_PATH . 'functions/imap.php');
 
-include "config.php";
-require_once "avelsieve_support.inc.php";
-require_once "table_html.php";
-require_once "addrule_html.php";
-require_once "buildrule.php";
-require_once "sieve.php";
+include_once(SM_PATH . 'plugins/avelsieve/config/config.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/sieve.inc.php');
 
 sqsession_is_active();
 
-if(isset($_SESSION['sess'])) {
-	$newrule = $_SESSION['sess'];
+if(isset($_SESSION['newrule'])) {
+	$newrule = $_SESSION['newrule'];
 }
 
-
 if(isset($_POST['cancel'])) {
-	unset($_SESSION['sess']);
-	session_unregister('sess');
+	unset($_SESSION['newrule']);
+	session_unregister('newrule');
 	unset($part);
 	session_unregister('part');
-	/* header("Location: https://".$HTTP_SERVER_VARS['HTTP_HOST']."/".
-		dirname($HTTP_SERVER_VARS['PHP_SELF'])."/".table.php"); */
 	header("Location: ./table.php");
 	exit;
 }
@@ -128,87 +121,11 @@ if(($createnewfolder == true ) && isset($_POST['action']) && ($_POST['action'] =
   (isset($_POST['newfolder']) && $_POST['newfolder'] == "5b" ) &&
   !isset($_POST['startover']) && !isset($_POST['cancel']) ) {
 
-	/* Copy & paste magic (aka kludge) */
-	global $mailboxlist, $delimiter, $addrule_error;
-
-	if(isset($_SESSION['delimiter'])) {
-		$delimiter = $_SESSION['delimiter'];
-	} else { /* Just in case... */
-		$delimiter = sqimap_get_delimiter($imapConnection);
-		$_SESSION['delimiter'] = $delimiter;
-	}
-
-	if(isset($_POST['folder_name']) && trim($_POST['folder_name']) != '' ) {
-		$folder_name = imap_utf7_encode_local(trim($_POST['folder_name']));
-	} else {
-		$addrule_error = _("You have not defined the name for the new folder.");
-		$addrule_error .= " " . _("Please try again.");
-	}
-
-	if(isset($_POST['subfolder'])) {
-		$subfolder = $_POST['subfolder'];
-	} else {
-		$subfolder = "INBOX";
-	}
-
-	if (strpos($folder_name, "\"") || strpos($folder_name, "\\") ||
-	strpos($folder_name, "'") || strpos($folder_name, "$delimiter")) {
-		$addrule_error = _("Illegal folder name.  Please select a different name"); 
-	}
-
-	if (isset($contain_subs) && $contain_subs ) {
-		$folder_name = "$folder_name$delimiter";
-	}
-
-	if ($folder_prefix && (substr($folder_prefix, -1) != $delimiter)) {
-		$folder_prefix = $folder_prefix . $delimiter;
-	}
-	if ($folder_prefix && (substr($subfolder, 0, strlen($folder_prefix)) != $folder_prefix)){
-		$subfolder_orig = $subfolder;
-		$subfolder = $folder_prefix . $subfolder;
-	} else {
-		$subfolder_orig = $subfolder;
-	}
-
-	if (trim($subfolder_orig) == '') {
-		$mailbox = $folder_prefix.$folder_name; 
-	} else {
-		$mailbox = $subfolder.$delimiter.$folder_name;
-	}
-	// print "creating $mailbox ......";
-
-	/*    if (strtolower($type) == 'noselect') {
-	        $mailbox = $mailbox.$delimiter;
-	    }
-	*/
-
-	if(isset($addrule_error)) {
+	$errmsg = avelsieve_create_folder($_POST['folder_name'], $_POST['subfolder'], &$mailbox);
+	if($errmsg) {
 		/* There was some error. Remain in the same page. */
 		$part--;
-
 	} else {
-		/* Actually create the folder. */
-		sqgetGlobalVar('key', $key, SQ_COOKIE);
-		sqgetGlobalVar('onetimepad', $onetimepad, SQ_SESSION);
-		
-		$imapConnection = sqimap_login($username, $key, $imapServerAddress, $imapPort, 0);
-
-		/* Here we could do some more error checking to see if the
-		 * folder already exists. If it exists, the creation will not
-		 * do anything ANW, so it works well as it is. It can be made
-		 * better, e.g. by printing a notice "Note that the folder you
-		 * wanted to create already exists". */
-		
-		// $boxes = sqimap_mailbox_list($imapConnection);
-
-		/* Instead of the following line, I use sqimap_run_command so
-		 * that I will put 'false' in the error handling. */
-
-		// sqimap_mailbox_create($imapConnection, $mailbox, '');
-
-		$read_ary = sqimap_run_command($imapConnection, "CREATE \"$mailbox\"", false, $response, $message);
-    		sqimap_subscribe ($imapConnection, $mailbox);
-
 		$folder = $mailbox;
 		$_SESSION['folder'] = $mailbox;
 		$newrule['folder'] = $mailbox;
@@ -239,16 +156,12 @@ switch ($newrule['type']) {
 		if(isset($_POST['headermatch'][0])) {
 		for ($i=0; $i<sizeof($_POST['headermatch']) ; $i++) {
 			if ($_POST['headermatch'][$i]) {
-				//print "<p><em>START PROC</em>";
 				$newrule['header'][$i] = trim($_POST['header'][$i]);
 				$newrule['matchtype'][$i] = trim($_POST['matchtype'][$i]);
 				$newrule['headermatch'][$i] = trim($_POST['headermatch'][$i]);
 				if($i>0) {
 					$newrule['condition'] = $_POST['condition'];
 				}
-				//print "<b>Added $i series</b><br>";
-				//print "<p><em>END PROC</em>";
-
 			} elseif (!$_POST['headermatch'][$i]) { /* End */
 				break 1;
 			} else {
@@ -326,13 +239,13 @@ if(isset($_POST['finished']) || isset($_POST['apply'])) {
 
 	/* New rule to transfer to table.php: */
 	$_SESSION['returnnewrule'] = $newrule;
-	// urlencode(base64_encode(serialize($_SESSION['sess'])));
+	// urlencode(base64_encode(serialize($_SESSION['newrule'])));
 
 	/* Communication: */
 	$_SESSION['comm']['new'] = true;
 
 	/* Remove addrule.php stuff */
-	session_unregister('sess');
+	session_unregister('newrule');
 	session_unregister('part');
 
 	/* go to table.php */
@@ -342,7 +255,7 @@ if(isset($_POST['finished']) || isset($_POST['apply'])) {
 }
 
 if(isset($newrule)) {
-	$_SESSION['sess'] = $newrule;
+	$_SESSION['newrule'] = $newrule;
 }
 
 session_write_close();
@@ -394,7 +307,7 @@ case "1":
 
 case "2":	
 	print_section_start( _("New Rule Wizard - Step") . " " . $part . " " . _("of") . " 4: " . _("Condition") );
-	switch ($newrule['type']) { /* Nested switch: The second step depends on the type of the first step. */
+	switch ($newrule['type']) {
 	
 		case "1":
 			print_2_1_addressmatch();

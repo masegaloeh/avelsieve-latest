@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.1 2004/11/02 15:06:17 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.2 2004/11/03 11:22:58 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -41,6 +41,9 @@ class avelsieve_html_rules extends avelsieve_html {
 		$this->mode = $mode;
 	}
 
+	/**
+	 * Create new rules blurb, when none exists.
+	 */
 	function rules_create_new() {
 		return ' <p>'.
 			_("Here you can add or delete filtering rules for your email account. These filters will always apply to your incoming mail, wherever you check your email.").
@@ -168,7 +171,6 @@ class avelsieve_html_rules extends avelsieve_html {
 		return $out;
 	}
 	
-	
 	/**
 	 * Output link for corresponding rule function (such as edit, delete, move).
 	 *
@@ -247,6 +249,16 @@ class avelsieve_html_rules extends avelsieve_html {
 	 */
 	function rules_table() {
 		global $color;
+
+		if(empty($this->rules)) {
+			return $this->table_header(_("No Filtering Rules Defined Yet")).
+				$this->all_sections_start().
+				$this->rules_create_new().
+				$this->button_addnewrule().
+				$this->rules_footer().
+				$this->all_sections_end() .
+				$this->rules_table_footer();
+		}
 
 		$out = $this->table_header( _("Current Mail Filtering Rules") ).
 			$this->all_sections_start().

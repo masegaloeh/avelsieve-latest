@@ -11,7 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: edit.php,v 1.6 2004/03/26 18:28:26 avel Exp $
+ * $Id: edit.php,v 1.7 2004/11/03 11:24:07 avel Exp $
  */
 
 /* edit.php: Editing existing rules. */
@@ -19,18 +19,17 @@
 define('AVELSIEVE_DEBUG',0);
 
 define('SM_PATH','../../');
-require_once(SM_PATH . 'include/validate.php');
-require_once(SM_PATH . 'include/load_prefs.php');
-require_once(SM_PATH . 'functions/page_header.php');
-require_once(SM_PATH . 'functions/imap.php');
+include_once(SM_PATH . 'include/validate.php');
+include_once(SM_PATH . 'include/load_prefs.php');
+include_once(SM_PATH . 'functions/page_header.php');
+include_once(SM_PATH . 'functions/imap.php');
 
 include "config.php";
-require_once "avelsieve_support.inc.php";
-require_once "table_html.php";
-require_once "addrule_html.php";
-require_once "buildrule.php";
-require_once "process_input.php";
-require_once "sieve.php";
+include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/html_rulestable.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/sieve.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/process_user_input.inc.php');
 
 sqsession_is_active();
 
@@ -38,6 +37,8 @@ if(isset($_GET['edit'])) {
 	$edit = $_GET['edit'];
 } elseif(isset($_POST['edit'])) {
 	$edit = $_POST['edit'];
+} elseif(isset($_GET['addnew'])) {
+	$addnew = true;
 }
 
 if(isset($_GET['dup']) || isset($_POST['dup'])) {
@@ -45,7 +46,11 @@ if(isset($_GET['dup']) || isset($_POST['dup'])) {
 }
 
 /* Have this handy: type of current rule */
-$type = $_SESSION['rules'][$edit]['type'];
+if(isset($addnew)) {
+	$type = $_GET['type'];
+} else {
+	$type = $_SESSION['rules'][$edit]['type'];
+}
 
 /* and the rule itself */
 $rule = $_SESSION['rules'][$edit];
@@ -245,7 +250,10 @@ print_section_end();
 
 print '<tr><td><div style="text-align: center">';
 
-if(isset($dup)) {
+if(isset($addnew)) {
+	print '<input type="submit" name="addnew" value="'._("Add New Rule").'" />';
+
+} elseif(isset($dup)) {
 	print '<input type="hidden" name="dup" value="1" />';
 	print '<input type="submit" name="addnew" value="'._("Add New Rule").'" />';
 } else {

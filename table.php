@@ -11,9 +11,13 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table.php,v 1.13 2004/04/20 15:29:28 avel Exp $
+ * $Id: table.php,v 1.14 2004/11/03 11:24:07 avel Exp $
  *
- * @package avelsieve
+ * @version $Id: table.php,v 1.14 2004/11/03 11:24:07 avel Exp $
+ * @author Alexandros Vellis <avel@users.sourceforge.net>
+ * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
+ * @package plugins
+ * @subpackage avelsieve
  */
 
 /**
@@ -26,16 +30,14 @@ define('AVELSIEVE_DEBUG',0);
 define('SM_PATH','../../');
 require_once(SM_PATH . 'include/validate.php');
 require_once(SM_PATH . 'include/load_prefs.php');
-require_once(SM_PATH . 'functions/page_header.php');
-require_once(SM_PATH . 'functions/imap.php');
-require_once(SM_PATH . 'functions/date.php');
+include_once(SM_PATH . 'functions/page_header.php');
+include_once(SM_PATH . 'functions/imap.php');
+include_once(SM_PATH . 'functions/date.php');
 
-include "config.php";
-include_once "avelsieve_support.inc.php";
-include_once "table_html.php";
-include_once "getrule.php";
-include_once "buildrule.php";
-include_once "sieve.php";
+include_once(SM_PATH . 'plugins/avelsieve/config/config.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/html_rulestable.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/sieve.inc.php');
 
 sqsession_is_active();
 
@@ -72,7 +74,6 @@ if(isset($authz)) {
 		$imap_server = $imapproxyserv[$imap_server];
 	}
 }
-// $imap_server = 'atlantic.noc.uoa.gr';
 
 if(isset($authz)) {
 	if(isset($cyrusadmins_map[$username])) {
@@ -92,7 +93,7 @@ sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 	
-require_once "constants.php";
+require_once (SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
 
 if (!isset($rules)) {
 	/* Login. But if the rules are cached, don't even login to SIEVE
@@ -196,7 +197,6 @@ if ($logout) {
 	session_unregister('rules');
 	
 	header("Location: $location/../../src/options.php\n\n");
-
 	// header("Location: $location/../../src/options.php?optpage=avelsieve\n\n");
 	exit;
 
@@ -238,11 +238,8 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected'])) {
 		}
 
 		if(sizeof($rules) == "0") {
-			// print "DEBUG: Ok, size of rules is 0 apparently.";
-	
 			if (!$conservative) {
 				avelsieve_login();
-				// avelsieve_upload_script(""); 
 				avelsieve_delete_script();
 			}
 			$prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
@@ -339,32 +336,13 @@ if(isset($sieve_loggedin)) {
 	$sieve->sieve_logout();
 }
 
-/* --------------------------------- main --------------------------------- */
+/* -------------------- Presentation Logic ------------------- */
 
-/* Printing, part zero: Headers et al */
 $prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
 textdomain ('squirrelmail');
 displayPageHeader($color, 'None');
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
-
-
-
-if (!isset($rules) ||
-    isset($rules) && sizeof($rules) == 0 ) {
-
-//	printheader2( _("Current Mail Filtering Rules") );
-	printheader2(false);
-	print_all_sections_start();
-	print_section_start(_("No Filtering Rules Defined Yet"));
-	print_create_new();
-	print_section_end(); 
-	print_all_sections_end();
-	print_buttons();
-//	print_footer();
-	printfooter2();
-	exit;
-}
 
 //print "<pre>SESSION: "; print_r($_SESSION); print "</pre>";
 //print "<pre>POST: "; print_r($_POST); print "</pre>";
@@ -390,96 +368,9 @@ if(isset($_GET['mode'])) {
 	}
 }
 
-// print_my_header();
-printheader2( _("Current Mail Filtering Rules") );
-print_all_sections_start();
-
-
-/* Printing the table with the rules. */
-
-print '<form name="rulestable" method="POST" action="table.php">';
-
-print_table_header();
-
-$toggle = false;
-
-
-for ($i=0; $i<sizeof($rules); $i++) {
-	print "<tr";
-	if ($toggle) {
-		print ' bgcolor="'.$color[12].'"';
-	}
-	print "><td>".($i+1)."</td><td>";
-	print '<input type="checkbox" name="selectedrules[]" value="'.$i.'" /></td><td>';
-	print makesinglerule($rules[$i], $mode);
-	print '</td><td style="white-space: nowrap"><p>';
-
-	/* print '</td><td><input type="checkbox" name="rm'.$i.'" value="1" /></td></tr>'; */
-
-	
-	/* Edit */
-	if($rules[$i]['type'] == 10) {
-		avelsieve_print_toolicon ("edit", $i, "addspamrule.php", "");
-	} else {
-		avelsieve_print_toolicon ("edit", $i, "edit.php", "");
-	}
-	
-	/* Duplicate */
-	if($rules[$i]['type'] == 10) {
-		avelsieve_print_toolicon ("dup", $i, "addspamrule.php", "edit=$i&amp;dup=1");
-	} else {
-		avelsieve_print_toolicon ("dup", $i, "edit.php", "edit=$i&amp;dup=1");
-	}
-
-	/* Delete */
-	avelsieve_print_toolicon ("rm", $i, "table.php", "",
-		array('onclick'=>'return confirm(\''._("Really delete this rule?").'\')'));
-
-	/* Move up / Move to Top */
-	if ($i != 0) {
-		if($i != 1) {
-			avelsieve_print_toolicon ("mvtop", $i, "table.php", "");
-		}
-		avelsieve_print_toolicon ("mvup", $i, "table.php", "");
-	}
-
-	/* Move down / to bottom */
-	if ($i != sizeof($rules)-1 ) {
-		avelsieve_print_toolicon ("mvdn", $i, "table.php", "");
-		if ($i != sizeof($rules)-2 ) {
-			avelsieve_print_toolicon ("mvbottom", $i, "table.php", "");
-		}
-	}
-
-	print '</p></td></tr>';
-
-	if(!$toggle) {
-		$toggle = true;
-	} elseif($toggle) {
-		$toggle = false;
-	}
-}
-
-
-print '<tr><td colspan="4">'.
-	'<table width="100%" border="0"><tr><td align="left">'.
-	'<input type="submit" name="deleteselected" value="' . _("Delete Selected") . '" /> '.
-	'</td>'.
-	'<td align="right">';
-	print_addnewrulebutton();
-	print '</td></tr></table>'; 
-print '</td></tr>';
-
-print_table_footer();
-
-print '</form>';
-
-// print_buttons();
-
-print_all_sections_end();
-print_footer();
-
-printfooter2();
-//textdomain('squirrelmail');
+$ht = new avelsieve_html_rules(&$rules, $mode);
+echo $ht->rules_table();
+echo $ht->table_footer();
 
 ?>
+</body></html>
