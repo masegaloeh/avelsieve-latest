@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_main.inc.php,v 1.2 2004/11/11 13:48:28 avel Exp $
+ * @version $Id: html_main.inc.php,v 1.3 2004/11/19 15:51:42 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -20,6 +20,25 @@
  * sections, as well as header/footer thingies.
  */
 class avelsieve_html {
+	/**
+	 * @var boolean Javascript Enabled?
+	 */
+	var $js;
+
+	/**
+	 * Constructor function will initialize some variables, depending on the
+	 * environment.
+	 */
+	function avelsieve_html() {
+		/* Set up javascript variable */
+		global $javascript_on;
+		if($javascript_on) {
+			$this->js = true;
+		} else {
+			$this->js = false;
+		}
+	}
+
 	/**
 	 * Page Header
 	 */

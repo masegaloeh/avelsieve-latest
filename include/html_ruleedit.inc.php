@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.14 2004/11/19 13:16:26 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.15 2004/11/19 15:51:42 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -17,7 +17,6 @@ include_once(SM_PATH . 'plugins/avelsieve/include/html_main.inc.php');
 
 /**
  * HTML Output functions for rule editing / adding
- * @todo eliminate notices for empty ruleset (adding new rule)
  */
 class avelsieve_html_edit extends avelsieve_html {
 
@@ -43,11 +42,6 @@ class avelsieve_html_edit extends avelsieve_html {
 	var $mode;
 	
 	/**
-	 * @var boolean Javascript Enabled?
-	 */
-	var $js;
-
-	/**
 	 * Constructor function. Takes as an optional argument a reference to a
 	 * rule array which will be edited.
 	 *
@@ -57,6 +51,8 @@ class avelsieve_html_edit extends avelsieve_html {
 	 * @return void
 	 */
 	function avelsieve_html_edit($mode = 'edit', $rule = array(), $popup = false, $errmsg = '') {
+		$this->avelsieve_html();
+
 		$this->rule = $rule;
 		if(!isset($this->rule['type'])) {
 			$this->rule['type'] = 0;
@@ -64,14 +60,6 @@ class avelsieve_html_edit extends avelsieve_html {
 		$this->mode = $mode;
 		$this->popup = $popup;
 		$this->errmsg = $errmsg;
-
-		/* Set up javascript variable */
-		global $javascript_on;
-		if($javascript_on) {
-			$this->js = true;
-		} else {
-			$this->js = false;
-		}
 	}
 
 	/**
