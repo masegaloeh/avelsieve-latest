@@ -3,16 +3,17 @@
  * User-friendly interface to SIEVE server-side mail filtering.
  * Plugin for Squirrelmail 1.4+
  *
- * Copyright (c) 2002-2003 Alexandros Vellis <avel@users.sourceforge.net>
+ * HTML Functions that are in use when being a standalone PHP app (that is,
+ * instead of a Squirrelmail plugin).  Still not used. Just a draft.
  *
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: standalone_html.inc.php,v 1.2 2003/10/07 13:24:52 avel Exp $
- */
-
-/* HTML Functions that are in use when being a standalone PHP app (that is,
- * instead of a Squirrelmail plugin).  Still not used. Just a draft.
+ * @version $Id: standalone_html.inc.php,v 1.1 2004/11/02 15:06:17 avel Exp $
+ * @author Alexandros Vellis <avel@users.sourceforge.net>
+ * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
+ * @package plugins
+ * @subpackage avelsieve
  */
 
 function avelsieve_standalone_print_html_header() {

@@ -1,14 +1,16 @@
 <?php
-/*
+/**
  * User-friendly interface to SIEVE server-side mail filtering.
  * Plugin for Squirrelmail 1.4+
- *
- * Copyright (c) 2002-2003 Alexandros Vellis <avel@users.sourceforge.net>
  *
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: buildrule.php,v 1.15 2004/05/12 14:16:09 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.1 2004/11/02 15:06:17 avel Exp $
+ * @author Alexandros Vellis <avel@users.sourceforge.net>
+ * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
+ * @package plugins
+ * @subpackage avelsieve
  */
 
 /**
@@ -235,6 +237,7 @@ function build_headerrule_snippet($header, $matchtype, $headermatch, $type='rule
  *   verbose = return a (verbose) textual description of the rule.
  *   terse = return a very terse description
  *   rule = return a string with the appropriate SIEVE code.
+ * @return string
  */
 function makesinglerule($rule, $type="rule") {
 
@@ -644,7 +647,7 @@ if ($type == "terse") {
  *
  * @param $rulearray An array of associative arrays, each one describing a
  * rule.
- * 
+ * @return $string
  */
 function makesieverule ($rulearray) {
 	global $implemented_capabilities, $cap_dependencies,
@@ -656,7 +659,6 @@ function makesieverule ($rulearray) {
 	}
 
 	/* Encoded avelsieve version information */
-
 	$versionencoded = base64_encode(serialize($avelsieve_version));
 	
 	//global $creation_date;
@@ -682,11 +684,7 @@ function makesieverule ($rulearray) {
 	$out .= "#AVELSIEVE_MODIFIED" . $modification_date . "\n";
 	// $out .= "#AVELSIEVE_COMMENT" . $script_comment . "\n"
 
-
-
-
 	/* Capability requirements check */
-
 	foreach($implemented_capabilities as $no=>$cap) {
 		if(in_array($cap, $sieve_capabilities)) {
 			$torequire[] = $cap;
