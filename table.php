@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.20 2005/03/01 15:26:58 avel Exp $
+ * @version $Id: table.php,v 1.21 2005/03/09 09:58:39 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -365,12 +365,13 @@ if(isset($_GET['mode'])) {
 		$mode = $avelsieve_default_mode;
 	}
 	sqsession_register($mode, 'mode');
+	setPref($data_dir, $username, 'avelsieve_display_mode', $mode);
 } else {
-	if(isset($_SESSION['mode'])) {
-		if(array_key_exists($_SESSION['mode'], $displaymodes)) {
-			$mode = $_SESSION['mode'];
+	if( ($mode_tmp = getPref($data_dir, $username, 'avelsieve_display_mode', '')) != '') {
+		if(array_key_exists($mode_tmp, $displaymodes)) {
+			$mode = $mode_tmp;
 		} else {
-			$mode = "verbose";
+			$mode = $avelsieve_default_mode;
 		}
 	} else {
 		$mode = $avelsieve_default_mode;
