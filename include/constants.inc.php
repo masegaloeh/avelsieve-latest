@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: constants.inc.php,v 1.2 2004/11/08 12:59:52 avel Exp $
+ * @version $Id: constants.inc.php,v 1.3 2004/12/22 13:42:05 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -175,8 +175,8 @@ $spamrule_actions = array(
 $avelsieve_version = array(
 	'major' => 1,
 	'minor' => 9,
-	'release' => 0,
-	'string' => "1.9.0"
+	'release' => 1,
+	'string' => "1.9.1"
 );
 
 global $implemented_capabilities, $cap_dependencies;  
