@@ -2,16 +2,49 @@
 
 <ul>
 
+<li>New option for a special rule called &quot;SPAM Rule&quot;. Allows for easy
+addition of an Anti-SPAM rule. Advanced configuration allows for setting the
+desired score, the SPAM lists to check against and the desired action. Actions
+are: Move to Junk Folder (if <a
+href="http://www.squirrelmail.org/plugin_view.php?id=212">Junk Folder
+plugin</a> is enabled), Move to Trash, Discard. Administrator Configuration
+options to define the SPAM headers, lists etc. used in a particular site have
+been added.</li>
+
+<li>Added &lt;label&gt; tags in all texts next to radio and checkbox buttons,
+so as to make selecting them easier.</li>
+
+<li>Notification ID has been commented since it's not in use currently.</li>
+
+<li>Added GIF images for Internet Explorer compatibility. IE cannot handle PNG
+transparency normally.</li>
+
+<li>Removed $text$ and $text[n]$ from notification help, since it is <a
+href="https://bugzilla.andrew.cmu.edu/show_bug.cgi?id=2135">not supported by
+Cyrus yet</a>.</li>
+
 <li>Fixed tools URL so as not to end in &amp;, since some proxys complain for
 invalid URL (<span class="bugreporter">Simon Matter</span>)</li>
 
-<li>Updated German Translation (<span class="translator">Karsten
-Behrens</span>)</li>
-
 <li>Locale bug fixes (<span class="bugreporter">Karsten Behrens</span>)</li>
+
+<li>Gettext template is now named correctly (avelsieve.pot). Gettext with PHP
+mode is used.</li>
+
+<li>Ldapuserdata mode allows getting email addresses from LDAP identities,
+provided by LDAP Prefs Backend plugin.</li>
+
+<li>If there is only one notification method available, don't display a drop
+down widget.</li>
+
+<li>When editing a rule with notification action, the saved notification
+parameters will be displayed correctly. (<span class="bugreporter">Chris
+Winterrowd</span>)</li>
 
 <li>Small bugfix: Last modification date is displayed properly.</li>
 
+<li>Updated German Translation (<span class="translator">Karsten
+Behrens</span>)</li>
 </ul>
 
 
