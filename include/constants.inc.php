@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: constants.inc.php,v 1.4 2005/02/28 14:40:47 avel Exp $
+ * @version $Id: constants.inc.php,v 1.5 2005/03/09 09:26:30 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -84,9 +84,11 @@ $comparators = array(
 
 
 $displaymodes = array(
-	'verbose' => _("verbose"),
-	'terse' => _("terse")
-	);
+	'verbose' => array( _("verbose"), _("Textual descriptions of the rules")),
+	'terse' => array( _("terse"), _("More suitable for viewing the table of rules at once")),
+	'tech' => array( _("tech"), _("Even more terse description for technical people")) ,
+	'source' => array( _("source"), _("Display SIEVE source"))
+);
 
 $implemented_capabilities = array("fileinto", "reject", "vacation", "imapflags", "relational", "regex", "notify");
 
