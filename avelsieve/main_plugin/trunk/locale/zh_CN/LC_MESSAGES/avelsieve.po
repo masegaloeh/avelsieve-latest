@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 17:50+0200\n"
+"POT-Creation-Date: 2005-03-09 13:30+0200\n"
 "PO-Revision-Date: 2002-09-30 16:13+0800\n"
 "Last-Translator: Wei Gao <wei@gaofamily.org>\n"
 "Language-Team: Chinese Simplified <LL@li.org>\n"
@@ -215,8 +215,27 @@ msgid "verbose"
 msgstr ""
 
 #, fuzzy
+msgid "Textual descriptions of the rules"
+msgstr "规则的描述"
+
+#, fuzzy
 msgid "terse"
 msgstr "过滤器"
+
+msgid "More suitable for viewing the table of rules at once"
+msgstr ""
+
+msgid "tech"
+msgstr ""
+
+msgid "Even more terse description for technical people"
+msgstr ""
+
+msgid "source"
+msgstr ""
+
+msgid "Display SIEVE source"
+msgstr ""
 
 msgid "Low"
 msgstr ""
@@ -522,6 +541,9 @@ msgstr "someone@example.org"
 msgid "Keep a local copy as well."
 msgstr ""
 
+msgid "Incorrect email address. You must enter only one valid email address."
+msgstr ""
+
 msgid "Move message into"
 msgstr "把信件移到"
 
@@ -600,6 +622,9 @@ msgstr "成功的删除了规则#"
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
+msgid "To or Cc"
+msgstr ""
+
 msgid "matches the regural expression"
 msgstr ""
 
@@ -622,12 +647,21 @@ msgstr ""
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "对<strong>所有</strong>的收到信件；"
 
+msgid "ALL"
+msgstr ""
+
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
 "messages)"
 msgstr ""
 
+msgid "SPAM"
+msgstr ""
+
 msgid "unless"
+msgstr ""
+
+msgid "Whitelist:"
 msgstr ""
 
 msgid "or"
@@ -636,8 +670,15 @@ msgstr ""
 msgid "matching the Spam List(s):"
 msgstr ""
 
+msgid "Spam List(s):"
+msgstr ""
+
 #, php-format
 msgid "and with score greater than %s"
+msgstr ""
+
+#, php-format
+msgid "Score > %s"
 msgstr ""
 
 msgid "will be"
@@ -646,7 +687,13 @@ msgstr ""
 msgid "stored in the Junk Folder."
 msgstr ""
 
+msgid "Junk"
+msgstr ""
+
 msgid "stored in the Trash Folder."
+msgstr ""
+
+msgid "Trash"
 msgstr ""
 
 #, fuzzy
@@ -665,6 +712,9 @@ msgstr "<em>所有</em>的下列信件头匹配："
 msgid "the header"
 msgstr "信头"
 
+msgid "and"
+msgstr ""
+
 msgid "the size of the message is"
 msgstr "信件的大小是"
 
@@ -680,26 +730,55 @@ msgstr "那么"
 msgid "<em>keep</em> it."
 msgstr "<em>保留</em>它。"
 
+msgid "Keep"
+msgstr ""
+
 msgid "<em>discard</em> it."
 msgstr "<em>勿略</em>它。"
+
+msgid "DISCARD"
+msgstr ""
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>拒收</em>它，收送下面的信息给发件人："
 
+msgid "Reject"
+msgstr ""
+
+msgid "Redirect to"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "<em>redirect</em> it to the email addresses: %s."
+msgstr "把它<em>转发</em>到email地址"
+
 msgid "<em>redirect</em> it to the email address"
 msgstr "把它<em>转发</em>到email地址"
 
-msgid "<em>file</em> it into the folder <strong>"
+#, fuzzy, php-format
+msgid "<em>file</em> it into the folder %s"
 msgstr "把它<em>放进</em>文件夹<strong>"
+
+#, php-format
+msgid "File into %s"
+msgstr ""
 
 msgid "reply with this vacation message: "
 msgstr "用下面的休假信息回复："
+
+#, fuzzy
+msgid "Vacation Message"
+msgstr "休假"
 
 msgid "Also keep a local copy."
 msgstr ""
 
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr ""
+
+#, fuzzy
+msgid "Keep Deleted"
+msgstr "删除"
 
 msgid " Also notify using the method"
 msgstr ""
@@ -710,8 +789,16 @@ msgstr ""
 msgid "priority and the message"
 msgstr ""
 
-msgid " Then <strong>STOP</strong> processing rules."
+#, php-format
+msgid "Notify %s"
+msgstr ""
+
+#, fuzzy
+msgid "Then <strong>STOP</strong> processing rules."
 msgstr "然后<strong>停止</strong>处理以后的规则。"
+
+msgid "Stop"
+msgstr ""
 
 msgid "Test for Forged Header"
 msgstr ""

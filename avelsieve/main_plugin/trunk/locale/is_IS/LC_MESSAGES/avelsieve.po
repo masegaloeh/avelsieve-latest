@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 17:50+0200\n"
+"POT-Creation-Date: 2005-03-09 13:30+0200\n"
 "PO-Revision-Date: 2003-06-01 13:15+0300\n"
 "Last-Translator: Þór Sigurðsson <tosi@hi.is>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -218,8 +218,27 @@ msgstr "er ekki jafn og"
 msgid "verbose"
 msgstr "nákvæmar lýsingar"
 
+#, fuzzy
+msgid "Textual descriptions of the rules"
+msgstr "Lýsing á reglu"
+
 msgid "terse"
 msgstr "stuttar lýsingar"
+
+msgid "More suitable for viewing the table of rules at once"
+msgstr ""
+
+msgid "tech"
+msgstr ""
+
+msgid "Even more terse description for technical people"
+msgstr ""
+
+msgid "source"
+msgstr ""
+
+msgid "Display SIEVE source"
+msgstr ""
 
 msgid "Low"
 msgstr "Lágur"
@@ -535,6 +554,9 @@ msgstr "einhver@einhversstadar.is"
 msgid "Keep a local copy as well."
 msgstr ""
 
+msgid "Incorrect email address. You must enter only one valid email address."
+msgstr ""
+
 msgid "Move message into"
 msgstr "Færa skeyti í"
 
@@ -616,6 +638,9 @@ msgstr "Það tókst að eyða reglu númer "
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
+msgid "To or Cc"
+msgstr ""
+
 msgid "matches the regural expression"
 msgstr "passar við reglulega segð"
 
@@ -637,12 +662,21 @@ msgstr ""
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "Fyrir <strong>ÖLL</strong> viðtekin skeyti;"
 
+msgid "ALL"
+msgstr ""
+
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
 "messages)"
 msgstr ""
 
+msgid "SPAM"
+msgstr ""
+
 msgid "unless"
+msgstr ""
+
+msgid "Whitelist:"
 msgstr ""
 
 msgid "or"
@@ -651,9 +685,16 @@ msgstr ""
 msgid "matching the Spam List(s):"
 msgstr ""
 
+msgid "Spam List(s):"
+msgstr ""
+
 #, fuzzy, php-format
 msgid "and with score greater than %s"
 msgstr "er stærri en"
+
+#, php-format
+msgid "Score > %s"
+msgstr ""
 
 msgid "will be"
 msgstr ""
@@ -661,7 +702,13 @@ msgstr ""
 msgid "stored in the Junk Folder."
 msgstr ""
 
+msgid "Junk"
+msgstr ""
+
 msgid "stored in the Trash Folder."
+msgstr ""
+
+msgid "Trash"
 msgstr ""
 
 #, fuzzy
@@ -680,6 +727,9 @@ msgstr "<em>allir</em> eftirfarandi hausa passa:"
 msgid "the header"
 msgstr "hausinn"
 
+msgid "and"
+msgstr ""
+
 msgid "the size of the message is"
 msgstr "stærð skeytis er"
 
@@ -695,26 +745,56 @@ msgstr "þá á að"
 msgid "<em>keep</em> it."
 msgstr "<em>geyma</em> það."
 
+#, fuzzy
+msgid "Keep"
+msgstr "passar við reglulega segð"
+
 msgid "<em>discard</em> it."
 msgstr "<em>henda</em> því."
+
+msgid "DISCARD"
+msgstr ""
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>neita viðtöku</em> á því, með eftirfarandi boðum til sendanda:"
 
+msgid "Reject"
+msgstr ""
+
+msgid "Redirect to"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "<em>redirect</em> it to the email addresses: %s."
+msgstr "<em>áframsenda</em> það á tölvupóstfangið"
+
 msgid "<em>redirect</em> it to the email address"
 msgstr "<em>áframsenda</em> það á tölvupóstfangið"
 
-msgid "<em>file</em> it into the folder <strong>"
+#, fuzzy, php-format
+msgid "<em>file</em> it into the folder %s"
 msgstr "<em>vista</em> það í möppuna <strong>"
+
+#, php-format
+msgid "File into %s"
+msgstr ""
 
 msgid "reply with this vacation message: "
 msgstr "svara með þessum &quot;Í leyfi&quot; skilboðum: "
+
+#, fuzzy
+msgid "Vacation Message"
+msgstr "Í leyfi"
 
 msgid "Also keep a local copy."
 msgstr ""
 
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr " Geymdu einnig afrit í INBOX, merkt sem eytt."
+
+#, fuzzy
+msgid "Keep Deleted"
+msgstr "Eyða völdum"
 
 msgid " Also notify using the method"
 msgstr " Tilkynntu einnig með aðferðinni"
@@ -725,8 +805,16 @@ msgstr "með"
 msgid "priority and the message"
 msgstr "mikilvægi og skilaboðum"
 
-msgid " Then <strong>STOP</strong> processing rules."
+#, php-format
+msgid "Notify %s"
+msgstr ""
+
+#, fuzzy
+msgid "Then <strong>STOP</strong> processing rules."
 msgstr " <strong>HÆTTU</strong> svo að fara í gegnum reglurnar."
+
+msgid "Stop"
+msgstr ""
 
 msgid "Test for Forged Header"
 msgstr ""
@@ -744,9 +832,6 @@ msgstr ""
 #, fuzzy
 msgid "None"
 msgstr "Nei"
-
-#~ msgid "Delete Selected"
-#~ msgstr "Eyða völdum"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Öllum þínum reglum hefur verið eytt"

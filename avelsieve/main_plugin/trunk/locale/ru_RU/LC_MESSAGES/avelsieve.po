@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 17:50+0200\n"
+"POT-Creation-Date: 2005-03-09 13:30+0200\n"
 "PO-Revision-Date: 2003-05-21 13:15+0300\n"
 "Last-Translator: Vadim Kozlov <vad@tomsknet.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -226,8 +226,27 @@ msgstr "не равно"
 msgid "verbose"
 msgstr "детально"
 
+#, fuzzy
+msgid "Textual descriptions of the rules"
+msgstr "Описание правила"
+
 msgid "terse"
 msgstr "кратко"
+
+msgid "More suitable for viewing the table of rules at once"
+msgstr ""
+
+msgid "tech"
+msgstr ""
+
+msgid "Even more terse description for technical people"
+msgstr ""
+
+msgid "source"
+msgstr ""
+
+msgid "Display SIEVE source"
+msgstr ""
 
 msgid "Low"
 msgstr "Низкий"
@@ -542,6 +561,9 @@ msgstr "someone@example.org"
 msgid "Keep a local copy as well."
 msgstr ""
 
+msgid "Incorrect email address. You must enter only one valid email address."
+msgstr ""
+
 msgid "Move message into"
 msgstr "Переместить сообщение в"
 
@@ -623,6 +645,9 @@ msgstr "Успешно удалено правило #"
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
+msgid "To or Cc"
+msgstr ""
+
 msgid "matches the regural expression"
 msgstr "соответствует регулярному выражению"
 
@@ -644,12 +669,21 @@ msgstr ""
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "Для <strong>ВСЕХ<strong> входящих сообщений; "
 
+msgid "ALL"
+msgstr ""
+
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
 "messages)"
 msgstr "Все сообщения, отмеченные как <strong>спам</strong>"
 
+msgid "SPAM"
+msgstr ""
+
 msgid "unless"
+msgstr ""
+
+msgid "Whitelist:"
 msgstr ""
 
 msgid "or"
@@ -658,9 +692,17 @@ msgstr ""
 msgid "matching the Spam List(s):"
 msgstr "соответствует чёрным спискам:"
 
+#, fuzzy
+msgid "Spam List(s):"
+msgstr "соответствует чёрным спискам:"
+
 #, php-format
 msgid "and with score greater than %s"
 msgstr "и с уровнем соответствия больше чем %s"
+
+#, php-format
+msgid "Score > %s"
+msgstr ""
 
 msgid "will be"
 msgstr "будут"
@@ -668,8 +710,14 @@ msgstr "будут"
 msgid "stored in the Junk Folder."
 msgstr "помещены в папку Junk"
 
+msgid "Junk"
+msgstr ""
+
 msgid "stored in the Trash Folder."
 msgstr "помещаны в папку Trash"
+
+msgid "Trash"
+msgstr ""
 
 msgid "discarded."
 msgstr "отменено"
@@ -686,6 +734,9 @@ msgstr "<em>все</em> следующие почтовые заголовки �
 msgid "the header"
 msgstr "заголовок"
 
+msgid "and"
+msgstr ""
+
 msgid "the size of the message is"
 msgstr "размер сообщения"
 
@@ -701,26 +752,56 @@ msgstr "то"
 msgid "<em>keep</em> it."
 msgstr "<em>сохранить</em>"
 
+#, fuzzy
+msgid "Keep"
+msgstr "регулярное выражение"
+
 msgid "<em>discard</em> it."
 msgstr "<em>уничтожить на сервере</em>"
+
+msgid "DISCARD"
+msgstr ""
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>вернуть отправителю</em> с пояснением: "
 
+msgid "Reject"
+msgstr ""
+
+msgid "Redirect to"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "<em>redirect</em> it to the email addresses: %s."
+msgstr "<em>перенаправить</em> на адрес"
+
 msgid "<em>redirect</em> it to the email address"
 msgstr "<em>перенаправить</em> на адрес"
 
-msgid "<em>file</em> it into the folder <strong>"
+#, fuzzy, php-format
+msgid "<em>file</em> it into the folder %s"
 msgstr "<em>сохранить</em> в папке <strong>"
+
+#, php-format
+msgid "File into %s"
+msgstr ""
 
 msgid "reply with this vacation message: "
 msgstr "ответить этим сообщением:"
+
+#, fuzzy
+msgid "Vacation Message"
+msgstr "Отпуск"
 
 msgid "Also keep a local copy."
 msgstr ""
 
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr "Также сохранить копию во входящих, пометив как удалённое."
+
+#, fuzzy
+msgid "Keep Deleted"
+msgstr "Удалить выбранное"
 
 msgid " Also notify using the method"
 msgstr "Также уведомить, используя следующий метод"
@@ -731,8 +812,16 @@ msgstr "с"
 msgid "priority and the message"
 msgstr "приоритетом и сообщением"
 
-msgid " Then <strong>STOP</strong> processing rules."
+#, php-format
+msgid "Notify %s"
+msgstr ""
+
+#, fuzzy
+msgid "Then <strong>STOP</strong> processing rules."
 msgstr "Затем <strong>ОСТАНОВИТЬ<strong> обработку правил."
+
+msgid "Stop"
+msgstr ""
 
 msgid "Test for Forged Header"
 msgstr ""
@@ -749,9 +838,6 @@ msgstr "Недопустимое имя папки. Пожалуйста, выб
 #, fuzzy
 msgid "None"
 msgstr "N правила"
-
-#~ msgid "Delete Selected"
-#~ msgstr "Удалить выбранное"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Все Ваши правила были удалены"

@@ -3,13 +3,13 @@
 # Copyright (C) 2003 Alexandros Vellis
 # This file is distributed under the same license as the PACKAGE package.
 # Tomas Kuliavas <tokul@users.sourceforge.net>, 2003.
-# $Id: avelsieve.po,v 1.9 2005/03/01 16:08:11 avel Exp $
+# $Id: avelsieve.po,v 1.10 2005/03/15 16:36:48 avel Exp $
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: (avelsieve 0.9.7)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 17:50+0200\n"
+"POT-Creation-Date: 2005-03-09 13:30+0200\n"
 "PO-Revision-Date: 2003-10-09 19:56+0200\n"
 "Last-Translator: Tomas Kuliavas <tokul@users.sourceforge.net>\n"
 "Language-Team: SquirrelMail I18N Team <squirrelmail-i18n@lists.sourceforge."
@@ -235,8 +235,27 @@ msgstr "yra nelygi"
 msgid "verbose"
 msgstr "išsamus"
 
+#, fuzzy
+msgid "Textual descriptions of the rules"
+msgstr "Taisyklės aprašymas"
+
 msgid "terse"
 msgstr "trumpas"
+
+msgid "More suitable for viewing the table of rules at once"
+msgstr ""
+
+msgid "tech"
+msgstr ""
+
+msgid "Even more terse description for technical people"
+msgstr ""
+
+msgid "source"
+msgstr ""
+
+msgid "Display SIEVE source"
+msgstr ""
 
 msgid "Low"
 msgstr "Žemas"
@@ -553,6 +572,9 @@ msgstr "kazkas@example.org"
 msgid "Keep a local copy as well."
 msgstr ""
 
+msgid "Incorrect email address. You must enter only one valid email address."
+msgstr ""
+
 msgid "Move message into"
 msgstr "Perkelti žinutę į"
 
@@ -634,6 +656,9 @@ msgstr "Sėkmingai ištrinta taisyklė Nr."
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
+msgid "To or Cc"
+msgstr ""
+
 msgid "matches the regural expression"
 msgstr "atitinka išraišką"
 
@@ -655,6 +680,9 @@ msgstr ""
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "<strong>VISOMS</strong> ateinančioms žinutėms; "
 
+msgid "ALL"
+msgstr ""
+
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
 "messages)"
@@ -662,7 +690,13 @@ msgstr ""
 "Visos žinutės turinčios <strong>SPAM</strong> (nesankcionuoti komerciniai "
 "pranešimai) požymius"
 
+msgid "SPAM"
+msgstr ""
+
 msgid "unless"
+msgstr ""
+
+msgid "Whitelist:"
 msgstr ""
 
 msgid "or"
@@ -671,9 +705,17 @@ msgstr ""
 msgid "matching the Spam List(s):"
 msgstr "atitinkančios Spamo sąrašą(us):"
 
+#, fuzzy
+msgid "Spam List(s):"
+msgstr "atitinkančios Spamo sąrašą(us):"
+
 #, php-format
 msgid "and with score greater than %s"
 msgstr "ir įvertinimu didesniu nei %s"
+
+#, php-format
+msgid "Score > %s"
+msgstr ""
 
 msgid "will be"
 msgstr "bus"
@@ -681,8 +723,14 @@ msgstr "bus"
 msgid "stored in the Junk Folder."
 msgstr "patalpinta Šlamšto aplanke."
 
+msgid "Junk"
+msgstr ""
+
 msgid "stored in the Trash Folder."
 msgstr "patalpinta Šlamšto aplanke."
+
+msgid "Trash"
+msgstr ""
 
 msgid "discarded."
 msgstr "išmesta."
@@ -699,6 +747,9 @@ msgstr "<em>visos</em> nurodytos pašto antraštos atitinka: "
 msgid "the header"
 msgstr "antraštė"
 
+msgid "and"
+msgstr ""
+
 msgid "the size of the message is"
 msgstr "žinutės dydis yra"
 
@@ -714,26 +765,56 @@ msgstr "nei"
 msgid "<em>keep</em> it."
 msgstr "<em>išsaugoti</em>"
 
+#, fuzzy
+msgid "Keep"
+msgstr "speciali išraiška"
+
 msgid "<em>discard</em> it."
 msgstr "<em>atsikratyti</em>"
+
+msgid "DISCARD"
+msgstr ""
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>atmesti</em> siuntėjui su nurodytu pranešimu:"
 
+msgid "Reject"
+msgstr ""
+
+msgid "Redirect to"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "<em>redirect</em> it to the email addresses: %s."
+msgstr "<em>persiųsti</em> į nurodytą adresą"
+
 msgid "<em>redirect</em> it to the email address"
 msgstr "<em>persiųsti</em> į nurodytą adresą"
 
-msgid "<em>file</em> it into the folder <strong>"
+#, fuzzy, php-format
+msgid "<em>file</em> it into the folder %s"
 msgstr "<em>išsaugoti</em> aplanke <strong>"
+
+#, php-format
+msgid "File into %s"
+msgstr ""
 
 msgid "reply with this vacation message: "
 msgstr "atsakyti su atostogų žinute: "
+
+#, fuzzy
+msgid "Vacation Message"
+msgstr "Atostogos"
 
 msgid "Also keep a local copy."
 msgstr ""
 
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr "Išsaugoti kopiją tarp INBOX, pažymėti kaip ištrintą."
+
+#, fuzzy
+msgid "Keep Deleted"
+msgstr "Ištrinti pasirinktą"
 
 msgid " Also notify using the method"
 msgstr "Taip pat informuoti naudojant metodą"
@@ -744,8 +825,16 @@ msgstr "su"
 msgid "priority and the message"
 msgstr "prioritetu ir žinute"
 
-msgid " Then <strong>STOP</strong> processing rules."
+#, php-format
+msgid "Notify %s"
+msgstr ""
+
+#, fuzzy
+msgid "Then <strong>STOP</strong> processing rules."
 msgstr "Tada <strong>LIAUTIS</strong> apdoroti kitas taisykles."
+
+msgid "Stop"
+msgstr ""
 
 msgid "Test for Forged Header"
 msgstr ""
@@ -762,9 +851,6 @@ msgstr "Netinkamas aplanko vardas. Pasirinkite kita"
 #, fuzzy
 msgid "None"
 msgstr "Ne"
-
-#~ msgid "Delete Selected"
-#~ msgstr "Ištrinti pasirinktą"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Visos jūsų taisyklės ištrintos"

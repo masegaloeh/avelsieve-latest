@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve czech locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 17:50+0200\n"
+"POT-Creation-Date: 2005-03-09 13:30+0200\n"
 "PO-Revision-Date: 2004-04-01 20:15+0300\n"
 "Last-Translator: Jiri Demel <demel@fsv.cvut.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -225,8 +225,27 @@ msgstr "není rovno"
 msgid "verbose"
 msgstr "podrobný"
 
+#, fuzzy
+msgid "Textual descriptions of the rules"
+msgstr "Popis pravidla"
+
 msgid "terse"
 msgstr "struèný"
+
+msgid "More suitable for viewing the table of rules at once"
+msgstr ""
+
+msgid "tech"
+msgstr ""
+
+msgid "Even more terse description for technical people"
+msgstr ""
+
+msgid "source"
+msgstr ""
+
+msgid "Display SIEVE source"
+msgstr ""
 
 msgid "Low"
 msgstr "Nízká"
@@ -538,6 +557,9 @@ msgstr "kdosi@kdesi.cz"
 msgid "Keep a local copy as well."
 msgstr "Uschovat také lokální kopii."
 
+msgid "Incorrect email address. You must enter only one valid email address."
+msgstr ""
+
 msgid "Move message into"
 msgstr "Pøesunout dopis do"
 
@@ -620,6 +642,9 @@ msgstr "Opravdu smazat toto pravidlo?"
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
+msgid "To or Cc"
+msgstr ""
+
 msgid "matches the regural expression"
 msgstr "odpovídá regulárnímu výrazu"
 
@@ -641,6 +666,9 @@ msgstr ""
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "Pro <strong>V©ECHNY</strong> pøíchozí dopisy; "
 
+msgid "ALL"
+msgstr ""
+
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
 "messages)"
@@ -648,7 +676,13 @@ msgstr ""
 "V¹echny dopisy pokládané za <strong>SPAM</strong> (nevy¾ádané reklamní "
 "dopisy)"
 
+msgid "SPAM"
+msgstr ""
+
 msgid "unless"
+msgstr ""
+
+msgid "Whitelist:"
 msgstr ""
 
 msgid "or"
@@ -657,9 +691,16 @@ msgstr ""
 msgid "matching the Spam List(s):"
 msgstr ""
 
+msgid "Spam List(s):"
+msgstr ""
+
 #, php-format
 msgid "and with score greater than %s"
 msgstr "a se skóre vìt¹ím ne¾ %s"
+
+#, php-format
+msgid "Score > %s"
+msgstr ""
 
 msgid "will be"
 msgstr "budou"
@@ -667,8 +708,14 @@ msgstr "budou"
 msgid "stored in the Junk Folder."
 msgstr "pøesunuty do slo¾ky Junk"
 
+msgid "Junk"
+msgstr ""
+
 msgid "stored in the Trash Folder."
 msgstr "ulo¾eny do slo¾ky Trash"
+
+msgid "Trash"
+msgstr ""
 
 msgid "discarded."
 msgstr "zahozeny."
@@ -685,6 +732,9 @@ msgstr "<em>ka¾dá</em> z následujících hlavièek souhlasí: "
 msgid "the header"
 msgstr "hlavièka"
 
+msgid "and"
+msgstr ""
+
 msgid "the size of the message is"
 msgstr "velikost dopisu je"
 
@@ -700,26 +750,56 @@ msgstr "pak"
 msgid "<em>keep</em> it."
 msgstr "<em>ponechej</em> jej."
 
+#, fuzzy
+msgid "Keep"
+msgstr "regulární výraz"
+
 msgid "<em>discard</em> it."
 msgstr "<em>zahoï</em> jej."
+
+msgid "DISCARD"
+msgstr ""
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>odmítni</em> jej s touto omluvou odesílateli:"
 
+msgid "Reject"
+msgstr ""
+
+msgid "Redirect to"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "<em>redirect</em> it to the email addresses: %s."
+msgstr "<em>pøesmìruj</em> jej na emailovou adresu"
+
 msgid "<em>redirect</em> it to the email address"
 msgstr "<em>pøesmìruj</em> jej na emailovou adresu"
 
-msgid "<em>file</em> it into the folder <strong>"
+#, fuzzy, php-format
+msgid "<em>file</em> it into the folder %s"
 msgstr "<em>ulo¾</em> jej do slo¾ky <strong>"
+
+#, php-format
+msgid "File into %s"
+msgstr ""
 
 msgid "reply with this vacation message: "
 msgstr "odpovìz s touto prázdninovou zprávou:"
+
+#, fuzzy
+msgid "Vacation Message"
+msgstr "Dovolená"
 
 msgid "Also keep a local copy."
 msgstr "Také ponechej lokální kopii."
 
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr "Také ponechej kopii v INBOXu, oznaèenou jako smazanou."
+
+#, fuzzy
+msgid "Keep Deleted"
+msgstr "Smazat oznaèené"
 
 msgid " Also notify using the method"
 msgstr "Také mne upozorni metodou"
@@ -730,8 +810,16 @@ msgstr "s"
 msgid "priority and the message"
 msgstr "prioritou a zprávou"
 
-msgid " Then <strong>STOP</strong> processing rules."
+#, php-format
+msgid "Notify %s"
+msgstr ""
+
+#, fuzzy
+msgid "Then <strong>STOP</strong> processing rules."
 msgstr " Pak <strong>STOP</strong> zpracování pravidel."
+
+msgid "Stop"
+msgstr ""
 
 msgid "Test for Forged Header"
 msgstr ""
@@ -747,9 +835,6 @@ msgstr "Chybné jméno slo¾ky. Zkuste jiné jméno."
 
 msgid "None"
 msgstr "Nic"
-
-#~ msgid "Delete Selected"
-#~ msgstr "Smazat oznaèené"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "V¹echna va¹e pravidla byla smazána"

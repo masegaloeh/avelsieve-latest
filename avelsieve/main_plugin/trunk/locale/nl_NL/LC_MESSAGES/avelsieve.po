@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 1.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 17:50+0200\n"
+"POT-Creation-Date: 2005-03-09 13:30+0200\n"
 "PO-Revision-Date: 2005-02-09 12:44+0100\n"
 "Last-Translator: Maxim Baars <mmbaars@bccs.nl>\n"
 "Language-Team: \n"
@@ -232,8 +232,27 @@ msgstr "is ongelijk aan"
 msgid "verbose"
 msgstr "uitgebreid"
 
+#, fuzzy
+msgid "Textual descriptions of the rules"
+msgstr "Omschrijving"
+
 msgid "terse"
 msgstr "beknopt"
+
+msgid "More suitable for viewing the table of rules at once"
+msgstr ""
+
+msgid "tech"
+msgstr ""
+
+msgid "Even more terse description for technical people"
+msgstr ""
+
+msgid "source"
+msgstr ""
+
+msgid "Display SIEVE source"
+msgstr ""
 
 msgid "Low"
 msgstr "Laag"
@@ -552,6 +571,9 @@ msgstr "someone@example.org"
 msgid "Keep a local copy as well."
 msgstr "Bewaar tevens een lokale kopie."
 
+msgid "Incorrect email address. You must enter only one valid email address."
+msgstr ""
+
 msgid "Move message into"
 msgstr "Verplaats naar"
 
@@ -633,6 +655,10 @@ msgstr "Wilt u deze regel echt verwijderen?"
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
+#, fuzzy
+msgid "To or Cc"
+msgstr "To: of CC"
+
 msgid "matches the regural expression"
 msgstr "overeenkomt met uitdrukking (regex)"
 
@@ -654,6 +680,9 @@ msgstr ""
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "Voor <strong>ALLE</strong> inkomende berichten; "
 
+msgid "ALL"
+msgstr ""
+
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
 "messages)"
@@ -661,8 +690,15 @@ msgstr ""
 "Alle berichten die beschouwd worden als <strong>SPAM</strong> (ongewenste "
 "commerciële berichten)"
 
+msgid "SPAM"
+msgstr ""
+
 msgid "unless"
 msgstr "tenzij"
+
+#, fuzzy
+msgid "Whitelist:"
+msgstr "Veilige afzenders"
 
 msgid "or"
 msgstr "of"
@@ -670,9 +706,17 @@ msgstr "of"
 msgid "matching the Spam List(s):"
 msgstr "voorkomt in de Spam-lijst(en):"
 
+#, fuzzy
+msgid "Spam List(s):"
+msgstr "voorkomt in de Spam-lijst(en):"
+
 #, php-format
 msgid "and with score greater than %s"
 msgstr "en met een score groter dan %s"
+
+#, php-format
+msgid "Score > %s"
+msgstr ""
 
 msgid "will be"
 msgstr "zal zijn"
@@ -680,8 +724,14 @@ msgstr "zal zijn"
 msgid "stored in the Junk Folder."
 msgstr "opgeslagen in de map Ongewenste e-mail"
 
+msgid "Junk"
+msgstr ""
+
 msgid "stored in the Trash Folder."
 msgstr "opgeslagen in de map Verwijderde items"
+
+msgid "Trash"
+msgstr ""
 
 msgid "discarded."
 msgstr "genegeerd."
@@ -700,6 +750,9 @@ msgstr "aan <em>alle</em> hierna genoemde berichtkopcondities voldaan wordt: "
 msgid "the header"
 msgstr "berichtkop"
 
+msgid "and"
+msgstr ""
+
 msgid "the size of the message is"
 msgstr "de grootte van het bericht"
 
@@ -715,26 +768,56 @@ msgstr "dan"
 msgid "<em>keep</em> it."
 msgstr "bericht <em>bewaren</em>."
 
+#, fuzzy
+msgid "Keep"
+msgstr "regexp"
+
 msgid "<em>discard</em> it."
 msgstr "bericht <em>negeren</em>."
+
+msgid "DISCARD"
+msgstr ""
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "bericht <em>weigeren</em> en zend deze reden terug naar de afzender:"
 
+msgid "Reject"
+msgstr ""
+
+msgid "Redirect to"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "<em>redirect</em> it to the email addresses: %s."
+msgstr "bericht <em>doorsturen</em> naar e-mailadres"
+
 msgid "<em>redirect</em> it to the email address"
 msgstr "bericht <em>doorsturen</em> naar e-mailadres"
 
-msgid "<em>file</em> it into the folder <strong>"
+#, fuzzy, php-format
+msgid "<em>file</em> it into the folder %s"
 msgstr "bericht <em>opslaan</em> in de map <strong>"
+
+#, php-format
+msgid "File into %s"
+msgstr ""
 
 msgid "reply with this vacation message: "
 msgstr "antwoord met deze vakantiemelding:"
+
+#, fuzzy
+msgid "Vacation Message"
+msgstr "Vakantie"
 
 msgid "Also keep a local copy."
 msgstr "Bewaar ook een lokale kopie."
 
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr " Laat ook een kopie, gemarkeerd als verwijderd, achter in INBOX."
+
+#, fuzzy
+msgid "Keep Deleted"
+msgstr "Verwijder selectie"
 
 msgid " Also notify using the method"
 msgstr " Geef ook een melding via de methode"
@@ -745,8 +828,16 @@ msgstr "met"
 msgid "priority and the message"
 msgstr "als prioriteit en het bericht"
 
-msgid " Then <strong>STOP</strong> processing rules."
+#, php-format
+msgid "Notify %s"
+msgstr ""
+
+#, fuzzy
+msgid "Then <strong>STOP</strong> processing rules."
 msgstr " <strong>STOP</strong> vervolgens met verdere verwerking van regels."
+
+msgid "Stop"
+msgstr ""
 
 msgid "Test for Forged Header"
 msgstr "Controleer op vervalste berichtkop"
@@ -762,9 +853,6 @@ msgstr "Onjuiste mapnaam. Kies een andere naam."
 
 msgid "None"
 msgstr "Geen"
-
-#~ msgid "Delete Selected"
-#~ msgstr "Verwijder selectie"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Al uw regels zijn verwijderd"
