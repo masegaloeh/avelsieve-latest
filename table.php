@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * User-friendly interface to SIEVE server-side mail filtering.
  * Plugin for Squirrelmail 1.4
  *
@@ -11,11 +11,15 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table.php,v 1.8 2003/11/07 16:22:18 avel Exp $
+ * $Id: table.php,v 1.9 2003/12/18 12:19:33 avel Exp $
+ *
+ * @package avelsieve
  */
 
-/* table.php: main routine that shows a table of all the rules and allows
- * manipulation. */
+/**
+ * table.php: main routine that shows a table of all the rules and allows
+ * manipulation.
+ */
 
 define('AVELSIEVE_DEBUG',0);
 
@@ -40,6 +44,8 @@ sqgetGlobalVar('onetimepad', $onetimepad, SQ_SESSION);
 
 sqgetGlobalVar('authz', $authz, SQ_SESSION);
 
+sqgetGlobalVar('haschanged', $haschanged, SQ_SESSION);
+
 if(isset($_SESSION['part'])) {
 	session_unregister('part');
 }
@@ -59,7 +65,6 @@ sqgetGlobalVar('logout', $logout, SQ_POST);
 
 if(isset($authz)) {
 	$imap_server =  sqimap_get_user_server ($imapServerAddress, $authz);
-	
 } else {
 	$imap_server =  sqimap_get_user_server ($imapServerAddress, $username);
 
@@ -67,6 +72,7 @@ if(isset($authz)) {
 		$imap_server = $imapproxyserv[$imap_server];
 	}
 }
+// $imap_server = 'atlantic.noc.uoa.gr';
 
 if(isset($authz)) {
 	if(isset($cyrusadmins_map[$username])) {
@@ -83,35 +89,27 @@ if(isset($authz)) {
 
 sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
 
+$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+textdomain ('avelsieve');
 	
-/* Login. But if the rules are cached, don't even login to SIEVE Server. */ 
-if (!isset($rules)) {
-
-	if ($sieve->sieve_login()){	/* User has logged on */
-		if(!isset($sieve_capabilities)) {
-			$sieve_capabilities = $sieve->sieve_get_capability();
-			// sqsession_register($sieve_capabilities, 'sieve_capabilities');
-			 $_SESSION['sieve_capabilities'] = $sieve_capabilities;
-		}
-	} else {
-		$errormsg = _("Could not log on to timsieved daemon on your IMAP server");
-		$errormsg .= " " . $imapServerAddress.".<br />";
-		$errormsg .= _("Please contact your administrator.");
-		print_errormsg($errormsg);
-		exit;
-	}
-}
-
-
+require_once "constants.php";
 
 if (!isset($rules)) {
+	/* Login. But if the rules are cached, don't even login to SIEVE
+	 * Server. */ 
+	avelsieve_login();
 
 	/* Get script list from SIEVE server. */
 
 	if($sieve->sieve_listscripts()) {
 		if(!isset($sieve->response)) {
 			/* There is no SIEVE script on the server. */
+			$sieve->sieve_logout();
+			$prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
+			textdomain ('squirrelmail');
 			displayPageHeader($color, 'None');
+			$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+			textdomain ('avelsieve');
 			printheader2( _("Current Mail Filtering Rules") );
 			print_all_sections_start();
 			print_section_start(_("No Filtering Rules Defined Yet"));
@@ -166,24 +164,12 @@ if (!isset($rules)) {
 unset($sieve->response);
 
 
-
-
 /* On to the code that executes if phpscript exists or if a new rule has been
  * created. */
 
-if($logout) {
+if ($logout) {
 	/* Activate phpscript and log out. */
-	
-	if (!($sieve->sieve_login())){
-		$errormsg = _("Could not log on to timsieved daemon on your IMAP server");
-		$errormsg .= " " . $imapServerAddress.".<br />";
-		$errormsg .= _("in order to save your rules.") . "<br />";
-		$errormsg .= _("Please contact your administrator.");
-		print_errormsg($errormsg);
-		exit;
-	}
-	
-	require_once("constants.php");
+	avelsieve_login();
 
 	if ($newscript = makesieverule($rules)) {
 
@@ -251,13 +237,16 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected'])) {
 			$_SESSION['comm']['deleted'] = $_GET['rule'];
 		}
 
-
 		if(sizeof($rules) == "0") {
 			// print "DEBUG: Ok, size of rules is 0 apparently.";
 	
 			if (!$conservative) {
+				avelsieve_login();
+				// avelsieve_upload_script(""); 
 				avelsieve_delete_script();
 			}
+			$prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
+			textdomain ('squirrelmail');
 			displayPageHeader($color, 'None');
 			$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 			textdomain ('avelsieve');
@@ -309,8 +298,9 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected'])) {
 	/* Register changes to timsieved if we are not conservative in our
 	 * connections with him. */
 
-	if (!($conservative && $rules)) {
+	if ($conservative == false && $rules) {
 		$newscript = makesieverule($rules);
+		avelsieve_login();
 		avelsieve_upload_script($newscript);
 	}
 }	
@@ -321,19 +311,23 @@ if (isset($_SESSION['returnnewrule'])) { /* Get the new rule and put it in the s
 	// unserialize(base64_decode(urldecode($returnnewrule)));
 	session_unregister('returnnewrule');
 
-	//print "DEBUG: Adding new: ";	print_r($newrule);
-	
+	// print "DEBUG: Adding new: ";	print_r($newrule);
 	if (!is_array($rules)) {
 		unset($rules);
 		$rules[0] = $newrule;
 	} else {
 		$rules[] = $newrule;
 	}
-	
-	if ($conservative == false) {
-		$newscript = makesieverule($rules);
-		avelsieve_upload_script($newscript);
-	} 
+	$haschanged = true;
+}
+
+if( (!$conservative && isset($haschanged) ) ) {
+	avelsieve_login();
+	$newscript = makesieverule($rules);
+	avelsieve_upload_script($newscript);
+	if(isset($_SESSION['haschanged'])) {
+		unset($_SESSION['haschanged']);
+	}
 }
 
 if(isset($rules)) {
@@ -341,19 +335,20 @@ if(isset($rules)) {
 	$_SESSION['scriptinfo'] = $scriptinfo;
 }
 
-// $compose_new_win = getPref($data_dir, $username, 'compose_new_win');
-
-$sieve->sieve_logout();
+if(isset($sieve_loggedin)) {
+	$sieve->sieve_logout();
+}
 
 /* --------------------------------- main --------------------------------- */
 
 /* Printing, part zero: Headers et al */
+$prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
+textdomain ('squirrelmail');
 displayPageHeader($color, 'None');
-
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
-require "constants.php";
+
 
 if (!isset($rules) ||
     isset($rules) && sizeof($rules) == 0 ) {
@@ -460,10 +455,11 @@ for ($i=0; $i<sizeof($rules); $i++) {
 }
 
 
-print '<tr><td colspan="4">';
-	print '<table width="100%" border="0"><tr><td align="left">';
-	print '<input type="submit" name="deleteselected" value="' . _("Delete Selected") . '" /> '; 
-	print '</td><td align="right">';
+print '<tr><td colspan="4">'.
+	'<table width="100%" border="0"><tr><td align="left">'.
+	'<input type="submit" name="deleteselected" value="' . _("Delete Selected") . '" /> '.
+	'</td>'.
+	'<td align="right">';
 	print_addnewrulebutton();
 	print '</td></tr></table>'; 
 print '</td></tr>';
