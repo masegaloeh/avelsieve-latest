@@ -1,0 +1,10 @@
+
+
+1) Untar the plugin under the squirrelmail/plugins directory. You probably have
+already done this. :)
+
+2) Copy config_sample.php to config.php. Edit config.php to your preferences.
+The file is self-documented with comments.
+
+The defaults are OK for most installations.
+
