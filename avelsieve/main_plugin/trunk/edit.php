@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.12 2004/11/12 11:27:07 avel Exp $
+ * @version $Id: edit.php,v 1.13 2004/11/15 13:30:01 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -42,6 +42,9 @@ sqgetGlobalVar('rules', $rules, SQ_SESSION);
 /* Mode of operation */
 sqgetGlobalVar('dup', $dup, SQ_GET & SQ_POST);
 sqgetGlobalVar('addnew', $addnew, SQ_GET);
+/* New folder Creation */
+sqgetGlobalVar('newfoldername', $newfoldername, SQ_POST);
+sqgetGlobalVar('newfolderparent', $newfolderparent, SQ_POST);
 /* Essentials */
 sqgetGlobalVar('popup', $popup, SQ_GET);
 sqgetGlobalVar('items', $items, SQ_GET);
@@ -50,6 +53,11 @@ sqgetGlobalVar('previoustype', $previoustype, SQ_POST);
 sqgetGlobalVar('type', $type_get, SQ_GET);
 sqgetGlobalVar('type', $type_post, SQ_POST);
 
+if(!isset($rules)) {
+	/* FIXME - Cache rules */
+	exit;
+}
+
 if(isset($edit)) {
 	/* Editing an existing rule */
 	$rule = &$rules[$edit];
@@ -57,7 +65,16 @@ if(isset($edit)) {
 	/* Adding a new rule through $_GET */
 	$type = $type_get;
 	$rule = process_input(SQ_GET, &$errmsg);
+} else {
+	/* Adding a new rule from scratch */
+	$rule = array();
+}
 
+if($newfoldername) {
+	$created_mailbox_name = '';
+	print "avelsieve_create_folder($newfoldername, $newfolderparent, $created_mailbox_name, &$errmsg)";
+	avelsieve_create_folder($newfoldername, $newfolderparent, $created_mailbox_name, &$errmsg);
+	print $created_mailbox_name;
 }
 
 if(isset($type_post)) {
@@ -196,7 +213,7 @@ $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
 if(isset($errmsg) && $errmsg) {
-	echo $errmsg;
+	echo '<p>'. _("Error Encountered:") . $errmsg .'</p>' ;
 }
 
 require_once (SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
