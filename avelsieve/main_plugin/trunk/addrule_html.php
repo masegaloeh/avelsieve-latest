@@ -198,6 +198,12 @@ function print_header_listbox($selected_header, $n) {
 	
 	print '<select name="header['.$n.']">';
 	
+	/* 'Special' shortcut for To: or Cc: headers */
+	print '<option name="header['.$n.']"  value="toorcc"';
+		if($selected_header=='toorcc')
+			print ' selected=""';
+	print '><strong>'. _("To: or Cc") .':</strong></option>';
+	
 	foreach($headers as $head) {
 		if ($head==$selected_header) {
 			print '<option name="header['.$n.']"  value="'.$head.'" selected="">'.$head.':</option>';
