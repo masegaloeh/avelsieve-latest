@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.5 2005/02/28 14:40:47 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.6 2005/02/28 15:41:59 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -240,12 +240,10 @@ function build_headerrule_snippet($header, $matchtype, $headermatch, $type='rule
  * @return string
  */
 function makesinglerule($rule, $type="rule") {
-
-	global $maxitems;
+	global $maxitems, $color;
 
 	$out = $text = $terse = '';
-	$terse .= '<table width="100%" border="0" cellspacing="2" cellpadding="2"><tr><td align="left">';
-	
+
 	/* Step zero: serialize & encode the rule inside the SIEVE script. Also
 	 * check if it is disabled. */
 	
@@ -258,13 +256,18 @@ function makesinglerule($rule, $type="rule") {
 			/* For disabled rules, we only need the sieve comment. */
 			return $out;
 		} else {
-			$text .= _("This rule is currently <strong>DISABLED</strong>:").' ';
-			$terse .= 'DISABLED<br />';
+			$text .= _("This rule is currently <strong>DISABLED</strong>:").' <span style="font-size: 0.9em; color:'.$color[15].';">';
+			$terse .= '<div align="center">' . _("DISABLED") . '</div>';
 		}
 	}
 	
-	/* Step one: make the if clause */
+	$terse .= '<table width="100%" border="0" cellspacing="2" cellpadding="2"';
+	if (isset($rule['disabled']) && $rule['disabled']==1) {
+		$terse .= ' style="font-size: 0.5em; background-color: inherit; color:'.$color[15].';"';
+	}
+	$terse .= '><tr><td align="left">';
 	
+	/* Step one: make the if clause */
 	/* The actual 'if' will be added by makesieverule() */
 	
 	if($rule['type']=="4") {
@@ -647,6 +650,10 @@ function makesinglerule($rule, $type="rule") {
 	
 	$out .= "\n}";
 	$terse .= "</td></tr></table>";
+	
+	if (isset($rule['disabled']) && $rule['disabled']==1) {
+		$text .= '</span>';
+	}
 	
 	if ($type == "terse") {
 		return $terse;
