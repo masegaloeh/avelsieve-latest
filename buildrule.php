@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: buildrule.php,v 1.11 2004/03/26 18:28:13 avel Exp $
+ * $Id: buildrule.php,v 1.12 2004/03/30 18:26:05 avel Exp $
  */
 
 /**
@@ -83,182 +83,35 @@
  *
  */ 
 
-/** 
- * Gets a $rule array and builds a part of a SIEVE script (aka a rule).
- *
- * @param $rule	A rule array.
- * @param $type	What to return. Can be one of:
+/**
+ * Build a snippet which is used for header rules and spam rule whitelists.
+ * Takes arguments in natural English language order: 'From contains foo'.
+ * @param string $header
+ * @param string $matchtype
+ * @param string $headermatch
+ * @param string $type 'verbose', 'terse' or 'rule'
  *   verbose = return a (verbose) textual description of the rule.
  *   terse = return a very terse description
  *   rule = return a string with the appropriate SIEVE code.
+ * @return string 
  */
-function makesinglerule($rule, $type="rule") {
-
-global $maxitems;
-
-/* Step zero :-) : serialize & encode my array */
-
-$coded = urlencode(base64_encode(serialize($rule)));
-
-$out = "#START_SIEVE_RULE".$coded."END_SIEVE_RULE\n";
-
-/* Step one: make the if clause */
-
-/* The actual 'if' will be added by makesieverule() */
-
-$terse = '<table width="100%" border="0" cellspacing="2" cellpadding="2"><tr><td align="left">';
-
-if($rule['type']=="4") {
- 	$text = _("For <strong>ALL</strong> incoming messages; ");
-	$terse .= "ALL";
-	$terse .= '</td><td align="right">';
-
-} elseif($rule['type'] == "10") {
-	/* SpamRule */
-
-	global $spamrule_score_default, $spamrule_score_header,
-	$spamrule_tests, $spamrule_tests_header, $spamrule_action_default;
-	
-	$spamrule_advanced = false;
-
-	if(isset($rule['advanced'])) {
-		$spamrule_advanced = true;
-	}
-
-	if(isset($rule['score'])) {
-		$sc = $rule['score'];
-	} else {
-		$sc = $spamrule_score_default;
-	}
-	
-	if(isset($rule['tests'])) {
-		$te = $rule['tests'];
-	} else {
-		$te = array_keys($spamrule_tests);
-	}
-
-	if(isset($rule['action'])) {
-		$ac = $rule['action'];
-	} else {
-		$ac = $spamrule_action_default;
-	}
-
-	/*
-	if allof( anyof(header :contains "X-Spam-Rule" "Open.Relay.Database" ,
-		        header :contains "X-Spam-Rule" "Spamhaus.Block.List" 
-			),
-		  header :value "gt" :comparator "i;ascii-numeric" "80" ) {
+ 
+function build_headerrule_snippet($header, $matchtype, $headermatch, $type='rule') {
+	$out = '';
+	$text = '';
+	$terse = '';
 		
-		fileinto "INBOX.Junk";
-		discard;
-	}
-	*/
-	
-	$out .= 'allof( ';
-	$text = _("All messages considered as <strong>SPAM</strong> (unsolicited commercial messages)");
-	$terse .= "SPAM";
-	
-	if(sizeof($te) > 1) {
-		$out .= ' anyof( ';
-		for($i=0; $i<sizeof($te); $i++ ) {
-			$out .= 'header :contains "'.$spamrule_tests_header.'" "'.$te[$i].'"';
-			if($i < (sizeof($te) -1 ) ) {
-				$out .= ",";
-			}
-		}
-		$out .= " ),\n";
-	} else {
-		$out .= 'header :contains "'.$spamrule_tests_header.'" "'.$te[0].'", ';
-	}
-
-	$out .= "\n";
-	$out .= ' header :value "ge" :comparator "i;ascii-numeric" "'.$spamrule_score_header.'" "'.$sc.'" ) { ';
-	$out .= "\n";
-	
-	$text .= ', ';
-	if($spamrule_advanced == true) {
-		$text .= _("matching the Spam List(s):");
-
-		for($i=0; $i<sizeof($te); $i++) {
-			$text .= $spamrule_tests[$te[$i]].', ';
-		}
-		$text .= sprintf( _("and with score greater than %s") , $sc );
-	}
-
-	$text .= _("will be") . ' ';
-	$terse .= '</td><td align="right">';
-
-	if($ac == 'junk') {
-		$text .= _("stored in the Junk Folder.");
-		$out .= 'fileinto "INBOX.Junk";';
-		$terse .= 'JUNK';
-
-	} elseif($ac == 'trash') {
-		$text .= _("stored in the Trash Folder.");
-
-		global $data_dir, $username;
-		$tf = getPref($data_dir, $username, 'trash_folder');
-
-		$out .= 'fileinto "'.$tf.'";';
-		$terse .= 'TRASH';
-
-	} elseif($ac == 'discard') {
-		$text .= _("discarded.");
-		$out .= 'discard;';
-		$terse .= 'DISCARD';
-	}
-
-} else {
-	$text = "<strong>"._("If")."</strong> ";
-} 
-
-switch ($rule['type']) {
-case "1":	/* address --- slated for the future. */
-
-	for ( $i=0; $i<3; $i++) {
-		$out .= 'address :'.${'address'.$i};
-		if(${'addressrel'.$i} != "0") {
-			$out .= ":";
-		}
-	}
-	break;
-
-case "2":	/* header */
-	if(isset($rule['condition'])) {
-	switch ($rule['condition']) {
-		case "or":
-			$out .= "anyof (";
-			$text .= _("<em>any</em> of the following mail headers match: ");
-			// $terse .= "ANY (";
-			break;
-		case "and":
-			$out .= "allof (";
-			$text .= _("<em>all</em> of the following mail headers match: ");
-			// $terse .= "ALL (";
-			break;
-		default: /* condition was not defined, so there's only one header item. */
-			$lonely = true;
-			break;
-	}
-	}
-	/* if ( $i<sizeof($rule['headermatch'][$i] > 1) {
-		$out .=
-	}
-	*/
-	for ( $i=0; $i<sizeof($rule['headermatch']); $i++) {
-		$text .= _("the header");
-
-		if($rule['header'][$i] == 'toorcc') {
+		
+		if($header == 'toorcc') {
 			$text .= " <strong>&quot;To&quot; / &quot;Cc&quot; </strong> ";
 			$terse .= " TO OR CC";
 		} else {
-			$text .= " <strong>&quot;".htmlspecialchars($rule['header'][$i])."&quot;</strong> ";
-			$terse .= " ".htmlspecialchars($rule['header'][$i])." ";
+			$text .= " <strong>&quot;".htmlspecialchars($header)."&quot;</strong> ";
+			$terse .= " ".htmlspecialchars($header)." ";
 		}
-
 		// $escapeslashes = false;
 
- 		switch ($rule['matchtype'][$i]) {
+ 	switch ($matchtype) {
  			case "is":
  				$out .= "header :is";
 				$text .= _("is");
@@ -347,22 +200,242 @@ case "2":	/* header */
  				break 1;
  		}
 
-		if($rule['header'][$i] == 'toorcc') {
-			$out .= ' ["to", "cc", "bcc"] ';
+		if($header == 'toorcc') {
+			$out .= ' ["to", "cc"] ';
 		} else {
-			$out .= " \"" . $rule['header'][$i] . "\" ";
+			$out .= " \"" . $header . "\" ";
 		}
 
 		/* Escape slashes and double quotes */
-		$out .= "\"". avelsieve_addslashes($rule['headermatch'][$i]) . "\"";
+		$out .= "\"". avelsieve_addslashes($headermatch) . "\"";
 
-		$text .= " \"". htmlspecialchars($rule['headermatch'][$i]) . "\"";
+		$text .= " \"". htmlspecialchars($headermatch) . "\"";
 
- 		if ($rule['matchtype'][$i] == "contains") {
-			$terse .= " *".htmlspecialchars($rule['headermatch'][$i])."* ";
+ 		if ($matchtype == "contains") {
+			$terse .= " *".htmlspecialchars($headermatch)."* ";
 		} else {
-			$terse .= " ".htmlspecialchars($rule['headermatch'][$i])." ";
+			$terse .= " ".htmlspecialchars($headermatch)." ";
 		}
+
+	if ($type == "terse") {
+		return $terse;
+	} elseif (($type == "text") || ($type == "verbose")) {
+		return $text;
+	} else {
+		return $out;
+	}
+}
+
+
+/** 
+ * Gets a $rule array and builds a part of a SIEVE script (aka a rule).
+ *
+ * @param $rule	A rule array.
+ * @param $type	What to return. Can be one of:
+ *   verbose = return a (verbose) textual description of the rule.
+ *   terse = return a very terse description
+ *   rule = return a string with the appropriate SIEVE code.
+ */
+function makesinglerule($rule, $type="rule") {
+
+global $maxitems;
+
+/* Step zero :-) : serialize & encode my array */
+
+$coded = urlencode(base64_encode(serialize($rule)));
+
+$out = "#START_SIEVE_RULE".$coded."END_SIEVE_RULE\n";
+
+/* Step one: make the if clause */
+
+/* The actual 'if' will be added by makesieverule() */
+
+$terse = '<table width="100%" border="0" cellspacing="2" cellpadding="2"><tr><td align="left">';
+
+if($rule['type']=="4") {
+ 	$text = _("For <strong>ALL</strong> incoming messages; ");
+	$terse .= "ALL";
+	$terse .= '</td><td align="right">';
+
+} elseif($rule['type'] == "10") {
+	/* SpamRule */
+
+	global $spamrule_score_default, $spamrule_score_header,
+	$spamrule_tests, $spamrule_tests_header, $spamrule_action_default;
+	
+	$spamrule_advanced = false;
+
+	if(isset($rule['advanced'])) {
+		$spamrule_advanced = true;
+	}
+
+	if(isset($rule['score'])) {
+		$sc = $rule['score'];
+	} else {
+		$sc = $spamrule_score_default;
+	}
+	
+	if(isset($rule['tests'])) {
+		$te = $rule['tests'];
+	} else {
+		$te = array_keys($spamrule_tests);
+	}
+
+	if(isset($rule['action'])) {
+		$ac = $rule['action'];
+	} else {
+		$ac = $spamrule_action_default;
+	}
+
+	/*
+	if allof( anyof(header :contains "X-Spam-Rule" "Open.Relay.Database" ,
+		        header :contains "X-Spam-Rule" "Spamhaus.Block.List" 
+			),
+		  header :value "gt" :comparator "i;ascii-numeric" "80" ) {
+		
+		fileinto "INBOX.Junk";
+		discard;
+	}
+		
+	// Whitelist scenario:
+	if allof( anyof(header :contains "X-Spam-Rule" "Open.Relay.Database" ,
+		        header :contains "X-Spam-Rule" "Spamhaus.Block.List" 
+			),
+		  header :value "gt" :comparator "i;ascii-numeric" "80" ,
+		  anyof(header :contains "From" "Important Person",
+		        header :contains "From" "Foo Person"
+		  )
+		) {
+		
+		fileinto "INBOX.Junk";
+		discard;
+	}
+	*/
+	
+	$out .= 'allof( ';
+	$text = _("All messages considered as <strong>SPAM</strong> (unsolicited commercial messages)");
+	$terse .= "SPAM";
+	
+	if(sizeof($te) > 1) {
+		$out .= ' anyof( ';
+		for($i=0; $i<sizeof($te); $i++ ) {
+			$out .= 'header :contains "'.$spamrule_tests_header.'" "'.$te[$i].'"';
+			if($i < (sizeof($te) -1 ) ) {
+				$out .= ",";
+			}
+		}
+		$out .= " ),\n";
+	} else {
+		$out .= 'header :contains "'.$spamrule_tests_header.'" "'.$te[0].'", ';
+	}
+
+	$out .= "\n";
+	$out .= ' header :value "ge" :comparator "i;ascii-numeric" "'.$spamrule_score_header.'" "'.$sc.'" ';
+
+	if(isset($rule['whitelist']) && sizeof($rule['whitelist']) > 0) {
+		/* Insert here header-match like rules, ORed of course. */
+		$text .= ' (' . _("unless") . ' ';
+		$terse .= ' !(WHITELIST:<br/>';
+
+		$out .= " ,\n";
+		$out .= ' anyof( ';
+		for($i=0; $i<sizeof($rule['whitelist']); $i++ ) {
+			$out .= build_headerrule_snippet($rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
+				$rule['whitelist'][$i]['headermatch'] ,'rule');
+			$text .= build_headerrule_snippet($rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
+				$rule['whitelist'][$i]['headermatch'] ,'verbose');
+			$terse .= build_headerrule_snippet($rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
+				$rule['whitelist'][$i]['headermatch'] ,'terse');
+			if($i<sizeof($rule['whitelist'])-1) {
+				$out .= ', ';
+				$text .= ' ' . _("or") . ' ';
+				$terse .= ' | <br/>';
+			}
+		}
+		$text .= '), '; 
+		$terse .= ') '; 
+		$out .= " )";
+	}
+	$out .= " )\n";
+	$out .= ' { ';
+	$out .= "\n";
+	
+	$text .= ', ';
+	if($spamrule_advanced == true) {
+		$text .= _("matching the Spam List(s):");
+
+		for($i=0; $i<sizeof($te); $i++) {
+			$text .= $spamrule_tests[$te[$i]].', ';
+		}
+		$text .= sprintf( _("and with score greater than %s") , $sc );
+		$terse .= "<br/>SCORE > $sc";
+	}
+
+	$text .= ', ' . _("will be") . ' ';
+	$terse .= '</td><td align="right">';
+
+	if($ac == 'junk') {
+		$text .= _("stored in the Junk Folder.");
+		$out .= 'fileinto "INBOX.Junk";';
+		$terse .= 'JUNK';
+
+	} elseif($ac == 'trash') {
+		$text .= _("stored in the Trash Folder.");
+
+		global $data_dir, $username;
+		$tf = getPref($data_dir, $username, 'trash_folder');
+
+		$out .= 'fileinto "'.$tf.'";';
+		$terse .= 'TRASH';
+
+	} elseif($ac == 'discard') {
+		$text .= _("discarded.");
+		$out .= 'discard;';
+		$terse .= 'DISCARD';
+	}
+
+} else {
+	$text = "<strong>"._("If")."</strong> ";
+} 
+
+switch ($rule['type']) {
+case "1":	/* address --- slated for the future. */
+
+	for ( $i=0; $i<3; $i++) {
+		$out .= 'address :'.${'address'.$i};
+		if(${'addressrel'.$i} != "0") {
+			$out .= ":";
+		}
+	}
+	break;
+
+case "2":	/* header */
+	if(isset($rule['condition'])) {
+	switch ($rule['condition']) {
+		case "or":
+			$out .= "anyof (";
+			$text .= _("<em>any</em> of the following mail headers match: ");
+			// $terse .= "ANY (";
+			break;
+		case "and":
+			$out .= "allof (";
+			$text .= _("<em>all</em> of the following mail headers match: ");
+			// $terse .= "ALL (";
+			break;
+		default: /* condition was not defined, so there's only one header item. */
+			$lonely = true;
+			break;
+	}
+	}
+	for ( $i=0; $i<sizeof($rule['headermatch']); $i++) {
+		$text .= _("the header");
+
+		$out .= build_headerrule_snippet($rule['header'][$i], $rule['matchtype'][$i],
+			$rule['headermatch'][$i] ,'rule');
+		$text .= build_headerrule_snippet($rule['header'][$i], $rule['matchtype'][$i],
+			$rule['headermatch'][$i] ,'verbose');
+		$terse .= build_headerrule_snippet($rule['header'][$i], $rule['matchtype'][$i],
+			$rule['headermatch'][$i] ,'terse');
 
 		if(isset($rule['headermatch'][$i+1])) {
 			$out .= ",\n";
@@ -642,7 +715,7 @@ function makesieverule ($rulearray) {
 	}
 
 	/* Uncomment this to see for yourself the script that is created. */
-	// print "DEBUG: The script is: <pre>"; print $out; print "</pre>";
+	//print "DEBUG: The script is: <pre>"; print $out; print "</pre>";
 
 	return avelsieve_encode_script($out);
 }
