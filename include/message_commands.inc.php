@@ -9,7 +9,7 @@
  * This file contains functions for the per-message commands that appear while
  * viewing a message.
  *
- * @version $Id: message_commands.inc.php,v 1.6 2004/11/15 17:28:49 avel Exp $
+ * @version $Id: message_commands.inc.php,v 1.7 2004/11/19 13:16:26 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -23,7 +23,7 @@ include_once(SM_PATH . 'functions/identity.php');
  */
 function avelsieve_commands_menu_do() {
     global $passed_id, $passed_ent_id, $color, $mailbox,
-           $message, $compose_new_win;
+           $message, $compose_new_win, $javascript_on;
     
     $output = array();
 
@@ -169,7 +169,11 @@ function avelsieve_commands_menu_do() {
 				$url .= '&amp;popup=1';
 			}
     		if ($compose_new_win == '1') {
-	       		$output[] = "<a href=\"javascript:void(0)\" onclick=\"comp_in_new('$url')\">".$i['desc'].'</a>';
+				if($javascript_on) {
+		       		$output[] = "<a href=\"javascript:void(0)\" onclick=\"comp_in_new('$url')\">".$i['desc'].'</a>';
+				} else {
+       				$output[] = '<a href="'.$url.'" target="_blank">'.$i['desc'].'</a>';
+				}
 			} else {
        			$output[] = '<a href="'.$url.'">'.$i['desc'].'</a>';
 	   		}
