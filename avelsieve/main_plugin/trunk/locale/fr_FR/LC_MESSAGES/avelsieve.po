@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-17 17:20+0300\n"
+"POT-Creation-Date: 2004-11-22 12:33+0200\n"
 "PO-Revision-Date: 2003-07-23 17:15+0200\n"
 "Last-Translator: Bachelier Vincent <vincent@solintech.fr>\n"
 "Language-Team: French <fr@solintech.fr>\n"
@@ -17,16 +17,6 @@ msgstr ""
 
 msgid "You have to define at least one header match text."
 msgstr "Vous devez d&eacute;finir au moins un texte d'en-t&ecirc;te."
-
-#, fuzzy
-msgid "You have not defined the name for the new folder."
-msgstr "Vous devez d&eacute;finir au moins un texte d'en-t&ecirc;te."
-
-msgid "Please try again."
-msgstr "Veuillez réessayer."
-
-msgid "Illegal folder name.  Please select a different name"
-msgstr "Nom de dossier incorrect. Veuillez en essayer un autre"
 
 msgid "Add New Rule"
 msgstr "Ajouter une nouvelle r&egrave;gle"
@@ -62,8 +52,265 @@ msgstr ""
 msgid ""
 "Please use the buttons on the bottom instead of your browser's reload, back "
 "and forward buttons, to build a rule."
-msgstr "Veuillez utilisisez le bouton du bas plutôt que de recharger ou d'aller "
-"et venir avec les boutons du navigateur, pour créer une règle."
+msgstr ""
+"Veuillez utilisisez le bouton du bas plutôt que de recharger ou d'aller et "
+"venir avec les boutons du navigateur, pour créer une règle."
+
+#, fuzzy
+msgid "Add SPAM Rule"
+msgstr "Ajouter une règle Anti-SPAM"
+
+msgid "Configure Anti-SPAM Protection"
+msgstr "Configurer la protection Anti-SPAM"
+
+msgid ""
+"All incoming mail is checked for unsolicited commercial content (SPAM) and "
+"marked accordingly. This special rule allows you to configure what to do "
+"with such messages once they arrive to your Inbox."
+msgstr ""
+"Tous les messages arrivant sont vérifiés contre les messages commerciaux non-"
+"sollicité (SPAM) etmarqué en fonction. Cette règle spécial vous permet de "
+"configurer quoi faire avec ces messages une fois arrivé dans votre boîte de "
+"réception."
+
+#, php-format
+msgid ""
+"Select %s to add the predefined rule, or select the advanced SPAM filter to "
+"customize the rule."
+msgstr ""
+"Choisir %s pour ajouter une règle prédéfinie, ou choisissez une règle "
+"avancée de filtre Anti-SPAM pour personnaliser votre règle."
+
+#, fuzzy
+msgid "Add Spam Rule"
+msgstr "Ajouter une règle Anti-SPAM"
+
+msgid "Advanced Spam Filter..."
+msgstr "Filtre avancé Anti-SPAM..."
+
+msgid "Target Score"
+msgstr "Score de la cible"
+
+#, php-format
+msgid ""
+"Messages with SPAM-Score higher than the target value, the maximum value "
+"being %s, will be considered SPAM."
+msgstr ""
+"Les messages avec un score supérieur à la valeur cible, le maximum étant %s, "
+"seront concidérés comme des SPAM."
+
+msgid "SPAM Lists to check against"
+msgstr "Liste de SPAM à vérifier"
+
+msgid "Whitelist"
+msgstr "Liste blanche"
+
+msgid ""
+"Messages that match any of these header rules will never end up in Junk "
+"Folders or regarded as SPAM."
+msgstr ""
+"Les messages vérifiant une de ces règles n'iront jamais dans le dossier Junk "
+"ou concidérés comme des SPAM."
+
+msgid "More..."
+msgstr "Plus..."
+
+msgid "STOP"
+msgstr "STOP"
+
+msgid "If this rule matches, do not check any rules after it."
+msgstr ""
+"Si cette r&egrave;gle co&iuml;ncide, ne tester aucune autre r&egrave;gle "
+"apr&egrave;s celle-ci."
+
+msgid "Could not get SIEVE script from your IMAP server"
+msgstr "Impossible de lire les r&egrave; sur le serveur IMAP."
+
+msgid "(Probably the script is size null)."
+msgstr "(Il est probable que la taille de vos r&eacute;gles soit nulle)."
+
+msgid "Please contact your administrator."
+msgstr "Veuillez contacter votre administrateur."
+
+msgid "Message Filters"
+msgstr "Filtrage du courrier"
+
+msgid ""
+"Server-Side mail filtering enables you to add criteria in order to "
+"automatically forward, delete or place a given message into a folder."
+msgstr ""
+"Ceci vous permet de supprimer, de d&eacute;vier, de r&eacute;pondre ou de "
+"classer les messages entrants."
+
+msgid "Filters"
+msgstr "Filtres"
+
+msgid "Current Mail Filtering Rules"
+msgstr "R&egrave;gles de filtrage existantes"
+
+msgid "No Filtering Rules Defined Yet"
+msgstr ""
+"Aucune r&egrave;gle de filtrage n'a &eacute;t&eacute; encore d&eacute;finie"
+
+msgid "Could not set active script on your IMAP server"
+msgstr "Impossible d'activer les r&egrave; sur le serveur IMAP."
+
+msgid "Address Match"
+msgstr "Filtrage sur les adresses"
+
+#, fuzzy
+msgid ""
+"Perform an action depending on email addresses appearing in message headers."
+msgstr "Ex&eacute;cuter une action sur les messages suivant leur taille."
+
+msgid "Header Match"
+msgstr "Filtrage sur les en-t&ecirc;tes"
+
+msgid ""
+"Perform an action on messages matching a specified header (From, To etc.)."
+msgstr ""
+"Ex&eacute;cuter une action sur les messages contenant une en-t&ecirc;te "
+"d&eacute;termin&eacute;e (De, A, etc...)."
+
+msgid "Size"
+msgstr "Filtrage sur la taille"
+
+msgid "Perform an action on messages depending on their size."
+msgstr "Ex&eacute;cuter une action sur les messages suivant leur taille."
+
+msgid "All Messages"
+msgstr "Tous les messages"
+
+msgid "Perform an action on <strong>all</strong> incoming messages."
+msgstr ""
+"Ex&eacute;cuter une action sur <strong>tous</strong> les messages entrants."
+
+#, fuzzy
+msgid "Body Match"
+msgstr "Filtrage sur les en-t&ecirc;tes"
+
+#, fuzzy
+msgid "Perform an action on messages depending on their content (body text)."
+msgstr "Ex&eacute;cuter une action sur les messages suivant leur taille."
+
+msgid "contains"
+msgstr "contient"
+
+msgid "does not contain"
+msgstr "ne contient pas"
+
+msgid "is"
+msgstr "est"
+
+msgid "is not"
+msgstr "n'est pas"
+
+msgid "matches"
+msgstr "correspond"
+
+msgid "wildcard"
+msgstr "jocker"
+
+#, fuzzy
+msgid "does not match"
+msgstr "ne contient pas"
+
+msgid "regexp"
+msgstr ""
+
+msgid "is greater than"
+msgstr "est plus grand que"
+
+msgid "is greater or equal to"
+msgstr "et plus grand ou égal à"
+
+msgid "is lower than"
+msgstr "et plus petit que"
+
+msgid "is lower or equal to"
+msgstr "est plus petit ou égal à"
+
+msgid "is equal to"
+msgstr "est égal à"
+
+msgid "is not equal to"
+msgstr "n'est pas égal à"
+
+msgid "verbose"
+msgstr "bavard"
+
+#, fuzzy
+msgid "terse"
+msgstr "Filtres"
+
+msgid "Low"
+msgstr "Bas"
+
+msgid "Normal"
+msgstr ""
+
+msgid "High"
+msgstr "Haut"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "Edit"
+msgstr "Editer"
+
+msgid "Duplicate"
+msgstr "Copier"
+
+msgid "Move Up"
+msgstr "D&eacute;placer vers le haut"
+
+#, fuzzy
+msgid "Move to Top"
+msgstr "Aller &agrave; l'&eacute;tape"
+
+msgid "Move Down"
+msgstr "D&eacute;placer vers le bas"
+
+#, fuzzy
+msgid "Move to Bottom"
+msgstr "Aller &agrave; l'&eacute;tape"
+
+msgid "Junk Folder"
+msgstr "Dossier Junk"
+
+#, php-format
+msgid ""
+"Store SPAM message in your Junk Folder. Messages older than %s days will be "
+"deleted automatically."
+msgstr ""
+"Garder le SPAM dans votre dossier Junk. Les vieux messages de plus de %s "
+"jours seront supprimé automatiquement."
+
+msgid "Note that you can set the number of days in Folder Preferences."
+msgstr ""
+"Notez que vous pouvez régler le nombre de jours dans votre dossier "
+"Préférences."
+
+msgid "Trash Folder"
+msgstr "Corbeille"
+
+msgid ""
+"Store SPAM message in your Trash Folder. You will have to purge the folder "
+"yourself."
+msgstr ""
+"Garder le message dans votre Corbeille. Vous devrez le nettoyer vous même."
+
+#, fuzzy
+msgid "Discard"
+msgstr "Supprimer"
+
+msgid ""
+"Discard SPAM message. You will get no indication that the message ever "
+"arrived."
+msgstr "Rejeter les SPAM. Vous ne serez pas prévenu de son passage."
+
+msgid "Server-Side Mail Filtering"
+msgstr "Filtrage du courrier"
 
 msgid "Clear this Form"
 msgstr "R&eacute;initialiser ce formulaire"
@@ -74,10 +321,6 @@ msgstr "Recommencer"
 msgid "Cancel"
 msgstr "Annuler"
 
-#, fuzzy
-msgid "Add SPAM Rule"
-msgstr "Ajouter une règle Anti-SPAM"
-
 msgid "Move back to step"
 msgstr "Retourner &agrave; l'&eacute;tape"
 
@@ -87,20 +330,23 @@ msgstr "Terminer"
 msgid "Move on to step"
 msgstr "Aller &agrave; l'&eacute;tape"
 
-#, fuzzy
-msgid "None"
-msgstr "Aucun"
-
 msgid "What kind of rule would you like to add?"
 msgstr "Quel type de r&egrave;gle voulez-vous ajouter ?"
+
+msgid " -- Please Select -- "
+msgstr ""
+
+#, fuzzy
+msgid "Change Type"
+msgstr "Type de r&egrave;gle"
 
 #, fuzzy
 msgid ""
 "The rule will trigger if the following addresses appear anywhere in the "
 "message's headers:"
 msgstr ""
-"Cette r&egrave;gle s'activera si l'une de ces adresses appara&icirc;t "
-"dans l'en-t&ecirc;te du message:"
+"Cette r&egrave;gle s'activera si l'une de ces adresses appara&icirc;t dans "
+"l'en-t&ecirc;te du message:"
 
 msgid "To: or Cc"
 msgstr "De: ou Copie"
@@ -119,9 +365,6 @@ msgstr "L'en-t&ecirc;te "
 
 msgid "Less..."
 msgstr "Moins..."
-
-msgid "More..."
-msgstr "Plus..."
 
 msgid "This rule will trigger if message is"
 msgstr "Cette r&egrave;gle s'activera si le message est "
@@ -146,18 +389,155 @@ msgid ""
 "messages that do not match any of the previous rules."
 msgstr ""
 "L'action suivante sera ex&eacute;cut&eacute;e sur <strong>tous</strong> les "
-"messages entrants qui ne co&iuml;ncident pas avec les r&egrave;gles pr&eacute;"
-"c&eacute;dentes."
+"messages entrants qui ne co&iuml;ncident pas avec les r&egrave;gles "
+"pr&eacute;c&eacute;dentes."
 
 msgid ""
 "This rule will trigger upon the occurrence of one or more strings in the "
 "body of an e-mail message. "
 msgstr ""
-"La règle se déclenchera si une ou plusieurs phrases correspondent"
-"dans le corps du message. "
+"La règle se déclenchera si une ou plusieurs phrases correspondentdans le "
+"corps du message. "
 
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr "Choisissez ce que vous voulez faire quand cette r&egrave;gle s'active:"
+
+msgid "Additional Actions"
+msgstr "Actions supplémentaires"
+
+msgid "Your new rule states:"
+msgstr "Votre nouvelle r&egrave;gle dit:"
+
+msgid ""
+"If this is what you wanted, select Finished. You can also start over or "
+"cancel adding a rule altogether."
+msgstr ""
+"Si c'est ce que vous voulez, choisissez Terminer. Vous pouvez aussi "
+"recommencer ou annuler."
+
+msgid "Apply Changes"
+msgstr "Sauvegarder les modifications"
+
+msgid "Editing Mail Filtering Rule"
+msgstr "R&egrave;gles de filtrage existantes"
+
+#, fuzzy
+msgid "Create New Mail Filtering Rule"
+msgstr "R&egrave;gles de filtrage existantes"
+
+#, fuzzy
+msgid "Error Encountered:"
+msgstr "Erreur."
+
+msgid ""
+"Here you can add or delete filtering rules for your email account. These "
+"filters will always apply to your incoming mail, wherever you check your "
+"email."
+msgstr ""
+"Ici, vous pouvez g&eacute;rer les r&egrave;gles de filtrage de votre compte "
+"de messagerie. Ces r&egrave;gles de filtrage seront toujours appliqu&eacute;"
+"es &agrave; vos messages entrants."
+
+#, fuzzy
+msgid ""
+"You don't have any rules yet. Feel free to add any with the button &quot;Add "
+"a New Rule&quot;. When you are done, please select &quot;Save Changes&quot; "
+"to get back to the main options screen."
+msgstr ""
+"Vous n'avez d&eacute;fini aucune r&egrave;gle. Vous pouvez en ajouter une en "
+"cliquant sur &quot;Ajouter une nouvelle r&egrave;gle&quot;. Quand vous "
+"l'aurez d&eacute;finie, cliquez sur &quot;Sauvegarder les "
+"modifications&quot; pour terminer."
+
+msgid ""
+"When you are done with editing, <strong>remember to select &quot;Save "
+"Changes&quot;</strong> to activate your changes!"
+msgstr ""
+"Quand vous aurez termin&eacute; l'&eacute;dition, <strong>n'oubliez pas de "
+"cliquer sur &quot;Sauvegarder les Changements&quot;</strong> pour les "
+"activer !"
+
+msgid "The following table summarizes your current mail filtering rules."
+msgstr "Le tableau suivant r&eacute;sume les r&egrave;gles existantes."
+
+msgid "No"
+msgstr "Non"
+
+msgid "Description of Rule"
+msgstr "Description de la r&egrave;gle"
+
+msgid "Display as:"
+msgstr "Montrer comme:"
+
+msgid "Options"
+msgstr "Options"
+
+msgid "Successfully added new rule."
+msgstr "Nouvelle r&egrave;gle ajout&eacute;e"
+
+msgid "Successfully updated rule #"
+msgstr "R&egrave;gle modifi&eacute;e #"
+
+#, fuzzy
+msgid "Successfully deleted rules #"
+msgstr "R&egrave;gle supprim&eacute;e #"
+
+msgid "Successfully deleted rule #"
+msgstr "R&egrave;gle supprim&eacute;e #"
+
+msgid "Add a New Rule"
+msgstr "Ajouter une nouvelle r&egrave;gle"
+
+msgid "Delete Selected"
+msgstr "Supprimer la selection"
+
+msgid ""
+"When you are done, please click the button below to return to your webmail."
+msgstr "Quand vous aurez fini, cliquez sur le bouton ci-dessous pour terminer."
+
+msgid "Save Changes"
+msgstr "Sauvegarder les modifications"
+
+msgid "Last modified:"
+msgstr "Dernière modification:"
+
+msgid "Created:"
+msgstr "Créé:"
+
+msgid "Close"
+msgstr ""
+
+#, fuzzy
+msgid "Really delete this rule?"
+msgstr "R&egrave;gle supprim&eacute;e #"
+
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "Impossible de se connecter au serveur IMAP."
+
+msgid "Unable to load script to server."
+msgstr "Impossible de charger le script du serveur."
+
+msgid "Server responded with:"
+msgstr "Le serveur à répondu:"
+
+msgid "Automatically"
+msgstr ""
+
+msgid "Sender"
+msgstr ""
+
+msgid "From"
+msgstr ""
+
+msgid "To"
+msgstr ""
+
+msgid "Subject"
+msgstr ""
+
+#, fuzzy
+msgid "Create Filter"
+msgstr "Filtrage du courrier"
 
 msgid "Keep (Default action)"
 msgstr "Accepter (Action par defaut)"
@@ -192,11 +572,16 @@ msgstr "un nouveau r&eacute;pertoire, appel&eacute; "
 msgid "created as a subfolder of"
 msgstr " cr&eacute;&eacute; comme sous-r&eacute;pertoire de "
 
-msgid "Also keep copy in INBOX, marked as deleted."
-msgstr "Garder une copie marqué supprimé dans votre boîte de réception."
-
 msgid "Vacation"
 msgstr "R&eacute;pondeur"
+
+msgid ""
+"This is an automated reply; I am away and will not be able to reply to you "
+"immediately."
+msgstr "Ceci est une r&eacute;ponse automatique. "
+
+msgid "I will get back to you as soon as I return."
+msgstr "Je suis absent et vous r&eacute;pondrai d&egrave;s mon retour."
 
 msgid ""
 "The notice will be sent only once to each person that sends you mail, and "
@@ -220,27 +605,20 @@ msgstr "jours."
 msgid "Use the following message:"
 msgstr "Utiliser la r&eacute;ponse suivante:"
 
-msgid ""
-"This is an automated reply; I am away and will not be able to reply to you "
-"immediately."
-msgstr "Ceci est une r&eacute;ponse automatique. "
-
-msgid "I will get back to you as soon as I return."
-msgstr "Je suis absent et vous r&eacute;pondrai d&egrave;s mon retour."
-
-msgid "Additional Actions"
-msgstr "Actions supplémentaires"
-
-msgid "STOP"
-msgstr "STOP"
-
-msgid "If this rule matches, do not check any rules after it."
-msgstr ""
-"Si cette r&egrave;gle co&iuml;ncide, ne tester aucune autre r&egrave;gle "
-"apr&egrave;s celle-ci."
-
 msgid "Notify me, using the following method:"
 msgstr "Me prévenir via:"
+
+msgid "Mobile Phone Message (SMS)"
+msgstr "SMS"
+
+msgid "Email notification"
+msgstr "Notification par email"
+
+msgid "Notification via Zephyr"
+msgstr "Notification par Zephyr"
+
+msgid "Notification via ICQ"
+msgstr "Notification par ICQ"
 
 msgid "Notification ID"
 msgstr "Notification NUM"
@@ -255,109 +633,8 @@ msgstr "Tous les messages"
 msgid "Help: Valid variables are:"
 msgstr "Aide: Les valeurs valides sont:"
 
-msgid "Your new rule states:"
-msgstr "Votre nouvelle r&egrave;gle dit:"
-
-msgid ""
-"If this is what you wanted, select Finished. You can also start over or "
-"cancel adding a rule altogether."
-msgstr ""
-"Si c'est ce que vous voulez, choisissez Terminer. Vous pouvez aussi "
-"recommencer ou annuler."
-
-msgid "Configure Anti-SPAM Protection"
-msgstr "Configurer la protection Anti-SPAM"
-
-msgid ""
-"All incoming mail is checked for unsolicited commercial content (SPAM) and "
-"marked accordingly. This special rule allows you to configure what to do "
-"with such messages once they arrive to your Inbox."
-msgstr ""
-"Tous les messages arrivant sont vérifiés contre les messages commerciaux non-sollicité (SPAM) et"
-"marqué en fonction. Cette règle spécial vous permet de configurer quoi faire "
-"avec ces messages une fois arrivé dans votre boîte de réception."
-
-#, php-format
-msgid ""
-"Select %s to add the predefined rule, or select the advanced SPAM filter to "
-"customize the rule."
-msgstr ""
-"Choisir %s pour ajouter une règle prédéfinie, ou choisissez une règle avancée de filtre Anti-SPAM "
-"pour personnaliser votre règle."
-
-#, fuzzy
-msgid "Add Spam Rule"
-msgstr "Ajouter une règle Anti-SPAM"
-
-msgid "Advanced Spam Filter..."
-msgstr "Filtre avancé Anti-SPAM..."
-
-msgid "Target Score"
-msgstr "Score de la cible"
-
-#, php-format
-msgid ""
-"Messages with SPAM-Score higher than the target value, the maximum value "
-"being %s, will be considered SPAM."
-msgstr ""
-"Les messages avec un score supérieur à la valeur cible, le maximum étant "
-"%s, seront concidérés comme des SPAM."
-
-msgid "SPAM Lists to check against"
-msgstr "Liste de SPAM à vérifier"
-
-msgid "Whitelist"
-msgstr "Liste blanche"
-
-msgid ""
-"Messages that match any of these header rules will never end up in Junk "
-"Folders or regarded as SPAM."
-msgstr ""
-"Les messages vérifiant une de ces règles n'iront jamais dans le dossier "
-"Junk ou concidérés comme des SPAM."
-
-msgid "Apply Changes"
-msgstr "Sauvegarder les modifications"
-
-msgid "Error Encountered"
-msgstr "Erreur."
-
-msgid "is"
-msgstr "est"
-
-msgid "is not"
-msgstr "n'est pas"
-
-msgid "contains"
-msgstr "contient"
-
-msgid "does not contain"
-msgstr "ne contient pas"
-
-msgid "matches"
-msgstr "correspond"
-
-#, fuzzy
-msgid "does not match"
-msgstr "ne contient pas"
-
-msgid "is greater than"
-msgstr "est plus grand que"
-
-msgid "is greater or equal to"
-msgstr "et plus grand ou égal à"
-
-msgid "is lower than"
-msgstr "et plus petit que"
-
-msgid "is lower or equal to"
-msgstr "est plus petit ou égal à"
-
-msgid "is equal to"
-msgstr "est égal à"
-
-msgid "is not equal to"
-msgstr "n'est pas égal à"
+msgid "Also keep copy in INBOX, marked as deleted."
+msgstr "Garder une copie marqué supprimé dans votre boîte de réception."
 
 msgid "matches the regural expression"
 msgstr "correspond à l'expression régulière"
@@ -379,7 +656,8 @@ msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
 "messages)"
 msgstr ""
-"Tous les messages considérés comme <strong>SPAM</strong> (message commerciaux non sollicités)"
+"Tous les messages considérés comme <strong>SPAM</strong> (message "
+"commerciaux non sollicités)"
 
 msgid "unless"
 msgstr "à moins que"
@@ -468,265 +746,25 @@ msgstr "priorité du message"
 msgid " Then <strong>STOP</strong> processing rules."
 msgstr " Alors <strong>ARRETER</strong> le traitement des r&egrave;gles."
 
-msgid "Address Match"
-msgstr "Filtrage sur les adresses"
-
-#, fuzzy
-msgid ""
-"Perform an action depending on email addresses appearing in message headers."
-msgstr "Ex&eacute;cuter une action sur les messages suivant leur taille."
-
-msgid "Header Match"
-msgstr "Filtrage sur les en-t&ecirc;tes"
-
-msgid ""
-"Perform an action on messages matching a specified header (From, To etc.)."
-msgstr ""
-"Ex&eacute;cuter une action sur les messages contenant une en-t&ecirc;te "
-"d&eacute;termin&eacute;e (De, A, etc...)."
-
-msgid "Size"
-msgstr "Filtrage sur la taille"
-
-msgid "Perform an action on messages depending on their size."
-msgstr "Ex&eacute;cuter une action sur les messages suivant leur taille."
-
-msgid "All Messages"
-msgstr "Tous les messages"
-
-msgid "Perform an action on <strong>all</strong> incoming messages."
-msgstr ""
-"Ex&eacute;cuter une action sur <strong>tous</strong> les messages entrants."
-
-#, fuzzy
-msgid "Body Match"
-msgstr "Filtrage sur les en-t&ecirc;tes"
-
-#, fuzzy
-msgid "Perform an action on messages depending on their content (body text)."
-msgstr "Ex&eacute;cuter une action sur les messages suivant leur taille."
-
-msgid "wildcard"
-msgstr "jocker"
-
-msgid "regexp"
-msgstr ""
-
-msgid "verbose"
-msgstr "bavard"
-
-#, fuzzy
-msgid "terse"
-msgstr "Filtres"
-
-msgid "Mobile Phone Message (SMS)"
-msgstr "SMS"
-
-msgid "Email notification"
-msgstr "Notification par email"
-
-msgid "Notification via Zephyr"
-msgstr "Notification par Zephyr"
-
-msgid "Notification via ICQ"
-msgstr "Notification par ICQ"
-
-msgid "Low"
-msgstr "Bas"
-
-msgid "Normal"
-msgstr ""
-
-msgid "High"
-msgstr "Haut"
-
-msgid "Delete"
-msgstr "Supprimer"
-
-msgid "Edit"
-msgstr "Editer"
-
-msgid "Duplicate"
-msgstr "Copier"
-
-msgid "Move Up"
-msgstr "D&eacute;placer vers le haut"
-
-#, fuzzy
-msgid "Move to Top"
-msgstr "Aller &agrave; l'&eacute;tape"
-
-msgid "Move Down"
-msgstr "D&eacute;placer vers le bas"
-
-#, fuzzy
-msgid "Move to Bottom"
-msgstr "Aller &agrave; l'&eacute;tape"
-
-msgid "Junk Folder"
-msgstr "Dossier Junk"
-
-#, php-format
-msgid ""
-"Store SPAM message in your Junk Folder. Messages older than %s days will be "
-"deleted automatically."
-msgstr ""
-"Garder le SPAM dans votre dossier Junk. Les vieux messages de plus de %s jours seront "
-"supprimé automatiquement."
-
-msgid "Note that you can set the number of days in Folder Preferences."
-msgstr "Notez que vous pouvez régler le nombre de jours dans votre dossier Préférences."
-
-msgid "Trash Folder"
-msgstr "Corbeille"
-
-msgid ""
-"Store SPAM message in your Trash Folder. You will have to purge the folder "
-"yourself."
-msgstr ""
-"Garder le message dans votre Corbeille. Vous devrez le nettoyer vous même."
-
-#, fuzzy
-msgid "Discard"
-msgstr "Supprimer"
-
-msgid ""
-"Discard SPAM message. You will get no indication that the message ever "
-"arrived."
-msgstr ""
-"Rejeter les SPAM. Vous ne serez pas prévenu de son passage."
-
-msgid "Editing Mail Filtering Rule"
-msgstr "R&egrave;gles de filtrage existantes"
-
-msgid "Message Filters"
-msgstr "Filtrage du courrier"
-
-msgid ""
-"Server-Side mail filtering enables you to add criteria in order to "
-"automatically forward, delete or place a given message into a folder."
-msgstr ""
-"Ceci vous permet de supprimer, de d&eacute;vier, de r&eacute;pondre ou de "
-"classer les messages entrants."
-
-msgid "Filters"
-msgstr "Filtres"
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Impossible de se connecter au serveur IMAP."
-
-msgid "Please contact your administrator."
-msgstr "Veuillez contacter votre administrateur."
-
-msgid "Could not set active script on your IMAP server"
-msgstr "Impossible d'activer les r&egrave; sur le serveur IMAP."
-
-msgid "Unable to load script to server."
-msgstr "Impossible de charger le script du serveur."
-
-msgid "Server responded with:"
-msgstr "Le serveur à répondu:"
-
 msgid "Test for Forged Header"
 msgstr "Tester avec les entêtes forgées"
 
-msgid "Current Mail Filtering Rules"
-msgstr "R&egrave;gles de filtrage existantes"
+#, fuzzy
+msgid "You have not defined the name for the new folder."
+msgstr "Vous devez d&eacute;finir au moins un texte d'en-t&ecirc;te."
 
-msgid "No Filtering Rules Defined Yet"
-msgstr ""
-"Aucune r&egrave;gle de filtrage n'a &eacute;t&eacute; encore d&eacute;finie"
+msgid "Please try again."
+msgstr "Veuillez réessayer."
 
-msgid "Could not get SIEVE script from your IMAP server"
-msgstr "Impossible de lire les r&egrave; sur le serveur IMAP."
-
-msgid "(Probably the script is size null)."
-msgstr "(Il est probable que la taille de vos r&eacute;gles soit nulle)."
-
-msgid "All your rules have been deleted"
-msgstr "Toutes vos r&egrave;gles ont &eacute;t&eacute; supprim&eacute;es."
+msgid "Illegal folder name.  Please select a different name"
+msgstr "Nom de dossier incorrect. Veuillez en essayer un autre"
 
 #, fuzzy
-msgid "Really delete this rule?"
-msgstr "R&egrave;gle supprim&eacute;e #"
+msgid "None"
+msgstr "Aucun"
 
-msgid "Delete Selected"
-msgstr "Supprimer la selection"
-
-msgid "Server-Side Mail Filtering"
-msgstr "Filtrage du courrier"
-
-msgid ""
-"Here you can add or delete filtering rules for your email account. These "
-"filters will always apply to your incoming mail, wherever you check your "
-"email."
-msgstr ""
-"Ici, vous pouvez g&eacute;rer les r&egrave;gles de filtrage de votre compte "
-"de messagerie. Ces r&egrave;gles de filtrage seront toujours appliqu&eacute;"
-"es &agrave; vos messages entrants."
-
-#, fuzzy
-msgid ""
-"You don't have any rules yet. Feel free to add any with the button &quot;Add "
-"a New Rule&quot;. When you are done, please select &quot;Save Changes&quot; "
-"to get back to the main options screen."
-msgstr ""
-"Vous n'avez d&eacute;fini aucune r&egrave;gle. Vous pouvez en ajouter une en "
-"cliquant sur &quot;Ajouter une nouvelle r&egrave;gle&quot;. Quand vous "
-"l'aurez d&eacute;finie, cliquez sur &quot;Sauvegarder les "
-"modifications&quot; pour terminer."
-
-msgid ""
-"When you are done with editing, <strong>remember to select &quot;Save "
-"Changes&quot;</strong> to activate your changes!"
-msgstr ""
-"Quand vous aurez termin&eacute; l'&eacute;dition, <strong>n'oubliez pas de "
-"cliquer sur &quot;Sauvegarder les Changements&quot;</strong> pour les "
-"activer !"
-
-msgid "Successfully added new rule."
-msgstr "Nouvelle r&egrave;gle ajout&eacute;e"
-
-msgid "Successfully updated rule #"
-msgstr "R&egrave;gle modifi&eacute;e #"
-
-#, fuzzy
-msgid "Successfully deleted rules #"
-msgstr "R&egrave;gle supprim&eacute;e #"
-
-msgid "Successfully deleted rule #"
-msgstr "R&egrave;gle supprim&eacute;e #"
-
-msgid "The following table summarizes your current mail filtering rules."
-msgstr "Le tableau suivant r&eacute;sume les r&egrave;gles existantes."
-
-msgid "No"
-msgstr "Non"
-
-msgid "Description of Rule"
-msgstr "Description de la r&egrave;gle"
-
-msgid "Display as:"
-msgstr "Montrer comme:"
-
-msgid "Options"
-msgstr "Options"
-
-msgid "Add a New Rule"
-msgstr "Ajouter une nouvelle r&egrave;gle"
-
-msgid ""
-"When you are done, please click the button below to return to your webmail."
-msgstr "Quand vous aurez fini, cliquez sur le bouton ci-dessous pour terminer."
-
-msgid "Save Changes"
-msgstr "Sauvegarder les modifications"
-
-msgid "Created:"
-msgstr "Créé:"
-
-msgid "Last modified:"
-msgstr "Dernière modification:"
+#~ msgid "All your rules have been deleted"
+#~ msgstr "Toutes vos r&egrave;gles ont &eacute;t&eacute; supprim&eacute;es."
 
 #~ msgid "in order to save your rules."
 #~ msgstr "pour sauvegarder vos r&egrave;gles."
