@@ -1,17 +1,14 @@
 <?php
-/*
+/**
  * User-friendly interface to SIEVE server-side mail filtering.
  * Plugin for Squirrelmail 1.4+
  *
  * Copyright (c) 2002-2003 Alexandros Vellis <avel@users.sourceforge.net>
  *
- * Based on Dan Ellis' test scripts that came with sieve-php.lib
- * <danellis@rushmore.com> <URL:http://sieve-php.sourceforge.net>
- *
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: addspamrule.php,v 1.1 2003/10/09 16:17:45 avel Exp $
+ * $Id: addspamrule.php,v 1.2 2003/11/07 16:11:20 avel Exp $
  */
 
 /**
@@ -58,7 +55,6 @@ if(isset($_POST['score'])) {
 } else {
 	$score = $spamrule_score_default;
 }
-
 
 if(isset($_POST['action']))  {
 	$action = $_POST['action'];
@@ -114,6 +110,11 @@ if(!isset($spamrule_advanced)) {
 
 } else {
 
+	/*
+	include_once(SM_PATH . 'plugins/filters/filters.php');
+	$spamfilters = load_spam_filters();
+	*/
+
 	print '<input type="hidden" name="spamrule_advanced" value="1" />';
 
 	print '<ul>';
@@ -132,6 +133,7 @@ if(!isset($spamrule_advanced)) {
 	print _("SPAM Lists to check against");
 	print '</strong></li><p>';
 	
+	if(isset($spamrule_tests)) {
 	foreach($spamrule_tests as $st=>$txt) {
 		print '<input type="checkbox" name="tests[]" value="'.$st.'" id="spamrule_test_'.$st.'" ';
 		if(in_array($st, $tests)) {
@@ -140,9 +142,20 @@ if(!isset($spamrule_advanced)) {
 		print '/> ';
 		print '<label for="spamrule_test_'.$st.'">'.$txt.'</label><br />';
 	}
+	/* TODO: Import spamrule_filters from Filters plugin */
+	/*
+	} elseif(isset($spamrule_filters)) {
+	foreach($spamrule_filters as $st=>$fi) {
+		print '<input type="checkbox" name="tests[]" value="'.$st.'" id="spamrule_test_'.$st.'" ';
+		if(in_array($st, $tests)) {
+			print 'checked="" ';
+		}
+		print '/> ';
+		print '<label for="spamrule_test_'.$st.'">'$fi.['name'].'</label><br />';
+	}
+	*/
+	}
 	
-
-
 	print '</p><br /><li><strong>';
 	print _("Action");
 	print '</strong></li><br />';
