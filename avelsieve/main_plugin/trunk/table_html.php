@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table_html.php,v 1.3 2003/10/09 11:25:37 avel Exp $
+ * $Id: table_html.php,v 1.4 2003/10/13 16:34:16 avel Exp $
  */
 
 /* HTML Functions for main GUI - table.php */
@@ -169,7 +169,6 @@ function print_table_header() {
 	
 	/* NEW*/
 	print '
-	<form name="actionform" method="POST" action="table.php">
 	
 	<table cellpadding="3" cellspacing="2" border="0" align="center" valign="middle" width="97%" frame="box">
 	<tr bgcolor="'.$color[0].'">
@@ -202,7 +201,6 @@ function print_table_header() {
 function print_table_footer() {
 	
 	print '</table>';
-	print '</form>';
 }
 
 function print_buttons () {
@@ -225,7 +223,6 @@ function print_buttons_new () {
 function print_addnewrulebutton() {
 	global $spamrule_enable;
 
-	print '<form action="addrule.php" method="POST">';
 
 	/* Following code is alternative, if you only like the user to have
 	 * only one spamrule per script */
@@ -250,12 +247,19 @@ function print_addnewrulebutton() {
 	
 	/* Link to add Spam rule */
 	if($spamrule_enable == true) {
+		print '<table border="0" cellspacing="1" cellpadding="1" align="center"><tr><td>';
+		print '<form action="addspamrule.php" method="POST">';
 		print '<input name="addspamrule" value="' . _("Add SPAM Rule") . '" type="submit" />';
+		print '</form></td><td>';
 	}
 
+	print '<form action="addrule.php" method="POST">';
 	print '<input name="add" value="' . _("Add a New Rule") . '" type="submit" />';
-
 	print '</form>';
+	
+	if($spamrule_enable == true) {
+		print '</td></tr></table>';
+	}
 }
 
 function print_footer() {
