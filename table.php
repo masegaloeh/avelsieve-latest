@@ -11,7 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table.php,v 1.7 2003/10/27 11:04:36 avel Exp $
+ * $Id: table.php,v 1.8 2003/11/07 16:22:18 avel Exp $
  */
 
 /* table.php: main routine that shows a table of all the rules and allows
@@ -69,7 +69,13 @@ if(isset($authz)) {
 }
 
 if(isset($authz)) {
-	$sieve=new sieve($imap_server, $sieveport, $username, $acctpass, $authz, $preferred_mech);
+	if(isset($cyrusadmins_map[$username])) {
+		$bind_username = $cyrusadmins_map[$username];
+	} else {
+		$bind_username = $username;
+	}
+	
+	$sieve=new sieve($imap_server, $sieveport, $bind_username, $acctpass, $authz, $preferred_mech);
 } else {
 	$sieve=new sieve($imap_server, $sieveport, $username, $acctpass, $username, $preferred_mech);
 }
