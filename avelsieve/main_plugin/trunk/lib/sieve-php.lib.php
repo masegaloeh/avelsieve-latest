@@ -1,7 +1,7 @@
 <?php
 
 /*
- * $Id: sieve-php.lib.php,v 1.2 2003/10/27 11:29:50 avel Exp $ 
+ * $Id: sieve-php.lib.php,v 1.3 2003/10/27 11:37:42 avel Exp $ 
  *
  * Copyright 2001 Dan Ellis <danellis@rushmore.com>
  *
@@ -606,6 +606,79 @@ class sieve
 
 
   }//end authenticate()
+  
+  /* This function returns an array of available capabilities */
+  function sieve_get_capability()
+  {
+    if($this->loggedin==false)
+        return false;
+    fputs($this->fp, "CAPABILITY\r\n"); 
+    $this->line=fgets($this->fp,1024);
+
+    //Hack for older versions of Sieve Server.  They do not respond with the Cyrus v2. standard
+    //response.  They repsond as follows: "Cyrus timsieved v1.0.0" "SASL={PLAIN,........}"
+    //So, if we see IMLEMENTATION in the first line, then we are done.
+
+    if(ereg("IMPLEMENTATION",$this->line))
+    {
+      //we're on the Cyrus V2 sieve server
+      while(sieve::status($this->line) == F_DATA){
+
+          $this->item = sieve::parse_for_quotes($this->line);
+
+          if(strcmp($this->item[0], "IMPLEMENTATION") == 0)
+              $this->capabilities["implementation"] = $this->item[1];
+        
+          elseif(strcmp($this->item[0], "SIEVE") == 0 or strcmp($this->item[0], "SASL") == 0){
+
+              if(strcmp($this->item[0], "SIEVE") == 0)
+                  $this->cap_type="modules";
+              else
+                  $this->cap_type="auth";            
+
+              $this->modules = split(" ", $this->item[1]);
+              if(is_array($this->modules)){
+                  foreach($this->modules as $this->module)
+                      $this->capabilities[$this->cap_type][$this->module]=true;
+              } /* end if */
+              elseif(is_string($this->modules))
+                  $this->capabilites[$this->cap_type][$this->modules]=true;
+          }    
+          else{ 
+              $this->capabilities["unknown"][]=$this->line;
+          }    
+      $this->line=fgets($this->fp,1024);
+
+       }// end while
+    }
+    else
+    {
+        //we're on the older Cyrus V1. server  
+        //this version does not support module reporting.  We only have auth types.
+        $this->cap_type="auth";
+       
+        //break apart at the "Cyrus timsieve...." "SASL={......}"
+        $this->item = sieve::parse_for_quotes($this->line);
+
+        $this->capabilities["implementation"] = $this->item[0];
+
+        //we should have "SASL={..........}" now.  Break out the {xx,yyy,zzzz}
+        $this->modules = substr($this->item[1], strpos($this->item[1], "{"),strlen($this->item[1])-1);
+
+        //then split again at the ", " stuff.
+        $this->modules = split($this->modules, ", ");
+ 
+        //fill up our $this->modules property
+        if(is_array($this->modules)){
+            foreach($this->modules as $this->module)
+                $this->capabilities[$this->cap_type][$this->module]=true;
+        } /* end if */
+        elseif(is_string($this->modules))
+            $this->capabilites[$this->cap_type][$this->module]=true;
+    }
+
+    return $this->modules;
+  }
 
 
 }
