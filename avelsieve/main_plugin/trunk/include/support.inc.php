@@ -9,7 +9,7 @@
  * Various support functions, useful or useless.  NB. THEY MUST NOT DEPEND
  * ELSEWHERE.
  *
- * @version $Id: support.inc.php,v 1.8 2004/11/15 18:04:28 avel Exp $
+ * @version $Id: support.inc.php,v 1.9 2004/11/18 11:06:25 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -59,7 +59,6 @@ function print_errormsg($errormsg) {
  * @param string $foldername
  * @return boolean
  */
-
 function avelsieve_create_folder($foldername, $subfolder = '', $created_mailbox_name = '', $errmsg = '') {
 	/* Copy & paste magic (aka kludge) */
 	global $mailboxlist, $delimiter, $username, $imapServerAddress, $imapPort;
@@ -74,8 +73,9 @@ function avelsieve_create_folder($foldername, $subfolder = '', $created_mailbox_
 	if(isset($foldername) && trim($foldername) != '' ) {
 		$foldername = imap_utf7_encode_local(trim($foldername));
 	} else {
-		return _("You have not defined the name for the new folder.") .
+		$errmsg = _("You have not defined the name for the new folder.") .
 				' ' . _("Please try again.");
+		return false;
 	}
 
 	if(empty($subfolder)) {
@@ -84,7 +84,8 @@ function avelsieve_create_folder($foldername, $subfolder = '', $created_mailbox_
 
 	if (strpos($foldername, "\"") || strpos($foldername, "\\") ||
 	strpos($foldername, "'") || strpos($foldername, "$delimiter")) {
-		return _("Illegal folder name.  Please select a different name"); 
+		$errmsg = _("Illegal folder name.  Please select a different name"); 
+		return false;
 	}
 
 	if (isset($contain_subs) && $contain_subs ) {
@@ -135,7 +136,7 @@ function avelsieve_create_folder($foldername, $subfolder = '', $created_mailbox_
 	$message = '';
 
 	$read_ary = sqimap_run_command($imapConnection, "CREATE \"$mailbox\"", false, $response, $message);
-   		sqimap_subscribe ($imapConnection, $mailbox);
+   	sqimap_subscribe ($imapConnection, $mailbox);
 
 	if(strtolower($response) != 'ok') {
 		$errmsg = $message;
