@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.16 2004/11/22 12:37:52 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.17 2004/12/20 15:25:05 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -334,7 +334,7 @@ class avelsieve_html_edit extends avelsieve_html {
 				$out .= $this->matchtype_listbox("", $n);
 			}
 		
-			$out .= '<input type="text" name="headermatch['.$n.']" size="24" maxlength="40" value="';
+			$out .= '<input type="text" name="headermatch['.$n.']" size="24" maxlength="255" value="';
 			if(isset($headermatch[$n])) {
 				$out .= htmlspecialchars($headermatch[$n]);
 			}
