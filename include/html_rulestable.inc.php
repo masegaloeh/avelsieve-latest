@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.4 2004/11/15 13:07:46 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.5 2004/11/15 16:36:40 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -64,10 +64,48 @@ class avelsieve_html_rules extends avelsieve_html {
 			$out .= "<p>"._("When you are done with editing, <strong>remember to select &quot;Save Changes&quot;</strong> to activate your changes!")."</p>";
 		}
 	
-		/* $out .= the 'communication' string from the previous screen */
+		$out .= $this->rules_confirmation_text();
 	
+		if(isset($scriptinfo['created'])) {
+			$out .= $this->scriptinfo($scriptinfo);
+		}
+		
+		$out .= "<p>"._("The following table summarizes your current mail filtering rules.")."</p>";
+		
+		/* NEW*/
+		$out .= '
+		<table cellpadding="3" cellspacing="2" border="0" align="center" valign="middle" width="97%" frame="box">
+		<tr bgcolor="'.$color[0].'">
+		<td nowrap="">';
+		
+		$out .= _("No") . '</td><td></td>'.
+			'<td>'. _("Description of Rule").
+			' <small>(' . _("Display as:");
+		
+		
+		foreach($displaymodes as $id=>$name) {
+			if($this->mode == $id) {
+				$out .= ' <strong>'.$name.'</strong>';
+			} else {
+				$out .= ' <a href="'.$_SERVER['SCRIPT_NAME'].'?mode='.$id.'">'.$name.'</a>';
+			}
+		}
+		$out .= ')</small>';
+		
+		$out .= " </td><td>"._("Options")."</td></tr>";
+		return $out;
+	}
+		
+	/**
+	 * Returns the 'communication' aka 'comm' string from the previous screen,
+	 * for instance edit.php or addspamrule.php.
+	 * @return string
+	 */
+	function rules_confirmation_text() {
+		global $color;
+		$out = '';
 		if(isset($_SESSION['comm'])) {
-			$out .= '<p><font color="'.$color[2].'">';
+			$out .= '<p><font color="'.$color[2].'" align="center">';
 		
 			if(isset($_SESSION['comm']['new'])) {
 				$out .= _("Successfully added new rule.");
@@ -93,38 +131,10 @@ class avelsieve_html_rules extends avelsieve_html {
 		
 			$out .= '</font></p>';
 			session_unregister('comm');
-		
 		}
-	
-		if(isset($scriptinfo['created'])) {
-			$out .= $this->scriptinfo($scriptinfo);
-		}
-		
-		$out .= "<p>"._("The following table summarizes your current mail filtering rules.")."</p>";
-		
-		/* NEW*/
-		$out .= '
-		<table cellpadding="3" cellspacing="2" border="0" align="center" valign="middle" width="97%" frame="box">
-		<tr bgcolor="'.$color[0].'">
-		<td nowrap="">';
-		
-		$out .= _("No") . '</td><td></td>'.
-			'<td>'. _("Description of Rule");
-			' <small>(' . _("Display as:");
-		
-		
-		foreach($displaymodes as $id=>$name) {
-			if($this->mode == $id) {
-				$out .= ' <strong>'.$name.'</strong>';
-			} else {
-				$out .= ' <a href="'.$_SERVER['SCRIPT_NAME'].'?mode='.$id.'">'.$name.'</a>';
-			}
-		}
-		$out .= ')</small>';
-		
-		$out .= " </td><td>"._("Options")."</td></tr>";
 		return $out;
 	}
+	
 	
 	function rules_table_footer() {
 		return '</table>';
@@ -248,6 +258,20 @@ class avelsieve_html_rules extends avelsieve_html {
 				'<ul><li>Script Created using Version: '.$scriptinfo['version']['string'].'</li>'.
 				'<li>Installed Avelsieve Version: '.$avelsieve_version['string'] .'</li></ul>';
 		}
+		return $out;
+	}
+
+	/**
+	 *
+	 */
+	function rules_confirmation() {
+		global $color;
+		$out = $this->table_header( _("Current Mail Filtering Rules") ).
+			$this->all_sections_start().
+			$this->rules_confirmation_text().
+			$this->all_sections_end().
+			' <br/><input type="button" name="Close" onClick="window.close(); return false;" value="'._("Close").'" />';
+			$this->table_footer();
 		return $out;
 	}
 
