@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.13 2004/11/15 13:30:01 avel Exp $
+ * @version $Id: edit.php,v 1.14 2004/11/15 16:40:22 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -58,6 +58,13 @@ if(!isset($rules)) {
 	exit;
 }
 
+if(isset($popup)) {
+	$popup = '?popup=1';
+} else {
+	$popup = '';
+}
+
+
 if(isset($edit)) {
 	/* Editing an existing rule */
 	$rule = &$rules[$edit];
@@ -104,7 +111,7 @@ if(isset($_POST['append'])) {
 
 } elseif(isset($_POST['cancel'])) {
 	/* Cancel Editing */
-	header("Location: table.php");
+	header("Location: table.php$popup");
 	exit;
 
 } elseif($changetype) {
@@ -120,7 +127,7 @@ if(isset($_POST['append'])) {
 		$_SESSION['rules'][$edit] = $editedrule;
 		$_SESSION['comm']['edited'] = $edit;
 		$_SESSION['haschanged'] = true;
-		header('Location: table.php');
+		header("Location: table.php$popup");
 		exit;
 	}
 
@@ -142,7 +149,7 @@ if(isset($_POST['append'])) {
 	$_SESSION['comm']['new'] = true;
 	$_SESSION['haschanged'] = true;
 
-	header('Location: table.php');
+	header("Location: table.php$popup");
 	exit;
 }
 
@@ -200,14 +207,17 @@ function ToggleShowDiv(divname) {
 </script>
 ';
 
+displayHtmlHeader('', $js);
+
+/* Used to be like this: */
+/*
 if(isset($popup)) {
-	$popup = true;
 	displayHtmlHeader('', $js);
 } else {
-	$popup = false;
 	displayPageHeader($color, 'None');
 	echo $js;
 }
+*/
 
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
