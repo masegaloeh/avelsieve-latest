@@ -3,13 +3,13 @@
 # Copyright (C) 2003 Alexandros Vellis
 # This file is distributed under the same license as the PACKAGE package.
 # Tomas Kuliavas <tokul@users.sourceforge.net>, 2003.
-# $Id: avelsieve.po,v 1.8 2005/03/01 13:21:19 avel Exp $
+# $Id: avelsieve.po,v 1.9 2005/03/01 16:08:11 avel Exp $
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: (avelsieve 0.9.7)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 15:26+0200\n"
+"POT-Creation-Date: 2005-03-01 17:50+0200\n"
 "PO-Revision-Date: 2003-10-09 19:56+0200\n"
 "Last-Translator: Tomas Kuliavas <tokul@users.sourceforge.net>\n"
 "Language-Team: SquirrelMail I18N Team <squirrelmail-i18n@lists.sourceforge."
@@ -474,8 +474,11 @@ msgstr "Sėkmingai ištrinta taisyklė Nr."
 msgid "Add a New Rule"
 msgstr "Pridėti naują taisyklę"
 
-msgid "Delete Selected"
-msgstr "Ištrinti pasirinktą"
+msgid "Enable"
+msgstr ""
+
+msgid "Disable"
+msgstr ""
 
 msgid ""
 "When you are done, please click the button below to return to your webmail."
@@ -497,6 +500,9 @@ msgstr ""
 #, fuzzy
 msgid "Really delete this rule?"
 msgstr "Sėkmingai ištrinta taisyklė Nr."
+
+msgid "Action for Selected Rules:"
+msgstr ""
 
 msgid "Could not log on to timsieved daemon on your IMAP server"
 msgstr "Nepavyko prisijungti prie jūsų IMAP serverio timsieved posistemės"
@@ -756,6 +762,9 @@ msgstr "Netinkamas aplanko vardas. Pasirinkite kita"
 #, fuzzy
 msgid "None"
 msgstr "Ne"
+
+#~ msgid "Delete Selected"
+#~ msgstr "Ištrinti pasirinktą"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Visos jūsų taisyklės ištrintos"

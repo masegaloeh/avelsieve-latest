@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 15:26+0200\n"
+"POT-Creation-Date: 2005-03-01 17:50+0200\n"
 "PO-Revision-Date: 2004-01-13 14:28+0100\n"
 "Last-Translator: Jacobo Tarrio <jtarrio@alfa21.com>\n"
 "Language-Team: spanish <es@li.org>\n"
@@ -477,8 +477,11 @@ msgstr "Se borr&oacute; con &eacute;xito la regla n&uacute;mero "
 msgid "Add a New Rule"
 msgstr "A&ntilde;adir una nueva regla"
 
-msgid "Delete Selected"
-msgstr "Borrar las seleccionadas"
+msgid "Enable"
+msgstr ""
+
+msgid "Disable"
+msgstr ""
 
 msgid ""
 "When you are done, please click the button below to return to your webmail."
@@ -501,6 +504,9 @@ msgstr ""
 #, fuzzy
 msgid "Really delete this rule?"
 msgstr "Se borr&oacute; con &eacute;xito la regla n&uacute;mero "
+
+msgid "Action for Selected Rules:"
+msgstr ""
 
 msgid "Could not log on to timsieved daemon on your IMAP server"
 msgstr "No se pudo entrar en el demonio timsieved de su servidor IMAP"
@@ -765,6 +771,9 @@ msgstr ""
 #, fuzzy
 msgid "None"
 msgstr "No"
+
+#~ msgid "Delete Selected"
+#~ msgstr "Borrar las seleccionadas"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Todas sus reglas han sido borradas"

@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: process_user_input.inc.php,v 1.10 2005/02/28 14:40:47 avel Exp $
+ * @version $Id: process_user_input.inc.php,v 1.11 2005/03/01 16:08:11 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -112,7 +112,7 @@ function process_input($search = SQ_POST, &$errmsg) {
 	if(isset($ns['stop'])) {
 		$vars[] = 'stop';
 	}
-	if(isset($ns['notify']) && isset($ns['notify']['options']) &&
+	if(isset($ns['notifyme']) && isset($ns['notify']['options']) &&
 		!empty($ns['notify']['options'])) {
 		$vars[] = 'notify';
 	}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 1.9.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 15:26+0200\n"
+"POT-Creation-Date: 2005-03-01 17:50+0200\n"
 "PO-Revision-Date: 2005-02-23 16:28+0100\n"
 "Last-Translator: Marcin Przybylek <smithpl@softnet.waw.pl>\n"
 "Language-Team: Polish <pl_team@softnet.waw.pl>\n"
@@ -465,8 +465,11 @@ msgstr "Pomy¶lnie usuniêto regu³e #"
 msgid "Add a New Rule"
 msgstr "Dodaj now± regu³e"
 
-msgid "Delete Selected"
-msgstr "Usuñ zaznaczone"
+msgid "Enable"
+msgstr ""
+
+msgid "Disable"
+msgstr ""
 
 msgid ""
 "When you are done, please click the button below to return to your webmail."
@@ -487,6 +490,9 @@ msgstr "Zamknij"
 #, fuzzy
 msgid "Really delete this rule?"
 msgstr "Napewno usun±æ regu³e?"
+
+msgid "Action for Selected Rules:"
+msgstr ""
 
 msgid "Could not log on to timsieved daemon on your IMAP server"
 msgstr "Nie mog³em po³±czyæ siê z demonem Sieve na serwerze IMAP"
@@ -746,6 +752,9 @@ msgstr "Niepoprawna nazwa folderu. Wprowad¼ inna nazwe"
 #, fuzzy
 msgid "None"
 msgstr "None"
+
+#~ msgid "Delete Selected"
+#~ msgstr "Usuñ zaznaczone"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Wszystkie regu³y zosta³y usuniête"

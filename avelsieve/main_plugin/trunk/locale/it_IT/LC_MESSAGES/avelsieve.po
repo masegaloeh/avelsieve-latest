@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 15:26+0200\n"
+"POT-Creation-Date: 2005-03-01 17:50+0200\n"
 "PO-Revision-Date: 2003-12-29 23:00+0100\n"
 "Last-Translator: Alessandro Dalvit <adalvit@katamail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -471,8 +471,11 @@ msgstr "Eliminata con successo la regola #"
 msgid "Add a New Rule"
 msgstr "Aggiungi Nuova Regola"
 
-msgid "Delete Selected"
-msgstr "Elimina Selezionate"
+msgid "Enable"
+msgstr ""
+
+msgid "Disable"
+msgstr ""
 
 msgid ""
 "When you are done, please click the button below to return to your webmail."
@@ -494,6 +497,9 @@ msgstr ""
 #, fuzzy
 msgid "Really delete this rule?"
 msgstr "Eliminata con successo la regola #"
+
+msgid "Action for Selected Rules:"
+msgstr ""
 
 msgid "Could not log on to timsieved daemon on your IMAP server"
 msgstr "Non ho potuto accedere al demone timsieved sul tuo server IMAP"
@@ -753,6 +759,9 @@ msgstr "Nome di cartella non consentito. Seleziona un altro nome"
 
 msgid "None"
 msgstr ""
+
+#~ msgid "Delete Selected"
+#~ msgstr "Elimina Selezionate"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Tutte le tue regole sono state cancellate"

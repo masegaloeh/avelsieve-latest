@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 15:26+0200\n"
+"POT-Creation-Date: 2005-03-01 17:50+0200\n"
 "PO-Revision-Date: 2003-05-21 13:15+0300\n"
 "Last-Translator: Vadim Kozlov <vad@tomsknet.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -464,8 +464,11 @@ msgstr "Успешно удалено правило #"
 msgid "Add a New Rule"
 msgstr "Добавить новое правило"
 
-msgid "Delete Selected"
-msgstr "Удалить выбранное"
+msgid "Enable"
+msgstr ""
+
+msgid "Disable"
+msgstr ""
 
 msgid ""
 "When you are done, please click the button below to return to your webmail."
@@ -486,6 +489,9 @@ msgstr ""
 #, fuzzy
 msgid "Really delete this rule?"
 msgstr "Успешно удалено правило #"
+
+msgid "Action for Selected Rules:"
+msgstr ""
 
 msgid "Could not log on to timsieved daemon on your IMAP server"
 msgstr "Не могу соединится с демоном timsiaved на вашем сервере IMAP"
@@ -743,6 +749,9 @@ msgstr "Недопустимое имя папки. Пожалуйста, выб
 #, fuzzy
 msgid "None"
 msgstr "N правила"
+
+#~ msgid "Delete Selected"
+#~ msgstr "Удалить выбранное"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Все Ваши правила были удалены"

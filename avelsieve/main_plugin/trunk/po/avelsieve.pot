@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 15:26+0200\n"
+"POT-Creation-Date: 2005-03-01 17:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -425,7 +425,10 @@ msgstr ""
 msgid "Add a New Rule"
 msgstr ""
 
-msgid "Delete Selected"
+msgid "Enable"
+msgstr ""
+
+msgid "Disable"
 msgstr ""
 
 msgid ""
@@ -445,6 +448,9 @@ msgid "Close"
 msgstr ""
 
 msgid "Really delete this rule?"
+msgstr ""
+
+msgid "Action for Selected Rules:"
 msgstr ""
 
 msgid "Could not log on to timsieved daemon on your IMAP server"

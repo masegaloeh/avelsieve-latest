@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 15:26+0200\n"
+"POT-Creation-Date: 2005-03-01 17:50+0200\n"
 "PO-Revision-Date: 2004-05-14 12:00+0200\n"
 "Last-Translator: Veli Pirttila <titus@iki.fi>\n"
 "Language-Team: finnish <fi@li.org>\n"
@@ -464,8 +464,11 @@ msgstr "Onnistuneesti poistettu sääntö#"
 msgid "Add a New Rule"
 msgstr "Lisää uusi sääntö"
 
-msgid "Delete Selected"
-msgstr "Poista Valitut"
+msgid "Enable"
+msgstr ""
+
+msgid "Disable"
+msgstr ""
 
 msgid ""
 "When you are done, please click the button below to return to your webmail."
@@ -487,6 +490,9 @@ msgstr ""
 
 msgid "Really delete this rule?"
 msgstr "Poistetaanko tämä sääntö oikeasti?"
+
+msgid "Action for Selected Rules:"
+msgstr ""
 
 msgid "Could not log on to timsieved daemon on your IMAP server"
 msgstr "Ei voitu sisäänkirjautua palveluun"
@@ -746,6 +752,9 @@ msgstr "Virheellinen kansion nimi. Valitse muu nimi."
 
 msgid "None"
 msgstr "Ei yhtään"
+
+#~ msgid "Delete Selected"
+#~ msgstr "Poista Valitut"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Kaikki sääntösi on tuhottu"
