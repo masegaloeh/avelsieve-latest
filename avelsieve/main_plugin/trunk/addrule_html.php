@@ -215,14 +215,14 @@ function print_header_listbox($selected_header, $n) {
 	print '</select>';
 }
 
-function print_matchtype_listbox($selected_matchtype, $n) {
+function print_matchtype_listbox($selected_matchtype, $n, $varname = 'matchtype') {
 
 	global $matchtypes, $comparators, $matchregex, $sieve_capabilities;
 	reset($matchtypes);
 	reset($comparators);
 	reset($matchregex);
 	
-	print '<select name="matchtype['.$n.']">';
+	print '<select name="'.$varname.'['.$n.']">';
 	
 	while(list ($matchtype, $matchstring) = each ($matchtypes)) {
 		if ($matchtype==$selected_matchtype) {
