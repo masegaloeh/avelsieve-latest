@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 17:50+0200\n"
+"POT-Creation-Date: 2005-03-09 13:30+0200\n"
 "PO-Revision-Date: 2003-07-23 17:15+0200\n"
 "Last-Translator: Bachelier Vincent <vincent@solintech.fr>\n"
 "Language-Team: French <fr@solintech.fr>\n"
@@ -240,8 +240,27 @@ msgid "verbose"
 msgstr "bavard"
 
 #, fuzzy
+msgid "Textual descriptions of the rules"
+msgstr "Description de la r&egrave;gle"
+
+#, fuzzy
 msgid "terse"
 msgstr "Filtres"
+
+msgid "More suitable for viewing the table of rules at once"
+msgstr ""
+
+msgid "tech"
+msgstr ""
+
+msgid "Even more terse description for technical people"
+msgstr ""
+
+msgid "source"
+msgstr ""
+
+msgid "Display SIEVE source"
+msgstr ""
 
 msgid "Low"
 msgstr "Bas"
@@ -566,6 +585,9 @@ msgstr "quelquechose@example.org"
 msgid "Keep a local copy as well."
 msgstr "Garder une copie local."
 
+msgid "Incorrect email address. You must enter only one valid email address."
+msgstr ""
+
 msgid "Move message into"
 msgstr "Classer le message dans:"
 
@@ -649,6 +671,10 @@ msgstr "R&egrave;gle supprim&eacute;e #"
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
+#, fuzzy
+msgid "To or Cc"
+msgstr "De: ou Copie"
+
 msgid "matches the regural expression"
 msgstr "correspond à l'expression régulière"
 
@@ -671,6 +697,9 @@ msgstr ""
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "Pour <strong>TOUS</strong> les messages entrants, "
 
+msgid "ALL"
+msgstr ""
+
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
 "messages)"
@@ -678,8 +707,15 @@ msgstr ""
 "Tous les messages considérés comme <strong>SPAM</strong> (message "
 "commerciaux non sollicités)"
 
+msgid "SPAM"
+msgstr ""
+
 msgid "unless"
 msgstr "à moins que"
+
+#, fuzzy
+msgid "Whitelist:"
+msgstr "Liste blanche"
 
 msgid "or"
 msgstr "où"
@@ -687,9 +723,17 @@ msgstr "où"
 msgid "matching the Spam List(s):"
 msgstr "correpondant à la liste de SPAM:"
 
+#, fuzzy
+msgid "Spam List(s):"
+msgstr "correpondant à la liste de SPAM:"
+
 #, php-format
 msgid "and with score greater than %s"
 msgstr "et avec score plus grand que %s"
+
+#, php-format
+msgid "Score > %s"
+msgstr ""
 
 msgid "will be"
 msgstr "sera"
@@ -697,8 +741,14 @@ msgstr "sera"
 msgid "stored in the Junk Folder."
 msgstr "sauvegardé dans votre dossier Junk."
 
+msgid "Junk"
+msgstr ""
+
 msgid "stored in the Trash Folder."
 msgstr "sauvegardé dans votre dossier Corbeille."
+
+msgid "Trash"
+msgstr ""
 
 #, fuzzy
 msgid "discarded."
@@ -716,6 +766,9 @@ msgstr "<em>tous</em> les en-t&ecirc;tes suivants co&iuml;ncident: "
 msgid "the header"
 msgstr "l'en-t&ecirc;te"
 
+msgid "and"
+msgstr ""
+
 msgid "the size of the message is"
 msgstr "la taille du message est"
 
@@ -731,27 +784,56 @@ msgstr "alors"
 msgid "<em>keep</em> it."
 msgstr "<em>accepter</em>."
 
+msgid "Keep"
+msgstr ""
+
 msgid "<em>discard</em> it."
 msgstr "<em>supprimer</em>."
+
+msgid "DISCARD"
+msgstr ""
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr ""
 "<em>le rejeter</em>, envoyer cette explication &agrave; l'exp&eacute;diteur:"
 
+msgid "Reject"
+msgstr ""
+
+msgid "Redirect to"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "<em>redirect</em> it to the email addresses: %s."
+msgstr "<em>le d&eacute;vier</em> &agrave; l'adresse"
+
 msgid "<em>redirect</em> it to the email address"
 msgstr "<em>le d&eacute;vier</em> &agrave; l'adresse"
 
-msgid "<em>file</em> it into the folder <strong>"
+#, fuzzy, php-format
+msgid "<em>file</em> it into the folder %s"
 msgstr "<em>le classer</em> dans le r&eacute;pertoire <strong>"
+
+#, php-format
+msgid "File into %s"
+msgstr ""
 
 msgid "reply with this vacation message: "
 msgstr "r&eacute;pondre: "
+
+#, fuzzy
+msgid "Vacation Message"
+msgstr "R&eacute;pondeur"
 
 msgid "Also keep a local copy."
 msgstr "Garder une copie locale."
 
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr " Garder une copie marqué supprimé dans votre boîte de réception."
+
+#, fuzzy
+msgid "Keep Deleted"
+msgstr "Supprimer la selection"
 
 msgid " Also notify using the method"
 msgstr " Notifier aussi avec la méthode"
@@ -762,8 +844,16 @@ msgstr "avec"
 msgid "priority and the message"
 msgstr "priorité du message"
 
-msgid " Then <strong>STOP</strong> processing rules."
+#, php-format
+msgid "Notify %s"
+msgstr ""
+
+#, fuzzy
+msgid "Then <strong>STOP</strong> processing rules."
 msgstr " Alors <strong>ARRETER</strong> le traitement des r&egrave;gles."
+
+msgid "Stop"
+msgstr ""
 
 msgid "Test for Forged Header"
 msgstr "Tester avec les entêtes forgées"
@@ -781,9 +871,6 @@ msgstr "Nom de dossier incorrect. Veuillez en essayer un autre"
 #, fuzzy
 msgid "None"
 msgstr "Aucun"
-
-#~ msgid "Delete Selected"
-#~ msgstr "Supprimer la selection"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Toutes vos r&egrave;gles ont &eacute;t&eacute; supprim&eacute;es."

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 17:50+0200\n"
+"POT-Creation-Date: 2005-03-09 13:30+0200\n"
 "PO-Revision-Date: 2004-08-07 21:42+0100\n"
 "Last-Translator: Karsten Behrens <mail@karsten-behrens.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
@@ -226,8 +226,27 @@ msgstr "ist ungleich"
 msgid "verbose"
 msgstr "ausführlich"
 
+#, fuzzy
+msgid "Textual descriptions of the rules"
+msgstr "Beschreibung der Regel"
+
 msgid "terse"
 msgstr "kurz"
+
+msgid "More suitable for viewing the table of rules at once"
+msgstr ""
+
+msgid "tech"
+msgstr ""
+
+msgid "Even more terse description for technical people"
+msgstr ""
+
+msgid "source"
+msgstr ""
+
+msgid "Display SIEVE source"
+msgstr ""
 
 msgid "Low"
 msgstr "Niedrig"
@@ -543,6 +562,9 @@ msgstr "irgendjemand@irgendwo.de"
 msgid "Keep a local copy as well."
 msgstr "Lokale Kopie behalten."
 
+msgid "Incorrect email address. You must enter only one valid email address."
+msgstr ""
+
 msgid "Move message into"
 msgstr "Verschiebe Nachricht in"
 
@@ -627,6 +649,10 @@ msgstr "Dieses Regel wirklich löschen?"
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
+#, fuzzy
+msgid "To or Cc"
+msgstr "An: oder CC"
+
 msgid "matches the regural expression"
 msgstr "entspricht regulärem Ausdruck"
 
@@ -648,14 +674,24 @@ msgstr ""
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "Für <strong>alle</strong> eingehenden Nachrichten; "
 
+msgid "ALL"
+msgstr ""
+
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
 "messages)"
 msgstr ""
 
+msgid "SPAM"
+msgstr ""
+
 #, fuzzy
 msgid "unless"
 msgstr "bis"
+
+#, fuzzy
+msgid "Whitelist:"
+msgstr "Whitelist (Ausnahmeliste)"
 
 msgid "or"
 msgstr "oder"
@@ -663,9 +699,16 @@ msgstr "oder"
 msgid "matching the Spam List(s):"
 msgstr ""
 
+msgid "Spam List(s):"
+msgstr ""
+
 #, fuzzy, php-format
 msgid "and with score greater than %s"
 msgstr "ist größer als"
+
+#, php-format
+msgid "Score > %s"
+msgstr ""
 
 msgid "will be"
 msgstr ""
@@ -673,8 +716,14 @@ msgstr ""
 msgid "stored in the Junk Folder."
 msgstr "gespeichert im Junk-Ordner."
 
+msgid "Junk"
+msgstr ""
+
 msgid "stored in the Trash Folder."
 msgstr "gespeichert im Papierkorb-Ordner."
+
+msgid "Trash"
+msgstr ""
 
 msgid "discarded."
 msgstr "verworfen."
@@ -691,6 +740,9 @@ msgstr "<em>alle</em> der folgenden Mail-Header zutreffen: "
 msgid "the header"
 msgstr "der Header"
 
+msgid "and"
+msgstr ""
+
 msgid "the size of the message is"
 msgstr "die Größe der Nachricht ist"
 
@@ -706,26 +758,56 @@ msgstr "dann"
 msgid "<em>keep</em> it."
 msgstr "<em>behalten</em>."
 
+#, fuzzy
+msgid "Keep"
+msgstr "regulärem Ausdruck"
+
 msgid "<em>discard</em> it."
 msgstr "<em>ignorieren</em>."
+
+msgid "DISCARD"
+msgstr ""
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>verweigern</em> und folgende Nachricht an den Absender schicken:"
 
+msgid "Reject"
+msgstr ""
+
+msgid "Redirect to"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "<em>redirect</em> it to the email addresses: %s."
+msgstr "<em>weiterleiten</em> an"
+
 msgid "<em>redirect</em> it to the email address"
 msgstr "<em>weiterleiten</em> an"
 
-msgid "<em>file</em> it into the folder <strong>"
+#, fuzzy, php-format
+msgid "<em>file</em> it into the folder %s"
 msgstr "<em>speichern</em> im Ordner <strong>"
+
+#, php-format
+msgid "File into %s"
+msgstr ""
 
 msgid "reply with this vacation message: "
 msgstr "antworten mit dieser Urlaubsnachricht: "
+
+#, fuzzy
+msgid "Vacation Message"
+msgstr "Ferien"
 
 msgid "Also keep a local copy."
 msgstr "Behalte eine lokale Kopie."
 
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr " Auch im Posteingang behalten (als gelöscht)."
+
+#, fuzzy
+msgid "Keep Deleted"
+msgstr "Gewählte löschen"
 
 msgid " Also notify using the method"
 msgstr " Benachrichtigung durch"
@@ -736,8 +818,16 @@ msgstr "mit"
 msgid "priority and the message"
 msgstr "Priorität und Nachricht"
 
-msgid " Then <strong>STOP</strong> processing rules."
+#, php-format
+msgid "Notify %s"
+msgstr ""
+
+#, fuzzy
+msgid "Then <strong>STOP</strong> processing rules."
 msgstr " Dann Regelverarbeitung beenden."
+
+msgid "Stop"
+msgstr ""
 
 msgid "Test for Forged Header"
 msgstr ""
@@ -753,9 +843,6 @@ msgstr "Ungültiger Ordnername. Bitte wählen Sie einen anderen aus."
 
 msgid "None"
 msgstr "Keine"
-
-#~ msgid "Delete Selected"
-#~ msgstr "Gewählte löschen"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Alle von Ihnen definierten Regeln wurden gelöscht."

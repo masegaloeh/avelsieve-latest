@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 1.9.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 17:50+0200\n"
-"PO-Revision-Date: 2005-03-01 17:51+0200\n"
+"POT-Creation-Date: 2005-03-09 13:30+0200\n"
+"PO-Revision-Date: 2005-03-09 13:35+0200\n"
 "Last-Translator: Alexandros Vellis <avel@noc.uoa.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
@@ -234,8 +234,26 @@ msgstr "δεν ισούται με"
 msgid "verbose"
 msgstr "αναλυτικά"
 
+msgid "Textual descriptions of the rules"
+msgstr "Αναλυτικές περιγραφές των κανόνων"
+
 msgid "terse"
 msgstr "σύντομα"
+
+msgid "More suitable for viewing the table of rules at once"
+msgstr "Πιο κατάλληλο για να βλέπετε εποπτικά τους κανόνες"
+
+msgid "tech"
+msgstr "tech"
+
+msgid "Even more terse description for technical people"
+msgstr "Ακόμα πιο σύντομη, τεχνική περιγραφή"
+
+msgid "source"
+msgstr "κώδικας"
+
+msgid "Display SIEVE source"
+msgstr "Εμφάνιση πηγαίου κώδικα SIEVE"
 
 msgid "Low"
 msgstr "Χαμηλή"
@@ -550,6 +568,9 @@ msgstr "someone@example.org"
 msgid "Keep a local copy as well."
 msgstr "Επίσης κράτησε ένα τοπικό αντίγραφο."
 
+msgid "Incorrect email address. You must enter only one valid email address."
+msgstr "Λανθασμένη διεύθυνση ηλεκτρονικού ταχυδρομείου. Πρέπει να εισάγετε μόνο μία έγκυρη διεύθυνση."
+
 msgid "Move message into"
 msgstr "Μετακίνηση μηνύματος"
 
@@ -631,6 +652,9 @@ msgstr "Απενεργοποίηση αυτού του κανόνα"
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr "Αυτός ο κανόνας δε θα έχει καμμία ισχύ, όσο είναι απενεργοποιημένος."
 
+msgid "To or Cc"
+msgstr "Προς ή Συνημ."
+
 msgid "matches the regural expression"
 msgstr "ταιριάζει στο regural expression"
 
@@ -652,6 +676,9 @@ msgstr "ΑΠΕΝΕΡΓΟΠΟΙΗΜΕΝΟΣ"
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "Για <strong>ΌΛΑ</strong> τα εισερχόμενα μηνύματα· "
 
+msgid "ALL"
+msgstr "ΌΛΑ"
+
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
 "messages)"
@@ -659,8 +686,14 @@ msgstr ""
 "Όλα τα μηνύματα που θεωρούνται <strong>SPAM</strong> (ανεπιθύμητα "
 "διαφημιστικά μηνύματα)"
 
+msgid "SPAM"
+msgstr "SPAM"
+
 msgid "unless"
 msgstr "εκτός αν"
+
+msgid "Whitelist:"
+msgstr "Εξαιρέσεις (Whitelist):"
 
 msgid "or"
 msgstr "ή"
@@ -668,9 +701,16 @@ msgstr "ή"
 msgid "matching the Spam List(s):"
 msgstr "που ταιριάζουν στη/στις λίστες Spam:"
 
+msgid "Spam List(s):"
+msgstr "Λίστες Spam:"
+
 #, php-format
 msgid "and with score greater than %s"
 msgstr "και με σκορ μεγαλύτερο από %s"
+
+#, php-format
+msgid "Score > %s"
+msgstr "Σκορ > %s"
 
 msgid "will be"
 msgstr "θα"
@@ -678,8 +718,14 @@ msgstr "θα"
 msgid "stored in the Junk Folder."
 msgstr "αποθηκευτούν στον Φάκελο Αχρήστων."
 
+msgid "Junk"
+msgstr "Φάκελος Αχρήστων"
+
 msgid "stored in the Trash Folder."
 msgstr "αποθηκευτούν στον Φάκελο Διαγραμμένων."
+
+msgid "Trash"
+msgstr "Φάκελος Διεγραμμένων"
 
 msgid "discarded."
 msgstr "διαγραφούν."
@@ -696,6 +742,9 @@ msgstr "<em>όλες</em> από τις ακόλουθες κεφαλίδες ταιριάξουν: "
 msgid "the header"
 msgstr "η κεφαλίδα"
 
+msgid "and"
+msgstr "και"
+
 msgid "the size of the message is"
 msgstr "το μέγεθος του μηνύματος είναι"
 
@@ -711,20 +760,44 @@ msgstr "τότε"
 msgid "<em>keep</em> it."
 msgstr "<em>κράτησέ το</em>."
 
+msgid "Keep"
+msgstr "Κράτησε"
+
 msgid "<em>discard</em> it."
 msgstr "<em>διέγραψέ το</em>."
+
+msgid "DISCARD"
+msgstr "ΑΠΟΡΡΙΨΗ"
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>απόρριψέ το</em>, στέλντας την εξής δικαιολογία στον αποστολέα:"
 
+msgid "Reject"
+msgstr "Απόρριψη"
+
+msgid "Redirect to"
+msgstr "Ανακατεύθυνση προς"
+
+#, php-format
+msgid "<em>redirect</em> it to the email addresses: %s."
+msgstr "<em>ανακατεύθυνέ το</em> στις διευθύνσεις: %s."
+
 msgid "<em>redirect</em> it to the email address"
 msgstr "<em>ανακατεύθυνέ το</em> στη διεύθυνση"
 
-msgid "<em>file</em> it into the folder <strong>"
-msgstr "<em>αποθήκευσέ το</em> στον φάκελο"
+#, php-format
+msgid "<em>file</em> it into the folder %s"
+msgstr "<em>αποθήκευσέ το</em> στον φάκελο %s"
+
+#, php-format
+msgid "File into %s"
+msgstr "Αποθήκευση στον %s"
 
 msgid "reply with this vacation message: "
 msgstr "απάντησε με το εξής μήνυμα διακοπών: "
+
+msgid "Vacation Message"
+msgstr "Μήνυμα Διακοπών"
 
 msgid "Also keep a local copy."
 msgstr "Επίσης κράτησε ένα τοπικό αντίγραφο."
@@ -732,6 +805,9 @@ msgstr "Επίσης κράτησε ένα τοπικό αντίγραφο."
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr ""
 " Επίσης κράτησε ένα αντίγραφο στα ΕΙΣΕΡΧΟΜΕΝΑ, μαρκαρισμένο ως διαγραμμένο."
+
+msgid "Keep Deleted"
+msgstr "Κράτησε ως Διεγραμμένο"
 
 msgid " Also notify using the method"
 msgstr " Επίσης ειδοποίησέ με χρησιμοποιώντας τη μέθοδο"
@@ -742,8 +818,15 @@ msgstr "με"
 msgid "priority and the message"
 msgstr "προτεραιότητα και το μήνυμα"
 
-msgid " Then <strong>STOP</strong> processing rules."
-msgstr " Τότε <strong>ΣΤΑΜΑΤΑ</strong> το έλεγχο για άλλους κανόνες."
+#, php-format
+msgid "Notify %s"
+msgstr "Ειδοποίηση στο %s"
+
+msgid "Then <strong>STOP</strong> processing rules."
+msgstr "Τότε <strong>ΣΤΑΜΑΤΑ</strong> την επεξεργασία άλλοων κανόνων."
+
+msgid "Stop"
+msgstr "Στοπ"
 
 msgid "Test for Forged Header"
 msgstr "Εξέταση για Πλαστογραφημένη Κεφαλίδα"
@@ -759,3 +842,4 @@ msgstr "Άκυρο όνομα φακέλου. Παρακαλώ επιλέξτε ένα διαφορετικό όνομα."
 
 msgid "None"
 msgstr "Κανένα"
+

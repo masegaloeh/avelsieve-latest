@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 17:50+0200\n"
+"POT-Creation-Date: 2005-03-09 13:30+0200\n"
 "PO-Revision-Date: 2004-05-14 12:00+0200\n"
 "Last-Translator: Veli Pirttila <titus@iki.fi>\n"
 "Language-Team: finnish <fi@li.org>\n"
@@ -227,8 +227,27 @@ msgstr "ei ole samansuuruinen kuin"
 msgid "verbose"
 msgstr "laaja"
 
+#, fuzzy
+msgid "Textual descriptions of the rules"
+msgstr "Säännön kuvaus"
+
 msgid "terse"
 msgstr "suppea"
+
+msgid "More suitable for viewing the table of rules at once"
+msgstr ""
+
+msgid "tech"
+msgstr ""
+
+msgid "Even more terse description for technical people"
+msgstr ""
+
+msgid "source"
+msgstr ""
+
+msgid "Display SIEVE source"
+msgstr ""
 
 msgid "Low"
 msgstr "Pieni"
@@ -543,6 +562,9 @@ msgstr "email@osoite"
 msgid "Keep a local copy as well."
 msgstr "Pidä myös paikallinen kopio."
 
+msgid "Incorrect email address. You must enter only one valid email address."
+msgstr ""
+
 msgid "Move message into"
 msgstr "Siirrä viesti"
 
@@ -625,6 +647,10 @@ msgstr "Poistetaanko tämä sääntö oikeasti?"
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
+#, fuzzy
+msgid "To or Cc"
+msgstr "To: tai Cc"
+
 msgid "matches the regural expression"
 msgstr "sisältää rexepin"
 
@@ -646,6 +672,9 @@ msgstr ""
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "<strong>Kaikille</strong> sisääntuleville viesteille; "
 
+msgid "ALL"
+msgstr ""
+
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
 "messages)"
@@ -653,8 +682,15 @@ msgstr ""
 "Kaikki viestit lueteltuna <STRONG>Roskapostiksi</strong> (ei-halutut "
 "kaupalliset viestit)"
 
+msgid "SPAM"
+msgstr ""
+
 msgid "unless"
 msgstr "ellei"
+
+#, fuzzy
+msgid "Whitelist:"
+msgstr "Valkoinen lista"
 
 msgid "or"
 msgstr "tai"
@@ -662,9 +698,17 @@ msgstr "tai"
 msgid "matching the Spam List(s):"
 msgstr "osuen Spamlistoihin:"
 
+#, fuzzy
+msgid "Spam List(s):"
+msgstr "osuen Spamlistoihin:"
+
 #, php-format
 msgid "and with score greater than %s"
 msgstr "ja isommilla pisteillä kuin %s"
+
+#, php-format
+msgid "Score > %s"
+msgstr ""
 
 msgid "will be"
 msgstr "tulee olemaan"
@@ -672,8 +716,14 @@ msgstr "tulee olemaan"
 msgid "stored in the Junk Folder."
 msgstr "talletettu Junk Kansioon."
 
+msgid "Junk"
+msgstr ""
+
 msgid "stored in the Trash Folder."
 msgstr "talletettu Trash Kansioon."
+
+msgid "Trash"
+msgstr ""
 
 msgid "discarded."
 msgstr "tuhottu."
@@ -690,6 +740,9 @@ msgstr "<em>kaikki</em> seuraavista otsikkokentistä sisältyy:"
 msgid "the header"
 msgstr "otsikko"
 
+msgid "and"
+msgstr ""
+
 msgid "the size of the message is"
 msgstr "viestin koko on"
 
@@ -705,26 +758,56 @@ msgstr "silloin"
 msgid "<em>keep</em> it."
 msgstr "<em>pidä</em> se."
 
+#, fuzzy
+msgid "Keep"
+msgstr "regexpi"
+
 msgid "<em>discard</em> it."
 msgstr "<em>tuhoa</em> se."
+
+msgid "DISCARD"
+msgstr ""
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>hylkää</em> se ja lähetä seuraavanlainen viesti lähettäjälle:"
 
+msgid "Reject"
+msgstr ""
+
+msgid "Redirect to"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "<em>redirect</em> it to the email addresses: %s."
+msgstr "<em>ohjaa uudelleen</em> osoitteeseen"
+
 msgid "<em>redirect</em> it to the email address"
 msgstr "<em>ohjaa uudelleen</em> osoitteeseen"
 
-msgid "<em>file</em> it into the folder <strong>"
+#, fuzzy, php-format
+msgid "<em>file</em> it into the folder %s"
 msgstr "<em>tallenna</em> se kansioon <strong>"
+
+#, php-format
+msgid "File into %s"
+msgstr ""
 
 msgid "reply with this vacation message: "
 msgstr "vastaa tällä lomaviestillä: "
+
+#, fuzzy
+msgid "Vacation Message"
+msgstr "Lomavastaaja"
 
 msgid "Also keep a local copy."
 msgstr "Pidä myös paikallinen kopio."
 
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr " Pidä myös kopio sisääntulevissa ja merkkaa poistetuksi."
+
+#, fuzzy
+msgid "Keep Deleted"
+msgstr "Poista Valitut"
 
 msgid " Also notify using the method"
 msgstr " Myös ilmoita tavalla"
@@ -735,8 +818,16 @@ msgstr "kanssa"
 msgid "priority and the message"
 msgstr "prioriteetti ja viesti"
 
-msgid " Then <strong>STOP</strong> processing rules."
+#, php-format
+msgid "Notify %s"
+msgstr ""
+
+#, fuzzy
+msgid "Then <strong>STOP</strong> processing rules."
 msgstr " Sen jälkeen <strong>Pysähdy</strong> prosessoimasta sääntöjä."
+
+msgid "Stop"
+msgstr ""
 
 msgid "Test for Forged Header"
 msgstr "Testi väärennetylle otsikolle"
@@ -752,9 +843,6 @@ msgstr "Virheellinen kansion nimi. Valitse muu nimi."
 
 msgid "None"
 msgstr "Ei yhtään"
-
-#~ msgid "Delete Selected"
-#~ msgstr "Poista Valitut"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Kaikki sääntösi on tuhottu"

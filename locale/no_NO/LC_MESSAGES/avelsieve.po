@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 17:50+0200\n"
+"POT-Creation-Date: 2005-03-09 13:30+0200\n"
 "PO-Revision-Date: 2003-05-02 14:39+0200\n"
 "Last-Translator: Alexander Brill <kiowa@egil.org>\n"
 "Language-Team:  <alexander@nettstudio.no>\n"
@@ -230,8 +230,27 @@ msgstr "er ikke lik"
 msgid "verbose"
 msgstr "Utfyllende"
 
+#, fuzzy
+msgid "Textual descriptions of the rules"
+msgstr "Beskrivelse av regel"
+
 msgid "terse"
 msgstr "Konsist"
+
+msgid "More suitable for viewing the table of rules at once"
+msgstr ""
+
+msgid "tech"
+msgstr ""
+
+msgid "Even more terse description for technical people"
+msgstr ""
+
+msgid "source"
+msgstr ""
+
+msgid "Display SIEVE source"
+msgstr ""
 
 msgid "Low"
 msgstr "Lav"
@@ -550,6 +569,9 @@ msgstr "noen@eksempel.no"
 msgid "Keep a local copy as well."
 msgstr ""
 
+msgid "Incorrect email address. You must enter only one valid email address."
+msgstr ""
+
 msgid "Move message into"
 msgstr "Flytt meldingen til"
 
@@ -631,6 +653,9 @@ msgstr "Regel er slettet: #"
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
+msgid "To or Cc"
+msgstr ""
+
 msgid "matches the regural expression"
 msgstr "passer med &quot;regular expression&quot;"
 
@@ -652,12 +677,21 @@ msgstr ""
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "For <strong>ALLE</strong> innkommende meldinger;"
 
+msgid "ALL"
+msgstr ""
+
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
 "messages)"
 msgstr ""
 
+msgid "SPAM"
+msgstr ""
+
 msgid "unless"
+msgstr ""
+
+msgid "Whitelist:"
 msgstr ""
 
 msgid "or"
@@ -666,9 +700,16 @@ msgstr ""
 msgid "matching the Spam List(s):"
 msgstr ""
 
+msgid "Spam List(s):"
+msgstr ""
+
 #, fuzzy, php-format
 msgid "and with score greater than %s"
 msgstr "er st&oslash;rre enn"
+
+#, php-format
+msgid "Score > %s"
+msgstr ""
 
 msgid "will be"
 msgstr ""
@@ -676,7 +717,13 @@ msgstr ""
 msgid "stored in the Junk Folder."
 msgstr ""
 
+msgid "Junk"
+msgstr ""
+
 msgid "stored in the Trash Folder."
+msgstr ""
+
+msgid "Trash"
 msgstr ""
 
 #, fuzzy
@@ -695,6 +742,9 @@ msgstr "<em>alle</em> av de f&oslash;lgende epost-meldingshodene eksisterer: "
 msgid "the header"
 msgstr "meldingshode"
 
+msgid "and"
+msgstr ""
+
 msgid "the size of the message is"
 msgstr "st&oslash;rrelsen p&aring; meldingen er"
 
@@ -710,26 +760,56 @@ msgstr "enn"
 msgid "<em>keep</em> it."
 msgstr "<em>behold</em> den."
 
+#, fuzzy
+msgid "Keep"
+msgstr "stemmer med regexp"
+
 msgid "<em>discard</em> it."
 msgstr "<em>ignorer</em> den."
+
+msgid "DISCARD"
+msgstr ""
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>nekt</em> den, og send dette svaret tilbake til senderen:"
 
+msgid "Reject"
+msgstr ""
+
+msgid "Redirect to"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "<em>redirect</em> it to the email addresses: %s."
+msgstr "<em>send videre</em> til epost-adressen"
+
 msgid "<em>redirect</em> it to the email address"
 msgstr "<em>send videre</em> til epost-adressen"
 
-msgid "<em>file</em> it into the folder <strong>"
+#, fuzzy, php-format
+msgid "<em>file</em> it into the folder %s"
 msgstr "<em>lagre</em> i mappen <strong>"
+
+#, php-format
+msgid "File into %s"
+msgstr ""
 
 msgid "reply with this vacation message: "
 msgstr "svar med denne automatisk-svar-meldingen:"
+
+#, fuzzy
+msgid "Vacation Message"
+msgstr "Ferie/borte/automatisk svar"
 
 msgid "Also keep a local copy."
 msgstr ""
 
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr " Behold ogs&aring; en melding i Innboksen, markert som slettet."
+
+#, fuzzy
+msgid "Keep Deleted"
+msgstr "Slett Valg(te)"
 
 msgid " Also notify using the method"
 msgstr " Varlse ogs&aring; med denne metoden"
@@ -740,8 +820,16 @@ msgstr "med"
 msgid "priority and the message"
 msgstr "prioritet og melding"
 
-msgid " Then <strong>STOP</strong> processing rules."
+#, php-format
+msgid "Notify %s"
+msgstr ""
+
+#, fuzzy
+msgid "Then <strong>STOP</strong> processing rules."
 msgstr " S&aring; <strong>STOPP</strong> &aring; prosessere regler."
+
+msgid "Stop"
+msgstr ""
 
 msgid "Test for Forged Header"
 msgstr ""
@@ -759,9 +847,6 @@ msgstr ""
 #, fuzzy
 msgid "None"
 msgstr "Nei"
-
-#~ msgid "Delete Selected"
-#~ msgstr "Slett Valg(te)"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Alle dine regler har blitt slettet"
