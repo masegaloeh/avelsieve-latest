@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-22 12:33+0200\n"
+"POT-Creation-Date: 2005-03-01 15:26+0200\n"
 "PO-Revision-Date: 2004-08-07 21:42+0100\n"
 "Last-Translator: Karsten Behrens <mail@karsten-behrens.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
@@ -381,9 +381,6 @@ msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr ""
 "Wählen Sie aus, was durchgeführt werden soll, wenn diese Regel zutrifft:"
 
-msgid "Additional Actions"
-msgstr "Weitere Aktionen"
-
 msgid "Your new rule states:"
 msgstr "Ihre neuen Filterregeln"
 
@@ -407,6 +404,9 @@ msgstr "Zur Zeit definierte Regeln"
 #, fuzzy
 msgid "Error Encountered:"
 msgstr "Fehler aufgetreten"
+
+msgid "Additional Actions"
+msgstr "Weitere Aktionen"
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
@@ -614,6 +614,13 @@ msgstr "Gültige Variablen sind:"
 msgid "Also keep copy in INBOX, marked as deleted."
 msgstr "Nachricht auch im Posteingang behalten, aber als gelöscht markieren."
 
+#, fuzzy
+msgid "Disable this rule"
+msgstr "Dieses Regel wirklich löschen?"
+
+msgid "The rule will have no effect for as long as it is disabled."
+msgstr ""
+
 msgid "matches the regural expression"
 msgstr "entspricht regulärem Ausdruck"
 
@@ -625,6 +632,12 @@ msgstr "existiert"
 
 msgid "does not exist"
 msgstr "existiert nicht"
+
+msgid "This rule is currently <strong>DISABLED</strong>:"
+msgstr ""
+
+msgid "DISABLED"
+msgstr ""
 
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "Für <strong>alle</strong> eingehenden Nachrichten; "

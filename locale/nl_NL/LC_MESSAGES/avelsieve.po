@@ -5,492 +5,506 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: avelsieve czech locale\n"
+"Project-Id-Version: avelsieve 1.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-03-01 15:26+0200\n"
-"PO-Revision-Date: 2004-04-01 20:15+0300\n"
-"Last-Translator: Jiri Demel <demel@fsv.cvut.cz>\n"
-"Language-Team: Czech <cs@li.org>\n"
+"PO-Revision-Date: 2005-02-09 12:44+0100\n"
+"Last-Translator: Maxim Baars <mmbaars@bccs.nl>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-2\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Dutch\n"
 
 msgid "You have to define at least one header match text."
-msgstr "Musíte definovat alespoò jednu podmínku."
+msgstr ""
+"U dient minstens één tekst op te geven die in de berichtkop moet voorkomen."
 
 msgid "Add New Rule"
-msgstr "Pøidejte nové pravidlo"
+msgstr "Een nieuwe regel toevoegen"
 
 msgid "New Rule Wizard - Step"
-msgstr "Pøidání pravidla - krok"
+msgstr "Nieuwe regel wizard - Stap"
 
 msgid "of"
-msgstr "ze"
+msgstr "van"
 
 msgid "Rule Type"
-msgstr "Typ pravidla"
+msgstr "Regeltype"
 
 msgid "Condition"
-msgstr "Podmínka"
+msgstr "Conditie"
 
 msgid "Action"
-msgstr "Akce"
+msgstr "Aktie"
 
 msgid "Confirmation"
-msgstr "Potvrzení"
+msgstr "Bevestiging"
 
 msgid ""
 "<p>You have chosen to keep every mail. This is the default action anyway, so "
 "you might want to start over with a rule that makes more sense. Select &quot;"
 "finished&quot; to save this rule nonetheless.</p>"
 msgstr ""
-"<p>Zvolili jste, ¾e chcete uschovat ka¾dý dopis, co¾ je implicitní akce. "
-"Mù¾ete chtít zaèít znova a vytvoøit pravidlo, které má vìt¹í smysl.Nicménì i "
-"toto pravidlo mù¾ete ulo¾it tlaèítkem &quot;Dokonèit&quot;.</p>"
+"<p>U heeft ervoor gekozen alle post te behouden. Dit is hoe dan ook de "
+"standaard actie dus wellicht wilt u opnieuw beginnen met een regel die "
+"zinvoller is. Kies &quot;Klaar&quot; om deze regel toch te bewaren.</p>"
 
 msgid ""
 "Please use the buttons on the bottom instead of your browser's reload, back "
 "and forward buttons, to build a rule."
 msgstr ""
-"Pro pøesun na pøedchozí/následující formuláø a pro znovunata¾ení "
-"stránkypou¾ijte tlaèítka v dolní èásti formuláøe a nikoli tlaèítka "
-"prohlí¾eèe."
+"Gebruik bij het opstellen van een regel de knoppen onderaan deze pagina in "
+"plaats van die van de browser."
 
 msgid "Add SPAM Rule"
-msgstr "Pøidat pravidlo pro SPAM"
+msgstr "Een SPAM-regel toevoegen"
 
 msgid "Configure Anti-SPAM Protection"
-msgstr "Konfigurace ochrany proti SPAMu"
+msgstr "Anti-SPAM-beveiliging instellen"
 
 msgid ""
 "All incoming mail is checked for unsolicited commercial content (SPAM) and "
 "marked accordingly. This special rule allows you to configure what to do "
 "with such messages once they arrive to your Inbox."
 msgstr ""
-"Ve¹kerá pøicházející po¹ta je testována, zda je to SPAM a podle toho "
-"oznaèkována. Tímto speciálním pravidlem mù¾ete urèit co se má s takovým "
-"dopisem udìlat."
+"Alle inkomende post wordt gecontroleerd op ongewenste commerciële inhoud "
+"(SPAM) en overeenkomstig gemarkeerd. Deze speciale regel geeft aan wat er "
+"gedaan moet worden met dergelijke berichten zodra ze in uw Inbox komen."
 
 #, php-format
 msgid ""
 "Select %s to add the predefined rule, or select the advanced SPAM filter to "
 "customize the rule."
 msgstr ""
-"Zvolte %s pro pøidání pøeddefinovaného pravidlanebo zvolte Pokroèilé "
-"pravidlo pro SPAM."
+"Kies %s om de voorgedefinieerde regel toe te voegen of kies het geavanceerde "
+"SPAM-filter om de regel aan te passen."
 
 msgid "Add Spam Rule"
-msgstr "Pøidej pravidlo pro spam"
+msgstr "Een Spam-regel toevoegen"
 
 msgid "Advanced Spam Filter..."
-msgstr "Pokroèilé pravidlo pro spam..."
+msgstr "Geavanceerd Spam Filter"
 
 msgid "Target Score"
-msgstr "Prahová hodnota"
+msgstr "Doelscore"
 
 #, php-format
 msgid ""
 "Messages with SPAM-Score higher than the target value, the maximum value "
 "being %s, will be considered SPAM."
 msgstr ""
-"Dopisy s poètem bodù vy¹¹ím ne¾ tato prahová hodnota, pøièem¾ maximumje %s, "
-"budou pokládány za SPAM."
+"Berichten met een SPAM-score die hoger is dan de grenswaarde, de maximum "
+"waarde is %s, zullen worden beschouwd als SPAM."
 
 msgid "SPAM Lists to check against"
-msgstr ""
+msgstr "SPAM-lijsten waartegen gecontroleerd wordt"
 
 msgid "Whitelist"
-msgstr ""
+msgstr "Veilige afzenders"
 
 msgid ""
 "Messages that match any of these header rules will never end up in Junk "
 "Folders or regarded as SPAM."
 msgstr ""
+"Berichten die voldoen aan één van deze berichtkopregels worden nooit in de "
+"map Ongewenste e-mail geplaatst of beschouwd als SPAM."
 
 msgid "More..."
-msgstr "Více..."
+msgstr "Meer..."
 
 msgid "STOP"
 msgstr "STOP"
 
 msgid "If this rule matches, do not check any rules after it."
-msgstr "Je-li toto pravidlo aktivováno, nezkou¹ej dal¹í pravidla."
+msgstr ""
+"Als deze regel van toepassing is, stop dan met controleren van alle volgende "
+"regels."
 
 msgid "Could not get SIEVE script from your IMAP server"
-msgstr "Nepodaøilo se získat SIEVE skript z tvého IMAP serveru"
+msgstr "Kon SIEVE script niet ophalen van de IMAP server"
 
 msgid "(Probably the script is size null)."
-msgstr "(Skript má pravdìpodobnì nulovou velikost)."
+msgstr "(Waarschijnlijk is het script leeg)."
 
 msgid "Please contact your administrator."
-msgstr "Kontaktujte administrátora."
+msgstr "Neem contact op met de beheerder."
 
 msgid "Message Filters"
-msgstr "Filtrovací pravidla"
+msgstr "Berichtfilters"
 
 msgid ""
 "Server-Side mail filtering enables you to add criteria in order to "
 "automatically forward, delete or place a given message into a folder."
 msgstr ""
-"Filtrace emailu na stranì serveru dovoluje automaticky pøeposlat, smazat "
-"nebo umístit daný dopis do slo¾ky."
+"Berichtfilters maken het mogelijk criteria op te geven voor het automatisch "
+"doorsturen, verwijderen of verplaatsen van berichten op het moment dat ze "
+"binnenkomen."
 
 msgid "Filters"
-msgstr "Filtry"
+msgstr "Filters"
 
 msgid "Current Mail Filtering Rules"
-msgstr "Nyní platná filtrovací pravidla"
+msgstr "Huidige regels"
 
 msgid "No Filtering Rules Defined Yet"
-msgstr "®ádná filtrovací pravidla nejsou zatím definována"
+msgstr "Nog geen filterregels gedefinieerd"
 
 msgid "Could not set active script on your IMAP server"
-msgstr "Nepodaøilo se aktivovat skript na IMAP serveru"
+msgstr "Kon script niet activeren op de IMAP server"
 
 msgid "Address Match"
-msgstr "Shoda adres"
+msgstr "Adresconditie"
 
 msgid ""
 "Perform an action depending on email addresses appearing in message headers."
-msgstr ""
-"Vykonej akci v závislosti na emailových adresách obsa¾ených v hlavièce."
+msgstr "Voer een aktie uit op basis van een e-mailadres in de berichtkop."
 
 msgid "Header Match"
-msgstr "Shoda hlavièky"
+msgstr "Berichtkop"
 
 msgid ""
 "Perform an action on messages matching a specified header (From, To etc.)."
-msgstr "Vykonej akci v závislosti na specifikované hlavièce (Od, Komu, atd.)."
+msgstr ""
+"Voer een aktie uit op basis van een specifieke regel in de berichtkop (Van, "
+"Aan etc.)."
 
 msgid "Size"
-msgstr "Velikost"
+msgstr "Grootte"
 
 msgid "Perform an action on messages depending on their size."
-msgstr "Vykonej akci v závislosti na velikosti dopisu."
+msgstr "Voer een aktie uit op basis van de berichtgrootte."
 
 msgid "All Messages"
-msgstr "V¹echny dopisy"
+msgstr "Alle berichten"
 
 msgid "Perform an action on <strong>all</strong> incoming messages."
-msgstr "Vykonej akci se <strong>v¹emi</strong> pøíchozími dopisy."
+msgstr "Voer een aktie uit voor <strong>alle</strong> inkomende berichten."
 
 msgid "Body Match"
-msgstr "Shoda v tìle"
+msgstr "Hoofdtekstconditie"
 
 msgid "Perform an action on messages depending on their content (body text)."
-msgstr "Vykonej akci s dopisem v závislosti na jeho obsahu (tìle)."
+msgstr "Voer een aktie uit op basis van de inhoud (hoofdtekst)."
 
 msgid "contains"
-msgstr "obsahuje"
+msgstr "bevat"
 
 msgid "does not contain"
-msgstr "neobsahuje"
+msgstr "bevat niet"
 
 msgid "is"
-msgstr "je"
+msgstr "is"
 
 msgid "is not"
-msgstr "není"
+msgstr "is niet"
 
 msgid "matches"
-msgstr "odpovídá"
+msgstr "overeenkomt met"
 
 msgid "wildcard"
-msgstr ""
+msgstr "jokerteken"
 
 msgid "does not match"
-msgstr "neodpovídá"
+msgstr "niet overeenkomt met"
 
 msgid "regexp"
-msgstr "regulární výraz"
+msgstr "regexp"
 
 msgid "is greater than"
-msgstr "je vìt¹í ne¾"
+msgstr "is groter dan"
 
 msgid "is greater or equal to"
-msgstr "je vìt¹í nebo rovno"
+msgstr "is groter of gelijk aan"
 
 msgid "is lower than"
-msgstr "je men¹í ne¾"
+msgstr "is kleiner dan"
 
 msgid "is lower or equal to"
-msgstr "je men¹í nebo rovno"
+msgstr "is kleiner of gelijk aan"
 
 msgid "is equal to"
-msgstr "je rovno"
+msgstr "is gelijk aan"
 
 msgid "is not equal to"
-msgstr "není rovno"
+msgstr "is ongelijk aan"
 
 msgid "verbose"
-msgstr "podrobný"
+msgstr "uitgebreid"
 
 msgid "terse"
-msgstr "struèný"
+msgstr "beknopt"
 
 msgid "Low"
-msgstr "Nízká"
+msgstr "Laag"
 
 msgid "Normal"
-msgstr "Normální"
+msgstr "Normaal"
 
 msgid "High"
-msgstr "Vysoká"
+msgstr "Hoog"
 
 msgid "Delete"
-msgstr "Smazat"
+msgstr "Verwijder"
 
 msgid "Edit"
-msgstr "Editovat"
+msgstr "Wijzig"
 
 msgid "Duplicate"
-msgstr "Duplikovat"
+msgstr "Kopieer"
 
 msgid "Move Up"
-msgstr "Pøesun nahoru"
+msgstr "Omhoog"
 
 msgid "Move to Top"
-msgstr "Pøesun na zaèátek"
+msgstr "Verplaats naar boven"
 
 msgid "Move Down"
-msgstr "Pøesun dolù"
+msgstr "Omlaag"
 
 msgid "Move to Bottom"
-msgstr "Pøesun na konec"
+msgstr "Verplaats naar beneden"
 
 msgid "Junk Folder"
-msgstr "Slo¾ka Nevy¾ádané dopisy"
+msgstr "Map Ongewenste e-mail"
 
 #, php-format
 msgid ""
 "Store SPAM message in your Junk Folder. Messages older than %s days will be "
 "deleted automatically."
 msgstr ""
-"Ulo¾ SPAM do slo¾ky Junk. Dopisy star¹í ne¾ %s budou automaticky mazány."
+"Verplaats SPAM-berichten naar uw map voor ongewenste e-mail. Berichten ouder "
+"dan %s dag(en) worden automatisch verwijderd."
 
 msgid "Note that you can set the number of days in Folder Preferences."
-msgstr "Poèet dní mù¾ete nastavit ve sekci Nastavení."
+msgstr "U kunt het aantal dagen opgeven in mapopties."
 
 msgid "Trash Folder"
-msgstr "Slo¾ka Trash"
+msgstr "Map Verwijderde Items"
 
 msgid ""
 "Store SPAM message in your Trash Folder. You will have to purge the folder "
 "yourself."
-msgstr "Ulo¾it SPAM do slo¾ky Trash. Slo¾ku budete muset èistit sami."
+msgstr ""
+"Verplaats SPAM-berichten naar uw map voor verwijderde items. U dient de map "
+"zelf te legen."
 
 msgid "Discard"
-msgstr "Zahodit"
+msgstr "Negeer"
 
 msgid ""
 "Discard SPAM message. You will get no indication that the message ever "
 "arrived."
-msgstr "Zahodit SPAM. Nedostanete ¾ádnou zprávu, ¾e dopis vùbec pøi¹el."
+msgstr ""
+"Negeer SPAM-bericht. U krijgt geen enkele indicatie dat een bericht is "
+"aangekomen."
 
 msgid "Server-Side Mail Filtering"
-msgstr "Filtrace po¹ty na stranì serveru"
+msgstr "Berichtfilters"
 
 msgid "Clear this Form"
-msgstr "Vyèistit tento formuláø"
+msgstr "Wis deze pagina"
 
 msgid "Start Over"
-msgstr "Zaèít znovu"
+msgstr "Opnieuw"
 
 msgid "Cancel"
-msgstr "Zru¹it"
+msgstr "Annuleer"
 
 msgid "Move back to step"
-msgstr "Zpìt na krok"
+msgstr "Ga terug naar stap"
 
 msgid "Finished"
-msgstr "Dokonèit"
+msgstr "Klaar"
 
 msgid "Move on to step"
-msgstr "Pokraèovat krokem"
+msgstr "Ga verder naar stap"
 
 msgid "What kind of rule would you like to add?"
-msgstr "Jaký druh pravidla chcete pøidat?"
+msgstr "Welk type regel wilt u toevoegen?"
 
 msgid " -- Please Select -- "
 msgstr ""
 
 #, fuzzy
 msgid "Change Type"
-msgstr "Typ pravidla"
+msgstr "Regeltype"
 
 msgid ""
 "The rule will trigger if the following addresses appear anywhere in the "
 "message's headers:"
 msgstr ""
-"Toto pravidlo bude aktivováno, kdy¾ se následující adresy vyskytnou kdekoli "
-"v hlavièce dopisu:"
+"Deze regel zal van toepassing zijn als de volgende adressen ergens in de "
+"berichtkop voorkomen."
 
 msgid "To: or Cc"
-msgstr ""
+msgstr "To: of CC"
 
 msgid "AND (Every item must match)"
-msgstr "A (ka¾dá polo¾ka musí souhlasit)"
+msgstr "EN (elke conditie moet waar zijn)"
 
 msgid "OR (Either item will match)"
-msgstr "NEBO (kterákoli polo¾ka bude souhlasit)"
+msgstr "OF (minstens één conditie moet waar zijn)"
 
 msgid "The condition for the following rules is:"
-msgstr "Podmínka pro následující pravidla je:"
+msgstr "De conditie voor elke volgende regel is:"
 
 msgid "The header "
-msgstr "Hlavièka "
+msgstr "Berichtkop "
 
 msgid "Less..."
-msgstr "Ménì..."
+msgstr "Minder..."
 
 msgid "This rule will trigger if message is"
-msgstr "Toto pravidlo bude aktivováno kdy¾ zpráva je"
+msgstr "Deze regel zal van toepassing zijn als het bericht "
 
 msgid "bigger"
-msgstr "vìt¹í"
+msgstr "groter"
 
 msgid "smaller"
-msgstr "man¹í"
+msgstr "kleiner"
 
 msgid "than"
-msgstr "ne¾"
+msgstr " is dan "
 
 msgid "KB (kilobytes)"
-msgstr "kB (kilobytù)"
+msgstr "KB (kilobytes)"
 
 msgid "MB (megabytes)"
-msgstr "MB (megabytù)"
+msgstr "MB (megabytes)"
 
 msgid ""
 "The following action will be applied to <strong>all</strong> incoming "
 "messages that do not match any of the previous rules."
 msgstr ""
-"Následující akce bude provedena se <strong>v¹emi</strong> dopisy,na které se "
-"nevztahovalo ¾ádné z pøedchozích pravidel."
+"De volgende aktie zal worden toegepast op <strong>alle</strong> inkomende "
+"berichten waarvoor geen enkele van de voorgaande condities opging."
 
 msgid ""
 "This rule will trigger upon the occurrence of one or more strings in the "
 "body of an e-mail message. "
 msgstr ""
-"Toto pravidlo bude aktivováno pøi výskytu jednoho nebo nìkolika textù v tìle "
-"dopisu."
+"Deze regel zal van toepassing zijn zodra één of meer woorden voorkomen in de "
+"hoofdtekst."
 
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr ""
-"Z následujících mo¾ností vyberte co se má udìlat pøi aktivaci pravidla:"
+"Kies uit één van de volgende mogelijkheden wat er moet gebeuren als deze "
+"regel geactiveerd wordt."
 
 msgid "Your new rule states:"
-msgstr "Va¹e nové pravidlo øíká:"
+msgstr "Uw nieuwe regel luidt:"
 
 msgid ""
 "If this is what you wanted, select Finished. You can also start over or "
 "cancel adding a rule altogether."
 msgstr ""
-"Je-li to to, co chcete, kliknìte na Dokonèit. Mù¾ete také zaèít znovu "
-"nebozcela zru¹it pøidávání pravidla."
+"Als dit is wat u wilde, kies dan Klaar. U kunt ook opnieuw beginnen of het "
+"toevoegen van een regel geheel annuleren."
 
 msgid "Apply Changes"
-msgstr "Pou¾ít zmìny"
+msgstr "Wijzigingen toepassen"
 
 msgid "Editing Mail Filtering Rule"
-msgstr "Editace filtrovacího pravidla"
+msgstr "Wijzigen Mail Filter Regel"
 
 #, fuzzy
 msgid "Create New Mail Filtering Rule"
-msgstr "Nyní platná filtrovací pravidla"
+msgstr "Huidige regels"
 
+#, fuzzy
 msgid "Error Encountered:"
-msgstr ""
+msgstr "Fout geconstateerd"
 
 msgid "Additional Actions"
-msgstr "Dal¹í akce"
+msgstr "Extra akties"
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
 "filters will always apply to your incoming mail, wherever you check your "
 "email."
 msgstr ""
-"Zde mù¾ete pøidávat nebo mazat filtrovací pravidla pro vá¹ po¹tovní úèet. "
-"Pravidla budou pou¾ita na va¹e pøicházející dopisy, nezávisle na tom, jak a "
-"odkud ètete po¹tu."
+"Hier kunt u filterregels voor uw e-mailaccount toevoegen of verwijderen. "
+"Deze regels zullen altijd op uw inkomende post toegepast worden, waar u uw e-"
+"mail ook leest."
 
 msgid ""
 "You don't have any rules yet. Feel free to add any with the button &quot;Add "
 "a New Rule&quot;. When you are done, please select &quot;Save Changes&quot; "
 "to get back to the main options screen."
 msgstr ""
-"Prozatím nemáte ¾ádná pravidla. Pravidlo mù¾ete pøidat tlaèítkem &quot;"
-"Pøidat nové pravidlo&quot;. A¾ skonèíte, aktivujte prosím &quot;Ulo¾it "
-"zmìny&quot; pro návrat do obrazovky Nastavení."
+"U heeft nog geen regels gedefinieerd. Voeg regels toe met de knop &quot;Voeg "
+"een nieuwe regel toe&quot;. Druk op &quot;Verstuur&quot; als u klaar bent om "
+"terug te keren naar de optiepagina."
 
 msgid ""
 "When you are done with editing, <strong>remember to select &quot;Save "
 "Changes&quot;</strong> to activate your changes!"
 msgstr ""
-"Jste-li s editací hotovi, <strong>nezapomeòte zvolit &quot;Ulo¾it zmìny&quot;"
-"</strong>, aby zmìny byly aktivovány!"
+"<strong>Kies &quot;Verstuur&quot;</strong> om uw wijzigingen te activeren!"
 
 msgid "The following table summarizes your current mail filtering rules."
-msgstr "Následující tabulka sumarizuje tvoje filtrovací pravidla."
+msgstr "De volgende tabel geeft een overzicht van uw huidige filterregels."
 
 msgid "No"
-msgstr "Ne"
+msgstr "Nr"
 
 msgid "Description of Rule"
-msgstr "Popis pravidla"
+msgstr "Omschrijving"
 
 msgid "Display as:"
-msgstr "Zobrazit jako:"
+msgstr "Toon:"
 
 msgid "Options"
-msgstr "Volby"
+msgstr "Opties"
 
 msgid "Successfully added new rule."
-msgstr "Nové pravidlo úspì¹nì pøidáno."
+msgstr "Nieuwe regel is toegevoegd."
 
 msgid "Successfully updated rule #"
-msgstr "Úspì¹nì upraveno pravidlo #"
+msgstr "Gewijzigde regel #"
 
 msgid "Successfully deleted rules #"
-msgstr "Úspì¹nì smazáno pravidel #"
+msgstr "Verwijderde regels #"
 
 msgid "Successfully deleted rule #"
-msgstr "Úspì¹nì smazáno pravidlo #"
+msgstr "Verwijderde regel #"
 
 msgid "Add a New Rule"
-msgstr "Pøidat nové pravidlo"
+msgstr "Voeg een nieuwe regel toe"
 
 msgid "Delete Selected"
-msgstr "Smazat oznaèené"
+msgstr "Verwijder selectie"
 
 msgid ""
 "When you are done, please click the button below to return to your webmail."
 msgstr ""
-"Jste-li hotovi, kliknìte na následující tlaèítko pro návrat do webmailu."
+"Als u klaar bent, druk dan op de onderstaande knop om terug te keren naar de "
+"optiepagina."
 
 msgid "Save Changes"
-msgstr "Ulo¾it zmìny"
+msgstr "Verstuur"
 
 msgid "Last modified:"
-msgstr "Naposledy zmìnìno:"
+msgstr "Laatst gewijzigd:"
 
 msgid "Created:"
-msgstr "Vytvoøeno:"
+msgstr "Gemaakt:"
 
 msgid "Close"
 msgstr ""
 
 msgid "Really delete this rule?"
-msgstr "Opravdu smazat toto pravidlo?"
+msgstr "Wilt u deze regel echt verwijderen?"
 
 msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Nepodaøilo se pøihlásit k démonu timsieved na IMAP serveru"
+msgstr "Kon niet inloggen op de timeseived daemon op de IMAP server"
 
 msgid "Unable to load script to server."
-msgstr "Nepodaøilo se ulo¾it skript na server."
+msgstr "Script kan niet naar de server verzonden worden."
 
 msgid "Server responded with:"
-msgstr "Odpovìï serveru:"
+msgstr "Server reageerde met:"
 
 msgid "Automatically"
 msgstr ""
@@ -509,122 +523,121 @@ msgstr ""
 
 #, fuzzy
 msgid "Create Filter"
-msgstr "Filtrovací pravidla"
+msgstr "Berichtfilters"
 
 msgid "Keep (Default action)"
-msgstr "Podr¾et (default)"
+msgstr "Bewaar (standaard aktie)"
 
 msgid "Discard Silently"
-msgstr "Ti¹e zahodit"
+msgstr "Negeer zwijgend"
 
 msgid "Reject, sending this excuse to the sender:"
-msgstr "Odmítnout, poslat odesílateli tuto omluvu:"
+msgstr "Weiger onder vermelding van de volgende reden."
 
 msgid "Please do not send me large attachments."
-msgstr "Prosím, neposílejte mi velké pøílohy."
+msgstr "Zend me alstublieft geen grote bijlagen."
 
 msgid "Redirect to the following email address:"
-msgstr "Pøesmìrovat na tuto emailovou adresu:"
+msgstr "Stuur door naar het volgende e-mailadres."
 
 msgid "someone@example.org"
-msgstr "kdosi@kdesi.cz"
+msgstr "someone@example.org"
 
 msgid "Keep a local copy as well."
-msgstr "Uschovat také lokální kopii."
+msgstr "Bewaar tevens een lokale kopie."
 
 msgid "Move message into"
-msgstr "Pøesunout dopis do"
+msgstr "Verplaats naar"
 
 msgid "the existing folder"
-msgstr "existující slo¾ky"
+msgstr "de bestaande map"
 
 msgid "a new folder, named"
-msgstr "nové slo¾ky pojmenované"
+msgstr "een nieuwe map, genaamd "
 
 msgid "created as a subfolder of"
-msgstr "vytvoøené jako podslo¾ka pod"
+msgstr "aangemaakt als een submap van "
 
 msgid "Vacation"
-msgstr "Dovolená"
+msgstr "Vakantie"
 
 msgid ""
 "This is an automated reply; I am away and will not be able to reply to you "
 "immediately."
 msgstr ""
-"Toto je automatická odpovìï. Jsem pryè a nebudu moci ihned odpovìdìt. This "
-"is an automated reply; I am away and will not be able to reply to you "
-"immediately."
+"Dit is een automatisch verzonden antwoord. Ik ben afwezig en niet in staat u "
+"direct te antwoorden."
 
 msgid "I will get back to you as soon as I return."
-msgstr "Ozvu se jakmile se vrátím."
+msgstr "Ik neem contact met u op zodra ik terug ben."
 
 msgid ""
 "The notice will be sent only once to each person that sends you mail, and "
 "will not be sent to a mailing list address."
 msgstr ""
-"Zpráva bude poslána pouze jedenkrát ka¾dému, kdo vám poslal maila nebude "
-"poslána do emailových konferencí."
+"De kennisgeving wordt uitsluitend verzonden aan personen die u post sturen "
+"en niet aan een verzendlijstadres."
 
 msgid "Addresses: Only reply if sent to these addresses:"
-msgstr "Adresy: Odpovídat pouze kdy¾ posláno na tyto adresy:"
+msgstr "Adressen: Alleen beantwoorden als naar deze adressen gezonden is:"
 
 msgid "Days: Reply message will be resent after"
-msgstr "Dny: Odpovìï bude znovu poslána po"
+msgstr "Dagen: Antwoord wordt opnieuw gestuurd na"
 
 msgid "days"
-msgstr "dnech"
+msgstr "dag(en)."
 
 msgid "Use the following message:"
-msgstr "Pou¾ij následující zprávu:"
+msgstr "Gebruik de volgende mededeling."
 
 msgid "Notify me, using the following method:"
-msgstr "Upozorni mne tímto zpùsobem:"
+msgstr "Breng me op de hoogte op de volgende manier."
 
 msgid "Mobile Phone Message (SMS)"
-msgstr "Zpráva na mobil (SMS)"
+msgstr "Mobiele telefoon (SMS)"
 
 msgid "Email notification"
-msgstr "Upozornìní emailem"
+msgstr "E-mailnotificatie"
 
 msgid "Notification via Zephyr"
-msgstr "Upozornìní pøes Zephyr"
+msgstr "Kennisgeving via Zephyr"
 
 msgid "Notification via ICQ"
-msgstr "Upozornìní via ICQ"
+msgstr "Kennisgeving via ICQ"
 
 msgid "Notification ID"
-msgstr "Identifikátor"
+msgstr "Kennisgevings-ID"
 
 msgid "Destination"
-msgstr "Cíl"
+msgstr "Bestemming"
 
 msgid "Message"
-msgstr "Zpráva"
+msgstr "Bericht:"
 
 msgid "Help: Valid variables are:"
-msgstr "Nápovìda: Správné promìnné jsou:"
+msgstr "Help: Geldige variabelen zijn:"
 
 msgid "Also keep copy in INBOX, marked as deleted."
-msgstr "Také schovej kopii v INBOXu, oznaèenou jako smazanou."
+msgstr "Laat ook een kopie achter in INBOX, gemarkeerd als verwijderd."
 
 #, fuzzy
 msgid "Disable this rule"
-msgstr "Opravdu smazat toto pravidlo?"
+msgstr "Wilt u deze regel echt verwijderen?"
 
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
 msgid "matches the regural expression"
-msgstr "odpovídá regulárnímu výrazu"
+msgstr "overeenkomt met uitdrukking (regex)"
 
 msgid "does not match the regural expression"
-msgstr "neodpovídá regulárnímu výrazu"
+msgstr "niet voldoet aan uitdrukking"
 
 msgid "exists"
-msgstr "existuje"
+msgstr "bestaat"
 
 msgid "does not exist"
-msgstr "neexistuje"
+msgstr "niet bestaat"
 
 msgid "This rule is currently <strong>DISABLED</strong>:"
 msgstr ""
@@ -633,114 +646,116 @@ msgid "DISABLED"
 msgstr ""
 
 msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "Pro <strong>V©ECHNY</strong> pøíchozí dopisy; "
+msgstr "Voor <strong>ALLE</strong> inkomende berichten; "
 
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
 "messages)"
 msgstr ""
-"V¹echny dopisy pokládané za <strong>SPAM</strong> (nevy¾ádané reklamní "
-"dopisy)"
+"Alle berichten die beschouwd worden als <strong>SPAM</strong> (ongewenste "
+"commerciële berichten)"
 
 msgid "unless"
-msgstr ""
+msgstr "tenzij"
 
 msgid "or"
-msgstr ""
+msgstr "of"
 
 msgid "matching the Spam List(s):"
-msgstr ""
+msgstr "voorkomt in de Spam-lijst(en):"
 
 #, php-format
 msgid "and with score greater than %s"
-msgstr "a se skóre vìt¹ím ne¾ %s"
+msgstr "en met een score groter dan %s"
 
 msgid "will be"
-msgstr "budou"
+msgstr "zal zijn"
 
 msgid "stored in the Junk Folder."
-msgstr "pøesunuty do slo¾ky Junk"
+msgstr "opgeslagen in de map Ongewenste e-mail"
 
 msgid "stored in the Trash Folder."
-msgstr "ulo¾eny do slo¾ky Trash"
+msgstr "opgeslagen in de map Verwijderde items"
 
 msgid "discarded."
-msgstr "zahozeny."
+msgstr "genegeerd."
 
 msgid "If"
-msgstr "Kdy¾"
+msgstr "Als"
 
 msgid "<em>any</em> of the following mail headers match: "
-msgstr "<em>kterákoli</em> z následujících hlavièek souhlasí: "
+msgstr ""
+"aan <em>minstens één</em> van de hierna genoemde berichtkopcondities voldaan "
+"wordt: "
 
 msgid "<em>all</em> of the following mail headers match: "
-msgstr "<em>ka¾dá</em> z následujících hlavièek souhlasí: "
+msgstr "aan <em>alle</em> hierna genoemde berichtkopcondities voldaan wordt: "
 
 msgid "the header"
-msgstr "hlavièka"
+msgstr "berichtkop"
 
 msgid "the size of the message is"
-msgstr "velikost dopisu je"
+msgstr "de grootte van het bericht"
 
 msgid " bigger"
-msgstr "vìt¹í"
+msgstr " groter"
 
 msgid " smaller"
-msgstr "men¹í"
+msgstr " kleiner"
 
 msgid "then"
-msgstr "pak"
+msgstr "dan"
 
 msgid "<em>keep</em> it."
-msgstr "<em>ponechej</em> jej."
+msgstr "bericht <em>bewaren</em>."
 
 msgid "<em>discard</em> it."
-msgstr "<em>zahoï</em> jej."
+msgstr "bericht <em>negeren</em>."
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
-msgstr "<em>odmítni</em> jej s touto omluvou odesílateli:"
+msgstr "bericht <em>weigeren</em> en zend deze reden terug naar de afzender:"
 
 msgid "<em>redirect</em> it to the email address"
-msgstr "<em>pøesmìruj</em> jej na emailovou adresu"
+msgstr "bericht <em>doorsturen</em> naar e-mailadres"
 
 msgid "<em>file</em> it into the folder <strong>"
-msgstr "<em>ulo¾</em> jej do slo¾ky <strong>"
+msgstr "bericht <em>opslaan</em> in de map <strong>"
 
 msgid "reply with this vacation message: "
-msgstr "odpovìz s touto prázdninovou zprávou:"
+msgstr "antwoord met deze vakantiemelding:"
 
 msgid "Also keep a local copy."
-msgstr "Také ponechej lokální kopii."
+msgstr "Bewaar ook een lokale kopie."
 
 msgid " Also keep a copy in INBOX, marked as deleted."
-msgstr "Také ponechej kopii v INBOXu, oznaèenou jako smazanou."
+msgstr " Laat ook een kopie, gemarkeerd als verwijderd, achter in INBOX."
 
 msgid " Also notify using the method"
-msgstr "Také mne upozorni metodou"
+msgstr " Geef ook een melding via de methode"
 
 msgid "with"
-msgstr "s"
+msgstr "met"
 
 msgid "priority and the message"
-msgstr "prioritou a zprávou"
+msgstr "als prioriteit en het bericht"
 
 msgid " Then <strong>STOP</strong> processing rules."
-msgstr " Pak <strong>STOP</strong> zpracování pravidel."
+msgstr " <strong>STOP</strong> vervolgens met verdere verwerking van regels."
 
 msgid "Test for Forged Header"
-msgstr ""
+msgstr "Controleer op vervalste berichtkop"
 
 msgid "You have not defined the name for the new folder."
-msgstr "Chybí jméno pro novou slo¾ku."
+msgstr "U heeft de naam van de nieuwe map niet opgegeven."
 
 msgid "Please try again."
-msgstr "Zkuste to znovu."
+msgstr "Probeer opnieuw."
 
 msgid "Illegal folder name.  Please select a different name"
-msgstr "Chybné jméno slo¾ky. Zkuste jiné jméno."
+msgstr "Onjuiste mapnaam. Kies een andere naam."
 
 msgid "None"
-msgstr "Nic"
+msgstr "Geen"
 
 #~ msgid "All your rules have been deleted"
-#~ msgstr "V¹echna va¹e pravidla byla smazána"
+#~ msgstr "Al uw regels zijn verwijderd"

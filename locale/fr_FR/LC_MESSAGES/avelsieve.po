@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-22 12:33+0200\n"
+"POT-Creation-Date: 2005-03-01 15:26+0200\n"
 "PO-Revision-Date: 2003-07-23 17:15+0200\n"
 "Last-Translator: Bachelier Vincent <vincent@solintech.fr>\n"
 "Language-Team: French <fr@solintech.fr>\n"
@@ -402,9 +402,6 @@ msgstr ""
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr "Choisissez ce que vous voulez faire quand cette r&egrave;gle s'active:"
 
-msgid "Additional Actions"
-msgstr "Actions supplémentaires"
-
 msgid "Your new rule states:"
 msgstr "Votre nouvelle r&egrave;gle dit:"
 
@@ -428,6 +425,9 @@ msgstr "R&egrave;gles de filtrage existantes"
 #, fuzzy
 msgid "Error Encountered:"
 msgstr "Erreur."
+
+msgid "Additional Actions"
+msgstr "Actions supplémentaires"
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
@@ -636,6 +636,13 @@ msgstr "Aide: Les valeurs valides sont:"
 msgid "Also keep copy in INBOX, marked as deleted."
 msgstr "Garder une copie marqué supprimé dans votre boîte de réception."
 
+#, fuzzy
+msgid "Disable this rule"
+msgstr "R&egrave;gle supprim&eacute;e #"
+
+msgid "The rule will have no effect for as long as it is disabled."
+msgstr ""
+
 msgid "matches the regural expression"
 msgstr "correspond à l'expression régulière"
 
@@ -648,6 +655,12 @@ msgstr "contient"
 #, fuzzy
 msgid "does not exist"
 msgstr "ne contient pas"
+
+msgid "This rule is currently <strong>DISABLED</strong>:"
+msgstr ""
+
+msgid "DISABLED"
+msgstr ""
 
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "Pour <strong>TOUS</strong> les messages entrants, "

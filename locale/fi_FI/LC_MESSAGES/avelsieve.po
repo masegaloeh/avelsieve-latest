@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-22 12:33+0200\n"
+"POT-Creation-Date: 2005-03-01 15:26+0200\n"
 "PO-Revision-Date: 2004-05-14 12:00+0200\n"
 "Last-Translator: Veli Pirttila <titus@iki.fi>\n"
 "Language-Team: finnish <fi@li.org>\n"
@@ -383,9 +383,6 @@ msgstr ""
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr "Valitse seuraavista mitä tehdä kun tämä sääntö käynnistyy:"
 
-msgid "Additional Actions"
-msgstr "Lisätoiminnot"
-
 msgid "Your new rule states:"
 msgstr "Uusi sääntösi:"
 
@@ -409,6 +406,9 @@ msgstr "Nykyiset suodinsäännöt"
 #, fuzzy
 msgid "Error Encountered:"
 msgstr "Virhe"
+
+msgid "Additional Actions"
+msgstr "Lisätoiminnot"
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
@@ -612,6 +612,13 @@ msgstr "Apua: Sallitut muuttujat ovat:"
 msgid "Also keep copy in INBOX, marked as deleted."
 msgstr "Pidä myös kopio sisääntulevissa ja merkkaa tuhotuksi"
 
+#, fuzzy
+msgid "Disable this rule"
+msgstr "Poistetaanko tämä sääntö oikeasti?"
+
+msgid "The rule will have no effect for as long as it is disabled."
+msgstr ""
+
 msgid "matches the regural expression"
 msgstr "sisältää rexepin"
 
@@ -623,6 +630,12 @@ msgstr "on olemassa"
 
 msgid "does not exist"
 msgstr "ei ole olemassa"
+
+msgid "This rule is currently <strong>DISABLED</strong>:"
+msgstr ""
+
+msgid "DISABLED"
+msgstr ""
 
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "<strong>Kaikille</strong> sisääntuleville viesteille; "

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-22 12:33+0200\n"
+"POT-Creation-Date: 2005-03-01 15:26+0200\n"
 "PO-Revision-Date: 2003-12-29 23:00+0100\n"
 "Last-Translator: Alessandro Dalvit <adalvit@katamail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -388,9 +388,6 @@ msgstr ""
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr "Scegli cosa fare quando la regola scatta, da una delle seguenti:"
 
-msgid "Additional Actions"
-msgstr "Azioni Aggiuntive"
-
 msgid "Your new rule states:"
 msgstr "La tua nuova regola afferma:"
 
@@ -415,6 +412,9 @@ msgstr "Regole Filtraggio Mail Attuali"
 #, fuzzy
 msgid "Error Encountered:"
 msgstr "Errori Verificatisi"
+
+msgid "Additional Actions"
+msgstr "Azioni Aggiuntive"
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
@@ -619,6 +619,13 @@ msgstr "Aiuto: Le variabili valide sono:"
 msgid "Also keep copy in INBOX, marked as deleted."
 msgstr "Tieni anche una copia in INBOX, marcata come eliminata."
 
+#, fuzzy
+msgid "Disable this rule"
+msgstr "Eliminata con successo la regola #"
+
+msgid "The rule will have no effect for as long as it is disabled."
+msgstr ""
+
 msgid "matches the regural expression"
 msgstr "corrisponde all'espressione regolare"
 
@@ -630,6 +637,12 @@ msgstr "esiste"
 
 msgid "does not exist"
 msgstr "non esiste"
+
+msgid "This rule is currently <strong>DISABLED</strong>:"
+msgstr ""
+
+msgid "DISABLED"
+msgstr ""
 
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "Per <strong>TUTTI</strong> i messaggi in arrivo; "
