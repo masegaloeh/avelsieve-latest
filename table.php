@@ -11,7 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table.php,v 1.2 2003/10/07 13:24:52 avel Exp $
+ * $Id: table.php,v 1.3 2003/10/09 11:25:37 avel Exp $
  */
 
 /* table.php: main routine that shows a table of all the rules and allows
@@ -178,8 +178,13 @@ if($logout) {
 	exit;
 
 } elseif (isset($_POST['add'])) {
-	/* code to start wizard to add a new script */
+	/* code to start wizard to add a new rule */
 	header("Location: $location/addrule.php");
+	exit;
+
+} elseif (isset($_POST['addspamrule'])) {
+	/* code to start wizard to add a new spam rule */
+	header("Location: $location/addspamrule.php");
 	exit;
 }
 

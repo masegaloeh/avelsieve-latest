@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table_html.php,v 1.2 2003/10/07 13:24:52 avel Exp $
+ * $Id: table_html.php,v 1.3 2003/10/09 11:25:37 avel Exp $
  */
 
 /* HTML Functions for main GUI - table.php */
@@ -223,10 +223,39 @@ function print_buttons_new () {
 }
 
 function print_addnewrulebutton() {
+	global $spamrule_enable;
 
 	print '<form action="addrule.php" method="POST">';
-	print '<input name="add" value="' . _("Add a New Rule") . '" type="submit" /> </form>';
 
+	/* Following code is alternative, if you only like the user to have
+	 * only one spamrule per script */
+
+	/*
+	global $rules;
+	if($spamrule_enable == true) {
+		$spamrule_exists = false;
+		if (isset($rules)) {
+			foreach($rules as $no=>$rl) {
+				if($rl['type'] == 10) {
+					$spamrule_exists = true;
+				}
+			}
+		}
+
+		if ($spamrule_exists == false) {
+			print '<input name="addspamrule" value="' . _("Add SPAM Rule") . '" type="submit" />';
+		}
+	}
+	*/
+	
+	/* Link to add Spam rule */
+	if($spamrule_enable == true) {
+		print '<input name="addspamrule" value="' . _("Add SPAM Rule") . '" type="submit" />';
+	}
+
+	print '<input name="add" value="' . _("Add a New Rule") . '" type="submit" />';
+
+	print '</form>';
 }
 
 function print_footer() {

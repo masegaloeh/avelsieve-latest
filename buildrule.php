@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: buildrule.php,v 1.2 2003/10/07 13:24:52 avel Exp $
+ * $Id: buildrule.php,v 1.3 2003/10/09 11:25:37 avel Exp $
  */
 
 /**
@@ -23,29 +23,25 @@
  * AVELSIEVE_CREATED
  * AVELSIEVE_MODIFIED
  * AVELSIEVE_COMMENT
+ * AVELSIEVE_VERSION
  * 
- * key		values		comments
- * ---		------		--------
- * type		1, 2, 3, 4	ruletype
+ * Condition
  *
- * Type:
- *
- * 1) // Address Match
- * Not implemented yet.
- *
- * 2) // Header Match
- * header[$n]
- * matchtype[$n]	"is" | "contains" | "matches" | "lt" | "regex" | ...
- * headermatch[$n]	string
- * condition	undefined | "or" | "and"
- *
- * 3) // Size match
- * sizerel		"bigger" | "smaller"
- * sizeamount	int
- * sizeunit	"kb" | "mb"
- *
- * 4) // Always
- * n/a
+ * 1											// Address Match
+ * 1											// Not implemented yet.
+ * 2	header[$n]									// Header Match
+ * 2	matchtype[$n]		"is" | "contains" | "matches" | "lt" | "regex" | ...
+ * 2	headermatch[$n]		string
+ * 2	condition		undefined | "or" | "and"
+ * 3	sizerel			"bigger" | "smaller"					// Size match
+ * 3	sizeamount		int
+ * 3	sizeunit		"kb" | "mb"
+ * 4											// Always
+ * 10	score			int							// Spam Rule
+ * 10	tests			array
+ * 10	action			'trash' | 'junk' | 'discard'
+X-Spam-Score: 80
+X-Spam-Tests: Open.Relay.DataBase;Spamhaus.Block.List;
  *
  * 
  * Action
@@ -77,9 +73,15 @@
  * 
  * -) // All
  *
- * keepdeleted	boolean		valid for all
- * stop		boolean		valid for all
- * notify	array		valid for all
+ * keepdeleted	boolean
+ * stop		boolean
+ * notify	array
+ *		'method' => string
+ *		'id' => string
+ *		'options' => array( [0]=> foo, [1] => bar )
+ *		'priority' => low|normal|high
+ *		'message' => string
+ *
  *
  */ 
 
@@ -111,6 +113,93 @@ $terse = '<table width="100%" border="0" cellspacing="2" cellpadding="2"><tr><td
 if($rule['type']=="4") {
  	$text = _("For <strong>ALL</strong> incoming messages; ");
 	$terse .= "ALL";
+
+} elseif($rule['type'] == "10") {
+	/* SpamRule */
+
+	global $spamrule_score_default, $spamrule_score_header,
+	$spamrule_tests, $spamrule_tests_header, $spamrule_action_default;
+	
+	$spamrule_advanced = false;
+
+	if(isset($rule['advanced'])) {
+		$spamrule_advanced = true;
+	}
+
+	if(isset($rule['score'])) {
+		$sc = $rule['score'];
+	} else {
+		$sc = $spamrule_score_default;
+	}
+	
+	if(isset($rule['tests'])) {
+		$te = $rule['tests'];
+	} else {
+		$te = array_keys($spamrule_tests);
+	}
+
+	if(isset($rule['action'])) {
+		$ac = $rule['action'];
+	} else {
+		$ac = $spamrule_action_default;
+	}
+
+	/*
+	if allof( header :contains "X-Spam-Rule" "Open.Relay.Database" ,
+		  header :contains "X-Spam-Rule" "Spamhaus.Block.List" ,
+		  header :value "gt" :comparator "i;ascii-numeric" "80" ) {
+		
+		fileinto "INBOX.Junk";
+		discard;
+	}
+	*/
+	
+	$out .= 'allof( ';
+	$text = _("All messages considered as <strong>SPAM</strong> (unsolicited commercial messages)");
+	$terse .= "SPAM";
+	
+	for($i=0; $i<sizeof($te); $i++ ) {
+		$out .= 'header :contains "'.$spamrule_tests_header.'" "'.$te[$i].'",';
+		$out .= "\n";
+	}
+
+	$out .= ' header :value "gt" :comparator "i;ascii-numeric" "'.$spamrule_score_header.'" "'.$sc.'" ) { ';
+	$out .= "\n";
+	
+	
+	$text .= ', ';
+	if($spamrule_advanced == true) {
+		$text .= _("matching the Spam List(s):");
+
+		for($i=0; $i<sizeof($te); $i++) {
+			$text .= $spamrule_tests[$te[$i]].', ';
+		}
+		$text .= sprintf( _("and with score greater than %s") , $sc );
+	}
+
+	$text .= _("will be") . ' ';
+	$terse .= '</td><td align="right">';
+
+	if($ac == 'junk') {
+		$text .= _("stored in the Junk Folder");
+		$out .= 'fileinto "INBOX.Junk";';
+		$terse .= 'JUNK';
+
+	} elseif($ac == 'discard') {
+		$text .= _("discarded");
+		$out .= 'discard;';
+		$terse .= 'DISCARD';
+	}
+
+	/*
+	print "DEBUG: <pre>";
+	print $text;
+	print $terse;
+	print $out;
+	print_r($rule);
+	print "</pre>";
+	*/
+
 } else {
 	$text = "<strong>"._("If")."</strong> ";
 } 
@@ -317,10 +406,10 @@ case "4":	/* always */
 
 /* step two: make the then clause */
 
-$out .= "{\n";
-$terse .= '</td><td align="right">';
 
-if($rule['type']!="4") {
+if( $rule['type'] != "4" && $rule['type']!=10 ) {
+	$out .= "{\n";
+	$terse .= '</td><td align="right">';
 	$text .= "<strong>";
 	$text .= _("then");
 	$text .= "</strong> ";
@@ -381,16 +470,13 @@ case "6":      /* vacation message */
 
  	$out .= 'vacation :days '.$rule['vac_days'].' :addresses ["'.$addresses.
 	'"] '." text:\n".$rule['vac_message']."\r\n.\r\n;";
-
-	/* FIXME: vac_message should be UTF-8 */
-	/* Perhaps fix that as a a whole, while uploading the script. */
-
  	/* Used to be: '"] "'.$rule['vac_message'].'";'; */
+
  	$text .= _("reply with this vacation message: ") . htmlspecialchars($rule['vac_message']);
 	$terse .= "VACATION";
  	break;
 default:
-	return false;
+	// return false;
 	break;
 }
 
@@ -407,13 +493,6 @@ if (isset($rule['stop'])) {
 }
 
 /* Notify extension:
-
-'method' => string
-'id' => string
-'options' => array( [0]=> foo, [1] => bar )
-'priority' => low|normal|high
-'message' => string
-
 
 notify :method "mailto"
 :options "koula@intra.com"
