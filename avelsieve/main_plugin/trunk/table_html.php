@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table_html.php,v 1.4 2003/10/13 16:34:16 avel Exp $
+ * $Id: table_html.php,v 1.5 2003/10/19 09:32:36 avel Exp $
  */
 
 /* HTML Functions for main GUI - table.php */
@@ -254,7 +254,7 @@ function print_addnewrulebutton() {
 	}
 
 	print '<form action="addrule.php" method="POST">';
-	print '<input name="add" value="' . _("Add a New Rule") . '" type="submit" />';
+	print '<input name="addrule" value="' . _("Add a New Rule") . '" type="submit" />';
 	print '</form>';
 	
 	if($spamrule_enable == true) {
