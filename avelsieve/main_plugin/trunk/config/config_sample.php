@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: config_sample.php,v 1.2 2004/11/22 12:40:53 avel Exp $
+ * @version $Id: config_sample.php,v 1.3 2004/11/22 12:48:12 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -68,6 +68,10 @@ $cyrusadmins_map = array(
 /* =============== Avelsieve Interface / Behavior Setup  ================== */
 /* ======================================================================== */
 
+/* Be conservative to our updates on the SIEVE server? If true, a button
+ * entitled "Save Changes" will appear, which will give the user the
+ * functionality to register her changes. 'false' is recommended. */
+$conservative = false;
 
 /* Use images for the move up / down, delete rule buttons and STOP? */
 
