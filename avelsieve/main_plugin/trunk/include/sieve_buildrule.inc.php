@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.2 2004/11/10 09:35:28 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.3 2004/11/12 13:31:08 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -520,9 +520,14 @@ function makesinglerule($rule, $type="rule") {
 		$out .= "keep;\n";
 	}
 	
+	/* Fallback to default action */
+	if(!isset($rule['action'])) {
+		$rule['action'] = 1;
+	}
 	
 	switch ($rule['action']) {
 	case "1":	/* keep (default) */
+	default:
 		$out .= "keep;";
 		$text .= _("<em>keep</em> it.");
 		$terse .= "KEEP";
