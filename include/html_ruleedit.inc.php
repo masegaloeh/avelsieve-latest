@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.12 2004/11/15 16:35:54 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.13 2004/11/18 11:06:25 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -51,13 +51,14 @@ class avelsieve_html_edit extends avelsieve_html {
 	 * @param boolean $popup
 	 * @return void
 	 */
-	function avelsieve_html_edit($mode = 'edit', $rule = array(), $popup = false) {
+	function avelsieve_html_edit($mode = 'edit', $rule = array(), $popup = false, $errmsg = '') {
 		$this->rule = $rule;
 		if(!isset($this->rule['type'])) {
 			$this->rule['type'] = 0;
 		}
 		$this->mode = $mode;
 		$this->popup = $popup;
+		$this->errmsg = $errmsg;
 	}
 
 	/**
@@ -490,7 +491,7 @@ class avelsieve_html_edit extends avelsieve_html {
 	 * @param int $edit Number of rule that editing is based on.
 	 */
 	function edit_rule($edit = false) {
-		global $PHP_SELF;
+		global $PHP_SELF, $color;
 
 		if($this->mode == 'edit') {
 			/* 'edit' */
@@ -503,6 +504,13 @@ class avelsieve_html_edit extends avelsieve_html {
 			$out = $this->table_header( _("Create New Mail Filtering Rule") ).
 			$this->all_sections_start().
 			'<form name="addrule" action="'.$PHP_SELF.'" method="POST">';
+		}
+		/* ---------- Error (or other) Message, if it exists -------- */
+		if(!empty($this->errmsg)) {
+			$out .= $this->section_start( _("Error Encountered:") ).
+				'<div style="text-align:center; color:'.$color[2].';">'.
+				$this->errmsg .'</div>' .
+				$this->section_end();
 		}
 		
 		/* --------------------- 'if' ----------------------- */

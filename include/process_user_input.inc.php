@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: process_user_input.inc.php,v 1.6 2004/11/15 18:03:58 avel Exp $
+ * @version $Id: process_user_input.inc.php,v 1.7 2004/11/18 11:06:25 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -126,9 +126,9 @@ function process_input($search = SQ_POST, $errmsg = '') {
 
 	/* Special hack for newly-created folder */
 	if(isset($rule['folder'])) {
-		global $created_folder_name;
-		if(isset($created_folder_name) && $created_folder_name) {
-			$rule['folder'] = $created_folder_name;
+		global $created_mailbox_name;
+		if(isset($created_mailbox_name) && $created_mailbox_name) {
+			$rule['folder'] = $created_mailbox_name;
 		}
 	}
 	

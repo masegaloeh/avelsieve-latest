@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.15 2004/11/15 18:03:42 avel Exp $
+ * @version $Id: edit.php,v 1.16 2004/11/18 11:06:25 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -134,6 +134,13 @@ if(isset($popup)) {
 	$popup = '';
 }
 
+/**
+ * Create new mailbox, if required by the user.
+ */
+if($newfoldername) {
+	$created_mailbox_name = '';
+	avelsieve_create_folder($newfoldername, $newfolderparent, &$created_mailbox_name, &$errmsg);
+}
 
 if(isset($edit)) {
 	/* Editing an existing rule */
@@ -145,13 +152,6 @@ if(isset($edit)) {
 } else {
 	/* Adding a new rule from scratch */
 	$rule = array();
-}
-
-if($newfoldername) {
-	$created_mailbox_name = '';
-	print "avelsieve_create_folder($newfoldername, $newfolderparent, $created_mailbox_name, &$errmsg)";
-	avelsieve_create_folder($newfoldername, $newfolderparent, $created_mailbox_name, &$errmsg);
-	print $created_mailbox_name;
 }
 
 if(isset($type_post)) {
@@ -292,10 +292,6 @@ if(isset($popup)) {
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
-if(isset($errmsg) && $errmsg) {
-	echo '<p>'. _("Error Encountered:") . $errmsg .'</p>' ;
-}
-
 require_once (SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
 
 if(isset($dup)) {
@@ -306,7 +302,10 @@ if(isset($dup)) {
 	$mode = 'edit';
 }
 
-$ht = new avelsieve_html_edit($mode, $rule, $popup);
+if(isset($errmsg) && $errmsg) {
+}
+
+$ht = new avelsieve_html_edit($mode, $rule, $popup, $errmsg);
 
 if(isset($edit)) {
 	echo $ht->edit_rule($edit);
