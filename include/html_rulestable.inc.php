@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.7 2004/12/21 13:18:37 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.8 2005/02/28 15:53:24 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -305,9 +305,9 @@ class avelsieve_html_rules extends avelsieve_html {
 				$out .=' bgcolor="'.$color[12].'"';
 			}
 			$out .= "><td>".($i+1)."</td><td>".
-				'<input type="checkbox" name="selectedrules[]" value="'.$i.'" /></td><td>'.
-				makesinglerule($this->rules[$i], $this->mode).
-				'</td><td style="white-space: nowrap"><p>';
+				'<input type="checkbox" name="selectedrules[]" value="'.$i.'" /></td><td>';
+			$out .= makesinglerule($this->rules[$i], $this->mode);
+			$out .= '</td><td style="white-space: nowrap"><p>';
 		
 			/* $out .='</td><td><input type="checkbox" name="rm'.$i.'" value="1" /></td></tr>'; */
 			
