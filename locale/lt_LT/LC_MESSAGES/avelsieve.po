@@ -3,13 +3,13 @@
 # Copyright (C) 2003 Alexandros Vellis
 # This file is distributed under the same license as the PACKAGE package.
 # Tomas Kuliavas <tokul@users.sourceforge.net>, 2003.
-# $Id: avelsieve.po,v 1.5 2004/04/20 15:28:45 avel Exp $
+# $Id: avelsieve.po,v 1.6 2004/05/17 14:36:18 avel Exp $
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: (avelsieve 0.9.7)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-01 20:12+0300\n"
+"POT-Creation-Date: 2004-05-17 17:20+0300\n"
 "PO-Revision-Date: 2003-10-09 19:56+0200\n"
 "Last-Translator: Tomas Kuliavas <tokul@users.sourceforge.net>\n"
 "Language-Team: SquirrelMail I18N Team <squirrelmail-i18n@lists.sourceforge."
