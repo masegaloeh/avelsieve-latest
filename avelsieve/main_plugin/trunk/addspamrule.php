@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: addspamrule.php,v 1.12 2004/12/20 15:20:05 avel Exp $
+ * @version $Id: addspamrule.php,v 1.13 2004/12/20 15:58:44 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -148,6 +148,8 @@ if(isset($_POST['stop']))  {
 	$stop = 1;
 } elseif (isset($edit) && isset($rule['stop']) && !isset($_POST['apply'])) {
 	$stop = $rule['stop'];
+} else {
+	$stop = 1;
 }
 
 /* Other stuff */
