@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: addspamrule.php,v 1.11 2004/12/20 14:58:25 avel Exp $
+ * @version $Id: addspamrule.php,v 1.12 2004/12/20 15:20:05 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -108,19 +108,28 @@ if(isset($_POST['score'])) {
 	$score = $spamrule_score_default;
 }
 
+/* Whitelist number of items to display */
+if(isset($_POST['whitelistitems'])) {
+	$whitelistitems = $_POST['whitelistitems'];
+} elseif (isset($edit) && isset($rule['whitelist'])) {
+	$whitelistitems = sizeof($rule['whitelist']) + 1;
+} else {
+	$whitelistitems = $startitems;
+}
+if(isset($_POST['whitelist_add'])) {
+	$whitelistitems++;
+}
+
+/* The actual whitelist */
 if(isset($_POST['whitelist_add']) || isset($_POST['whitelistvalue'])) {
 	$j=0;
-	for($i=0, $size=sizeof($_POST['whitelistvalue']); $i<$size; $i++) {
-		$whitelist[$j]['header'] = $_POST['header'][$i];
-		$whitelist[$j]['headermatch'] = $_POST['whitelistvalue'][$i];
-		$whitelist[$j]['matchtype'] = $_POST['whitelistmatch'][$i];
-		if(empty($whitelist[$j]['headermatch'])) {
-			unset($whitelist[$j]);
+	for($i=0; $i< $whitelistitems; $i++) {
+		if(isset($_POST['whitelistvalue'][$i]) && !empty($_POST['whitelistvalue'][$i])) {
+			$whitelist[$j]['header'] = $_POST['header'][$i];
+			$whitelist[$j]['headermatch'] = $_POST['whitelistvalue'][$i];
+			$whitelist[$j]['matchtype'] = $_POST['whitelistmatch'][$i];
+			$j++;
 		}
-		$j++;
-	}
-	if(isset($whitelist) && sizeof($whitelist) > 0 ) {
-		$whitelist = array_values($whitelist);
 	}
 } elseif (isset($edit) && isset($rule['whitelist'])) {
 	$whitelist = $rule['whitelist'];
@@ -288,21 +297,21 @@ if(!$spamrule_advanced) {
 		'<p>'. _("Messages that match any of these header rules will never end up in Junk Folders or regarded as SPAM.") . '</p>';
 
 	print '<p>';
-	$i=0;
-	if(isset($whitelist) && sizeof($whitelist)>0 ){
-		for($i=0; $i<sizeof($whitelist); $i++) {
-			echo avelsieve_html_edit::header_listbox($whitelist[$i]['header'], $i);
-			echo avelsieve_html_edit::matchtype_listbox($whitelist[$i]['matchtype'], $i, 'whitelistmatch');
-			echo '<input name="whitelistvalue['.$i.']" value="'.$whitelist[$i]['headermatch'].'" size="18" />'.
-				'<br/>';
-		}
+	echo '<input type="hidden" name="whitelistitems" value="'.$whitelistitems.'" />';
+	for($i=0; $i<$whitelistitems; $i++) {
+		echo avelsieve_html_edit::header_listbox(
+			isset($whitelist[$i]['header']) ? $whitelist[$i]['header'] : 'From' , $i
+		);
+		echo avelsieve_html_edit::matchtype_listbox(
+			isset($whitelist[$i]['matchtype']) ?  $whitelist[$i]['matchtype'] : '' , $i, 'whitelistmatch'
+		);
+		echo '<input name="whitelistvalue['.$i.']" value="'.
+			( isset($whitelist[$i]['headermatch']) ? $whitelist[$i]['headermatch'] : '' ) .
+			'" size="18" />'.
+			'<br/>';
 	}
-	echo avelsieve_html_edit::header_listbox('From', $i).
-		avelsieve_html_edit::matchtype_listbox('', $i, 'whitelistmatch').
-		'<input name="whitelistvalue['.$i.']" value="" size="18" />'.
-		'<br/>'.
+	echo '<br/>'.
 		'<input type="submit" name="whitelist_add" value="'._("More...").'"/>'.
-
 		'</p><br />';
 
 	/**
