@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.10 2004/11/12 13:30:45 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.11 2004/11/15 13:07:23 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -17,6 +17,7 @@ include_once(SM_PATH . 'plugins/avelsieve/include/html_main.inc.php');
 
 /**
  * HTML Output functions for rule editing / adding
+ * @todo eliminate notices for empty ruleset (adding new rule)
  */
 class avelsieve_html_edit extends avelsieve_html {
 
@@ -145,6 +146,10 @@ class avelsieve_html_edit extends avelsieve_html {
 		}
 		sort($active_types);
 
+		if(!isset($this->rule['type']) && $select == 'select') {
+			$out .= '<option value="">'. _(" -- Please Select -- ") .'</option>';
+		}
+
 		for($i=0; $i<sizeof($active_types); $i++) {
 			$k = $active_types[$i];
 			if($select == 'radio') {
@@ -165,7 +170,7 @@ class avelsieve_html_edit extends avelsieve_html {
 			}
 		}
 		if($select == 'select') {
-				$out .= '</select>';
+				$out .= '</select><br/>';
 		}
 		return $out;
 		/* ??
@@ -306,7 +311,7 @@ class avelsieve_html_edit extends avelsieve_html {
 			$out .= $this->condition_listbox($condition);
 		}
 		
-		$out .= '<br /><ul>';
+		$out .= '<ul>';
 		
 		for ( $n=0; $n< $items; $n++) {
 		
@@ -328,7 +333,7 @@ class avelsieve_html_edit extends avelsieve_html {
 			if(isset($headermatch[$n])) {
 				$out .= htmlspecialchars($headermatch[$n]);
 			}
-			$out .= '" /></li><br />';
+			$out .= '" /></li>';
 		
 		} /* End for loop */
 		
@@ -369,7 +374,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		if($sizerel == "bigger") $out .= ' selected=""';
 		$out .= '>'. _("bigger") . '</option>'.
 			'<option value="smaller" name="sizerel"';
-		if($this->rule['sizerel'] == 'smaller') $out .= ' selected=""';
+		if($sizerel == 'smaller') $out .= ' selected=""';
 		$out .= '>'. _("smaller") . '</option>'.
 			'</select>' .
 			_("than") . 
@@ -381,7 +386,7 @@ class avelsieve_html_edit extends avelsieve_html {
 			'<option value="mb" name="sizeunit"';
 		if($sizeunit == "mb") $out .= ' selected=""';
 		$out .= '">'. _("MB (megabytes)") . '</option>'.
-			'</select></p>';
+			'</select></p><br/>';
 		return $out;
 	}
 		
