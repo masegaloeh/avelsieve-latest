@@ -9,7 +9,7 @@
  * This file contains functions for the per-message commands that appear while
  * viewing a message.
  *
- * @version $Id: message_commands.inc.php,v 1.3 2004/11/12 11:28:23 avel Exp $
+ * @version $Id: message_commands.inc.php,v 1.4 2004/11/12 11:57:45 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -33,15 +33,15 @@ function avelsieve_commands_menu_do() {
 			'desc' => _("Automatically")
 		),
     	'sender' => array(
-			'algorithm' => 'header',
+			'algorithm' => 'address',
 			'desc' => _("Sender")
 		),
     	'from' => array(
-			'algorithm' => 'header',
+			'algorithm' => 'address',
 			'desc' => _("From")
 		),
     	'to' => array(
-			'algorithm' => 'header',
+			'algorithm' => 'address',
 			'desc' => _("To")
 		),
     	'subject' => array(
@@ -69,7 +69,7 @@ function avelsieve_commands_menu_do() {
     foreach($filtercmds as $c => $i) {
     	$url = '../plugins/avelsieve/edit.php?addnew=1&amp;type=2';
 		switch($i['algorithm']) {
-		case 'header':
+		case 'address':
 			if(isset($hdr->$c) && !empty($hdr->$c)) {
 				if(is_array($hdr->$c)) {
 					for($j=0; $j<sizeof($hdr->$c); $j++) {
@@ -87,6 +87,16 @@ function avelsieve_commands_menu_do() {
 				unset($url);
 			}
 			break;
+
+		case 'header':
+			if(isset($hdr->$c) && !empty($hdr->$c)) {
+				$j=0;
+				$url .= '&amp;header['.$j.']='.ucfirst($c);
+				$url .= '&amp;matchtype['.$j.']=contains';
+				$url .= '&amp;headermatch['.$j.']='.rawurlencode($hdr->$c);
+			}
+			break;
+
 		case 'auto':
 			if(isset($hdr->mlist['id']) && isset($hdr->mlist['id']['href'])) {
 				/* List-Id: (href) */
@@ -130,36 +140,27 @@ function avelsieve_commands_menu_do() {
 				
 			
 			break;
-	}
-	if(isset($url)) {
-	   	if ($compose_new_win == '1') {
-			$url .= '&amp;popup=1';
 		}
-    	if ($compose_new_win == '1') {
-	       	$output[] = "<a href=\"javascript:void(0)\" onclick=\"comp_in_new('$url')\">".$i['desc'].'</a>';
-		} else {
-       		$output[] = '<a href="'.$url.'">'.$i['desc'].'</a>';
-	   	}
-	}
-	unset($url);
+		if(isset($url)) {
+			if(!$compose_new_win) {
+				/* For non-popup page we need this to come back here. */
+				$url .= '&amp;passed_id='.$passed_id.'&amp;mailbox='.urlencode($mailbox).
+					(isset($passed_ent_id)?'&amp;passed_ent_id='.$passed_ent_id:'');
+			}
+			
+	   		if ($compose_new_win == '1') {
+				$url .= '&amp;popup=1';
+			}
+    		if ($compose_new_win == '1') {
+	       		$output[] = "<a href=\"javascript:void(0)\" onclick=\"comp_in_new('$url')\">".$i['desc'].'</a>';
+			} else {
+       			$output[] = '<a href="'.$url.'">'.$i['desc'].'</a>';
+	   		}
+		}
+		unset($url);
     }
 
-/*
-
-            if ($cmd == 'post') {
-	        $url .= '&amp;passed_id='.$passed_id.
-		        '&amp;mailbox='.urlencode($mailbox).
-		        (isset($passed_ent_id)?'&amp;passed_ent_id='.$passed_ent_id:'');
-                $url .= '&amp;smaction=reply';
-                if ($compose_new_win == '1') {
-                    $output[] = "<a href=\"javascript:void(0)\" onclick=\"comp_in_new('$url')\">" . $fieldsdescr['reply'] . '</a>';
-                } else {
-                    $output[] = '<a href="' . $url . '">' . $fieldsdescr['reply'] . '</a>';
-                }
-            }
-    }
-    */
-
+          
     if (count($output) > 0) {
         echo '<tr>';
         echo html_tag('td', '<b>' . _("Create Filter") . ':&nbsp;&nbsp;</b>',
