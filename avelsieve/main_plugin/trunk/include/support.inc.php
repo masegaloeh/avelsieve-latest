@@ -9,7 +9,7 @@
  * Various support functions, useful or useless.  NB. THEY MUST NOT DEPEND
  * ELSEWHERE.
  *
- * @version $Id: support.inc.php,v 1.6 2004/11/12 11:28:04 avel Exp $
+ * @version $Id: support.inc.php,v 1.7 2004/11/15 13:08:57 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -63,12 +63,12 @@ function print_errormsg($errormsg) {
 /**
  * Create new folder wrapper function for avelsieve.
  * @param string $foldername
- * @return string error message upon error, or the empty string upon success.
+ * @return boolean
  */
 
-function avelsieve_create_folder($foldername, $subfolder = '', $created_mailbox_name = '') {
+function avelsieve_create_folder($foldername, $subfolder = '', $created_mailbox_name = '', $errmsg = '') {
 	/* Copy & paste magic (aka kludge) */
-	global $mailboxlist, $delimiter;
+	global $mailboxlist, $delimiter, $username, $imapServerAddress, $imapPort;
 
 	if(!isset($delimiter) && isset($_SESSION['delimiter'])) {
 		$delimiter = $_SESSION['delimiter'];
@@ -98,7 +98,9 @@ function avelsieve_create_folder($foldername, $subfolder = '', $created_mailbox_
 	}
 
 	// $folder_prefix = "INBOX";
-	if (isset($folder_prefix) && (substr($folder_prefix, -1) != $delimiter)) {
+	$folder_prefix = '';
+
+	if (!empty($folder_prefix) && (substr($folder_prefix, -1) != $delimiter)) {
 		$folder_prefix = $folder_prefix . $delimiter;
 	}
 	if ($folder_prefix && (substr($subfolder, 0, strlen($folder_prefix)) != $folder_prefix)){
@@ -108,9 +110,9 @@ function avelsieve_create_folder($foldername, $subfolder = '', $created_mailbox_
 		$subfolder_orig = $subfolder;
 	}
 	if (trim($subfolder_orig) == '') {
-		$mailbox = $folder_prefix.$folder_name; 
+		$mailbox = $folder_prefix.$foldername; 
 	} else {
-		$mailbox = $subfolder.$delimiter.$folder_name;
+		$mailbox = $subfolder.$delimiter.$foldername;
 	}
 	/*    if (strtolower($type) == 'noselect') {
 	        $mailbox = $mailbox.$delimiter;
@@ -134,11 +136,19 @@ function avelsieve_create_folder($foldername, $subfolder = '', $created_mailbox_
 	 * that I will put 'false' in the error handling. */
 
 	// sqimap_mailbox_create($imapConnection, $mailbox, '');
+	
+	$response = '';
+	$message = '';
 
 	$read_ary = sqimap_run_command($imapConnection, "CREATE \"$mailbox\"", false, $response, $message);
    		sqimap_subscribe ($imapConnection, $mailbox);
+
+	if(strtolower($response) != 'ok') {
+		$errmsg = $message;
+		return false;
+	}
 	$created_mailbox_name = $mailbox;
-	return '';
+	return true;
 }
 
 /**
@@ -172,7 +182,7 @@ function mailboxlist($selectname, $selectedmbox, $sub = false) {
 	
 	    	for ($i = 0; $i < count($boxes); $i++) {
 	            	$box = $boxes[$i]['unformatted-dm'];
-	            	$box2 = str_replace(' ', '&nbsp;', imap_utf7_decode_local($boxes[$i]['unformatted']));
+	            	$box2 = str_replace(' ', '&nbsp;', $boxes[$i]['formatted']);
 	            	//$box2 = str_replace(' ', '&nbsp;', $boxes[$i]['formatted']);
 	
 	            	if (strtolower($imap_server_type) != 'courier' || strtolower($box) != 'inbox.trash') {
