@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.9 2004/11/12 11:28:39 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.10 2004/11/12 13:30:45 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -542,19 +542,16 @@ class avelsieve_html_edit extends avelsieve_html {
 			$selectedmailbox = $rule['folder'];
 		}
 		
-		/* TODO - Remove this and add new folder creation in edit.php as well. */
-		$createnewfolder = false; 
-		
-		$out .= $this->rule_3_action();
+		$out .= $this->rule_3_action().
+			$this->section_end();
 
-		$out .= $this->section_end();
+		/* --------------------- buttons ----------------------- */
 
-		$out .= $this->submit_buttons();
-		
-		$out .= '</div></form></td></tr>';
-	
-		$out .= $this->all_sections_end() .
+		$out .= $this->submit_buttons().
+			'</div></form></td></tr>'.
+			$this->all_sections_end() .
 			$this->table_footer();
+
 		return $out;
 	}
 }
