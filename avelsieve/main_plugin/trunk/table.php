@@ -11,9 +11,9 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table.php,v 1.15 2004/11/15 13:10:23 avel Exp $
+ * $Id: table.php,v 1.16 2004/11/15 16:42:30 avel Exp $
  *
- * @version $Id: table.php,v 1.15 2004/11/15 13:10:23 avel Exp $
+ * @version $Id: table.php,v 1.16 2004/11/15 16:42:30 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -46,6 +46,7 @@ sqgetGlobalVar('onetimepad', $onetimepad, SQ_SESSION);
 
 sqgetGlobalVar('authz', $authz, SQ_SESSION);
 
+sqgetGlobalVar('popup', $popup, SQ_GET);
 sqgetGlobalVar('haschanged', $haschanged, SQ_SESSION);
 
 if(isset($_SESSION['part'])) {
@@ -64,6 +65,12 @@ $acctpass = OneTimePadDecrypt($key, $onetimepad);
 sqgetGlobalVar('rules', $rules, SQ_SESSION);
 sqgetGlobalVar('scriptinfo', $scriptinfo, SQ_SESSION);
 sqgetGlobalVar('logout', $logout, SQ_POST);
+
+if(isset($popup)) {
+	$popup = '?popup=1';
+} else {
+	$popup = '';
+}
 
 if(isset($authz)) {
 	$imap_server =  sqimap_get_user_server ($imapServerAddress, $authz);
@@ -340,7 +347,13 @@ if(isset($sieve_loggedin)) {
 
 $prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
 textdomain ('squirrelmail');
-displayPageHeader($color, 'None');
+
+if($popup) {
+	displayHtmlHeader('', '');
+} else {
+	displayPageHeader($color, 'None');
+}
+
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
@@ -369,7 +382,11 @@ if(isset($_GET['mode'])) {
 }
 
 $ht = new avelsieve_html_rules(&$rules, $mode);
-echo $ht->rules_table();
+if($popup) {
+	echo $ht->rules_confirmation();
+} else {
+	echo $ht->rules_table();
+}
 echo $ht->table_footer();
 
 ?>
