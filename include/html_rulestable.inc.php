@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.8 2005/02/28 15:53:24 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.9 2005/03/01 15:26:58 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -164,10 +164,28 @@ class avelsieve_html_rules extends avelsieve_html {
 	
 	/**
 	 * Submit button for deleting selected rules
+	 * @return string
 	 */
 	function button_deleteselected() {
-		return '<input type="submit" name="deleteselected" value="' . _("Delete Selected") . '" />';
+		return '<input type="submit" name="deleteselected" value="' . _("Delete") . '" />';
 	}
+
+	/**
+	 * Submit button for enabling selected rules
+	 * @return string
+	 */
+	function button_enableselected() {
+		return '<input type="submit" name="enableselected" value="' . _("Enable") . '" />';
+	}
+
+	/**
+	 * Submit button for disabling selected rules
+	 * @return string
+	 */
+	function button_disableselected() {
+		return '<input type="submit" name="disableselected" value="' . _("Disable") . '" />';
+	}
+	
 	
 	function rules_footer() {
 		global $conservative;
@@ -356,7 +374,10 @@ class avelsieve_html_rules extends avelsieve_html {
 		
 		$out .='<tr><td colspan="4">'.
 			'<table width="100%" border="0"><tr><td align="left">'.
-			$this->button_deleteselected().
+			_("Action for Selected Rules:") . '<br/>' .
+			$this->button_enableselected(). 
+			$this->button_disableselected(). '<br/>' .
+			$this->button_deleteselected(). '<br/>' .
 			'</td><td align="right">'.
 			$this->button_addnewrule().
 			'</td></tr></table>'. 
