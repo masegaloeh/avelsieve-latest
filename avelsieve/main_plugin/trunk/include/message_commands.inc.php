@@ -9,7 +9,7 @@
  * This file contains functions for the per-message commands that appear while
  * viewing a message.
  *
- * @version $Id: message_commands.inc.php,v 1.1 2004/11/02 15:06:17 avel Exp $
+ * @version $Id: message_commands.inc.php,v 1.2 2004/11/12 10:44:45 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -29,25 +29,31 @@ function avelsieve_commands_menu_do() {
 
     $filtercmds = array(
     	'auto' => array(
-		'algorithm' => 'auto',
-		'desc' => _("Automatically")
-	),
+			'algorithm' => 'auto',
+			'desc' => _("Automatically")
+		),
     	'sender' => array(
-		'algorithm' => 'header',
-		'desc' => _("Sender")
-	),
+			'algorithm' => 'header',
+			'desc' => _("Sender")
+		),
     	'from' => array(
-		'algorithm' => 'header',
-		'desc' => _("From")
-	),
+			'algorithm' => 'header',
+			'desc' => _("From")
+		),
     	'to' => array(
-		'algorithm' => 'header',
-		'desc' => _("To")
-	),
+			'algorithm' => 'header',
+			'desc' => _("To")
+		),
     	'subject' => array(
-		'algorithm' => 'header',
-		'desc' => _("Subject")
-	)
+			'algorithm' => 'header',
+			'desc' => _("Subject")
+		) 
+		/*
+    	'priority' => array(
+			'algorithm' => 'header',
+			'desc' => _("Priority")
+		)
+		*/
     );
 	
     $hdr = &$message->rfc822_header;
@@ -77,27 +83,42 @@ function avelsieve_commands_menu_do() {
 		case 'auto':
 			if(isset($hdr->mlist['id']) && isset($hdr->mlist['id']['href'])) {
 				/* List-Id: (href) */
-				$url .= '&amp;header[List-Id]='.urlencode( $hdr->mlist['id']['href'] );
+				$url .= '&amp;header[0]=List-Id'.
+						'&amp;matchtype[0]=contains'.
+						'&amp;headermatch[0]='.rawurlencode( $hdr->mlist['id']['href'] );
 
 			} elseif(isset($hdr->mlist['id']) && isset($hdr->mlist['id']['mailto'])) {
 				/* List-Id: (mailto) */
-				$url .= '&amp;header[List-Id]='.urlencode( $hdr->mlist['id']['mailto'] );
+				$url .= '&amp;header[0]=List-Id'.
+						'&amp;matchtype[0]=contains'.
+						'&amp;headermatch[0]='.rawurlencode( $hdr->mlist['id']['mailto'] );
 
 			} elseif(isset($hdr->sender) && !empty($hdr->sender)) {
 				/* Sender: */
-				$url .= '&amp;header[Sender]='.urlencode( $hdr->sender->mailbox.'@'.$hdr->sender->host);
+				$url .= '&amp;header[0]=Sender'.
+						'&amp;matchtype[0]=contains'.
+						'&amp;headermatch[0]='.rawurlencode($hdr->sender->mailbox.'@'.$hdr->sender->host);
 			
-			} elseif(isset($hdr->to) && !empty($hdr->to) && !in_array($hdr->to->mailbox.'@'.$hdr->to->host,$myemails)) {
+			} elseif(isset($hdr->to) && !empty($hdr->to) &&
+				!in_array($hdr->to->mailbox.'@'.$hdr->to->host,$myemails)) {
 				/* To:, not including one of my identities*/
-				$url .= '&amp;header[To]='.urlencode( $hdr->to->mailbox.'@'.$hdr->to->host);
+				$url .= '&amp;header[0]=toorcc'.
+						'&amp;matchtype[0]=contains'.
+						'&amp;headermatch[0]='.rawurlencode($hdr->to->mailbox.'@'.$hdr->to->host);
+			
 
 			} elseif(isset($hdr->from) && !empty($hdr->from)) {
 				/* From: */
-				$url .= '&amp;header[From]='.rawurlencode( $hdr->from->mailbox.'@'.$hdr->from->host);
+				$url .= '&amp;header[0]=From'.
+						'&amp;matchtype[0]=contains'.
+						'&amp;headermatch[0]='.rawurlencode($hdr->from->mailbox.'@'.$hdr->from->host);
+			
 
 			} elseif(isset($hdr->subject) && !empty($hdr->subject)) {
 				/* Subject */
-				$url .= '&amp;header[Subject]='.rawurlencode( $hdr->subject);
+				$url .= '&amp;header[0]=Subject'.
+						'&amp;matchtype[0]=contains'.
+						'&amp;headermatch[0]='.rawurlencode($hdr->subject);
 			}
 				
 			
