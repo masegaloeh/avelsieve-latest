@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: process_user_input.inc.php,v 1.7 2004/11/18 11:06:25 avel Exp $
+ * @version $Id: process_user_input.inc.php,v 1.8 2004/11/18 12:06:09 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -50,21 +50,22 @@ function process_input($search = SQ_POST, $errmsg = '') {
 		case "2":
 			/* Decide how much of the items to use for the rule, based on
 			 * the first zero variable to be found. */
-			if(!$ns['headermatch'][0]) {
-				$errmsg = _("You have to define at least one header match text.");
-				return array();
-			}
-	
-			for ($i=0; $i<sizeof($ns['headermatch']) ; $i++) {
-				if ($ns['headermatch'][$i]) {
-					$rule['header'][$i] = $ns['header'][$i];
-					$rule['matchtype'][$i] = $ns['matchtype'][$i];
-					$rule['headermatch'][$i] = $ns['headermatch'][$i];
-					if($i>0) {
-						$rule['condition'] = $ns['condition'];
-					}
+			if(isset($ns['headermatch'])) {
+				if(!$ns['headermatch'][0]) {
+					$errmsg = _("You have to define at least one header match text.");
 				} else {
-					break 1;
+					for ($i=0; $i<sizeof($ns['headermatch']) ; $i++) {
+						if ($ns['headermatch'][$i]) {
+							$rule['header'][$i] = $ns['header'][$i];
+							$rule['matchtype'][$i] = $ns['matchtype'][$i];
+							$rule['headermatch'][$i] = $ns['headermatch'][$i];
+							if($i>0) {
+								$rule['condition'] = $ns['condition'];
+							}
+						} else {
+							break 1;
+						}
+					}
 				}
 			}
 			break;
