@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.18 2004/11/19 16:04:13 avel Exp $
+ * @version $Id: table.php,v 1.19 2004/12/21 13:18:37 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -363,7 +363,7 @@ if(isset($_GET['mode'])) {
 	}
 }
 
-$ht = new avelsieve_html_rules(&$rules, $mode);
+$ht = new avelsieve_html_rules($rules, $mode);
 if($popup) {
 	echo $ht->rules_confirmation();
 } else {
