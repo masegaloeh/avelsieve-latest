@@ -516,7 +516,20 @@ function print_3_action() {
 	} else {
 		print _("someone@example.org");
 	}
-	print '" /></blockquote><br />';
+	print '" />';
+	
+	print '<br /><input type="checkbox" name="keep" id="keep" ';
+	if(isset($edit)) {
+		if(isset($_SESSION['rules'][$edit]['keep'])) {
+			print 'checked="" ';
+		}
+	}
+	print '/> ';
+	print '<label for="keep">';
+	print _("Keep a local copy as well.");
+	print '</label>';
+	
+	print '</blockquote><br />';
 	
 	/*-*-*-*/
 	

@@ -11,7 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: process_input.php,v 1.2 2003/10/07 13:24:52 avel Exp $
+ * $Id: process_input.php,v 1.3 2004/01/21 14:56:43 avel Exp $
  */
 
 /**
@@ -87,7 +87,7 @@ function process_input($type) {
 			$vars = array( 'action', 'excuse');
 			break;
 		case "4": /* redirect */
-			$vars = array( 'action', 'redirectemail');
+			$vars = array( 'action', 'redirectemail', 'keep');
 			break;
 		case "5": /* fileinto */
 			$vars = array( 'action', 'folder', 'keepdeleted');

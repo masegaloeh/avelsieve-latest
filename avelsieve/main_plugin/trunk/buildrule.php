@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: buildrule.php,v 1.7 2003/11/10 20:51:51 avel Exp $
+ * $Id: buildrule.php,v 1.8 2004/01/21 14:56:43 avel Exp $
  */
 
 /**
@@ -59,6 +59,7 @@ X-Spam-Tests: Open.Relay.DataBase;Spamhaus.Block.List;
  * 4) // Redirect
  *
  * redirectemail	string (email)	valid only for: action==4
+ * keep			string (email)	valid only for: action==4 (?TBC)
  *
  * 5) // Fileinto
  *
@@ -436,6 +437,11 @@ if( $rule['type'] != "4" && $rule['type']!=10 ) {
 
 
 
+if(isset($rule['keep'])) {
+	$out .= "keep;\n";
+}
+
+
 switch ($rule['action']) {
 case "1":	/* keep (default) */
 	$out .= "keep;";
@@ -491,8 +497,12 @@ case "6":      /* vacation message */
  	break;
 
 default:
-	// return false;
 	break;
+}
+
+if(isset($rule['keep'])) {
+	$text .= ' ' . _("Also keep a local copy.");
+	$terse .= "<br/>KEEP";
 }
 
 if (isset($rule['keepdeleted'])) {

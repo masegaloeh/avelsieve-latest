@@ -11,7 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: addrule.php,v 1.4 2004/01/21 14:08:19 avel Exp $
+ * $Id: addrule.php,v 1.5 2004/01/21 14:56:43 avel Exp $
  */
 
 /**
@@ -290,7 +290,7 @@ if(isset($_POST['action'])) {
 			$vars = array( 'action', 'excuse');
 			break;
 		case "4": /* redirect */
-			$vars = array( 'action', 'redirectemail');
+			$vars = array( 'action', 'redirectemail', 'keep');
 			break;
 		case "5": /* fileinto */
 			$vars = array( 'action', 'keepdeleted');
