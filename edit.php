@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.16 2004/11/18 11:06:25 avel Exp $
+ * @version $Id: edit.php,v 1.17 2004/11/18 12:06:09 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -192,35 +192,33 @@ if(isset($_POST['append'])) {
 
 } elseif(isset($_POST['apply']) && !$changetype) {
 	/* Apply change in existing rule */
-	$editedrule = process_input(SQ_POST, $errmsg);
+	$editedrule = process_input(SQ_POST, &$errmsg);
 	if(empty($errmsg)) {
 		$_SESSION['rules'][$edit] = $editedrule;
 		$_SESSION['comm']['edited'] = $edit;
 		$_SESSION['haschanged'] = true;
 		header("Location: table.php$popup");
-		exit;
 	}
 
 } elseif(isset($_POST['addnew']) && !$changetype) {
 	/* Add new rule */
- 	$newrule = process_input(SQ_POST, $errmsg);
-     
-	if(isset($dup)) {
-		// insert moving rule in place
-		array_splice($_SESSION['rules'], $edit+1, 0, array($newrule));
-		// Reindex
-		$_SESSION['rules'] = array_values($_SESSION['rules']);
-	} else {
-		$_SESSION['rules'][] = $newrule;
+ 	$newrule = process_input(SQ_POST, &$errmsg);
+	if(empty($errmsg)) {
+		if(isset($dup)) {
+			// insert moving rule in place
+			array_splice($_SESSION['rules'], $edit+1, 0, array($newrule));
+			// Reindex
+			$_SESSION['rules'] = array_values($_SESSION['rules']);
+		} else {
+			$_SESSION['rules'][] = $newrule;
+		}
+		/* Communication: */
+		$_SESSION['comm']['edited'] = $edit;
+		$_SESSION['comm']['new'] = true;
+		$_SESSION['haschanged'] = true;
+		header("Location: table.php$popup");
+		exit;
 	}
-
-	/* Communication: */
-	$_SESSION['comm']['edited'] = $edit;
-	$_SESSION['comm']['new'] = true;
-	$_SESSION['haschanged'] = true;
-
-	header("Location: table.php$popup");
-	exit;
 }
 
 
