@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: config_sample.php,v 1.2 2003/10/07 13:24:52 avel Exp $
+ * $Id: config_sample.php,v 1.3 2003/10/09 11:28:31 avel Exp $
  */
 
 /* Configuration parameters for SIEVE mail filters (aka avelsieve) */
@@ -108,8 +108,29 @@ $avelsieveheaderlink = true;
  * Ldapuserdata mode: Gets user's email addresses (including mailAlternate &
  * mailAuthorized) from LDAP Prefs Backend plugin's cache */
 
+
 $ldapuserdatamode = false;
 
+/* ======================================================================== */
+
+/* Custom rules */
+
+/* Experimental easy anti-spam rule Configuration */
+
+$spamrule_enable = false;
+$spamrule_score_max = 100;
+$spamrule_score_default = 80;
+$spamrule_score_header = 'X-Spam-Score';
+$spamrule_tests = array(
+	'Open.Relay.DataBase' => "Open Relay Database",
+	'Spamhaus.Block.List' => "Spamhaus Block List"
+);
+$spamrule_tests_header = 'X-Spam-Tests';
+$spamrule_action_default = 'junk';
+
+
+
+/* ======================================================================== */
 
 /* ------ Custom / Obsolete Settings (leave alone) ------ */
 
