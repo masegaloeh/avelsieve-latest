@@ -1,0 +1,329 @@
+<?php
+/*
+ * User-friendly interface to SIEVE server-side mail filtering.
+ * Plugin for Squirrelmail 1.4+
+ *
+ * Licensed under the GNU GPL. For full terms see the file COPYING that came
+ * with the Squirrelmail distribution.
+ *
+ * HTML Functions
+ *
+ * @version $Id: html_rulestable.inc.php,v 1.1 2004/11/02 15:06:17 avel Exp $
+ * @author Alexandros Vellis <avel@users.sourceforge.net>
+ * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
+ * @package plugins
+ * @subpackage avelsieve
+ */
+
+include_once(SM_PATH . 'plugins/avelsieve/include/html_main.inc.php');
+
+/**
+ * HTML Output functions for rule editing / adding
+ */
+class avelsieve_html_rules extends avelsieve_html {
+	/**
+	 * @param array SIEVE Rules that are to be printed.
+	 */
+	var $rules = array();
+	
+	/**
+	 * @param string Display mode: 'verbose' or 'terse'
+	 */
+	var $mode = 'terse';
+
+	/**
+	 * Constructor function, that initializes some variables from possible
+	 * template engines.
+	 * @return void
+	 */
+	function avelsieve_html_rules($rules = array(), $mode = 'terse') {
+		$this->rules = $rules;
+		$this->mode = $mode;
+	}
+
+	function rules_create_new() {
+		return ' <p>'.
+			_("Here you can add or delete filtering rules for your email account. These filters will always apply to your incoming mail, wherever you check your email.").
+			'</p>' .
+			'<p>' . _("You don't have any rules yet. Feel free to add any with the button &quot;Add a New Rule&quot;. When you are done, please select &quot;Save Changes&quot; to get back to the main options screen.") . "</p>";
+	
+	}
+	
+	/**
+	 * Introductory text
+	 */
+	function rules_blurb() {
+		global $color, $conservative, $displaymodes, $scriptinfo;
+		
+		$out = " <p>"._("Here you can add or delete filtering rules for your email account. These filters will always apply to your incoming mail, wherever you check your email.")."</p> ";
+		
+		if($conservative) {
+			$out .= "<p>"._("When you are done with editing, <strong>remember to select &quot;Save Changes&quot;</strong> to activate your changes!")."</p>";
+		}
+	
+		/* $out .= the 'communication' string from the previous screen */
+	
+		if(isset($_SESSION['comm'])) {
+			$out .= '<p><font color="'.$color[2].'">';
+		
+			if(isset($_SESSION['comm']['new'])) {
+				$out .= _("Successfully added new rule.");
+		
+			} elseif (isset($_SESSION['comm']['edited'])) {
+				$out .= _("Successfully updated rule #");
+				$out .= $_SESSION['comm']['edited']+1;
+		
+			} elseif (isset($_SESSION['comm']['deleted'])) {
+				if(is_array($_SESSION['comm']['deleted'])) {
+					$out .= _("Successfully deleted rules #");
+					for ($i=0; $i<sizeof($_SESSION['comm']['deleted']); $i++ ) {
+						$out .= $_SESSION['comm']['deleted'][$i] +1;
+						if($i != (sizeof($_SESSION['comm']['deleted']) -1) ) {
+							$out .= ", ";
+						}
+					}
+				} else {
+					$out .= _("Successfully deleted rule #");
+					$out .= $_SESSION['comm']['deleted']+1;
+				}
+			}
+		
+			$out .= '</font></p>';
+			session_unregister('comm');
+		
+		}
+	
+		if(isset($scriptinfo['created'])) {
+			$out .= $this->scriptinfo($scriptinfo);
+		}
+		
+		$out .= "<p>"._("The following table summarizes your current mail filtering rules.")."</p>";
+		
+		/* NEW*/
+		$out .= '
+		<table cellpadding="3" cellspacing="2" border="0" align="center" valign="middle" width="97%" frame="box">
+		<tr bgcolor="'.$color[0].'">
+		<td nowrap="">';
+		
+		$out .= _("No") . '</td><td></td>'.
+			'<td>'. _("Description of Rule");
+			' <small>(' . _("Display as:");
+		
+		
+		foreach($displaymodes as $id=>$name) {
+			if($this->mode == $id) {
+				$out .= ' <strong>'.$name.'</strong>';
+			} else {
+				$out .= ' <a href="'.$_SERVER['SCRIPT_NAME'].'?mode='.$id.'">'.$name.'</a>';
+			}
+		}
+		$out .= ')</small>';
+		
+		$out .= " </td><td>"._("Options")."</td></tr>";
+		return $out;
+	}
+	
+	function rules_table_footer() {
+		return '</table>';
+	}
+	
+	/**
+	 * Submit Buttons for adding new rules
+	 */
+	function button_addnewrule() {
+		global $spamrule_enable;
+		$out = '<form action="addrule.php" method="POST">'.
+			'<input name="addrule" value="' . _("Add a New Rule") . '" type="submit" />'.
+			'</form>';
+		
+		/* Link to add Spam rule */
+		if($spamrule_enable == true) {
+			$out .= '<form action="addspamrule.php" method="POST">'.
+				'<input name="addspamrule" value="' . _("Add SPAM Rule") . '" type="submit" />'.
+				'</form>';
+		}
+		if($spamrule_enable == true) {
+			$out .= '</td></tr></table>';
+		}
+		return $out;
+	}
+	
+	/**
+	 * Submit button for deleting selected rules
+	 */
+	function button_deleteselected() {
+		return '<input type="submit" name="deleteselected" value="' . _("Delete Selected") . '" />';
+	}
+	
+	function rules_footer() {
+		global $conservative;
+		$out = '';
+		if($conservative) {
+			$out .= '<div style="text-align: center;"><p>';
+			$out .= _("When you are done, please click the button below to return to your webmail.");
+			$out .= '</p><form action="table.php" method="POST"><input name="logout" value="';
+			$out .= _("Save Changes");
+			$out .= '" type="submit" /></form></div>';
+		}
+		return $out;
+	}
+	
+	
+	/**
+	 * Output link for corresponding rule function (such as edit, delete, move).
+	 *
+	 * @param string $name
+	 * @param int $i
+	 * @param string $url Which page to link to
+	 * @param string $xtra Extra stuff to be passed to URL
+	 */
+	function toolicon ($name, $i, $url = "table.php", $xtra = "", $attribs=array()) {
+		global $useimages, $imagetheme, $location, $avelsievetools;
+	
+		$desc = $avelsievetools[$name]['desc'];
+		$img = $avelsievetools[$name]['img'];
+
+		$out = '';
+	
+		if(empty($xtra)) {
+			$out .= ' <a href="'.$url.'?rule='.$i.'&amp;'.$name.'='.$i.'"';
+		} else {
+			$out .= ' <a href="'.$url.'?rule='.$i.'&amp;'.$name.'='.$i.'&amp;'.$xtra.'"';
+		}
+	
+		if(sizeof($attribs) > 0) {
+			foreach($attribs as $key=>$val) {
+				$out .= ' '.$key.'="'.$val.'"';
+			}
+		}
+		$out .= '>';
+	
+		if($useimages) {
+			$out .= '<img title="'.$desc.'" src="'.$location.'/images/'.$imagetheme.
+			'/'.$img.'" alt="'.$desc.'" value="'.$desc.'" border="0" />';
+		} else {
+			$out .= " | ". $desc;
+		}
+		$out .= '</a>';
+		return $out;
+	}
+	
+	/**
+	 * Output script information (last modification date etc.)
+	 * @param array $scriptinfo
+	 * @return string
+	 */
+	function scriptinfo($scriptinfo) {
+		if(function_exists('getLongDateString')) {
+			bindtextdomain('squirrelmail', SM_PATH . 'locale');
+			textdomain('squirrelmail');
+			$cr = getLongDateString($scriptinfo['created']);
+			$mo = getLongDateString($scriptinfo['modified']);
+			bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+			textdomain ('avelsieve');
+		
+			$out = '<p><em>'._("Created:").'</em> '.$cr.'.<br /><em>'.
+			_("Last modified:").'</em> <strong>'.$mo.'</strong></p>';
+		
+		} else {
+			$out = '<p><em>'._("Created:").'</em> '.
+			date("Y-m-d H:i:s",$scriptinfo['created']).'. <em>'.
+			_("Last modified:").'</em> <strong>'.
+			date("Y-m-d H:i:s",$scriptinfo['modified']).'</strong></p>';
+		}
+	
+		if(AVELSIEVE_DEBUG == 1) {
+			global $avelsieve_version;
+			$out .= '<p>Versioning Information:</p>' .
+				'<ul><li>Script Created using Version: '.$scriptinfo['version']['string'].'</li>'.
+				'<li>Installed Avelsieve Version: '.$avelsieve_version['string'] .'</li></ul>';
+		}
+		return $out;
+	}
+
+	/**
+	 * Main function to output a whole table of SIEVE rules.
+	 * @return string
+	 */
+	function rules_table() {
+		global $color;
+
+		$out = $this->table_header( _("Current Mail Filtering Rules") ).
+			$this->all_sections_start().
+			'<form name="rulestable" method="POST" action="table.php">'.
+			$this->rules_blurb();
+		
+		$toggle = false;
+		for ($i=0; $i<sizeof($this->rules); $i++) {
+			$out .="<tr";
+			if ($toggle) {
+				$out .=' bgcolor="'.$color[12].'"';
+			}
+			$out .= "><td>".($i+1)."</td><td>".
+				'<input type="checkbox" name="selectedrules[]" value="'.$i.'" /></td><td>'.
+				makesinglerule($this->rules[$i], $this->mode).
+				'</td><td style="white-space: nowrap"><p>';
+		
+			/* $out .='</td><td><input type="checkbox" name="rm'.$i.'" value="1" /></td></tr>'; */
+			
+			/* Edit */
+			if($this->rules[$i]['type'] == 10) {
+				$out .= $this->toolicon("edit", $i, "addspamrule.php", "");
+			} else {
+				$out .= $this->toolicon("edit", $i, "edit.php", "");
+			}
+			
+			/* Duplicate */
+			if($this->rules[$i]['type'] == 10) {
+				$out .= $this->toolicon("dup", $i, "addspamrule.php", "edit=$i&amp;dup=1");
+			} else {
+				$out .= $this->toolicon("dup", $i, "edit.php", "edit=$i&amp;dup=1");
+			}
+		
+			/* Delete */
+			$out .= $this->toolicon("rm", $i, "table.php", "",
+				array('onclick'=>'return confirm(\''._("Really delete this rule?").'\')'));
+		
+			/* Move up / Move to Top */
+			if ($i != 0) {
+				if($i != 1) {
+					$out .=$this->toolicon("mvtop", $i, "table.php", "");
+				}
+				$out .=$this->toolicon("mvup", $i, "table.php", "");
+			}
+		
+			/* Move down / to bottom */
+			if ($i != sizeof($this->rules)-1 ) {
+				$out .=$this->toolicon("mvdn", $i, "table.php", "");
+				if ($i != sizeof($this->rules)-2 ) {
+					$out .=$this->toolicon("mvbottom", $i, "table.php", "");
+				}
+			}
+		
+			$out .='</p></td></tr>';
+		
+			if(!$toggle) {
+				$toggle = true;
+			} elseif($toggle) {
+				$toggle = false;
+			}
+		}
+		
+		$out .='<tr><td colspan="4">'.
+			'<table width="100%" border="0"><tr><td align="left">'.
+			$this->button_deleteselected().
+			'</td><td align="right">'.
+			$this->button_addnewrule().
+			'</td></tr></table>'. 
+			'</td></tr>'.
+			$this->rules_footer().
+			'</form>'.
+		
+			$this->all_sections_end() .
+			$this->rules_table_footer();
+
+		return $out;
+	}
+}
+	
+?>

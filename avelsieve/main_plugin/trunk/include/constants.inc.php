@@ -3,12 +3,14 @@
  * User-friendly interface to SIEVE server-side mail filtering.
  * Plugin for Squirrelmail 1.4+
  *
- * Copyright (c) 2002-2003 Alexandros Vellis <avel@users.sourceforge.net>
- *
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: constants.php,v 1.9 2004/05/17 14:37:54 avel Exp $
+ * @version $Id: constants.inc.php,v 1.1 2004/11/02 15:06:17 avel Exp $
+ * @author Alexandros Vellis <avel@users.sourceforge.net>
+ * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
+ * @package plugins
+ * @subpackage avelsieve
  */
 
 $types = array();

@@ -3,18 +3,16 @@
  * User-friendly interface to SIEVE server-side mail filtering.
  * Plugin for Squirrelmail 1.4+
  *
- * Copyright (c) 2002-2004 Alexandros Vellis <avel@users.sourceforge.net>
- *
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: spamrulefunctions.php,v 1.2 2004/01/26 14:46:50 avel Exp $
- *
- * @package avelsieve
- */
-
-/**
  * Functions that have to do with SpamRule Functionality
+ *
+ * @version $Id: spamrule.inc.php,v 1.1 2004/11/02 15:06:17 avel Exp $
+ * @author Alexandros Vellis <avel@users.sourceforge.net>
+ * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
+ * @package plugins
+ * @subpackage avelsieve
  */
 
 /**
@@ -32,7 +30,6 @@
  *       )
  */
 function avelsieve_askldapforrbls() {
-
 	global $ldap_server;
 
 	foreach($ldap_server as $ldapno=>$info) {
@@ -107,14 +104,14 @@ function avelsieve_askldapforrbls() {
 	}
 
 	for($j=0; $j<$info['count']; $j++) {
-	if(isset($info[$j]['sendmailmtaclassname']) &&
-	   $info[$j]['sendmailmtaclassname'][0] == 'SpamForged') {
-
-		$no = sizeof($spamrbls);
-		$spamrbls[$no]['name'] = _("Test for Forged Header");
-		$spamrbls[$no]['test'] = 'FORGED';
-		$spamrbls[$no]['serverweight'] = $info[$j]['sendmailmtaclassvalue'][0];
-	}
+		if(isset($info[$j]['sendmailmtaclassname']) &&
+		   $info[$j]['sendmailmtaclassname'][0] == 'SpamForged') {
+	
+			$no = sizeof($spamrbls);
+			$spamrbls[$no]['name'] = _("Test for Forged Header");
+			$spamrbls[$no]['test'] = 'FORGED';
+			$spamrbls[$no]['serverweight'] = $info[$j]['sendmailmtaclassvalue'][0];
+		}
 	}
 	
 	return($spamrbls);
