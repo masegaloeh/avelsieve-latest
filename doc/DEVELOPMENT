@@ -1,0 +1,6 @@
+How to grab the latest sources from CVS:
+
+cvs -d:pserver:anoncvs@email.uoa.gr:/squirrelmail login 
+cvs -z3 -d:pserver:anoncvs@email.uoa.gr:/squirrelmail co avelsieve
+
+
