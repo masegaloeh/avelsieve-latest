@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: addrule.php,v 1.6 2004/11/03 11:24:07 avel Exp $
+ * @version $Id: addrule.php,v 1.7 2004/11/11 13:49:04 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -378,40 +378,8 @@ case "3":
 		sqimap_logout($imapConnection); 
 	}
 	
-	$default_emailaddress = getPref($data_dir, $username, 'email_address');
+	$emailaddresses = get_user_addresses();
 
-	if ($ldapuserdatamode) {
-		/* Get user's email addresses from LDAP Prefs Backend plugin's
-		 * cache */
-
-		$addressarray[] = $default_emailaddress;
-
-		if (isset($_SESSION['ldap_prefs_cache']['alternateemails'])) {
-			$alternateemails = $_SESSION['ldap_prefs_cache']['alternateemails'];
-			for ($i=0; $i<sizeof($alternateemails); $i++) {
-				$addressarray[] = $alternateemails[$i];
-			}
-			$emailaddresses = implode(",", $addressarray);
-		} else {
-			$emailaddresses = $default_emailaddress;
-		}
-		
-	} else {
-		/* Normal Mode; get email address from user's prefs and from
-		 * user's possible identities. */
-		
-		$emailaddresses = $default_emailaddress;
-
-		$idents = getPref($data_dir, $username, 'identities');
-		if ($idents != '' && $idents > 1) {
-			for ($i = 1; $i < $idents; $i ++) {
-				$cur_email_address = getPref($data_dir, $username, 'email_address' . $i);
-				$cur_email_address = strtolower(trim($cur_email_address));
-				$emailaddresses = $emailaddresses . ',' . $cur_email_address;
-			}
-		}
-	}
-	
 	print_section_start( _("New Rule Wizard - Step") . " " . $part . " " . _("of") . " 4: " . _("Action") );
 	
 	print_3_action();

@@ -9,7 +9,7 @@
  * Various support functions, useful or useless.  NB. THEY MUST NOT DEPEND
  * ELSEWHERE.
  *
- * @version $Id: support.inc.php,v 1.3 2004/11/08 12:59:52 avel Exp $
+ * @version $Id: support.inc.php,v 1.4 2004/11/11 13:49:04 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -187,6 +187,49 @@ function mailboxlist($selectname, $selectedmbox, $sub = false) {
 	    	$mailboxlist = "No folders found.";
 		}
 		return $mailboxlist;
+}
+
+/**
+ * Get user's email addresses (from all identities). They are to be used in the
+ * vacation ":address" field.
+ * @return string A string with comma-separated email addresses
+ * @todo use new squirrelmail function get_idents() instead of 'identities'
+ * user preference
+ */
+function get_user_addresses() {
+	global $data_dir, $username, $ldapuserdatamode;
+	$default_emailaddress = getPref($data_dir, $username, 'email_address');
+
+	if ($ldapuserdatamode) {
+		/* Get user's email addresses from LDAP Prefs Backend plugin's cache */
+		$addressarray[] = $default_emailaddress;
+
+		if (isset($_SESSION['ldap_prefs_cache']['alternateemails'])) {
+			$alternateemails = $_SESSION['ldap_prefs_cache']['alternateemails'];
+			for ($i=0; $i<sizeof($alternateemails); $i++) {
+				$addressarray[] = $alternateemails[$i];
+			}
+			$emailaddresses = implode(",", $addressarray);
+		} else {
+			$emailaddresses = $default_emailaddress;
+		}
+		
+	} else {
+		/* Normal Mode; get email address from user's prefs and from
+		 * user's possible identities. */
+		
+		$emailaddresses = $default_emailaddress;
+
+		$idents = getPref($data_dir, $username, 'identities');
+		if ($idents != '' && $idents > 1) {
+			for ($i = 1; $i < $idents; $i ++) {
+				$cur_email_address = getPref($data_dir, $username, 'email_address' . $i);
+				$cur_email_address = strtolower(trim($cur_email_address));
+				$emailaddresses = $emailaddresses . ',' . $cur_email_address;
+			}
+		}
 	}
+	return $emailaddresses;
+}
  
 ?>
