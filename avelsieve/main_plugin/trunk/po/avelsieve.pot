@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-10-07 16:24+0300\n"
+"POT-Creation-Date: 2003-10-09 14:49+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,6 +67,9 @@ msgid "Start Over"
 msgstr ""
 
 msgid "Cancel"
+msgstr ""
+
+msgid "Add SPAM Rule"
 msgstr ""
 
 msgid "Move back to step"
@@ -228,10 +231,60 @@ msgid ""
 "cancel adding a rule altogether."
 msgstr ""
 
+msgid "Configure Anti-SPAM Protection"
+msgstr ""
+
+msgid ""
+"All incoming mail is checked for unsolicited commercial content (SPAM) and "
+"marked accordingly. This special rule allows you to configure what to do "
+"with such messages once they arrive to your Inbox."
+msgstr ""
+
+msgid ""
+"Select Add SPAM Rule to add the predefined rule, or select the advanced SPAM "
+"filter to customize the rule."
+msgstr ""
+
+msgid "Advanced Spam Filter..."
+msgstr ""
+
+msgid "Target Score"
+msgstr ""
+
+#, php-format
+msgid ""
+"Messages with SPAM-Score higher than the target value, the maximum value "
+"being %s, will be considered SPAM."
+msgstr ""
+
+msgid "SPAM Lists to check against"
+msgstr ""
+
 msgid "Error Encountered"
 msgstr ""
 
 msgid "For <strong>ALL</strong> incoming messages; "
+msgstr ""
+
+msgid ""
+"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
+"messages)"
+msgstr ""
+
+msgid "matching the Spam List(s):"
+msgstr ""
+
+#, php-format
+msgid "and with score greater than %s"
+msgstr ""
+
+msgid "will be"
+msgstr ""
+
+msgid "stored in the Junk Folder"
+msgstr ""
+
+msgid "discarded"
 msgstr ""
 
 msgid "If"
@@ -423,6 +476,31 @@ msgid "Move Down"
 msgstr ""
 
 msgid "Move to Bottom"
+msgstr ""
+
+msgid "Junk Folder"
+msgstr ""
+
+#, php-format
+msgid ""
+"Store SPAM message in your Junk Folder. Messages older than %s days will be "
+"deleted automatically."
+msgstr ""
+
+msgid "Trash Folder"
+msgstr ""
+
+msgid ""
+"Store SPAM message in your Trash Folder. You will have to purge the folder "
+"yourself."
+msgstr ""
+
+msgid "Discard"
+msgstr ""
+
+msgid ""
+"Discard SPAM message. You will get no indication that the message ever "
+"arrived."
 msgstr ""
 
 msgid "Editing Mail Filtering Rule"
