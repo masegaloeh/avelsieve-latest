@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.2 2004/11/03 11:22:58 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.3 2004/11/03 12:48:48 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -29,6 +29,21 @@ class avelsieve_html_edit extends avelsieve_html {
 	 * @var boolean Enable spamrule building?
 	 */
 	var $spamrule_enable = false;
+
+	/**
+	 * @var string Mode of operation, for editing new rule. One of:
+	 * 'wizard', 'addnew', 'edit', 'duplicate'
+	 */
+	var $mode;
+
+	/**
+	 * Constructor function. Takes as an optional argument a reference to a
+	 * rule array which will be edited.
+	 */
+	function avelsieve_html_edit($mode = 'edit', $rule = array()) {
+		$this->rule = $rule;
+		$this->mode = $mode;
+	}
 
 	/**
 	 * Start form.
@@ -134,12 +149,16 @@ class avelsieve_html_edit extends avelsieve_html {
 
 	/**
 	 * Output ruletype radio buttons.
+	 * @param string $select 'radio' or 'select'
 	 */
-	function rule_1_type_radio() {
+	function rule_1_type_radio($select = 'radio') {
 		global $types, $sieve_capabilities;
 
-		$out = '<p>'._("What kind of rule would you like to add?"). '</p>';
-
+		if($select == 'radio') {
+			$out = '<p>'._("What kind of rule would you like to add?"). '</p>';
+		} else {
+			$out = '<p align="center">' . _("Rule Type") . ': <select name="type">';
+		}
 		foreach($types as $i=>$tp) {
 			if(isset($tp['disabled'])) {
 				continue;
@@ -152,14 +171,31 @@ class avelsieve_html_edit extends avelsieve_html {
 				}
 			}
 			if($i==2) {
-				$out .= '<input type="radio" name="type" id="type_'.$i.'" value="'.$i.'" checked="" /> ';
+				if($select == 'radio') {
+					$out .= '<input type="radio" name="type" id="type_'.$i.'" value="'.$i.'" checked="" /> ';
+				} else {
+					print '<option value="'.$i.'" ';
+					if($type == $i) {
+						print 'selected=""';
+					}
+					print '>'. $tp['name'] .'</option>';
+				}
 			} else {
 				$out .= '<input type="radio" name="type" id="type_'.$i.'" value="'.$i.'" /> ';
 			}
-			$out .= '<label for="type_'.$i.'">'.$tp['name'].'<br />'.
-				'<blockquote>'.$tp['description'].'</blockquote>'.
-				'</label>';
+			if($select == 'radio') {
+				$out .= '<label for="type_'.$i.'">'.$tp['name'].'<br />'.
+					'<blockquote>'.$tp['description'].'</blockquote>'.
+					'</label>';
+			}
 		}
+		if($select == 'select') {
+			$out .= '</select>';
+		}
+		return $out;
+		/* ??
+		print ' <input type="submit" name="changetype" value="'._("Change Type").'" /> </p>';
+		*/
 	}
 
 
@@ -199,6 +235,7 @@ class avelsieve_html_edit extends avelsieve_html {
 			}
 		}
 		$out .= '</select>';
+		return $out;
 	}
 	
 	/**
@@ -244,6 +281,7 @@ class avelsieve_html_edit extends avelsieve_html {
 			}
 		}
 		$out .= '</select>';
+		return $out;
 	}
 	
 	/**
@@ -268,6 +306,7 @@ class avelsieve_html_edit extends avelsieve_html {
 			}
 		}
 		$out .= '</select>';
+		return $out;
 	}
 	
 	/**
@@ -356,6 +395,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		if($items < $maxitems) {
 			$out .= '<input name="append" value="'. _("More..."). '" type="submit" />';
 		}
+		return $out;
 	}
 	
 	/**
@@ -486,7 +526,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		/*-*-*-*/
 		
 		$out .= '</p>';
-		$out .= action_radio(1, $selectedaction);
+		$out .= $this->action_radio(1, $selectedaction);
 		$out .= '<label for="action_1">';
 		$out .= _("Keep (Default action)");
 		$out .= '</label>';
@@ -494,7 +534,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		
 		/*-*-*-*/
 		
-		$out .= action_radio(2, $selectedaction);
+		$out .= $this->action_radio(2, $selectedaction);
 		$out .= '<label for="action_2">';
 		$out .= _("Discard Silently");
 		$out .= '</label>';
@@ -504,7 +544,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		
 		if(avelsieve_capability_exists('reject')) {
 		
-			$out .= action_radio(3, $selectedaction);
+			$out .= $this->action_radio(3, $selectedaction);
 			$out .= '<label for="action_3">';
 			$out .= _("Reject, sending this excuse to the sender:");
 			$out .= '</label>';
@@ -526,7 +566,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		
 		/*-*-*-*/
 		
-		$out .= action_radio(4, $selectedaction);
+		$out .= $this->action_radio(4, $selectedaction);
 		$out .= '<label for="action_4">';
 		$out .= _("Redirect to the following email address:");
 		$out .= '</label>';
@@ -557,7 +597,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		
 		if(avelsieve_capability_exists('fileinto')) {
 		
-			$out .= action_radio(5, $selectedaction);
+			$out .= $this->action_radio(5, $selectedaction);
 			
 			global $selectedmailbox;
 			
@@ -572,7 +612,7 @@ class avelsieve_html_edit extends avelsieve_html {
 				$out .= '<input type="hidden" name="newfolder" value="5a" onclick="checkOther(\'5\');" /> ';
 				$out .= _("the existing folder");
 				$out .= ' ';
-				$out .= printmailboxlist("folder", $selectedmailbox);
+				$out .= $this->mailboxlist("folder", $selectedmailbox);
 		
 			} else {
 				/* This is the section for the addrule part. Is it kludgy? Is
@@ -623,7 +663,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		
 		if(avelsieve_capability_exists('vacation')) {
 		
-			$out .= action_radio(6, $selectedaction);
+			$out .= $this->action_radio(6, $selectedaction);
 		
 			global $emailaddresses;
 		
@@ -824,6 +864,7 @@ class avelsieve_html_edit extends avelsieve_html {
 			
 			$out .= '</blockquote>';
 		}
+		return $out;
 	}
 	
 	/**
@@ -836,6 +877,87 @@ class avelsieve_html_edit extends avelsieve_html {
 			'</p><blockquote><p>'.$text.'</p></blockquote><p>'.
 			_("If this is what you wanted, select Finished. You can also start over or cancel adding a rule altogether.").
 			'</p>';
+		return $out;
+	}
+
+	/**
+	 * Submit buttons for edit form -- not applicable for wizard
+	 * @return string
+	 */
+	function submit_buttons() {
+		$out = '<tr><td><div style="text-align: center">';
+		switch ($this->mode) {
+			case 'addnew':
+				$out .= '<input type="submit" name="addnew" value="'._("Add New Rule").'" />';
+				break;
+			case 'duplicate':
+				$out .= '<input type="hidden" name="dup" value="1" />';
+				$out .= '<input type="submit" name="addnew" value="'._("Add New Rule").'" />';
+				break;
+			case 'edit':
+				$out .= '<input type="submit" name="apply" value="'._("Apply Changes").'" />';
+				break;
+		}
+		$out .= ' <input type="submit" name="cancel" value="'._("Cancel").'" />';
+		return $out;
+	}
+
+	/**
+	 * Main function that outputs a form for editing a whole rule.
+	 */
+	function edit_rule() {
+		global $PHP_SELF;
+		$out = $this->table_header( _("Editing Mail Filtering Rule") . ' #'. ($edit+1) ).
+			$this->all_sections_start().
+			'<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
+			'<input type="hidden" name="edit" value="'.$edit.'" />';
+
+		/* --------------------- 'if' ----------------------- */
+		$out .= $this->section_start( _("Condition") );
+		switch ($type) { 
+			case 1: 
+				$out .= 'Not implemented yet.';
+				break;
+			case 2:			/* header */
+				if(!isset($items)) {
+					$items = sizeof($rule['header']) + 1;
+					print '<input type="hidden" name="items" value="'.$items.'" />';
+				}
+				$out .= $this->rule_2_2_header($items);
+				break;		
+				
+			case 3: 		/* size */
+				$out .= $this->rule_2_3_size();
+				break;
+				
+			case 4: 		/* All messages */
+				$out .= $this->rule_2_4_allmessages();
+				break;
+				
+		}
+		$out .= $this->section_end();
+
+		/* --------------------- 'then' ----------------------- */
+		
+		$out .= $this->section_start( _("Action") );
+		
+		if(isset($rule['folder'])) {
+			$selectedmailbox = $rule['folder'];
+		}
+		
+		/* TODO - Remove this and add new folder creation in edit.php as well. */
+		$createnewfolder = false; 
+		
+		$out .= $this->rule_3_action();
+
+		$out .= $this->section_end();
+
+		$out .= $this->submit_buttons();
+		
+		print '</div></form></td></tr>';
+	
+		$out .= $this->all_sections_end() .
+			$this->table_footer();
 		return $out;
 	}
 }
