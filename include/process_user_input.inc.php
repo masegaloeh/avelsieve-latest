@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: process_user_input.inc.php,v 1.2 2004/11/11 13:50:10 avel Exp $
+ * @version $Id: process_user_input.inc.php,v 1.3 2004/11/12 10:44:58 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -20,6 +20,8 @@ include_once(SM_PATH . 'functions/global.php');
  * namespace (GET or POST). Puts the result in an array and returns that.
  *
  * @param int $search Defaults to $_POST.
+ * @param string $errmsg If processing fails, error message will be returned in
+ *    this variable.
  * @return array Resulting Rule
  * @todo Use the rules, actions etc. schema variables & classes.
  */
@@ -39,7 +41,6 @@ function process_input($search = SQ_POST, $errmsg = '') {
 	/* If Part */
 	if(isset($ns['type'])) {
 		$type = $ns['type'];
-		print $type;
 		$vars[] = 'type';
 		
 		switch ($type) { 
