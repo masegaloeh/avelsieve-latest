@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: process_user_input.inc.php,v 1.11 2005/03/01 16:08:11 avel Exp $
+ * @version $Id: process_user_input.inc.php,v 1.12 2005/03/09 11:10:49 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -93,6 +93,9 @@ function process_input($search = SQ_POST, &$errmsg) {
 			array_push($vars, 'excuse');
 			break;
 		case "4": /* redirect */
+			$errormsg = array();
+			//avelsieve_action_redirect->validate($ns, $errormsg);
+
 			array_push($vars, 'redirectemail', 'keep');
 			break;
 		case "5": /* fileinto */
@@ -112,7 +115,7 @@ function process_input($search = SQ_POST, &$errmsg) {
 	if(isset($ns['stop'])) {
 		$vars[] = 'stop';
 	}
-	if(isset($ns['notifyme']) && isset($ns['notify']['options']) &&
+	if(isset($ns['notify']['on']) && isset($ns['notify']['options']) &&
 		!empty($ns['notify']['options'])) {
 		$vars[] = 'notify';
 	}
