@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.19 2004/12/21 13:18:37 avel Exp $
+ * @version $Id: table.php,v 1.20 2005/03/01 15:26:58 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -212,10 +212,12 @@ if ($logout) {
 	exit;
 }
 
+/* Routine for Delete / Delete selected / enable selected / disable selected /
+ * edit / duplicate / moveup/down */
 
+if(isset($_GET['rule']) || isset($_POST['deleteselected']) ||
+	isset($_POST['enableselected']) || isset($_POST['disableselected']) ) {
 
-/* Routine for Delete / Delete selected / edit / duplicate / moveup/down */
-if(isset($_GET['rule']) || isset($_POST['deleteselected'])) {
 	if (isset($_GET['edit'])) {
 		header("Location: $location/edit.php?edit=".$_POST['rule']."");
 		exit;
@@ -248,7 +250,19 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected'])) {
 				sqsession_register($rules, 'rules');
 			}
 		} 
-
+	
+	} elseif(isset($_POST['enableselected']) || isset($_POST['disableselected'])) {
+		foreach($_POST['selectedrules'] as $no=>$sel) {
+			if(isset($_POST['enableselected'])) {
+				/* Verify that it is enabled  by removing the disabled flag. */
+				if(isset($rules[$sel]['disabled'])) {
+					unset($rules[$sel]['disabled']);
+				}
+			} elseif(isset($_POST['disableselected'])) {
+				/* Disable! */
+				$rules[$sel]['disabled'] = 1;
+			}
+		} 
 
 	} elseif (isset($_GET['mvup'])) {
 		$rules = array_swapval($rules, $_GET['rule'], $_GET['rule']-1);
