@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: buildrule.php,v 1.13 2004/04/29 12:08:11 avel Exp $
+ * $Id: buildrule.php,v 1.14 2004/05/12 13:56:13 avel Exp $
  */
 
 /**
@@ -338,7 +338,7 @@ if($rule['type']=="4") {
 		$terse .= ' !(WHITELIST:<br/>';
 
 		$out .= " ,\n";
-		$out .= ' anyof( ';
+		$out .= ' not anyof( ';
 		for($i=0; $i<sizeof($rule['whitelist']); $i++ ) {
 			$out .= build_headerrule_snippet($rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
 				$rule['whitelist'][$i]['headermatch'] ,'rule');
