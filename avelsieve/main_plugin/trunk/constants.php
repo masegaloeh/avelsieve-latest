@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: constants.php,v 1.6 2003/11/10 20:52:10 avel Exp $
+ * $Id: constants.php,v 1.7 2003/12/18 12:22:24 avel Exp $
  */
 
 $types = array();
@@ -152,6 +152,14 @@ if($spamrule_enable==true) {
 
 if(in_array('junkfolder', $plugins)) {
 	include SM_PATH . 'plugins/junkfolder/config.php';
+	if(in_array('ldapuserdata', $plugins)) {
+		$jd = getpref($data_dir, $username, 'junkprune');
+		if(isset($jd) && $jd > 0) {
+			$junkfolder_days = $jd;
+		} else {
+			$junkprune_saveme = true;
+		}
+	}
 } else {
 	$junkfolder_days = 7; /* Dummy default for E_ALL */
 }
@@ -160,7 +168,7 @@ if(in_array('junkfolder', $plugins)) {
 $spamrule_actions = array(
 	'junk' => array(
 		'short' => _("Junk Folder"),
-		'desc' => sprintf( _("Store SPAM message in your Junk Folder. Messages older than %s days will be deleted automatically."), $junkfolder_days)
+		'desc' => sprintf( _("Store SPAM message in your Junk Folder. Messages older than %s days will be deleted automatically."), $junkfolder_days) . ' ' . _("Note that you can set the number of days in Folder Preferences.")
 		),
 	'trash' => array(
 		'short' => _("Trash Folder"),
