@@ -414,13 +414,13 @@ function print_2_5_bodymatch() {
 
 function print_3_action_checkedaction($num, $selectedaction) {
 
-	print '<input type="radio" name="action" value="'.$num.'" ';
+	print '<input type="radio" name="action" id="action_'.$num.'" value="'.$num.'" ';
 	if($selectedaction) {
 		if($selectedaction == $num) {
-		print ' checked=""';
+			print ' checked=""';
 		}
 	}
-	print '/>';
+	print '/> ';
 }
 
 
@@ -450,13 +450,17 @@ function print_3_action() {
 	
 	print '</p>';
 	print_3_action_checkedaction(1, $selectedaction);
+	print '<label for="action_1">';
 	print _("Keep (Default action)");
+	print '</label>';
 	print '<br />';
 	
 	/*-*-*-*/
 	
 	print_3_action_checkedaction(2, $selectedaction);
+	print '<label for="action_2">';
 	print _("Discard Silently");
+	print '</label>';
 	print '<br />';
 	
 	/*-*-*-*/
@@ -464,7 +468,10 @@ function print_3_action() {
 	if(avelsieve_capability_exists('reject')) {
 	
 		print_3_action_checkedaction(3, $selectedaction);
+		print '<label for="action_3">';
 		print _("Reject, sending this excuse to the sender:");
+		print '</label>';
+
 		print '<br /><blockquote><textarea name="excuse" rows="4" cols="50">';
 		if(isset($edit)) {
 			if(isset($_SESSION['rules'][$edit]['excuse']))
@@ -483,7 +490,10 @@ function print_3_action() {
 	/*-*-*-*/
 	
 	print_3_action_checkedaction(4, $selectedaction);
+	print '<label for="action_4">';
 	print _("Redirect to the following email address:");
+	print '</label>';
+
 	print '<br /><blockquote><input type="text" name="redirectemail" size="26" maxlength="58" value="';
 	if(isset($edit)) {
 		if(isset($_SESSION['rules'][$edit]['redirectemail']))
@@ -501,7 +511,9 @@ function print_3_action() {
 		
 		global $selectedmailbox;
 		
+		print '<label for="action_5">';
 		print _("Move message into");
+		print '</label>';
 	
 		if(isset($edit)) {
 			/* The section here will be slightly different for the edit
@@ -538,14 +550,16 @@ function print_3_action() {
 				print '<blockquote>';
 			}
 		
-			print '<br /><input type="checkbox" name="keepdeleted" ';
+			print '<br /><input type="checkbox" name="keepdeleted" id="keepdeleted" ';
 			if(isset($edit)) {
 				if(isset($_SESSION['rules'][$edit]['keepdeleted'])) {
 					print 'checked="checked" ';
 				}
 			}
 			print '/> ';
+			print '<label for="keepdeleted">';
 			print _("Also keep copy in INBOX, marked as deleted.");
+			print '</label>';
 		}
 		
 		print '</blockquote>';
@@ -563,11 +577,14 @@ function print_3_action() {
 	
 		global $emailaddresses;
 	
+		print '<label for="action_6">';
 		print '<strong>&quot;';
 		print _("Vacation");
-		print '&quot;</strong>:';
+		print '&quot;</strong>: ';
 		print _("The notice will be sent only once to each person that sends you mail, and will not be sent to a mailing list address.");
 		print '<br /><blockquote>';
+		print '</label>';
+
 		print _("Addresses: Only reply if sent to these addresses:");
 		print '<input type="text" name="vac_addresses" value="';
 	
@@ -615,13 +632,14 @@ function print_3_action() {
 	
 	/* STOP */
 	
-	print '<input type="checkbox" name="stop" ';
+	print '<input type="checkbox" name="stop" id="stop" ';
 	if(isset($edit)) {
 		if(isset($_SESSION['rules'][$edit]['stop'])) {
 			print 'checked="" ';
 		}
 	}
 	print '/> ';
+	print '<label for="stop">';
 	if ($useimages) {
 		print '<img src="images/stop.gif" width="35" height="33" border="0" alt="';
 		print _("STOP");
@@ -630,6 +648,7 @@ function print_3_action() {
 		print "<strong>"._("STOP").":</strong> ";
 	}
 	print _("If this rule matches, do not check any rules after it.");
+	print '</label>';
 		
 		
 	/*-*-*-*/
@@ -640,7 +659,7 @@ function print_3_action() {
 		
 		global $notifymethods, $notifystrings;
 	
-		print '<br><input type="checkbox" name="notifyme" ';
+		print '<br><input type="checkbox" name="notifyme" id="notifyme" ';
 		if(isset($edit)) {
 			if(isset($_SESSION['rules'][$edit]['notify'])) {
 				print 'checked="" ';
@@ -648,8 +667,21 @@ function print_3_action() {
 		}
 		print '/> ';
 	
+		print '<label for="notifyme">';
 		print _("Notify me, using the following method:");
-		if(is_array($notifymethods)) {
+		print '</label> ';
+		
+		if(is_array($notifymethods) && sizeof($notifymethods) == 1) {
+			
+			/* No need to provide listbox, there's only one choice */
+			print '<input type="hidden" name="notify[method]" value="'.$notifymethods[0].'" />';
+			if(array_key_exists($notifymethods[0], $notifystrings)) {
+				print $notifystrings[$notifymethods[0]];
+			} else {
+				print $notifymethods[0];
+			}
+
+		} elseif(is_array($notifymethods)) {
 			print '<select name="notify[method]">';
 			foreach($notifymethods as $no=>$met) {
 				print '<option value="'.$met.'"';
@@ -670,9 +702,11 @@ function print_3_action() {
 			}
 			print '</select>';
 			
+
+
 		} elseif($notifymethods == false) {
 			print '<input name="notify[method]" value="';
-			if($edit) {
+			if(isset($edit)) {
 				if($_SESSION['rules'][$edit]['notify']['method']) {
 					print  $_SESSION['rules'][$edit]['notify']['method'];
 				}
@@ -683,18 +717,22 @@ function print_3_action() {
 	
 		print '<br /><blockquote>';
 	
+		/* Not really used, remove it. */
+		$dummy =  _("Notification ID"); // for gettext
+		/*
 		print _("Notification ID") . ": ";
 		print '<input name="notify[id]" value="';
-		if($edit) {
+		if(isset($edit)) {
 			if(isset($_SESSION['rules'][$edit]['notify']['id'])) {
 				print $_SESSION['rules'][$edit]['notify']['id'];
 			}
 		}
 		print '" /><br />';
+		*/
 	
-		print _("Parameters") . ": ";
-		print '<input name="notify[options]" value="';
-		if($edit) {
+		print _("Destination") . ": ";
+		print '<input name="notify[options]" size="30" value="';
+		if(isset($edit)) {
 			if(isset($_SESSION['rules'][$edit]['notify']['options'])) {
 				print $_SESSION['rules'][$edit]['notify']['options'];
 			}
@@ -706,7 +744,7 @@ function print_3_action() {
 		print 'Priority: <select name="notify[priority]">';
 		foreach($prioritystrings as $pr=>$te) {
 			print '<option value="'.$pr.'"';
-			if($edit) {
+			if(isset($edit)) {
 				if(isset($_SESSION['rules'][$edit]['notify']['priority'])) {
 					if($_SESSION['rules'][$edit]['notify']['priority'] == $pr) {
 						print ' checked=""';
@@ -721,17 +759,19 @@ function print_3_action() {
 	
 		print _("Message") . " ";
 		print '<textarea name="notify[message]" rows="4" cols="50">';
-		if($edit) {
+		if(isset($edit)) {
 			if(isset($_SESSION['rules'][$edit]['notify']['message'])) {
 				print $_SESSION['rules'][$edit]['notify']['message'];
 			}
 		}
 		print '</textarea><br />';
+		
 		print '<small>';
 		print _("Help: Valid variables are:");
 		print ' $from$, $env-from$, $subject$</small>';
 		// $text$ is not supported by Cyrus yet. Put it back if it gets fixed.
 		// print ' $from$, $env-from$, $subject$, $text$, $text[n]$</small>';
+		
 		print '</blockquote>';
 	}
 }
