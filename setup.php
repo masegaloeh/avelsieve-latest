@@ -11,7 +11,7 @@
  *
  * Also view plugins/README.plugins for more information.
  *
- * $Id: setup.php,v 1.6 2003/11/07 16:28:13 avel Exp $
+ * $Id: setup.php,v 1.7 2004/01/21 11:18:59 avel Exp $
  */
    
 // require_once('../functions/i18n.php');
@@ -70,7 +70,7 @@
    }    
 
 function avelsieve_version() {
-	return '0.9.8';
+	return '0.9.9cvs';
 }
  
 /* function avelsieve_set_loadinfo() {
