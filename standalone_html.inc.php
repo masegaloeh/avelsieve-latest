@@ -8,6 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
+ * $Id: standalone_html.inc.php,v 1.2 2003/10/07 13:24:52 avel Exp $
  */
 
 /* HTML Functions that are in use when being a standalone PHP app (that is,

@@ -11,6 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
+ * $Id: table.php,v 1.2 2003/10/07 13:24:52 avel Exp $
  */
 
 /* table.php: main routine that shows a table of all the rules and allows

@@ -10,6 +10,8 @@
  * with the Squirrelmail distribution.
  *
  * Also view plugins/README.plugins for more information.
+ *
+ * $Id: setup.php,v 1.2 2003/10/07 13:24:52 avel Exp $
  */
    
 // require_once('../functions/i18n.php');
