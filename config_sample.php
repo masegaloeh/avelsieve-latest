@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: config_sample.php,v 1.4 2003/10/09 14:07:54 avel Exp $
+ * $Id: config_sample.php,v 1.5 2003/10/27 10:35:39 avel Exp $
  */
 
 /* Configuration parameters for SIEVE mail filters (aka avelsieve) */
@@ -71,14 +71,14 @@ $maxitems = 10;
 /* Headers to display in listbox widget, when adding a new header rule. */
 
 $headers = array(
-"From", "To", "Cc", "Bcc", "Subject", "Reply-To", "Sender", "List-Id",
- "MailingList", "X-ML-Name", "X-List", "X-Mailer", "X-MailingList",
- "X-Spam-Flag", "X-Spam-Status", "X-Priority", "Importance",
- "X-MSMail-Priority");
+ 'From', 'To', 'Cc', 'Bcc', 'Subject', 'Reply-To', 'Sender', 'List-Id',
+ 'MailingList', 'X-ML-Name', 'X-List', 'X-Mailer', 'X-MailingList',
+ 'X-Spam-Flag', 'X-Spam-Status', 'X-Priority', 'Importance',
+ 'X-MSMail-Priority', 'Precedence');
 
 /* Available :method's for the :notify extension (if applicable) */
 $notifymethods = array(
-"mailto", "sms"
+'mailto', 'sms'
 );
 /* use the value "false" if you want to provide a simple input box so that
  * users can edit the method themselves : */
