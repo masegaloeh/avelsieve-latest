@@ -31,13 +31,13 @@ function avelsieve_printheader() {
  */
 function printaddbuttons() {
 
-	global $part;
+	global $part, $spamrule;
 
 	print '<input name="reset" value="';
 	print _("Clear this Form");
 	print '" type="reset" />';
 
-	if ($part!=1) {
+	if (isset($part) && $part != 1) {
 		print '<input name="startover" value="';
 		print _("Start Over");
 		print '" type="submit" />';
@@ -46,6 +46,13 @@ function printaddbuttons() {
 	print '<input name="cancel" value="';
 	print _("Cancel");
 	print '" type="submit" /><br />';
+	
+	if (isset($spamrule) && $spamrule == true ) {
+		print '<input style="font-weight:bold" name="finished" value="';
+		print _("Add SPAM Rule");
+		print '" type="submit" />';
+		return;
+	}
 	
 	if (($part < 1) || ($part > 4)) {
 		return;
@@ -58,7 +65,7 @@ function printaddbuttons() {
 	}
 	
 	if ($part=="4") {
-		print '<input name="finished" value="';
+		print '<input style="font-weight:bold"  name="finished" value="';
 		print _("Finished");
 		print '" type="submit" />';
 	} else {
@@ -138,14 +145,16 @@ function print_1_ruletype() {
 			}
 		}
 		if($i==2) {
-			print '<input type="radio" name="type" value="'.$i.'" checked="" /> ';
+			print '<input type="radio" name="type" id="type_'.$i.'" value="'.$i.'" checked="" /> ';
 		} else {
-			print '<input type="radio" name="type" value="'.$i.'" /> ';
+			print '<input type="radio" name="type" id="type_'.$i.'" value="'.$i.'" /> ';
 		}
+		print '<label for="type_'.$i.'">';
 		print $tp['name'];
 		print '<br /><blockquote>';
 		print $tp['description'];
 		print '</blockquote>';
+		print '</label>';
 	}
 }
 
