@@ -740,11 +740,3 @@ msgstr "¶κυρο όνομα φακέλου. Παρακαλώ επιλέξτε ένα διαφορετικό όνομα."
 msgid "None"
 msgstr "Κανένα"
 
-#~ msgid "All your rules have been deleted"
-#~ msgstr "ΞΞ»ΞΏΞΉ ΞΏΞΉ ΞΊΞ±Ξ½ΟΞ½ΞµΟ‚ Ξ΄ΞΉΞ±Ξ³ΟΞ¬Ο†Ξ·ΞΊΞ±Ξ½"
-
-#~ msgid "in order to save your rules."
-#~ msgstr "ΟΟƒΟ„Ξµ Ξ½Ξ± Ξ±Ο€ΞΏΞΈΞ·ΞΊΞµΟΟƒΞµΟ„Ξµ Ο„ΞΏΟ…Ο‚ ΞΊΞ±Ξ½ΟΞ½ΞµΟ‚ ΟƒΞ±Ο‚."
-
-#~ msgid "Parameters"
-#~ msgstr "Ξ Ξ±ΟΞ¬ΞΌΞµΟ„ΟΞΏΞΉ"
