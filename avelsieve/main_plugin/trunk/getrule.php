@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: getrule.php,v 1.4 2003/10/13 16:34:45 avel Exp $
+ * $Id: getrule.php,v 1.5 2003/11/07 16:20:33 avel Exp $
  */
 
 /**
@@ -61,7 +61,7 @@ function getruledata($sievescript, &$scriptinfo) {
 
 	if( (!isset($scriptinfo['version']) ) ||
 	    (
-	     isset($scriptinfo['version']) &&
+	     isset($scriptinfo['version']['major']) &&
 	     $scriptinfo['version']['major'] == 0 &&
 	     $scriptinfo['version']['minor'] == 9 &&
 	     ($scriptinfo['version']['release'] == 4 || $scriptinfo['version']['release'] == 5) 
