@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.6 2004/11/19 15:51:42 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.7 2004/12/21 13:18:37 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -36,7 +36,7 @@ class avelsieve_html_rules extends avelsieve_html {
 	 * template engines.
 	 * @return void
 	 */
-	function avelsieve_html_rules($rules = array(), $mode = 'terse') {
+	function avelsieve_html_rules(&$rules, $mode = 'terse') {
 		$this->avelsieve_html();
 		$this->rules = $rules;
 		$this->mode = $mode;

@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.18 2004/11/22 12:02:04 avel Exp $
+ * @version $Id: edit.php,v 1.19 2004/12/21 13:18:37 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -139,7 +139,7 @@ if(isset($popup)) {
 /* Create new mailbox, if required by the user. */
 if($newfoldername) {
 	$created_mailbox_name = '';
-	avelsieve_create_folder($newfoldername, $newfolderparent, &$created_mailbox_name, &$errmsg);
+	avelsieve_create_folder($newfoldername, $newfolderparent, $created_mailbox_name, $errmsg);
 }
 
 if(isset($edit)) {
@@ -148,7 +148,7 @@ if(isset($edit)) {
 } elseif(!isset($edit) && isset($type_get)) {
 	/* Adding a new rule through $_GET */
 	$type = $type_get;
-	$rule = process_input(SQ_GET, &$errmsg);
+	$rule = process_input(SQ_GET, $errmsg);
 } else {
 	/* Adding a new rule from scratch */
 	$rule = array();
@@ -156,7 +156,7 @@ if(isset($edit)) {
 
 if(isset($type_post)) {
 	$type = $type_post;
-	$rule = process_input(SQ_POST, &$errmsg);
+	$rule = process_input(SQ_POST, $errmsg);
 }
 
 if(isset($previoustype) && (
@@ -190,7 +190,7 @@ if(isset($_POST['append'])) {
 
 } elseif(isset($_POST['apply']) && !$changetype) {
 	/* Apply change in existing rule */
-	$editedrule = process_input(SQ_POST, &$errmsg);
+	$editedrule = process_input(SQ_POST, $errmsg);
 	if(empty($errmsg)) {
 		$_SESSION['rules'][$edit] = $editedrule;
 		$_SESSION['comm']['edited'] = $edit;
@@ -200,7 +200,7 @@ if(isset($_POST['append'])) {
 
 } elseif(isset($_POST['addnew']) && !$changetype) {
 	/* Add new rule */
- 	$newrule = process_input(SQ_POST, &$errmsg);
+ 	$newrule = process_input(SQ_POST, $errmsg);
 	if(empty($errmsg)) {
 		if(isset($dup)) {
 			// insert moving rule in place

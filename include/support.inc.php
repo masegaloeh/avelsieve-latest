@@ -9,7 +9,7 @@
  * Various support functions, useful or useless.  NB. THEY MUST NOT DEPEND
  * ELSEWHERE.
  *
- * @version $Id: support.inc.php,v 1.9 2004/11/18 11:06:25 avel Exp $
+ * @version $Id: support.inc.php,v 1.10 2004/12/21 13:18:37 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -59,7 +59,7 @@ function print_errormsg($errormsg) {
  * @param string $foldername
  * @return boolean
  */
-function avelsieve_create_folder($foldername, $subfolder = '', $created_mailbox_name = '', $errmsg = '') {
+function avelsieve_create_folder($foldername, $subfolder = '', &$created_mailbox_name, &$errmsg) {
 	/* Copy & paste magic (aka kludge) */
 	global $mailboxlist, $delimiter, $username, $imapServerAddress, $imapPort;
 
