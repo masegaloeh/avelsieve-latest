@@ -1,6 +1,6 @@
 <h2>Devel Series (1.9.x)</h2>
 
-<h3><a name="1.9.2">1.9.2 beta - Devel Branch (??/12/2004)</a></h3>
+<h3><a name="1.9.2">1.9.2CVS beta - Devel Branch (??/3/2005)</a></h3>
 
 <ul>
 
@@ -13,8 +13,20 @@ table has been sorted out.</li>
 is now done more robustly; recode and iconv functions are supported, aside from
 multibyte string functions.</li>
 
+<li>The terse description of the filtering rules has been updated with more
+friendly strings, which are now i18n-able.</li>
+
+<li>There are two new display modes for the table of filtering rules, a more
+terse display and a SIEVE source display.</li>
+
+<li>The display mode is saved in Squirrelmail Preferences instead of the
+Session. Therefore, it can now stay persistent across Webmail sessions.</li>
+
 <li>Squirrelmail's top links are now displayed again in the Rule Editing
 window, when it is not a popup.</li>
+
+<li>Fixed bug introduced in Devel series, where notification action could not
+be removed. (Thanks to <span class="bugreporter">Christos Soulios</span>).</li>
 
 <li>While Editing a rule, this action has been reinstated: keepdeleted
 (&quot;keep a copy in INBOX, marked as deleted&quot;). Also the 'disabled'
@@ -29,6 +41,9 @@ script.</li>
 
 <li>Descriptive text for Notify action (short version) now shows the
 destination address.</li>
+
+<li>Added X-List-Name: to the default list of headers listbox, as it is used by
+Majordomo. Suggested by <span class="bugreporter">Florin Andrei</span>.</li>
 
 <li>Polish translation by <span class="translator">Martin
 Przybylek</span>.</li>
