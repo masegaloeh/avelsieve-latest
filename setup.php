@@ -11,7 +11,7 @@
  *
  * Also view plugins/README.plugins for more information.
  *
- * $Id: setup.php,v 1.3 2003/10/09 11:24:53 avel Exp $
+ * $Id: setup.php,v 1.4 2003/10/13 16:35:07 avel Exp $
  */
    
 // require_once('../functions/i18n.php');
@@ -55,45 +55,16 @@
    
    function avelsieve_menuline() {
 	global $avelsieveheaderlink;
-   	if(defined("SM_PATH")) {
-		include_once(SM_PATH . 'plugins/avelsieve/config.php');
-	} else {
-		include_once('../plugins/avelsieve/config.php');
-	}
+	include_once(SM_PATH . 'plugins/avelsieve/config.php');
+
    	if($avelsieveheaderlink) {
-		/* There shouldn't be a need for the following. Unless a plugin
-		   programmer doesn't stay at plugins/ :-) */
-
- 	  	/*
-		$cwd = getcwd();
-		if (strstr($cwd, "avelsieve")) {
-			print "binding to locale";
-		        bindtextdomain ('avelsieve', $cwd.'/locale');
-
-		} elseif (strstr($cwd, "plugins/")) {
-			print " inside a plugin... binding to ../avelsieve/locale ";
-		        bindtextdomain ('avelsieve', '../avelsieve/locale');
-
-		} elseif ( strstr($cwd, "src") || strstr($cwd, "functions") ) {
-			print "binding to ../plugins/avelsieve/locale";
-		        bindtextdomain ('avelsieve', '../plugins/avelsieve/locale');
-		} 
-		*/
-		if(defined("SM_PATH")) {
-			bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
-		} else {
-			bindtextdomain('avelsieve', '../plugins/avelsieve/locale');
-		}
+		bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 	        textdomain ('avelsieve');
 
    		displayInternalLink('plugins/avelsieve/table.php',_("Filters"),'right');
 		echo "&nbsp;&nbsp\n";
 
-		if(defined("SM_PATH")) {
-			bindtextdomain('squirrelmail', SM_PATH . 'locale');
-		} else {
-			bindtextdomain('squirrelmail', '../locale');
-		}
+		bindtextdomain('squirrelmail', SM_PATH . 'locale');
 	        textdomain ('squirrelmail');
 	}
    }    
