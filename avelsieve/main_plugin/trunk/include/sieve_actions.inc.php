@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.9 2005/02/28 15:53:24 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.10 2005/03/09 11:10:49 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -140,16 +140,9 @@ class avelsieve_action {
 	 * @return string
 	 */
 	function action_radio() {
-		$out = '';
 		if($this->num) {
 			/* Radio */
-			$out .= '<input type="radio" name="action" onClick="';
-				// global $actions;
-				/*
-				foreach($actions as $action) {
-					$out .= 'HideDiv(\''.$action.'\');';
-				}
-				*/
+			$out = '<input type="radio" name="action" onClick="';
 				for($i=0;$i<9;$i++) {
 					if($i!=$this->num) {
 						$out .= 'HideDiv(\'options_'.$i.'\');';
@@ -164,11 +157,18 @@ class avelsieve_action {
 			$out .= '/> ';
 		} else {
 			/* Checkbox */
-			$out .= '<input type="checkbox" name="'.$this->name.'" '.
-					' onClick="ToggleShowDiv(\'options_'.$this->name.'\');return true;"'.
+			$out = '<input type="checkbox" name="'.$this->name;
+			if(isset($this->two_dimensional_options)) {
+				$out .= '[on]';
+			}
+			$out .= '" onClick="ToggleShowDiv(\'options_'.$this->name.'\');return true;"'.
 					' id="'.$this->name.'" ';
-			if(isset($this->rule[$this->name])) {
+			if(isset($this->two_dimensional_options) && $this->options[$this->name]['on']) {
 				$out .= ' checked=""';
+			} else {
+				if(isset($this->rule[$this->name])) {
+					$out .= ' checked=""';
+				}
 			}
 			$out .= '/> ';
 		}
@@ -260,6 +260,15 @@ class avelsieve_action_redirect extends avelsieve_action {
 		$out .= '/>'.
 				'<label for="keep">'. _("Keep a local copy as well.") . '</label>';
 		return $out;
+	}
+
+	function validate($val, $errormsg) {
+		if(!preg_match("/^( [a-zA-Z0-9] )+( [a-zA-Z0-9\._-] )*@( [a-zA-Z0-9_-] )+( [a-zA-Z0-9\._-] +)+$/" ,
+			$val['redirectemail'])){
+				$errormsg[] = _("Incorrect email address. You must enter only one valid email address.");
+				return false;
+		}
+		return true;
 	}
 }
 
@@ -373,12 +382,14 @@ class avelsieve_action_notify extends avelsieve_action {
 	var $name = 'notify';
 	var $options = array(
 		'notify' => array(
+			'on' => '',
 			'method' => '',
 			'id' => '',
 			'options' => ''
 		)
 	);
 	var $image_src = 'images/mail.png';
+	var $two_dimensional_options = true;
 
 	/**
 	 * The notification action is a bit more complex than the others. The
