@@ -3,12 +3,14 @@
  * User-friendly interface to SIEVE server-side mail filtering.
  * Plugin for Squirrelmail 1.4+
  *
- * Copyright (c) 2002-2004 Alexandros Vellis <avel@users.sourceforge.net>
- *
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: config_sample.php,v 1.1 2004/11/03 11:28:40 avel Exp $
+ * @version $Id: config_sample.php,v 1.2 2004/11/22 12:40:53 avel Exp $
+ * @author Alexandros Vellis <avel@users.sourceforge.net>
+ * @copyright 2002-2004 Alexandros Vellis
+ * @package plugins
+ * @subpackage avelsieve
  */
 
 /**
@@ -49,12 +51,6 @@ $imapproxyserv = array(
 	'localhost' => 'imap.example.org'
 );
 
-/* *** Option Reenabled since 0.9.9 ***
- * Save changes to SIEVE server immediately or be conservative and save only
- * when "Save Changes" is selected? */
-
-$conservative = false;
-
 /* Ldapuserdata mode: Gets user's email addresses (including mailAlternate &
  * mailAuthorized) from LDAP Prefs Backend plugin's cache */
 
@@ -90,10 +86,6 @@ $translate_return_msgs = false;
 $imagetheme = 'bluecurve_24x24';
 //$imagetheme = 'bluecurve_16x16';
 
-/* Enable Create New Folder routine in step #3 of adding a new rule? */
-
-$createnewfolder = true;
-
 /* Number of items to display _initially_, when displaying the header match
  * rule */
 
@@ -107,9 +99,9 @@ $maxitems = 10;
 
 $headers = array(
  'From', 'To', 'Cc', 'Bcc', 'Subject', 'Reply-To', 'Sender', 'List-Id',
- 'MailingList', 'X-ML-Name', 'X-List', 'X-Mailer', 'X-MailingList',
- 'X-Mailing-List', 'X-Spam-Flag', 'X-Spam-Status', 'X-Priority', 'Importance',
- 'X-MSMail-Priority', 'Precedence');
+ 'MailingList', 'X-ML-Name', 'X-List', 'X-MailingList', 'Resent-From',
+ 'Resent-To', 'X-Mailer', 'X-MailingList', 'X-Spam-Flag', 'X-Spam-Status',
+ 'X-Priority', 'Importance', 'X-MSMail-Priority', 'Precedence');
 
 /* Available :method's for the :notify extension (if applicable) */
 $notifymethods = array(
@@ -130,7 +122,8 @@ $notifymethods = array(
  * just disables the GUI of it. Leave as-is (empty array) if you do not need
  * that.
  * 
- * Look in $implemented_capabilities array in constants.php for valid values */
+ * Look in $implemented_capabilities array in include/constants.inc.php for
+ * valid values */
 
 // $disable_avelsieve_capabilities = array("notify");
 $disable_avelsieve_capabilities = array();
@@ -139,9 +132,8 @@ $disable_avelsieve_capabilities = array();
 
 $avelsieveheaderlink = true;
 
-/* *** New option as of 0.9.9 ***
- * Default display mode, one of 'verbose' or 'terse' */
-$avelsieve_default_mode = 'verbose';
+/* Default rules table display mode, one of 'verbose' or 'terse' */
+$avelsieve_default_mode = 'terse';
 
 
 
