@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-22 16:55+0200\n"
+"POT-Creation-Date: 2004-04-01 20:12+0300\n"
 "PO-Revision-Date: 2003-12-29 23:00+0100\n"
 "Last-Translator: Alessandro Dalvit <adalvit@katamail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -99,6 +99,9 @@ msgid ""
 msgstr ""
 "La regola scatter&agrave; se gli indirizzi seguenti compaiono da "
 "qualsiasiparte nelle intestazioni del messaggio:"
+
+msgid "To: or Cc"
+msgstr ""
 
 msgid "AND (Every item must match)"
 msgstr "AND (Ogni elemento deve corrispondere)"
@@ -299,49 +302,19 @@ msgstr ""
 msgid "SPAM Lists to check against"
 msgstr "Lista SPAM con cui controllare"
 
-msgid "Error Encountered"
-msgstr "Errori Verificatisi"
-
-msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "Per <strong>TUTTI</strong> i messaggi in arrivo; "
+msgid "Whitelist"
+msgstr ""
 
 msgid ""
-"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
-"messages)"
+"Messages that match any of these header rules will never end up in Junk "
+"Folders or regarded as SPAM."
 msgstr ""
-"Tutti i messaggi considerati <strong>SPAM</strong> (messaggi commercialinon "
-"richiesti)"
 
-msgid "matching the Spam List(s):"
-msgstr "che corrispondono alla Lista/e di Spam:"
+msgid "Apply Changes"
+msgstr "Applica i Cambiamenti"
 
-#, php-format
-msgid "and with score greater than %s"
-msgstr "e il cui punteggio &egrave; maggiore di %s"
-
-msgid "will be"
-msgstr "saranno"
-
-msgid "stored in the Junk Folder."
-msgstr "conservati nella cartella Junk (robaccia)."
-
-msgid "stored in the Trash Folder."
-msgstr "conservati nella cartella Trash."
-
-msgid "discarded."
-msgstr "scartati."
-
-msgid "If"
-msgstr "Se"
-
-msgid "<em>any</em> of the following mail headers match: "
-msgstr "<em>uno qualsiasi</em> delle seguenti intestazioni corrisponde: "
-
-msgid "<em>all</em> of the following mail headers match: "
-msgstr "<em>tutte</em> le seguenti intestazioni corrispondono: "
-
-msgid "the header"
-msgstr "l'intestazione"
+msgid "Error Encountered"
+msgstr "Errori Verificatisi"
 
 msgid "is"
 msgstr "&egrave;"
@@ -390,6 +363,53 @@ msgstr "esiste"
 
 msgid "does not exist"
 msgstr "non esiste"
+
+msgid "For <strong>ALL</strong> incoming messages; "
+msgstr "Per <strong>TUTTI</strong> i messaggi in arrivo; "
+
+msgid ""
+"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
+"messages)"
+msgstr ""
+"Tutti i messaggi considerati <strong>SPAM</strong> (messaggi commercialinon "
+"richiesti)"
+
+msgid "unless"
+msgstr ""
+
+msgid "or"
+msgstr ""
+
+msgid "matching the Spam List(s):"
+msgstr "che corrispondono alla Lista/e di Spam:"
+
+#, php-format
+msgid "and with score greater than %s"
+msgstr "e il cui punteggio &egrave; maggiore di %s"
+
+msgid "will be"
+msgstr "saranno"
+
+msgid "stored in the Junk Folder."
+msgstr "conservati nella cartella Junk (robaccia)."
+
+msgid "stored in the Trash Folder."
+msgstr "conservati nella cartella Trash."
+
+msgid "discarded."
+msgstr "scartati."
+
+msgid "If"
+msgstr "Se"
+
+msgid "<em>any</em> of the following mail headers match: "
+msgstr "<em>uno qualsiasi</em> delle seguenti intestazioni corrisponde: "
+
+msgid "<em>all</em> of the following mail headers match: "
+msgstr "<em>tutte</em> le seguenti intestazioni corrispondono: "
+
+msgid "the header"
+msgstr "l'intestazione"
 
 msgid "the size of the message is"
 msgstr "la dimensione del messaggio &egrave;"
@@ -564,9 +584,6 @@ msgstr ""
 
 msgid "Editing Mail Filtering Rule"
 msgstr "Modifica Regole di Filtraggio Posta"
-
-msgid "Apply Changes"
-msgstr "Applica i Cambiamenti"
 
 msgid "Message Filters"
 msgstr "Filtri Messaggi"

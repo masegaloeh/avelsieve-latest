@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-22 16:55+0200\n"
+"POT-Creation-Date: 2004-04-01 20:12+0300\n"
 "PO-Revision-Date: 2003-06-13 15:20+0200\n"
 "Last-Translator: Karsten Behrens <mail@karsten-behrens.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
@@ -103,6 +103,9 @@ msgid ""
 msgstr ""
 "Diese Regel wird zutreffen, wenn folgende Adressen irgendwo im Mail-Header "
 "auftauchen"
+
+msgid "To: or Cc"
+msgstr ""
 
 msgid "AND (Every item must match)"
 msgstr "UND (Jeder Eintrag muss &uuml;bereinstimmen)"
@@ -300,48 +303,19 @@ msgstr ""
 msgid "SPAM Lists to check against"
 msgstr ""
 
-msgid "Error Encountered"
-msgstr "Fehler aufgetreten"
-
-msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "F&uuml;r <strong>alle</strong> eingehenden Nachrichten; "
+msgid "Whitelist"
+msgstr ""
 
 msgid ""
-"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
-"messages)"
+"Messages that match any of these header rules will never end up in Junk "
+"Folders or regarded as SPAM."
 msgstr ""
 
-msgid "matching the Spam List(s):"
-msgstr ""
+msgid "Apply Changes"
+msgstr "&Auml;nderungen speichern"
 
-#, fuzzy, php-format
-msgid "and with score greater than %s"
-msgstr "ist gr&ouml;&szlig;er als"
-
-msgid "will be"
-msgstr ""
-
-msgid "stored in the Junk Folder."
-msgstr ""
-
-msgid "stored in the Trash Folder."
-msgstr ""
-
-#, fuzzy
-msgid "discarded."
-msgstr "<em>ignorieren</em>."
-
-msgid "If"
-msgstr "Wenn"
-
-msgid "<em>any</em> of the following mail headers match: "
-msgstr "<em>irgendeiner</em> der folgenden Mail-Header zutrifft: "
-
-msgid "<em>all</em> of the following mail headers match: "
-msgstr "<em>alle</em> der folgenden Mail-Header zutreffen: "
-
-msgid "the header"
-msgstr "der Header"
+msgid "Error Encountered"
+msgstr "Fehler aufgetreten"
 
 msgid "is"
 msgstr "ist"
@@ -390,6 +364,52 @@ msgstr "existiert"
 
 msgid "does not exist"
 msgstr "existiert nicht"
+
+msgid "For <strong>ALL</strong> incoming messages; "
+msgstr "F&uuml;r <strong>alle</strong> eingehenden Nachrichten; "
+
+msgid ""
+"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
+"messages)"
+msgstr ""
+
+msgid "unless"
+msgstr ""
+
+msgid "or"
+msgstr ""
+
+msgid "matching the Spam List(s):"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "and with score greater than %s"
+msgstr "ist gr&ouml;&szlig;er als"
+
+msgid "will be"
+msgstr ""
+
+msgid "stored in the Junk Folder."
+msgstr ""
+
+msgid "stored in the Trash Folder."
+msgstr ""
+
+#, fuzzy
+msgid "discarded."
+msgstr "<em>ignorieren</em>."
+
+msgid "If"
+msgstr "Wenn"
+
+msgid "<em>any</em> of the following mail headers match: "
+msgstr "<em>irgendeiner</em> der folgenden Mail-Header zutrifft: "
+
+msgid "<em>all</em> of the following mail headers match: "
+msgstr "<em>alle</em> der folgenden Mail-Header zutreffen: "
+
+msgid "the header"
+msgstr "der Header"
 
 msgid "the size of the message is"
 msgstr "die gr&ouml;&szlig;e der Nachricht ist"
@@ -560,9 +580,6 @@ msgstr ""
 
 msgid "Editing Mail Filtering Rule"
 msgstr "Bearbeite Filterregel"
-
-msgid "Apply Changes"
-msgstr "&Auml;nderungen speichern"
 
 msgid "Message Filters"
 msgstr "Nachrichtenfilter"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-22 16:55+0200\n"
+"POT-Creation-Date: 2004-04-01 20:12+0300\n"
 "PO-Revision-Date: 2003-05-02 14:39+0200\n"
 "Last-Translator: Alexander Brill <kiowa@egil.org>\n"
 "Language-Team:  <alexander@nettstudio.no>\n"
@@ -98,6 +98,9 @@ msgid ""
 msgstr ""
 "Denne regel vil bli gjort gjeldende hvis meldings-hodet inneholder de "
 "f&oslash;lgende adresser:"
+
+msgid "To: or Cc"
+msgstr ""
 
 msgid "AND (Every item must match)"
 msgstr "OG (Alle punktene m&aring; eksistere)"
@@ -290,48 +293,19 @@ msgstr ""
 msgid "SPAM Lists to check against"
 msgstr ""
 
-msgid "Error Encountered"
-msgstr "Det har oppst&aring;tt en feil"
-
-msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "For <strong>ALLE</strong> innkommende meldinger;"
+msgid "Whitelist"
+msgstr ""
 
 msgid ""
-"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
-"messages)"
+"Messages that match any of these header rules will never end up in Junk "
+"Folders or regarded as SPAM."
 msgstr ""
 
-msgid "matching the Spam List(s):"
-msgstr ""
+msgid "Apply Changes"
+msgstr "Utf&oslash;r Endringer"
 
-#, fuzzy, php-format
-msgid "and with score greater than %s"
-msgstr "er st&oslash;rre enn"
-
-msgid "will be"
-msgstr ""
-
-msgid "stored in the Junk Folder."
-msgstr ""
-
-msgid "stored in the Trash Folder."
-msgstr ""
-
-#, fuzzy
-msgid "discarded."
-msgstr "<em>ignorer</em> den."
-
-msgid "If"
-msgstr "Hvis"
-
-msgid "<em>any</em> of the following mail headers match: "
-msgstr "<em>noen</em> av de f&oslash;lgende epost-meldingshodene eksisterer:"
-
-msgid "<em>all</em> of the following mail headers match: "
-msgstr "<em>alle</em> av de f&oslash;lgende epost-meldingshodene eksisterer: "
-
-msgid "the header"
-msgstr "meldingshode"
+msgid "Error Encountered"
+msgstr "Det har oppst&aring;tt en feil"
 
 msgid "is"
 msgstr "er"
@@ -380,6 +354,52 @@ msgstr "eksisterer"
 
 msgid "does not exist"
 msgstr "eksisterer ikke"
+
+msgid "For <strong>ALL</strong> incoming messages; "
+msgstr "For <strong>ALLE</strong> innkommende meldinger;"
+
+msgid ""
+"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
+"messages)"
+msgstr ""
+
+msgid "unless"
+msgstr ""
+
+msgid "or"
+msgstr ""
+
+msgid "matching the Spam List(s):"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "and with score greater than %s"
+msgstr "er st&oslash;rre enn"
+
+msgid "will be"
+msgstr ""
+
+msgid "stored in the Junk Folder."
+msgstr ""
+
+msgid "stored in the Trash Folder."
+msgstr ""
+
+#, fuzzy
+msgid "discarded."
+msgstr "<em>ignorer</em> den."
+
+msgid "If"
+msgstr "Hvis"
+
+msgid "<em>any</em> of the following mail headers match: "
+msgstr "<em>noen</em> av de f&oslash;lgende epost-meldingshodene eksisterer:"
+
+msgid "<em>all</em> of the following mail headers match: "
+msgstr "<em>alle</em> av de f&oslash;lgende epost-meldingshodene eksisterer: "
+
+msgid "the header"
+msgstr "meldingshode"
 
 msgid "the size of the message is"
 msgstr "st&oslash;rrelsen p&aring; meldingen er"
@@ -561,9 +581,6 @@ msgstr ""
 
 msgid "Editing Mail Filtering Rule"
 msgstr "Editere Epost-Filtrerings-Regel"
-
-msgid "Apply Changes"
-msgstr "Utf&oslash;r Endringer"
 
 msgid "Message Filters"
 msgstr "Meldings-filter"

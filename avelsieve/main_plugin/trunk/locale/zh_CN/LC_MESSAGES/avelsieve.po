@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-22 16:55+0200\n"
+"POT-Creation-Date: 2004-04-01 20:12+0300\n"
 "PO-Revision-Date: 2002-09-30 16:13+0800\n"
 "Last-Translator: Wei Gao <wei@gaofamily.org>\n"
 "Language-Team: Chinese Simplified <LL@li.org>\n"
@@ -92,6 +92,9 @@ msgid ""
 "The rule will trigger if the following addresses appear anywhere in the "
 "message's headers:"
 msgstr "如果在信头里的任何地方出现下面地址，都会用这个规则处理："
+
+msgid "To: or Cc"
+msgstr ""
 
 msgid "AND (Every item must match)"
 msgstr "与（所有项都必须满足）"
@@ -274,48 +277,19 @@ msgstr ""
 msgid "SPAM Lists to check against"
 msgstr ""
 
-msgid "Error Encountered"
-msgstr "总共出错"
-
-msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "对<strong>所有</strong>的收到信件；"
+msgid "Whitelist"
+msgstr ""
 
 msgid ""
-"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
-"messages)"
+"Messages that match any of these header rules will never end up in Junk "
+"Folders or regarded as SPAM."
 msgstr ""
 
-msgid "matching the Spam List(s):"
-msgstr ""
+msgid "Apply Changes"
+msgstr "应用修改"
 
-#, php-format
-msgid "and with score greater than %s"
-msgstr ""
-
-msgid "will be"
-msgstr ""
-
-msgid "stored in the Junk Folder."
-msgstr ""
-
-msgid "stored in the Trash Folder."
-msgstr ""
-
-#, fuzzy
-msgid "discarded."
-msgstr "<em>勿略</em>它。"
-
-msgid "If"
-msgstr "如果"
-
-msgid "<em>any</em> of the following mail headers match: "
-msgstr "<em>任何</em>的下列信件头匹配："
-
-msgid "<em>all</em> of the following mail headers match: "
-msgstr "<em>所有</em>的下列信件头匹配："
-
-msgid "the header"
-msgstr "信头"
+msgid "Error Encountered"
+msgstr "总共出错"
 
 msgid "is"
 msgstr "是"
@@ -366,6 +340,52 @@ msgstr ""
 #, fuzzy
 msgid "does not exist"
 msgstr "不包含"
+
+msgid "For <strong>ALL</strong> incoming messages; "
+msgstr "对<strong>所有</strong>的收到信件；"
+
+msgid ""
+"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
+"messages)"
+msgstr ""
+
+msgid "unless"
+msgstr ""
+
+msgid "or"
+msgstr ""
+
+msgid "matching the Spam List(s):"
+msgstr ""
+
+#, php-format
+msgid "and with score greater than %s"
+msgstr ""
+
+msgid "will be"
+msgstr ""
+
+msgid "stored in the Junk Folder."
+msgstr ""
+
+msgid "stored in the Trash Folder."
+msgstr ""
+
+#, fuzzy
+msgid "discarded."
+msgstr "<em>勿略</em>它。"
+
+msgid "If"
+msgstr "如果"
+
+msgid "<em>any</em> of the following mail headers match: "
+msgstr "<em>任何</em>的下列信件头匹配："
+
+msgid "<em>all</em> of the following mail headers match: "
+msgstr "<em>所有</em>的下列信件头匹配："
+
+msgid "the header"
+msgstr "信头"
 
 msgid "the size of the message is"
 msgstr "信件的大小是"
@@ -538,9 +558,6 @@ msgstr ""
 
 msgid "Editing Mail Filtering Rule"
 msgstr "修改信件过滤规则"
-
-msgid "Apply Changes"
-msgstr "应用修改"
 
 msgid "Message Filters"
 msgstr "信件过滤器"

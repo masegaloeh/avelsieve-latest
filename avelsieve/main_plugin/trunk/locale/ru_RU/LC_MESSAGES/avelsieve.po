@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-22 16:55+0200\n"
+"POT-Creation-Date: 2004-04-01 20:12+0300\n"
 "PO-Revision-Date: 2003-05-21 13:15+0300\n"
 "Last-Translator: Vadim Kozlov <vad@tomsknet.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -98,6 +98,9 @@ msgid ""
 msgstr ""
 "правило срабатывает, если следующие адреса имеются в каком-либо заголовке "
 "сообщения"
+
+msgid "To: or Cc"
+msgstr ""
 
 msgid "AND (Every item must match)"
 msgstr "И (выполнение всех условий)"
@@ -294,47 +297,19 @@ msgstr ""
 msgid "SPAM Lists to check against"
 msgstr "Чёрные списки для проверки"
 
-msgid "Error Encountered"
-msgstr "Встречено ошибок"
-
-msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "Для <strong>ВСЕХ<strong> входящих сообщений; "
+msgid "Whitelist"
+msgstr ""
 
 msgid ""
-"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
-"messages)"
-msgstr "Все сообщения, отмеченные как <strong>спам</strong>"
+"Messages that match any of these header rules will never end up in Junk "
+"Folders or regarded as SPAM."
+msgstr ""
 
-msgid "matching the Spam List(s):"
-msgstr "соответствует чёрным спискам:"
+msgid "Apply Changes"
+msgstr "Сохранить изменения"
 
-#, php-format
-msgid "and with score greater than %s"
-msgstr "и с уровнем соответствия больше чем %s"
-
-msgid "will be"
-msgstr "будут"
-
-msgid "stored in the Junk Folder."
-msgstr "помещены в папку Junk"
-
-msgid "stored in the Trash Folder."
-msgstr "помещаны в папку Trash"
-
-msgid "discarded."
-msgstr "отменено"
-
-msgid "If"
-msgstr "если"
-
-msgid "<em>any</em> of the following mail headers match: "
-msgstr "<em>любой</em> из следующих почтовых заголовков соответствует: "
-
-msgid "<em>all</em> of the following mail headers match: "
-msgstr "<em>все</em> следующие почтовые заголовки соответствуют: "
-
-msgid "the header"
-msgstr "заголовок"
+msgid "Error Encountered"
+msgstr "Встречено ошибок"
 
 msgid "is"
 msgstr "совпадает"
@@ -383,6 +358,51 @@ msgstr "существует"
 
 msgid "does not exist"
 msgstr "не существует"
+
+msgid "For <strong>ALL</strong> incoming messages; "
+msgstr "Для <strong>ВСЕХ<strong> входящих сообщений; "
+
+msgid ""
+"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
+"messages)"
+msgstr "Все сообщения, отмеченные как <strong>спам</strong>"
+
+msgid "unless"
+msgstr ""
+
+msgid "or"
+msgstr ""
+
+msgid "matching the Spam List(s):"
+msgstr "соответствует чёрным спискам:"
+
+#, php-format
+msgid "and with score greater than %s"
+msgstr "и с уровнем соответствия больше чем %s"
+
+msgid "will be"
+msgstr "будут"
+
+msgid "stored in the Junk Folder."
+msgstr "помещены в папку Junk"
+
+msgid "stored in the Trash Folder."
+msgstr "помещаны в папку Trash"
+
+msgid "discarded."
+msgstr "отменено"
+
+msgid "If"
+msgstr "если"
+
+msgid "<em>any</em> of the following mail headers match: "
+msgstr "<em>любой</em> из следующих почтовых заголовков соответствует: "
+
+msgid "<em>all</em> of the following mail headers match: "
+msgstr "<em>все</em> следующие почтовые заголовки соответствуют: "
+
+msgid "the header"
+msgstr "заголовок"
 
 msgid "the size of the message is"
 msgstr "размер сообщения"
@@ -553,9 +573,6 @@ msgstr "Уничтожить спам. Вы не увидите, что тако
 
 msgid "Editing Mail Filtering Rule"
 msgstr "Редактирование правила фильтрации"
-
-msgid "Apply Changes"
-msgstr "Сохранить изменения"
 
 msgid "Message Filters"
 msgstr "Фильтры сообщений"

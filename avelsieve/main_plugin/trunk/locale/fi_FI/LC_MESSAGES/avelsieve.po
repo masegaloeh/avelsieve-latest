@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-22 16:55+0200\n"
+"POT-Creation-Date: 2004-04-01 20:12+0300\n"
 "PO-Revision-Date: 2003-03-19 14:24+0200\n"
 "Last-Translator: Veli Pirttila <titus@iki.fi>\n"
 "Language-Team: finnish <fi@li.org>\n"
@@ -95,6 +95,9 @@ msgid ""
 "The rule will trigger if the following addresses appear anywhere in the "
 "message's headers:"
 msgstr "Ehto k‰ynnistyy jos seuraavanlaiset osoitteet ilmestyv‰t mihink‰‰n"
+
+msgid "To: or Cc"
+msgstr ""
 
 msgid "AND (Every item must match)"
 msgstr "JA (Kaikkien tulee sis‰lty‰)"
@@ -286,48 +289,19 @@ msgstr ""
 msgid "SPAM Lists to check against"
 msgstr ""
 
-msgid "Error Encountered"
-msgstr "Virhe"
-
-msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "<strong>Kaikille</strong> sis‰‰ntuleville viesteille; "
+msgid "Whitelist"
+msgstr ""
 
 msgid ""
-"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
-"messages)"
+"Messages that match any of these header rules will never end up in Junk "
+"Folders or regarded as SPAM."
 msgstr ""
 
-msgid "matching the Spam List(s):"
-msgstr ""
+msgid "Apply Changes"
+msgstr "Tallenna muutokset"
 
-#, fuzzy, php-format
-msgid "and with score greater than %s"
-msgstr "on isompi kuin"
-
-msgid "will be"
-msgstr ""
-
-msgid "stored in the Junk Folder."
-msgstr ""
-
-msgid "stored in the Trash Folder."
-msgstr ""
-
-#, fuzzy
-msgid "discarded."
-msgstr "<em>tuhoa</em> se."
-
-msgid "If"
-msgstr "Jos"
-
-msgid "<em>any</em> of the following mail headers match: "
-msgstr "<em>mik‰ vain</em> seuraavista otsikkokentist‰ sis‰ltyy: "
-
-msgid "<em>all</em> of the following mail headers match: "
-msgstr "<em>kaikki</em> seuraavista otsikkokentist‰ sis‰ltyy:"
-
-msgid "the header"
-msgstr "otsikko"
+msgid "Error Encountered"
+msgstr "Virhe"
 
 msgid "is"
 msgstr "on"
@@ -376,6 +350,52 @@ msgstr "on olemassa"
 
 msgid "does not exist"
 msgstr "ei ole olemassa"
+
+msgid "For <strong>ALL</strong> incoming messages; "
+msgstr "<strong>Kaikille</strong> sis‰‰ntuleville viesteille; "
+
+msgid ""
+"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
+"messages)"
+msgstr ""
+
+msgid "unless"
+msgstr ""
+
+msgid "or"
+msgstr ""
+
+msgid "matching the Spam List(s):"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "and with score greater than %s"
+msgstr "on isompi kuin"
+
+msgid "will be"
+msgstr ""
+
+msgid "stored in the Junk Folder."
+msgstr ""
+
+msgid "stored in the Trash Folder."
+msgstr ""
+
+#, fuzzy
+msgid "discarded."
+msgstr "<em>tuhoa</em> se."
+
+msgid "If"
+msgstr "Jos"
+
+msgid "<em>any</em> of the following mail headers match: "
+msgstr "<em>mik‰ vain</em> seuraavista otsikkokentist‰ sis‰ltyy: "
+
+msgid "<em>all</em> of the following mail headers match: "
+msgstr "<em>kaikki</em> seuraavista otsikkokentist‰ sis‰ltyy:"
+
+msgid "the header"
+msgstr "otsikko"
 
 msgid "the size of the message is"
 msgstr "viestin koko on"
@@ -547,9 +567,6 @@ msgstr ""
 
 msgid "Editing Mail Filtering Rule"
 msgstr "Muokataan suodins‰‰ntˆ‰"
-
-msgid "Apply Changes"
-msgstr "Tallenna muutokset"
 
 msgid "Message Filters"
 msgstr "Viestien suodattimet"

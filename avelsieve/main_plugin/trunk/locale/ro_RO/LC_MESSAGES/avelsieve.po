@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-22 16:55+0200\n"
+"POT-Creation-Date: 2004-04-01 20:12+0300\n"
 "PO-Revision-Date: 2003-06-13 15:20+0200\n"
 "Last-Translator: Marius Onica <omar@uoradea.ro>\n"
 "Language-Team: Romanian \n"
@@ -102,6 +102,9 @@ msgid ""
 msgstr ""
 "Regula se va declansa daca adresele urmatoare vor aprea undeva in Header-ul "
 "mesajului"
+
+msgid "To: or Cc"
+msgstr ""
 
 msgid "AND (Every item must match)"
 msgstr "AND (Fiecare declaratie trebuie sa coincida"
@@ -298,48 +301,19 @@ msgstr ""
 msgid "SPAM Lists to check against"
 msgstr ""
 
-msgid "Error Encountered"
-msgstr "Am intampinat o eroare"
-
-msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "Pentru <strong>toate</strong> mesajele primite; "
+msgid "Whitelist"
+msgstr ""
 
 msgid ""
-"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
-"messages)"
+"Messages that match any of these header rules will never end up in Junk "
+"Folders or regarded as SPAM."
 msgstr ""
 
-msgid "matching the Spam List(s):"
-msgstr ""
+msgid "Apply Changes"
+msgstr "Salveaza Modificarile"
 
-#, fuzzy, php-format
-msgid "and with score greater than %s"
-msgstr "este mai mare decat"
-
-msgid "will be"
-msgstr ""
-
-msgid "stored in the Junk Folder."
-msgstr ""
-
-msgid "stored in the Trash Folder."
-msgstr ""
-
-#, fuzzy
-msgid "discarded."
-msgstr "<em>ignora</em>."
-
-msgid "If"
-msgstr "Daca"
-
-msgid "<em>any</em> of the following mail headers match: "
-msgstr "<em>oricare</em> din urmatoarele Mail-Header-uri coincid: "
-
-msgid "<em>all</em> of the following mail headers match: "
-msgstr "<em>toate</em> urmatoarele Mail-Header-uri coincid: "
-
-msgid "the header"
-msgstr "Header-ul"
+msgid "Error Encountered"
+msgstr "Am intampinat o eroare"
 
 msgid "is"
 msgstr "este"
@@ -388,6 +362,52 @@ msgstr "exista"
 
 msgid "does not exist"
 msgstr "nu exista"
+
+msgid "For <strong>ALL</strong> incoming messages; "
+msgstr "Pentru <strong>toate</strong> mesajele primite; "
+
+msgid ""
+"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
+"messages)"
+msgstr ""
+
+msgid "unless"
+msgstr ""
+
+msgid "or"
+msgstr ""
+
+msgid "matching the Spam List(s):"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "and with score greater than %s"
+msgstr "este mai mare decat"
+
+msgid "will be"
+msgstr ""
+
+msgid "stored in the Junk Folder."
+msgstr ""
+
+msgid "stored in the Trash Folder."
+msgstr ""
+
+#, fuzzy
+msgid "discarded."
+msgstr "<em>ignora</em>."
+
+msgid "If"
+msgstr "Daca"
+
+msgid "<em>any</em> of the following mail headers match: "
+msgstr "<em>oricare</em> din urmatoarele Mail-Header-uri coincid: "
+
+msgid "<em>all</em> of the following mail headers match: "
+msgstr "<em>toate</em> urmatoarele Mail-Header-uri coincid: "
+
+msgid "the header"
+msgstr "Header-ul"
 
 msgid "the size of the message is"
 msgstr "spatiul ocupat de mesaj este"
@@ -568,9 +588,6 @@ msgstr ""
 
 msgid "Editing Mail Filtering Rule"
 msgstr "Editare Regula de Filtrare"
-
-msgid "Apply Changes"
-msgstr "Salveaza Modificarile"
 
 msgid "Message Filters"
 msgstr "Filtru de Mesaje"

@@ -1,9 +1,9 @@
 # Translation of avelsieve to Greek
 msgid ""
 msgstr ""
-"Project-Id-Version: avelsieve-0.9.1\n"
+"Project-Id-Version: avelsieve-0.9.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-22 16:55+0200\n"
+"POT-Creation-Date: 2004-04-01 20:12+0300\n"
 "PO-Revision-Date: 2003-05-30 08:00+0200\n"
 "Last-Translator: Alexandros Vellis <avel@noc.uoa.gr>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -95,6 +95,9 @@ msgid ""
 msgstr ""
 "Αυτός ο κανόνας θα ισχύσει αν οι ακόλουθες διευθύνσεις εμφανίζονται "
 "οπουδήποτε στην κεφαλίδα του μηνύματος:"
+
+msgid "To: or Cc"
+msgstr "Προς: ή Συνημ.:"
 
 msgid "AND (Every item must match)"
 msgstr "ΚΑΙ (όλες οι συνθήκες πρέπει να ισχύουν)"
@@ -292,49 +295,21 @@ msgstr ""
 msgid "SPAM Lists to check against"
 msgstr "Λίστες SPAM με τις οποίες θα γίνει ο έλεγχος"
 
-msgid "Error Encountered"
-msgstr "Παρουσιάστηκε Λάθος"
-
-msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "Για <strong>ΌΛΑ</strong> τα εισερχόμενα μηνύματα· "
+msgid "Whitelist"
+msgstr ""
 
 msgid ""
-"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
-"messages)"
+"Messages that match any of these header rules will never end up in Junk "
+"Folders or regarded as SPAM."
 msgstr ""
-"Όλα τα μηνύματα που θεωρούνται <strong>SPAM</strong> (ανεπιθύμητα "
-"διαφημιστικά μηνύματα)"
+"Τα μηνύματα όπου ταιριάζει οποιαδήποτε από τις παρακάτω κεφαλίδες δε θα "
+"καταλήξουν ποτέ σε φάκελο αχρήστων, ούτε θα θεωρηθούν ως SPAM."
 
-msgid "matching the Spam List(s):"
-msgstr "που ταιριάζουν στη/στις λίστες Spam:"
+msgid "Apply Changes"
+msgstr "Ενεργοποίηση Αλλαγών"
 
-#, php-format
-msgid "and with score greater than %s"
-msgstr "και με σκορ μεγαλύτερο από %s"
-
-msgid "will be"
-msgstr "θα"
-
-msgid "stored in the Junk Folder."
-msgstr "αποθηκευτούν στον Φάκελο Αχρήστων"
-
-msgid "stored in the Trash Folder."
-msgstr "αποθηκευτούν στον Φάκελο Διαγραμμένων."
-
-msgid "discarded."
-msgstr "διαγραφούν."
-
-msgid "If"
-msgstr "Αν"
-
-msgid "<em>any</em> of the following mail headers match: "
-msgstr "<em>οποιαδήποτε</em> από τις ακόλουθες κεφαλίδες ταιριάξει: "
-
-msgid "<em>all</em> of the following mail headers match: "
-msgstr "<em>όλες</em> από τις ακόλουθες κεφαλίδες ταιριάξουν: "
-
-msgid "the header"
-msgstr "η κεφαλίδα"
+msgid "Error Encountered"
+msgstr "Παρουσιάστηκε Λάθος"
 
 msgid "is"
 msgstr "είναι"
@@ -383,6 +358,53 @@ msgstr "υπάρχει"
 
 msgid "does not exist"
 msgstr "δεν υπάρχει"
+
+msgid "For <strong>ALL</strong> incoming messages; "
+msgstr "Για <strong>ΌΛΑ</strong> τα εισερχόμενα μηνύματα· "
+
+msgid ""
+"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
+"messages)"
+msgstr ""
+"Όλα τα μηνύματα που θεωρούνται <strong>SPAM</strong> (ανεπιθύμητα "
+"διαφημιστικά μηνύματα)"
+
+msgid "unless"
+msgstr "εκτός αν"
+
+msgid "or"
+msgstr "ή"
+
+msgid "matching the Spam List(s):"
+msgstr "που ταιριάζουν στη/στις λίστες Spam:"
+
+#, php-format
+msgid "and with score greater than %s"
+msgstr "και με σκορ μεγαλύτερο από %s"
+
+msgid "will be"
+msgstr "θα"
+
+msgid "stored in the Junk Folder."
+msgstr "αποθηκευτούν στον Φάκελο Αχρήστων."
+
+msgid "stored in the Trash Folder."
+msgstr "αποθηκευτούν στον Φάκελο Διαγραμμένων."
+
+msgid "discarded."
+msgstr "διαγραφούν."
+
+msgid "If"
+msgstr "Αν"
+
+msgid "<em>any</em> of the following mail headers match: "
+msgstr "<em>οποιαδήποτε</em> από τις ακόλουθες κεφαλίδες ταιριάξει: "
+
+msgid "<em>all</em> of the following mail headers match: "
+msgstr "<em>όλες</em> από τις ακόλουθες κεφαλίδες ταιριάξουν: "
+
+msgid "the header"
+msgstr "η κεφαλίδα"
 
 msgid "the size of the message is"
 msgstr "το μέγεθος του μηνύματος είναι"
@@ -564,9 +586,6 @@ msgstr ""
 
 msgid "Editing Mail Filtering Rule"
 msgstr "Επεξεργασία του κανόνα φιλτραρίσματος"
-
-msgid "Apply Changes"
-msgstr "Ενεργοποίηση Αλλαγών"
 
 msgid "Message Filters"
 msgstr "Φίλτρα Μηνυμάτων"
