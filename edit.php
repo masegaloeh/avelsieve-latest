@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.19 2004/12/21 13:18:37 avel Exp $
+ * @version $Id: edit.php,v 1.20 2005/03/01 15:24:34 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -284,7 +284,13 @@ function ToggleShowDiv(divname) {
 
 $prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
 textdomain ('squirrelmail');
-displayHtmlHeader('', $js);
+if($popup) {
+	displayHtmlHeader('', $js);
+} else {
+	displayPageHeader($color, 'None');
+	echo $js;
+}
+
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
