@@ -11,7 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table.php,v 1.5 2003/10/13 16:34:16 avel Exp $
+ * $Id: table.php,v 1.6 2003/10/14 16:16:55 avel Exp $
  */
 
 /* table.php: main routine that shows a table of all the rules and allows
@@ -204,7 +204,15 @@ if($logout) {
 	// header("Location: $location/../../src/options.php?optpage=avelsieve\n\n");
 	exit;
 
+} elseif (isset($_POST['addrule'])) {
+	header("Location: $location/addrule.php");
+	exit;
+
+} elseif (isset($_POST['addspamrule'])) {
+	header("Location: $location/addspamrule.php");
+	exit;
 }
+
 
 
 /* Routine for Delete / Delete selected / edit / duplicate / moveup/down */
@@ -235,7 +243,7 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected'])) {
 
 
 		if(sizeof($rules) == "0") {
-			print "DEBUG: Ok, size of rules is 0 apparently.";
+			// print "DEBUG: Ok, size of rules is 0 apparently.";
 	
 			if (!$conservative) {
 				avelsieve_delete_script();
