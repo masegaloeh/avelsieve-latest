@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.11 2004/11/12 10:43:51 avel Exp $
+ * @version $Id: edit.php,v 1.12 2004/11/12 11:27:07 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -35,13 +35,17 @@ sqsession_is_active();
 
 $errmsg = '';
 
+/* Session / Server vars */
 sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
 sqgetGlobalVar('key', $key, SQ_COOKIE);
+sqgetGlobalVar('rules', $rules, SQ_SESSION);
+/* Mode of operation */
+sqgetGlobalVar('dup', $dup, SQ_GET & SQ_POST);
+sqgetGlobalVar('addnew', $addnew, SQ_GET);
+/* Essentials */
 sqgetGlobalVar('popup', $popup, SQ_GET);
 sqgetGlobalVar('items', $items, SQ_GET);
-sqgetGlobalVar('rules', $rules, SQ_SESSION);
 sqgetGlobalVar('edit', $edit, SQ_GET & SQ_POST);
-sqgetGlobalVar('dup', $dup, SQ_GET & SQ_POST);
 sqgetGlobalVar('previoustype', $previoustype, SQ_POST);
 sqgetGlobalVar('type', $type_get, SQ_GET);
 sqgetGlobalVar('type', $type_post, SQ_POST);
@@ -109,7 +113,7 @@ if(isset($_POST['append'])) {
      
 	if(isset($dup)) {
 		// insert moving rule in place
-		array_splice($_SESSION['rules'], $_POST['edit']+1, 0, array($newrule));
+		array_splice($_SESSION['rules'], $edit+1, 0, array($newrule));
 		// Reindex
 		$_SESSION['rules'] = array_values($_SESSION['rules']);
 	} else {
@@ -197,7 +201,15 @@ if(isset($errmsg) && $errmsg) {
 
 require_once (SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
 
-$ht = new avelsieve_html_edit('edit', $rule, $popup);
+if(isset($dup)) {
+	$mode = 'duplicate';
+} elseif(isset($addnew)) {
+	$mode = 'addnew';
+} else {
+	$mode = 'edit';
+}
+
+$ht = new avelsieve_html_edit($mode, $rule, $popup);
 
 if(isset($edit)) {
 	echo $ht->edit_rule($edit);
