@@ -88,25 +88,40 @@ function printnakedfooter() {
 /**
  * Print mailbox select widget.
  * 
- * @param $selectname name for the select HTML variable
- * @param $selectedmbox which mailbox to be selected in the form
+ * @param string $selectname name for the select HTML variable
+ * @param string $selectedmbox which mailbox to be selected in the form
+ * @param boolean $sub 
  */
-function printmailboxlist($selectname, $selectedmbox) {
+function printmailboxlist($selectname, $selectedmbox, $sub = false) {
 
-	global $boxes, $imap_server_type;
+	global $boxes_append, $boxes_admin, $imap_server_type,
+	$default_sub_of_inbox;
+
+	if(isset($boxes_admin) && $sub) {
+		$boxes = $boxes_admin;
+	} elseif(isset($boxes_append)) {
+		$boxes = $boxes_append;
+	} else {
+		global $boxes;
+	}
 	
 	if (count($boxes)) {
 	    $mailboxlist = '<select name="'.$selectname.'" onclick="checkOther(\'5\');" >';
-	    for ($i = 0; $i < count($boxes); $i++) {
-        	$use_folder = true;
-        
-	/* if ((strtolower($boxes[$i]['unformatted']) != 'inbox') &&
-            ($boxes[$i]['unformatted'] != $trash_folder)  &&
-            ($boxes[$i]['unformatted'] != $sent_folder) &&
-            ($boxes[$i]['unformatted'] != $draft_folder)) { */
 	
+
+	    for ($i = 0; $i < count($boxes); $i++) {
+	    
+	    	if($sub) {
+			if ($default_sub_of_inbox == false ) {
+				echo '<option selected value="">[ '._("None")." ]\n";
+			}
+		}
+        
 	            $box = $boxes[$i]['unformatted-dm'];
-	            $box2 = str_replace(' ', '&nbsp;', $boxes[$i]['formatted']);
+
+	            $box2 = str_replace(' ', '&nbsp;', imap_utf7_decode_local($boxes[$i]['unformatted']));
+	            //$box2 = str_replace(' ', '&nbsp;', $boxes[$i]['formatted']);
+
 	            if (strtolower($imap_server_type) != 'courier' || strtolower($box) != 'inbox.trash') {
 	                $mailboxlist .= "<option value=\"$box\"";
 			if($selectedmbox == $box) {
@@ -539,7 +554,7 @@ function print_3_action() {
 				print _("a new folder, named");
 				print '<input type="text" size="25" name="folder_name" onclick="checkOther(\'5\');" /> ';
 				print _("created as a subfolder of");
-				print printmailboxlist("subfolder", false);
+				print printmailboxlist("subfolder", false, true);
 			}
 		
 		}

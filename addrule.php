@@ -11,7 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: addrule.php,v 1.3 2003/11/10 17:05:25 avel Exp $
+ * $Id: addrule.php,v 1.4 2004/01/21 14:08:19 avel Exp $
  */
 
 /**
@@ -435,10 +435,30 @@ case "3":
 	}
 
 	// $cleartext_password = OneTimePadDecrypt($key, $onetimepad);
+	
 	// $folder_prefix = "INBOX";
+	
 	if(!isset($boxes)) {
 		$imapConnection = sqimap_login($username, $_COOKIE['key'], $imapServerAddress, $imapPort, 1); 
 		$boxes = sqimap_mailbox_list($imapConnection);
+	
+		/* If we do not have append permission to some folders, use
+		 * separate structures */
+		if(in_array('useracl', $plugins)) {
+			include_once(SM_PATH.'plugins/useracl/imap_acl.php');
+
+			for ($i = 0; $i < count($boxes); $i++) {
+				$boxes[$i]['acl'] = sqimap_myrights($imapConnection, $boxes[$i]['unformatted-dm']);
+				/* Append permission for target folders */
+				if(strstr($boxes[$i]['acl'], 'i')) {
+					$boxes_append[] = $boxes[$i];
+				}
+				/* Admin permission for parent folders */
+				if(strstr($boxes[$i]['acl'], 'a')) {
+					$boxes_admin[] = $boxes[$i];
+				}
+			}
+		}
 	}
 		
 	if(isset($imapConnection)) {
