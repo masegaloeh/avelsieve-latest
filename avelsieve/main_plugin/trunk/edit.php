@@ -11,7 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: edit.php,v 1.7 2004/11/03 11:24:07 avel Exp $
+ * $Id: edit.php,v 1.8 2004/11/03 12:48:48 avel Exp $
  */
 
 /* edit.php: Editing existing rules. */
@@ -24,7 +24,7 @@ include_once(SM_PATH . 'include/load_prefs.php');
 include_once(SM_PATH . 'functions/page_header.php');
 include_once(SM_PATH . 'functions/imap.php');
 
-include "config.php";
+include_once(SM_PATH . 'plugins/avelsieve/config/config.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/html_rulestable.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.inc.php');
@@ -45,21 +45,23 @@ if(isset($_GET['dup']) || isset($_POST['dup'])) {
 	$dup = true;
 }
 
+
+if(isset($_SESSION['rules'])) {
+	$rules = $_SESSION['rules'];
+}
+$rule = $rules[$edit];
+
 /* Have this handy: type of current rule */
 if(isset($addnew)) {
 	$type = $_GET['type'];
 } else {
-	$type = $_SESSION['rules'][$edit]['type'];
+	$type = $rules[$edit]['type'];
 }
-
-/* and the rule itself */
-$rule = $_SESSION['rules'][$edit];
 
 sqgetGlobalVar('key', $key, SQ_COOKIE);
 
 /* Can (& should) replace above with this: */
 //sqgetGlobalVar('edit', $edit, SQ_GET&SQ_POST);
-
 
 sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
 
@@ -78,7 +80,7 @@ if(isset($_POST['append'])) {
 	header("Location: table.php");
 	exit;
 
-} elseif(isset($_POST['changetype'])) {
+} elseif(isset($_POST['type'])) {
 
 	// eeer.... hmmmm.... o:-)
 
@@ -154,116 +156,12 @@ function checkOther(id){
 </script>
 ';
 
-include "constants.php";
+require_once (SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
 
-/* N.B. Compatibility code removed. */
+$ht = new avelsieve_html_edit(&$rules[$edit]);
 
-//print "<pre>EDIT: "; print_r($_SESSION['rules'][$edit]); print "</pre>";
-//print "<pre>session: "; print_r($_SESSION); print "</pre>";
-
-print '<form name="addrule" action="edit.php" method="POST">';
-print '<input type="hidden" name="edit" value="'.$edit.'" />';
-
-$titlestring =  _("Editing Mail Filtering Rule");
-$titlestring .= ' #'. ($edit+1);
-printheader2( $titlestring);
-print_all_sections_start();
-
-
-
-/* --------------------- 'if' ----------------------- */
-
-print_section_start( _("Condition") );
-/* this is for the drop-down box */
-
-/*
-
-print '<p align="center">' . _("Rule Type") . ': <select name="changetype">';
-
-foreach($types as $i=>$tp) {
-	if(isset($tp['disabled'])) {
-		continue;
-	}
-		
-	if(array_key_exists("dependencies", $tp)) {
-		foreach($tp['dependencies'] as $no=>$dep) {
-			if(!avelsieve_capability_exists($dep)) {
-				continue 2;
-			}
-		}
-	}
-	
-	print '<option value="'.$i.'" ';
-
-	if($type == $i) {
-		print 'selected=""';
-	}
-
-	print '>'. $tp['name'] .'</option>';
-}
-print '</select>';
-
-print ' <input type="submit" name="changetype" value="'._("Change Type").'" /> </p>';
-*/
-
-
-switch ($type) { 
-	case 1: 
-		print "not implemented yet. :)";
-		break;
-		
-	case 2:			/* header */
-		if(!isset($items)) {
-			$items = sizeof($rule['header']) + 1;
-			print '<input type="hidden" name="items" value="'.$items.'" />';
-		}
-		print_2_2_headermatch($items);
-		break;		
-		
-	case 3: 		/* size */
-		print_2_3_sizematch();
-		break;
-		
-	case 4: 		/* All messages */
-		print_2_4_allmessages();
-		break;
-		
-}
-print_section_end();
-
-
-/* --------------------- 'then' ----------------------- */
-
-print_section_start( _("Action") );
-
-if(isset($rule['folder'])) {
-	$selectedmailbox = $rule['folder'];
-}
-
-/* TODO - Remove this and add new folder creation in edit.php as well. */
-$createnewfolder = false; 
-
-print_3_action();
-
-/* End main */
-print_section_end();
-
-print '<tr><td><div style="text-align: center">';
-
-if(isset($addnew)) {
-	print '<input type="submit" name="addnew" value="'._("Add New Rule").'" />';
-
-} elseif(isset($dup)) {
-	print '<input type="hidden" name="dup" value="1" />';
-	print '<input type="submit" name="addnew" value="'._("Add New Rule").'" />';
-} else {
-	print '<input type="submit" name="apply" value="'._("Apply Changes").'" />';
-}
-
-print '<input type="submit" name="cancel" value="'._("Cancel").'" />';
-print '</div></form></td></tr>';
-
-print_all_sections_end();
-printfooter2();
+echo $ht->edit_rule();
+echo $ht->table_footer();
 
 ?>
+</body></html>
