@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table_html.php,v 1.7 2004/01/21 15:40:23 avel Exp $
+ * $Id: table_html.php,v 1.8 2004/01/26 13:36:02 avel Exp $
  */
 
 /* HTML Functions for main GUI - table.php */
@@ -245,17 +245,17 @@ function print_addnewrulebutton() {
 	}
 	*/
 	
-	/* Link to add Spam rule */
-	if($spamrule_enable == true) {
-		print '<table border="0" cellspacing="1" cellpadding="1" align="center"><tr><td>';
-		print '<form action="addspamrule.php" method="POST">';
-		print '<input name="addspamrule" value="' . _("Add SPAM Rule") . '" type="submit" />';
-		print '</form></td><td>';
-	}
 
 	print '<form action="addrule.php" method="POST">';
 	print '<input name="addrule" value="' . _("Add a New Rule") . '" type="submit" />';
 	print '</form>';
+	
+	/* Link to add Spam rule */
+	if($spamrule_enable == true) {
+		print '<form action="addspamrule.php" method="POST">';
+		print '<input name="addspamrule" value="' . _("Add SPAM Rule") . '" type="submit" />';
+		print '</form>';
+	}
 	
 	if($spamrule_enable == true) {
 		print '</td></tr></table>';
