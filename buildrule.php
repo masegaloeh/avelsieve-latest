@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: buildrule.php,v 1.12 2004/03/30 18:26:05 avel Exp $
+ * $Id: buildrule.php,v 1.13 2004/04/29 12:08:11 avel Exp $
  */
 
 /**
@@ -181,7 +181,7 @@ function build_headerrule_snippet($header, $matchtype, $headermatch, $type='rule
 				$escapeslashes = true;
  				break 1;
  			case "not regex":
- 				$out .= "not header :matches";
+ 				$out .= "not header :regex :comparator \"i;ascii-casemap\"";
 				$text .= _("does not match the regural expression");
 				$terse .= "!R=";
 				$escapeslashes = true;
