@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table_html.php,v 1.5 2003/10/19 09:32:36 avel Exp $
+ * $Id: table_html.php,v 1.6 2003/12/18 12:22:44 avel Exp $
  */
 
 /* HTML Functions for main GUI - table.php */
@@ -264,11 +264,15 @@ function print_addnewrulebutton() {
 
 function print_footer() {
 
-	print '<div style="text-align: center;"><p>';
-	print _("When you are done, please click the button below to return to your webmail.");
-	print '</p><form action="table.php" method="POST"><input name="logout" value="';
-	print _("Save Changes");
-	print '" type="submit" /></form></div>';
+	global $conservative;
+
+	if($conservative) {
+		print '<div style="text-align: center;"><p>';
+		print _("When you are done, please click the button below to return to your webmail.");
+		print '</p><form action="table.php" method="POST"><input name="logout" value="';
+		print _("Save Changes");
+		print '" type="submit" /></form></div>';
+	}
 
 }
 
