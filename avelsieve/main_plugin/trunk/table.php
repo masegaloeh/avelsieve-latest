@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.17 2004/11/19 13:16:02 avel Exp $
+ * @version $Id: table.php,v 1.18 2004/11/19 16:04:13 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -240,27 +240,13 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected'])) {
 			$_SESSION['comm']['deleted'] = $_GET['rule'];
 		}
 
-		if(sizeof($rules) == "0") {
+		if(sizeof($rules) == 0) {
 			if (!$conservative) {
+				/* $ht->section_start( _("All your rules have been deleted")) */
 				avelsieve_login();
 				avelsieve_delete_script();
+				sqsession_register($rules, 'rules');
 			}
-			$prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
-			textdomain ('squirrelmail');
-			displayPageHeader($color, 'None');
-			$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
-			textdomain ('avelsieve');
-			printheader2(false);
-			print_all_sections_start();
-			print_section_start(_("All your rules have been deleted"));
-			print_create_new();
-			print_section_end(); 
-			print_all_sections_end();
-			print_buttons();
-			print_footer();
-			printfooter2();
-			sqsession_register($rules, 'rules');
-			exit;
 		} 
 
 
