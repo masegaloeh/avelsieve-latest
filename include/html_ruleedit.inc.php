@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.15 2004/11/19 15:51:42 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.16 2004/11/22 12:37:52 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -423,7 +423,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		/* Preferences from config.php */
 		global $useimages, $translate_return_msgs;
 		/* Data taken from addrule.php */
-		global $boxes, $createnewfolder, $emailaddresses, $sieve_capabilities;
+		global $boxes, $emailaddresses, $sieve_capabilities;
 		/* Other */
 		global $actions, $additional_actions;
 		$out = '<p>'. _("Choose what to do when this rule triggers, from one of the following:"). '</p>';
