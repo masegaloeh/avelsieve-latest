@@ -11,7 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table.php,v 1.10 2004/01/21 15:40:23 avel Exp $
+ * $Id: table.php,v 1.11 2004/01/22 16:18:59 avel Exp $
  *
  * @package avelsieve
  */
@@ -374,7 +374,7 @@ if(isset($_GET['mode'])) {
 	if(array_key_exists($_GET['mode'], $displaymodes)) {
 		$mode = $_GET['mode'];
 	} else {
-		$mode = "verbose";
+		$mode = $avelsieve_default_mode;
 	}
 	sqsession_register($mode, 'mode');
 } else {
@@ -385,7 +385,7 @@ if(isset($_GET['mode'])) {
 			$mode = "verbose";
 		}
 	} else {
-		$mode = "verbose";
+		$mode = $avelsieve_default_mode;
 	}
 }
 

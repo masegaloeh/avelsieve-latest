@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: config_sample.php,v 1.6 2003/11/07 16:17:48 avel Exp $
+ * $Id: config_sample.php,v 1.7 2004/01/22 16:18:59 avel Exp $
  */
 
 /* Configuration parameters for SIEVE mail filters (aka avelsieve) */
@@ -115,6 +115,14 @@ $avelsieveheaderlink = true;
 
 
 $ldapuserdatamode = false;
+
+/**
+ * New option as of 0.9.9:
+ * Default display mode, one of 'verbose' or 'terse'
+ * @var string
+ */
+$avelsieve_default_mode = 'terse';
+
 
 /* ======================================================================== */
 
