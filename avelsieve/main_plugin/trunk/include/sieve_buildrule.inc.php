@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.9 2005/03/08 18:00:17 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.10 2005/03/09 09:26:30 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -232,6 +232,7 @@ function build_headerrule_snippet($header, $matchtype, $headermatch, $type='rule
 	$out .= "\"". avelsieve_addslashes($headermatch) . "\"";
 	$text .= " &quot;". htmlspecialchars($headermatch) . "&quot;";
 	$terse .= ' '.htmlspecialchars($headermatch). ' ';
+	$tech .= ' '.htmlspecialchars($headermatch). ' ';
 
  	if ($matchtype == "contains") {
 	} else {
@@ -261,7 +262,9 @@ function build_headerrule_snippet($header, $matchtype, $headermatch, $type='rule
  *   terse = return a very terse description
  *   tech = similar to terse, only for people with a more technical background
  *   	(read: geeks)
- *   rule = return a string with the appropriate SIEVE code.
+ *   rule = return a string with the appropriate SIEVE code. (Default)
+ *   source = return a string with the appropriate SIEVE code in format for
+ *   	display to the user.
  * @return string
  */
 function makesinglerule($rule, $type='rule') {
@@ -272,7 +275,9 @@ function makesinglerule($rule, $type='rule') {
 	 * check if it is disabled. */
 	
 	$coded = urlencode(base64_encode(serialize($rule)));
-	$out = "#START_SIEVE_RULE".$coded."END_SIEVE_RULE\n";
+	if($type != 'source') {
+		$out = "#START_SIEVE_RULE".$coded."END_SIEVE_RULE\n";
+	}
 
 	/* Check for a disabled rule. */
 	if (isset($rule['disabled']) && $rule['disabled']==1) {
@@ -405,24 +410,25 @@ function makesinglerule($rule, $type='rule') {
 				}
 			}
 			$text .= '), '; 
+			$tech .= '), '; 
 			$terse .= '</ul>'; 
 			$out .= " )";
 		}
-		$out .= " )\n";
-		$out .= ' { ';
-		$out .= "\n";
-		
+		$out .= " )\n{\n";
 		$text .= ', ';
+
 		if($spamrule_advanced == true) {
 			$text .= _("matching the Spam List(s):");
 			$terse .= '<br/>' . _("Spam List(s):") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
+			$tech .= '<br/>' . _("Spam List(s):") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
 			for($i=0; $i<sizeof($te); $i++) {
 				$text .= $spamrule_tests[$te[$i]].', ';
 				$terse .= '<li>' . $spamrule_tests[$te[$i]].'</li>';
+				$tech .= '<li>' . $spamrule_tests[$te[$i]].'</li>';
 			}
 			$text .= sprintf( _("and with score greater than %s") , $sc );
 			$terse .= '</ul>' . sprintf( _("Score > %s") , $sc);
-			$tech .= sprintf( _("Score > %s") , $sc);
+			$tech .= '</ul>' . sprintf( _("Score > %s") , $sc);
 		}
 	
 		$text .= ', ' . _("will be") . ' ';
@@ -500,6 +506,8 @@ function makesinglerule($rule, $type='rule') {
 				$rule['headermatch'][$i] ,'verbose');
 			$terse .= build_headerrule_snippet($rule['header'][$i], $rule['matchtype'][$i],
 				$rule['headermatch'][$i] ,'terse');
+			$tech .= build_headerrule_snippet($rule['header'][$i], $rule['matchtype'][$i],
+				$rule['headermatch'][$i] ,'tech');
 	
 			if(isset($rule['headermatch'][$i+1])) {
 				$out .= ",\n";
@@ -711,6 +719,7 @@ function makesinglerule($rule, $type='rule') {
 	
 	$out .= "\n}";
 	$terse .= "</td></tr></table>";
+	$tech .= "</td></tr></table>";
 	
 	if (isset($rule['disabled']) && $rule['disabled']==1) {
 		$text .= '</span>';
@@ -724,6 +733,8 @@ function makesinglerule($rule, $type='rule') {
 			return $text;
 		case 'tech':
 			return $tech;
+		case 'source':
+			return str_replace("\n", '<br/>', $out);
 		default:
 			return $out;
 	}

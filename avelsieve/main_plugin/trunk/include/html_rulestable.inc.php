@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.9 2005/03/01 15:26:58 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.10 2005/03/09 09:26:30 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -84,11 +84,11 @@ class avelsieve_html_rules extends avelsieve_html {
 			' <small>(' . _("Display as:");
 		
 		
-		foreach($displaymodes as $id=>$name) {
+		foreach($displaymodes as $id=>$info) {
 			if($this->mode == $id) {
-				$out .= ' <strong>'.$name.'</strong>';
+				$out .= ' <strong><span title="'.$info[1].'">'.$info[0].'</strong>';
 			} else {
-				$out .= ' <a href="'.$_SERVER['SCRIPT_NAME'].'?mode='.$id.'">'.$name.'</a>';
+				$out .= ' <a href="'.$_SERVER['SCRIPT_NAME'].'?mode='.$id.'" title="'.$info[1].'">'.$info[0].'</a>';
 			}
 		}
 		$out .= ')</small>';
