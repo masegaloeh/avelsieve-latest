@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.11 2004/11/15 13:07:23 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.12 2004/11/15 16:35:54 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -32,7 +32,7 @@ class avelsieve_html_edit extends avelsieve_html {
 	var $spamrule_enable = false;
 
 	/**
-	 * @var boolean Is the window a pop-up window (called from elsewhere)?
+	 * @var mixed Is the window a pop-up window (called from elsewhere)?
 	 */
 	var $popup = false;
 
@@ -53,6 +53,9 @@ class avelsieve_html_edit extends avelsieve_html {
 	 */
 	function avelsieve_html_edit($mode = 'edit', $rule = array(), $popup = false) {
 		$this->rule = $rule;
+		if(!isset($this->rule['type'])) {
+			$this->rule['type'] = 0;
+		}
 		$this->mode = $mode;
 		$this->popup = $popup;
 	}
@@ -121,13 +124,8 @@ class avelsieve_html_edit extends avelsieve_html {
 			$out = '<p>'._("What kind of rule would you like to add?"). '</p>';
 		} elseif($select == 'select') {
 			$out = '<p align="center">' . _("Rule Type") . ': '.
-				'<input type="hidden" name="previoustype" value="';
-			if(isset($this->rule['type'])) {
-				$out .= $this->rule['type'];
-			} else {
-				$out .= '0';
-			}
-			$out .= '" /><select name="type" onChange="addrule.submit();">';
+				'<input type="hidden" name="previoustype" value="'.$this->rule['type'].
+				'" /><select name="type" onChange="addrule.submit();">';
 		}
 
 		$active_types = array();
@@ -146,7 +144,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		}
 		sort($active_types);
 
-		if(!isset($this->rule['type']) && $select == 'select') {
+		if($this->rule['type'] == 0 && $select == 'select') {
 			$out .= '<option value="">'. _(" -- Please Select -- ") .'</option>';
 		}
 
@@ -154,7 +152,7 @@ class avelsieve_html_edit extends avelsieve_html {
 			$k = $active_types[$i];
 			if($select == 'radio') {
 				$out .= '<input type="radio" name="type" id="type_'.$k.'" value="'.$k.'" ';
-				if(isset($this->rule['type']) && $this->rule['type'] == $k) {
+				if($this->rule['type'] == $k) {
 					$out .= 'selected=""';
 				}
 				$out .= '/> '.
@@ -163,7 +161,7 @@ class avelsieve_html_edit extends avelsieve_html {
 					'</label>';
 			} elseif($select == 'select') {
 				$out .= '<option value="'.$k.'" ';
-				if(isset($this->rule['type']) && $this->rule['type'] == $k) {
+				if($this->rule['type'] == $k) {
 					$out .= 'selected=""';
 				}
 				$out .= '>'. $types[$k]['name'] .'</option>';
@@ -457,17 +455,26 @@ class avelsieve_html_edit extends avelsieve_html {
 	 */
 	function submit_buttons() {
 		$out = '<tr><td><div style="text-align: center">';
+		if($this->rule['type'] != 0) {
 		switch ($this->mode) {
 			case 'addnew':
 				$out .= '<input type="submit" name="addnew" value="'._("Add New Rule").'" />';
+				break;
+			case 'addnewspam':
+				$out .= '<input type="submit" name="addnew" value="'._("Add SPAM Rule").'" />';
 				break;
 			case 'duplicate':
 				$out .= '<input type="hidden" name="dup" value="1" />';
 				$out .= '<input type="submit" name="addnew" value="'._("Add New Rule").'" />';
 				break;
+			case 'duplicatespam':
+				$out .= '<input type="hidden" name="dup" value="1" />';
+				$out .= '<input type="submit" name="addnew" value="'._("Add SPAM Rule").'" />';
+				break;
 			case 'edit':
 				$out .= '<input type="submit" name="apply" value="'._("Apply Changes").'" />';
 				break;
+		}
 		}
 		if($this->popup) {
 			$out .= ' <input type="submit" name="cancel" onClick="window.close(); return false;" value="'._("Cancel").'" />';
@@ -534,6 +541,9 @@ class avelsieve_html_edit extends avelsieve_html {
 				
 			case 4: 		/* All messages */
 				$out .= $this->rule_2_4_allmessages();
+				break;
+			case 0:			/* Nothing yet... */
+			default:
 				break;
 				
 		}
