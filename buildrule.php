@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: buildrule.php,v 1.14 2004/05/12 13:56:13 avel Exp $
+ * $Id: buildrule.php,v 1.15 2004/05/12 14:16:09 avel Exp $
  */
 
 /**
@@ -383,9 +383,14 @@ if($rule['type']=="4") {
 		$text .= _("stored in the Trash Folder.");
 
 		global $data_dir, $username;
-		$tf = getPref($data_dir, $username, 'trash_folder');
-
-		$out .= 'fileinto "'.$tf.'";';
+		$trash_folder = getPref($data_dir, $username, 'trash_folder');
+		/* Fallback in case it does not exist. Thanks to Eduardo
+		 * Mayoral. If not even Trash does not exist, it will end up in
+		 * INBOX... */
+		if($trash_folder == '' || $trash_folder == 'none') {
+			$trash_folder = "Trash";
+		}
+		$out .= 'fileinto "'.$trash_folder.'";';
 		$terse .= 'TRASH';
 
 	} elseif($ac == 'discard') {

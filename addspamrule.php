@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: addspamrule.php,v 1.5 2004/03/30 18:26:37 avel Exp $
+ * $Id: addspamrule.php,v 1.6 2004/05/12 14:16:09 avel Exp $
  */
 
 /**
@@ -306,12 +306,14 @@ if(!$spamrule_advanced) {
 	print _("Action");
 	print '</strong></li><br />';
 	
+	$trash_folder = getPref($data_dir, $username, 'trash_folder');
 	foreach($spamrule_actions as $ac=>$in) {
 	
-		if($ac == 'junk') {
-			if(!in_array('junkfolder', $plugins)) {
-				continue;
-			}
+		if($ac == 'junk' && (!in_array('junkfolder', $plugins))) {
+			continue;
+		}
+		if($ac == 'trash' && ($trash_folder == '' || $trash_folder == 'none')) {
+			continue;
 		}
 	
 		print '<input type="radio" name="action" id="action_'.$ac.'" value="'.$ac.'" '; 
