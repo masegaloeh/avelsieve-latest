@@ -8,13 +8,57 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-10-02 23:30+0300\n"
+"POT-Creation-Date: 2003-10-07 16:24+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+msgid "You have to define at least one header match text."
+msgstr ""
+
+msgid "You have not defined the name for the new folder."
+msgstr ""
+
+msgid "Please try again."
+msgstr ""
+
+msgid "Illegal folder name.  Please select a different name"
+msgstr ""
+
+msgid "Add New Rule"
+msgstr ""
+
+msgid "New Rule Wizard - Step"
+msgstr ""
+
+msgid "of"
+msgstr ""
+
+msgid "Rule Type"
+msgstr ""
+
+msgid "Condition"
+msgstr ""
+
+msgid "Action"
+msgstr ""
+
+msgid "Confirmation"
+msgstr ""
+
+msgid ""
+"<p>You have chosen to keep every mail. This is the default action anyway, so "
+"you might want to start over with a rule that makes more sense. Select &quot;"
+"finished&quot; to save this rule nonetheless.</p>"
+msgstr ""
+
+msgid ""
+"Please use the buttons on the bottom instead of your browser's reload, back "
+"and forward buttons, to build a rule."
+msgstr ""
 
 msgid "Clear this Form"
 msgstr ""
@@ -182,50 +226,6 @@ msgstr ""
 msgid ""
 "If this is what you wanted, select Finished. You can also start over or "
 "cancel adding a rule altogether."
-msgstr ""
-
-msgid "You have to define at least one header match text."
-msgstr ""
-
-msgid "You have not defined the name for the new folder."
-msgstr ""
-
-msgid "Please try again."
-msgstr ""
-
-msgid "Illegal folder name.  Please select a different name"
-msgstr ""
-
-msgid "Add New Rule"
-msgstr ""
-
-msgid "New Rule Wizard - Step"
-msgstr ""
-
-msgid "of"
-msgstr ""
-
-msgid "Rule Type"
-msgstr ""
-
-msgid "Condition"
-msgstr ""
-
-msgid "Action"
-msgstr ""
-
-msgid "Confirmation"
-msgstr ""
-
-msgid ""
-"<p>You have chosen to keep every mail. This is the default action anyway, so "
-"you might want to start over with a rule that makes more sense. Select &quot;"
-"finished&quot; to save this rule nonetheless.</p>"
-msgstr ""
-
-msgid ""
-"Please use the buttons on the bottom instead of your browser's reload, back "
-"and forward buttons, to build a rule."
 msgstr ""
 
 msgid "Error Encountered"
@@ -451,6 +451,33 @@ msgstr ""
 msgid "Please contact your administrator."
 msgstr ""
 
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr ""
+
+msgid "Current Mail Filtering Rules"
+msgstr ""
+
+msgid "No Filtering Rules Defined Yet"
+msgstr ""
+
+msgid "in order to save your rules."
+msgstr ""
+
+msgid "Could not set active script on your IMAP server"
+msgstr ""
+
+msgid "Could not get SIEVE script from your IMAP server"
+msgstr ""
+
+msgid "(Probably the script is size null)."
+msgstr ""
+
+msgid "All your rules have been deleted"
+msgstr ""
+
+msgid "Delete Selected"
+msgstr ""
+
 msgid "Server-Side Mail Filtering"
 msgstr ""
 
@@ -512,31 +539,4 @@ msgid "Created:"
 msgstr ""
 
 msgid "Last modified:"
-msgstr ""
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr ""
-
-msgid "Current Mail Filtering Rules"
-msgstr ""
-
-msgid "No Filtering Rules Defined Yet"
-msgstr ""
-
-msgid "in order to save your rules."
-msgstr ""
-
-msgid "Could not set active script on your IMAP server"
-msgstr ""
-
-msgid "Could not get SIEVE script from your IMAP server"
-msgstr ""
-
-msgid "(Probably the script is size null)."
-msgstr ""
-
-msgid "All your rules have been deleted"
-msgstr ""
-
-msgid "Delete Selected"
 msgstr ""
