@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: sieve.php,v 1.2 2003/10/07 13:24:52 avel Exp $
+ * $Id: sieve.php,v 1.3 2003/10/10 12:59:37 avel Exp $
  */
 
 /**
@@ -168,8 +168,14 @@ function avelsieve_encode_script($script) {
 		return $script;
 	
 	} elseif(function_exists('sqimap_mb_convert_encoding')) {
-		return sqimap_mb_convert_encoding($script, 'UTF-8', $default_charset, $default_charset);
-	
+		// sqimap_mb_convert_encoding() returns '' if mb_convert_encoding() doesn't exist!
+		$utf8_s = sqimap_mb_convert_encoding($script, 'UTF-8', $default_charset, $default_charset);
+		if(empty($utf8_s)) {
+			return $script;
+		} else {
+			return $utf8_s;
+		}
+
 	} elseif(function_exists('mb_convert_encoding')) {
 		/* Squirrelmail 1.4.0 ? */
 
@@ -200,15 +206,21 @@ function avelsieve_decode_script($script) {
 		return $script;
 	
 	} elseif(function_exists('sqimap_mb_convert_encoding')) {
-		return sqimap_mb_convert_encoding($script, $default_charset, "UTF-8", $default_charset);
-	
+		// sqimap_mb_convert_encoding() returns '' if mb_convert_encoding() doesn't exist!
+		$un_utf8_s = sqimap_mb_convert_encoding($script, $default_charset, "UTF-8", $default_charset);
+		if(empty($un_utf8_s)) {
+			return $script;
+		} else {
+			return $un_utf8_s;
+		}
+
 	} elseif(function_exists('mb_convert_encoding')) {
 		/* Squirrelmail 1.4.0 ? */
 
 		if ( stristr($default_charset, 'iso-8859-') ||
 		  stristr($default_charset, 'utf-8') || 
 		  stristr($default_charset, 'iso-2022-jp') ) {
-			return mb_convert_encoding($script, $default_charset, "UTF-8") ;
+			return mb_convert_encoding($script, $default_charset, "UTF-8");
 		}
 	}
 	return $script;
