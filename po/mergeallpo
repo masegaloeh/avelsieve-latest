@@ -1,0 +1,9 @@
+#!/bin/sh
+for dir in `ls -1 ../locale/`
+do
+	mv ../locale/$dir/LC_MESSAGES/avelsieve.po ../locale/$dir/LC_MESSAGES/avelsieve.po.bak
+	echo "Executing: msgmerge ../locale/$dir/LC_MESSAGES/avelsieve.po.bak avelsieve.pot > ../locale/$dir/LC_MESSAGES/avelsieve.po";
+	msgmerge ../locale/$dir/LC_MESSAGES/avelsieve.po.bak avelsieve.pot > ../locale/$dir/LC_MESSAGES/avelsieve.po
+done
+
+     

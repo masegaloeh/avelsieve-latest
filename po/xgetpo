@@ -1,0 +1,2 @@
+#!/bin/sh
+xgettext -L PHP --keyword=_ --no-location --default-domain=avelsieve ../*.php -o avelsieve.pot

@@ -1,0 +1,16 @@
+#!/bin/sh
+
+out="../doc/avelsieve_translation_statistics.html"
+
+echo "<h2>Translation statistics for avelsieve</h2>" > $out
+echo "<h3>Updated ` date -I `</h3><ul>" >> $out
+
+for dir in `ls -1 ../locale/`
+do
+	echo "<li>Language: <strong>$dir</strong> " >> $out
+	msgfmt -v --statistics -c -o /dev/null ../locale/$dir/LC_MESSAGES/avelsieve.po >> $out  2>&1 
+	echo "</li>" >> $out
+done
+
+echo "</ul>" >> $out
+
