@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: process_user_input.inc.php,v 1.3 2004/11/12 10:44:58 avel Exp $
+ * @version $Id: process_user_input.inc.php,v 1.4 2004/11/15 13:08:30 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -69,7 +69,7 @@ function process_input($search = SQ_POST, $errmsg = '') {
 			break;
 	
 		case "3":
-			if($ns['sizeamount']) {
+			if(isset($ns['sizeamount'])) {
 				array_push($vars, 'sizerel', 'sizeamount', 'sizeunit');
 			}
 			break;
@@ -110,7 +110,7 @@ function process_input($search = SQ_POST, $errmsg = '') {
 	if(isset($ns['stop'])) {
 		$vars[] = 'stop';
 	}
-	if(isset($ns['notifyme'])) {
+	if(isset($ns['notify'])) {
 		$vars[] = 'notify';
 	}
 	
@@ -119,6 +119,14 @@ function process_input($search = SQ_POST, $errmsg = '') {
 	foreach($vars as $myvar) {
 		if(isset($ns[$myvar])) {
 			$rule[$myvar]= $ns[$myvar];
+		}
+	}
+
+	/* Special hack for newly-created folder */
+	if(isset($rule['folder'])) {
+		global $created_folder_name;
+		if(isset($created_folder_name) && $created_folder_name) {
+			$rule['folder'] = $created_folder_name;
 		}
 	}
 	
