@@ -3,13 +3,13 @@
 # Copyright (C) 2003 Alexandros Vellis
 # This file is distributed under the same license as the PACKAGE package.
 # Tomas Kuliavas <tokul@users.sourceforge.net>, 2003.
-# $Id: avelsieve.po,v 1.4 2004/01/22 15:44:44 avel Exp $
+# $Id: avelsieve.po,v 1.5 2004/04/20 15:28:45 avel Exp $
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: (avelsieve 0.9.7)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-22 16:55+0200\n"
+"POT-Creation-Date: 2004-04-01 20:12+0300\n"
 "PO-Revision-Date: 2003-10-09 19:56+0200\n"
 "Last-Translator: Tomas Kuliavas <tokul@users.sourceforge.net>\n"
 "Language-Team: SquirrelMail I18N Team <squirrelmail-i18n@lists.sourceforge."
@@ -101,6 +101,9 @@ msgid ""
 "message's headers:"
 msgstr ""
 "Taisyklė sureaguos jei taip žinutės antraščių pasirodys nurodyti adresai:"
+
+msgid "To: or Cc"
+msgstr ""
 
 msgid "AND (Every item must match)"
 msgstr "IR (Turi sutapti visi požymiai)"
@@ -298,49 +301,19 @@ msgstr ""
 msgid "SPAM Lists to check against"
 msgstr "SPAM sąrašai naudojami tikrinant"
 
-msgid "Error Encountered"
-msgstr "Įvyko klaida"
-
-msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "<strong>VISOMS</strong> ateinančioms žinutėms; "
+msgid "Whitelist"
+msgstr ""
 
 msgid ""
-"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
-"messages)"
+"Messages that match any of these header rules will never end up in Junk "
+"Folders or regarded as SPAM."
 msgstr ""
-"Visos žinutės turinčios <strong>SPAM</strong> (nesankcionuoti komerciniai "
-"pranešimai) požymius"
 
-msgid "matching the Spam List(s):"
-msgstr "atitinkančios Spamo sąrašą(us):"
+msgid "Apply Changes"
+msgstr "Išsaugoti pakeitimus"
 
-#, php-format
-msgid "and with score greater than %s"
-msgstr "ir įvertinimu didesniu nei %s"
-
-msgid "will be"
-msgstr "bus"
-
-msgid "stored in the Junk Folder."
-msgstr "patalpinta Šlamšto aplanke."
-
-msgid "stored in the Trash Folder."
-msgstr "patalpinta Šlamšto aplanke."
-
-msgid "discarded."
-msgstr "išmesta."
-
-msgid "If"
-msgstr "Jei"
-
-msgid "<em>any</em> of the following mail headers match: "
-msgstr "<em>bent viena</em> iš nurodytų antraščių atitinka: "
-
-msgid "<em>all</em> of the following mail headers match: "
-msgstr "<em>visos</em> nurodytos pašto antraštos atitinka: "
-
-msgid "the header"
-msgstr "antraštė"
+msgid "Error Encountered"
+msgstr "Įvyko klaida"
 
 msgid "is"
 msgstr "yra"
@@ -389,6 +362,53 @@ msgstr "egzistuoja"
 
 msgid "does not exist"
 msgstr "neegzistuoja"
+
+msgid "For <strong>ALL</strong> incoming messages; "
+msgstr "<strong>VISOMS</strong> ateinančioms žinutėms; "
+
+msgid ""
+"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
+"messages)"
+msgstr ""
+"Visos žinutės turinčios <strong>SPAM</strong> (nesankcionuoti komerciniai "
+"pranešimai) požymius"
+
+msgid "unless"
+msgstr ""
+
+msgid "or"
+msgstr ""
+
+msgid "matching the Spam List(s):"
+msgstr "atitinkančios Spamo sąrašą(us):"
+
+#, php-format
+msgid "and with score greater than %s"
+msgstr "ir įvertinimu didesniu nei %s"
+
+msgid "will be"
+msgstr "bus"
+
+msgid "stored in the Junk Folder."
+msgstr "patalpinta Šlamšto aplanke."
+
+msgid "stored in the Trash Folder."
+msgstr "patalpinta Šlamšto aplanke."
+
+msgid "discarded."
+msgstr "išmesta."
+
+msgid "If"
+msgstr "Jei"
+
+msgid "<em>any</em> of the following mail headers match: "
+msgstr "<em>bent viena</em> iš nurodytų antraščių atitinka: "
+
+msgid "<em>all</em> of the following mail headers match: "
+msgstr "<em>visos</em> nurodytos pašto antraštos atitinka: "
+
+msgid "the header"
+msgstr "antraštė"
 
 msgid "the size of the message is"
 msgstr "žinutės dydis yra"
@@ -566,9 +586,6 @@ msgstr ""
 
 msgid "Editing Mail Filtering Rule"
 msgstr "Taisoma pašto filtravimo taisyklė"
-
-msgid "Apply Changes"
-msgstr "Išsaugoti pakeitimus"
 
 msgid "Message Filters"
 msgstr "Žinučių filtrai"
