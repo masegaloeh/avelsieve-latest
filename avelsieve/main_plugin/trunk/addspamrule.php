@@ -1,19 +1,22 @@
 <?php
-/**
+/*
  * User-friendly interface to SIEVE server-side mail filtering.
  * Plugin for Squirrelmail 1.4+
  *
- * Copyright (c) 2002-2003 Alexandros Vellis <avel@users.sourceforge.net>
+ * Special form for SPAM mail filtering rules.
  *
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: addspamrule.php,v 1.6 2004/05/12 14:16:09 avel Exp $
+ * @version $Id: addspamrule.php,v 1.7 2004/11/12 10:43:16 avel Exp $
+ * @author Alexandros Vellis <avel@users.sourceforge.net>
+ * @copyright 2002-2004 Alexandros Vellis
+ * @package plugins
+ * @subpackage avelsieve
+ * @todo: Probably Import spamrule_filters from Filters plugin. It contains a
+ * lot of spam rbls definitions.
  */
 
-/**
- * Wizard-like form for adding new spam rule.
- */
 define('SM_PATH','../../');
 
 require_once(SM_PATH . 'include/validate.php');
@@ -21,12 +24,13 @@ require_once(SM_PATH . 'include/load_prefs.php');
 require_once(SM_PATH . 'functions/page_header.php');
 require_once(SM_PATH . 'functions/imap.php');
 
-include "config.php";
-require_once "avelsieve_support.inc.php";
-require_once "table_html.php";
-require_once "addrule_html.php";
-require_once "buildrule.php";
-require_once "sieve.php";
+include_once(SM_PATH . 'plugins/avelsieve/config/config.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/html_rulestable.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/sieve_actions.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/sieve.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/process_user_input.inc.php');
 
 sqsession_is_active();
 
@@ -64,9 +68,7 @@ if(isset($_POST['spamrule_advanced'])) {
 $spamrule = true;
 global $spamrule;
 
-
 /* Spam Rule variables */
-
 
 /* If we need to get spamrule RBLs from LDAP, then do so now. */
 
@@ -74,11 +76,10 @@ if(isset($_SESSION['spamrule_rbls'])) {
 	$spamrule_rbls = $_SESSION['spamrule_rbls'];
 } elseif(isset($spamrule_tests_ldap) && $spamrule_tests_ldap == true &&
    !isset($_SESSION['spamrule_rbls'])) {
-	include_once('spamrulefunctions.php');
+	include_once(SM_PATH . 'plugins/avelsieve/include/spamrule.inc.php');
 	$spamrule_rbls = avelsieve_askldapforrbls();
 	$_SESSION['spamrule_rbls'] = $spamrule_rbls;
 }
-
 
 if(isset($_POST['tests'])) {
 	$tests = $_POST['tests'];
@@ -126,7 +127,6 @@ if(isset($_POST['stop']))  {
 	$stop = $rule['stop'];
 }
 
-
 /* Other stuff */
 sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
 
@@ -166,8 +166,6 @@ if(isset($_POST['finished']) || isset($_POST['apply'])) {
 }
 
 
-	
-
 /* ----------------- start printing --------------- */
 
 $prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
@@ -178,22 +176,19 @@ displayPageHeader($color, 'None');
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
-include "constants.php";
+require_once (SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
 
-printheader2( _("Add SPAM Rule") );
-avelsieve_printheader();
-print_all_sections_start();
+$ht = new avelsieve_html_edit('edit', $rule, false);
 
-print_section_start( _("Configure Anti-SPAM Protection") );
-
-print '<p>' . _("All incoming mail is checked for unsolicited commercial content (SPAM) and marked accordingly. This special rule allows you to configure what to do with such messages once they arrive to your Inbox.") . '</p>';
-
+echo $ht->table_header( _("Add SPAM Rule") ) .
+	$ht->all_sections_start().
+	$ht->section_start( _("Configure Anti-SPAM Protection") ).
+	'<p>' . _("All incoming mail is checked for unsolicited commercial content (SPAM) and marked accordingly. This special rule allows you to configure what to do with such messages once they arrive to your Inbox.") . '</p>';
 
 if(!$spamrule_advanced) {
-	print '<p>'. sprintf( _("Select %s to add the predefined rule, or select the advanced SPAM filter to customize the rule."), '<strong>' . _("Add Spam Rule") . '</strong>' ) . '</p>';
+	echo '<p>'. sprintf( _("Select %s to add the predefined rule, or select the advanced SPAM filter to customize the rule."), '<strong>' . _("Add Spam Rule") . '</strong>' ) . '</p>';
 
-
-	print '<p style="text-align:center"> <input type="submit" name="spamrule_advanced" value="'. _("Advanced Spam Filter...") .'" /></p>';
+	echo '<p style="text-align:center"> <input type="submit" name="spamrule_advanced" value="'. _("Advanced Spam Filter...") .'" /></p>';
 
 } else {
 
@@ -221,10 +216,8 @@ if(!$spamrule_advanced) {
 	}
 
 	print '<p>'. sprintf( _("Messages with SPAM-Score higher than the target value, the maximum value being %s, will be considered SPAM.") , $spamrule_score_max ) . '<br />';
-
 	
 	print _("Target Score") . ': <input name="score" id="score" value="'.$score.'" size="4" /></p><br />';
-
 
 	print '<li><strong>';
 	print _("SPAM Lists to check against");
@@ -257,7 +250,6 @@ if(!$spamrule_advanced) {
 			print '/> ';
 			print '<label for="spamrule_test_'.$st.'">'.$txt.'</label><br />';
 		}
-	/* TODO: Import spamrule_filters from Filters plugin */
 	/*
 	} elseif(isset($spamrule_filters)) {
 	foreach($spamrule_filters as $st=>$fi) {
@@ -352,9 +344,8 @@ if(isset($junkprune_saveme)) {
 	print _("If this rule matches, do not check any rules after it.");
 	print '</label>';
 		
-
-print_section_end();
-print_all_sections_end();
+	echo $ht->section_end();
+	echo $ht->all_sections_end();
 
 if(isset($edit)) {
 	print '<input type="hidden" name="edit" value="'.$edit.'" />';
@@ -366,9 +357,10 @@ if(isset($edit)) {
 	}
 	print '<input type="submit" name="cancel" value="'._("Cancel").'" />';
 } else {
-	printaddbuttons();
+	// printaddbuttons();
 }
-printfooter2();
+
+echo $ht->table_footer();
 
 
 ?>
