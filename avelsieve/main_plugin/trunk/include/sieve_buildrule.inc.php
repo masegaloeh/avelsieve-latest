@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.6 2005/02/28 15:41:59 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.7 2005/03/01 17:46:01 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -562,9 +562,25 @@ function makesinglerule($rule, $type="rule") {
 		break;
 	
 	case "4":	/* redirect to address */
-		$out .= "redirect \"".$rule['redirectemail']."\";";
-		$text .= _("<em>redirect</em> it to the email address")." ".htmlspecialchars($rule['redirectemail']).".";
-		$terse .= "REDIRECT ".htmlspecialchars($rule['redirectemail']);
+		if(strstr(trim($rule['redirectemail']), ' ')) {
+			$redirectemails = explode(' ', trim($rule['redirectemail']));
+		}
+		if(!isset($redirectemails)) {
+			if(strstr(trim($rule['redirectemail']), ',')) {
+				$redirectemails = explode(',', trim($rule['redirectemail']));
+			}
+		}
+		if(isset($redirectemails)) {
+			foreach($redirectemails as $redirectemail) {
+				$out .= 'redirect "'.$redirectemail."\";\n";
+				$terse .= _("Redirect").' '.htmlspecialchars($redirectemail). '<br/>';
+			}
+			$text .= sprintf( _("<em>redirect</em> it to the email addresses: %s."), implode(', ',$redirectemails));
+		} else {
+			$out .= "redirect \"".$rule['redirectemail']."\";";
+			$text .= _("<em>redirect</em> it to the email address")." ".htmlspecialchars($rule['redirectemail']).".";
+			$terse .= "REDIRECT ".htmlspecialchars($rule['redirectemail']);
+		}
 		break;
 	
 	case "5":	/* fileinto folder */
@@ -741,6 +757,7 @@ function makesieverule ($rulearray) {
 		}
 		$out .= makesinglerule($rulearray[$i],"rule");
 	}
+	print_r($out);
 	return avelsieve_encode_script($out);
 }
 
