@@ -3,12 +3,12 @@
  * User-friendly interface to SIEVE server-side mail filtering.
  * Plugin for Squirrelmail 1.4+
  *
- * Copyright (c) 2002-2003 Alexandros Vellis <avel@users.sourceforge.net>
+ * Copyright (c) 2002-2004 Alexandros Vellis <avel@users.sourceforge.net>
  *
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: spamrulefunctions.php,v 1.1 2004/01/02 11:12:05 avel Exp $
+ * $Id: spamrulefunctions.php,v 1.2 2004/01/26 14:46:50 avel Exp $
  *
  * @package avelsieve
  */
@@ -103,11 +103,6 @@ function avelsieve_askldapforrbls() {
 		}
 		
 		/* TODO: Replace explode() with one smart regexp */
-		/*
-		$pattern = "";
-		$replacement = "";
-		print_r( preg_split($pattern, $replacement, $spamrule_temp));
-		*/
 	}
 	}
 
