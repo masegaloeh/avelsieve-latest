@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-09-29 18:23+0300\n"
+"POT-Creation-Date: 2003-10-09 17:00+0300\n"
 "PO-Revision-Date: 2003-06-13 15:20+0200\n"
 "Last-Translator: Marius Onica <omar@uoradea.ro>\n"
 "Language-Team: Romanian \n"
@@ -16,51 +16,39 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../addrule.php:105 ../process_input.php:40
 msgid "You have to define at least one header match text."
 msgstr "Trebuie sa definiti cel putin un header match text."
 
-#: ../addrule.php:160
 msgid "You have not defined the name for the new folder."
 msgstr "Nu ati definit numele pentru noul director."
 
-#: ../addrule.php:161
 msgid "Please try again."
 msgstr "Va rog incercati din nou."
 
-#: ../addrule.php:172
 msgid "Illegal folder name.  Please select a different name"
 msgstr "Numele directorului este ilegal.  Va rugam alegeti o alta denumire."
 
-#: ../addrule.php:398 ../edit.php:205
 msgid "Add New Rule"
 msgstr "Adauga regula noua"
 
-#: ../addrule.php:416 ../addrule.php:421 ../addrule.php:502 ../addrule.php:512
 msgid "New Rule Wizard - Step"
 msgstr "Vrajitor pentru creare de noi reguli - Pasul"
 
-#: ../addrule.php:416 ../addrule.php:421 ../addrule.php:502 ../addrule.php:512
 msgid "of"
 msgstr "din"
 
-#: ../addrule.php:416
 msgid "Rule Type"
 msgstr "Tipul regulii de filtrare"
 
-#: ../addrule.php:421 ../edit.php:157
 msgid "Condition"
 msgstr "Conditia"
 
-#: ../addrule.php:502 ../edit.php:186
 msgid "Action"
 msgstr "Actiune"
 
-#: ../addrule.php:512
 msgid "Confirmation"
 msgstr "Confirmare"
 
-#: ../addrule.php:517
 msgid ""
 "<p>You have chosen to keep every mail. This is the default action anyway, so "
 "you might want to start over with a rule that makes more sense. Select &quot;"
@@ -71,7 +59,6 @@ msgstr ""
 "noua, care are mai mult sens. Selectati &quot;Terminare&quot; pentru a salva "
 "totusi aceasta regula.</p>"
 
-#: ../addrule.php:526
 msgid ""
 "Please use the buttons on the bottom instead of your browser's reload, back "
 "and forward buttons, to build a rule."
@@ -80,35 +67,31 @@ msgstr ""
 "sfarsitul paginii in loc de butoanele reload, back sau forward din cadrul "
 "browser-ului."
 
-#: ../addrule_html.php:37
 msgid "Clear this Form"
 msgstr "Sterge Formularul"
 
-#: ../addrule_html.php:42
 msgid "Start Over"
 msgstr "Incepe din Nou"
 
-#: ../addrule_html.php:47 ../edit.php:213
 msgid "Cancel"
 msgstr "Cancel"
 
-#: ../addrule_html.php:56
+#, fuzzy
+msgid "Add SPAM Rule"
+msgstr "Adauga regula noua"
+
 msgid "Move back to step"
 msgstr "Muta inapoi la pasul"
 
-#: ../addrule_html.php:62
 msgid "Finished"
 msgstr "Terminat"
 
-#: ../addrule_html.php:66
 msgid "Move on to step"
 msgstr "Muta la pasul"
 
-#: ../addrule_html.php:125
 msgid "What kind of rule would you like to add?"
 msgstr "Ce fel de regula doriti sa adaugati ?"
 
-#: ../addrule_html.php:155
 msgid ""
 "The rule will trigger if the following addresses appear anywhere in the "
 "message's headers:"
@@ -116,55 +99,42 @@ msgstr ""
 "Regula se va declansa daca adresele urmatoare vor aprea undeva in Header-ul "
 "mesajului"
 
-#: ../addrule_html.php:228
 msgid "AND (Every item must match)"
 msgstr "AND (Fiecare declaratie trebuie sa coincida"
 
-#: ../addrule_html.php:229
 msgid "OR (Either item will match)"
 msgstr "SAU (Oricare dintre declaratii trebuie sa coincida)"
 
-#: ../addrule_html.php:232
 msgid "The condition for the following rules is:"
 msgstr "Conditia pentru urmatoarele reguli este: "
 
-#: ../addrule_html.php:298
 msgid "The header "
 msgstr "Header-ul "
 
-#: ../addrule_html.php:323
 msgid "Less..."
 msgstr "Mai putin ..."
 
-#: ../addrule_html.php:329
 msgid "More..."
 msgstr "Mai mult ..."
 
-#: ../addrule_html.php:340
 msgid "This rule will trigger if message is"
 msgstr "Aceasta regula se va declansa dca mesajul este"
 
-#: ../addrule_html.php:350
 msgid "bigger"
 msgstr "mai mare"
 
-#: ../addrule_html.php:358
 msgid "smaller"
 msgstr "mai mic"
 
-#: ../addrule_html.php:360 ../buildrule.php:296
 msgid "than"
 msgstr " decat "
 
-#: ../addrule_html.php:378
 msgid "KB (kilobytes)"
 msgstr "KB (Kilobyte)"
 
-#: ../addrule_html.php:386
 msgid "MB (megabytes)"
 msgstr "MB (Megabyte)"
 
-#: ../addrule_html.php:394
 msgid ""
 "The following action will be applied to <strong>all</strong> incoming "
 "messages that do not match any of the previous rules."
@@ -172,7 +142,6 @@ msgstr ""
 "Urmatoarea actiune se va aplica <strong>tuturor</strong> mesajelor sosite "
 "care, nu indeplinesc conditiile regulilor precedente."
 
-#: ../addrule_html.php:401
 msgid ""
 "This rule will trigger upon the occurrence of one or more strings in the "
 "body of an e-mail message. "
@@ -180,61 +149,47 @@ msgstr ""
 "Aceasta regula se va activa cand va detecta existenta a unuia sau mai multe "
 "portiuni de text (strings) in continutul (body) mesajului. "
 
-#: ../addrule_html.php:438
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr ""
 "Alege ce sa faci cand aceasta regula va intra in actiune, din urmatoarele "
 "posibilitati:"
 
-#: ../addrule_html.php:444 ../constants.php:50
 msgid "Keep (Default action)"
 msgstr "Pastreaza (Actiune implicita)"
 
-#: ../addrule_html.php:450 ../constants.php:53
 msgid "Discard Silently"
 msgstr "Ignora fara a actiona in vreun fel"
 
-#: ../addrule_html.php:458 ../constants.php:56
 msgid "Reject, sending this excuse to the sender:"
 msgstr "Refuza, trimitand acest mesaj de explicatii (scuze) expeditorului:"
 
-#: ../addrule_html.php:465
 msgid "Please do not send me large attachments."
 msgstr "Va rog sa nu-mi trimiteti fisiere atasate de mari dimensiuni"
 
-#: ../addrule_html.php:477 ../constants.php:59
 msgid "Redirect to the following email address:"
 msgstr "Redirectare catre urmatoarea adresa de E-mail:"
 
-#: ../addrule_html.php:483
 msgid "someone@example.org"
 msgstr "cineva@exemplu.ro"
 
-#: ../addrule_html.php:495 ../constants.php:62
 msgid "Move message into"
 msgstr "Muta mesajele in"
 
-#: ../addrule_html.php:502 ../addrule_html.php:511
 msgid "the existing folder"
 msgstr "dosarul existent "
 
-#: ../addrule_html.php:518
 msgid "a new folder, named"
 msgstr "un dosar nou, cu denumirea "
 
-#: ../addrule_html.php:520
 msgid "created as a subfolder of"
 msgstr " creat ca un sub-dosar a "
 
-#: ../addrule_html.php:539
 msgid "Also keep copy in INBOX, marked as deleted."
 msgstr "De asemenea pastreaza o copie in INBOX, marcate ca sterse ."
 
-#: ../addrule_html.php:558
 msgid "Vacation"
 msgstr "Vacanta"
 
-#: ../addrule_html.php:560
 msgid ""
 "The notice will be sent only once to each person that sends you mail, and "
 "will not be sent to a mailing list address."
@@ -242,24 +197,19 @@ msgstr ""
 "Aceasta nota va fi trimisa doar o singura data fiecarei persoane care va "
 "trimite un E-mail,  si nu va fi trimisa adreselor gen: liste de discutii"
 
-#: ../addrule_html.php:562
 msgid "Addresses: Only reply if sent to these addresses:"
 msgstr ""
 "Adresa: Trimite un raspuns doar daca primesti mesajul la aceasta adresa: "
 
-#: ../addrule_html.php:573
 msgid "Days: Reply message will be resent after"
 msgstr "Zile: Mesajul de raspuns va fi retransmis dupa "
 
-#: ../addrule_html.php:581
 msgid "days"
 msgstr "zile"
 
-#: ../addrule_html.php:584
 msgid "Use the following message:"
 msgstr "Foloseste urmatorul mesaj:"
 
-#: ../addrule_html.php:590
 msgid ""
 "This is an automated reply; I am away and will not be able to reply to you "
 "immediately."
@@ -267,49 +217,38 @@ msgstr ""
 "Acesta este un raspuns automat . Sunt plecat din localitate si nu va pot "
 "raspunde imediat la mesajul Dumneavoastra."
 
-#: ../addrule_html.php:591
 msgid "I will get back to you as soon as I return."
 msgstr "Va voi raspunde de indata ce ma intorc in localitate."
 
-#: ../addrule_html.php:603
 msgid "Additional Actions"
 msgstr "Actiuni Aditionale"
 
-#: ../addrule_html.php:618 ../addrule_html.php:621
 msgid "STOP"
 msgstr "STOP"
 
-#: ../addrule_html.php:623
 msgid "If this rule matches, do not check any rules after it."
 msgstr ""
 "Daca aceasta regula se aplica (match), nu verifica nici o alta regula dupa "
 "aceasta."
 
-#: ../addrule_html.php:642
 msgid "Notify me, using the following method:"
 msgstr "Notifica-ma, folosind urmatoarea metoda:"
 
-#: ../addrule_html.php:677
 msgid "Notification ID"
 msgstr "ID al Notificarii"
 
-#: ../addrule_html.php:686
-msgid "Parameters"
-msgstr "Parametrii"
+msgid "Destination"
+msgstr ""
 
-#: ../addrule_html.php:713
 msgid "Message"
 msgstr "Mesaj"
 
-#: ../addrule_html.php:722
 msgid "Help: Valid variables are:"
 msgstr "Help: Variabilele valide sunt:"
 
-#: ../addrule_html.php:734
 msgid "Your new rule states:"
 msgstr "Noua Dvs. regula afirma:"
 
-#: ../addrule_html.php:736
 msgid ""
 "If this is what you wanted, select Finished. You can also start over or "
 "cancel adding a rule altogether."
@@ -318,161 +257,181 @@ msgstr ""
 "asemenea puteti saReluati construirea regulii sau sa Anulati actiunea "
 "inceputa."
 
-#: ../avelsieve_support.inc.php:48 ../avelsieve_support.inc.php:50
+msgid "Configure Anti-SPAM Protection"
+msgstr ""
+
+msgid ""
+"All incoming mail is checked for unsolicited commercial content (SPAM) and "
+"marked accordingly. This special rule allows you to configure what to do "
+"with such messages once they arrive to your Inbox."
+msgstr ""
+
+#, php-format
+msgid ""
+"Select %s to add the predefined rule, or select the advanced SPAM filter to "
+"customize the rule."
+msgstr ""
+
+#, fuzzy
+msgid "Add Spam Rule"
+msgstr "Adaugati o noua regula"
+
+msgid "Advanced Spam Filter..."
+msgstr ""
+
+msgid "Target Score"
+msgstr ""
+
+#, php-format
+msgid ""
+"Messages with SPAM-Score higher than the target value, the maximum value "
+"being %s, will be considered SPAM."
+msgstr ""
+
+msgid "SPAM Lists to check against"
+msgstr ""
+
 msgid "Error Encountered"
 msgstr "Am intampinat o eroare"
 
-#: ../buildrule.php:111
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "Pentru <strong>toate</strong> mesajele primite; "
 
-#: ../buildrule.php:114
+msgid ""
+"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
+"messages)"
+msgstr ""
+
+msgid "matching the Spam List(s):"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "and with score greater than %s"
+msgstr "este mai mare decat"
+
+msgid "will be"
+msgstr ""
+
+msgid "stored in the Junk Folder."
+msgstr ""
+
+msgid "stored in the Trash Folder."
+msgstr ""
+
+#, fuzzy
+msgid "discarded."
+msgstr "<em>ignora</em>."
+
 msgid "If"
 msgstr "Daca"
 
-#: ../buildrule.php:133
 msgid "<em>any</em> of the following mail headers match: "
 msgstr "<em>oricare</em> din urmatoarele Mail-Header-uri coincid: "
 
-#: ../buildrule.php:138
 msgid "<em>all</em> of the following mail headers match: "
 msgstr "<em>toate</em> urmatoarele Mail-Header-uri coincid: "
 
-#: ../buildrule.php:151
 msgid "the header"
 msgstr "Header-ul"
 
-#: ../buildrule.php:161 ../constants.php:69
 msgid "is"
 msgstr "este"
 
-#: ../buildrule.php:166 ../constants.php:70
 msgid "is not"
 msgstr "nu este"
 
-#: ../buildrule.php:171 ../constants.php:67
 msgid "contains"
 msgstr "contine"
 
-#: ../buildrule.php:176 ../constants.php:68
 msgid "does not contain"
 msgstr "nu contine"
 
-#: ../buildrule.php:181 ../constants.php:71 ../constants.php:76
 msgid "matches"
 msgstr "coincide cu"
 
-#: ../buildrule.php:187 ../constants.php:72 ../constants.php:77
 msgid "does not match"
 msgstr "nu coincide cu"
 
-#: ../buildrule.php:193 ../constants.php:82
 msgid "is greater than"
 msgstr "este mai mare decat"
 
-#: ../buildrule.php:198 ../constants.php:83
 msgid "is greater or equal to"
 msgstr "este mai mare sau egal cu"
 
-#: ../buildrule.php:203 ../constants.php:84
 msgid "is lower than"
 msgstr "este mai mic decat"
 
-#: ../buildrule.php:208 ../constants.php:85
 msgid "is lower or equal to"
 msgstr "este mai mic sau egal cu"
 
-#: ../buildrule.php:213 ../constants.php:86
 msgid "is equal to"
 msgstr "este egal cu"
 
-#: ../buildrule.php:218 ../constants.php:87
 msgid "is not equal to"
 msgstr "nu este egal cu"
 
-#: ../buildrule.php:223
 msgid "matches the regural expression"
 msgstr "coincide cu expresia regulara"
 
-#: ../buildrule.php:229
 msgid "does not match the regural expression"
 msgstr "nu coincide cu expresia regulara"
 
-#: ../buildrule.php:235
 msgid "exists"
 msgstr "exista"
 
-#: ../buildrule.php:240
 msgid "does not exist"
 msgstr "nu exista"
 
-#: ../buildrule.php:283
 msgid "the size of the message is"
 msgstr "spatiul ocupat de mesaj este"
 
-#: ../buildrule.php:290
 msgid " bigger"
 msgstr " mai mare"
 
-#: ../buildrule.php:294
 msgid " smaller"
 msgstr " mai mic"
 
-#: ../buildrule.php:324
 msgid "then"
 msgstr "apoi"
 
-#: ../buildrule.php:331
 msgid "<em>keep</em> it."
 msgstr "<em>pastreaza-l</em>."
 
-#: ../buildrule.php:337
 msgid "<em>discard</em> it."
 msgstr "<em>ignora</em>."
 
-#: ../buildrule.php:344
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr ""
 "<em>respinge-l</em> si transmite urmatorul mesaj (cu explicatii) inapoi la "
 "expeditor:"
 
-#: ../buildrule.php:350
 msgid "<em>redirect</em> it to the email address"
 msgstr "<em>redirecteaza-l</em> la urmatoarea adresa de e-mail"
 
-#: ../buildrule.php:357
 msgid "<em>file</em> it into the folder <strong>"
 msgstr "<em>salveaza-l</em> in dosarul <strong>"
 
-#: ../buildrule.php:388
 msgid "reply with this vacation message: "
 msgstr "trimite raspuns continand urmatorul mesaj de \"vacanta\": "
 
-#: ../buildrule.php:397
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr " De asemenea pastreaza o copie in INBOX, marcat pentru stergere."
 
-#: ../buildrule.php:403
-msgid " Then <strong>STOP</strong> processing rules."
-msgstr " Apoi <strong>OPRESTE</strong> procesarea altor reguli."
-
-#: ../buildrule.php:425
 msgid " Also notify using the method"
 msgstr " De asemenea, notifica utilizand aceasta metoda"
 
-#: ../buildrule.php:427
 msgid "with"
 msgstr "cu"
 
-#: ../buildrule.php:429
 msgid "priority and the message"
 msgstr "prioritatea si mesajul"
 
-#: ../constants.php:18
+msgid " Then <strong>STOP</strong> processing rules."
+msgstr " Apoi <strong>OPRESTE</strong> procesarea altor reguli."
+
 msgid "Address Match"
 msgstr "Coincide cu Adresa"
 
-#: ../constants.php:19
 #, fuzzy
 msgid ""
 "Perform an action depending on email addresses appearing in message headers."
@@ -480,133 +439,129 @@ msgstr ""
 "Executa o actiune asupra mesajelor functie de marimea lor (spatiul ocupat de "
 "ele)."
 
-#: ../constants.php:24
 msgid "Header Match"
 msgstr "Coincide cu Mail-Header-ul"
 
-#: ../constants.php:25
 msgid ""
 "Perform an action on messages matching a specified header (From, To etc.)."
 msgstr ""
 "Executa o actiune asupra mesajelor care au un anume Mail-Header de exemplu "
 "(From, To, etc.)"
 
-#: ../constants.php:30
 msgid "Size"
 msgstr "Spatiul Ocupat"
 
-#: ../constants.php:31
 msgid "Perform an action on messages depending on their size."
 msgstr ""
 "Executa o actiune asupra mesajelor functie de marimea lor (spatiul ocupat de "
 "ele)."
 
-#: ../constants.php:36
 msgid "All Messages"
 msgstr "Toate Mesajele"
 
-#: ../constants.php:37
 msgid "Perform an action on <strong>all</strong> incoming messages."
 msgstr "Executa o actiune asupra <strong>tuturor</strong> mesajelor sosite"
 
-#: ../constants.php:43
 msgid "Body Match"
 msgstr "Coincide cu Corpul Mesajului"
 
-#: ../constants.php:44
 msgid "Perform an action on messages depending on their content (body text)."
 msgstr ""
 "Executa o actiune asupra mesajelor in functie de continutul lor (body text)."
 
-#: ../constants.php:71 ../constants.php:72
 #, fuzzy
 msgid "wildcard"
 msgstr "coincide cu wildcard-uri"
 
-#: ../constants.php:76 ../constants.php:77
 #, fuzzy
 msgid "regexp"
 msgstr "coincide cu o expresie regulara"
 
-#: ../constants.php:93
 msgid "verbose"
 msgstr "amanunt"
 
-#: ../constants.php:94
 msgid "terse"
 msgstr "scurt"
 
-#: ../constants.php:102
 msgid "Mobile Phone Message (SMS)"
 msgstr "Notificare prin SMS"
 
-#: ../constants.php:103
 msgid "Email notification"
 msgstr "Notificare prin E-Mail"
 
-#: ../constants.php:104
 msgid "Notification via Zephyr"
 msgstr "Notificare prin Zephyr"
 
-#: ../constants.php:105
 msgid "Notification via ICQ"
 msgstr "Notificare prin ICQ"
 
-#: ../constants.php:109
 msgid "Low"
 msgstr "Scazut"
 
-#: ../constants.php:110
 msgid "Normal"
 msgstr "Normal"
 
-#: ../constants.php:111
 msgid "High"
 msgstr "Mare"
 
-#: ../constants.php:118
 msgid "Delete"
 msgstr "Sterge"
 
-#: ../constants.php:122
 msgid "Edit"
 msgstr "Editeaza"
 
-#: ../constants.php:126
 msgid "Duplicate"
 msgstr "Copiaza"
 
-#: ../constants.php:130
 msgid "Move Up"
 msgstr "Muta in sus"
 
-#: ../constants.php:134
 #, fuzzy
 msgid "Move to Top"
 msgstr "Muta la pasul"
 
-#: ../constants.php:138
 msgid "Move Down"
 msgstr "Muta in jos"
 
-#: ../constants.php:142
 #, fuzzy
 msgid "Move to Bottom"
 msgstr "Muta la pasul"
 
-#: ../edit.php:124
+msgid "Junk Folder"
+msgstr ""
+
+#, php-format
+msgid ""
+"Store SPAM message in your Junk Folder. Messages older than %s days will be "
+"deleted automatically."
+msgstr ""
+
+msgid "Trash Folder"
+msgstr ""
+
+msgid ""
+"Store SPAM message in your Trash Folder. You will have to purge the folder "
+"yourself."
+msgstr ""
+
+#, fuzzy
+msgid "Discard"
+msgstr "coincide cu wildcard-uri"
+
+msgid ""
+"Discard SPAM message. You will get no indication that the message ever "
+"arrived."
+msgstr ""
+
 msgid "Editing Mail Filtering Rule"
 msgstr "Editare Regula de Filtrare"
 
-#: ../edit.php:209
 msgid "Apply Changes"
 msgstr "Salveaza Modificarile"
 
-#: ../setup.php:40
 msgid "Message Filters"
 msgstr "Filtru de Mesaje"
 
-#: ../setup.php:42
 msgid ""
 "Server-Side mail filtering enables you to add criteria in order to "
 "automatically forward, delete or place a given message into a folder."
@@ -615,64 +570,48 @@ msgstr ""
 "adaugareguli (criterii) in scopul stergerii, forward-arii sau amplasarii "
 "unui mesaj intr-un anumit catalog."
 
-#: ../setup.php:86
 msgid "Filters"
 msgstr "Filtru"
 
-#: ../sieve.php:38
 msgid "Unable to load script to server."
 msgstr ""
 
-#: ../sieve.php:45
 msgid "Server responded with:"
 msgstr ""
 
-#: ../sieve.php:71 ../table.php:93 ../table.php:144 ../table.php:159
-#: ../table.php:202
 msgid "Please contact your administrator."
 msgstr "Va rog contactati Administratorul Dvs.."
 
-#: ../table.php:91 ../table.php:141
 msgid "Could not log on to timsieved daemon on your IMAP server"
 msgstr "Nu ma pot loga la daemon-ul de timsieve pe serverul Dvs. de IMAP"
 
-#: ../table.php:108 ../table.php:385
 msgid "Current Mail Filtering Rules"
 msgstr "Filtrele definite pana in acest moment"
 
-#: ../table.php:110 ../table.php:220
 msgid "No Filtering Rules Defined Yet"
 msgstr "Nu s-au definit regulile de filtrare deocamdata"
 
-#: ../table.php:143
 msgid "in order to save your rules."
 msgstr "pentru ca sa putem salva regulile Dumneavoastra."
 
-#: ../table.php:157
 msgid "Could not set active script on your IMAP server"
 msgstr "Nu pot instala script-ul activ pe serverul de IMAP"
 
-#: ../table.php:199
 msgid "Could not get SIEVE script from your IMAP server"
 msgstr "Nu pot citi script-ul SIEVE de pe serverul de IMAP"
 
-#: ../table.php:201
 msgid "(Probably the script is size null)."
 msgstr "Probabil script-ul este de lungime zero"
 
-#: ../table.php:268
 msgid "All your rules have been deleted"
 msgstr "Toate regulile Dvs. au fost sterse"
 
-#: ../table.php:458
 msgid "Delete Selected"
 msgstr "Sterge pozitiile selectate"
 
-#: ../table_html.php:17 ../table_html.php:33 ../table_html.php:47
 msgid "Server-Side Mail Filtering"
 msgstr "Filtru de mesaje utilizand serverul de e-mail"
 
-#: ../table_html.php:114 ../table_html.php:125
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
 "filters will always apply to your incoming mail, wherever you check your "
@@ -682,7 +621,6 @@ msgstr ""
 "Dvs. de e-mail.Aceste filtre se vor aplica intotdeauna mesajelor de e-mail "
 "primite, indiferent de faptulca Dvs. va verificati e-mail-ul sau nu."
 
-#: ../table_html.php:117
 msgid ""
 "You don't have any rules yet. Feel free to add any with the button &quot;Add "
 "a New Rule&quot;. When you are done, please select &quot;Save Changes&quot; "
@@ -693,7 +631,6 @@ msgstr ""
 "terminat, va rugam selectati &quot;Salvare Modificari&quot; pentru a va "
 "reintoarce la ecranul cu optiunile principale"
 
-#: ../table_html.php:128
 msgid ""
 "When you are done with editing, <strong>remember to select &quot;Save "
 "Changes&quot;</strong> to activate your changes!"
@@ -701,64 +638,53 @@ msgstr ""
 "Cand ati terminat de editat, <strong>nu uitati sa selectati butonul &quot;"
 "Salveaza Modificarile&quot; </strong> in scopul activarii lor!"
 
-#: ../table_html.php:137
 msgid "Successfully added new rule."
 msgstr "Am adaugat cu succes a regula noua"
 
-#: ../table_html.php:140
 msgid "Successfully updated rule #"
 msgstr "Am modificat cu succes regula #"
 
-#: ../table_html.php:145
 msgid "Successfully deleted rules #"
 msgstr "Am sters cu succes regulile #"
 
-#: ../table_html.php:153
 msgid "Successfully deleted rule #"
 msgstr "Am sters cu succes regula #"
 
-#: ../table_html.php:167
 msgid "The following table summarizes your current mail filtering rules."
 msgstr "Tabelul urmator afiseaza regulile Dvs. de filtrare curente."
 
-#: ../table_html.php:177
 msgid "No"
 msgstr "Nu"
 
-#: ../table_html.php:182
 msgid "Description of Rule"
 msgstr "Descrierea regulii"
 
-#: ../table_html.php:185
 msgid "Display as:"
 msgstr "Afiseaza ca"
 
-#: ../table_html.php:197
 msgid "Options"
 msgstr "Optiuni"
 
-#: ../table_html.php:227
 msgid "Add a New Rule"
 msgstr "Adaugati o noua regula"
 
-#: ../table_html.php:234
 msgid ""
 "When you are done, please click the button below to return to your webmail."
 msgstr ""
 "Cand ati terminat va rugam sa apasati pe butonul de dedesupt pentru a reveni "
 "la programul de webmail."
 
-#: ../table_html.php:236
 msgid "Save Changes"
 msgstr "Salveaza Modificarile"
 
-#: ../table_html.php:277 ../table_html.php:286
 msgid "Created:"
 msgstr ""
 
-#: ../table_html.php:279 ../table_html.php:288
 msgid "Last modified:"
 msgstr ""
+
+#~ msgid "Parameters"
+#~ msgstr "Parametrii"
 
 #, fuzzy
 #~ msgid "does not match regexp"
