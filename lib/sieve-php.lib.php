@@ -1,29 +1,17 @@
 <?php
 
 /*
- * $Id: sieve-php.lib.php,v 1.1.1.1 2003/10/03 14:42:59 avel Exp $
+ * $Id: sieve-php.lib.php,v 1.2 2003/10/27 11:29:50 avel Exp $ 
  *
- * Copyright 2001-2003 Dan Ellis <danellis@rushmore.com>
+ * Copyright 2001 Dan Ellis <danellis@rushmore.com>
  *
  * See the enclosed file COPYING for license information (GPL).  If you
  * did not receive this file, see http://www.fsf.org/copyleft/gpl.html.
  */
 
-// TODO before next release:	remove ::status() and dependencies
-
-
-define ("F_NO", 0);		
-define ("F_OK", 1);
-define ("F_DATA", 2);
-define ("F_HEAD", 3);
-
-define ("EC_NOT_LOGGED_IN", 0);
-define ("EC_QUOTA", 10);
-define ("EC_NOSCRIPTS", 20);
-define ("EC_UNKNOWN", 255);
 /*
 
-SIEVE-PHP.LIB VERSION 0.0.10
+SIEVE-PHP.LIB VERSION 0.1.0cvs
 
 (C) 2001 Dan Ellis.
 
@@ -37,6 +25,7 @@ This program/libary has bugs.
 		a patch :).
 
 Todo:
+	.	remove ::status() and dependencies
 	.	Provide better error diagnostics.  			(mostly done with ver 0.0.5)
 	.	Allow other auth mechanisms besides plain		(in progress)
 	.	Have timing mechanism when port problems arise.		(not done yet)
@@ -57,10 +46,21 @@ See CHANGES for updates since last release
 Contributers of patches:
 	Atif Ghaffar
 	Andrew Sterling Hanenkamp <sterling@hanenkamp.com>
+	"Ilya Pizik" <polzun@scar.jinr.ru> (AUTH LOGIN)
+	Scott Russell <lnxgeek@us.ibm.com> (DIGEST-MD5 & CRAM-MD5)
 	Alexandros Vellis <avel@noc.uoa.gr>
-	Scott Russell <lnxgeek@us.ibm.com>
+
 */
 
+define ("F_NO", 0);		
+define ("F_OK", 1);
+define ("F_DATA", 2);
+define ("F_HEAD", 3);
+
+define ("EC_NOT_LOGGED_IN", 0);
+define ("EC_QUOTA", 10);
+define ("EC_NOSCRIPTS", 20);
+define ("EC_UNKNOWN", 255);
 
 class sieve
 {
@@ -87,8 +87,6 @@ class sieve
 
   //maybe we should add an errorlvl that the user will pass to new sieve = sieve(,,,,E_WARN)
   //so we can decide how to handle certain errors?!?
-
-  //also add a connection type, like PLAIN, MD5, etc...
 
 
   function get_response()
@@ -121,13 +119,12 @@ class sieve
             $this->error_raw[]=substr($this->line, 0, strlen($this->line) -2);    //we want to be nice and strip crlf's
             $this->err_recv = strlen($this->line);
 
-	/*
             while($this->err_recv < $this->err_len){
                 //print "<br>Trying to receive ".($this->err_len-$this->err_recv)." bytes for result<br>";
                 $this->line = fgets($this->fp, ($this->err_len-$this->err_recv));
                 $this->error_raw[]=substr($this->line, 0, strlen($this->line) -2);    //we want to be nice and strip crlf's
                 $this->err_recv += strlen($this->line);
-            } */ /* end while */
+            } /* end while */
             $this->line = fgets($this->fp, 1024);	//we need to grab the last crlf, i think.  this may be a bug...
             $this->error=EC_UNKNOWN;
       
@@ -151,7 +148,7 @@ class sieve
         return false;
 
     } /* end if */
-    elseif(substr($this->token[0],0,-2) == "OK"){
+    elseif(substr($this->token[0],0,2) == "OK"){
          return true;
     } /* end elseif */
     elseif($this->token[0][0] == "{"){
@@ -195,12 +192,16 @@ class sieve
     else{
             $this->error = EC_UNKNOWN;
             $this->error_raw = $this->line;
-            print "<b><i>UNKNOWN ERROR (Please report this line to danellis@rushmore.com to include in future releases): $this->line</i></b><br>";
+	    print '<b><i>UNKNOWN ERROR (Please report this line to <a
+	    href="mailto:sieve-php-devel@lists.sourceforge.net">sieve-php-devel
+	    Mailing List</a> to include in future releases):
+	    '.$this->line.'</i></b><br>';
+
             return false;
     } /* end else */   
   } /* end get_response() */
 
-  function sieve($host, $port, $user, $pass, $auth="", $auth_types="DIGEST-MD5 PLAIN")
+  function sieve($host, $port, $user, $pass, $auth="", $auth_types="PLAIN")
   {
     $this->host=$host;
     $this->port=$port;
@@ -316,7 +317,11 @@ class sieve
               elseif(is_string($this->modules))
                   $this->capabilites[$this->cap_type][$this->modules]=true;
           }    
-          else{ 
+          elseif(strcmp($this->item[0], "STARTTLS") == 0) {
+	          $this->capabilities['starttls'] = true;
+	  
+          }
+	  else{ 
               $this->capabilities["unknown"][]=$this->line;
           }    
       $this->line=fgets($this->fp,1024);
@@ -360,14 +365,14 @@ class sieve
 
     /* decision login to decide what type of authentication to use... */
 
+
      /* Loop through each allowed authentication type and see if the server allows the type */
-     foreach(explode(" ",$this->auth_types) as $auth_type)
+     foreach(explode(" ", $this->auth_types) as $auth_type)
      {
-        if (isset($this->capabilities["auth"][$auth_type]))
+        if ($this->capabilities["auth"][$auth_type])
         {
             /* We found an auth type that is allowed. */
             $this->auth_in_use = $auth_type;
-            break;
         }
      }
     
@@ -476,10 +481,9 @@ class sieve
   {
 
     switch ($this->auth_in_use) {
-    
+
         case "PLAIN":
             $auth=base64_encode("$this->auth\0$this->user\0$this->pass");
-            // $auth=base64_encode("$this->user\0$this->auth\0$this->pass");
    
             $this->len=strlen($auth);			
             fputs($this->fp, "AUTHENTICATE \"PLAIN\" \{$this->len+}\r\n");
@@ -493,7 +497,7 @@ class sieve
                return false;
              $this->loggedin=true;
                return true;    
-	break;
+	    break;
 	
         case "DIGEST-MD5":
 	     // SASL DIGEST-MD5 support works with timsieved 1.1.0
@@ -570,6 +574,30 @@ class sieve
                return TRUE;    
              break;
 
+	case "LOGIN":
+	    /*
+	    // Untested code!
+
+	    $login=base64_encode($this->user);
+	    $pass=base64_encode($this->pass);
+
+	    fputs($this->fp, "AUTHENTICATE \"LOGIN\" {0+}\r\n\r\n");
+	    fputs($this->fp, "{".strlen($login)."+}\r\n");
+	    fputs($this->fp, "$login\r\n");
+	    fputs($this->fp, "{".strlen($pass)."+}\r\n");
+	    fputs($this->fp, "$pass\r\n");
+
+	    $this->line=fgets($this->fp,1024);
+	    while(sieve::status($this->line) == F_DATA)
+		$this->line=fgets($this->fp,1024);
+
+	    if(sieve::status($this->line) == F_NO)
+		return false;
+	    $this->loggedin=true;
+		return true;
+	break;
+	*/
+
         default:
             return false;
             break;
@@ -579,86 +607,55 @@ class sieve
 
   }//end authenticate()
 
-  /* This function returns an array of available capabilities */
-  function sieve_get_capability()
-  {
-    if($this->loggedin==false)
-        return false;
-    fputs($this->fp, "CAPABILITY\r\n"); 
-    $this->line=fgets($this->fp,1024);
-
-    //Hack for older versions of Sieve Server.  They do not respond with the Cyrus v2. standard
-    //response.  They repsond as follows: "Cyrus timsieved v1.0.0" "SASL={PLAIN,........}"
-    //So, if we see IMLEMENTATION in the first line, then we are done.
-
-    if(ereg("IMPLEMENTATION",$this->line))
-    {
-      //we're on the Cyrus V2 sieve server
-      while(sieve::status($this->line) == F_DATA){
-
-          $this->item = sieve::parse_for_quotes($this->line);
-
-          if(strcmp($this->item[0], "IMPLEMENTATION") == 0)
-              $this->capabilities["implementation"] = $this->item[1];
-        
-          elseif(strcmp($this->item[0], "SIEVE") == 0 or strcmp($this->item[0], "SASL") == 0){
-
-              if(strcmp($this->item[0], "SIEVE") == 0)
-                  $this->cap_type="modules";
-              else
-                  $this->cap_type="auth";            
-
-              $this->modules = split(" ", $this->item[1]);
-              if(is_array($this->modules)){
-                  foreach($this->modules as $this->module)
-                      $this->capabilities[$this->cap_type][$this->module]=true;
-              } /* end if */
-              elseif(is_string($this->modules))
-                  $this->capabilites[$this->cap_type][$this->modules]=true;
-          }    
-          else{ 
-              $this->capabilities["unknown"][]=$this->line;
-          }    
-      $this->line=fgets($this->fp,1024);
-
-       }// end while
-    }
-    else
-    {
-        //we're on the older Cyrus V1. server  
-        //this version does not support module reporting.  We only have auth types.
-        $this->cap_type="auth";
-       
-        //break apart at the "Cyrus timsieve...." "SASL={......}"
-        $this->item = sieve::parse_for_quotes($this->line);
-
-        $this->capabilities["implementation"] = $this->item[0];
-
-        //we should have "SASL={..........}" now.  Break out the {xx,yyy,zzzz}
-        $this->modules = substr($this->item[1], strpos($this->item[1], "{"),strlen($this->item[1])-1);
-
-        //then split again at the ", " stuff.
-        $this->modules = split($this->modules, ", ");
- 
-        //fill up our $this->modules property
-        if(is_array($this->modules)){
-            foreach($this->modules as $this->module)
-                $this->capabilities[$this->cap_type][$this->module]=true;
-        } /* end if */
-        elseif(is_string($this->modules))
-            $this->capabilites[$this->cap_type][$this->module]=true;
-    }
-
-    return $this->modules;
-  }
-
 
 }
 
+
+/* Support functions follow. */
+
+if(!function_exists('hmac_md5')) {
+
+/** Creates a HMAC digest that can be used for auth purposes.
+ *
+ * Squirrelmail has this function in functions/auth.php, and it might have been
+ * included already. However, it helps remove the dependancy on mhash.so PHP
+ * extension, for some sites. If mhash.so _is_ available, it is used for its
+ * speed.
+ *
+ * This function is Copyright (c) 1999-2003 The SquirrelMail Project Team
+ * Licensed under the GNU GPL. For full terms see the file COPYING.
+ */
+function hmac_md5($data, $key='') {
+    // See RFCs 2104, 2617, 2831
+    // Uses mhash() extension if available
+    if (extension_loaded('mhash')) {
+      if ($key== '') {
+        $mhash=mhash(MHASH_MD5,$data);
+      } else {
+        $mhash=mhash(MHASH_MD5,$data,$key);
+      }
+      return $mhash;
+    }
+    if (!$key) {
+         return pack('H*',md5($data));
+    }
+    $key = str_pad($key,64,chr(0x00));
+    if (strlen($key) > 64) {
+        $key = pack("H*",md5($key));
+    }
+    $k_ipad =  $key ^ str_repeat(chr(0x36), 64) ;
+    $k_opad =  $key ^ str_repeat(chr(0x5c), 64) ;
+    /* Heh, let's get recursive. */
+    $hmac=hmac_md5($k_opad . pack("H*",md5($k_ipad . $data)) );
+    return $hmac;
+}
+}
+
+/** FIXME: this function is a hack to decode the challenge from timsieved
+ * 1.1.0. It may not work with other versions and most certainly won't work
+ * with other DIGEST-MD5 implentations
+ */
 function decode_challenge ($input) {
-    // FIXME: this function is a hack to decode the challenge
-    // from timsieved 1.1.0. It may not work with other versions
-    // and most certainly won't work with other DIGEST-MD5 implentations
     $input = base64_decode($input);
     preg_match("/nonce=\"(.*)\"/U",$input, $matches);
     $resp['nonce'] = $matches[1];
@@ -668,5 +665,7 @@ function decode_challenge ($input) {
     $resp['qop'] = $matches[1];
     return $resp;
 }
+
+// vim:ts=4:et:ft=php
 
 ?>
