@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.3 2004/11/12 11:27:39 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.4 2004/11/15 13:07:46 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -135,7 +135,7 @@ class avelsieve_html_rules extends avelsieve_html {
 	 */
 	function button_addnewrule() {
 		global $spamrule_enable;
-		$out = '<form action="addrule.php" method="POST">'.
+		$out = '<form action="edit.php?addnew=1" method="POST">'.
 			'<input name="addrule" value="' . _("Add a New Rule") . '" type="submit" />'.
 			'</form>';
 		
