@@ -1,19 +1,21 @@
 <?php
+/**
+ * User-friendly interface to SIEVE server-side mail filtering.
+ * Plugin for Squirrelmail 1.4+
+ *
+ * Licensed under the GNU GPL. For full terms see the file COPYING that came
+ * with the Squirrelmail distribution.
+ *
+ * @version $Id: index.php,v 1.2 2004/11/03 11:24:07 avel Exp $
+ * @author Alexandros Vellis <avel@users.sourceforge.net>
+ * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
+ * @package plugins
+ * @subpackage avelsieve
+ */
 
-   /**
-    **  index.php -- Displays the main frameset
-    **
-    **  Copyright (c) 1999-2002 The SquirrelMail development team
-    **  Licensed under the GNU GPL. For full terms see the file COPYING.
-    **
-    **  Redirects to the login page.
-    **
-    **/
-
-   require_once('../../functions/strings.php');
-
-   $location = get_location();
-   header("Location: $location/src/login.php\n\n");
-   exit();
+require_once('../../functions/strings.php');
+$location = get_location();
+header("Location: $location/src/webmail.php");
+exit();
 
 ?>

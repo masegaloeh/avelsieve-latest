@@ -6,17 +6,19 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.1 2004/11/02 15:06:17 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.2 2004/11/03 11:22:58 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
 
+include_once(SM_PATH . 'plugins/avelsieve/include/html_main.inc.php');
+
 /**
  * HTML Output functions for rule editing / adding
  */
-class avelsieve_html_edit {
+class avelsieve_html_edit extends avelsieve_html {
 
 	/**
 	 * @var int Which part of add new rule wizard are we in. 0 means 'any'.
@@ -133,7 +135,7 @@ class avelsieve_html_edit {
 	/**
 	 * Output ruletype radio buttons.
 	 */
-	function 1_ruletype_radio() {
+	function rule_1_type_radio() {
 		global $types, $sieve_capabilities;
 
 		$out = '<p>'._("What kind of rule would you like to add?"). '</p>';
@@ -166,7 +168,7 @@ class avelsieve_html_edit {
 	 * @todo Not implemented yet.
 	 * @return void
 	 */
-	function 2_1_addressmatch() {
+	function rule_2_1_address() {
 		$out = _("The rule will trigger if the following addresses appear anywhere in the message's headers:");
 		return $out;
 	}
@@ -196,7 +198,6 @@ class avelsieve_html_edit {
 				$out .= '<option name="header['.$n.']"  value="'.$head.'">'.$head.':</option>';
 			}
 		}
-		
 		$out .= '</select>';
 	}
 	
@@ -274,7 +275,7 @@ class avelsieve_html_edit {
 	 * @param array $items
 	 * @return string
 	 */
-	function 2_2_headermatch($items) {
+	function rule_2_2_header($items) {
 	
 		global $maxitems, $edit, $matchtypes, $comparators;
 		
@@ -361,7 +362,7 @@ class avelsieve_html_edit {
 	 * Size match
 	 * @return string
 	 */
-	function 2_3_sizematch() {
+	function rule_2_3_size() {
 	
 		global $edit;
 		
@@ -421,7 +422,7 @@ class avelsieve_html_edit {
 	 * All messages 
 	 * @return string
 	 */
-	function 2_4_allmessages() {
+	function rule_2_4_allmessages() {
 		$out = _("The following action will be applied to <strong>all</strong> incoming messages that do not match any of the previous rules.");
 		return $out;
 	}
@@ -430,7 +431,7 @@ class avelsieve_html_edit {
 	 * Mail Body match
 	 * @return string
 	 */
-	function 2_5_bodymatch() {
+	function rule_2_5_body() {
 		$out .= '<p>'.
 			_("This rule will trigger upon the occurrence of one or more strings in the body of an e-mail message. ").
 			'</p>';
@@ -462,7 +463,7 @@ class avelsieve_html_edit {
 	 * @todo make a schema that describes each action
 	 * @todo use text[n] which is supported by Cyrus 2.2+ (?)
 	 */
-	function 3_action() {
+	function rule_3_action() {
 	
 		/* Preferences from config.php */
 		global $useimages, $translate_return_msgs;
