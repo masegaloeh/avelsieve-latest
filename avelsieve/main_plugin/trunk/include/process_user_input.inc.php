@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: process_user_input.inc.php,v 1.1 2004/11/02 15:06:17 avel Exp $
+ * @version $Id: process_user_input.inc.php,v 1.2 2004/11/11 13:50:10 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -16,12 +16,15 @@
 include_once(SM_PATH . 'functions/global.php');
 
 /**
- * Process rule data input for a rule of type $type, coming from a specific
- * namespace (GET or POST). Defaults to $_POST.
+ * Process rule data input for a filtering rule, coming from a specific
+ * namespace (GET or POST). Puts the result in an array and returns that.
+ *
+ * @param int $search Defaults to $_POST.
+ * @return array Resulting Rule
+ * @todo Use the rules, actions etc. schema variables & classes.
  */
-function process_input($type, $search = SQ_POST) {
-	
-	$rule['type'] = $type;
+function process_input($search = SQ_POST, $errmsg = '') {
+	$vars = array();
     
 	/* Set Namespace ($ns) referring variable according to $search */
 	switch ($search) {
@@ -34,93 +37,84 @@ function process_input($type, $search = SQ_POST) {
 	}
 	
 	/* If Part */
-	switch ($type) { 
+	if(isset($ns['type'])) {
+		$type = $ns['type'];
+		print $type;
+		$vars[] = 'type';
+		
+		switch ($type) { 
 		case "1":
-			$vars = array( 'address', 'addressrel');
-			foreach($vars as $myvar) {
-				$rule[$myvar]= ${$myvar};
-			}
+			array_push($vars, 'address', 'addressrel');
 			break;
 		case "2":
 			/* Decide how much of the items to use for the rule, based on
 			 * the first zero variable to be found. */
 			if(!$ns['headermatch'][0]) {
-				//print "Error: You _have_ to define something!";
-				return false;
+				$errormsg = _("You have to define at least one header match text.");
 			}
 	
-			if(false) {
-				print _("You have to define at least one header match text.");
-			}
-			
 			for ($i=0; $i<sizeof($ns['headermatch']) ; $i++) {
 				if ($ns['headermatch'][$i]) {
-					//print "<p><em>START PROC</em>";
 					$rule['header'][$i] = $ns['header'][$i];
 					$rule['matchtype'][$i] = $ns['matchtype'][$i];
 					$rule['headermatch'][$i] = $ns['headermatch'][$i];
 					if($i>0) {
 						$rule['condition'] = $ns['condition'];
 					}
-					//print "<b>Added $i series</b><br>";
-					//print "<p><em>END PROC</em>";
-	
-				} elseif (!$ns['headermatch'][$i]) {
-					break 1;
 				} else {
-					//print "Huh?"; 
+					break 1;
 				}
 			}
 			break;
 	
 		case "3":
 			if($ns['sizeamount']) {
-				$vars = array( 'sizerel', 'sizeamount', 'sizeunit');
-				foreach($vars as $myvar) {
-					$rule[$myvar]= $ns[$myvar];
-				}
+				array_push($vars, 'sizerel', 'sizeamount', 'sizeunit');
 			}
 			break;
 	
 		case "4":
-			$dont = "1";
-			break;
 		default:
-			$dont = "1";
 			break;
 	}
+	}
 	
-	switch ($ns['action']) { 
+	if(isset($ns['action'])) {
+		array_push($vars, 'action');
+		switch ($ns['action']) { 
 		case "1": /* keep */
+			break;
 		case "2": /* discard */
-			$vars = array( 'action');
 			break;
 		case "3": /* reject w/ excuse */
-			$vars = array( 'action', 'excuse');
+			array_push($vars, 'excuse');
 			break;
 		case "4": /* redirect */
-			$vars = array( 'action', 'redirectemail', 'keep');
+			array_push($vars, 'redirectemail', 'keep');
 			break;
 		case "5": /* fileinto */
-			$vars = array( 'action', 'folder', 'keepdeleted');
+			array_push($vars, 'folder');
 			break;
 		case "6": /* vacation */
-			$vars = array( 'action', 'vac_addresses', 'vac_days', 'vac_message');
+			array_push($vars, 'vac_addresses', 'vac_days', 'vac_message');
 			break;
 		default:
-			$vars = array();
-			//print "Invalid action value!";
 			break;
 	}
+	}
 	
+	if(isset($ns['keepdeleted'])) {
+		$vars[] = 'keepdeleted';
+	}
 	if(isset($ns['stop'])) {
-		$vars = array_merge($vars, array('stop'));
+		$vars[] = 'stop';
 	}
-	
 	if(isset($ns['notifyme'])) {
-		$vars = array_merge($vars, array('notify'));
+		$vars[] = 'notify';
 	}
 	
+	/* Put all variables from the defined namespace (e.g. $_POST in the rule
+	 * array. */
 	foreach($vars as $myvar) {
 		if(isset($ns[$myvar])) {
 			$rule[$myvar]= $ns[$myvar];
@@ -129,6 +123,5 @@ function process_input($type, $search = SQ_POST) {
 	
 	return $rule;
 }
-	
 	
 ?>
