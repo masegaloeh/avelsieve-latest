@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_main.inc.php,v 1.1 2004/11/02 15:06:17 avel Exp $
+ * @version $Id: html_main.inc.php,v 1.2 2004/11/11 13:48:28 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -77,7 +77,7 @@ class avelsieve_html {
 	 * @return string
 	 */
 	function all_sections_start() {
-		return "<TABLE WIDTH=\"70%\" COLS=1 ALIGN=CENTER cellpadding=4 cellspacing=0 border=0>\n";
+		return '<table width="95%" cols="1" align="center" cellpadding="4" cellspacing="0" border="0">';
 	}
 	
 	/**
@@ -85,7 +85,7 @@ class avelsieve_html {
 	 * @return string
 	 */
 	function all_sections_end() {
-		return "</table>";
+		return '</table>';
 	}
 	
 	/**
