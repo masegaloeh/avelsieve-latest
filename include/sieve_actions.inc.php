@@ -4,9 +4,9 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.1 2004/11/08 12:59:52 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.2 2004/11/08 13:52:49 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
- * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
+ * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
@@ -22,6 +22,10 @@
  * text			Textual description
  * helptxt		Explanation text
  * options		Array of Options and their default values
+ *
+ * It can also contain these functions:
+ *
+ * options_html()	Returns the HTML printout of the action's options 
  */
 class avelsieve_action {
 	var $frontend = '';
@@ -328,7 +332,6 @@ class avelsieve_action_stop extends avelsieve_action {
 
 /**
  * Notify Action
- * @todo use text[n] which is supported by Cyrus 2.2+ (?)
  */
 class avelsieve_action_notify extends avelsieve_action {
 	var $num = 0;
@@ -352,6 +355,8 @@ class avelsieve_action_notify extends avelsieve_action {
 				'icq' => _("Notification via ICQ")
 			);
 
+			$this->oldcyrus = true;
+
 		} else {
 			$this = null;
 			return;
@@ -373,11 +378,9 @@ class avelsieve_action_notify extends avelsieve_action {
 				$out .= '<select name="notify[method]">';
 				foreach($notifymethods as $no=>$met) {
 					$out .= '<option value="'.$met.'"';
-					if(isset($edit)) {
-						if(isset($_SESSION['rules'][$edit]['notify']['method']) &&
-					  	$_SESSION['rules'][$edit]['notify']['method'] == $met) {
-							$out .= ' selected=""';
-						}
+					if(isset($val['notify']['method']) &&
+					  $val['notify']['method'] == $met) {
+						$out .= ' selected=""';
 					}
 					$out .= '>';
 		
@@ -390,18 +393,9 @@ class avelsieve_action_notify extends avelsieve_action {
 				}
 				$out .= '</select>';
 				
-	
-	
 		} elseif($notifymethods == false) {
-				$out .= '<input name="notify[method]" value="';
-				if(isset($edit)) {
-					if($_SESSION['rules'][$edit]['notify']['method']) {
-						$out .=  $_SESSION['rules'][$edit]['notify']['method'];
-					}
-				}
-				$out .= '" size="20" />';
+				$out .= '<input name="notify[method]" value="'.$val['method']. '" size="20" />';
 		}
-		
 		
 			$out .= '<br /><blockquote>';
 		
@@ -421,8 +415,8 @@ class avelsieve_action_notify extends avelsieve_action {
 			$out .= _("Destination") . ": ";
 			$out .= '<input name="notify[options]" size="30" value="';
 			if(isset($edit)) {
-				if(isset($_SESSION['rules'][$edit]['notify']['options'])) {
-					$out .= $_SESSION['rules'][$edit]['notify']['options'];
+				if(isset($val['notify']['options'])) {
+					$out .= $val['notify']['options'];
 				}
 			}
 			$out .= '" /><br />';
@@ -433,10 +427,8 @@ class avelsieve_action_notify extends avelsieve_action {
 			foreach($prioritystrings as $pr=>$te) {
 				$out .= '<option value="'.$pr.'"';
 				if(isset($edit)) {
-					if(isset($_SESSION['rules'][$edit]['notify']['priority'])) {
-						if($_SESSION['rules'][$edit]['notify']['priority'] == $pr) {
-							$out .= ' checked=""';
-						}
+					if(isset($val['notify']['priority']) && $val['notify']['priority'] == $pr) {
+						$out .= ' checked=""';
 					}
 				}
 				$out .= '>';
@@ -448,17 +440,20 @@ class avelsieve_action_notify extends avelsieve_action {
 			$out .= _("Message") . " ";
 			$out .= '<textarea name="notify[message]" rows="4" cols="50">';
 			if(isset($edit)) {
-				if(isset($_SESSION['rules'][$edit]['notify']['message'])) {
-					$out .= $_SESSION['rules'][$edit]['notify']['message'];
+				if(isset($val['notify']['message'])) {
+					$out .= $val['notify']['message'];
 				}
 			}
 			$out .= '</textarea><br />';
 			
 			$out .= '<small>';
 			$out .= _("Help: Valid variables are:");
-			$out .= ' $from$, $env-from$, $subject$</small>';
-			// $text$ is not supported by Cyrus yet. Put it back if it gets fixed.
-			// $out .= ' $from$, $env-from$, $subject$, $text$, $text[n]$</small>';
+			if($this->oldcyrus) {
+				/* $text$ is not supported by Cyrus IMAP < 2.3 . */
+				$out .= ' $from$, $env-from$, $subject$</small>';
+			} else {
+				$out .= ' $from$, $env-from$, $subject$, $text$, $text[n]$</small>';
+			}
 			
 			$out .= '</blockquote>';
 		return $out;
