@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-10-09 17:00+0300\n"
+"POT-Creation-Date: 2004-01-22 16:55+0200\n"
 "PO-Revision-Date: 2003-06-01 13:15+0300\n"
 "Last-Translator: Þór Sigurðsson <tosi@hi.is>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -82,6 +82,10 @@ msgstr "Búið"
 
 msgid "Move on to step"
 msgstr "Fara áfram á skref"
+
+#, fuzzy
+msgid "None"
+msgstr "Nei"
 
 msgid "What kind of rule would you like to add?"
 msgstr "Hverslags reglu viltu bæta við?"
@@ -164,6 +168,9 @@ msgstr "Áframsenda til eftirfarandi tölvupóstfangs:"
 
 msgid "someone@example.org"
 msgstr "einhver@einhversstadar.is"
+
+msgid "Keep a local copy as well."
+msgstr ""
 
 msgid "Move message into"
 msgstr "Færa skeyti í"
@@ -401,6 +408,9 @@ msgstr "<em>vista</em> það í möppuna <strong>"
 msgid "reply with this vacation message: "
 msgstr "svara með þessum &quot;Í leyfi&quot; skilboðum: "
 
+msgid "Also keep a local copy."
+msgstr ""
+
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr " Geymdu einnig afrit í INBOX, merkt sem eytt."
 
@@ -517,6 +527,9 @@ msgid ""
 "deleted automatically."
 msgstr ""
 
+msgid "Note that you can set the number of days in Folder Preferences."
+msgstr ""
+
 msgid "Trash Folder"
 msgstr ""
 
@@ -553,29 +566,29 @@ msgstr ""
 msgid "Filters"
 msgstr "Síur"
 
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "Gat ekki tengst timsieved þjónustunni á IMAP þjóninum"
+
+msgid "Please contact your administrator."
+msgstr "Vinsamlegast hafðu samband við kerfisstjóra."
+
+msgid "Could not set active script on your IMAP server"
+msgstr "Gat ekki virkjað síusafn á IMAP þjóni"
+
 msgid "Unable to load script to server."
 msgstr ""
 
 msgid "Server responded with:"
 msgstr ""
 
-msgid "Please contact your administrator."
-msgstr "Vinsamlegast hafðu samband við kerfisstjóra."
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Gat ekki tengst timsieved þjónustunni á IMAP þjóninum"
+msgid "Test for Forged Header"
+msgstr ""
 
 msgid "Current Mail Filtering Rules"
 msgstr "Núverandi Síur Tölvupóstskeyta"
 
 msgid "No Filtering Rules Defined Yet"
 msgstr "Engar síur hafa verið skilgreindar ennþá."
-
-msgid "in order to save your rules."
-msgstr "til að vista reglunum þínum."
-
-msgid "Could not set active script on your IMAP server"
-msgstr "Gat ekki virkjað síusafn á IMAP þjóni"
 
 msgid "Could not get SIEVE script from your IMAP server"
 msgstr "Gat ekki nálgast SIEVE síusafn af IMAP þjóni"
@@ -585,6 +598,10 @@ msgstr "(Trúlega er síusafnið tómt )."
 
 msgid "All your rules have been deleted"
 msgstr "Öllum þínum reglum hefur verið eytt"
+
+#, fuzzy
+msgid "Really delete this rule?"
+msgstr "Það tókst að eyða reglu númer "
 
 msgid "Delete Selected"
 msgstr "Eyða völdum"
@@ -660,6 +677,9 @@ msgstr ""
 
 msgid "Last modified:"
 msgstr ""
+
+#~ msgid "in order to save your rules."
+#~ msgstr "til að vista reglunum þínum."
 
 #~ msgid "Parameters"
 #~ msgstr "Gildi"

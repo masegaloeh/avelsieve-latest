@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-10-09 17:00+0300\n"
+"POT-Creation-Date: 2004-01-22 16:55+0200\n"
 "PO-Revision-Date: 2003-06-13 15:20+0200\n"
 "Last-Translator: Marius Onica <omar@uoradea.ro>\n"
 "Language-Team: Romanian \n"
@@ -88,6 +88,10 @@ msgstr "Terminat"
 
 msgid "Move on to step"
 msgstr "Muta la pasul"
+
+#, fuzzy
+msgid "None"
+msgstr "Nu"
 
 msgid "What kind of rule would you like to add?"
 msgstr "Ce fel de regula doriti sa adaugati ?"
@@ -171,6 +175,9 @@ msgstr "Redirectare catre urmatoarea adresa de E-mail:"
 
 msgid "someone@example.org"
 msgstr "cineva@exemplu.ro"
+
+msgid "Keep a local copy as well."
+msgstr ""
 
 msgid "Move message into"
 msgstr "Muta mesajele in"
@@ -414,6 +421,9 @@ msgstr "<em>salveaza-l</em> in dosarul <strong>"
 msgid "reply with this vacation message: "
 msgstr "trimite raspuns continand urmatorul mesaj de \"vacanta\": "
 
+msgid "Also keep a local copy."
+msgstr ""
+
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr " De asemenea pastreaza o copie in INBOX, marcat pentru stergere."
 
@@ -536,6 +546,9 @@ msgid ""
 "deleted automatically."
 msgstr ""
 
+msgid "Note that you can set the number of days in Folder Preferences."
+msgstr ""
+
 msgid "Trash Folder"
 msgstr ""
 
@@ -573,29 +586,29 @@ msgstr ""
 msgid "Filters"
 msgstr "Filtru"
 
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "Nu ma pot loga la daemon-ul de timsieve pe serverul Dvs. de IMAP"
+
+msgid "Please contact your administrator."
+msgstr "Va rog contactati Administratorul Dvs.."
+
+msgid "Could not set active script on your IMAP server"
+msgstr "Nu pot instala script-ul activ pe serverul de IMAP"
+
 msgid "Unable to load script to server."
 msgstr ""
 
 msgid "Server responded with:"
 msgstr ""
 
-msgid "Please contact your administrator."
-msgstr "Va rog contactati Administratorul Dvs.."
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Nu ma pot loga la daemon-ul de timsieve pe serverul Dvs. de IMAP"
+msgid "Test for Forged Header"
+msgstr ""
 
 msgid "Current Mail Filtering Rules"
 msgstr "Filtrele definite pana in acest moment"
 
 msgid "No Filtering Rules Defined Yet"
 msgstr "Nu s-au definit regulile de filtrare deocamdata"
-
-msgid "in order to save your rules."
-msgstr "pentru ca sa putem salva regulile Dumneavoastra."
-
-msgid "Could not set active script on your IMAP server"
-msgstr "Nu pot instala script-ul activ pe serverul de IMAP"
 
 msgid "Could not get SIEVE script from your IMAP server"
 msgstr "Nu pot citi script-ul SIEVE de pe serverul de IMAP"
@@ -605,6 +618,10 @@ msgstr "Probabil script-ul este de lungime zero"
 
 msgid "All your rules have been deleted"
 msgstr "Toate regulile Dvs. au fost sterse"
+
+#, fuzzy
+msgid "Really delete this rule?"
+msgstr "Am sters cu succes regula #"
 
 msgid "Delete Selected"
 msgstr "Sterge pozitiile selectate"
@@ -682,6 +699,9 @@ msgstr ""
 
 msgid "Last modified:"
 msgstr ""
+
+#~ msgid "in order to save your rules."
+#~ msgstr "pentru ca sa putem salva regulile Dumneavoastra."
 
 #~ msgid "Parameters"
 #~ msgstr "Parametrii"

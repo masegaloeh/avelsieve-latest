@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-10-09 17:00+0300\n"
+"POT-Creation-Date: 2004-01-22 16:55+0200\n"
 "PO-Revision-Date: 2003-05-02 14:39+0200\n"
 "Last-Translator: Alexander Brill <kiowa@egil.org>\n"
 "Language-Team:  <alexander@nettstudio.no>\n"
@@ -84,6 +84,10 @@ msgstr "Ferdig"
 
 msgid "Move on to step"
 msgstr "G&aring; videre til steg"
+
+#, fuzzy
+msgid "None"
+msgstr "Nei"
 
 msgid "What kind of rule would you like to add?"
 msgstr "Hvilken type regel vil du legge til?"
@@ -167,6 +171,9 @@ msgstr "Videresend til den f&oslash;lgende epost-adressen:"
 
 msgid "someone@example.org"
 msgstr "noen@eksempel.no"
+
+msgid "Keep a local copy as well."
+msgstr ""
 
 msgid "Move message into"
 msgstr "Flytt meldingen til"
@@ -404,6 +411,9 @@ msgstr "<em>lagre</em> i mappen <strong>"
 msgid "reply with this vacation message: "
 msgstr "svar med denne automatisk-svar-meldingen:"
 
+msgid "Also keep a local copy."
+msgstr ""
+
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr " Behold ogs&aring; en melding i Innboksen, markert som slettet."
 
@@ -529,6 +539,9 @@ msgid ""
 "deleted automatically."
 msgstr ""
 
+msgid "Note that you can set the number of days in Folder Preferences."
+msgstr ""
+
 msgid "Trash Folder"
 msgstr ""
 
@@ -566,29 +579,29 @@ msgstr ""
 msgid "Filters"
 msgstr "Filtre"
 
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "Kunne ikke logge p&aring; timsieved daemonen p&aring; din IMAP-tjener"
+
+msgid "Please contact your administrator."
+msgstr "Vennligst kontakt din system-administrator"
+
+msgid "Could not set active script on your IMAP server"
+msgstr "Kunne ikke aktivere regelsettet p&aring; din IMAP-tjener"
+
 msgid "Unable to load script to server."
 msgstr ""
 
 msgid "Server responded with:"
 msgstr ""
 
-msgid "Please contact your administrator."
-msgstr "Vennligst kontakt din system-administrator"
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Kunne ikke logge p&aring; timsieved daemonen p&aring; din IMAP-tjener"
+msgid "Test for Forged Header"
+msgstr ""
 
 msgid "Current Mail Filtering Rules"
 msgstr "N&aring;v&aelig;rende Regler"
 
 msgid "No Filtering Rules Defined Yet"
 msgstr "Ingen Regler Definert"
-
-msgid "in order to save your rules."
-msgstr "for &aring; lagre dine regler."
-
-msgid "Could not set active script on your IMAP server"
-msgstr "Kunne ikke aktivere regelsettet p&aring; din IMAP-tjener"
 
 msgid "Could not get SIEVE script from your IMAP server"
 msgstr "Kunne ikke hente SIEVE regelsettet fra IMAP-tjeneren din."
@@ -598,6 +611,10 @@ msgstr "(Sannsynligvis er regelsettet tomt)."
 
 msgid "All your rules have been deleted"
 msgstr "Alle dine regler har blitt slettet"
+
+#, fuzzy
+msgid "Really delete this rule?"
+msgstr "Regel er slettet: #"
 
 msgid "Delete Selected"
 msgstr "Slett Valg(te)"
@@ -675,6 +692,9 @@ msgstr ""
 
 msgid "Last modified:"
 msgstr ""
+
+#~ msgid "in order to save your rules."
+#~ msgstr "for &aring; lagre dine regler."
 
 #~ msgid "Parameters"
 #~ msgstr "Parametere"
