@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-22 12:33+0200\n"
+"POT-Creation-Date: 2005-03-01 15:26+0200\n"
 "PO-Revision-Date: 2002-09-30 16:13+0800\n"
 "Last-Translator: Wei Gao <wei@gaofamily.org>\n"
 "Language-Team: Chinese Simplified <LL@li.org>\n"
@@ -365,9 +365,6 @@ msgstr ""
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr "从下面的列表里选择当这个规则被应用时的动作："
 
-msgid "Additional Actions"
-msgstr ""
-
 msgid "Your new rule states:"
 msgstr "你新建的规则的状态："
 
@@ -389,6 +386,9 @@ msgstr "当前的信件过滤规则"
 #, fuzzy
 msgid "Error Encountered:"
 msgstr "总共出错"
+
+msgid "Additional Actions"
+msgstr ""
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
@@ -587,6 +587,13 @@ msgstr ""
 msgid "Also keep copy in INBOX, marked as deleted."
 msgstr ""
 
+#, fuzzy
+msgid "Disable this rule"
+msgstr "成功的删除了规则#"
+
+msgid "The rule will have no effect for as long as it is disabled."
+msgstr ""
+
 msgid "matches the regural expression"
 msgstr ""
 
@@ -599,6 +606,12 @@ msgstr ""
 #, fuzzy
 msgid "does not exist"
 msgstr "不包含"
+
+msgid "This rule is currently <strong>DISABLED</strong>:"
+msgstr ""
+
+msgid "DISABLED"
+msgstr ""
 
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "对<strong>所有</strong>的收到信件；"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-22 12:33+0200\n"
+"POT-Creation-Date: 2005-03-01 15:26+0200\n"
 "PO-Revision-Date: 2003-06-13 15:20+0200\n"
 "Last-Translator: Marius Onica <omar@uoradea.ro>\n"
 "Language-Team: Romanian \n"
@@ -391,9 +391,6 @@ msgstr ""
 "Alege ce sa faci cand aceasta regula va intra in actiune, din urmatoarele "
 "posibilitati:"
 
-msgid "Additional Actions"
-msgstr "Actiuni Aditionale"
-
 msgid "Your new rule states:"
 msgstr "Noua Dvs. regula afirma:"
 
@@ -418,6 +415,9 @@ msgstr "Filtrele definite pana in acest moment"
 #, fuzzy
 msgid "Error Encountered:"
 msgstr "Am intampinat o eroare"
+
+msgid "Additional Actions"
+msgstr "Actiuni Aditionale"
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
@@ -624,6 +624,13 @@ msgstr "Help: Variabilele valide sunt:"
 msgid "Also keep copy in INBOX, marked as deleted."
 msgstr "De asemenea pastreaza o copie in INBOX, marcate ca sterse ."
 
+#, fuzzy
+msgid "Disable this rule"
+msgstr "Am sters cu succes regula #"
+
+msgid "The rule will have no effect for as long as it is disabled."
+msgstr ""
+
 msgid "matches the regural expression"
 msgstr "coincide cu expresia regulara"
 
@@ -635,6 +642,12 @@ msgstr "exista"
 
 msgid "does not exist"
 msgstr "nu exista"
+
+msgid "This rule is currently <strong>DISABLED</strong>:"
+msgstr ""
+
+msgid "DISABLED"
+msgstr ""
 
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "Pentru <strong>toate</strong> mesajele primite; "

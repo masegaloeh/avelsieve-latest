@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-22 12:33+0200\n"
+"POT-Creation-Date: 2005-03-01 15:26+0200\n"
 "PO-Revision-Date: 2003-05-21 13:15+0300\n"
 "Last-Translator: Vadim Kozlov <vad@tomsknet.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -381,9 +381,6 @@ msgstr ""
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr "Выберите действие, выполняющееся когда срабатывает данное правило:"
 
-msgid "Additional Actions"
-msgstr "Дополнительные действия"
-
 msgid "Your new rule states:"
 msgstr "Ваше новое правило гласит:"
 
@@ -407,6 +404,9 @@ msgstr "Имеющиеся правила фильтрации"
 #, fuzzy
 msgid "Error Encountered:"
 msgstr "Встречено ошибок"
+
+msgid "Additional Actions"
+msgstr "Дополнительные действия"
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
@@ -610,6 +610,13 @@ msgstr "Справка: Допустимыми переменными являю
 msgid "Also keep copy in INBOX, marked as deleted."
 msgstr "Также сохранить во Входящих, пометив как удалённое."
 
+#, fuzzy
+msgid "Disable this rule"
+msgstr "Успешно удалено правило #"
+
+msgid "The rule will have no effect for as long as it is disabled."
+msgstr ""
+
 msgid "matches the regural expression"
 msgstr "соответствует регулярному выражению"
 
@@ -621,6 +628,12 @@ msgstr "существует"
 
 msgid "does not exist"
 msgstr "не существует"
+
+msgid "This rule is currently <strong>DISABLED</strong>:"
+msgstr ""
+
+msgid "DISABLED"
+msgstr ""
 
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "Для <strong>ВСЕХ<strong> входящих сообщений; "

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-22 12:33+0200\n"
+"POT-Creation-Date: 2005-03-01 15:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -355,9 +355,6 @@ msgstr ""
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr ""
 
-msgid "Additional Actions"
-msgstr ""
-
 msgid "Your new rule states:"
 msgstr ""
 
@@ -376,6 +373,9 @@ msgid "Create New Mail Filtering Rule"
 msgstr ""
 
 msgid "Error Encountered:"
+msgstr ""
+
+msgid "Additional Actions"
 msgstr ""
 
 msgid ""
@@ -565,6 +565,12 @@ msgstr ""
 msgid "Also keep copy in INBOX, marked as deleted."
 msgstr ""
 
+msgid "Disable this rule"
+msgstr ""
+
+msgid "The rule will have no effect for as long as it is disabled."
+msgstr ""
+
 msgid "matches the regural expression"
 msgstr ""
 
@@ -575,6 +581,12 @@ msgid "exists"
 msgstr ""
 
 msgid "does not exist"
+msgstr ""
+
+msgid "This rule is currently <strong>DISABLED</strong>:"
+msgstr ""
+
+msgid "DISABLED"
 msgstr ""
 
 msgid "For <strong>ALL</strong> incoming messages; "

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-22 12:33+0200\n"
+"POT-Creation-Date: 2005-03-01 15:26+0200\n"
 "PO-Revision-Date: 2003-05-02 14:39+0200\n"
 "Last-Translator: Alexander Brill <kiowa@egil.org>\n"
 "Language-Team:  <alexander@nettstudio.no>\n"
@@ -387,9 +387,6 @@ msgstr ""
 "Velg hva som skal utf&oslash;res n&aring;r denne regelenblir gjort gjeldende "
 "p&aring; ett av de f&oslash;lgende:"
 
-msgid "Additional Actions"
-msgstr "Flere Handlinger"
-
 msgid "Your new rule states:"
 msgstr "Din nye regel utf&oslash;rer:"
 
@@ -413,6 +410,9 @@ msgstr "N&aring;v&aelig;rende Regler"
 #, fuzzy
 msgid "Error Encountered:"
 msgstr "Det har oppst&aring;tt en feil"
+
+msgid "Additional Actions"
+msgstr "Flere Handlinger"
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
@@ -618,6 +618,13 @@ msgstr "Hjelp: Gyldige variabler er:"
 msgid "Also keep copy in INBOX, marked as deleted."
 msgstr "Behold ogs&aring; en kopi i Innboksen, merket som slettet."
 
+#, fuzzy
+msgid "Disable this rule"
+msgstr "Regel er slettet: #"
+
+msgid "The rule will have no effect for as long as it is disabled."
+msgstr ""
+
 msgid "matches the regural expression"
 msgstr "passer med &quot;regular expression&quot;"
 
@@ -629,6 +636,12 @@ msgstr "eksisterer"
 
 msgid "does not exist"
 msgstr "eksisterer ikke"
+
+msgid "This rule is currently <strong>DISABLED</strong>:"
+msgstr ""
+
+msgid "DISABLED"
+msgstr ""
 
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "For <strong>ALLE</strong> innkommende meldinger;"

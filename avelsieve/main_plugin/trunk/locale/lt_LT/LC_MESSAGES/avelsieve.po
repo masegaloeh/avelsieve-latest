@@ -3,13 +3,13 @@
 # Copyright (C) 2003 Alexandros Vellis
 # This file is distributed under the same license as the PACKAGE package.
 # Tomas Kuliavas <tokul@users.sourceforge.net>, 2003.
-# $Id: avelsieve.po,v 1.7 2004/11/22 10:37:26 avel Exp $
+# $Id: avelsieve.po,v 1.8 2005/03/01 13:21:19 avel Exp $
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: (avelsieve 0.9.7)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-22 12:33+0200\n"
+"POT-Creation-Date: 2005-03-01 15:26+0200\n"
 "PO-Revision-Date: 2003-10-09 19:56+0200\n"
 "Last-Translator: Tomas Kuliavas <tokul@users.sourceforge.net>\n"
 "Language-Team: SquirrelMail I18N Team <squirrelmail-i18n@lists.sourceforge."
@@ -392,9 +392,6 @@ msgstr ""
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr "Pasirinkite ką daryti, kai taisyklė suveikia, iš galimų veiksmų: "
 
-msgid "Additional Actions"
-msgstr "Papildomi veikmai"
-
 msgid "Your new rule states:"
 msgstr "Jūsų nauja taisyklė teigia:"
 
@@ -418,6 +415,9 @@ msgstr "Esamos pašto filtravimo taisyklės"
 #, fuzzy
 msgid "Error Encountered:"
 msgstr "Įvyko klaida"
+
+msgid "Additional Actions"
+msgstr "Papildomi veikmai"
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
@@ -621,6 +621,13 @@ msgstr "Pagalba: Tinkami kintamieji yra:"
 msgid "Also keep copy in INBOX, marked as deleted."
 msgstr "Kartu išsaugoti kopiją tarp INBOX, pažymėtą kaip ištrintą."
 
+#, fuzzy
+msgid "Disable this rule"
+msgstr "Sėkmingai ištrinta taisyklė Nr."
+
+msgid "The rule will have no effect for as long as it is disabled."
+msgstr ""
+
 msgid "matches the regural expression"
 msgstr "atitinka išraišką"
 
@@ -632,6 +639,12 @@ msgstr "egzistuoja"
 
 msgid "does not exist"
 msgstr "neegzistuoja"
+
+msgid "This rule is currently <strong>DISABLED</strong>:"
+msgstr ""
+
+msgid "DISABLED"
+msgstr ""
 
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "<strong>VISOMS</strong> ateinančioms žinutėms; "

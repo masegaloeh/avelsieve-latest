@@ -3,13 +3,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve-0.9.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-22 12:33+0200\n"
+"POT-Creation-Date: 2005-03-01 15:26+0200\n"
 "PO-Revision-Date: 2004-11-22 12:38+0200\n"
 "Last-Translator: Alexandros Vellis <avel@noc.uoa.gr>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-7\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
 msgid "You have to define at least one header match text."
 msgstr "Πρέπει να ορίσετε τουλάχιστον ένα κείμενο στο ταίριασμα σε κεφαλίδα."
@@ -390,9 +390,6 @@ msgstr ""
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr "Επιλέξτε την ενέργεια εάν αυτός ο κανόνας ισχύσει, από τα ακόλουθα:"
 
-msgid "Additional Actions"
-msgstr "Επιπρόσθετες Ενέργειες"
-
 msgid "Your new rule states:"
 msgstr "Ο νέος σας κανόνας λέει:"
 
@@ -414,6 +411,9 @@ msgstr "Δημιουργία Νέου Κανόνα Φιλτραρίσματος Ταχυδρομείου"
 
 msgid "Error Encountered:"
 msgstr "Παρουσιάστηκε Λάθος:"
+
+msgid "Additional Actions"
+msgstr "Επιπρόσθετες Ενέργειες"
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
@@ -617,6 +617,13 @@ msgid "Also keep copy in INBOX, marked as deleted."
 msgstr ""
 "Επίσης κράτησε ένα αντίγραφο στα ΕΙΣΕΡΧΟΜΕΝΑ, μαρκαρισμένο ως διαγραμμένο."
 
+#, fuzzy
+msgid "Disable this rule"
+msgstr "Σίγουρα να διαγραφεί αυτός ο κανόνας;"
+
+msgid "The rule will have no effect for as long as it is disabled."
+msgstr ""
+
 msgid "matches the regural expression"
 msgstr "ταιριάζει στο regural expression"
 
@@ -628,6 +635,12 @@ msgstr "υπάρχει"
 
 msgid "does not exist"
 msgstr "δεν υπάρχει"
+
+msgid "This rule is currently <strong>DISABLED</strong>:"
+msgstr ""
+
+msgid "DISABLED"
+msgstr ""
 
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "Για <strong>ΌΛΑ</strong> τα εισερχόμενα μηνύματα· "
@@ -739,4 +752,3 @@ msgstr "¶κυρο όνομα φακέλου. Παρακαλώ επιλέξτε ένα διαφορετικό όνομα."
 
 msgid "None"
 msgstr "Κανένα"
-
