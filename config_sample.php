@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: config_sample.php,v 1.5 2003/10/27 10:35:39 avel Exp $
+ * $Id: config_sample.php,v 1.6 2003/11/07 16:17:48 avel Exp $
  */
 
 /* Configuration parameters for SIEVE mail filters (aka avelsieve) */
@@ -34,7 +34,12 @@ $preferred_mech = "PLAIN";
  * SIEVE protocol, you must connect to the SIEVE daemon (usually on the IMAP
  * server) itself. So you need to set $imapproxymode to true, and define a
  * mapping, from the imapproxy host (usually localhost) to your real IMAP
- * server (usually the same that is defined on Imapproxy's configuration). */
+ * server (usually the same that is defined on Imapproxy's configuration).
+ * 
+ * This will not work if you use a perdition-style proxy, where different users
+ * go to different IMAP servers; it applies mostly to people running imapproxy
+ * for speed and want a quick hack.
+ */
 
 $imapproxymode = false;
 $imapproxyserv = array(
