@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve-0.9.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-10-09 17:00+0300\n"
+"POT-Creation-Date: 2004-01-22 16:55+0200\n"
 "PO-Revision-Date: 2003-05-30 08:00+0200\n"
 "Last-Translator: Alexandros Vellis <avel@noc.uoa.gr>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -82,6 +82,9 @@ msgstr "Τέλος"
 
 msgid "Move on to step"
 msgstr "Συνέχεια στο βήμα"
+
+msgid "None"
+msgstr "Κανένα"
 
 msgid "What kind of rule would you like to add?"
 msgstr "Τι τύπο κανόνα θα θέλατε να προσθέσετε;"
@@ -163,6 +166,9 @@ msgstr "Ανακατεύθυνση στην ακόλουθη διεύθυνση:"
 
 msgid "someone@example.org"
 msgstr "someone@example.org"
+
+msgid "Keep a local copy as well."
+msgstr "Επίσης κράτησε ένα τοπικό αντίγραφο."
 
 msgid "Move message into"
 msgstr "Μετακίνηση μηνύματος"
@@ -280,8 +286,8 @@ msgid ""
 "Messages with SPAM-Score higher than the target value, the maximum value "
 "being %s, will be considered SPAM."
 msgstr ""
-"Μηνύματα με Σκορ πάνω από την τιμή του επιθυμητού, με το μέγιστο να είναι "
-"%s, θα θεωρούνται SPAM."
+"Μηνύματα με Σκορ πάνω από την τιμή του επιθυμητού, με το μέγιστο να είναι %"
+"s, θα θεωρούνται SPAM."
 
 msgid "SPAM Lists to check against"
 msgstr "Λίστες SPAM με τις οποίες θα γίνει ο έλεγχος"
@@ -408,6 +414,9 @@ msgstr "<em>αποθήκευσέ το</em> στον φάκελο"
 msgid "reply with this vacation message: "
 msgstr "απάντησε με το εξής μήνυμα διακοπών: "
 
+msgid "Also keep a local copy."
+msgstr "Επίσης κράτησε ένα τοπικό αντίγραφο."
+
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr ""
 " Επίσης κράτησε ένα αντίγραφο στα ΕΙΣΕΡΧΟΜΕΝΑ, μαρκαρισμένο ως διαγραμμένο."
@@ -529,6 +538,10 @@ msgstr ""
 "Αποθήκευσε το μήνυμα SPAM στον Φάκελο Αχρήστων. Μηνύματα παλαιότερα από %s "
 "μέρες θα διαγράφονται αυτόματα."
 
+msgid "Note that you can set the number of days in Folder Preferences."
+msgstr ""
+"Σημειώστε ότι μπορείτε να θέσετε τον αριθμό των ημερών στις Επιλογές Φακέλων."
+
 msgid "Trash Folder"
 msgstr "Φάκελος Διαγραμμένων"
 
@@ -546,8 +559,8 @@ msgid ""
 "Discard SPAM message. You will get no indication that the message ever "
 "arrived."
 msgstr ""
-"Απόρριψη του μηνύματος SPAM. Δε θα λαμβάνετε καμμία ειδοποίηση ότι το "
-"μήνυμα αυτό έφτασε ποτέ."
+"Απόρριψη του μηνύματος SPAM. Δε θα λαμβάνετε καμμία ειδοποίηση ότι το μήνυμα "
+"αυτό έφτασε ποτέ."
 
 msgid "Editing Mail Filtering Rule"
 msgstr "Επεξεργασία του κανόνα φιλτραρίσματος"
@@ -569,29 +582,29 @@ msgstr ""
 msgid "Filters"
 msgstr "Φίλτρα"
 
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "Αδύνατη η σύνδεση με τον timsieved daemon στον εξυπηρετητή IMAP σας"
+
+msgid "Please contact your administrator."
+msgstr "Παρακαλούμε ειδοποιήστε το διαχειριστή σας."
+
+msgid "Could not set active script on your IMAP server"
+msgstr "Αδύνατη η ενεργοποίηση του ενεργού script στον εξυπηρετητή IMAP"
+
 msgid "Unable to load script to server."
 msgstr "Αδύνατο το φόρτωμα του script στον εξυπηρετητή."
 
 msgid "Server responded with:"
 msgstr "Ο εξυπηρετητής απάντησε:"
 
-msgid "Please contact your administrator."
-msgstr "Παρακαλούμε ειδοποιήστε το διαχειριστή σας."
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Αδύνατη η σύνδεση με τον timsieved daemon στον εξυπηρετητή IMAP σας"
+msgid "Test for Forged Header"
+msgstr "Εξέταση για Πλαστογραφημένη Κεφαλίδα"
 
 msgid "Current Mail Filtering Rules"
 msgstr "Τρέχοντες Κανόνες Φιλτραρίσματος Ταχυδρομείου"
 
 msgid "No Filtering Rules Defined Yet"
 msgstr "Δεν έχουν οριστεί κανόνες ακόμα"
-
-msgid "in order to save your rules."
-msgstr "ώστε να αποθηκεύσετε τους κανόνες σας."
-
-msgid "Could not set active script on your IMAP server"
-msgstr "Αδύνατη η ενεργοποίηση του ενεργού script στον εξυπηρετητή IMAP"
 
 msgid "Could not get SIEVE script from your IMAP server"
 msgstr "Αδύνατη η λήψη του SIEVE script από τον IMAP εξυπηρετητή"
@@ -601,6 +614,9 @@ msgstr "(Ίσως το script έχει μέγεθος μηδέν)."
 
 msgid "All your rules have been deleted"
 msgstr "Όλοι οι κανόνες διαγράφηκαν"
+
+msgid "Really delete this rule?"
+msgstr "Σίγουρα να διαγραφεί αυτός ο κανόνας;"
 
 msgid "Delete Selected"
 msgstr "Διαγραφή Επιλεγμένων"
@@ -677,6 +693,9 @@ msgstr "Δημιουργήθηκε:"
 
 msgid "Last modified:"
 msgstr "Τελευταία τροποποίηση:"
+
+#~ msgid "in order to save your rules."
+#~ msgstr "ώστε να αποθηκεύσετε τους κανόνες σας."
 
 #~ msgid "Parameters"
 #~ msgstr "Παράμετροι"

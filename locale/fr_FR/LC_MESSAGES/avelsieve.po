@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-10-09 17:00+0300\n"
+"POT-Creation-Date: 2004-01-22 16:55+0200\n"
 "PO-Revision-Date: 2003-06-01 13:15+0300\n"
 "Last-Translator: Juan-Francisco Diez <jfdiez@sitejf.com>\n"
 "Language-Team: French <fr@li.org>\n"
@@ -85,6 +85,10 @@ msgstr "Terminer"
 
 msgid "Move on to step"
 msgstr "Aller &agrave; l'&eacute;tape"
+
+#, fuzzy
+msgid "None"
+msgstr "No"
 
 msgid "What kind of rule would you like to add?"
 msgstr "Quel type de r&egrave;gle voulez-vous ajouter ?"
@@ -166,6 +170,9 @@ msgstr "D&eacute;vier le message vers cette adresse:"
 
 msgid "someone@example.org"
 msgstr "adresse@netplus.ch"
+
+msgid "Keep a local copy as well."
+msgstr ""
 
 msgid "Move message into"
 msgstr "Classer le message dans:"
@@ -410,6 +417,9 @@ msgstr "<em>le classer</em> dans le r&eacute;pertoire <strong>"
 msgid "reply with this vacation message: "
 msgstr "r&eacute;pondre: "
 
+msgid "Also keep a local copy."
+msgstr ""
+
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr ""
 
@@ -529,6 +539,9 @@ msgid ""
 "deleted automatically."
 msgstr ""
 
+msgid "Note that you can set the number of days in Folder Preferences."
+msgstr ""
+
 msgid "Trash Folder"
 msgstr ""
 
@@ -565,17 +578,23 @@ msgstr ""
 msgid "Filters"
 msgstr "Filtres"
 
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "Impossible de se connecter au serveur IMAP."
+
+msgid "Please contact your administrator."
+msgstr "Veuillez contacter votre administrateur."
+
+msgid "Could not set active script on your IMAP server"
+msgstr "Impossible d'activer les r&egrave; sur le serveur IMAP."
+
 msgid "Unable to load script to server."
 msgstr ""
 
 msgid "Server responded with:"
 msgstr ""
 
-msgid "Please contact your administrator."
-msgstr "Veuillez contacter votre administrateur."
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Impossible de se connecter au serveur IMAP."
+msgid "Test for Forged Header"
+msgstr ""
 
 msgid "Current Mail Filtering Rules"
 msgstr "R&egrave;gles de filtrage existantes"
@@ -583,12 +602,6 @@ msgstr "R&egrave;gles de filtrage existantes"
 msgid "No Filtering Rules Defined Yet"
 msgstr ""
 "Aucune r&egrave;gle de filtrage n'a &eacute;t&eacute; encore d&eacute;finie"
-
-msgid "in order to save your rules."
-msgstr "pour sauvegarder vos r&egrave;gles."
-
-msgid "Could not set active script on your IMAP server"
-msgstr "Impossible d'activer les r&egrave; sur le serveur IMAP."
 
 msgid "Could not get SIEVE script from your IMAP server"
 msgstr "Impossible de lire les r&egrave; sur le serveur IMAP."
@@ -598,6 +611,10 @@ msgstr "(Il est probable que la taille de vos r&eacute;gles soit nulle)."
 
 msgid "All your rules have been deleted"
 msgstr "Toutes vos r&egrave;gles ont &eacute;t&eacute; supprim&eacute;es."
+
+#, fuzzy
+msgid "Really delete this rule?"
+msgstr "R&egrave;gle supprim&eacute;e #"
 
 msgid "Delete Selected"
 msgstr ""
@@ -676,6 +693,9 @@ msgstr ""
 
 msgid "Last modified:"
 msgstr ""
+
+#~ msgid "in order to save your rules."
+#~ msgstr "pour sauvegarder vos r&egrave;gles."
 
 #, fuzzy
 #~ msgid "does not match regexp"

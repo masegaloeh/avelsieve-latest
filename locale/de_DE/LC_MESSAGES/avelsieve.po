@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-10-09 17:00+0300\n"
+"POT-Creation-Date: 2004-01-22 16:55+0200\n"
 "PO-Revision-Date: 2003-06-13 15:20+0200\n"
 "Last-Translator: Karsten Behrens <mail@karsten-behrens.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
@@ -89,6 +89,10 @@ msgstr "Fertig"
 
 msgid "Move on to step"
 msgstr "Gehe zu Schritt"
+
+#, fuzzy
+msgid "None"
+msgstr "#"
 
 msgid "What kind of rule would you like to add?"
 msgstr "Welchen Typ von Filterregel m&ouml;chten Sie hinzuf&uuml;gen?"
@@ -172,6 +176,9 @@ msgstr "Zur folgenden E-Mail-Adresse umleiten:"
 
 msgid "someone@example.org"
 msgstr "irgendjemand@irgendwo.de"
+
+msgid "Keep a local copy as well."
+msgstr ""
 
 msgid "Move message into"
 msgstr "Verschiebe Nachricht in"
@@ -414,6 +421,9 @@ msgstr "<em>speichern</em> im Ordner <strong>"
 msgid "reply with this vacation message: "
 msgstr "antworten mit dieser Urlaubsnachricht: "
 
+msgid "Also keep a local copy."
+msgstr ""
+
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr " Auch im Posteingang behalten (als gel&ouml;scht)."
 
@@ -528,6 +538,9 @@ msgid ""
 "deleted automatically."
 msgstr ""
 
+msgid "Note that you can set the number of days in Folder Preferences."
+msgstr ""
+
 msgid "Trash Folder"
 msgstr ""
 
@@ -565,29 +578,29 @@ msgstr ""
 msgid "Filters"
 msgstr "Filter"
 
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "Konnte den timsieved-Prozess auf Ihrem IMAP-Server nicht erreichen"
+
+msgid "Please contact your administrator."
+msgstr "Bitte kontaktieren Sie Ihren Administrator."
+
+msgid "Could not set active script on your IMAP server"
+msgstr ""
+
 msgid "Unable to load script to server."
 msgstr "Konnte Skript nicht hochladen"
 
 msgid "Server responded with:"
 msgstr "Serverantwort:"
 
-msgid "Please contact your administrator."
-msgstr "Bitte kontaktieren Sie Ihren Administrator."
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Konnte den timsieved-Prozess auf Ihrem IMAP-Server nicht erreichen"
+msgid "Test for Forged Header"
+msgstr ""
 
 msgid "Current Mail Filtering Rules"
 msgstr "Zur Zeit definierte Regeln"
 
 msgid "No Filtering Rules Defined Yet"
 msgstr "Noch keine Filter definiert"
-
-msgid "in order to save your rules."
-msgstr "um Ihre Regeln zu speichern."
-
-msgid "Could not set active script on your IMAP server"
-msgstr ""
 
 msgid "Could not get SIEVE script from your IMAP server"
 msgstr ""
@@ -597,6 +610,10 @@ msgstr ""
 
 msgid "All your rules have been deleted"
 msgstr "Alle von Ihnen definierten Regeln wurden gel&ouml;scht."
+
+#, fuzzy
+msgid "Really delete this rule?"
+msgstr "Gel&ouml;scht: Regel #"
 
 msgid "Delete Selected"
 msgstr "Gew&auml;hlte l&ouml;schen"
@@ -674,6 +691,9 @@ msgstr "Erstellt:"
 
 msgid "Last modified:"
 msgstr "Letzte &Auml;nderung:"
+
+#~ msgid "in order to save your rules."
+#~ msgstr "um Ihre Regeln zu speichern."
 
 #~ msgid "Parameters"
 #~ msgstr "Parameter"

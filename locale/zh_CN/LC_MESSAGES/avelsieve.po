@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-10-09 17:00+0300\n"
+"POT-Creation-Date: 2004-01-22 16:55+0200\n"
 "PO-Revision-Date: 2002-09-30 16:13+0800\n"
 "Last-Translator: Wei Gao <wei@gaofamily.org>\n"
 "Language-Team: Chinese Simplified <LL@li.org>\n"
@@ -81,6 +81,10 @@ msgstr "结束"
 msgid "Move on to step"
 msgstr "移到步骤"
 
+#, fuzzy
+msgid "None"
+msgstr "序号"
+
 msgid "What kind of rule would you like to add?"
 msgstr "你想新建什么类型的规则？"
 
@@ -156,6 +160,9 @@ msgstr "转发到下面的email地址："
 
 msgid "someone@example.org"
 msgstr "someone@example.org"
+
+msgid "Keep a local copy as well."
+msgstr ""
 
 msgid "Move message into"
 msgstr "把信件移到"
@@ -390,6 +397,9 @@ msgstr "把它<em>放进</em>文件夹<strong>"
 msgid "reply with this vacation message: "
 msgstr "用下面的休假信息回复："
 
+msgid "Also keep a local copy."
+msgstr ""
+
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr ""
 
@@ -506,6 +516,9 @@ msgid ""
 "deleted automatically."
 msgstr ""
 
+msgid "Note that you can set the number of days in Folder Preferences."
+msgstr ""
+
 msgid "Trash Folder"
 msgstr ""
 
@@ -540,29 +553,29 @@ msgstr "服务器端的信件过滤器使你加入一些条件以自动转发，删除或移动一个文件夹。"
 msgid "Filters"
 msgstr "过滤器"
 
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "无法登陆到你的IMAP服务器的timsieved服务"
+
+msgid "Please contact your administrator."
+msgstr "请同你的系统管理员联系"
+
+msgid "Could not set active script on your IMAP server"
+msgstr "无法在你的IMAP服务器上设置动作角本"
+
 msgid "Unable to load script to server."
 msgstr ""
 
 msgid "Server responded with:"
 msgstr ""
 
-msgid "Please contact your administrator."
-msgstr "请同你的系统管理员联系"
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "无法登陆到你的IMAP服务器的timsieved服务"
+msgid "Test for Forged Header"
+msgstr ""
 
 msgid "Current Mail Filtering Rules"
 msgstr "当前的信件过滤规则"
 
 msgid "No Filtering Rules Defined Yet"
 msgstr "还没有定义过滤规则"
-
-msgid "in order to save your rules."
-msgstr "为了保存你的规则"
-
-msgid "Could not set active script on your IMAP server"
-msgstr "无法在你的IMAP服务器上设置动作角本"
 
 msgid "Could not get SIEVE script from your IMAP server"
 msgstr "无法从你的IMAP服务器上得到SIEVE角本"
@@ -572,6 +585,10 @@ msgstr "（可能角本大小为空）"
 
 msgid "All your rules have been deleted"
 msgstr "你所有的规则都被删除了"
+
+#, fuzzy
+msgid "Really delete this rule?"
+msgstr "成功的删除了规则#"
 
 msgid "Delete Selected"
 msgstr ""
@@ -645,6 +662,9 @@ msgstr ""
 
 msgid "Last modified:"
 msgstr ""
+
+#~ msgid "in order to save your rules."
+#~ msgstr "为了保存你的规则"
 
 #, fuzzy
 #~ msgid "does not match regexp"
