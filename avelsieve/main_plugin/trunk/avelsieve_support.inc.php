@@ -8,7 +8,10 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: avelsieve_support.inc.php,v 1.2 2003/10/07 13:24:52 avel Exp $
+ * $Id: avelsieve_support.inc.php,v 1.3 2003/12/18 12:21:23 avel Exp $
+ *
+ * @package avelsieve
+ * @author Alexandros Vellis <avel@noc.uoa.gr>
  */
 
 /**
