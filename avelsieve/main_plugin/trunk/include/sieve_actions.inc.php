@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.5 2004/11/12 11:58:02 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.6 2004/11/15 13:08:30 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -72,10 +72,22 @@ class avelsieve_action {
 		if(isset($this->options) and sizeof($this->options) > 0) {
 			$optval = array();
 			foreach($this->options as $opt=>$defaultval) {
-				if(isset($this->rule[$opt])) {
-					$optval[$opt] = $this->rule[$opt];
+				if(is_array($opt)) {
+					/* Two - level options, e.g. notify */
+					foreach($opt as $opt2=>$defaultval2) {
+						if(isset($this->rule[$opt][$opt2])) {
+							$optval[$opt][$opt2] = $this->rule[$opt][$opt2];
+						} else {
+							$optval[$opt][$opt2] = $defaultval2;
+						}
+					}
 				} else {
-					$optval[$opt] = $defaultval;
+					/* Flat-level options schema */
+					if(isset($this->rule[$opt])) {
+						$optval[$opt] = $this->rule[$opt];
+					} else {
+						$optval[$opt] = $defaultval;
+					}
 				}
 			}
 			if($this->num) {
@@ -262,8 +274,12 @@ class avelsieve_action_fileinto extends avelsieve_action {
 		$this->text = _("Move message into");
 	}
 	
+	/**
+	 * Options for fileinto
+	 * @todo Use "official" function sqimap_mailbox_option_list()
+	 */
 	function options_html ($val) {
-		$out = '<input type="radio" name="folder" value="5a" onclick="checkOther(\'5\');" ';
+		$out = '<input type="radio" name="newfolderradio" value="5a" onclick="checkOther(\'5\');" ';
 		if(isset($val['folder'])) {
 			$out .= 'checked=""';
 		}
@@ -275,11 +291,11 @@ class avelsieve_action_fileinto extends avelsieve_action {
 		}
 			
 		$out .=	'<br />'.
-				'<input type="radio" name="newfolder" value="5b" onclick="checkOther(\'5\');" /> '.
+				'<input type="radio" name="newfolderradio" value="5b" onclick="checkOther(\'5\');" /> '.
 				_("a new folder, named").
-				'<input type="text" size="25" name="folder_name" onclick="checkOther(\'5\');" /> '.
-				_("created as a subfolder of").
-				mailboxlist('subfolder', false, true);
+				' <input type="text" size="15" name="newfoldername" onclick="checkOther(\'5\');" /> '.
+				_("created as a subfolder of"). ' '.
+				mailboxlist('newfolderparent', false, true);
 		return $out;
 	}
 }
@@ -355,9 +371,11 @@ class avelsieve_action_notify extends avelsieve_action {
 	var $num = 0;
 	var $name = 'notify';
 	var $options = array(
-		'notify[method]' => '',
-		'notify[id]' => '',
-		'notify[options]' => ''
+		'notify' => array(
+			'method' => '',
+			'id' => '',
+			'options' => ''
+		)
 	);
 
 	/**
@@ -441,10 +459,8 @@ class avelsieve_action_notify extends avelsieve_action {
 		
 			$out .= _("Destination") . ": ";
 			$out .= '<input name="notify[options]" size="30" value="';
-			if(isset($edit)) {
-				if(isset($val['notify']['options'])) {
-					$out .= $val['notify']['options'];
-				}
+			if(isset($val['notify']['options'])) {
+				$out .= $val['notify']['options'];
 			}
 			$out .= '" /><br />';
 		
@@ -453,10 +469,8 @@ class avelsieve_action_notify extends avelsieve_action {
 			$out .= 'Priority: <select name="notify[priority]">';
 			foreach($prioritystrings as $pr=>$te) {
 				$out .= '<option value="'.$pr.'"';
-				if(isset($edit)) {
-					if(isset($val['notify']['priority']) && $val['notify']['priority'] == $pr) {
-						$out .= ' checked=""';
-					}
+				if(isset($val['notify']['priority']) && $val['notify']['priority'] == $pr) {
+					$out .= ' checked=""';
 				}
 				$out .= '>';
 				$out .= $prioritystrings[$pr];
@@ -466,10 +480,8 @@ class avelsieve_action_notify extends avelsieve_action {
 		
 			$out .= _("Message") . " ";
 			$out .= '<textarea name="notify[message]" rows="4" cols="50">';
-			if(isset($edit)) {
-				if(isset($val['notify']['message'])) {
-					$out .= $val['notify']['message'];
-				}
+			if(isset($val['notify']['message'])) {
+				$out .= $val['notify']['message'];
 			}
 			$out .= '</textarea><br />';
 			
