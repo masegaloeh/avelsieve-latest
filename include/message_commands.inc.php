@@ -9,7 +9,7 @@
  * This file contains functions for the per-message commands that appear while
  * viewing a message.
  *
- * @version $Id: message_commands.inc.php,v 1.2 2004/11/12 10:44:45 avel Exp $
+ * @version $Id: message_commands.inc.php,v 1.3 2004/11/12 11:28:23 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -71,10 +71,17 @@ function avelsieve_commands_menu_do() {
 		switch($i['algorithm']) {
 		case 'header':
 			if(isset($hdr->$c) && !empty($hdr->$c)) {
-				for($j=0; $j<sizeof($hdr->$c); $j++) {
+				if(is_array($hdr->$c)) {
+					for($j=0; $j<sizeof($hdr->$c); $j++) {
+						$url .= '&amp;header['.$j.']='.ucfirst($c);
+						$url .= '&amp;matchtype['.$j.']=contains';
+						$url .= '&amp;headermatch['.$j.']='.urlencode( $hdr->{$c}[$j]->mailbox.'@'.$hdr->{$c}[$j]->host);
+					}
+				} else {
+					$j=0;
 					$url .= '&amp;header['.$j.']='.ucfirst($c);
 					$url .= '&amp;matchtype['.$j.']=contains';
-					$url .= '&amp;headermatch['.$j.']='.urlencode( $hdr->{$c}[$j]->mailbox.'@'.$hdr->{$c}[$j]->host);
+					$url .= '&amp;headermatch['.$j.']='.urlencode( $hdr->{$c}->mailbox.'@'.$hdr->{$c}->host);
 				}
 			} else {
 				unset($url);
@@ -125,14 +132,14 @@ function avelsieve_commands_menu_do() {
 			break;
 	}
 	if(isset($url)) {
-	    	if ($compose_new_win == '1') {
+	   	if ($compose_new_win == '1') {
 			$url .= '&amp;popup=1';
 		}
-    		if ($compose_new_win == '1') {
-	        	$output[] = "<a href=\"javascript:void(0)\" onclick=\"comp_in_new('$url')\">".$i['desc'].'</a>';
+    	if ($compose_new_win == '1') {
+	       	$output[] = "<a href=\"javascript:void(0)\" onclick=\"comp_in_new('$url')\">".$i['desc'].'</a>';
 		} else {
-        		$output[] = '<a href="'.$url.'">'.$i['desc'].'</a>';
-	    	}
+       		$output[] = '<a href="'.$url.'">'.$i['desc'].'</a>';
+	   	}
 	}
 	unset($url);
     }
