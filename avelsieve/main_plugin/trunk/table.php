@@ -11,7 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table.php,v 1.6 2003/10/14 16:16:55 avel Exp $
+ * $Id: table.php,v 1.7 2003/10/27 11:04:36 avel Exp $
  */
 
 /* table.php: main routine that shows a table of all the rules and allows
@@ -133,6 +133,8 @@ if (!isset($rules)) {
 	/* Actually get the script 'phpscript' (hardcoded ATM). */
 
 	$sievescript = '';
+	unset($sieve->response);
+
 	if($sieve->sieve_getscript("phpscript")){
 		if(is_array($sieve->response)) {
 			foreach($sieve->response as $line){
@@ -154,6 +156,8 @@ if (!isset($rules)) {
 	$scriptinfo = array();
 	$rules = getruledata($sievescript, $scriptinfo);
 }
+
+unset($sieve->response);
 
 
 
