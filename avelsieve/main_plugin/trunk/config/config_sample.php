@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: config_sample.php,v 1.3 2004/11/22 12:48:12 avel Exp $
+ * @version $Id: config_sample.php,v 1.4 2004/12/20 15:35:18 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -103,7 +103,7 @@ $maxitems = 10;
 
 $headers = array(
  'From', 'To', 'Cc', 'Bcc', 'Subject', 'Reply-To', 'Sender', 'List-Id',
- 'MailingList', 'X-ML-Name', 'X-List', 'X-MailingList', 'Resent-From',
+ 'MailingList', 'Mailing-List', 'X-ML-Name', 'X-List', 'X-MailingList', 'Resent-From',
  'Resent-To', 'X-Mailer', 'X-MailingList', 'X-Spam-Flag', 'X-Spam-Status',
  'X-Priority', 'Importance', 'X-MSMail-Priority', 'Precedence');
 
