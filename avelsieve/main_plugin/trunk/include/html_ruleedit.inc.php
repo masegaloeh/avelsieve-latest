@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.6 2004/11/11 13:49:49 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.7 2004/11/11 14:28:55 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -486,13 +486,11 @@ class avelsieve_html_edit extends avelsieve_html {
 			'<form name="addrule" action="'.$PHP_SELF.'" method="POST">';
 		}
 		
-		/* -------------------- type ------------------------ */
-		$out .= $this->section_start( _("Rule Type") ).
-			$this->rule_1_type('select') .
-			$this->section_end();
-
 		/* --------------------- 'if' ----------------------- */
-		$out .= $this->section_start( _("Condition") );
+		$out .= $this->section_start( _("Condition") ).
+			$this->rule_1_type('select').
+			'<br/>';
+
 		switch ($this->rule['type']) { 
 			case 1: 
 				$out .= 'Not implemented yet.';
