@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.17 2004/12/20 15:25:05 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.18 2005/02/28 14:40:47 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -425,7 +425,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		/* Data taken from addrule.php */
 		global $boxes, $emailaddresses, $sieve_capabilities;
 		/* Other */
-		global $actions, $additional_actions;
+		global $actions;
 		$out = '<p>'. _("Choose what to do when this rule triggers, from one of the following:"). '</p>';
 		
 		foreach($actions as $action) {
@@ -438,9 +438,28 @@ class avelsieve_html_edit extends avelsieve_html {
 			}
 		}
 		return $out;
+	}
+	
+	function rule_3_additional_actions() {
+		/* Preferences from config.php */
+		global $useimages, $translate_return_msgs;
+		/* Data taken from addrule.php */
+		global $boxes, $emailaddresses, $sieve_capabilities;
+		/* Other */
+		global $additional_actions;
+
+		$out = '';
 		
-		//	global $emailaddresses;
-		$out .= '<h3>'. _("Additional Actions") . '</h3>';
+		foreach($additional_actions as $action) {
+			$classname = 'avelsieve_action_'.$action;
+			if(class_exists($classname)) {
+				$$classname = new $classname($this->rule, 'html');
+				if($$classname != null) {
+					$out .= $$classname->action_html();
+				}
+			}
+		}
+		return $out;
 	}
 	
 	/**
@@ -573,6 +592,11 @@ class avelsieve_html_edit extends avelsieve_html {
 		
 		$out .= $this->rule_3_action().
 			$this->section_end();
+
+		$out .= $this->section_start( _("Additional Actions") );
+		$out .= $this->rule_3_additional_actions().
+			$this->section_end();
+
 
 		/* --------------------- buttons ----------------------- */
 

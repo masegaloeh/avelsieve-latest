@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: constants.inc.php,v 1.3 2004/12/22 13:42:05 avel Exp $
+ * @version $Id: constants.inc.php,v 1.4 2005/02/28 14:40:47 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -50,10 +50,10 @@ $types[5] = array(
 
 
 $actions = array(
-	'keep', 'discard', 'reject', 'redirect', 'fileinto', 'vacation', 'stop', 'notify'
+	'keep', 'discard', 'reject', 'redirect', 'fileinto', 'vacation'
 );
 $additional_actions = array(
-	'stop', 'notify'
+	'stop', 'notify', 'keepdeleted', 'disabled'
 );
 
 
