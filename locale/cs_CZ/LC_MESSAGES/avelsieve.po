@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve czech locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 15:26+0200\n"
+"POT-Creation-Date: 2005-03-01 17:50+0200\n"
 "PO-Revision-Date: 2004-04-01 20:15+0300\n"
 "Last-Translator: Jiri Demel <demel@fsv.cvut.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -460,8 +460,11 @@ msgstr "Úspì¹nì smazáno pravidlo #"
 msgid "Add a New Rule"
 msgstr "Pøidat nové pravidlo"
 
-msgid "Delete Selected"
-msgstr "Smazat oznaèené"
+msgid "Enable"
+msgstr ""
+
+msgid "Disable"
+msgstr ""
 
 msgid ""
 "When you are done, please click the button below to return to your webmail."
@@ -482,6 +485,9 @@ msgstr ""
 
 msgid "Really delete this rule?"
 msgstr "Opravdu smazat toto pravidlo?"
+
+msgid "Action for Selected Rules:"
+msgstr ""
 
 msgid "Could not log on to timsieved daemon on your IMAP server"
 msgstr "Nepodaøilo se pøihlásit k démonu timsieved na IMAP serveru"
@@ -741,6 +747,9 @@ msgstr "Chybné jméno slo¾ky. Zkuste jiné jméno."
 
 msgid "None"
 msgstr "Nic"
+
+#~ msgid "Delete Selected"
+#~ msgstr "Smazat oznaèené"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "V¹echna va¹e pravidla byla smazána"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 15:26+0200\n"
+"POT-Creation-Date: 2005-03-01 17:50+0200\n"
 "PO-Revision-Date: 2003-06-01 13:15+0300\n"
 "Last-Translator: Þór Sigurðsson <tosi@hi.is>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -455,8 +455,11 @@ msgstr "Það tókst að eyða reglu númer "
 msgid "Add a New Rule"
 msgstr "Bæta við reglu"
 
-msgid "Delete Selected"
-msgstr "Eyða völdum"
+msgid "Enable"
+msgstr ""
+
+msgid "Disable"
+msgstr ""
 
 msgid ""
 "When you are done, please click the button below to return to your webmail."
@@ -479,6 +482,9 @@ msgstr ""
 #, fuzzy
 msgid "Really delete this rule?"
 msgstr "Það tókst að eyða reglu númer "
+
+msgid "Action for Selected Rules:"
+msgstr ""
 
 msgid "Could not log on to timsieved daemon on your IMAP server"
 msgstr "Gat ekki tengst timsieved þjónustunni á IMAP þjóninum"
@@ -738,6 +744,9 @@ msgstr ""
 #, fuzzy
 msgid "None"
 msgstr "Nei"
+
+#~ msgid "Delete Selected"
+#~ msgstr "Eyða völdum"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Öllum þínum reglum hefur verið eytt"

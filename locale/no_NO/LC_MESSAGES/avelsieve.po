@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 15:26+0200\n"
+"POT-Creation-Date: 2005-03-01 17:50+0200\n"
 "PO-Revision-Date: 2003-05-02 14:39+0200\n"
 "Last-Translator: Alexander Brill <kiowa@egil.org>\n"
 "Language-Team:  <alexander@nettstudio.no>\n"
@@ -470,8 +470,11 @@ msgstr "Regel er slettet: #"
 msgid "Add a New Rule"
 msgstr "Lag Ny Regel"
 
-msgid "Delete Selected"
-msgstr "Slett Valg(te)"
+msgid "Enable"
+msgstr ""
+
+msgid "Disable"
+msgstr ""
 
 msgid ""
 "When you are done, please click the button below to return to your webmail."
@@ -494,6 +497,9 @@ msgstr ""
 #, fuzzy
 msgid "Really delete this rule?"
 msgstr "Regel er slettet: #"
+
+msgid "Action for Selected Rules:"
+msgstr ""
 
 msgid "Could not log on to timsieved daemon on your IMAP server"
 msgstr "Kunne ikke logge p&aring; timsieved daemonen p&aring; din IMAP-tjener"
@@ -753,6 +759,9 @@ msgstr ""
 #, fuzzy
 msgid "None"
 msgstr "Nei"
+
+#~ msgid "Delete Selected"
+#~ msgstr "Slett Valg(te)"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Alle dine regler har blitt slettet"
