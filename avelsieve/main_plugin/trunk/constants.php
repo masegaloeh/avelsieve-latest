@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: constants.php,v 1.2 2003/10/07 13:24:52 avel Exp $
+ * $Id: constants.php,v 1.3 2003/10/09 11:28:45 avel Exp $
  */
 
 $types = array();
@@ -145,6 +145,33 @@ $avelsievetools = array(
 		)
 );
 	
+
+if($spamrule_enable==true) {
+
+if(in_array('junkfolder', $plugins)) {
+	include SM_PATH . 'plugins/junkfolder/config.php';
+} else {
+	$junkfolder_days = 7; /* Dummy default for E_ALL */
+}
+
+
+$spamrule_actions = array(
+	'junk' => array(
+		'short' => _("Junk Folder"),
+		'desc' => sprintf( _("Store SPAM message in your Junk Folder. Messages older than %s days will be deleted automatically."), $junkfolder_days)
+		),
+	'trash' => array(
+		'short' => _("Trash Folder"),
+		'desc' => _("Store SPAM message in your Trash Folder. You will have to purge the folder yourself.")
+		),
+
+	'discard' => array(
+		'short' => _("Discard"),
+		'desc' => _("Discard SPAM message. You will get no indication that the message ever arrived.")
+		)
+);
+
+}
 
 /* Version Info for SIEVE scripts */
 
