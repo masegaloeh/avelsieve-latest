@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.7 2004/11/11 14:28:55 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.8 2004/11/12 10:44:22 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -31,6 +31,11 @@ class avelsieve_html_edit extends avelsieve_html {
 	var $spamrule_enable = false;
 
 	/**
+	 * @var boolean Is the window a pop-up window (called from elsewhere)?
+	 */
+	var $popup = false;
+
+	/**
 	 * @var string Mode of operation, for editing new rule. One of:
 	 * 'wizard', 'addnew', 'edit', 'duplicate'
 	 */
@@ -39,10 +44,16 @@ class avelsieve_html_edit extends avelsieve_html {
 	/**
 	 * Constructor function. Takes as an optional argument a reference to a
 	 * rule array which will be edited.
+	 *
+	 * @param string $mode
+	 * @param array $rule
+	 * @param boolean $popup
+	 * @return void
 	 */
-	function avelsieve_html_edit($mode = 'edit', $rule = array()) {
+	function avelsieve_html_edit($mode = 'edit', $rule = array(), $popup = false) {
 		$this->rule = $rule;
 		$this->mode = $mode;
+		$this->popup = $popup;
 	}
 
 	/**
@@ -109,7 +120,7 @@ class avelsieve_html_edit extends avelsieve_html {
 			$out = '<p>'._("What kind of rule would you like to add?"). '</p>';
 		} elseif($select == 'select') {
 			$out = '<p align="center">' . _("Rule Type") . ': '.
-				'<input type="hidden" name="previoustype" value=""';
+				'<input type="hidden" name="previoustype" value="';
 			if(isset($this->rule['type'])) {
 				$out .= $this->rule['type'];
 			} else {
@@ -275,21 +286,8 @@ class avelsieve_html_edit extends avelsieve_html {
 	 * @return string
 	 */
 	function rule_2_2_header($items = 0) {
-	
-		global $maxitems, $matchtypes, $comparators;
+		global $maxitems, $comparators;
 
-		if($items==0) {
-			if(isset($this->rule['headermatch'])) {
-				$items = sizeof($this->rule['headermatch']) + 1;
-			} else {
-				$items = 3; // Nice default.
-			}
-		} else {
-			$items++;
-		}
-
-		$out = '<input type="hidden" name="items" value="'.$items.'" />';
-		
 		if(isset($this->rule['condition'])) {
 			$condition = $rule['condition'];
 		} else {
@@ -303,6 +301,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		if(isset($this->rule['headermatch'])) 
 			$headermatch = $this->rule['headermatch'];
 		
+		$out = '';
 		if($items > 1) {
 			$out .= $this->condition_listbox($condition);
 		}
@@ -465,7 +464,11 @@ class avelsieve_html_edit extends avelsieve_html {
 				$out .= '<input type="submit" name="apply" value="'._("Apply Changes").'" />';
 				break;
 		}
-		$out .= ' <input type="submit" name="cancel" value="'._("Cancel").'" />';
+		if($this->popup) {
+			$out .= ' <input type="submit" name="cancel" onClick="window.close(); return false;" value="'._("Cancel").'" />';
+		} else {
+			$out .= ' <input type="submit" name="cancel" value="'._("Cancel").'" />';
+		}
 		return $out;
 	}
 
@@ -473,8 +476,8 @@ class avelsieve_html_edit extends avelsieve_html {
 	 * Main function that outputs a form for editing a whole rule.
 	 */
 	function edit_rule($edit = false) {
-
 		global $PHP_SELF;
+
 		if(is_numeric($edit)) {
 			$out = $this->table_header( _("Editing Mail Filtering Rule") . ' #'. ($edit+1) ).
 			$this->all_sections_start().
@@ -496,15 +499,23 @@ class avelsieve_html_edit extends avelsieve_html {
 				$out .= 'Not implemented yet.';
 				break;
 			case 2:			/* header */
+				global $items;
 				if(!isset($items)) {
-					if(isset($this->rule['header'])) {
-						$items = sizeof($this->rule['header']) + 1;
+					if(isset($this->rule['headermatch'])) {
+						$items = sizeof($this->rule['headermatch']) + 1;
 					} else {	
 						global $startitems;
 						$items = $startitems;
 					}
-					$out .= '<input type="hidden" name="items" value="'.$items.'" />';
 				}
+				/*
+				if(isset($_POST['append'])) {
+					$items++;
+				} elseif(isset($_POST['less'])) {
+					$items--;
+				}
+				*/
+				$out .= '<input type="hidden" name="items" value="'.$items.'" />';
 				$out .= $this->rule_2_2_header($items);
 				break;		
 				
