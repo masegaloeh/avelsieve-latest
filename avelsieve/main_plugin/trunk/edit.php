@@ -11,7 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: edit.php,v 1.5 2004/01/23 12:14:15 avel Exp $
+ * $Id: edit.php,v 1.6 2004/03/26 18:28:26 avel Exp $
  */
 
 /* edit.php: Editing existing rules. */
@@ -38,6 +38,10 @@ if(isset($_GET['edit'])) {
 	$edit = $_GET['edit'];
 } elseif(isset($_POST['edit'])) {
 	$edit = $_POST['edit'];
+}
+
+if(isset($_GET['dup']) || isset($_POST['dup'])) {
+	$dup = true;
 }
 
 /* Have this handy: type of current rule */
@@ -91,7 +95,7 @@ if(isset($_POST['append'])) {
 	$no = $_POST['edit'];
  	$newrule = process_input($type);
      
-	if(isset($_POST['dup'])) {
+	if(isset($dup)) {
 		// insert moving rule in place
 		array_splice($_SESSION['rules'], $_POST['edit']+1, 0, array($newrule));
 		// Reindex
@@ -241,15 +245,11 @@ print_section_end();
 
 print '<tr><td><div style="text-align: center">';
 
-if( isset($_GET['dup']) || isset($_POST['dup']) ) {
-
+if(isset($dup)) {
 	print '<input type="hidden" name="dup" value="1" />';
 	print '<input type="submit" name="addnew" value="'._("Add New Rule").'" />';
-
 } else {
-
 	print '<input type="submit" name="apply" value="'._("Apply Changes").'" />';
-
 }
 
 print '<input type="submit" name="cancel" value="'._("Cancel").'" />';

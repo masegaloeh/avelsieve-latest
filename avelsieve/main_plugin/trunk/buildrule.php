@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: buildrule.php,v 1.10 2004/03/26 17:28:07 avel Exp $
+ * $Id: buildrule.php,v 1.11 2004/03/26 18:28:13 avel Exp $
  */
 
 /**
@@ -40,9 +40,6 @@
  * 10	score			int							// Spam Rule
  * 10	tests			array
  * 10	action			'trash' | 'junk' | 'discard'
-X-Spam-Score: 80
-X-Spam-Tests: Open.Relay.DataBase;Spamhaus.Block.List;
- *
  * 
  * Action
  *
@@ -210,15 +207,6 @@ if($rule['type']=="4") {
 		$out .= 'discard;';
 		$terse .= 'DISCARD';
 	}
-
-	/*
-	print "DEBUG: <pre>";
-	print $text;
-	print $terse;
-	print $out;
-	print_r($rule);
-	print "</pre>";
-	*/
 
 } else {
 	$text = "<strong>"._("If")."</strong> ";
