@@ -9,7 +9,7 @@
  * This file contains functions for the per-message commands that appear while
  * viewing a message.
  *
- * @version $Id: message_commands.inc.php,v 1.7 2004/11/19 13:16:26 avel Exp $
+ * @version $Id: message_commands.inc.php,v 1.8 2004/11/22 10:57:23 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -24,6 +24,9 @@ include_once(SM_PATH . 'functions/identity.php');
 function avelsieve_commands_menu_do() {
     global $passed_id, $passed_ent_id, $color, $mailbox,
            $message, $compose_new_win, $javascript_on;
+		
+	bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+	textdomain ('avelsieve');
     
     $output = array();
 
@@ -190,6 +193,9 @@ function avelsieve_commands_menu_do() {
                       'left', $color[0], 'valign="middle" width="80%"') . "\n";
         echo '</tr>';
     }
+	
+	bindtextdomain('squirrelmail', SM_PATH . 'locale');
+	textdomain ('squirrelmail');
 
 }
 
