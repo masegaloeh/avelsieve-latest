@@ -9,7 +9,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: managesieve_wrapper.inc.php,v 1.1 2004/11/02 15:06:17 avel Exp $
+ * @version $Id: managesieve_wrapper.inc.php,v 1.2 2005/03/04 17:12:02 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -199,7 +199,7 @@ function avelsieve_encode_script($script) {
 		// No need to convert.
 		return $script;
 	
-	} elseif(function_exists('sqimap_mb_convert_encoding')) {
+	} elseif(function_exists('mb_convert_encoding') && function_exists('sqimap_mb_convert_encoding')) {
 		// sqimap_mb_convert_encoding() returns '' if mb_convert_encoding() doesn't exist!
 		$utf8_s = sqimap_mb_convert_encoding($script, 'UTF-8', $default_charset, $default_charset);
 		if(empty($utf8_s)) {
@@ -216,6 +216,12 @@ function avelsieve_encode_script($script) {
 		  stristr($default_charset, 'iso-2022-jp') ) {
 			return mb_convert_encoding($script, "UTF-8", $default_charset);
 		}
+
+	} elseif(function_exists('recode_string')) {
+		return recode_string("$default_charset..UTF-8", $script);
+
+	} elseif(function_exists('iconv')) {
+		return iconv($default_charset, 'UTF-8', $script);
 	}
 
 	return $script;
@@ -237,7 +243,7 @@ function avelsieve_decode_script($script) {
 		// No need to convert.
 		return $script;
 	
-	} elseif(function_exists('sqimap_mb_convert_encoding')) {
+	} elseif(function_exists('mb_convert_encoding') && function_exists('sqimap_mb_convert_encoding')) {
 		// sqimap_mb_convert_encoding() returns '' if mb_convert_encoding() doesn't exist!
 		$un_utf8_s = sqimap_mb_convert_encoding($script, $default_charset, "UTF-8", $default_charset);
 		if(empty($un_utf8_s)) {
@@ -254,6 +260,12 @@ function avelsieve_decode_script($script) {
 		  stristr($default_charset, 'iso-2022-jp') ) {
 			return mb_convert_encoding($script, $default_charset, "UTF-8");
 		}
+
+	} elseif(function_exists('recode_string')) {
+		return recode_string("UTF-8..$default_charset", $script);
+
+	} elseif(function_exists('iconv')) {
+		return iconv('UTF-8', $default_charset, $script);
 	}
 	return $script;
 }
