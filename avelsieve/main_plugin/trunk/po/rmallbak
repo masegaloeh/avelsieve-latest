@@ -1,0 +1,8 @@
+#!/bin/sh
+for dir in `ls -1 ../locale/`
+do
+	echo "Deleting ../locale/$dir/LC_MESSAGES/avelsieve.po.bak"
+	rm ../locale/$dir/LC_MESSAGES/avelsieve.po.bak
+done
+
+     

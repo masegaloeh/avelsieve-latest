@@ -1,0 +1,6 @@
+#!/bin/sh
+for dir in `ls -1 ../locale/`
+do
+echo "Executing msgfmt -o ../locale/$dir/LC_MESSAGES/avelsieve.mo ../locale/$dir/LC_MESSAGES/avelsieve.po"
+msgfmt -o ../locale/$dir/LC_MESSAGES/avelsieve.mo ../locale/$dir/LC_MESSAGES/avelsieve.po
+done

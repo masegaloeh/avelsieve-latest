@@ -1,0 +1,148 @@
+
+<h3><a id="introduction">Introduction</a></h3>
+
+<p><em>Avelsieve</em> or, verbosely, &quot;SIEVE Mail Filters Plugin for
+Squirrelmail&quot; is a <a href="http://www.squirrelmail.org">Squirrelmail</a>
+<a href="http://www.squirrelmail.org/plugins.php">plugin</a> for creating <a
+href="http://www.cyrusoft.com/sieve">SIEVE</a> scripts on a Cyrus IMAP server
+that runs timsieved (Tim's SIEVE daemon).</p>
+
+<p><em>Avelsieve</em> will also be a part of <a
+href="http://cyrusmaster.edunet.uoa.gr">Cyrusmaster</a>, a web-based Cyrus
+administration tool. It should provide the same interface of the user's filters
+to administrators and/or helpdesk staff.</p>
+
+<p>SIEVE is a mail filtering language, intended for server-side filtering of
+emails. See <a href="http://www.faqs.org/rfcs/rfc3028.html">RFC 3028</a> and <a
+href="http://www.cyrusoft.com/sieve/">Cyrusoft's page about SIEVE</a> for more
+details.</p>
+
+<!--
+<p>Your help, whether it is bug reports or patches, is appreciated.</p>
+-->
+
+
+<h3><a id="about">About this implementation</a></h3>
+
+<p>The web interface provides a wizard-like interface that, in the end,
+creates part of a SIEVE script, a so called <em>rule</em>. It then assembles
+all the rules to form a SIEVE script.</p>
+
+<p>For the sake of user-friendliness, it provides only a subset of SIEVE's
+functionality; the main goal was to provide a simple interface for Joe User to
+create server-side filters without knowing anything about the language
+itself.</p>
+
+<p>The plugin does not provide a parser; instead, it saves PHP meta-data in the
+script itself, in order to continue editing and manipulation of the filters.
+The only thing that is supported is a script called &quot;phpscript&quot; on
+the Cyrus server. Multiple scripts are not supported yet.  I've tried to make
+it sane enough that it won't break a lot. Some more testing is needed - hence
+the beta status.</p>
+
+
+
+<h3><a id="status">Status</a></h3>
+
+<p>This is beta software. It has been out for a while and is known to work
+pretty well.  You'll have to check for yourselves if it is for a production
+environment. Features (and bugs) are added every other day. Insert standard
+GPL_Disclaimer(); here.</p>
+
+
+
+<h3><a id="features">Features</a></h3>
+
+<p>This plugin provides:</p>
+
+<ul>
+<li>Simple HTML, no Javascript.</li>
+<li>Match messages based on email headers, size, or apply to all messages.</li>
+<li>Configurable number of header matches.</li>
+<li>Support of keeping a message, move to an existing or new folder, email redirection.</li>
+<li>Supports SIEVE Vacation.</li>
+<li>Supports SIEVE Notification action.</li>
+<li>Runs through all the rules, but supports a &quot;stop&quot; command when a rule matches.</li>
+<li>Change the order of rules - or delete them altogether.</li>
+<li>Make a textual description of the rule.</li>
+<li>Localizable.</li>
+<li>Automatic adaption to the capabilities of each site's SIEVE.</li>
+</ul>
+
+<p>..but does <strong>not</strong> provide:</p>
+
+<ul>
+<li>A SIEVE parser.</li>
+</ul>
+
+
+
+<h3><a id="screenshots">Screenshots</a></h3>
+
+<p>If you'd like to take some quick look before installing, here are some screenshots of avelsieve in action:</p>
+
+
+<table cellpadding=5>
+<tr valign=bottom align=center>
+  <td><a href="images/avelsieve/action.png"><img src="images/avelsieve/.catalogimages/action-png-indexicon.jpg" alt="[action.png]"  height="92" width="91" border="0" /></a><br>Action to take in a rule<!-- LASTMOD: 1033559552 --></td>
+  
+  <td><a href="images/avelsieve/headermatch.png"><img src="images/avelsieve/.catalogimages/headermatch-png-indexicon.jpg" alt="[headermatch.png]"  height="48" width="92" border="0" /></a><br>Header match definition<!-- LASTMOD: 1033559403 --></td>
+  <td><a href="images/avelsieve/table.png"><img src="images/avelsieve/.catalogimages/table-png-indexicon.jpg" alt="[table.png]"  height="59" width="92" border="0" /></a><br>The table that lists all the rules<!-- LASTMOD: 1033559745 --></td>
+</tr>
+</table>
+
+
+<!--
+
+<h3><a id="demo">Demo</a></h3>
+
+<p id="6.5">Aside from the screenshots above, you can see the plugin in action, if you
+wish. Check the <a href="demo.php">Live Demo</a> page for more information.
+</p>
+
+-->
+
+
+<h3><a id="requirements">Requirements</a></h3>
+
+<ul>
+
+<li>It has been tested with <a href="http://asg.web.cmu.edu/cyrus/">Cyrus IMAP
+server</a> and its <em>timsieved</em> SIEVE parser.</li>
+
+<li><a href="http://www.squirrelmail.org">Squirrelmail</a> version 1.4.0 or
+greater.</li>
+
+<li><a href="http://sieve-php.sourceforge.net/">sieve-php.lib</a>, a PHP class
+for transporting SIEVE scripts, by <a
+href="mailto:danellis__&#64;.com">Dan Ellis</a>. Included.</li>
+
+</ul>
+
+
+<h3><a id="license">License</a></h3>
+
+<small>
+<p>This program is free software; you can redistribute it and/or
+modify it under the terms of the <a
+href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a> as
+published by the <a href="http://www.fsf.org">Free Software Foundation</a>;
+either version 2 of the License, or (at your option) any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful, but
+<em>WITHOUT ANY WARRANTY</em>; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  <a
+href="http://www.gnu.org/licenses/gpl.html">See the GNU General Public
+License</a> for more details.</p>
+</small>
+
+
+<h3><a id="author">Author</a></h3>
+
+<address>
+<a href="mailto:avel&#64;users.sourceforge.net">Alexandros Vellis</a>,
+<a href="http://www.noc.uoa.gr">Network Operations Centre</a>, <a
+href="http://www.uoa.gr">University of Athens</a><br /> (<a
+href="http://www.noc.uoa.gr/~avel/">Personal home page</a>).<br /> </address>
+
+
