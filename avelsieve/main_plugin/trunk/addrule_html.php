@@ -58,11 +58,14 @@ function printaddbuttons() {
 		return;
 	}
 
+	/*
 	if ($part!=1) {
 		print '<input name="prev" value="&lt;&lt; ';
 		print _("Move back to step");
 		print ' '.($part-1).'" type="submit" />';
 	}
+	*/
+	$dummy = _("Move back to step");
 	
 	if ($part=="4") {
 		print '<input style="font-weight:bold"  name="finished" value="';
