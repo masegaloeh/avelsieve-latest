@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.8 2004/11/12 10:44:22 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.9 2004/11/12 11:28:39 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -289,7 +289,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		global $maxitems, $comparators;
 
 		if(isset($this->rule['condition'])) {
-			$condition = $rule['condition'];
+			$condition = $this->rule['condition'];
 		} else {
 			$condition = 'and';
 		}
@@ -474,16 +474,20 @@ class avelsieve_html_edit extends avelsieve_html {
 
 	/**
 	 * Main function that outputs a form for editing a whole rule.
+	 *
+	 * @param int $edit Number of rule that editing is based on.
 	 */
 	function edit_rule($edit = false) {
 		global $PHP_SELF;
 
-		if(is_numeric($edit)) {
+		if($this->mode == 'edit') {
+			/* 'edit' */
 			$out = $this->table_header( _("Editing Mail Filtering Rule") . ' #'. ($edit+1) ).
 			$this->all_sections_start().
 			'<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
 			'<input type="hidden" name="edit" value="'.$edit.'" />';
 		} else {
+			/* 'duplicate' or 'addnew' */
 			$out = $this->table_header( _("Create New Mail Filtering Rule") ).
 			$this->all_sections_start().
 			'<form name="addrule" action="'.$PHP_SELF.'" method="POST">';
