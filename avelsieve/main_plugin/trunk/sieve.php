@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: sieve.php,v 1.3 2003/10/10 12:59:37 avel Exp $
+ * $Id: sieve.php,v 1.4 2003/12/18 12:23:11 avel Exp $
  */
 
 /**
@@ -18,6 +18,31 @@
 
 require_once 'lib/sieve-php.lib.php';
 require_once 'avelsieve_support.inc.php';
+	
+/**
+ * Login to SIEVE server.
+ * @return boolean
+ */
+function avelsieve_login() {
+	global $sieve, $sieve_capabilities, $imapServerAddress, $sieve_loggedin;
+	if(isset($sieve_loggedin)) {
+		return true;
+	}
+	if ($sieve->sieve_login()){	/* User has logged on */
+		if(!isset($sieve_capabilities)) {
+			$sieve_capabilities = $sieve->sieve_get_capability();
+			 $_SESSION['sieve_capabilities'] = $sieve_capabilities;
+		}
+		$sieve_loggedin = true;
+		return true;
+	} else {
+		$errormsg = _("Could not log on to timsieved daemon on your IMAP server");
+		$errormsg .= " " . $imapServerAddress.".<br />";
+		$errormsg .= _("Please contact your administrator.");
+		print_errormsg($errormsg);
+		exit;
+	}
+}
 
 /**
  * Upload script
@@ -29,10 +54,21 @@ require_once 'avelsieve_support.inc.php';
 function avelsieve_upload_script ($newscript) {
 	global $sieve;
 
+	if(isset($sieve->error_raw)) {
+		unset($sieve->error_raw);
+	}
 
 	if($sieve->sieve_sendscript("phpscript", stripslashes($newscript))) {
+		// print "Your rules have been successfully updated.<br />";
+		if(!($sieve->sieve_setactivescript("phpscript"))){
+			/* Just to be safe. */
+			$errormsg = _("Could not set active script on your IMAP server");
+			$errormsg .= " " . $imapServerAddress.".<br />";
+			$errormsg .= _("Please contact your administrator.");
+			print_errormsg($errormsg);
+			return false;
+		}
 		return true;
-		/* print "Your rules have been successfully updated.<br />"; */
 
 	} else {
 		$errormsg = '<p>';
@@ -71,8 +107,8 @@ function avelsieve_upload_script ($newscript) {
 
 			$errormsg .= _("Please contact your administrator.");
 
-			print_errormsg($errormsg);
 		}
+		print_errormsg($errormsg);
 		return false;
 	}
 }
