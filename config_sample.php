@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: config_sample.php,v 1.3 2003/10/09 11:28:31 avel Exp $
+ * $Id: config_sample.php,v 1.4 2003/10/09 14:07:54 avel Exp $
  */
 
 /* Configuration parameters for SIEVE mail filters (aka avelsieve) */
@@ -115,7 +115,13 @@ $ldapuserdatamode = false;
 
 /* Custom rules */
 
-/* Experimental easy anti-spam rule Configuration */
+/* Experimental easy anti-spam rule Configuration. Options should be
+ * self-explanatory. For $spamrule_tests, the key is the spam block list as
+ * displayed in the message header inserted by your anti-spam solution, while
+ * the value is the user-friendly name displayed to the user in the advanced
+ * configuration. $spamrule_action_default can be one of 'junk', 'trash' or
+ * 'discard'. You can set it to 'junk' if you have the Junkfolder plugin
+ * installed. */
 
 $spamrule_enable = false;
 $spamrule_score_max = 100;
@@ -126,7 +132,7 @@ $spamrule_tests = array(
 	'Spamhaus.Block.List' => "Spamhaus Block List"
 );
 $spamrule_tests_header = 'X-Spam-Tests';
-$spamrule_action_default = 'junk';
+$spamrule_action_default = 'trash';
 
 
 
