@@ -11,7 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: edit.php,v 1.4 2004/01/21 15:40:23 avel Exp $
+ * $Id: edit.php,v 1.5 2004/01/23 12:14:15 avel Exp $
  */
 
 /* edit.php: Editing existing rules. */
@@ -130,17 +130,29 @@ sqimap_logout($imapConnection);
 displayPageHeader($color, 'None');
 
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
-
 textdomain ('avelsieve');
 
-require_once "constants.php";
+print '
+<script language="JavaScript" type="text/javascript">
+function checkOther(id){
+	for(var i=0;i<document.addrule.length;i++){
+		if(document.addrule.elements[i].value == id){
+			document.addrule.elements[i].checked = true;
+		}
+	}
+}
+// -->
+</script>
+';
+
+include "constants.php";
 
 /* N.B. Compatibility code removed. */
 
 //print "<pre>EDIT: "; print_r($_SESSION['rules'][$edit]); print "</pre>";
 //print "<pre>session: "; print_r($_SESSION); print "</pre>";
 
-print '<form action="edit.php" method="POST">';
+print '<form name="addrule" action="edit.php" method="POST">';
 print '<input type="hidden" name="edit" value="'.$edit.'" />';
 
 $titlestring =  _("Editing Mail Filtering Rule");
