@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.10 2004/11/11 14:29:13 avel Exp $
+ * @version $Id: edit.php,v 1.11 2004/11/12 10:43:51 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -33,35 +33,35 @@ include_once(SM_PATH . 'plugins/avelsieve/include/process_user_input.inc.php');
 
 sqsession_is_active();
 
-$errormsg = '';
+$errmsg = '';
 
 sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
 sqgetGlobalVar('key', $key, SQ_COOKIE);
 sqgetGlobalVar('popup', $popup, SQ_GET);
+sqgetGlobalVar('items', $items, SQ_GET);
 sqgetGlobalVar('rules', $rules, SQ_SESSION);
 sqgetGlobalVar('edit', $edit, SQ_GET & SQ_POST);
 sqgetGlobalVar('dup', $dup, SQ_GET & SQ_POST);
 sqgetGlobalVar('previoustype', $previoustype, SQ_POST);
+sqgetGlobalVar('type', $type_get, SQ_GET);
+sqgetGlobalVar('type', $type_post, SQ_POST);
 
 if(isset($edit)) {
 	/* Editing an existing rule */
-	// print "/* Editing an existing rule */ ";
 	$rule = &$rules[$edit];
-	$type = $rule['type'];
-} elseif(isset($_GET['type'])) {
+} elseif(!isset($edit) && isset($type_get)) {
 	/* Adding a new rule through $_GET */
-	// print " /* Adding a new rule through _GET */";
-	$rule = process_input(SQ_GET, &$errrormsg);
+	$type = $type_get;
+	$rule = process_input(SQ_GET, &$errmsg);
 
-} elseif(isset($_POST['type'])) {
-	if(!isset($_GET['type'])) {
-		$type = 0;
-	} else {
-		$type = $_GET['type'];
-	}
-	$rule = process_input(SQ_POST, &$errrormsg);
 }
 
+if(isset($type_post)) {
+	$type = $type_post;
+	$rule = process_input(SQ_POST, &$errmsg);
+}
+
+// print "<b>PREVIOUS = $previoustype , type = $type</b>";
 if(isset($previoustype) && (
 	$previoustype == 0 ||
 	(isset($type) && $previoustype != $type)
@@ -87,24 +87,25 @@ if(isset($_POST['append'])) {
 	exit;
 
 } elseif($changetype) {
+	// print "changing rule type";
 	/* Changing of rule type */
 	$rule['type'] = $_POST['type'];
 	
 
 } elseif(isset($_POST['apply']) && !$changetype) {
 	/* Apply change in existing rule */
-	$_SESSION['rules'][$edit] = process_input($type);
-
-	/* Communication: */
-	$_SESSION['comm']['edited'] = $edit;
-	$_SESSION['haschanged'] = true;
-
-	header('Location: table.php');
-	exit;
+	$editedrule = process_input(SQ_POST, $errmsg);
+	if(empty($errmsg)) {
+		$_SESSION['rules'][$edit] = $editedrule;
+		$_SESSION['comm']['edited'] = $edit;
+		$_SESSION['haschanged'] = true;
+		header('Location: table.php');
+		exit;
+	}
 
 } elseif(isset($_POST['addnew']) && !$changetype) {
 	/* Add new rule */
- 	$newrule = process_input($type);
+ 	$newrule = process_input(SQ_POST, $errmsg);
      
 	if(isset($dup)) {
 		// insert moving rule in place
@@ -179,8 +180,10 @@ function ToggleShowDiv(divname) {
 ';
 
 if(isset($popup)) {
+	$popup = true;
 	displayHtmlHeader('', $js);
 } else {
+	$popup = false;
 	displayPageHeader($color, 'None');
 	echo $js;
 }
@@ -188,9 +191,13 @@ if(isset($popup)) {
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
+if(isset($errmsg) && $errmsg) {
+	echo $errmsg;
+}
+
 require_once (SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
 
-$ht = new avelsieve_html_edit('edit', $rule);
+$ht = new avelsieve_html_edit('edit', $rule, $popup);
 
 if(isset($edit)) {
 	echo $ht->edit_rule($edit);
