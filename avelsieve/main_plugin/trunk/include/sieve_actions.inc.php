@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.4 2004/11/11 14:28:37 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.5 2004/11/12 11:58:02 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -170,6 +170,11 @@ class avelsieve_action_keep extends avelsieve_action {
 	function avelsieve_action_keep($rule = array(), $frontend = 'html') {
 		$this->avelsieve_action($rule, $frontend);
 		$this->text = _("Keep (Default action)");
+		if(!isset($rule['action'])) {
+			/* Hack to make the radio button selected for a new rule, for GUI
+			 * niceness */
+			$this->rule['action'] = 1;
+		}
 	}
 }
 
