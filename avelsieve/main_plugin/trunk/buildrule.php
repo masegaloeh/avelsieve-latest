@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: buildrule.php,v 1.4 2003/10/09 12:29:24 avel Exp $
+ * $Id: buildrule.php,v 1.5 2003/10/09 13:34:14 avel Exp $
  */
 
 /**
@@ -113,6 +113,7 @@ $terse = '<table width="100%" border="0" cellspacing="2" cellpadding="2"><tr><td
 if($rule['type']=="4") {
  	$text = _("For <strong>ALL</strong> incoming messages; ");
 	$terse .= "ALL";
+	$terse .= '</td><td align="right">';
 
 } elseif($rule['type'] == "10") {
 	/* SpamRule */
@@ -181,12 +182,21 @@ if($rule['type']=="4") {
 	$terse .= '</td><td align="right">';
 
 	if($ac == 'junk') {
-		$text .= _("stored in the Junk Folder");
+		$text .= _("stored in the Junk Folder.");
 		$out .= 'fileinto "INBOX.Junk";';
 		$terse .= 'JUNK';
 
+	} elseif($ac == 'trash') {
+		$text .= _("stored in the Trash Folder.");
+
+		global $data_dir, $username;
+		$tf = getPref($data_dir, $username, 'trash_folder');
+
+		$out .= 'fileinto "'.$tf.'";';
+		$terse .= 'TRASH';
+
 	} elseif($ac == 'discard') {
-		$text .= _("discarded");
+		$text .= _("discarded.");
 		$out .= 'discard;';
 		$terse .= 'DISCARD';
 	}
@@ -488,19 +498,8 @@ if (isset($rule['keepdeleted'])) {
 	$terse .= "<br />KEEP DELETED";
 }
 
-if (isset($rule['stop'])) {
-	$text .= _(" Then <strong>STOP</strong> processing rules.");
-	$out .= "\nstop;";
-	$terse .= "<br />STOP";
-}
 
-/* Notify extension:
-
-notify :method "mailto"
-:options "koula@intra.com"
-:message "Sou hrthe ena mail apo .... lala" ;
-
-*/
+/* Notify extension */
 
 if (array_key_exists("notify", $rule) && is_array($rule['notify']) && ($rule['notify']['method'] != '')) {
 	global $notifystrings, $prioritystrings;
@@ -526,6 +525,16 @@ if (array_key_exists("notify", $rule) && is_array($rule['notify']) && ($rule['no
 
 	$terse .= "<br />NOTIFY";
 }
+
+
+/* Stop processing other rules */
+
+if (isset($rule['stop'])) {
+	$text .= _(" Then <strong>STOP</strong> processing rules.");
+	$out .= "\nstop;";
+	$terse .= "<br />STOP";
+}
+
 
 $out .= "\n}";
 $terse .= "</td></tr></table>";
