@@ -11,7 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: addrule.php,v 1.2 2003/10/07 13:24:52 avel Exp $
+ * $Id: addrule.php,v 1.3 2003/11/10 17:05:25 avel Exp $
  */
 
 /**
@@ -445,25 +445,29 @@ case "3":
 		sqimap_logout($imapConnection); 
 	}
 	
+	$default_emailaddress = getPref($data_dir, $username, 'email_address');
+
 	if ($ldapuserdatamode) {
 		/* Get user's email addresses from LDAP Prefs Backend plugin's
 		 * cache */
 
+		$addressarray[] = $default_emailaddress;
+
 		if (isset($_SESSION['ldap_prefs_cache']['alternateemails'])) {
 			$alternateemails = $_SESSION['ldap_prefs_cache']['alternateemails'];
-			for ($i=0; $i<$alternateemails['count']; $i++) {
+			for ($i=0; $i<sizeof($alternateemails); $i++) {
 				$addressarray[] = $alternateemails[$i];
 			}
 			$emailaddresses = implode(",", $addressarray);
 		} else {
-			$emailaddresses = getPref($data_dir, $username, 'email_address');
+			$emailaddresses = $default_emailaddress;
 		}
 		
 	} else {
 		/* Normal Mode; get email address from user's prefs and from
 		 * user's possible identities. */
 		
-		$emailaddresses = getPref($data_dir, $username, 'email_address');
+		$emailaddresses = $default_emailaddress;
 
 		$idents = getPref($data_dir, $username, 'identities');
 		if ($idents != '' && $idents > 1) {
