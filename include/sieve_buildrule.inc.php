@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.4 2005/02/11 14:57:46 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.5 2005/02/28 14:40:47 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -242,21 +242,33 @@ function build_headerrule_snippet($header, $matchtype, $headermatch, $type='rule
 function makesinglerule($rule, $type="rule") {
 
 	global $maxitems;
+
+	$out = $text = $terse = '';
+	$terse .= '<table width="100%" border="0" cellspacing="2" cellpadding="2"><tr><td align="left">';
 	
-	/* Step zero :-) : serialize & encode my array */
+	/* Step zero: serialize & encode the rule inside the SIEVE script. Also
+	 * check if it is disabled. */
 	
 	$coded = urlencode(base64_encode(serialize($rule)));
-	
 	$out = "#START_SIEVE_RULE".$coded."END_SIEVE_RULE\n";
+
+	/* Check for a disabled rule. */
+	if (isset($rule['disabled']) && $rule['disabled']==1) {
+		if ($type=='rule') {
+			/* For disabled rules, we only need the sieve comment. */
+			return $out;
+		} else {
+			$text .= _("This rule is currently <strong>DISABLED</strong>:").' ';
+			$terse .= 'DISABLED<br />';
+		}
+	}
 	
 	/* Step one: make the if clause */
 	
 	/* The actual 'if' will be added by makesieverule() */
 	
-	$terse = '<table width="100%" border="0" cellspacing="2" cellpadding="2"><tr><td align="left">';
-	
 	if($rule['type']=="4") {
- 		$text = _("For <strong>ALL</strong> incoming messages; ");
+ 		$text .= _("For <strong>ALL</strong> incoming messages; ");
 		$terse .= "ALL";
 		$terse .= '</td><td align="right">';
 	
@@ -316,7 +328,7 @@ function makesinglerule($rule, $type="rule") {
 		*/
 		
 		$out .= 'allof( ';
-		$text = _("All messages considered as <strong>SPAM</strong> (unsolicited commercial messages)");
+		$text .= _("All messages considered as <strong>SPAM</strong> (unsolicited commercial messages)");
 		$terse .= "SPAM";
 		
 		if(sizeof($te) > 1) {
@@ -403,7 +415,7 @@ function makesinglerule($rule, $type="rule") {
 		}
 	
 	} else {
-		$text = "<strong>"._("If")."</strong> ";
+		$text .= "<strong>"._("If")."</strong> ";
 	} 
 	
 	switch ($rule['type']) {
@@ -710,21 +722,18 @@ function makesieverule ($rulearray) {
 	}
 	$out .= "];\n";
 
-
 	/* The actual rules */
-
 	for ($i=0; $i<sizeof($rulearray); $i++) {
-		switch ($i) {
-			case 0:				$out .= "if\n";		break;
-			/* case sizeof($rulearray): 	$out .= "\nelse\n";	break; */
- 			default:			$out .= "\nif\n";	break;
-		}		
+		if (!isset($rulearray[$i]['disabled']) || $rulearray[$i]['disabled'] != 1) {
+			switch ($i) {
+				case 0:		$out .= "if\n";		break;
+				default:	$out .= "\nif\n";	break;
+			}		
+		} else {
+			$out .= "\n";
+		}
 		$out .= makesinglerule($rulearray[$i],"rule");
 	}
-
-	/* Uncomment this to see for yourself the script that is created. */
-	//print "DEBUG: The script is: <pre>"; print $out; print "</pre>";
-
 	return avelsieve_encode_script($out);
 }
 

@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.7 2004/12/20 15:25:05 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.8 2005/02/28 14:40:47 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -513,4 +513,17 @@ class avelsieve_action_keepdeleted extends avelsieve_action {
 	}
 }
 
+/**
+ * Disable rule
+ */
+class avelsieve_action_disabled extends avelsieve_action {
+	var $num = 0;
+	var $name = 'disabled';
+
+	function avelsieve_action_disabled($rule = array(), $frontend = 'html') {
+		$this->text = _("Disable this rule");
+		$this->helptxt = _("The rule will have no effect for as long as it is disabled.");
+		$this->avelsieve_action($rule, $frontend);
+	}
+}
 ?>
