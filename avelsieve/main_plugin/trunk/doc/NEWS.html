@@ -1,4 +1,4 @@
-<h3>0.9.7 (?/10/2003)</h3>
+<h3>0.9.7cvs</h3>
 
 <ul>
 
@@ -13,6 +13,8 @@ been added.</li>
 
 <li>If vacation address does not exist, do not set the :addresses argument
 (<span class="bugreporter">Marco Senft</span>)</li>
+
+<li>Corrected multiple, nested forms in table.php (violates HTML4).</li>
 
 <li>sqimap_mb_convert_encoding() returns '' if mb_convert_encoding() does not
 exist. Fixed. (Many thanks to <span class="contributor">Simon Matter</span>)
@@ -46,6 +48,9 @@ down widget.</li>
 <li>When editing a rule with notification action, the saved notification
 parameters will be displayed correctly. (<span class="bugreporter">Chris
 Winterrowd</span>)</li>
+
+<li>Bugfix: If there is one rule left, it can be deleted normally again. For
+good this time. <small>(Hopefully)</small>.</li>
 
 <li>Small bugfix: Last modification date is displayed properly.</li>
 
