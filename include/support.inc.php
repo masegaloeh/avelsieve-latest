@@ -9,7 +9,7 @@
  * Various support functions, useful or useless.  NB. THEY MUST NOT DEPEND
  * ELSEWHERE.
  *
- * @version $Id: support.inc.php,v 1.7 2004/11/15 13:08:57 avel Exp $
+ * @version $Id: support.inc.php,v 1.8 2004/11/15 18:04:28 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -46,17 +46,11 @@ function array_swapval ($array, $i, $j) {
 
 /**
  * This plugin's error display function.
- * @todo use the one provided by Squirrelmail
- * @todo use new html class
  */
 function print_errormsg($errormsg) {
-	printheader2(_("Error Encountered"));
-	print_all_sections_start();
-	print_section_start(_("Error Encountered"));
-	print $errormsg;
-	print_section_end(); 
-	print_all_sections_end();
-	printfooter2();
+	include_once(SM_PATH . 'functions/display_messages.php');
+	global $color;
+	error_box ($errormsg, $color);
 	exit;
 }
 
