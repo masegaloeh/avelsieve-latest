@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: addspamrule.php,v 1.9 2004/11/15 16:37:50 avel Exp $
+ * @version $Id: addspamrule.php,v 1.10 2004/11/22 10:27:17 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -111,9 +111,6 @@ if(isset($_POST['score'])) {
 if(isset($_POST['whitelist_add']) || isset($_POST['whitelistvalue'])) {
 	$j=0;
 	for($i=0; $i<sizeof($_POST['whitelistvalue']); $i++) {
-		if(empty($_POST['whitelistvalue'][$i])){
-			continue;
-		}
 		$whitelist[$j]['header'] = $_POST['header'][$i];
 		$whitelist[$j]['headermatch'] = $_POST['whitelistvalue'][$i];
 		$whitelist[$j]['matchtype'] = $_POST['whitelistmatch'][$i];
@@ -286,8 +283,8 @@ if(!$spamrule_advanced) {
 
 	print '<p>';
 	$i=0;
-	if(isset($whitelist) && sizeof($whitelist) >0 ){
-		for($i =0; $i<sizeof($whitelist); $i++) {
+	if(isset($whitelist) && sizeof($whitelist)>0 ){
+		for($i=0; $i<sizeof($whitelist); $i++) {
 			echo avelsieve_html_edit::header_listbox($whitelist[$i]['header'], $i);
 			echo avelsieve_html_edit::matchtype_listbox($whitelist[$i]['matchtype'], $i, 'whitelistmatch');
 			echo '<input name="whitelistvalue['.$i.']" value="'.$whitelist[$i]['headermatch'].'" size="18" />'.
