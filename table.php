@@ -11,7 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table.php,v 1.9 2003/12/18 12:19:33 avel Exp $
+ * $Id: table.php,v 1.10 2004/01/21 15:40:23 avel Exp $
  *
  * @package avelsieve
  */
@@ -426,8 +426,8 @@ for ($i=0; $i<sizeof($rules); $i++) {
 	}
 
 	/* Delete */
-	avelsieve_print_toolicon ("rm", $i, "table.php", "");
-	// was: print ' <a href="table.php?rule='.$i.'&amp;rm=">';
+	avelsieve_print_toolicon ("rm", $i, "table.php", "",
+		array('onclick'=>'return confirm(\''._("Really delete this rule?").'\')'));
 
 	/* Move up / Move to Top */
 	if ($i != 0) {

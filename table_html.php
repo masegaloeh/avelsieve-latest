@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table_html.php,v 1.6 2003/12/18 12:22:44 avel Exp $
+ * $Id: table_html.php,v 1.7 2004/01/21 15:40:23 avel Exp $
  */
 
 /* HTML Functions for main GUI - table.php */
@@ -285,17 +285,24 @@ function print_footer() {
  * @param url str which page to link to
  * @param xtra str extra stuff to be passed to URL
  */
-function avelsieve_print_toolicon ($name, $i, $url = "table.php", $xtra = "") {
+function avelsieve_print_toolicon ($name, $i, $url = "table.php", $xtra = "", $attribs=array()) {
 	global $useimages, $imagetheme, $location, $avelsievetools;
 
 	$desc = $avelsievetools[$name]['desc'];
 	$img = $avelsievetools[$name]['img'];
 
 	if(empty($xtra)) {
-		print ' <a href="'.$url.'?rule='.$i.'&amp;'.$name.'='.$i.'">';
+		print ' <a href="'.$url.'?rule='.$i.'&amp;'.$name.'='.$i.'"';
 	} else {
-		print ' <a href="'.$url.'?rule='.$i.'&amp;'.$name.'='.$i.'&amp;'.$xtra.'">';
+		print ' <a href="'.$url.'?rule='.$i.'&amp;'.$name.'='.$i.'&amp;'.$xtra.'"';
 	}
+
+	if(sizeof($attribs) > 0) {
+		foreach($attribs as $key=>$val) {
+			print ' '.$key.'="'.$val.'"';
+		}
+	}
+	print '>';
 
 	if($useimages) {
 		print '<img title="'.$desc.'" src="'.$location.'/images/'.$imagetheme.
