@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: constants.inc.php,v 1.1 2004/11/02 15:06:17 avel Exp $
+ * @version $Id: constants.inc.php,v 1.2 2004/11/08 12:59:52 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -49,20 +49,11 @@ $types[5] = array(
 );
 
 
-$actions[1] = array(
-	'name' => _("Keep (Default action)") 
+$actions = array(
+	'keep', 'discard', 'reject', 'redirect', 'fileinto', 'vacation', 'stop', 'notify'
 );
-$actions[2] = array(
-	'name' => _("Discard Silently") 
-);
-$actions[3] = array(
-	'name' => _("Reject, sending this excuse to the sender:") 
-);
-$actions[4] = array(
-	'name' => _("Redirect to the following email address:") 
-);
-$actions[5] = array(
-	'name' => _("Move message into")
+$additional_actions = array(
+	'stop', 'notify'
 );
 
 
@@ -101,12 +92,6 @@ $implemented_capabilities = array("fileinto", "reject", "vacation", "imapflags",
 
 $cap_dependencies['relational'] = array("comparator-i;ascii-numeric");
 
-$notifystrings = array(
-'sms' => _("Mobile Phone Message (SMS)") ,
-'mailto' => _("Email notification") ,
-'zephyr' => _("Notification via Zephyr") ,
-'icq' => _("Notification via ICQ")
-);
 
 $prioritystrings = array(
 'low' => _("Low"),
@@ -188,10 +173,10 @@ $spamrule_actions = array(
 /* Version Info for SIEVE scripts */
 
 $avelsieve_version = array(
-	'major' => 0,
+	'major' => 1,
 	'minor' => 9,
-	'release' => 10,
-	'string' => "0.9.11"
+	'release' => 0,
+	'string' => "1.9.0"
 );
 
 global $implemented_capabilities, $cap_dependencies;  

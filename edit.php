@@ -11,7 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: edit.php,v 1.8 2004/11/03 12:48:48 avel Exp $
+ * $Id: edit.php,v 1.9 2004/11/08 12:59:52 avel Exp $
  */
 
 /* edit.php: Editing existing rules. */
@@ -28,6 +28,7 @@ include_once(SM_PATH . 'plugins/avelsieve/config/config.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/html_rulestable.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/sieve_actions.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/sieve.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/process_user_input.inc.php');
 
@@ -156,11 +157,45 @@ function checkOther(id){
 </script>
 ';
 
+print '
+<script language="JavaScript" type="text/javascript">
+function el(id) {
+  if (document.getElementById) {
+    return document.getElementById(id);
+  }
+  return false;
+}
+
+function ShowDiv(divname) {
+  if(el(divname)) {
+    el(divname).style.display = "";
+  }
+  return false;
+}
+function HideDiv(divname) {
+  if(el(divname)) {
+    el(divname).style.display = "none";
+  }
+  // return tru;
+}
+function ToggleShowDiv(divname) {
+  if(el(divname)) {
+    if(el(divname).style.display == "none") {
+      el(divname).style.display = "";
+	} else {
+      el(divname).style.display = "none";
+	}
+  }	
+}
+</script>
+';
+
+
 require_once (SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
 
-$ht = new avelsieve_html_edit(&$rules[$edit]);
+$ht = new avelsieve_html_edit('edit', &$rules[$edit]);
 
-echo $ht->edit_rule();
+echo $ht->edit_rule($edit);
 echo $ht->table_footer();
 
 ?>
