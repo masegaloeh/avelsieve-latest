@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.3 2004/11/11 13:49:49 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.4 2004/11/11 14:28:37 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -294,23 +294,26 @@ class avelsieve_action_vacation extends avelsieve_action {
 
 	function avelsieve_action_vacation($rule = array(), $frontend = 'html') {
 		$this->avelsieve_action($rule, $frontend);
-		$this->vac_addresses = get_user_addresses();
+
 		$this->text = _("Vacation");
-		$this->helptxt = _("The notice will be sent only once to each person that sends you mail, and will not be sent to a mailing list address.");
+		$this->options['vac_addresses'] = get_user_addresses();
 
 		if($this->translate_return_msgs==true) {
-			$actions[6]['options']['vac_message'] = _("This is an automated reply; I am away and will not be able to reply to you immediately.").
+			$this->options['vac_message'] = _("This is an automated reply; I am away and will not be able to reply to you immediately.").
 			_("I will get back to you as soon as I return.");
 		} else {
-			$actions[6]['options']['vac_message'] = "This is an automated reply; I am away and will not be able to reply to you immediately.".
+			$this->options['vac_message'] = "This is an automated reply; I am away and will not be able to reply to you immediately.".
 			"I will get back to you as soon as I return.";
 		}
+		
+		$this->helptxt = _("The notice will be sent only once to each person that sends you mail, and will not be sent to a mailing list address.");
+
 	}
 
 
 	function options_html($val) {
 	 	return _("Addresses: Only reply if sent to these addresses:").
-				'<input type="text" name="vac_addresses" value="'.$val['vac_addresses'].'" size="80" maxsize="200"><br />'.
+				' <input type="text" name="vac_addresses" value="'.$val['vac_addresses'].'" size="80" maxsize="200"><br />'.
 				_("Days: Reply message will be resent after").
 				' <input type="text" name="vac_days" value="'.$val['vac_days'].'" size="3" maxsize="4"> ' . _("days").
 				'<br />'.
