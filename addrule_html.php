@@ -729,7 +729,9 @@ function print_3_action() {
 		print '</textarea><br />';
 		print '<small>';
 		print _("Help: Valid variables are:");
-		print ' $from$, $env-from$, $subject$, $text$, $text[n]$</small>';
+		print ' $from$, $env-from$, $subject$</small>';
+		// $text$ is not supported by Cyrus yet. Put it back if it gets fixed.
+		// print ' $from$, $env-from$, $subject$, $text$, $text[n]$</small>';
 		print '</blockquote>';
 	}
 }
