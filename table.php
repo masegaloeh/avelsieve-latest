@@ -11,7 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table.php,v 1.3 2003/10/09 11:25:37 avel Exp $
+ * $Id: table.php,v 1.4 2003/10/09 13:31:23 avel Exp $
  */
 
 /* table.php: main routine that shows a table of all the rules and allows
@@ -406,6 +406,7 @@ print_table_header();
 
 $toggle = false;
 
+
 for ($i=0; $i<sizeof($rules); $i++) {
 	print "<tr";
 	if ($toggle) {
@@ -417,13 +418,16 @@ for ($i=0; $i<sizeof($rules); $i++) {
 	print '</td><td style="white-space: nowrap"><p>';
 
 	/* print '</td><td><input type="checkbox" name="rm'.$i.'" value="1" /></td></tr>'; */
-	/* Edit */
-	avelsieve_print_toolicon ("edit", $i, "edit.php", "");
-	// was: print '<a href="edit.php?rule='.$i.'&amp;edit='.$i.'">';
 
-	/* Duplicate */
-	avelsieve_print_toolicon ("dup", $i, "edit.php", "edit=$i&amp;dup=1");
-	// CHECKME: was print ' <a href="edit.php?rule='.$i.'&amp;edit='.$i.'&amp;dup=1">';
+	
+	// Temporary hack to disable 'edit' for spamrule
+	if($rules[$i]['type'] != 10) {
+		/* Edit */
+		avelsieve_print_toolicon ("edit", $i, "edit.php", "");
+	
+		/* Duplicate */
+		avelsieve_print_toolicon ("dup", $i, "edit.php", "edit=$i&amp;dup=1");
+	}
 
 	/* Delete */
 	avelsieve_print_toolicon ("rm", $i, "table.php", "");
