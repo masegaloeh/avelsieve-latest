@@ -2,7 +2,7 @@
 /**
  * sieve-php.lib.php
  *
- * $Id: managesieve.lib.php,v 1.1 2004/11/02 15:06:17 avel Exp $ 
+ * $Id: managesieve.lib.php,v 1.2 2004/12/06 17:18:03 avel Exp $ 
  *
  * Copyright 2001-2003 Dan Ellis <danellis@rushmore.com>
  *
@@ -100,6 +100,12 @@ class sieve {
   var $error;
   var $error_raw;
   var $responses;
+  
+  // lastcmd is for referral processing
+  var $lastcmd;
+  var $reftok;
+  var $refsv;
+  
 
   //maybe we should add an errorlvl that the user will pass to new sieve = sieve(,,,,E_WARN)
   //so we can decide how to handle certain errors?!?
@@ -137,7 +143,7 @@ class sieve {
             $this->error_raw[]=substr($this->line, 0, strlen($this->line) -2);    //we want to be nice and strip crlf's
             $this->err_recv = strlen($this->line);
 
-            while($this->err_recv < $this->err_len){
+            while($this->err_recv < $this->err_len-1){
                 //print "<br>Trying to receive ".($this->err_len-$this->err_recv)." bytes for result<br>";
                 $this->line = fgets($this->fp, ($this->err_len-$this->err_recv));
                 $this->error_raw[]=substr($this->line, 0, strlen($this->line) -2);    //we want to be nice and strip crlf's
@@ -206,6 +212,40 @@ class sieve {
         
         return true;
         
+    } /* end elseif */
+    elseif(strstr($this->token[1], '(REFERRAL "' ) ){
+    	/* process a referral, retry the lastcmd, return the results.  this is 
+    	   sort of messy, really I should probably try to use parse_for_quotes
+    	   but the problem is I still have the ( )'s to deal with.  This is 
+    	   atleast true for timsieved as it sits in 2.1.16, if someone has a 
+    	   BYE (REFERRAL ...) example for later timsieved please forward it to 
+    	   me and I'll code it in proper-like! - mloftis@wgops.com */
+    	$this->reftok = split(" ", $this->token[1], 3);
+    	$this->refsv = substr($this->reftok[1], 0, -2);
+    	$this->refsv = substr($this->refsv, 1);
+    	$this->host = $this->refsv;
+    	$this->loggedin = false;
+    	/* flush buffers or anything?  probably not, and the remote has already closed it's
+    	   end by now!  */
+    	fclose($this->fp);
+    	
+    	if( sieve::sieve_login() ) {
+    		fputs($this->fp, $this->lastcmd);
+    		return sieve::get_response();
+    	} /* end good case happy ending */
+    	else{
+    		/* what to do?  login failed, should we punt and die? or log back into the referrer?
+    		   i'm electing to retn EC_UNKNOWN for now and set the error string. */
+    		   
+    		$this->loggedin = false;
+    		fclose($this->fp);
+    		$this->error = EC_UNKNOWN;
+    		$this->error_raw = 'UNABLE TO REFERRAL - ' . $this->line;
+    		return false;
+    	} /* end else of the unhappy ending */
+    	
+    	/* should never make it here! */
+    	
     } /* end elseif */
     else{
             $this->error = EC_UNKNOWN;
@@ -494,9 +534,9 @@ class sieve {
         return false;
     $this->script=stripslashes($script);
     $len=strlen($this->script);
-    fputs($this->fp, "PUTSCRIPT \"$scriptname\" \{$len+}\r\n");
-    fputs($this->fp, "$this->script\r\n");
-  
+    
+    $this->lastcmd = "PUTSCRIPT \"$scriptname\" \{$len+}\r\n$this->script\r\n";
+    fputs($this->fp, $this->lastcmd);
     return sieve::get_response();
 
   }  
@@ -521,7 +561,9 @@ class sieve {
   function sieve_havespace($scriptname, $scriptsize)   {
     if($this->loggedin==false)
         return false;
-    fputs($this->fp, "HAVESPACE \"$scriptname\" $scriptsize\r\n");
+        
+    $this->lastcmd = "HAVESPACE \"$scriptname\" $scriptsize\r\n";
+    fputs($this->fp, $this->lastcmd);
     return sieve::get_response();
   }  
 
@@ -534,8 +576,9 @@ class sieve {
   function sieve_setactivescript($scriptname)   {
     if($this->loggedin==false)
         return false;
-
-    fputs($this->fp, "SETACTIVE \"$scriptname\"\r\n");   
+    
+		$this->lastcmd = "SETACTIVE \"$scriptname\"\r\n";
+    fputs($this->fp, $this->lastcmd);   
     return sieve::get_response();
 
   }
@@ -553,8 +596,9 @@ class sieve {
     unset($this->script);
     if($this->loggedin==false)
         return false;
-
-    fputs($this->fp, "GETSCRIPT \"$scriptname\"\r\n");
+        
+    $this->lastcmd = "GETSCRIPT \"$scriptname\"\r\n";
+    fputs($this->fp, $this->lastcmd);
     return sieve::get_response();
   }
 
@@ -570,8 +614,9 @@ class sieve {
   function sieve_deletescript($scriptname)   {
     if($this->loggedin==false)
         return false;
-
-    fputs($this->fp, "DELETESCRIPT \"$scriptname\"\r\n");    
+        
+		$this->lastcmd = "DELETESCRIPT \"$scriptname\"\r\n";
+    fputs($this->fp, $this->lastcmd);    
 
     return sieve::get_response();
   }
@@ -587,7 +632,8 @@ class sieve {
    * @return boolean
    */
   function sieve_listscripts() { 
-     fputs($this->fp, "LISTSCRIPTS\r\n"); 
+  	 $this->lastcmd = "LISTSCRIPTS\r\n";
+     fputs($this->fp, $this->lastcmd); 
      sieve::get_response();		//should always return true, even if there are no scripts...
      if(isset($this->found_script) and $this->found_script)
          return true;
