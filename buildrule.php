@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: buildrule.php,v 1.8 2004/01/21 14:56:43 avel Exp $
+ * $Id: buildrule.php,v 1.9 2004/01/26 12:58:09 avel Exp $
  */
 
 /**
@@ -175,7 +175,7 @@ if($rule['type']=="4") {
 	}
 
 	$out .= "\n";
-	$out .= ' header :value "gt" :comparator "i;ascii-numeric" "'.$spamrule_score_header.'" "'.$sc.'" ) { ';
+	$out .= ' header :value "ge" :comparator "i;ascii-numeric" "'.$spamrule_score_header.'" "'.$sc.'" ) { ';
 	$out .= "\n";
 	
 	$text .= ', ';
