@@ -11,7 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table.php,v 1.4 2003/10/09 13:31:23 avel Exp $
+ * $Id: table.php,v 1.5 2003/10/13 16:34:16 avel Exp $
  */
 
 /* table.php: main routine that shows a table of all the rules and allows
@@ -97,11 +97,12 @@ if (!isset($rules)) {
 }
 
 
-/* Get script list from SIEVE server. */
 
 if (!isset($rules)) {
 
-	if($sieve->sieve_listscripts() /* && isset($currentrules) */ ){
+	/* Get script list from SIEVE server. */
+
+	if($sieve->sieve_listscripts()) {
 		if(!isset($sieve->response)) {
 			/* There is no SIEVE script on the server. */
 			displayPageHeader($color, 'None');
@@ -128,8 +129,34 @@ if (!isset($rules)) {
 			exit;
 		}
 	}
+
+	/* Actually get the script 'phpscript' (hardcoded ATM). */
+
+	$sievescript = '';
+	if($sieve->sieve_getscript("phpscript")){
+		if(is_array($sieve->response)) {
+			foreach($sieve->response as $line){
+				$sievescript .= "$line\n";
+			}
+		} else {
+			$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+			textdomain ('avelsieve');
+			$errormsg = _("Could not get SIEVE script from your IMAP server");
+			$errormsg .= " " . $imapServerAddress.".<br />";
+			$errormsg .= _("(Probably the script is size null).");
+			$errormsg .= _("Please contact your administrator.");
+			print_errormsg($errormsg);
+			exit;
+		}
+	}
+	
+	/* $sievescript has a SIEVE script. Parse that. */
+	$scriptinfo = array();
+	$rules = getruledata($sievescript, $scriptinfo);
 }
-/* If we got here, everything should be ok.*/
+
+
+
 
 /* On to the code that executes if phpscript exists or if a new rule has been
  * created. */
@@ -177,60 +204,8 @@ if($logout) {
 	// header("Location: $location/../../src/options.php?optpage=avelsieve\n\n");
 	exit;
 
-} elseif (isset($_POST['add'])) {
-	/* code to start wizard to add a new rule */
-	header("Location: $location/addrule.php");
-	exit;
-
-} elseif (isset($_POST['addspamrule'])) {
-	/* code to start wizard to add a new spam rule */
-	header("Location: $location/addspamrule.php");
-	exit;
 }
 
-
-/* Actually get the script 'phpscript' (hardcoded ATM). */
-
-if (!isset($rules)) {
-	$sievescript = '';
-	if($sieve->sieve_getscript("phpscript")){
-		if(is_array($sieve->response)) {
-			foreach($sieve->response as $line){
-				$sievescript .= "$line\n";
-			}
-		} else {
-			$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
-			textdomain ('avelsieve');
-			$errormsg = _("Could not get SIEVE script from your IMAP server");
-			$errormsg .= " " . $imapServerAddress.".<br />";
-			$errormsg .= _("(Probably the script is size null).");
-			$errormsg .= _("Please contact your administrator.");
-			print_errormsg($errormsg);
-			exit;
-		}
-	}
-	
-	/* $sievescript has a SIEVE script. Parse that. */
-	$scriptinfo = array();
-	$rules = getruledata($sievescript, $scriptinfo);
-	
-	if ($rules == "0" && !isset($_SESSION['returnnewrule']) ) {
-		/* NO SCRIPT, WHAT HAPPENS IF THERE IS NO SCRIPT. (Stop shouting). */
-
-		displayPageHeader($color, 'None');
-		$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
-		textdomain ('avelsieve');
-		printheader2(false);
-		print_all_sections_start();
-		print_section_start(_("No Filtering Rules Defined Yet"));
-		print_create_new();
-		print_section_end(); 
-		print_all_sections_end();
-		print_buttons();
-		printfooter2();
-		exit;
-	}
-}
 
 /* Routine for Delete / Delete selected / edit / duplicate / moveup/down */
 if(isset($_GET['rule']) || isset($_POST['deleteselected'])) {
@@ -247,24 +222,24 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected'])) {
 			$rules2 = $rules;
 			foreach($_POST['selectedrules'] as $no=>$sel) {
 				unset($rules2[$sel]);
-				// $rules = array_del($rules, $sel); 
 			} 
 			$rules = array_values($rules2);
 			$_SESSION['comm']['deleted'] = $_POST['selectedrules'];
 
 		} elseif(isset($_GET['rm'])) {
-			$rules = array_del($rules, $_GET['rule']);
+			$rules2 = $rules;
+			unset($rules2[$_GET['rule']]);
+			$rules = array_values($rules2);
 			$_SESSION['comm']['deleted'] = $_GET['rule'];
 		}
 
 
 		if(sizeof($rules) == "0") {
-			// print "DEBUG: Ok, size of rules is 0 apparently.";
+			print "DEBUG: Ok, size of rules is 0 apparently.";
 	
 			if (!$conservative) {
 				avelsieve_delete_script();
 			}
-			session_unregister('rules');
 			displayPageHeader($color, 'None');
 			$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 			textdomain ('avelsieve');
@@ -277,6 +252,7 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected'])) {
 			print_buttons();
 			print_footer();
 			printfooter2();
+			sqsession_register($rules, 'rules');
 			exit;
 		} 
 
@@ -310,7 +286,7 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected'])) {
 
 	}
 
-	session_register('rules');
+	sqsession_register($rules, 'rules');
 	
 	/* Register changes to timsieved if we are not conservative in our
 	 * connections with him. */
@@ -342,9 +318,10 @@ if (isset($_SESSION['returnnewrule'])) { /* Get the new rule and put it in the s
 	} 
 }
 
-$_SESSION['rules'] = $rules;
-
-$_SESSION['scriptinfo'] = $scriptinfo;
+if(isset($rules)) {
+	$_SESSION['rules'] = $rules;
+	$_SESSION['scriptinfo'] = $scriptinfo;
+}
 
 // $compose_new_win = getPref($data_dir, $username, 'compose_new_win');
 
@@ -359,6 +336,22 @@ $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
 require "constants.php";
+
+if (!isset($rules) ||
+    isset($rules) && sizeof($rules) == 0 ) {
+
+//	printheader2( _("Current Mail Filtering Rules") );
+	printheader2(false);
+	print_all_sections_start();
+	print_section_start(_("No Filtering Rules Defined Yet"));
+	print_create_new();
+	print_section_end(); 
+	print_all_sections_end();
+	print_buttons();
+//	print_footer();
+	printfooter2();
+	exit;
+}
 
 //print "<pre>SESSION: "; print_r($_SESSION); print "</pre>";
 //print "<pre>POST: "; print_r($_POST); print "</pre>";
@@ -387,18 +380,8 @@ if(isset($_GET['mode'])) {
 printheader2( _("Current Mail Filtering Rules") );
 print_all_sections_start();
 
-/*
-print "DEBUG:<pre>";
-print_r($_SESSION);
-print_r($_POST);
-print "</pre>";
 
-( [version] => Array ( [major] => 0 [minor] => 9 [release] => 5 [string] => 0.9.5 )
-
-*/
-
-
-/* Printing, part one: the table with the rules. */
+/* Printing the table with the rules. */
 
 print '<form name="rulestable" method="POST" action="table.php">';
 
@@ -468,7 +451,9 @@ print '<tr><td colspan="4">';
 print '</td></tr>';
 
 print_table_footer();
+
 print '</form>';
+
 // print_buttons();
 
 print_all_sections_end();
