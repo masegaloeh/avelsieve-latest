@@ -8,13 +8,14 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: addspamrule.php,v 1.8 2004/11/15 13:10:11 avel Exp $
+ * @version $Id: addspamrule.php,v 1.9 2004/11/15 16:37:50 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  * @todo: Probably Import spamrule_filters from Filters plugin. It contains a
  * lot of spam rbls definitions.
+ * @todo This file needs a lot of work to become like edit.php....
  */
 
 define('SM_PATH','../../');
@@ -46,7 +47,11 @@ if(isset($_POST['cancel'])) {
 }
 
 if(isset($edit)) {
+	$mode = 'edit';
 	$rule = &$rules[$edit];
+} else {
+	$mode = 'addnewspam';
+	$rule = array('type' => 10);
 }
 
 if(isset($edit)) {
@@ -59,6 +64,7 @@ if(isset($edit)) {
 	}
 	if(isset($_GET['dup'])) {
 		$dup = true;
+		$mode = 'duplicatespam';
 	}
 }
 
@@ -135,7 +141,7 @@ if(isset($_POST['stop']))  {
 /* Other stuff */
 sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
 
-if(isset($_POST['finished']) || isset($_POST['apply'])) {
+if(isset($_POST['finished']) || isset($_POST['apply']) || isset($_POST['addnew'])) {
 	/* get it together & save it */
 	if($action == 'junk' && isset($_POST['junkprune_saveme'])) {
 		/* Save previously unset (or zero) junkprune variable */
@@ -183,7 +189,7 @@ textdomain ('avelsieve');
 
 require_once (SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
 
-$ht = new avelsieve_html_edit('edit', $rule, false);
+$ht = new avelsieve_html_edit($mode, $rule, false);
 			
 echo '<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
 	$ht->table_header( _("Add SPAM Rule") ) .
@@ -350,21 +356,10 @@ if(isset($junkprune_saveme)) {
 	print '</label>';
 		
 	echo $ht->section_end();
-	echo $ht->all_sections_end();
 
-if(isset($edit)) {
-	print '<input type="hidden" name="edit" value="'.$edit.'" />';
-	if(isset($dup)) {
-		print '<input type="hidden" name="dup" value="1" />';
-		print '<input type="submit" name="addnew" value="'._("Add SPAM Rule").'" />';
-	} else {
-		print '<input type="submit" name="apply" value="'._("Apply Changes").'" />';
-	}
-	print '<input type="submit" name="cancel" value="'._("Cancel").'" />';
-} else {
-	// printaddbuttons();
-}
+echo $ht->submit_buttons();
 
+echo $ht->all_sections_end();
 echo $ht->table_footer() . '</form>';
 
 
