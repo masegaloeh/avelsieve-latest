@@ -1,11 +1,32 @@
-<h2>Development Branch (1.9)</h2>
+<h2><a>Development Branch (1.9)</a></h2>
 
 <p>The Devel Branch aims for some major changes, which are not considered
 stable enough. In 1.9, the code has moved around and a lot of the GUI /
 frontend parts have been ported to a new scheme, while other pars have been
 completely rewritten.</p>
 
-<h3>1.9</h3>
+<h3>1.9.1</h3>
+
+<p>Welcome to another installment in the 1.9 series.</p>
+
+<p>This release fixes some usability and business-logic bugs that slipped the
+initial devel release. A fix for Dan's MANAGESIEVE class, upon which this whole
+project was based, is also in. The off-by-one error could cause Apache / PHP to
+get into an endless loop, until all the PHP memory limits were exhausted.
+Hopefully this will make avelsieve just a bit more robust and secure.</p>
+
+<p>Other than that, I believe that the 1.9 series is heading fast to become a
+2.0 release. Before doing that, I would like to ensure compatibility with PHP5,
+which means removing the hack that I've done, reasssigning '$this' in two
+places of the new code.</p>
+
+<p>At the moment nothing has changed in the way SIEVE scripts are being built.
+The SIEVE scripts created are backward- and forward-compatible so far.</p>
+
+<p><a href="avelsieve_changelog.php#1.9.1">Full Changelog</a></p>
+
+
+<h3>1.9.0</h3>
 
 <p>This is the first release of the next-gen avelsieve!</p>
 
@@ -22,7 +43,7 @@ wishes.</p>
 
 
 
-<h2>Stable Branch (1.0)</h2>
+<h2><a>Stable Branch (1.0)</a></h2>
 
 <p>The code in this branch has practically lived as-is for enough months in
 peoples' production servers that I consider it very stable and at least
@@ -32,6 +53,16 @@ soemwhat robust.</p>
 rules - probably a session problem; but I can't figure out why that happens.
 For most people it works without a glitch. If you find any difficulty in
 getting it to work, please let me know.</p>
+
+
+<h3>1.0.1</h3>
+
+<p>This release simply incorporates the fix of the off-by-one bug in the
+MANAGESIEVE class, to avoid hammering the Apache Server. Upgrading is
+highly recommended.</p>
+
+<p><a href="avelsieve_changelog.php#1.0.1">Full Changelog</a></p>
+
 
 <h3>1.0</h3>
 
