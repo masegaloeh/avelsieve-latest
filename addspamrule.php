@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: addspamrule.php,v 1.7 2004/11/12 10:43:16 avel Exp $
+ * @version $Id: addspamrule.php,v 1.8 2004/11/15 13:10:11 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -34,16 +34,21 @@ include_once(SM_PATH . 'plugins/avelsieve/include/process_user_input.inc.php');
 
 sqsession_is_active();
 
+sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
+sqgetGlobalVar('key', $key, SQ_COOKIE);
+sqgetGlobalVar('rules', $rules, SQ_SESSION);
+
+sqgetGlobalVar('edit', $edit, SQ_GET & SQ_POST);
+
 if(isset($_POST['cancel'])) {
 	header("Location: ./table.php");
 	exit;
 }
 
-if(isset($_GET['edit'])) {
-	$edit = $_GET['edit'];
-} elseif(isset($_POST['edit'])) {
-	$edit = $_POST['edit'];
+if(isset($edit)) {
+	$rule = &$rules[$edit];
 }
+
 if(isset($edit)) {
 	/* Have this handy: type of current rule */
 	$type = $_SESSION['rules'][$edit]['type'];
@@ -179,16 +184,16 @@ textdomain ('avelsieve');
 require_once (SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
 
 $ht = new avelsieve_html_edit('edit', $rule, false);
-
-echo $ht->table_header( _("Add SPAM Rule") ) .
+			
+echo '<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
+	$ht->table_header( _("Add SPAM Rule") ) .
 	$ht->all_sections_start().
 	$ht->section_start( _("Configure Anti-SPAM Protection") ).
 	'<p>' . _("All incoming mail is checked for unsolicited commercial content (SPAM) and marked accordingly. This special rule allows you to configure what to do with such messages once they arrive to your Inbox.") . '</p>';
 
 if(!$spamrule_advanced) {
-	echo '<p>'. sprintf( _("Select %s to add the predefined rule, or select the advanced SPAM filter to customize the rule."), '<strong>' . _("Add Spam Rule") . '</strong>' ) . '</p>';
-
-	echo '<p style="text-align:center"> <input type="submit" name="spamrule_advanced" value="'. _("Advanced Spam Filter...") .'" /></p>';
+	echo '<p>'. sprintf( _("Select %s to add the predefined rule, or select the advanced SPAM filter to customize the rule."), '<strong>' . _("Add Spam Rule") . '</strong>' ) . '</p>'.
+		'<p style="text-align:center"> <input type="submit" name="spamrule_advanced" value="'. _("Advanced Spam Filter...") .'" /></p>';
 
 } else {
 
@@ -277,19 +282,19 @@ if(!$spamrule_advanced) {
 	$i=0;
 	if(isset($whitelist) && sizeof($whitelist) >0 ){
 		for($i =0; $i<sizeof($whitelist); $i++) {
-			print_header_listbox($whitelist[$i]['header'], $i);
-			print_matchtype_listbox($whitelist[$i]['matchtype'], $i, 'whitelistmatch');
-			print '<input name="whitelistvalue['.$i.']" value="'.$whitelist[$i]['headermatch'].'" size="18" />';
-			print '<br/>';
+			echo avelsieve_html_edit::header_listbox($whitelist[$i]['header'], $i);
+			echo avelsieve_html_edit::matchtype_listbox($whitelist[$i]['matchtype'], $i, 'whitelistmatch');
+			echo '<input name="whitelistvalue['.$i.']" value="'.$whitelist[$i]['headermatch'].'" size="18" />'.
+				'<br/>';
 		}
 	}
-	print_header_listbox('From', $i);
-	print_matchtype_listbox('', $i, 'whitelistmatch');
-	print '<input name="whitelistvalue['.$i.']" value="" size="18" />';
-	print '<br/>';
-	print '<input type="submit" name="whitelist_add" value="'._("More...").'"/>';
+	echo avelsieve_html_edit::header_listbox('From', $i).
+		avelsieve_html_edit::matchtype_listbox('', $i, 'whitelistmatch').
+		'<input name="whitelistvalue['.$i.']" value="" size="18" />'.
+		'<br/>'.
+		'<input type="submit" name="whitelist_add" value="'._("More...").'"/>'.
 
-	print '</p><br />';
+		'</p><br />';
 
 	/**
 	 * Action
@@ -360,7 +365,8 @@ if(isset($edit)) {
 	// printaddbuttons();
 }
 
-echo $ht->table_footer();
+echo $ht->table_footer() . '</form>';
 
 
 ?>
+</body></html>
