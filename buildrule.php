@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: buildrule.php,v 1.5 2003/10/09 13:34:14 avel Exp $
+ * $Id: buildrule.php,v 1.6 2003/10/10 12:01:49 avel Exp $
  */
 
 /**
@@ -464,29 +464,23 @@ case "5":	/* fileinto folder */
 	break;
 
 case "6":      /* vacation message */
-	/* Check if $addresses is valid */
 
-	/* If vacation address does not exist, put inside the default, which is
-	 * user's addresses. */
+ 	$out .= 'vacation :days '.$rule['vac_days'];
+	
+	/* If vacation address does not exist, do not set the :addresses
+	 * argument. */
 
-	if( !isset($rule['vac_addresses']) || 
-	    (isset($rule['vac_addresses']) && trim($rule['vac_addresses'])=="" ) ) {
-
-		global $data_dir, $username;
-		$addresses = getPref($data_dir, $username, 'email_address');
-
-	} else {
-		/* Ugly... */
+ 	if(isset($rule['vac_addresses']) && trim($rule['vac_addresses'])!="") {
 		$addresses = str_replace(",",'","',str_replace(" ","",$rule['vac_addresses']));
+ 		$out .= ' :addresses ["'.$addresses.'"]';
 	}
 
- 	$out .= 'vacation :days '.$rule['vac_days'].' :addresses ["'.$addresses.
-	'"] '." text:\n".$rule['vac_message']."\r\n.\r\n;";
- 	/* Used to be: '"] "'.$rule['vac_message'].'";'; */
+  	$out .= " text:\n".$rule['vac_message']."\r\n.\r\n;";
 
  	$text .= _("reply with this vacation message: ") . htmlspecialchars($rule['vac_message']);
 	$terse .= "VACATION";
  	break;
+
 default:
 	// return false;
 	break;
