@@ -3,18 +3,17 @@
  * User-friendly interface to SIEVE server-side mail filtering.
  * Plugin for Squirrelmail 1.4+
  *
- * Copyright (c) 2002-2003 Alexandros Vellis <avel@users.sourceforge.net>
- *
- * Based on Dan Ellis' test scripts that came with sieve-php.lib
- * <danellis@rushmore.com> <URL:http://sieve-php.sourceforge.net>
+ * This page is the main interface to editing and adding new rules.
  *
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: edit.php,v 1.9 2004/11/08 12:59:52 avel Exp $
+ * @version $Id: edit.php,v 1.10 2004/11/11 14:29:13 avel Exp $
+ * @author Alexandros Vellis <avel@users.sourceforge.net>
+ * @copyright 2002-2004 Alexandros Vellis
+ * @package plugins
+ * @subpackage avelsieve
  */
-
-/* edit.php: Editing existing rules. */
 
 define('AVELSIEVE_DEBUG',0);
 
@@ -34,73 +33,77 @@ include_once(SM_PATH . 'plugins/avelsieve/include/process_user_input.inc.php');
 
 sqsession_is_active();
 
-if(isset($_GET['edit'])) {
-	$edit = $_GET['edit'];
-} elseif(isset($_POST['edit'])) {
-	$edit = $_POST['edit'];
-} elseif(isset($_GET['addnew'])) {
-	$addnew = true;
-}
-
-if(isset($_GET['dup']) || isset($_POST['dup'])) {
-	$dup = true;
-}
-
-
-if(isset($_SESSION['rules'])) {
-	$rules = $_SESSION['rules'];
-}
-$rule = $rules[$edit];
-
-/* Have this handy: type of current rule */
-if(isset($addnew)) {
-	$type = $_GET['type'];
-} else {
-	$type = $rules[$edit]['type'];
-}
-
-sqgetGlobalVar('key', $key, SQ_COOKIE);
-
-/* Can (& should) replace above with this: */
-//sqgetGlobalVar('edit', $edit, SQ_GET&SQ_POST);
+$errormsg = '';
 
 sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
+sqgetGlobalVar('key', $key, SQ_COOKIE);
+sqgetGlobalVar('popup', $popup, SQ_GET);
+sqgetGlobalVar('rules', $rules, SQ_SESSION);
+sqgetGlobalVar('edit', $edit, SQ_GET & SQ_POST);
+sqgetGlobalVar('dup', $dup, SQ_GET & SQ_POST);
+sqgetGlobalVar('previoustype', $previoustype, SQ_POST);
 
-global $mailboxlist, $delimiter;
+if(isset($edit)) {
+	/* Editing an existing rule */
+	// print "/* Editing an existing rule */ ";
+	$rule = &$rules[$edit];
+	$type = $rule['type'];
+} elseif(isset($_GET['type'])) {
+	/* Adding a new rule through $_GET */
+	// print " /* Adding a new rule through _GET */";
+	$rule = process_input(SQ_GET, &$errrormsg);
 
+} elseif(isset($_POST['type'])) {
+	if(!isset($_GET['type'])) {
+		$type = 0;
+	} else {
+		$type = $_GET['type'];
+	}
+	$rule = process_input(SQ_POST, &$errrormsg);
+}
 
-/* --------------- Start processing of variables ------------------- */
+if(isset($previoustype) && (
+	$previoustype == 0 ||
+	(isset($type) && $previoustype != $type)
+	)) {
+		$changetype = true;
+} else {
+		$changetype = false;
+}
+
+/* Available Actions that occur if submitting the form in a number of ways */
 
 if(isset($_POST['append'])) {
+	/* More header match items */
 	$items = $_POST['items'] + 1;
 
 } elseif(isset($_POST['less'])) {
+	/* Less header match items */
 	$items = $_POST['items'] - 1;
 
 } elseif(isset($_POST['cancel'])) {
+	/* Cancel Editing */
 	header("Location: table.php");
 	exit;
 
-} elseif(isset($_POST['type'])) {
+} elseif($changetype) {
+	/* Changing of rule type */
+	$rule['type'] = $_POST['type'];
+	
 
-	// eeer.... hmmmm.... o:-)
-
-
-} elseif(isset($_POST['apply'])) {
-	$no = $_POST['edit'];
-
-	$_SESSION['rules'][$no] = process_input($type);
+} elseif(isset($_POST['apply']) && !$changetype) {
+	/* Apply change in existing rule */
+	$_SESSION['rules'][$edit] = process_input($type);
 
 	/* Communication: */
-	$_SESSION['comm']['edited'] = $no;
-
+	$_SESSION['comm']['edited'] = $edit;
 	$_SESSION['haschanged'] = true;
 
 	header('Location: table.php');
 	exit;
 
-} elseif(isset($_POST['addnew'])) {
-	$no = $_POST['edit'];
+} elseif(isset($_POST['addnew']) && !$changetype) {
+	/* Add new rule */
  	$newrule = process_input($type);
      
 	if(isset($dup)) {
@@ -113,9 +116,8 @@ if(isset($_POST['append'])) {
 	}
 
 	/* Communication: */
-	$_SESSION['comm']['edited'] = $no;
+	$_SESSION['comm']['edited'] = $edit;
 	$_SESSION['comm']['new'] = true;
-	
 	$_SESSION['haschanged'] = true;
 
 	header('Location: table.php');
@@ -123,15 +125,13 @@ if(isset($_POST['append'])) {
 }
 
 
-if(isset($_SESSION['delimiter'])) {
-	$delimiter = $_SESSION['delimiter'];
-} else { /* These aren't likely to be executed.. just in case... */
+
+/* Grab the list of my IMAP folders. This is only needed for the GUI, and is
+ * done as the last step. */
+sqgetGlobalVar('delimiter', $delimiter, SQ_SESSION);
+if(!isset($delimiter)) {
 	$delimiter = sqimap_get_delimiter($imapConnection);
-	$_SESSION['delimiter'] = $delimiter;
 }
-
-
-/* Grab the list of my IMAP folders */
 // $folder_prefix = "INBOX";
 $imapConnection = sqimap_login($username, $key, $imapServerAddress, $imapPort, 0); 
 $boxes = sqimap_mailbox_list($imapConnection);
@@ -139,12 +139,7 @@ sqimap_logout($imapConnection);
 
 /* ---------------------- Start main ----------------------- */
 
-displayPageHeader($color, 'None');
-
-$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
-textdomain ('avelsieve');
-
-print '
+$js = '
 <script language="JavaScript" type="text/javascript">
 function checkOther(id){
 	for(var i=0;i<document.addrule.length;i++){
@@ -153,12 +148,6 @@ function checkOther(id){
 		}
 	}
 }
-// -->
-</script>
-';
-
-print '
-<script language="JavaScript" type="text/javascript">
 function el(id) {
   if (document.getElementById) {
     return document.getElementById(id);
@@ -176,7 +165,6 @@ function HideDiv(divname) {
   if(el(divname)) {
     el(divname).style.display = "none";
   }
-  // return tru;
 }
 function ToggleShowDiv(divname) {
   if(el(divname)) {
@@ -190,12 +178,26 @@ function ToggleShowDiv(divname) {
 </script>
 ';
 
+if(isset($popup)) {
+	displayHtmlHeader('', $js);
+} else {
+	displayPageHeader($color, 'None');
+	echo $js;
+}
+
+$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+textdomain ('avelsieve');
 
 require_once (SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
 
-$ht = new avelsieve_html_edit('edit', &$rules[$edit]);
+$ht = new avelsieve_html_edit('edit', $rule);
 
-echo $ht->edit_rule($edit);
+if(isset($edit)) {
+	echo $ht->edit_rule($edit);
+} else {
+	echo $ht->edit_rule();
+}
+	
 echo $ht->table_footer();
 
 ?>
