@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: addrule.php,v 1.7 2004/11/11 13:49:04 avel Exp $
+ * @version $Id: addrule.php,v 1.8 2004/11/22 12:37:52 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -117,7 +117,7 @@ if(isset($newrule) && ($newrule['type']==4) && ($part==2)) {
  *	$subfolder   = name of folder under which to create $folder_name
 */
 
-if(($createnewfolder == true ) && isset($_POST['action']) && ($_POST['action'] == 5) && 
+if(isset($_POST['action']) && ($_POST['action'] == 5) && 
   (isset($_POST['newfolder']) && $_POST['newfolder'] == "5b" ) &&
   !isset($_POST['startover']) && !isset($_POST['cancel']) ) {
 
