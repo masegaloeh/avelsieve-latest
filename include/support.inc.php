@@ -9,7 +9,7 @@
  * Various support functions, useful or useless.  NB. THEY MUST NOT DEPEND
  * ELSEWHERE.
  *
- * @version $Id: support.inc.php,v 1.4 2004/11/11 13:49:04 avel Exp $
+ * @version $Id: support.inc.php,v 1.5 2004/11/11 14:28:18 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -204,8 +204,8 @@ function get_user_addresses() {
 		/* Get user's email addresses from LDAP Prefs Backend plugin's cache */
 		$addressarray[] = $default_emailaddress;
 
-		if (isset($_SESSION['ldap_prefs_cache']['alternateemails'])) {
-			$alternateemails = $_SESSION['ldap_prefs_cache']['alternateemails'];
+		if (isset($_SESSION['alternateemails'])) {
+			$alternateemails = $_SESSION['alternateemails'];
 			for ($i=0; $i<sizeof($alternateemails); $i++) {
 				$addressarray[] = $alternateemails[$i];
 			}
