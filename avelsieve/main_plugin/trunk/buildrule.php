@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: buildrule.php,v 1.6 2003/10/10 12:01:49 avel Exp $
+ * $Id: buildrule.php,v 1.7 2003/11/10 20:51:51 avel Exp $
  */
 
 /**
@@ -146,8 +146,9 @@ if($rule['type']=="4") {
 	}
 
 	/*
-	if allof( header :contains "X-Spam-Rule" "Open.Relay.Database" ,
-		  header :contains "X-Spam-Rule" "Spamhaus.Block.List" ,
+	if allof( anyof(header :contains "X-Spam-Rule" "Open.Relay.Database" ,
+		        header :contains "X-Spam-Rule" "Spamhaus.Block.List" 
+			),
 		  header :value "gt" :comparator "i;ascii-numeric" "80" ) {
 		
 		fileinto "INBOX.Junk";
@@ -159,14 +160,22 @@ if($rule['type']=="4") {
 	$text = _("All messages considered as <strong>SPAM</strong> (unsolicited commercial messages)");
 	$terse .= "SPAM";
 	
-	for($i=0; $i<sizeof($te); $i++ ) {
-		$out .= 'header :contains "'.$spamrule_tests_header.'" "'.$te[$i].'",';
-		$out .= "\n";
+	if(sizeof($te) > 1) {
+		$out .= ' anyof( ';
+		for($i=0; $i<sizeof($te); $i++ ) {
+			$out .= 'header :contains "'.$spamrule_tests_header.'" "'.$te[$i].'"';
+			if($i < (sizeof($te) -1 ) ) {
+				$out .= ",";
+			}
+		}
+		$out .= " ),\n";
+	} else {
+		$out .= 'header :contains "'.$spamrule_tests_header.'" "'.$te[0].'", ';
 	}
 
+	$out .= "\n";
 	$out .= ' header :value "gt" :comparator "i;ascii-numeric" "'.$spamrule_score_header.'" "'.$sc.'" ) { ';
 	$out .= "\n";
-	
 	
 	$text .= ', ';
 	if($spamrule_advanced == true) {
