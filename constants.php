@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: constants.php,v 1.3 2003/10/09 11:28:45 avel Exp $
+ * $Id: constants.php,v 1.4 2003/10/09 13:34:38 avel Exp $
  */
 
 $types = array();
@@ -114,34 +114,36 @@ $prioritystrings = array(
 
 /* Tools (Icons in table.php) */
 
+$fmt = 'gif';
+
 $avelsievetools = array(
 	'rm' => array(
 		'desc' => _("Delete"),
-		'img' => "del.png"
+		'img' => "del.$fmt"
 		),
 	'edit' => array(
 		'desc' => _("Edit"),
-		'img' => "edit.png"
+		'img' => "edit.$fmt"
 		),
 	'dup' => array(
 		'desc' => _("Duplicate"),
-		'img' => "dup.png"
+		'img' => "dup.$fmt"
 		),
 	'mvup' => array(
 		'desc' => _("Move Up"),
-		'img' => "up.png"
+		'img' => "up.$fmt"
 		),
 	'mvtop' => array(
 		'desc' => _("Move to Top"),
-		'img' => "top.png"
+		'img' => "top.$fmt"
 		),
 	'mvdn' => array(
 		'desc' => _("Move Down"),
-		'img' => "down.png"
+		'img' => "down.$fmt"
 		),
 	'mvbottom' => array(
 		'desc' => _("Move to Bottom"),
-		'img' => "bottom.png"
+		'img' => "bottom.$fmt"
 		)
 );
 	
