@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-01 17:50+0200\n"
+"POT-Creation-Date: 2005-03-09 13:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -210,7 +210,25 @@ msgstr ""
 msgid "verbose"
 msgstr ""
 
+msgid "Textual descriptions of the rules"
+msgstr ""
+
 msgid "terse"
+msgstr ""
+
+msgid "More suitable for viewing the table of rules at once"
+msgstr ""
+
+msgid "tech"
+msgstr ""
+
+msgid "Even more terse description for technical people"
+msgstr ""
+
+msgid "source"
+msgstr ""
+
+msgid "Display SIEVE source"
 msgstr ""
 
 msgid "Low"
@@ -501,6 +519,9 @@ msgstr ""
 msgid "Keep a local copy as well."
 msgstr ""
 
+msgid "Incorrect email address. You must enter only one valid email address."
+msgstr ""
+
 msgid "Move message into"
 msgstr ""
 
@@ -577,6 +598,9 @@ msgstr ""
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
+msgid "To or Cc"
+msgstr ""
+
 msgid "matches the regural expression"
 msgstr ""
 
@@ -598,12 +622,21 @@ msgstr ""
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr ""
 
+msgid "ALL"
+msgstr ""
+
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
 "messages)"
 msgstr ""
 
+msgid "SPAM"
+msgstr ""
+
 msgid "unless"
+msgstr ""
+
+msgid "Whitelist:"
 msgstr ""
 
 msgid "or"
@@ -612,8 +645,15 @@ msgstr ""
 msgid "matching the Spam List(s):"
 msgstr ""
 
+msgid "Spam List(s):"
+msgstr ""
+
 #, php-format
 msgid "and with score greater than %s"
+msgstr ""
+
+#, php-format
+msgid "Score > %s"
 msgstr ""
 
 msgid "will be"
@@ -622,7 +662,13 @@ msgstr ""
 msgid "stored in the Junk Folder."
 msgstr ""
 
+msgid "Junk"
+msgstr ""
+
 msgid "stored in the Trash Folder."
+msgstr ""
+
+msgid "Trash"
 msgstr ""
 
 msgid "discarded."
@@ -640,6 +686,9 @@ msgstr ""
 msgid "the header"
 msgstr ""
 
+msgid "and"
+msgstr ""
+
 msgid "the size of the message is"
 msgstr ""
 
@@ -655,25 +704,52 @@ msgstr ""
 msgid "<em>keep</em> it."
 msgstr ""
 
+msgid "Keep"
+msgstr ""
+
 msgid "<em>discard</em> it."
+msgstr ""
+
+msgid "DISCARD"
 msgstr ""
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr ""
 
+msgid "Reject"
+msgstr ""
+
+msgid "Redirect to"
+msgstr ""
+
+#, php-format
+msgid "<em>redirect</em> it to the email addresses: %s."
+msgstr ""
+
 msgid "<em>redirect</em> it to the email address"
 msgstr ""
 
-msgid "<em>file</em> it into the folder <strong>"
+#, php-format
+msgid "<em>file</em> it into the folder %s"
+msgstr ""
+
+#, php-format
+msgid "File into %s"
 msgstr ""
 
 msgid "reply with this vacation message: "
+msgstr ""
+
+msgid "Vacation Message"
 msgstr ""
 
 msgid "Also keep a local copy."
 msgstr ""
 
 msgid " Also keep a copy in INBOX, marked as deleted."
+msgstr ""
+
+msgid "Keep Deleted"
 msgstr ""
 
 msgid " Also notify using the method"
@@ -685,7 +761,14 @@ msgstr ""
 msgid "priority and the message"
 msgstr ""
 
-msgid " Then <strong>STOP</strong> processing rules."
+#, php-format
+msgid "Notify %s"
+msgstr ""
+
+msgid "Then <strong>STOP</strong> processing rules."
+msgstr ""
+
+msgid "Stop"
 msgstr ""
 
 msgid "Test for Forged Header"
