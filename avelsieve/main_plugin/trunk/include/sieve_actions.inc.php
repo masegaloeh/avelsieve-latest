@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.2 2004/11/08 13:52:49 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.3 2004/11/11 13:49:49 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -249,7 +249,7 @@ class avelsieve_action_fileinto extends avelsieve_action {
 	var $num = 5;
 	var $capability = 'fileinto';
 	var $options = array(
-		'folder_name' => '',
+		'folder' => '',
 	);
 
 	function avelsieve_action_fileinto($rule = array(), $frontend = 'html') {
@@ -258,15 +258,24 @@ class avelsieve_action_fileinto extends avelsieve_action {
 	}
 	
 	function options_html ($val) {
-		return '<input type="radio" name="newfolder" value="5a" onclick="checkOther(\'5\');" /> '.
-				_("the existing folder") . mailboxlist('folder', $val['mailbox']) .
-				'<br />'.
-				
+		$out = '<input type="radio" name="folder" value="5a" onclick="checkOther(\'5\');" ';
+		if(isset($val['folder'])) {
+			$out .= 'checked=""';
+		}
+		$out .= '/> '. _("the existing folder") . ' ';
+		if(isset($val['folder'])) {
+			$out .= mailboxlist('folder', $val['folder']);
+		} else {
+			$out .= mailboxlist('folder', false);
+		}
+			
+		$out .=	'<br />'.
 				'<input type="radio" name="newfolder" value="5b" onclick="checkOther(\'5\');" /> '.
 				_("a new folder, named").
 				'<input type="text" size="25" name="folder_name" onclick="checkOther(\'5\');" /> '.
 				_("created as a subfolder of").
 				mailboxlist('subfolder', false, true);
+		return $out;
 	}
 }
 
@@ -285,6 +294,7 @@ class avelsieve_action_vacation extends avelsieve_action {
 
 	function avelsieve_action_vacation($rule = array(), $frontend = 'html') {
 		$this->avelsieve_action($rule, $frontend);
+		$this->vac_addresses = get_user_addresses();
 		$this->text = _("Vacation");
 		$this->helptxt = _("The notice will be sent only once to each person that sends you mail, and will not be sent to a mailing list address.");
 
@@ -342,6 +352,13 @@ class avelsieve_action_notify extends avelsieve_action {
 		'notify[options]' => ''
 	);
 
+	/**
+	 * The notification action is a bit more complex than the others. The
+	 * oldcyrus variable is for supporting the partially implemented notify
+	 * extension implementation of Cyrus < 2.3.
+	 *
+	 * @see https://bugzilla.andrew.cmu.edu/show_bug.cgi?id=2135
+	 */
 	function avelsieve_action_notify($rule = array(), $frontend = 'html') {
 		$this->avelsieve_action($rule, $frontend);
 		global $notifymethods;
@@ -364,11 +381,13 @@ class avelsieve_action_notify extends avelsieve_action {
 	}
 
 	function options_html($val) {
+		global $notifymethods;
+		$out = '';
 		if(is_array($notifymethods) && sizeof($notifymethods) == 1) {
 				/* No need to provide listbox, there's only one choice */
 				$out .= '<input type="hidden" name="notify[method]" value="'.$notifymethods[0].'" />';
-				if(array_key_exists($notifymethods[0], $notifystrings)) {
-					$out .= $notifystrings[$notifymethods[0]];
+				if(array_key_exists($notifymethods[0], $this->notifystrings)) {
+					$out .= $this->notifystrings[$notifymethods[0]];
 				} else {
 					$out .= $notifymethods[0];
 				}
@@ -384,8 +403,8 @@ class avelsieve_action_notify extends avelsieve_action {
 					}
 					$out .= '>';
 		
-					if(array_key_exists($met, $notifystrings)) {
-						$out .= $notifystrings[$met];
+					if(array_key_exists($met, $this->notifystrings)) {
+						$out .= $this->notifystrings[$met];
 					} else {
 						$out .= $met;
 					}
@@ -394,7 +413,7 @@ class avelsieve_action_notify extends avelsieve_action {
 				$out .= '</select>';
 				
 		} elseif($notifymethods == false) {
-				$out .= '<input name="notify[method]" value="'.$val['method']. '" size="20" />';
+				$out .= '<input name="notify[method]" value="'.$val['notify']['method']. '" size="20" />';
 		}
 		
 			$out .= '<br /><blockquote>';

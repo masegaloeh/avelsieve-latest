@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.5 2004/11/08 13:53:06 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.6 2004/11/11 13:49:49 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -99,17 +99,26 @@ class avelsieve_html_edit extends avelsieve_html {
 
 
 	/**
-	 * Output ruletype radio buttons.
+	 * Output ruletype select form.
+	 *
 	 * @param string $select 'radio' or 'select'
 	 */
-	function rule_1_type_radio($select = 'radio') {
+	function rule_1_type($select = 'radio') {
 		global $types, $sieve_capabilities;
-
 		if($select == 'radio') {
 			$out = '<p>'._("What kind of rule would you like to add?"). '</p>';
-		} else {
-			$out = '<p align="center">' . _("Rule Type") . ': <select name="type">';
+		} elseif($select == 'select') {
+			$out = '<p align="center">' . _("Rule Type") . ': '.
+				'<input type="hidden" name="previoustype" value=""';
+			if(isset($this->rule['type'])) {
+				$out .= $this->rule['type'];
+			} else {
+				$out .= '0';
+			}
+			$out .= '" /><select name="type" onChange="addrule.submit();">';
 		}
+
+		$active_types = array();
 		foreach($types as $i=>$tp) {
 			if(isset($tp['disabled'])) {
 				continue;
@@ -121,31 +130,35 @@ class avelsieve_html_edit extends avelsieve_html {
 					}
 				}
 			}
-			if($i==2) {
-				if($select == 'radio') {
-					$out .= '<input type="radio" name="type" id="type_'.$i.'" value="'.$i.'" checked="" /> ';
-				} else {
-					print '<option value="'.$i.'" ';
-					if($type == $i) {
-						print 'selected=""';
-					}
-					print '>'. $tp['name'] .'</option>';
-				}
-			} else {
-				$out .= '<input type="radio" name="type" id="type_'.$i.'" value="'.$i.'" /> ';
-			}
+			$active_types[$tp['order']] = $i;
+		}
+		sort($active_types);
+
+		for($i=0; $i<sizeof($active_types); $i++) {
+			$k = $active_types[$i];
 			if($select == 'radio') {
-				$out .= '<label for="type_'.$i.'">'.$tp['name'].'<br />'.
-					'<blockquote>'.$tp['description'].'</blockquote>'.
+				$out .= '<input type="radio" name="type" id="type_'.$k.'" value="'.$k.'" ';
+				if(isset($this->rule['type']) && $this->rule['type'] == $k) {
+					$out .= 'selected=""';
+				}
+				$out .= '/> '.
+					'<label for="type_'.$k.'">'.$types[$k]['name'].'<br />'.
+					'<blockquote>'.$types[$k]['description'].'</blockquote>'.
 					'</label>';
+			} elseif($select == 'select') {
+				$out .= '<option value="'.$k.'" ';
+				if(isset($this->rule['type']) && $this->rule['type'] == $k) {
+					$out .= 'selected=""';
+				}
+				$out .= '>'. $types[$k]['name'] .'</option>';
 			}
 		}
 		if($select == 'select') {
-			$out .= '</select>';
+				$out .= '</select>';
 		}
 		return $out;
 		/* ??
-		print ' <input type="submit" name="changetype" value="'._("Change Type").'" /> </p>';
+		$out .= ' <input type="submit" name="changetype" value="'._("Change Type").'" /> </p>';
 		*/
 	}
 
@@ -459,13 +472,24 @@ class avelsieve_html_edit extends avelsieve_html {
 	/**
 	 * Main function that outputs a form for editing a whole rule.
 	 */
-	function edit_rule($edit) {
+	function edit_rule($edit = false) {
 
 		global $PHP_SELF;
-		$out = $this->table_header( _("Editing Mail Filtering Rule") . ' #'. ($edit+1) ).
+		if(is_numeric($edit)) {
+			$out = $this->table_header( _("Editing Mail Filtering Rule") . ' #'. ($edit+1) ).
 			$this->all_sections_start().
 			'<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
 			'<input type="hidden" name="edit" value="'.$edit.'" />';
+		} else {
+			$out = $this->table_header( _("Create New Mail Filtering Rule") ).
+			$this->all_sections_start().
+			'<form name="addrule" action="'.$PHP_SELF.'" method="POST">';
+		}
+		
+		/* -------------------- type ------------------------ */
+		$out .= $this->section_start( _("Rule Type") ).
+			$this->rule_1_type('select') .
+			$this->section_end();
 
 		/* --------------------- 'if' ----------------------- */
 		$out .= $this->section_start( _("Condition") );
@@ -475,7 +499,12 @@ class avelsieve_html_edit extends avelsieve_html {
 				break;
 			case 2:			/* header */
 				if(!isset($items)) {
-					$items = sizeof($this->rule['header']) + 1;
+					if(isset($this->rule['header'])) {
+						$items = sizeof($this->rule['header']) + 1;
+					} else {	
+						global $startitems;
+						$items = $startitems;
+					}
 					$out .= '<input type="hidden" name="items" value="'.$items.'" />';
 				}
 				$out .= $this->rule_2_2_header($items);
