@@ -9,7 +9,7 @@
  * Various support functions, useful or useless.  NB. THEY MUST NOT DEPEND
  * ELSEWHERE.
  *
- * @version $Id: support.inc.php,v 1.2 2004/11/03 11:22:58 avel Exp $
+ * @version $Id: support.inc.php,v 1.3 2004/11/08 12:59:52 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -139,5 +139,54 @@ function avelsieve_create_folder($foldername, $subfolder = '', $created_mailbox_
 	return '';
 }
 
+/**
+ * Print mailbox select widget.
+ * 
+ * @param string $selectname name for the select HTML variable
+ * @param string $selectedmbox which mailbox to be selected in the form
+ * @param boolean $sub 
+ */
+function mailboxlist($selectname, $selectedmbox, $sub = false) {
+	
+	global $boxes_append, $boxes_admin, $imap_server_type,
+	$default_sub_of_inbox;
+	
+		if(isset($boxes_admin) && $sub) {
+			$boxes = $boxes_admin;
+		} elseif(isset($boxes_append)) {
+			$boxes = $boxes_append;
+		} else {
+			global $boxes;
+		}
+		
+		if (count($boxes)) {
+	    	$mailboxlist = '<select name="'.$selectname.'" onclick="checkOther(\'5\');" >';
+		
+	    	if($sub) {
+			if ($default_sub_of_inbox == false ) {
+				$mailboxlist = $mailboxlist."\n".'<option selected value="">[ '._("None")." ] </option>\n";	
+			}
+	    	}
+	
+	    	for ($i = 0; $i < count($boxes); $i++) {
+	            	$box = $boxes[$i]['unformatted-dm'];
+	            	$box2 = str_replace(' ', '&nbsp;', imap_utf7_decode_local($boxes[$i]['unformatted']));
+	            	//$box2 = str_replace(' ', '&nbsp;', $boxes[$i]['formatted']);
+	
+	            	if (strtolower($imap_server_type) != 'courier' || strtolower($box) != 'inbox.trash') {
+	                	$mailboxlist .= "<option value=\"$box\"";
+				if($selectedmbox == $box) {
+					$mailboxlist .= ' selected=""';
+				}
+				$mailboxlist .= ">$box2</option>\n";
+	            	}
+	    	}
+	    	$mailboxlist .= "</select>\n";
+	
+		} else {
+	    	$mailboxlist = "No folders found.";
+		}
+		return $mailboxlist;
+	}
  
 ?>
