@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: buildrule.php,v 1.9 2004/01/26 12:58:09 avel Exp $
+ * $Id: buildrule.php,v 1.10 2004/03/26 17:28:07 avel Exp $
  */
 
 /**
@@ -260,8 +260,13 @@ case "2":	/* header */
 	for ( $i=0; $i<sizeof($rule['headermatch']); $i++) {
 		$text .= _("the header");
 
-		$text .= " <strong>&quot;".htmlspecialchars($rule['header'][$i])."&quot;</strong> ";
-		$terse .= " ".htmlspecialchars($rule['header'][$i])." ";
+		if($rule['header'][$i] == 'toorcc') {
+			$text .= " <strong>&quot;To&quot; / &quot;Cc&quot; </strong> ";
+			$terse .= " TO OR CC";
+		} else {
+			$text .= " <strong>&quot;".htmlspecialchars($rule['header'][$i])."&quot;</strong> ";
+			$terse .= " ".htmlspecialchars($rule['header'][$i])." ";
+		}
 
 		// $escapeslashes = false;
 
@@ -353,7 +358,12 @@ case "2":	/* header */
  			default:
  				break 1;
  		}
-		$out .= " \"" . $rule['header'][$i] . "\" ";
+
+		if($rule['header'][$i] == 'toorcc') {
+			$out .= ' ["to", "cc", "bcc"] ';
+		} else {
+			$out .= " \"" . $rule['header'][$i] . "\" ";
+		}
 
 		/* Escape slashes and double quotes */
 		$out .= "\"". avelsieve_addslashes($rule['headermatch'][$i]) . "\"";
