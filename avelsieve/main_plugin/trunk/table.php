@@ -11,7 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table.php,v 1.11 2004/01/22 16:18:59 avel Exp $
+ * $Id: table.php,v 1.12 2004/03/26 18:29:23 avel Exp $
  *
  * @package avelsieve
  */
@@ -416,12 +416,17 @@ for ($i=0; $i<sizeof($rules); $i++) {
 	/* print '</td><td><input type="checkbox" name="rm'.$i.'" value="1" /></td></tr>'; */
 
 	
-	// Temporary hack to disable 'edit' for spamrule
-	if($rules[$i]['type'] != 10) {
-		/* Edit */
+	/* Edit */
+	if($rules[$i]['type'] == 10) {
+		avelsieve_print_toolicon ("edit", $i, "addspamrule.php", "");
+	} else {
 		avelsieve_print_toolicon ("edit", $i, "edit.php", "");
+	}
 	
-		/* Duplicate */
+	/* Duplicate */
+	if($rules[$i]['type'] == 10) {
+		avelsieve_print_toolicon ("dup", $i, "addspamrule.php", "edit=$i&amp;dup=1");
+	} else {
 		avelsieve_print_toolicon ("dup", $i, "edit.php", "edit=$i&amp;dup=1");
 	}
 

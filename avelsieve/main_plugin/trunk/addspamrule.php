@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: addspamrule.php,v 1.3 2003/12/18 12:25:54 avel Exp $
+ * $Id: addspamrule.php,v 1.4 2004/03/26 18:29:23 avel Exp $
  */
 
 /**
@@ -34,9 +34,32 @@ if(isset($_POST['cancel'])) {
 	header("Location: ./table.php");
 	exit;
 
-}  elseif(isset($_POST['spamrule_advanced'])) {
-	$spamrule_advanced = $_POST['spamrule_advanced'];
 }
+
+if(isset($_GET['edit'])) {
+	$edit = $_GET['edit'];
+
+	/* Have this handy: type of current rule */
+	$type = $_SESSION['rules'][$edit]['type'];
+	
+	/* and the rule itself */
+	$rule = $_SESSION['rules'][$edit];
+
+	if($type != 10) {
+		header("Location: edit.php?edit=$edit");
+	}
+
+	if(isset($_GET['dup'])) {
+		$dup = true;
+	}
+}
+
+if(isset($_POST['spamrule_advanced'])) {
+	$spamrule_advanced = $_POST['spamrule_advanced'];
+} elseif (isset($edit)) {  /* TODO - check advanced mode */
+	$spamrule_advanced = true;
+}
+
 
 $spamrule = true;
 global $spamrule;
@@ -59,30 +82,40 @@ if(isset($_SESSION['spamrule_rbls'])) {
 
 if(isset($_POST['tests'])) {
 	$tests = $_POST['tests'];
+} elseif (isset($edit) && isset($rule['tests'])) {
+	$tests = $rule['tests'];
 } else {
 	$tests = array_keys($spamrule_tests);
 }
 
 if(isset($_POST['score'])) {
 	$score = $_POST['score'];
+} elseif (isset($edit) && isset($rule['score'])) {
+	$score = $rule['score'];
 } else {
 	$score = $spamrule_score_default;
 }
 
 if(isset($_POST['action']))  {
 	$action = $_POST['action'];
+} elseif (isset($edit) && isset($rule['action'])) {
+	$action = $rule['action'];
 } else {
 	$action = $spamrule_action_default;
 }
 
+
 if(isset($_POST['stop']))  {
-	$stop = $_POST['stop'];
+	$stop = 1;
+} elseif (isset($edit) && isset($rule['stop']) && !isset($_POST['apply'])) {
+	$stop = $rule['stop'];
 }
+
 
 /* Other stuff */
 sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
 
-if(isset($_POST['finished'])) {
+if(isset($_POST['finished']) || isset($_POST['apply'])) {
 	/* get it together & save it */
 	if($action == 'junk' && isset($_POST['junkprune_saveme'])) {
 		/* Save previously unset (or zero) junkprune variable */
@@ -93,11 +126,20 @@ if(isset($_POST['finished'])) {
 	$newrule['tests'] = $tests;
 	$newrule['score'] = $score;
 	$newrule['action'] = $action;
-	if(isset($stop)) {
+	if(isset($stop) && $stop) {
 		$newrule['stop'] = $stop;
 	}
-	$_SESSION['comm']['new'] = true;
-	$_SESSION['returnnewrule'] = $newrule;
+
+	if(isset($edit) && !isset($dup)) {
+		$_SESSION['comm']['edited'] = $edit;
+		$_SESSION['haschanged'] = true;
+		$_SESSION['rules'][$edit] = $newrule;
+	} else {
+		$_SESSION['returnnewrule'] = $newrule;
+		$_SESSION['comm']['edited'] = $edit;
+		$_SESSION['comm']['new'] = true;
+	}
+
 	header('Location: table.php');
 	exit;
 }
@@ -240,7 +282,7 @@ if(isset($junkprune_saveme)) {
 	
 	/* STOP */
 	
-	print '<br /><input type="checkbox" name="stop" id="stop" ';
+	print '<br /><input type="checkbox" name="stop" id="stop" value="1" ';
 	if(isset($stop)) {
 		print 'checked="" ';
 	}
@@ -259,7 +301,19 @@ if(isset($junkprune_saveme)) {
 
 print_section_end();
 print_all_sections_end();
-printaddbuttons();
+
+if(isset($edit)) {
+	print '<input type="hidden" name="edit" value="'.$edit.'" />';
+	if(isset($dup)) {
+		print '<input type="hidden" name="dup" value="1" />';
+		print '<input type="submit" name="addnew" value="'._("Add SPAM Rule").'" />';
+	} else {
+		print '<input type="submit" name="apply" value="'._("Apply Changes").'" />';
+	}
+	print '<input type="submit" name="cancel" value="'._("Cancel").'" />';
+} else {
+	printaddbuttons();
+}
 printfooter2();
 
 
