@@ -1,14 +1,54 @@
-<h3>0.9.12 CVS (?/7/2004)</h3>
+
+<h3>1.9.0 alpha - Devel Branch (/11/2003)</h3>
 
 <ul>
 
+<li>New feature: A rule can be created on-the-fly while reading a message in
+Squirrelmail. The algorithm is similar to other <acronym title="Mail User
+Agents">MUAs</acronym>: First a check is done if the mail belongs to a mailing
+list, then a check on the sender and destination addresses, and lastly the
+Subject is taken into account.</li>
+
+<li>The <em>Edit Rule</em> page has been redesigned. Specifically:</li>
+	
+	<ul>
+	<li>The type of rule (size match, header match etc.) can be changed
+	on-the-fly.</li>
+	
+	<li>Action Options are displayed only when the relevant action has been
+	selected.</li>
+
+	<li>On-the-fly new folder creation now works properly, with better error
+	handling.</li>
+
+	<li>The page takes into account user's preferences on new popup windows and
+	javascript options.</li>
+
+	</ul>
+
+<li>The <em>Edit Rule</em> page can now add a new rule.</li>
+
+<li>The <em>Add new Rule Wizard</em> has been obsoleted by the revamped
+<em>Edit Rule</em> page.</li>
+
+<li>Completely rewritten a lot of the code that handles the GUI parts of
+avelsieve. The code is written in a way so that new GUI frontends can be
+written a bit more easily.</li>
+
+</ul>
+
+
+<h3>1.0 CVS  Stable Branch (?/11/2004)</h3>
+
+<ul>
 <li>Fixed page header link to not specify target - makes avelsieve work with
 multiple windows.</li>
 
+<li>French Locale update (<span class="translator">Bachelier Vincent</span>)</li>
+
 <li>German locale update (<span class="translator">Ralf
 Hildebrandt</span>)</li>
-
-<ul>
+</ul>
 
 
 <h3>0.9.11 (17/5/2004)</h3>
