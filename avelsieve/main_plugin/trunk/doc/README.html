@@ -17,9 +17,6 @@ emails. See <a href="http://www.faqs.org/rfcs/rfc3028.html">RFC 3028</a> and <a
 href="http://www.cyrusoft.com/sieve/">Cyrusoft's page about SIEVE</a> for more
 details.</p>
 
-<p>Latest Version is <a href="avelsieve_download.php">0.9.11</a> (Released
-17-May-2004).</p>
-
 
 <h3><a id="about">About this implementation</a></h3>
 
@@ -43,11 +40,24 @@ the beta status.</p>
 
 <h3><a id="status">Status</a></h3>
 
-<p>This is beta software. It has been out for a while and is known to work
-pretty well.  You'll have to check for yourselves if it is for a production
-environment. Features (and bugs) are added every other day. Insert standard
-GPL_Disclaimer(); here.</p>
+<ul>
+<li>
+Devel Branch (1.9): Considered alpha quality.<br./>
 
+This release should be considered 'alpha quality'. At the moment it works
+for me without any major glitches, but who knows, there might be a bug that
+DoS'es the Apache Server by eating all of its memory in there. (I know there
+<em>was</em> at least one of those, I fixed it some days ago).
+</li>
+
+<li>Stable Branch (1.0):<br/>
+
+This plugin has been out for a while and is known to work pretty well.  You'll
+have to check for yourselves if it is for a production environment. ) Insert
+standard GPL_Disclaimer(); here.
+</li>
+
+</ul>
 
 
 <h3><a id="features">Features</a></h3>
@@ -55,7 +65,10 @@ GPL_Disclaimer(); here.</p>
 <p>This plugin provides:</p>
 
 <ul>
-<li>Simple HTML, no Javascript.</li>
+<li>Simple HTML interface.</li>
+
+<li>Javascript functionality that enhances the user interaction, however there
+is HTML-only fallback for accessibility.</li>
 <li>Match messages based on email headers, size, or apply to all messages.</li>
 <li>Configurable number of header matches.</li>
 <li>Support of keeping a message, move to an existing or new folder, email redirection.</li>
@@ -103,7 +116,8 @@ wish. Check the <a href="demo.php">Live Demo</a> page for more information.
 <ul>
 
 <li>It has been tested with <a href="http://asg.web.cmu.edu/cyrus/">Cyrus IMAP
-server</a> and its <em>timsieved</em> SIEVE parser.</li>
+server</a> and its <em>timsieved</em> SIEVE parser. There have been reports
+about it working with <a href="http://www.dbmail.org">DBMail</a>, too.</li>
 
 <li><a href="http://www.squirrelmail.org">Squirrelmail</a> version 1.4.0 or
 greater.</li>
