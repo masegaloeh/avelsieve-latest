@@ -11,7 +11,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: edit.php,v 1.3 2003/12/18 12:21:00 avel Exp $
+ * $Id: edit.php,v 1.4 2004/01/21 15:40:23 avel Exp $
  */
 
 /* edit.php: Editing existing rules. */
@@ -89,9 +89,16 @@ if(isset($_POST['append'])) {
 
 } elseif(isset($_POST['addnew'])) {
 	$no = $_POST['edit'];
-
-	$_SESSION['rules'][] = process_input($type);
-	// $_SESSION['returnnewrule'] = process_input($type);
+ 	$newrule = process_input($type);
+     
+	if(isset($_POST['dup'])) {
+		// insert moving rule in place
+		array_splice($_SESSION['rules'], $_POST['edit']+1, 0, array($newrule));
+		// Reindex
+		$_SESSION['rules'] = array_values($_SESSION['rules']);
+	} else {
+		$_SESSION['rules'][] = $newrule;
+	}
 
 	/* Communication: */
 	$_SESSION['comm']['edited'] = $no;
