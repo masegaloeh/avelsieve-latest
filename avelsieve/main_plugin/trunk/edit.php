@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.17 2004/11/18 12:06:09 avel Exp $
+ * @version $Id: edit.php,v 1.18 2004/11/22 12:02:04 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -23,13 +23,17 @@ include_once(SM_PATH . 'include/load_prefs.php');
 include_once(SM_PATH . 'functions/page_header.php');
 include_once(SM_PATH . 'functions/imap.php');
 
+$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+textdomain ('avelsieve');
+
 include_once(SM_PATH . 'plugins/avelsieve/config/config.php');
-include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
+require_once(SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/html_rulestable.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/sieve_actions.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/sieve.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/process_user_input.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
 
 sqsession_is_active();
 
@@ -106,8 +110,6 @@ if(isset($authz)) {
 							$sievescript .= "$line\n";
 						}
 					} else {
-						$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
-						textdomain ('avelsieve');
 						$errormsg = _("Could not get SIEVE script from your IMAP server");
 						$errormsg .= " " . $imapServerAddress.".<br />";
 						$errormsg .= _("(Probably the script is size null).");
@@ -134,9 +136,7 @@ if(isset($popup)) {
 	$popup = '';
 }
 
-/**
- * Create new mailbox, if required by the user.
- */
+/* Create new mailbox, if required by the user. */
 if($newfoldername) {
 	$created_mailbox_name = '';
 	avelsieve_create_folder($newfoldername, $newfolderparent, &$created_mailbox_name, &$errmsg);
@@ -159,7 +159,6 @@ if(isset($type_post)) {
 	$rule = process_input(SQ_POST, &$errmsg);
 }
 
-// print "<b>PREVIOUS = $previoustype , type = $type</b>";
 if(isset($previoustype) && (
 	$previoustype == 0 ||
 	(isset($type) && $previoustype != $type)
@@ -185,7 +184,6 @@ if(isset($_POST['append'])) {
 	exit;
 
 } elseif($changetype) {
-	// print "changing rule type";
 	/* Changing of rule type */
 	$rule['type'] = $_POST['type'];
 	
@@ -234,7 +232,16 @@ $imapConnection = sqimap_login($username, $key, $imapServerAddress, $imapPort, 0
 $boxes = sqimap_mailbox_list($imapConnection);
 sqimap_logout($imapConnection); 
 
-/* ---------------------- Start main ----------------------- */
+/* Mode of operation */
+if(isset($dup)) {
+	$mode = 'duplicate';
+} elseif(isset($addnew)) {
+	$mode = 'addnew';
+} else {
+	$mode = 'edit';
+}
+
+/* -------------- Presentation Logic ------------- */
 
 $js = '
 <script language="JavaScript" type="text/javascript">
@@ -275,33 +282,11 @@ function ToggleShowDiv(divname) {
 </script>
 ';
 
+$prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
+textdomain ('squirrelmail');
 displayHtmlHeader('', $js);
-
-/* Used to be like this: */
-/*
-if(isset($popup)) {
-	displayHtmlHeader('', $js);
-} else {
-	displayPageHeader($color, 'None');
-	echo $js;
-}
-*/
-
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
-
-require_once (SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
-
-if(isset($dup)) {
-	$mode = 'duplicate';
-} elseif(isset($addnew)) {
-	$mode = 'addnew';
-} else {
-	$mode = 'edit';
-}
-
-if(isset($errmsg) && $errmsg) {
-}
 
 $ht = new avelsieve_html_edit($mode, $rule, $popup, $errmsg);
 
