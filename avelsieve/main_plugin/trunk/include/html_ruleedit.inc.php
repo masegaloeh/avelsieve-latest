@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.4 2004/11/08 12:59:52 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.5 2004/11/08 13:53:06 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -410,7 +410,9 @@ class avelsieve_html_edit extends avelsieve_html {
 			$classname = 'avelsieve_action_'.$action;
 			if(class_exists($classname)) {
 				$$classname = new $classname($this->rule, 'html');
-				$out .= $$classname->action_html();
+				if($$classname != null) {
+					$out .= $$classname->action_html();
+				}
 			}
 		}
 		return $out;
