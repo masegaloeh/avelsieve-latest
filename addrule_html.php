@@ -113,7 +113,7 @@ function printmailboxlist($selectname, $selectedmbox, $sub = false) {
 	
 	    if($sub) {
 		if ($default_sub_of_inbox == false ) {
-			echo '<option selected value="">[ '._("None")." ]\n";
+			$mailboxlist = $mailboxlist."\n".'<option selected value="">[ '._("None")." ] </option>\n";	
 		}
 	    }
 
