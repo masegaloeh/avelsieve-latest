@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: buildrule.php,v 1.3 2003/10/09 11:25:37 avel Exp $
+ * $Id: buildrule.php,v 1.4 2003/10/09 12:29:24 avel Exp $
  */
 
 /**
@@ -398,7 +398,7 @@ case "3":	/* size */
 	break;
 
 case "4":	/* always */
-	$out .= "true\n";
+	$out .= "true {\n";
 	break;
 }
 
@@ -414,6 +414,8 @@ if( $rule['type'] != "4" && $rule['type']!=10 ) {
 	$text .= _("then");
 	$text .= "</strong> ";
 }
+
+
 
 switch ($rule['action']) {
 case "1":	/* keep (default) */
