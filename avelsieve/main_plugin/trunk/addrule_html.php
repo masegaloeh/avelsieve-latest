@@ -111,17 +111,14 @@ function printmailboxlist($selectname, $selectedmbox, $sub = false) {
 	if (count($boxes)) {
 	    $mailboxlist = '<select name="'.$selectname.'" onclick="checkOther(\'5\');" >';
 	
+	    if($sub) {
+		if ($default_sub_of_inbox == false ) {
+			echo '<option selected value="">[ '._("None")." ]\n";
+		}
+	    }
 
 	    for ($i = 0; $i < count($boxes); $i++) {
-	    
-	    	if($sub) {
-			if ($default_sub_of_inbox == false ) {
-				echo '<option selected value="">[ '._("None")." ]\n";
-			}
-		}
-        
 	            $box = $boxes[$i]['unformatted-dm'];
-
 	            $box2 = str_replace(' ', '&nbsp;', imap_utf7_decode_local($boxes[$i]['unformatted']));
 	            //$box2 = str_replace(' ', '&nbsp;', $boxes[$i]['formatted']);
 
