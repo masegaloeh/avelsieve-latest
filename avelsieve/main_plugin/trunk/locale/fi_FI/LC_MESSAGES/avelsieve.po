@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-01 20:12+0300\n"
-"PO-Revision-Date: 2003-03-19 14:24+0200\n"
+"POT-Creation-Date: 2004-05-17 17:20+0300\n"
+"PO-Revision-Date: 2004-05-14 12:00+0200\n"
 "Last-Translator: Veli Pirttila <titus@iki.fi>\n"
 "Language-Team: finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "You have to define at least one header match text."
-msgstr "Tekstin tulee sisältyä ainakin yhteen otsikkokenttään"
+msgstr "Tekstin tulee sisältyä ainakin yhteen otsikkokenttään."
 
 msgid "You have not defined the name for the new folder."
 msgstr "Tekstin tulee sisältyä ainakin yhteen otsikkokenttään."
@@ -71,9 +71,8 @@ msgstr "Aloita alusta"
 msgid "Cancel"
 msgstr "Peruuta"
 
-#, fuzzy
 msgid "Add SPAM Rule"
-msgstr "Lisää uusi sääntö"
+msgstr "Lisää ROSKAPOSTI sääntö"
 
 msgid "Move back to step"
 msgstr "Siirry takaisin kohtaan"
@@ -84,9 +83,8 @@ msgstr "Valmis"
 msgid "Move on to step"
 msgstr "Siirry kohtaan"
 
-#, fuzzy
 msgid "None"
-msgstr "Numero"
+msgstr "Ei yhtään"
 
 msgid "What kind of rule would you like to add?"
 msgstr "Minkä tyyppisen ehdon haluaisit lisätä?"
@@ -97,7 +95,7 @@ msgid ""
 msgstr "Ehto käynnistyy jos seuraavanlaiset osoitteet ilmestyvät mihinkään"
 
 msgid "To: or Cc"
-msgstr ""
+msgstr "To: tai Cc"
 
 msgid "AND (Every item must match)"
 msgstr "JA (Kaikkien tulee sisältyä)"
@@ -171,7 +169,7 @@ msgid "someone@example.org"
 msgstr "email@osoite"
 
 msgid "Keep a local copy as well."
-msgstr ""
+msgstr "Pidä myös paikallinen kopio."
 
 msgid "Move message into"
 msgstr "Siirrä viesti"
@@ -237,7 +235,7 @@ msgid "Notification ID"
 msgstr "Ilmoitus ID"
 
 msgid "Destination"
-msgstr ""
+msgstr "Kohde"
 
 msgid "Message"
 msgstr "Viesti"
@@ -256,46 +254,55 @@ msgstr ""
 "tai olla lisäämättä sääntöä valitsemalla Peruuta"
 
 msgid "Configure Anti-SPAM Protection"
-msgstr ""
+msgstr "Aseta roskapostinsuojaus"
 
 msgid ""
 "All incoming mail is checked for unsolicited commercial content (SPAM) and "
 "marked accordingly. This special rule allows you to configure what to do "
 "with such messages once they arrive to your Inbox."
 msgstr ""
+"Kaikki sisääntulevat sähköpostit tarkistetaan ei-halutulta "
+"kaupalliseltasisällöltä (SPAM) ja merkataan sellaiseksi. Tämä erikoissääntö "
+"antaa sinulle mahdollisuudenmitä tehdä näille viesteille kun ne saapuvat "
+"postilaatikkoosi."
 
 #, php-format
 msgid ""
 "Select %s to add the predefined rule, or select the advanced SPAM filter to "
 "customize the rule."
 msgstr ""
+"Valitse %s lisätäksesi esiasetetun säännön, tai valitse kehittynyt SPAM "
+"suodatin kustomoidaksesi säännön."
 
-#, fuzzy
 msgid "Add Spam Rule"
-msgstr "Lisää uusi sääntö"
+msgstr "Lisää SPAM sääntö"
 
 msgid "Advanced Spam Filter..."
-msgstr ""
+msgstr "Kehittynyt Spam Suodatin..."
 
 msgid "Target Score"
-msgstr ""
+msgstr "Kohde Pisteet"
 
 #, php-format
 msgid ""
 "Messages with SPAM-Score higher than the target value, the maximum value "
 "being %s, will be considered SPAM."
 msgstr ""
+"Viestit SPAM-pisteillä jotka ovat enemmän kuin kohdearvo, maksimiarvon "
+"ollessa %s, jotka luetaan roskapostiksi."
 
 msgid "SPAM Lists to check against"
-msgstr ""
+msgstr "Roskapostilista jota vastaan tarkistaa"
 
 msgid "Whitelist"
-msgstr ""
+msgstr "Valkoinen lista"
 
 msgid ""
 "Messages that match any of these header rules will never end up in Junk "
 "Folders or regarded as SPAM."
 msgstr ""
+"Viestit jotka osuvat mihinkään näistä otsikkosäännöistä eivät "
+"päädyRoskapostikansioihin tai luetella SPAMmiksi."
 
 msgid "Apply Changes"
 msgstr "Tallenna muutokset"
@@ -358,32 +365,33 @@ msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
 "messages)"
 msgstr ""
+"Kaikki viestit lueteltuna <STRONG>Roskapostiksi</strong> (ei-halutut "
+"kaupalliset viestit)"
 
 msgid "unless"
-msgstr ""
+msgstr "ellei"
 
 msgid "or"
-msgstr ""
+msgstr "tai"
 
 msgid "matching the Spam List(s):"
-msgstr ""
+msgstr "osuen Spamlistoihin:"
 
-#, fuzzy, php-format
+#, php-format
 msgid "and with score greater than %s"
-msgstr "on isompi kuin"
+msgstr "ja isommilla pisteillä kuin %s"
 
 msgid "will be"
-msgstr ""
+msgstr "tulee olemaan"
 
 msgid "stored in the Junk Folder."
-msgstr ""
+msgstr "talletettu Junk Kansioon."
 
 msgid "stored in the Trash Folder."
-msgstr ""
+msgstr "talletettu Trash Kansioon."
 
-#, fuzzy
 msgid "discarded."
-msgstr "<em>tuhoa</em> se."
+msgstr "tuhottu."
 
 msgid "If"
 msgstr "Jos"
@@ -428,7 +436,7 @@ msgid "reply with this vacation message: "
 msgstr "vastaa tällä lomaviestillä: "
 
 msgid "Also keep a local copy."
-msgstr ""
+msgstr "Pidä myös paikallinen kopio."
 
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr " Pidä myös kopio sisääntulevissa ja merkkaa poistetuksi."
@@ -448,10 +456,11 @@ msgstr " Sen jälkeen <strong>Pysähdy</strong> prosessoimasta sääntöjä."
 msgid "Address Match"
 msgstr "Osoite sisältää"
 
-#, fuzzy
 msgid ""
 "Perform an action depending on email addresses appearing in message headers."
-msgstr "Tee toiminto liittyen viestin kokoon"
+msgstr ""
+"Tee toiminto liittyen e-postiosoitteisiin jotka ovat viestiotsikoiden "
+"sisällä."
 
 msgid "Header Match"
 msgstr "Otsikko sisältyy"
@@ -478,13 +487,11 @@ msgstr "Viesti sisältää"
 msgid "Perform an action on messages depending on their content (body text)."
 msgstr "Tee toiminto viestin sisältöön liittyen"
 
-#, fuzzy
 msgid "wildcard"
-msgstr "sisältää asteriksin"
+msgstr "asteriksi"
 
-#, fuzzy
 msgid "regexp"
-msgstr "sisältää regexpin"
+msgstr "regexpi"
 
 msgid "verbose"
 msgstr "laaja"
@@ -525,45 +532,48 @@ msgstr "Kopioi"
 msgid "Move Up"
 msgstr "Siirrä Ylös"
 
-#, fuzzy
 msgid "Move to Top"
-msgstr "Siirry kohtaan"
+msgstr "Siirry Ylös"
 
 msgid "Move Down"
 msgstr "Siirrä Alas"
 
-#, fuzzy
 msgid "Move to Bottom"
-msgstr "Siirry kohtaan"
+msgstr "Siirry Alas"
 
 msgid "Junk Folder"
-msgstr ""
+msgstr "Junk Kansio"
 
 #, php-format
 msgid ""
 "Store SPAM message in your Junk Folder. Messages older than %s days will be "
 "deleted automatically."
 msgstr ""
+"Säilytä SPAM-viesti Junk Kansiossa. Vanhemmat viestit kuin %s päivää "
+"tuhoutuvat automaattisesti."
 
 msgid "Note that you can set the number of days in Folder Preferences."
-msgstr ""
+msgstr "Muista että voit asettaa montako päivää -arvon kansion asetuksissa."
 
 msgid "Trash Folder"
-msgstr ""
+msgstr "Trash Kansio"
 
 msgid ""
 "Store SPAM message in your Trash Folder. You will have to purge the folder "
 "yourself."
 msgstr ""
+"Tallenna SPAM-viesti Trash kansioon. Sinun on suoritettava purge-toiminto "
+"kansiolle itse."
 
-#, fuzzy
 msgid "Discard"
-msgstr "sisältää asteriksin"
+msgstr "Hylkää"
 
 msgid ""
 "Discard SPAM message. You will get no indication that the message ever "
 "arrived."
 msgstr ""
+"Hylkää SPAM-viesti. Et tule saamaan koskaan minkäänlaista tietoa viestin "
+"viestin saapumisesta."
 
 msgid "Editing Mail Filtering Rule"
 msgstr "Muokataan suodinsääntöä"
@@ -592,13 +602,13 @@ msgid "Could not set active script on your IMAP server"
 msgstr "Ei voitu aktivoida komentotiedostoa palvelimella"
 
 msgid "Unable to load script to server."
-msgstr ""
+msgstr "Ei voitu viedä scriptiä palvelimelle."
 
 msgid "Server responded with:"
-msgstr ""
+msgstr "Palvelin vastasi seuraavanlaisesti:"
 
 msgid "Test for Forged Header"
-msgstr ""
+msgstr "Testi väärennetylle otsikolle"
 
 msgid "Current Mail Filtering Rules"
 msgstr "Nykyiset suodinsäännöt"
@@ -615,9 +625,8 @@ msgstr "(Ehkä komentotiedosto ei sisällä mitään)."
 msgid "All your rules have been deleted"
 msgstr "Kaikki sääntösi on tuhottu"
 
-#, fuzzy
 msgid "Really delete this rule?"
-msgstr "Onnistuneesti poistettu sääntö#"
+msgstr "Poistetaanko tämä sääntö oikeasti?"
 
 msgid "Delete Selected"
 msgstr "Poista Valitut"
@@ -689,10 +698,10 @@ msgid "Save Changes"
 msgstr "Tallenna Muutokset"
 
 msgid "Created:"
-msgstr ""
+msgstr "Tehty:"
 
 msgid "Last modified:"
-msgstr ""
+msgstr "Viimeksi muutettu:"
 
 #~ msgid "in order to save your rules."
 #~ msgstr "tallentaaksesi säännöt."
@@ -700,7 +709,6 @@ msgstr ""
 #~ msgid "Parameters"
 #~ msgstr "Parametrit"
 
-#, fuzzy
 #~ msgid "does not match regexp"
 #~ msgstr "ei sisällä"
 
