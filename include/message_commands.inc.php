@@ -9,7 +9,7 @@
  * This file contains functions for the per-message commands that appear while
  * viewing a message.
  *
- * @version $Id: message_commands.inc.php,v 1.5 2004/11/15 16:37:28 avel Exp $
+ * @version $Id: message_commands.inc.php,v 1.6 2004/11/15 17:28:49 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -93,7 +93,9 @@ function avelsieve_commands_menu_do() {
 				$j=0;
 				$url .= '&amp;header['.$j.']='.ucfirst($c);
 				$url .= '&amp;matchtype['.$j.']=contains';
-				$url .= '&amp;headermatch['.$j.']='.rawurlencode(decodeHeader($hdr->$c));
+				$url .= '&amp;headermatch['.$j.']='.rawurlencode(decodeHeader($hdr->$c, false, false));
+				/* TODO: Probably use $utfdecode = true instead of false in the
+				 * above function call of decodeHeader() (second argument. */
 			}
 			break;
 
@@ -116,21 +118,25 @@ function avelsieve_commands_menu_do() {
 						'&amp;matchtype[0]=contains'.
 						'&amp;headermatch[0]='.rawurlencode($hdr->sender->mailbox.'@'.$hdr->sender->host);
 			
-			} elseif(isset($hdr->to) && !empty($hdr->to)) {
-				/* To:, not including one of my identities*/
+			} else {
 				$j = 0;
-				for($k=0; $k<sizeof($hdr->to); $k++) {
-					$tempurl = '';
-					if(!in_array($hdr->to[$k]->mailbox.'@'.$hdr->to[$k]->host,$myemails)) {
-						$tempurl .= '&amp;header['.$j.']=toorcc'.
-						'&amp;matchtype['.$j.']=contains'.
-						'&amp;headermatch['.$j.']='.rawurlencode($hdr->to[$k]->mailbox.'@'.
-						$hdr->to[$k]->host);
-						$j++;
+				/* Special check for To: Header */
+				/* FIXME - probably this is not such a good idea. */
+				if(isset($hdr->to) && !empty($hdr->to)) {
+					/* To:, not including one of my identities*/
+					for($k=0; $k<sizeof($hdr->to); $k++) {
+						$tempurl = '';
+						if(!in_array($hdr->to[$k]->mailbox.'@'.$hdr->to[$k]->host,$myemails)) {
+							$tempurl .= '&amp;header['.$j.']=toorcc'.
+							'&amp;matchtype['.$j.']=contains'.
+							'&amp;headermatch['.$j.']='.rawurlencode($hdr->to[$k]->mailbox.'@'.
+							$hdr->to[$k]->host);
+							$j++;
+						}
 					}
 				}
 				if($j > 0) {
-					$url .= $tempurl;
+						$url .= $tempurl;
 				} else {
 					/* The above method failed, continue with one of these: */
 
