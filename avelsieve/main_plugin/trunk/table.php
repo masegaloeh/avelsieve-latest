@@ -11,9 +11,9 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * $Id: table.php,v 1.14 2004/11/03 11:24:07 avel Exp $
+ * $Id: table.php,v 1.15 2004/11/15 13:10:23 avel Exp $
  *
- * @version $Id: table.php,v 1.14 2004/11/03 11:24:07 avel Exp $
+ * @version $Id: table.php,v 1.15 2004/11/15 13:10:23 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -201,7 +201,7 @@ if ($logout) {
 	exit;
 
 } elseif (isset($_POST['addrule'])) {
-	header("Location: $location/addrule.php");
+	header("Location: $location/edit.php?addnew=1");
 	exit;
 
 } elseif (isset($_POST['addspamrule'])) {
