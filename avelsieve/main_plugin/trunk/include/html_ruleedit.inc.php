@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.13 2004/11/18 11:06:25 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.14 2004/11/19 13:16:26 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -41,6 +41,11 @@ class avelsieve_html_edit extends avelsieve_html {
 	 * 'wizard', 'addnew', 'edit', 'duplicate'
 	 */
 	var $mode;
+	
+	/**
+	 * @var boolean Javascript Enabled?
+	 */
+	var $js;
 
 	/**
 	 * Constructor function. Takes as an optional argument a reference to a
@@ -59,6 +64,14 @@ class avelsieve_html_edit extends avelsieve_html {
 		$this->mode = $mode;
 		$this->popup = $popup;
 		$this->errmsg = $errmsg;
+
+		/* Set up javascript variable */
+		global $javascript_on;
+		if($javascript_on) {
+			$this->js = true;
+		} else {
+			$this->js = false;
+		}
 	}
 
 	/**
@@ -126,7 +139,11 @@ class avelsieve_html_edit extends avelsieve_html {
 		} elseif($select == 'select') {
 			$out = '<p align="center">' . _("Rule Type") . ': '.
 				'<input type="hidden" name="previoustype" value="'.$this->rule['type'].
-				'" /><select name="type" onChange="addrule.submit();">';
+				'" /><select name="type" ';
+			if($this->js) {
+				$out .= 'onChange="addrule.submit();"';
+			}
+			$out .= '>';
 		}
 
 		$active_types = array();
@@ -169,12 +186,13 @@ class avelsieve_html_edit extends avelsieve_html {
 			}
 		}
 		if($select == 'select') {
-				$out .= '</select><br/>';
+				$out .= '</select>';
 		}
+		if(!$this->js) {
+			$out .= ' <input type="submit" name="changetype" value="'._("Change Type").'" />';
+		}
+		$out .= '<br/>';
 		return $out;
-		/* ??
-		$out .= ' <input type="submit" name="changetype" value="'._("Change Type").'" /> </p>';
-		*/
 	}
 
 
