@@ -9,12 +9,14 @@
  * Various support functions, useful or useless.  NB. THEY MUST NOT DEPEND
  * ELSEWHERE.
  *
- * @version $Id: support.inc.php,v 1.5 2004/11/11 14:28:18 avel Exp $
+ * @version $Id: support.inc.php,v 1.6 2004/11/12 11:28:04 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
+
+include_once(SM_PATH . 'functions/identity.php');
 
 /**
  * Delete element from array.
@@ -193,10 +195,16 @@ function mailboxlist($selectname, $selectedmbox, $sub = false) {
  * Get user's email addresses (from all identities). They are to be used in the
  * vacation ":address" field.
  * @return string A string with comma-separated email addresses
- * @todo use new squirrelmail function get_idents() instead of 'identities'
- * user preference
  */
 function get_user_addresses() {
+	$idents = get_identities();
+	foreach($idents as $identity) {
+		$emailaddresses[] = $identity['email_address'];
+	}
+	return implode(",", $emailaddresses);
+
+	/* Rest of the code in this function is probably obsolete */
+	
 	global $data_dir, $username, $ldapuserdatamode;
 	$default_emailaddress = getPref($data_dir, $username, 'email_address');
 
