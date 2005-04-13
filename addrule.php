@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: addrule.php,v 1.8 2004/11/22 12:37:52 avel Exp $
+ * @version $Id: addrule.php,v 1.9 2005/04/13 13:15:44 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -353,7 +353,7 @@ case "3":
 	
 	if(!isset($boxes)) {
 		$imapConnection = sqimap_login($username, $_COOKIE['key'], $imapServerAddress, $imapPort, 1); 
-		$boxes = sqimap_mailbox_list($imapConnection);
+		$boxes = sqimap_mailbox_list_all($imapConnection);
 	
 		/* If we do not have append permission to some folders, use
 		 * separate structures */
