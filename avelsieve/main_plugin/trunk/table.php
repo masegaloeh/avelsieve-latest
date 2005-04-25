@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.21 2005/03/09 09:58:39 avel Exp $
+ * @version $Id: table.php,v 1.22 2005/04/25 15:01:17 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -353,10 +353,16 @@ if($popup) {
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
-//print "<pre>SESSION: "; print_r($_SESSION); print "</pre>";
-//print "<pre>POST: "; print_r($_POST); print "</pre>";
-//print "<pre>COOKIE: "; print_r($_COOKIE); print "</pre>";
-//print "<pre>rules: "; print_r($rules); print "</pre>";
+/* Debugging Part */
+/*
+include_once(SM_PATH . 'plugins/avelsieve/include/dumpr.php');
+echo 'SESSION:';
+dumpr($_SESSION);
+echo 'POST:';
+dumpr($_POST);
+echo 'Rules:';
+dumpr($rules);
+*/
 
 if(isset($_GET['mode'])) {
 	if(array_key_exists($_GET['mode'], $displaymodes)) {
