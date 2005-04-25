@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.10 2005/03/09 11:10:49 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.11 2005/04/25 15:51:14 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -39,18 +39,24 @@ class avelsieve_action {
 		$this->frontend = $frontend;
 		$this->rule = $rule;
 			
-		/* Check if required capability exists */
-		if(isset($this->capability) && !empty($this->capability)) {
-			if(!avelsieve_capability_exists($this->capability)) {
-				$this = null;
-				return;
-			}
-		}
-		
 		if ($this->useimages && isset($this->image_src)) {
 			$this->text = ' <img src="'.$this->image_src.'" border="0" alt="'. $this->text.'" align="middle" style="margin-left: 2px; margin-right: 4px;"/> '.
 				$this->text;
 		}
+	}
+
+	/**
+	 * Check if this action is valid in the current server capabilities
+	 * ($this->capabilities array).
+	 * @return boolean
+	 */
+	function is_action_valid() {
+		if(isset($this->capability) && !empty($this->capability)) {
+			if(!avelsieve_capability_exists($this->capability)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -400,41 +406,38 @@ class avelsieve_action_notify extends avelsieve_action {
 	 */
 	function avelsieve_action_notify($rule = array(), $frontend = 'html') {
 		global $notifymethods;
-		
-		if(is_array($notifymethods) && sizeof($notifymethods) > 0) {
-			$this->text = _("Notify me, using the following method:");
-			$this->notifystrings = array(
-				'sms' => _("Mobile Phone Message (SMS)") ,
-				'mailto' => _("Email notification") ,
-				'zephyr' => _("Notification via Zephyr") ,
-				'icq' => _("Notification via ICQ")
-			);
-
-			$this->oldcyrus = true;
-
+		if(isset($notifymethods)) {
+			$this->notifymethods = $notifymethods;
 		} else {
-			$this = null;
-			return;
+			$this->notifymethods = false;
 		}
+		
+		$this->text = _("Notify me, using the following method:");
+		$this->notifystrings = array(
+			'sms' => _("Mobile Phone Message (SMS)") ,
+			'mailto' => _("Email notification") ,
+			'zephyr' => _("Notification via Zephyr") ,
+			'icq' => _("Notification via ICQ")
+		);
+		$this->oldcyrus = true;
 		$this->avelsieve_action($rule, $frontend);
 	}
 
 	function options_html($val) {
-		global $notifymethods;
 		$out = '';
-		if(is_array($notifymethods) && sizeof($notifymethods) == 1) {
+		if(is_array($this->notifymethods) && sizeof($this->notifymethods) == 1) {
 				/* No need to provide listbox, there's only one choice */
-				$out .= '<input type="hidden" name="notify[method]" value="'.$notifymethods[0].'" />';
-				if(array_key_exists($notifymethods[0], $this->notifystrings)) {
-					$out .= $this->notifystrings[$notifymethods[0]];
+				$out .= '<input type="hidden" name="notify[method]" value="'.$this->notifymethods[0].'" />';
+				if(array_key_exists($this->notifymethods[0], $this->notifystrings)) {
+					$out .= $this->notifystrings[$this->notifymethods[0]];
 				} else {
-					$out .= $notifymethods[0];
+					$out .= $this->notifymethods[0];
 				}
 	
-		} elseif(is_array($notifymethods)) {
+		} elseif(is_array($this->notifymethods)) {
 				/* Listbox */
 				$out .= '<select name="notify[method]">';
-				foreach($notifymethods as $no=>$met) {
+				foreach($this->notifymethods as $no=>$met) {
 					$out .= '<option value="'.$met.'"';
 					if(isset($val['notify']['method']) &&
 					  $val['notify']['method'] == $met) {
@@ -451,7 +454,7 @@ class avelsieve_action_notify extends avelsieve_action {
 				}
 				$out .= '</select>';
 				
-		} elseif($notifymethods == false) {
+		} elseif($this->notifymethods == false) {
 				$out .= '<input name="notify[method]" value="'.$val['notify']['method']. '" size="20" />';
 		}
 		
