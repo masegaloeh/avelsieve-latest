@@ -1,26 +1,27 @@
-# translation of avelsieve.po to 
+# translation of avelsieve.po to Norwegian Bokmål
 # Alexander Brill <kiowa@egil.org>, 2003
+# Hans Fredrik Nordhaug <hans@nordhaug.priv.no>, 2005
 msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-03-09 13:30+0200\n"
-"PO-Revision-Date: 2003-05-02 14:39+0200\n"
-"Last-Translator: Alexander Brill <kiowa@egil.org>\n"
-"Language-Team:  <alexander@nettstudio.no>\n"
+"PO-Revision-Date: 2005-03-30 09:36+0100\n"
+"Last-Translator: Hans Fredrik Nordhaug <hans@nordhaug.priv.no>\n"
+"Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.0.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 msgid "You have to define at least one header match text."
-msgstr "Du m&aring; definere minst en meldings-hoder tekst. "
+msgstr "Du m&aring; definere minst en tekst for treff i meldingshode."
 
 msgid "Add New Rule"
-msgstr "Lag Ny Regel"
+msgstr "Legg til ny regel"
 
 msgid "New Rule Wizard - Step"
-msgstr "Ny Regel Hjelper - Steg"
+msgstr "Ny regelveiviser - steg"
 
 msgid "of"
 msgstr "av"
@@ -42,62 +43,69 @@ msgid ""
 "you might want to start over with a rule that makes more sense. Select &quot;"
 "finished&quot; to save this rule nonetheless.</p>"
 msgstr ""
-"<p>Du har valtgt &aring; beholde all epost. Dette er standard, s&aring; du "
-"vil kanskjestarte om igjen med et regelverk som utf&oslash;rer en handling "
-"utover dette.Velg &quot;Ferdig&quot; for å lagre denne regelen uansett.</p>"
+"<p>Du har valgt &aring; beholde all epost. Dette er standard, s&aring; du "
+"vil kanskje starte om igjen med et regelverk som utf&oslash;rer en handling "
+"utover dette. Velg &quot;Ferdig&quot; for å lagre denne regelen uansett.</p>"
 
 msgid ""
 "Please use the buttons on the bottom instead of your browser's reload, back "
 "and forward buttons, to build a rule."
 msgstr ""
-"Vennligst bruk knappene p&aring; bunnen i stedet for din nettlesers "
-"oppdater-, tilbake- og framover-knapper for &aring; lage en regel."
+"Bruk knappene p&aring; bunnen i stedet for din nettlesers oppdater-, "
+"tilbake- og framover-knapper for &aring; lage en regel."
 
-#, fuzzy
 msgid "Add SPAM Rule"
-msgstr "Lag Ny Regel"
+msgstr "Legg til søppelpostregel"
 
 msgid "Configure Anti-SPAM Protection"
-msgstr ""
+msgstr "Konfigurer beskyttelse mot søppelpost"
 
 msgid ""
 "All incoming mail is checked for unsolicited commercial content (SPAM) and "
 "marked accordingly. This special rule allows you to configure what to do "
 "with such messages once they arrive to your Inbox."
 msgstr ""
+"All innkommende post blir sjekket for søppelinnhold (SPAM) og markert "
+"deretter. Denne spesialregelen tillater deg å konfigurere hva du skal gjøre "
+"med slik meldinger når de kommer til innboksen din."
 
 #, php-format
 msgid ""
 "Select %s to add the predefined rule, or select the advanced SPAM filter to "
 "customize the rule."
 msgstr ""
+"Velg %s for å legge til den forhåndsdefinerte regelen eller velg det "
+"avanserte søppelpostfilteret for å tilpasse regelen."
 
-#, fuzzy
 msgid "Add Spam Rule"
-msgstr "Lag Ny Regel"
+msgstr "Legg til søppelpostregel"
 
 msgid "Advanced Spam Filter..."
-msgstr ""
+msgstr "Avansert søppelpostfilter"
 
 msgid "Target Score"
-msgstr ""
+msgstr "Målverdi"
 
 #, php-format
 msgid ""
 "Messages with SPAM-Score higher than the target value, the maximum value "
 "being %s, will be considered SPAM."
 msgstr ""
+"Meldinger med høyere søppelpostverdi enn målverdien, med %s som "
+"maksimumsverdi, betraktes som søppel."
 
 msgid "SPAM Lists to check against"
-msgstr ""
+msgstr "Søppelpostlister som det skal sjekkes mot"
 
 msgid "Whitelist"
-msgstr ""
+msgstr "Hvitlisting"
 
 msgid ""
 "Messages that match any of these header rules will never end up in Junk "
 "Folders or regarded as SPAM."
 msgstr ""
+"Meldinger som samsvarer med noen av disse hodereglene vil aldri enda opp i "
+"søppelmapper eller bli betraktet som søppelpost."
 
 msgid "More..."
 msgstr "Mer..."
@@ -115,16 +123,16 @@ msgid "(Probably the script is size null)."
 msgstr "(Sannsynligvis er regelsettet tomt)."
 
 msgid "Please contact your administrator."
-msgstr "Vennligst kontakt din system-administrator"
+msgstr "Vennligst kontakt din systemadministrator"
 
 msgid "Message Filters"
-msgstr "Meldings-filter"
+msgstr "Meldingsfilter"
 
 msgid ""
 "Server-Side mail filtering enables you to add criteria in order to "
 "automatically forward, delete or place a given message into a folder."
 msgstr ""
-"Filtrering av dine meldinger på epost-serveren gj&oslash;r at du kan "
+"Filtrering av dine meldinger på epost-tjeneren gj&oslash;r at du kan "
 "forh&aring;ndsdefinere automatisk sende videre, slette eller legge meldinger "
 "i andre mapper ut ifra spesielle kriterier."
 
@@ -132,10 +140,10 @@ msgid "Filters"
 msgstr "Filtre"
 
 msgid "Current Mail Filtering Rules"
-msgstr "N&aring;v&aelig;rende Regler"
+msgstr "N&aring;v&aelig;rende regler"
 
 msgid "No Filtering Rules Defined Yet"
-msgstr "Ingen Regler Definert"
+msgstr "Ingen regler definert enda"
 
 msgid "Could not set active script on your IMAP server"
 msgstr "Kunne ikke aktivere regelsettet p&aring; din IMAP-tjener"
@@ -143,12 +151,11 @@ msgstr "Kunne ikke aktivere regelsettet p&aring; din IMAP-tjener"
 msgid "Address Match"
 msgstr "Stemmer med epost-adresse"
 
-#, fuzzy
 msgid ""
 "Perform an action depending on email addresses appearing in message headers."
 msgstr ""
-"Utf&oslash;r en handling p&aring; meldingen avhengig av dens st&oslash;"
-"rrelse."
+"Utf&oslash;r en handling p&aring; meldingen avhengig av om epostadresser "
+"finnes i meldingshodet."
 
 msgid "Header Match"
 msgstr "Stemmer med epost-meldingshode"
@@ -168,7 +175,7 @@ msgstr ""
 "rrelse."
 
 msgid "All Messages"
-msgstr "Alle Meldinger"
+msgstr "Alle meldinger"
 
 msgid "Perform an action on <strong>all</strong> incoming messages."
 msgstr ""
@@ -179,9 +186,7 @@ msgid "Body Match"
 msgstr "Stemmer med epostens innhold"
 
 msgid "Perform an action on messages depending on their content (body text)."
-msgstr ""
-"Utf&oslash;r en handling p&aring; meldinger avhengig av deres innhold (body "
-"tekst)."
+msgstr "Utf&oslash;r en handling p&aring; meldinger avhengig av deres innhold."
 
 msgid "contains"
 msgstr "inneholder"
@@ -193,21 +198,19 @@ msgid "is"
 msgstr "er"
 
 msgid "is not"
-msgstr "ikke"
+msgstr "er ikke"
 
 msgid "matches"
-msgstr "innhold passer"
+msgstr "samsvarer med"
 
-#, fuzzy
 msgid "wildcard"
-msgstr "stemmer med wildcard"
+msgstr "jokertegn"
 
 msgid "does not match"
-msgstr "innholder passer ikke"
+msgstr "samsvarer ikke med"
 
-#, fuzzy
 msgid "regexp"
-msgstr "stemmer med regexp"
+msgstr "regulært uttrykk"
 
 msgid "is greater than"
 msgstr "er st&oslash;rre enn"
@@ -230,27 +233,26 @@ msgstr "er ikke lik"
 msgid "verbose"
 msgstr "Utfyllende"
 
-#, fuzzy
 msgid "Textual descriptions of the rules"
-msgstr "Beskrivelse av regel"
+msgstr "Tekstbeskrivelse av reglene"
 
 msgid "terse"
 msgstr "Konsist"
 
 msgid "More suitable for viewing the table of rules at once"
-msgstr ""
+msgstr "Mer passende for visning av tabellen med alle reglene samtidig"
 
 msgid "tech"
-msgstr ""
+msgstr "tekn"
 
 msgid "Even more terse description for technical people"
-msgstr ""
+msgstr "Enda mer konsis beskrivelse for tekniske folk"
 
 msgid "source"
-msgstr ""
+msgstr "kilde"
 
 msgid "Display SIEVE source"
-msgstr ""
+msgstr "Vis SIEVE-kilde"
 
 msgid "Low"
 msgstr "Lav"
@@ -271,62 +273,62 @@ msgid "Duplicate"
 msgstr "Duplisere"
 
 msgid "Move Up"
-msgstr "Flytt Opp"
+msgstr "Flytt opp"
 
-#, fuzzy
 msgid "Move to Top"
-msgstr "G&aring; videre til steg"
+msgstr "Flytt til toppen"
 
 msgid "Move Down"
-msgstr "Flytt Ned"
+msgstr "Flytt ned"
 
-#, fuzzy
 msgid "Move to Bottom"
-msgstr "G&aring; videre til steg"
+msgstr "Flytt til bunnen"
 
 msgid "Junk Folder"
-msgstr ""
+msgstr "Skrapmappe"
 
 #, php-format
 msgid ""
 "Store SPAM message in your Junk Folder. Messages older than %s days will be "
 "deleted automatically."
 msgstr ""
+"Lagre søppelmeldinger i din skrapmappe. Meldinger eldre enn %s dager vil bli "
+"slettet automatisk."
 
 msgid "Note that you can set the number of days in Folder Preferences."
-msgstr ""
+msgstr "Merk at du kan sette antall dager i mappevalg."
 
 msgid "Trash Folder"
-msgstr ""
+msgstr "Søppelmappe"
 
 msgid ""
 "Store SPAM message in your Trash Folder. You will have to purge the folder "
 "yourself."
-msgstr ""
+msgstr "Lagre søppelmeldinger i din søppelmappe. Du må tømme mappen selv.."
 
-#, fuzzy
 msgid "Discard"
-msgstr "stemmer med wildcard"
+msgstr "Kassér"
 
 msgid ""
 "Discard SPAM message. You will get no indication that the message ever "
 "arrived."
 msgstr ""
+"Kassér søppelmeldinger. Du vil ikke en gang få beskjed om at meldingen kom."
 
 msgid "Server-Side Mail Filtering"
-msgstr "Filtrering p&aring; epostserveren"
+msgstr "Filtrering p&aring; epost-tjeneren"
 
 msgid "Clear this Form"
-msgstr "Slett"
+msgstr "Tøm dette skjemaet"
 
 msgid "Start Over"
-msgstr "Start På Nytt"
+msgstr "Start på nytt"
 
 msgid "Cancel"
 msgstr "Avbryt"
 
 msgid "Move back to step"
-msgstr "G&aring; tilbake til steg"
+msgstr "Gå tilbake til steg"
 
 msgid "Finished"
 msgstr "Ferdig"
@@ -338,21 +340,20 @@ msgid "What kind of rule would you like to add?"
 msgstr "Hvilken type regel vil du legge til?"
 
 msgid " -- Please Select -- "
-msgstr ""
+msgstr " -- Velg -- "
 
-#, fuzzy
 msgid "Change Type"
-msgstr "Regeltype"
+msgstr "Endre type"
 
 msgid ""
 "The rule will trigger if the following addresses appear anywhere in the "
 "message's headers:"
 msgstr ""
-"Denne regel vil bli gjort gjeldende hvis meldings-hodet inneholder de "
+"Denne regel vil bli gjort gjeldende hvis meldingshodet inneholder de "
 "f&oslash;lgende adresser:"
 
 msgid "To: or Cc"
-msgstr ""
+msgstr "To: eller Cc:"
 
 msgid "AND (Every item must match)"
 msgstr "OG (Alle punktene m&aring; eksistere)"
@@ -364,7 +365,7 @@ msgid "The condition for the following rules is:"
 msgstr "Den f&oslash;lgende regelen m&aring; inneholde:"
 
 msgid "The header "
-msgstr "Epostens meldings-hode"
+msgstr "Epostens meldingshode"
 
 msgid "Less..."
 msgstr "Mindre..."
@@ -379,13 +380,13 @@ msgid "smaller"
 msgstr "mindre"
 
 msgid "than"
-msgstr " enn "
+msgstr "enn "
 
 msgid "KB (kilobytes)"
-msgstr "KB (KiloBytes)"
+msgstr "KB (kilobyte)"
 
 msgid "MB (megabytes)"
-msgstr "MB (MegaBytes)"
+msgstr "MB (megabyte)"
 
 msgid ""
 "The following action will be applied to <strong>all</strong> incoming "
@@ -403,8 +404,8 @@ msgstr ""
 
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr ""
-"Velg hva som skal utf&oslash;res n&aring;r denne regelenblir gjort gjeldende "
-"p&aring; ett av de f&oslash;lgende:"
+"Velg hva som skal utf&oslash;res n&aring;r denne regelen blir gjort "
+"gjeldende p&aring; ett av de f&oslash;lgende:"
 
 msgid "Your new rule states:"
 msgstr "Din nye regel utf&oslash;rer:"
@@ -417,49 +418,46 @@ msgstr ""
 "p&aring; nytt eller avbryte denne handlingen."
 
 msgid "Apply Changes"
-msgstr "Utf&oslash;r Endringer"
+msgstr "Utf&oslash;r endringer"
 
 msgid "Editing Mail Filtering Rule"
-msgstr "Editere Epost-Filtrerings-Regel"
+msgstr "Editere regel for epostfiltrering"
 
-#, fuzzy
 msgid "Create New Mail Filtering Rule"
-msgstr "N&aring;v&aelig;rende Regler"
+msgstr "Opprett ny e-postfiltreringsregel"
 
-#, fuzzy
 msgid "Error Encountered:"
-msgstr "Det har oppst&aring;tt en feil"
+msgstr "Feil oppst&aring;tt:"
 
 msgid "Additional Actions"
-msgstr "Flere Handlinger"
+msgstr "Flere handlinger"
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
 "filters will always apply to your incoming mail, wherever you check your "
 "email."
 msgstr ""
-"Her kan du legge til eller slette filterings-regler for din epost-konto. "
-"Disse filterene vil alltid gjelde innkommende epost, uansett hvor du sjekker "
-"den (Hjemme, på kontoret, bærbar, mob. m.m.)."
+"Her kan du legge til eller slette filteringsregler for din epostkonto. Disse "
+"filterene vil alltid gjelde innkommende epost, uansett hvor du sjekker den."
 
 msgid ""
 "You don't have any rules yet. Feel free to add any with the button &quot;Add "
 "a New Rule&quot;. When you are done, please select &quot;Save Changes&quot; "
 "to get back to the main options screen."
 msgstr ""
-"Du har ingen definerte regler. Du kan legge til regler med knappen &quot;Lag "
-"ny Regel&quot;. N&aring;r du er ferdig, vennligst velg &quot;Lagre "
-"Endringer&quot; for &aring; komme tilbake til hovedmenyen."
+"Du har ingen definerte regler. Du kan legge til regler med knappen &quot;"
+"Legg til ny regel&quot;. N&aring;r du er ferdig, vennligst velg &quot;Lagre "
+"endringer&quot; for &aring; komme tilbake til hovedmenyen."
 
 msgid ""
 "When you are done with editing, <strong>remember to select &quot;Save "
 "Changes&quot;</strong> to activate your changes!"
 msgstr ""
 "N&aring;r du er ferdig med &aring; editere, <strong>husk &aring; velge &quot;"
-"Lagre Endringer&quot;</strong> for &aring; aktivere dine endringer!"
+"Lagre endringer&quot;</strong> for &aring; aktivere dine endringer!"
 
 msgid "The following table summarizes your current mail filtering rules."
-msgstr "I f&oslash;lgende tabell finner du en oversikt over gjeldende regler."
+msgstr "F&oslash;lgende tabell oppsummere dine gjeldende filtreringsregler."
 
 msgid "No"
 msgstr "Nei"
@@ -471,94 +469,91 @@ msgid "Display as:"
 msgstr "Vis som:"
 
 msgid "Options"
-msgstr "Alternativer/valg"
+msgstr "Valg"
 
 msgid "Successfully added new rule."
-msgstr "Lagt til ny regel"
+msgstr "Vellykket tillegging av ny regel"
 
 msgid "Successfully updated rule #"
-msgstr "Regel er oppdatert"
+msgstr "Vellykket oppdatering av regel #"
 
 msgid "Successfully deleted rules #"
-msgstr "Regler er slettet: #"
+msgstr "Vellykket sletting av regler #"
 
 msgid "Successfully deleted rule #"
-msgstr "Regel er slettet: #"
+msgstr "Vellykket sletting av regel #"
 
-#, fuzzy
 msgid "Add a New Rule"
-msgstr "Lag Ny Regel"
+msgstr "Legg til en ny regel"
 
 msgid "Enable"
-msgstr ""
+msgstr "Aktiver"
 
 msgid "Disable"
-msgstr ""
+msgstr "Deaktiver"
 
 msgid ""
 "When you are done, please click the button below to return to your webmail."
 msgstr ""
 "N&aring;r du er ferdig, trykk knappen under for &aring; g&aring; tilbake til "
-"din webmail."
+"din e-post."
 
 msgid "Save Changes"
 msgstr "Lagre endringer"
 
 msgid "Last modified:"
-msgstr ""
+msgstr "Sist endret:"
 
 msgid "Created:"
-msgstr ""
+msgstr "Opprettet:"
 
 msgid "Close"
-msgstr ""
+msgstr "Lukk"
 
-#, fuzzy
 msgid "Really delete this rule?"
-msgstr "Regel er slettet: #"
+msgstr "Vil du virkelig slette denne regelen?"
 
 msgid "Action for Selected Rules:"
-msgstr ""
+msgstr "Handling for valgte regler:"
 
 msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Kunne ikke logge p&aring; timsieved daemonen p&aring; din IMAP-tjener"
+msgstr "Kunne ikke logge p&aring; timsieved nissen p&aring; din IMAP-tjener"
 
 msgid "Unable to load script to server."
-msgstr ""
+msgstr "Klarte ikke laste opp skriptet til tjener."
 
 msgid "Server responded with:"
-msgstr ""
+msgstr "Tjener svarte med:"
 
 msgid "Automatically"
-msgstr ""
+msgstr "Automatisk"
 
 msgid "Sender"
-msgstr ""
+msgstr "Avsender"
 
 msgid "From"
-msgstr ""
+msgstr "Fra"
 
 msgid "To"
-msgstr ""
+msgstr "Til"
 
 msgid "Subject"
-msgstr ""
+msgstr "Emne"
 
-#, fuzzy
 msgid "Create Filter"
-msgstr "Meldings-filter"
+msgstr "Opprett filter"
 
 msgid "Keep (Default action)"
 msgstr "Behold (Standard handling)"
 
 msgid "Discard Silently"
-msgstr "Stille Sletting"
+msgstr "Stille kasséring"
 
 msgid "Reject, sending this excuse to the sender:"
-msgstr "Nekt å motta; send dette svaret til senderen"
+msgstr "Avvis og send dette svaret til senderen:"
 
 msgid "Please do not send me large attachments."
-msgstr "Vennligst ikke send meg store vedlegg"
+msgstr "Vennligst ikke send meg store vedlegg."
 
 msgid "Redirect to the following email address:"
 msgstr "Videresend til den f&oslash;lgende epost-adressen:"
@@ -567,10 +562,10 @@ msgid "someone@example.org"
 msgstr "noen@eksempel.no"
 
 msgid "Keep a local copy as well."
-msgstr ""
+msgstr "Behold en lokal kopi også."
 
 msgid "Incorrect email address. You must enter only one valid email address."
-msgstr ""
+msgstr "Ugyldig e-postadresse. Du må oppgi kun en gyldig e-postadresse."
 
 msgid "Move message into"
 msgstr "Flytt meldingen til"
@@ -579,7 +574,7 @@ msgid "the existing folder"
 msgstr "den eksisterende mappen"
 
 msgid "a new folder, named"
-msgstr "en ny mappe; ved navn"
+msgstr "en ny mappe med navn"
 
 msgid "created as a subfolder of"
 msgstr "laget som en undermappe i"
@@ -595,7 +590,7 @@ msgstr ""
 "til &aring; svare deg med en gang."
 
 msgid "I will get back to you as soon as I return."
-msgstr "Jeg gir svar p[ din epost s&aring; snart jeg er tilbake."
+msgstr "Jeg gir svar p&aring; din epost s&aring; snart jeg er tilbake."
 
 msgid ""
 "The notice will be sent only once to each person that sends you mail, and "
@@ -620,22 +615,22 @@ msgid "Notify me, using the following method:"
 msgstr "Varsle meg med f&oslash;lgende metode:"
 
 msgid "Mobile Phone Message (SMS)"
-msgstr "Melding til Mobiltelefon (SMS)"
+msgstr "Melding til mobiltelefon (SMS)"
 
 msgid "Email notification"
 msgstr "Melding via epost"
 
 msgid "Notification via Zephyr"
-msgstr "Zephyr"
+msgstr "Melding via Zephyr"
 
 msgid "Notification via ICQ"
-msgstr "ICQ"
+msgstr "Melding via ICQ"
 
 msgid "Notification ID"
-msgstr "Notification ID"
+msgstr "Meldings-ID"
 
 msgid "Destination"
-msgstr ""
+msgstr "Sluttpunkt"
 
 msgid "Message"
 msgstr "Melding"
@@ -646,21 +641,20 @@ msgstr "Hjelp: Gyldige variabler er:"
 msgid "Also keep copy in INBOX, marked as deleted."
 msgstr "Behold ogs&aring; en kopi i Innboksen, merket som slettet."
 
-#, fuzzy
 msgid "Disable this rule"
-msgstr "Regel er slettet: #"
+msgstr "Deaktivere denne regelen"
 
 msgid "The rule will have no effect for as long as it is disabled."
-msgstr ""
+msgstr "Regelen vil ikke ha noen effekt s&aring; lenge den er deaktivert."
 
 msgid "To or Cc"
-msgstr ""
+msgstr "To eller Cc"
 
 msgid "matches the regural expression"
-msgstr "passer med &quot;regular expression&quot;"
+msgstr "samvarer med det regulære uttrykket"
 
 msgid "does not match the regural expression"
-msgstr "passer ikke med &quot;regular expression&quot;"
+msgstr "samvarer ikke med det regulære uttrykket"
 
 msgid "exists"
 msgstr "eksisterer"
@@ -669,66 +663,65 @@ msgid "does not exist"
 msgstr "eksisterer ikke"
 
 msgid "This rule is currently <strong>DISABLED</strong>:"
-msgstr ""
+msgstr "Denne regelen er for øyeblikket <strong>DEAKTIVERT</strong>:"
 
 msgid "DISABLED"
-msgstr ""
+msgstr "DEAKTIVERT"
 
 msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "For <strong>ALLE</strong> innkommende meldinger;"
 
 msgid "ALL"
-msgstr ""
+msgstr "ALT"
 
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
 "messages)"
-msgstr ""
+msgstr "Alle meldinger betraktet som <strong>søppelpost</strong>"
 
 msgid "SPAM"
-msgstr ""
+msgstr "S&Oslash;PPELPOST"
 
 msgid "unless"
-msgstr ""
+msgstr "hvis ikke"
 
 msgid "Whitelist:"
-msgstr ""
+msgstr "Hvitliste:"
 
 msgid "or"
-msgstr ""
+msgstr "eller"
 
 msgid "matching the Spam List(s):"
-msgstr ""
+msgstr "samsvarer med søppellisten(e):"
 
 msgid "Spam List(s):"
-msgstr ""
+msgstr "S&oslash;ppelliste(r):"
 
-#, fuzzy, php-format
+#, php-format
 msgid "and with score greater than %s"
-msgstr "er st&oslash;rre enn"
+msgstr "og med verdi st&oslash;rre enn %s"
 
 #, php-format
 msgid "Score > %s"
-msgstr ""
+msgstr "Verdi > %s"
 
 msgid "will be"
-msgstr ""
+msgstr "vil bli"
 
 msgid "stored in the Junk Folder."
-msgstr ""
+msgstr "lagret i «Junk Folder»-en."
 
 msgid "Junk"
-msgstr ""
+msgstr "Skrap"
 
 msgid "stored in the Trash Folder."
-msgstr ""
+msgstr "lagret i «Trash Folder»-en."
 
 msgid "Trash"
-msgstr ""
+msgstr "Søppel"
 
-#, fuzzy
 msgid "discarded."
-msgstr "<em>ignorer</em> den."
+msgstr "kassért."
 
 msgid "If"
 msgstr "Hvis"
@@ -740,10 +733,10 @@ msgid "<em>all</em> of the following mail headers match: "
 msgstr "<em>alle</em> av de f&oslash;lgende epost-meldingshodene eksisterer: "
 
 msgid "the header"
-msgstr "meldingshode"
+msgstr "meldingshodet"
 
 msgid "and"
-msgstr ""
+msgstr "og"
 
 msgid "the size of the message is"
 msgstr "st&oslash;rrelsen p&aring; meldingen er"
@@ -760,56 +753,53 @@ msgstr "enn"
 msgid "<em>keep</em> it."
 msgstr "<em>behold</em> den."
 
-#, fuzzy
 msgid "Keep"
-msgstr "stemmer med regexp"
+msgstr "Behold"
 
 msgid "<em>discard</em> it."
-msgstr "<em>ignorer</em> den."
+msgstr "<em>kassér</em> den."
 
 msgid "DISCARD"
-msgstr ""
+msgstr "KASSÉR"
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
-msgstr "<em>nekt</em> den, og send dette svaret tilbake til senderen:"
+msgstr "<em>avvis</em> den, og send dette svaret tilbake til senderen:"
 
 msgid "Reject"
-msgstr ""
+msgstr "Avvis"
 
 msgid "Redirect to"
-msgstr ""
+msgstr "Send videre til"
 
-#, fuzzy, php-format
+#, php-format
 msgid "<em>redirect</em> it to the email addresses: %s."
-msgstr "<em>send videre</em> til epost-adressen"
+msgstr "<em>send videre</em> til epost-adressene: %s."
 
 msgid "<em>redirect</em> it to the email address"
 msgstr "<em>send videre</em> til epost-adressen"
 
-#, fuzzy, php-format
+#, php-format
 msgid "<em>file</em> it into the folder %s"
-msgstr "<em>lagre</em> i mappen <strong>"
+msgstr "<em>lagre</em> den i mappen %s"
 
 #, php-format
 msgid "File into %s"
-msgstr ""
+msgstr "Lagre i %s"
 
 msgid "reply with this vacation message: "
 msgstr "svar med denne automatisk-svar-meldingen:"
 
-#, fuzzy
 msgid "Vacation Message"
-msgstr "Ferie/borte/automatisk svar"
+msgstr "Ferie/borte/automatisk beskjed"
 
 msgid "Also keep a local copy."
-msgstr ""
+msgstr "Behold en lokal kopi også."
 
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr " Behold ogs&aring; en melding i Innboksen, markert som slettet."
 
-#, fuzzy
 msgid "Keep Deleted"
-msgstr "Slett Valg(te)"
+msgstr "Behols slettede"
 
 msgid " Also notify using the method"
 msgstr " Varlse ogs&aring; med denne metoden"
@@ -822,44 +812,25 @@ msgstr "prioritet og melding"
 
 #, php-format
 msgid "Notify %s"
-msgstr ""
+msgstr "Varsle %s"
 
-#, fuzzy
 msgid "Then <strong>STOP</strong> processing rules."
 msgstr " S&aring; <strong>STOPP</strong> &aring; prosessere regler."
 
 msgid "Stop"
-msgstr ""
+msgstr "Stopp"
 
 msgid "Test for Forged Header"
-msgstr ""
+msgstr "Test for forfalskede hoder"
 
-#, fuzzy
 msgid "You have not defined the name for the new folder."
-msgstr "Du m&aring; definere minst en meldings-hoder tekst. "
+msgstr "Du har ikke definert navnet på den nye mappen."
 
 msgid "Please try again."
-msgstr ""
+msgstr "Prøv igjen."
 
 msgid "Illegal folder name.  Please select a different name"
-msgstr ""
+msgstr "Ugyldig mappenavn. Velg et annet navn."
 
-#, fuzzy
 msgid "None"
-msgstr "Nei"
-
-#~ msgid "All your rules have been deleted"
-#~ msgstr "Alle dine regler har blitt slettet"
-
-#~ msgid "in order to save your rules."
-#~ msgstr "for &aring; lagre dine regler."
-
-#~ msgid "Parameters"
-#~ msgstr "Parametere"
-
-#, fuzzy
-#~ msgid "does not match regexp"
-#~ msgstr "innholder passer ikke"
-
-#~ msgid "does not match wildcard"
-#~ msgstr "stemmer ikke med wildcard"
+msgstr "Ingen"
