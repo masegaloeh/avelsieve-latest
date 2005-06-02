@@ -14,14 +14,12 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.23 2005/06/02 13:39:12 avel Exp $
+ * @version $Id: table.php,v 1.24 2005/06/02 15:07:37 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
-
-define('AVELSIEVE_DEBUG',0);
 
 define('SM_PATH','../../');
 require_once(SM_PATH . 'include/validate.php');
@@ -90,6 +88,9 @@ if(isset($authz)) {
 	$sieve=new sieve($imap_server, $sieveport, $username, $acctpass, $username, $preferred_mech);
 }
 
+if(AVELSIEVE_DEBUG == 1) {
+	print "DEBUG: Connecting with these parameters: ($imap_server, $sieveport, $username, *****, $username, $preferred_mech)";
+}
 
 sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
 
