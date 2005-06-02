@@ -72,7 +72,9 @@ is HTML-only fallback for accessibility.</li>
 <li>Support of keeping a message, move to an existing or new folder, email redirection.</li>
 <li>Supports SIEVE Vacation.</li>
 <li>Supports SIEVE Notification action.</li>
-<li>Runs through all the rules, but supports a &quot;stop&quot; command when a rule matches.</li>
+<li>Create a rule on-the-fly, while reading a message in Squirrelmail. This
+function will auto-detect List-Id: headers for mailing lists.</li>
+<li>Runs through all the rules, but supports a <em>stop</em> command when a rule matches.</li>
 <li>Change the order of rules - or delete them altogether.</li>
 <li>Enable / Disable rules on the fly, without deleting them.</li>
 <li>Make a textual description of the rule.</li>
@@ -105,12 +107,18 @@ href="demo.php">Live Demo</a> page for more information.  </p>
 
 <ul>
 
-<li>It has been tested with <a href="http://asg.web.cmu.edu/cyrus/">Cyrus IMAP
-server</a> and its <em>timsieved</em> SIEVE parser. There have been reports
-about it working with <a href="http://www.dbmail.org">DBMail</a>, too.</li>
+<li>A SIEVE management daemon (MANAGESIEVE-compatible). It has been tested with
+<a href="http://asg.web.cmu.edu/cyrus/">Cyrus IMAP server</a> and its
+<em>timsieved</em> SIEVE parser. There have been reports about it working with
+<a href="http://www.dbmail.org">DBMail</a>, too.</li>
 
 <li><a href="http://www.squirrelmail.org">Squirrelmail</a> version 1.4.0 or
 greater.</li>
+
+<li>The <a href="http://www.php.net/manual/en/ref.mbstring.php">multibyte
+string (mbstring) PHP extension</a> is very much recommended. It provides very
+robust conversion between character sets. Otherwise, recode or iconv will also
+do the job.</li>
 
 <li><a href="http://sieve-php.sourceforge.net/">sieve-php.lib</a>, a PHP class
 for transporting SIEVE scripts, by <a
