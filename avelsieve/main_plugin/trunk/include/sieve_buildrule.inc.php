@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.10 2005/03/09 09:26:30 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.11 2005/06/02 13:38:43 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -233,11 +233,6 @@ function build_headerrule_snippet($header, $matchtype, $headermatch, $type='rule
 	$text .= " &quot;". htmlspecialchars($headermatch) . "&quot;";
 	$terse .= ' '.htmlspecialchars($headermatch). ' ';
 	$tech .= ' '.htmlspecialchars($headermatch). ' ';
-
- 	if ($matchtype == "contains") {
-	} else {
-		$terse .= " ".htmlspecialchars($headermatch)." ";
-	}
 
 	switch($type) {
 		case 'terse':
