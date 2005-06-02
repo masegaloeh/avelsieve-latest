@@ -8,12 +8,21 @@
 
 <li>Corrected the handling of specified notification methods.</li>
 
+<li>Bugfix: Proper parsing of lines &gt; 1024 characters. An unneeded newline
+was being added to the stream while getting ther rule. Many thanks to <span
+class="bugreporter">Jan Klepal</span>.</li>
+
+<li>Bugfix: Don't print the values of the header match rules twice!</li>
+
 <li>Updated Spanish Locale (<span class="translator">Eduardo
 Mayoral</span>)</li>
 
 <li>Corrected Norwegian locale: updated moved existing norwegian translation to
 Norwegian Bokmal directory. (Thanks to <span class="translator">Hans F.
 Nordhaug</span> for correcting my mistakes).</li>
+
+<li>Added more AVELSIEVE_DEBUG hooks to help people report bugs. Added
+REPORTING_BUGS help text.</li>
 
 </ul>
 
