@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.22 2005/04/25 15:01:17 avel Exp $
+ * @version $Id: table.php,v 1.23 2005/06/02 13:39:12 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -146,7 +146,7 @@ if (!isset($rules)) {
 	if($sieve->sieve_getscript("phpscript")){
 		if(is_array($sieve->response)) {
 			foreach($sieve->response as $line){
-				$sievescript .= "$line\n";
+				$sievescript .= "$line";
 			}
 		} else {
 			$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
