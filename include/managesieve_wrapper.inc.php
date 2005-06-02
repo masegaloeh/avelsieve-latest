@@ -9,7 +9,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: managesieve_wrapper.inc.php,v 1.2 2005/03/04 17:12:02 avel Exp $
+ * @version $Id: managesieve_wrapper.inc.php,v 1.3 2005/06/02 15:07:37 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -39,6 +39,13 @@ function avelsieve_login() {
 		$errormsg = _("Could not log on to timsieved daemon on your IMAP server") . 
 				" " . $imapServerAddress.'.<br/>'.
 				_("Please contact your administrator.");
+
+		if(AVELSIEVE_DEBUG == 1) {
+			print "<pre>(Debug Mode). Login failed. Capabilities:\n";
+			print_r($sieve_capabilities);
+			print "\nError Message returned:\n";
+			print_r($sieve->error);
+		}
 		print_errormsg($errormsg);
 		exit;
 	}
@@ -60,7 +67,6 @@ function avelsieve_upload_script ($newscript, $scriptname = 'phpscript') {
 	}
 
 	if($sieve->sieve_sendscript($scriptname, stripslashes($newscript))) {
-		// print "Your rules have been successfully updated.<br />";
 		if(!($sieve->sieve_setactivescript($scriptname))){
 			/* Just to be safe. */
 			$errormsg = _("Could not set active script on your IMAP server");
@@ -75,7 +81,6 @@ function avelsieve_upload_script ($newscript, $scriptname = 'phpscript') {
 		$errormsg = '<p>';
 		$errormsg .= _("Unable to load script to server.");
 		$errormsg .= '</p>';
-
 
 		if(isset($sieve->error_raw)) {
 			$errormsg = '<p>';
@@ -96,10 +101,11 @@ function avelsieve_upload_script ($newscript, $scriptname = 'phpscript') {
 				$errormsg .= "<br />DEBUG MODE -
 				<strong>avelsieve bug</strong> <br /> Script
 				that probably is buggy follows.<br /> Please
-				copy &amp; paste it, and email it to <a
+				copy/paste it, and email it to <a
 				href=\"mailto:avel@users.sourceforge.net\">avel@users.sourceforge.net</a>.
-				<br /><br /><blockquote><pre>" . $newscript
-				."</pre></blockquote>";
+				<br /><br />
+				<small><pre>" . $newscript
+				."</pre></small>";
 			}
 			$errormsg .= _("Please contact your administrator.");
 		}

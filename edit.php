@@ -8,14 +8,12 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.21 2005/04/13 13:15:44 avel Exp $
+ * @version $Id: edit.php,v 1.22 2005/06/02 15:07:37 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
-
-define('AVELSIEVE_DEBUG',0);
 
 define('SM_PATH','../../');
 include_once(SM_PATH . 'include/validate.php');

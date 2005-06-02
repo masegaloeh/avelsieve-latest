@@ -8,14 +8,13 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: addrule.php,v 1.9 2005/04/13 13:15:44 avel Exp $
+ * @version $Id: addrule.php,v 1.10 2005/06/02 15:07:37 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
 
-define('AVELSIEVE_DEBUG',0);
 
 define('SM_PATH','../../');
 require_once(SM_PATH . 'include/validate.php');
