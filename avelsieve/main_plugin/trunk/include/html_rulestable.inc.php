@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.10 2005/03/09 09:26:30 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.11 2005/07/25 10:30:27 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -27,7 +27,7 @@ class avelsieve_html_rules extends avelsieve_html {
 	var $rules = array();
 	
 	/**
-	 * @param string Display mode: 'verbose' or 'terse'
+	 * @param string Display mode: 'verbose','terse','tech','source' or 'debug'
 	 */
 	var $mode = 'terse';
 

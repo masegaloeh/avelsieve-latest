@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.11 2005/06/02 13:38:43 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.12 2005/07/25 10:30:27 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -29,16 +29,41 @@
  * 
  * Condition
  *
- * 1											// Address Match
+ * 1    cond   // New-style mixed rule, might be anything inside here. The
+ *                value is an indexed array with each one describing a condition
+ *                
+ * 1              example: cond => array( [0] => array(
+ *                           'type' => 'address'|'envelope'|'header'|'size'|'body'|'all'
+ *                       // For 'header':
+ *                           'header' => ...
+ *                           'matchtype' => ...
+ *                           'headermatch' => ...
+ *                       // For 'address':
+ *                           'address' => ...
+ *                           'matchtype' => ...
+ *                           'addressmatch' => ...
+ *                       // For 'envelope':
+ *                           'matchtype' => ...
+ *                           'matchtype' => ...
+ *                           'envelopematch' => ...
+ *                       // For 'size':
+ *                           'sizerel' => ...
+ *                           'sizeamount' => ...
+ *                           'sizeunit' => ...
+ *                       // For 'body':
+ *                           'matchtype' => ...
+ *                           'bodymatch' => ...
+ *                       // For 'all': nothing!
+ *      
  * 1											// Not implemented yet.
  * 2	header[$n]									// Header Match
- * 2	matchtype[$n]		"is" | "contains" | "matches" | "lt" | "regex" | ...
+ * 2	matchtype[$n]		'is' | 'contains' | 'matches' | 'lt' | 'regex' | ...
  * 2	headermatch[$n]		string
- * 2	condition		undefined | "or" | "and"
- * 3	sizerel			"bigger" | "smaller"					// Size match
+ * 2	condition		undefined | 'or' | 'and'
+ * 3	sizerel			'bigger' | 'smaller'        // Size match
  * 3	sizeamount		int
- * 3	sizeunit		"kb" | "mb"
- * 4											// Always
+ * 3	sizeunit		'kb' | 'mb'
+ * 4                                                // Always
  * 10	score			int							// Spam Rule
  * 10	tests			array
  * 10	action			'trash' | 'junk' | 'discard'
@@ -86,14 +111,17 @@
  */ 
 
 /**
- * Build a snippet which is used for header rules and spam rule whitelists.
- * Takes arguments in natural English language order: 'From contains foo'.
+ * Build a snippet which is used for header, address, envelope rules as well as
+ * spam rule whitelists.  Takes arguments in natural English language order:
+ * 'header From contains foo', or 'envelope to contains bar'.
  *
- * @param string $header
- * @param string $matchtype
- * @param string $headermatch
- * @param string $type 'verbose', 'terse' , 'tech' or 'rule'
- *
+ * @param string $name Can be 'header', address', 'envelope', 'body' or empty,
+ * 	leaving the caller of this function to fill in the approriate value.
+ * @param string $header Header, Address or Envelope-part name.
+ * @param string $matchtype Human readable, as defined in avelsieve constants.
+ *     E.g. 'contains', 'is' etc.
+ * @param string $headermatch The desired value.
+ * @param string $mode 'verbose', 'terse' , 'tech' or 'rule'
  *   verbose = return a (verbose) textual description of the rule.
  *   terse = return a very terse description
  *   tech = similar to terse, only for people with a more technical background
@@ -102,117 +130,146 @@
  *
  * @return string 
  */
- 
-function build_headerrule_snippet($header, $matchtype, $headermatch, $type='rule') {
+function build_rule_snippet($name, $header, $matchtype, $headermatch, $mode='rule') {
 	$out = $text = $terse = $tech = '';
+				
+	switch($name) {
+		case 'header':
+			if($header == 'toorcc') {
+				$text .= sprintf( _("the header %s"), '<strong>&quot;To&quot; / &quot;Cc&quot; </strong>');
+				$terse .= sprintf( _("Header %s") , _("To or Cc"));
+				$tech .= 'header To/Cc';
+			} else {
+				$text .= sprintf( _("the header %s"), ' <strong>&quot;'.htmlspecialchars($header).'&quot;</strong>');
+				$terse .= sprintf( _("Header %s"), htmlspecialchars($header));
+				$tech .= sprintf( 'header %s', htmlspecialchars($header));
+			}
+			// $escapeslashes = false;
+			break;
+
+		case 'envelope':
+			$text .= sprintf( _("the envelope %s") , '<strong>&quot;'.htmlspecialchars($header).'&quot;</strong>');
+			$terse .= sprintf( _("Envelope %s"), htmlspecialchars($header));
+			$tech .= 'envelope '.htmlspecialchars($header).' ';
+			break;
+
+		case 'address':
+			if($header == 'toorcc') {
+				$text .= sprintf( _("the address %s") , '<strong>&quot;To&quot; / &quot;Cc&quot; </strong>');
+				$terse .= sprintf( _("Address %s"), _("To or Cc"));
+				$tech .= 'address To/Cc';
+			} else {
+				$text .= sprintf( _("the address %s") , '<strong>&quot;'.htmlspecialchars($header).'&quot;</strong>');
+				$terse .= sprintf( _("Address %s"), htmlspecialchars($header));
+				$tech .= 'address '.htmlspecialchars($header).' ';
+			}
 		
-	if($header == 'toorcc') {
-		$text .= ' <strong>&quot;To&quot; / &quot;Cc&quot; </strong> ';
-		$terse .= ' '. _("To or Cc") . ' ';
-		$tech .= ' To/Cc ';
-	} else {
-		$text .= ' <strong>&quot;'.htmlspecialchars($header).'&quot;</strong> ';
-		$terse .= ' '.htmlspecialchars($header).' ';
-		$tech .= ' '.htmlspecialchars($header).' ';
+		case 'body':
+			$text .= _("message body");
+			$terse .= ("Body");
+			$tech .= 'body';
+			break;
 	}
-	// $escapeslashes = false;
+	$text .= ' ';
+	$terse .= ' ';
+	$tech .= ' ';
 
  	switch ($matchtype) {
- 			case "is":
- 				$out .= "header :is";
+ 			case 'is':
+ 				$out .= sprintf('%s :is', $name);
 				$text .= _("is");
 				$terse .= _("is");
 				$tech .= "=";
  				break 1;
- 			case "is not":
- 				$out .= "not header :is";
+ 			case 'is not':
+ 				$out .= sprintf("not %s :is", $name);
 				$text .= _("is not");
 				$terse .= _("is not");
 				$tech .= "!=";
  				break 1;
  			case "contains":
- 				$out .= "header :contains";
+ 				$out .= sprintf("%s :contains", $name);
 				$text .= _("contains");
 				$terse .= _("contains");
 				$tech .= "=";
  				break 1;
  			case "does not contain":
- 				$out .= "not header :contains";
+ 				$out .= sprintf("not %s :contains", $name);
 				$text .= _("does not contain");
 				$terse .= _("does not contain");
 				$tech .= "!~=";
  				break 1;
  			case "matches":
- 				$out .= "header :matches";
+ 				$out .= sprintf("%s :matches", $name);
 				$text .= _("matches");
 				$terse .= _("matches");
 				$tech .= "M=";
 				$escapeslashes = true;
  				break 1;
  			case "does not match":
- 				$out .= "not header :matches";
+ 				$out .= sprintf("not %s :matches", $name);
 				$text .= _("does not match");
 				$terse .= _("does not match");
 				$tech .= '!M=';
 				$escapeslashes = true;
  				break 1;
  			case "gt":
-				$out .= 'header :value "gt" :comparator "i;ascii-numeric"';
+				$out .= sprintf('%s :value "gt" :comparator "i;ascii-numeric"', $name);
 				$text .= _("is greater than");
 				$terse .= '>';
 				$tech .= '>';
  				break 1;
  			case "ge":
-				$out .= 'header :value "ge" :comparator "i;ascii-numeric"';
+				$out .= sprintf('%s :value "ge" :comparator "i;ascii-numeric"', $name);
 				$text .= _("is greater or equal to");
 				$terse .= '>=';
 				$tech .= ">=";
  				break 1;
  			case "lt":
-				$out .= 'header :value "lt" :comparator "i;ascii-numeric"';
+				$out .= sprintf('%s :value "lt" :comparator "i;ascii-numeric"', $name);
 				$text .= _("is lower than");
 				$terse .= '<';
 				$tech .= '<';
  				break 1;
  			case "le":
-				$out .= 'header :value "le" :comparator "i;ascii-numeric"';
+				$out .= sprintf('%s :value "le" :comparator "i;ascii-numeric"', $name);
 				$text .= _("is lower or equal to");
 				$terse .= '<=';
 				$tech .= '<=';
  				break 1;
  			case "eq":
-				$out .= 'header :value "eq" :comparator "i;ascii-numeric"';
+				$out .= sprintf('%s :value "eq" :comparator "i;ascii-numeric"', $name);
 				$text .= _("is equal to");
 				$terse .= '=';
 				$tech .= '==';
  				break 1;
  			case "ne":
-				$out .= 'header :value "ne" :comparator "i;ascii-numeric"';
+				$out .= sprintf('%s :value "ne" :comparator "i;ascii-numeric"', $name);
 				$text .= _("is not equal to");
 				$terse .= '!=';
 				$tech .= '!=';
  				break 1;
  			case 'regex':
- 				$out .= 'header :regex :comparator "i;ascii-casemap"';
+ 				$out .= sprintf('%s :regex :comparator "i;ascii-casemap"', $name);
 				$text .= _("matches the regural expression");
 				$terse .= _("matches the regural expression");
 				$tech .= 'R=';
 				$escapeslashes = true;
  				break 1;
  			case 'not regex':
- 				$out .= "not header :regex :comparator \"i;ascii-casemap\"";
+ 				$out .= sprintf('not %s :regex :comparator "i;ascii-casemap"', $name);
 				$text .= _("does not match the regural expression");
 				$terse .= _("does not match the regural expression");
 				$tech .= '!R=';
 				$escapeslashes = true;
  				break 1;
- 			case "exists":
+ 			case 'exists':
  				$out .= "exists";
 				$text .= _("exists");
 				$terse .= _("exists");
 				$tech .= "E";
  				break 1;
- 			case "not exists":
+ 			case 'not exists':
  				$out .= "not exists";
 				$text .= _("does not exist");
 				$terse .= _("does not exist");
@@ -224,7 +281,7 @@ function build_headerrule_snippet($header, $matchtype, $headermatch, $type='rule
 
 	if($header == 'toorcc') {
 		$out .= ' ["to", "cc"] ';
-	} else {
+	} elseif($header) {
 		$out .= ' "' . $header . '" ';
 	}
 
@@ -234,7 +291,7 @@ function build_headerrule_snippet($header, $matchtype, $headermatch, $type='rule
 	$terse .= ' '.htmlspecialchars($headermatch). ' ';
 	$tech .= ' '.htmlspecialchars($headermatch). ' ';
 
-	switch($type) {
+	switch($mode) {
 		case 'terse':
 			return $terse;
 		case 'text':
@@ -252,7 +309,7 @@ function build_headerrule_snippet($header, $matchtype, $headermatch, $type='rule
  * Gets a $rule array and builds a part of a SIEVE script (aka a rule).
  *
  * @param $rule	A rule array.
- * @param $type	What to return. Can be one of:
+ * @param $mode	What to return. Can be one of:
  *   verbose = return a (verbose) textual description of the rule.
  *   terse = return a very terse description
  *   tech = similar to terse, only for people with a more technical background
@@ -262,7 +319,11 @@ function build_headerrule_snippet($header, $matchtype, $headermatch, $type='rule
  *   	display to the user.
  * @return string
  */
-function makesinglerule($rule, $type='rule') {
+function makesinglerule($rule, $mode='rule') {
+	if($mode == 'debug') {
+		include_once(SM_PATH . 'plugins/avelsieve/include/dumpr.php');
+		return dumpr($rule, true);
+	}
 	global $maxitems, $color;
 	$out = $text = $terse = $tech = '';
 
@@ -270,13 +331,13 @@ function makesinglerule($rule, $type='rule') {
 	 * check if it is disabled. */
 	
 	$coded = urlencode(base64_encode(serialize($rule)));
-	if($type != 'source') {
+	if($mode != 'source') {
 		$out = "#START_SIEVE_RULE".$coded."END_SIEVE_RULE\n";
 	}
 
 	/* Check for a disabled rule. */
 	if (isset($rule['disabled']) && $rule['disabled']==1) {
-		if ($type=='rule') {
+		if ($mode=='rule') {
 			/* For disabled rules, we only need the sieve comment. */
 			return $out;
 		} else {
@@ -298,15 +359,7 @@ function makesinglerule($rule, $type='rule') {
 	/* Step one: make the if clause */
 	/* The actual 'if' will be added by makesieverule() */
 	
-	if($rule['type']=='4') {
- 		$text .= _("For <strong>ALL</strong> incoming messages; ");
-		$terse .= _("ALL");
-		$tech .= '<strong>*</strong>';
-
-		$terse .= '</td><td align="right">';
-		$tech .= '</td><td align="right">';
-	
-	} elseif($rule['type'] == '10') {
+	if($rule['type'] == '10') {
 		/* SpamRule */
 	
 		global $spamrule_score_default, $spamrule_score_header,
@@ -351,7 +404,7 @@ function makesinglerule($rule, $type='rule') {
 		        	header :contains "X-Spam-Rule" "Spamhaus.Block.List" 
 				),
 		  	header :value "gt" :comparator "i;ascii-numeric" "80" ,
-		  	anyof(header :contains "From" "Important Person",
+		  	not anyof(header :contains "From" "Important Person",
 		        	header :contains "From" "Foo Person"
 		  	)
 			) {
@@ -391,13 +444,13 @@ function makesinglerule($rule, $type='rule') {
 			$out .= " ,\n";
 			$out .= ' not anyof( ';
 			for($i=0; $i<sizeof($rule['whitelist']); $i++ ) {
-				$out .= build_headerrule_snippet($rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
+				$out .= build_rule_snippet('header', $rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
 					$rule['whitelist'][$i]['headermatch'] ,'rule');
-				$text .= build_headerrule_snippet($rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
+				$text .= build_rule_snippet('header', $rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
 					$rule['whitelist'][$i]['headermatch'] ,'verbose');
-				$terse .= '<li>'. build_headerrule_snippet($rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
+				$terse .= '<li>'. build_rule_snippet('header', $rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
 					$rule['whitelist'][$i]['headermatch'] ,'terse') . '</li>';
-				$tech .= build_headerrule_snippet($rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
+				$tech .= build_rule_snippet('header', $rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
 					$rule['whitelist'][$i]['headermatch'] ,'tech');
 				if($i<sizeof($rule['whitelist'])-1) {
 					$out .= ', ';
@@ -463,112 +516,149 @@ function makesinglerule($rule, $type='rule') {
 		$text .= "<strong>"._("If")."</strong> ";
 	} 
 	
-	switch ($rule['type']) {
-	case "1":	/* address --- slated for the future. */
-	
-		for ( $i=0; $i<3; $i++) {
-			$out .= 'address :'.${'address'.$i};
-			if(${'addressrel'.$i} != "0") {
-				$out .= ":";
+	if($rule['type'] == "1") {
+		/* New-style 'cond' array for conditions of different types. */
+
+		/* Condition ('and' / 'or') */
+		if(sizeof($rule['cond']) > 1) {
+			switch ($rule['condition']) {
+				case "or":
+					$out .= "anyof (";
+					$text .= _("<em>any</em> of the following mail headers match: ");
+					// $terse .= "ANY (";
+					break;
+				default: 
+				case "and":
+					$out .= "allof (";
+					$text .= _("<em>all</em> of the following mail headers match: ");
+					// $terse .= "ALL (";
+					break;
 			}
+		} else {
+			$lonely = true;
 		}
-		break;
-	
-	case "2":	/* header */
-		if(isset($rule['condition'])) {
-		switch ($rule['condition']) {
-			case "or":
-				$out .= "anyof (";
-				$text .= _("<em>any</em> of the following mail headers match: ");
-				// $terse .= "ANY (";
+
+		/* Indexed array $rule['cond'] contains a bunch of rule definitions */
+		for($i=0;$i<sizeof($rule['cond']);$i++) {
+			switch($rule['cond'][$i]['type']) {
+			case 'address':
+				$out .= build_rule_snippet('address', $rule['cond'][$i]['address'], $rule['cond'][$i]['matchtype'],
+					$rule['cond'][$i]['addressmatch'],'rule');
+				$text .= build_rule_snippet('address', $rule['cond'][$i]['address'], $rule['cond'][$i]['matchtype'],
+					$rule['cond'][$i]['addressmatch'],'verbose');
+				$terse .= build_rule_snippet('address', $rule['cond'][$i]['address'], $rule['cond'][$i]['matchtype'],
+					$rule['cond'][$i]['addressmatch'],'terse');
+				$tech .= build_rule_snippet('address', $rule['cond'][$i]['address'], $rule['cond'][$i]['matchtype'],
+					$rule['cond'][$i]['addressmatch'],'tech');
 				break;
-			case "and":
-				$out .= "allof (";
-				$text .= _("<em>all</em> of the following mail headers match: ");
-				// $terse .= "ALL (";
+
+			case 'envelope':
+				$out .= build_rule_snippet('envelope', $rule['cond'][$i]['envelope'], $rule['cond'][$i]['matchtype'],
+					$rule['cond'][$i]['envelopematch'],'rule');
+				$text .= build_rule_snippet('envelope', $rule['cond'][$i]['envelope'], $rule['cond'][$i]['matchtype'],
+					$rule['cond'][$i]['envelopematch'],'verbose');
+				$terse .= build_rule_snippet('envelope', $rule['cond'][$i]['envelope'], $rule['cond'][$i]['matchtype'],
+					$rule['cond'][$i]['envelopematch'],'terse');
+				$tech .= build_rule_snippet('envelope', $rule['cond'][$i]['envelope'], $rule['cond'][$i]['matchtype'],
+					$rule['cond'][$i]['envelopematch'],'tech');
 				break;
-			default: /* condition was not defined, so there's only one header item. */
-				$lonely = true;
+
+			case 'header':
+				$out .= build_rule_snippet('header', $rule['cond'][$i]['header'], $rule['cond'][$i]['matchtype'],
+					$rule['cond'][$i]['headermatch'],'rule');
+				$text .= build_rule_snippet('header', $rule['cond'][$i]['header'], $rule['cond'][$i]['matchtype'],
+					$rule['cond'][$i]['headermatch'],'verbose');
+				$terse .= build_rule_snippet('header', $rule['cond'][$i]['header'], $rule['cond'][$i]['matchtype'],
+					$rule['cond'][$i]['headermatch'],'terse');
+				$tech .= build_rule_snippet('header', $rule['cond'][$i]['header'], $rule['cond'][$i]['matchtype'],
+					$rule['cond'][$i]['headermatch'],'tech');
+		
 				break;
-		}
-		}
-		for ( $i=0; $i<sizeof($rule['headermatch']); $i++) {
-			$text .= _("the header");
-	
-			$out .= build_headerrule_snippet($rule['header'][$i], $rule['matchtype'][$i],
-				$rule['headermatch'][$i] ,'rule');
-			$text .= build_headerrule_snippet($rule['header'][$i], $rule['matchtype'][$i],
-				$rule['headermatch'][$i] ,'verbose');
-			$terse .= build_headerrule_snippet($rule['header'][$i], $rule['matchtype'][$i],
-				$rule['headermatch'][$i] ,'terse');
-			$tech .= build_headerrule_snippet($rule['header'][$i], $rule['matchtype'][$i],
-				$rule['headermatch'][$i] ,'tech');
-	
-			if(isset($rule['headermatch'][$i+1])) {
+
+			case 'size':
+				$out .= 'size :';
+				$text .= _("the size of the message is");
+				$text .= "<em>";
+				$terse .= _("Size");
+				$tech .= _("Size");
+				
+				if($rule['cond'][$i]['sizerel'] == "bigger") {
+					$out .= "over ";
+					$terse .= " > ";
+					$tech .= " > ";
+					$text .= _(" bigger");
+				} else {
+					$out .= "under ";
+					$terse .= " < ";
+					$tech .= " < ";
+					$text .= _(" smaller");
+				}
+				$text .= " "._("than")." ". htmlspecialchars($rule['cond'][$i]['sizeamount']) .
+					" ". htmlspecialchars($rule['cond'][$i]['sizeunit']) . "</em>, ";
+				$terse .= $rule['cond'][$i]['sizeamount'];
+				$tech .= $rule['cond'][$i]['sizeamount'];
+				$out .= $rule['cond'][$i]['sizeamount'];
+				
+				if($rule['cond'][$i]['sizeunit']=="kb") {
+					$out .= "K\n";
+					$terse .= "K\n";
+					$tech .= "K\n";
+				} elseif($rule['cond'][$i]['sizeunit']=="mb") {
+					$out .= "M\n";
+					$terse .= "M\n";
+					$tech .= "M\n";
+				}
+				break;
+ 		
+			case 'body':
+				$out .= build_rule_snippet('body', '', $rule['cond'][$i]['matchtype'],
+					$rule['cond'][$i]['bodymatch'],'rule');
+				$text .= build_rule_snippet('body', '', $rule['cond'][$i]['matchtype'],
+					$rule['cond'][$i]['bodymatch'],'verbose');
+				$terse .= build_rule_snippet('body', '', $rule['cond'][$i]['matchtype'],
+					$rule['cond'][$i]['bodymatch'],'terse');
+				$tech .= build_rule_snippet('body', '', $rule['cond'][$i]['matchtype'],
+					$rule['cond'][$i]['bodymatch'],'tech');
+				break;
+
+			case 'all':
+				$out .= 'true';
+				$text .= _("For <strong>ALL</strong> incoming messages; ");
+				$terse .= _("ALL");
+				$tech .= '<strong>*</strong>';
+				break;
+			}
+				
+			if(isset($rule['cond'][$i+1])) {
+				/* TODO :Probably add more extensive check for validity of
+				 * the next array? In case it is empty? */
+
 				$out .= ",\n";
 				$text .= ", ";
 	
-				if ($rule['condition'] == "or" ) {
+				if ($rule['condition'] == 'or' ) {
 					$terse .= ' ' . _("or") . '<br/>';
 					$tech .= ' ' . _("or") . '<br/>';
-				} elseif ($rule['condition'] == "and" ) {
+				} elseif ($rule['condition'] == 'and' ) {
 					$terse .= ' ' . _("and") . '<br/>';
 					$tech .= ' ' . _("and") . '<br/>';
 				}
-			} elseif($i == 0  && !isset($rule['headermatch'][1]) ) {
+			} elseif($i == 0  && !isset($rule['cond'][1]['headermatch']) ) {
 				$out .= "\n";
 				$text .= ", ";
 			} else {
 				$out .= ")\n";
 				$text .= ", ";
 			}
-	
-		} /* end for */
-		
-		break;
-	
-	case "3":	/* size */
-		$out .= 'size :';
-		$text .= _("the size of the message is");
-		$text .= "<em>";
-		$terse .= _("Size");
-		$tech .= _("Size");
-		
-		if($rule['sizerel'] == "bigger") {
-			$out .= "over ";
-			$terse .= " > ";
-			$tech .= " > ";
-			$text .= _(" bigger");
-		} else {
-			$out .= "under ";
-			$terse .= " < ";
-			$tech .= " < ";
-			$text .= _(" smaller");
 		}
-		$text .= " "._("than")." ". htmlspecialchars($rule['sizeamount']) . " ". htmlspecialchars($rule['sizeunit']) . "</em>, ";
-		$terse .= $rule['sizeamount'];
-		$tech .= $rule['sizeamount'];
-		$out .= $rule['sizeamount'];
-		
-		if($rule['sizeunit']=="kb") {
-			$out .= "K\n";
-			$terse .= "K\n";
-			$tech .= "K\n";
-		} elseif($rule['sizeunit']=="mb") {
-			$out .= "M\n";
-			$terse .= "M\n";
-			$tech .= "M\n";
-		}
-		break;
 	
-	case "4":	/* always */
+	} elseif($rule['type'] == '4') {/* always */
 		$out .= "true {\n";
-		break;
 	}
 	
 	/* step two: make the then clause */
 	
-	if( $rule['type'] != "4" && $rule['type']!=10 ) {
+	if( $rule['type'] != '4' && $rule['type']!=10 ) {
 		$out .= "{\n";
 		$terse .= '</td><td align="right">';
 		$tech .= '</td><td align="right">';
@@ -720,7 +810,7 @@ function makesinglerule($rule, $type='rule') {
 		$text .= '</span>';
 	}
 	
-	switch($type) {
+	switch($mode) {
 		case 'terse':
 			return $terse;
 		case 'text':
