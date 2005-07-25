@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: constants.inc.php,v 1.8 2005/07/25 10:30:27 avel Exp $
+ * @version $Id: constants.inc.php,v 1.9 2005/07/25 10:53:56 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -195,7 +195,9 @@ $avelsieve_version = array(
 
 $available_envelope = array('from', 'to');
 
-$available_envelope[] = 'auth';
+if($avelsieve_enable_envelope_auth) {
+	$available_envelope[] = 'auth';
+}
 
 /* Headers that typically include email addresses, for the :address check */
 $available_address_headers = array(

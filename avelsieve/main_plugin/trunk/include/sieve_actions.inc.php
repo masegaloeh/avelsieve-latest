@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.11 2005/04/25 15:51:14 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.12 2005/07/25 10:53:56 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -405,7 +405,7 @@ class avelsieve_action_notify extends avelsieve_action {
 	 * @see https://bugzilla.andrew.cmu.edu/show_bug.cgi?id=2135
 	 */
 	function avelsieve_action_notify($rule = array(), $frontend = 'html') {
-		global $notifymethods;
+		global $notifymethods, $avelsieve_oldcyrus;
 		if(isset($notifymethods)) {
 			$this->notifymethods = $notifymethods;
 		} else {
@@ -419,7 +419,8 @@ class avelsieve_action_notify extends avelsieve_action {
 			'zephyr' => _("Notification via Zephyr") ,
 			'icq' => _("Notification via ICQ")
 		);
-		$this->oldcyrus = true;
+		
+		$this->oldcyrus = $avelsieve_oldcyrus;
 		$this->avelsieve_action($rule, $frontend);
 	}
 
