@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: process_user_input.inc.php,v 1.13 2005/07/25 10:30:27 avel Exp $
+ * @version $Id: process_user_input.inc.php,v 1.14 2005/07/25 10:50:58 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -27,8 +27,6 @@ include_once(SM_PATH . 'functions/global.php');
  * @todo Use the rules, actions etc. schema variables & classes.
  */
 function process_input($search = SQ_POST, &$errmsg, $truncate_empty_conditions = false) {
-	global $startitems, $maxitems;
-
 	/* Set Namespace ($ns) referring variable according to $search */
 	switch ($search) {
 		case SQ_GET:
@@ -44,9 +42,9 @@ function process_input($search = SQ_POST, &$errmsg, $truncate_empty_conditions =
 
 	if($truncate_empty_conditions) {
 		if(isset($ns['cond'])) {
-			// Decide how much of the items to use for the condition of the rule,
-			// based on the first zero variable to be found. Also, reorder the
-			// conditions.
+			/* Decide how much of the items to use for the condition of the
+			 * rule, based on the first zero / null /undefined variable to be
+			 * found. Also, reorder the conditions. */
 			$match_vars = array('headermatch', 'addressmatch', 'envelopematch', 'sizeamount', 'bodymatch');
 			$new_cond_indexes = array();
 			foreach($ns['cond'] as $n => $c) {
@@ -66,69 +64,7 @@ function process_input($search = SQ_POST, &$errmsg, $truncate_empty_conditions =
 	} else {
 		$vars[] = 'cond';
 	}
-	/*
-	if(isset($ns['type'])) {
-		$type = $ns['type'];
-		$vars[] = 'type';
-		print $type;
-		
-		switch ($type) { 
-		default:
-		case "1":
-			array_push($vars, 'cond', 'condition');
-			break;
-		case "2":
-			if(isset($ns['headermatch'])) {
-				if(!$ns['headermatch'][0]) {
-					$errmsg = _("You have to define at least one header match text.");
-				} else {
-					for ($i=0; $i<sizeof($ns['headermatch']) ; $i++) {
-						if ($ns['headermatch'][$i]) {
-							$rule['header'][$i] = $ns['header'][$i];
-							$rule['matchtype'][$i] = $ns['matchtype'][$i];
-							$rule['headermatch'][$i] = $ns['headermatch'][$i];
-							if($i>0) {
-								$rule['condition'] = $ns['condition'];
-							}
-						} else {
-							break 1;
-						}
-					}
-				}
-			}
-			break;
-	
-		case "3":
-			if(isset($ns['sizeamount'])) {
-				array_push($vars, 'sizerel', 'sizeamount', 'sizeunit');
-			}
-			break;
-	
-		case "4":
-			break;
-	}
-	}
-	*/
 
-	/*
-	global $items;
-	sqgetGlobalVar('items', $items, SQ_FORM);
-
-	if(!isset($items)) {
-		$items = $startitems;
-	}
-
-	if(isset($ns['append'])) {
-		print " APPENDING ";
-		$items++;
-	} elseif(isset($ns['less'])) {
-		$items--;
-	}
-	if($items > $maxitems) {
-		$items = $maxitems;
-	}
-	*/
-	
 	if(isset($ns['action'])) {
 		array_push($vars, 'action');
 		switch ($ns['action']) { 
