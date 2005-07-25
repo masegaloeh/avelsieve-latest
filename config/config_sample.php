@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: config_sample.php,v 1.6 2005/06/02 15:07:37 avel Exp $
+ * @version $Id: config_sample.php,v 1.7 2005/07/25 10:53:56 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -38,6 +38,26 @@ $sieveport = 2000;
 $preferred_mech = "PLAIN";
 //$preferred_mech = "PLAIN DIGEST-MD5";
 
+/* In Cyrus 2.3+, the notification action is a bit more complex than the
+ * others. The oldcyrus variable is for supporting the partially implemented
+ * notify extension implementation of Cyrus < 2.3. If you have Cyrus < 2.3,
+ * just set this to true.
+ *
+ * This only changes the informational / help text displayed in avelsieve.
+ *
+ * Cyrus < 2.3 : $from$, $env-from$, $subject$
+ * Cyrus 2.3+  : $from$, $env-from$, $subject$, $text$, $text[n]$
+ */
+$avelsieve_oldcyrus = false;
+
+/* If you have Cyrus with an lmtpd that can understand the "auth" argument to
+ * the :envelope test as the SMTP/LMTP auth, or any other Sieve implementation,
+ * then you can enable this to provide this functionality to the user.
+ *
+ * This was not clarified in the base spec of RFC 3028. It will be done
+ * correctly in a new version of Cyrus, based on a new draft / spec.
+ */
+$avelsieve_enable_envelope_auth = true;
 
 /* **** NEW OPTION (as of 0.9.6) *****  Enable ImapProxy mode.
  * If you use imapproxy, because imapproxy cannot understand and proxy the
