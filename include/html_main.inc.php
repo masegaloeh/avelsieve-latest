@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_main.inc.php,v 1.3 2004/11/19 15:51:42 avel Exp $
+ * @version $Id: html_main.inc.php,v 1.4 2005/07/25 10:30:27 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -138,6 +138,26 @@ class avelsieve_html {
 		$out .= "<tr><td bgcolor=\"$color[4]\">&nbsp;</td></tr>\n";
 		return $out;
 	}
+
+	/**
+ 	 * Generic Listbox widget
+ 	 *
+ 	 * @param $selected_header Selected header
+ 	 * @param $n option number
+ 	 */
+	function generic_listbox($name, $options, $selected_option = '') {
+		$out = '<select name="'.$name.'">';
+		foreach($options as $o => $desc) {
+			if ($selected_option==$o) {
+				$out .= '<option value="'.$o.'" selected="">'.$desc.'</option>';
+			} else {
+				$out .= '<option value="'.$o.'">'.$desc.'</option>';
+			}
+		}
+		$out .= '</select>';
+		return $out;
+	}
+	
 }
 
 ?>

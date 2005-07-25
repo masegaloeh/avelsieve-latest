@@ -6,9 +6,9 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.19 2005/04/25 15:51:14 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.20 2005/07/25 10:30:27 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
- * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
+ * @copyright 2004-2005 Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
@@ -19,12 +19,6 @@ include_once(SM_PATH . 'plugins/avelsieve/include/html_main.inc.php');
  * HTML Output functions for rule editing / adding
  */
 class avelsieve_html_edit extends avelsieve_html {
-
-	/**
-	 * @var int Which part of add new rule wizard are we in. 0 means 'any'.
-	 */
-	var $part = 0;
-
 	/**
 	 * @var boolean Enable spamrule building?
 	 */
@@ -60,86 +54,23 @@ class avelsieve_html_edit extends avelsieve_html {
 		$this->mode = $mode;
 		$this->popup = $popup;
 		$this->errmsg = $errmsg;
-	}
-
-	/**
-	 * Start form.
-	 * @return string
-	 */
-	function formheader() {
-		global $PHP_SELF;
-		return '<form name="addrule" action="'.$PHP_SELF.'" method="POST">';
-	}
-
-	/**
-	 * Bottom control and navigation buttons.
-	 * @return string
-	 */
-	function addbuttons() {
-		$out = '<input name="reset" value="' . _("Clear this Form") .'" type="reset" />';
-
-		if (isset($part) && $part != 1) {
-			$out .= '<input name="startover" value="'. _("Start Over") .'" type="submit" />';
-		}
-		$out .= '<input name="cancel" value="'. _("Cancel").'" type="submit" /><br />';
-	
-		if ($this->spamrule) {
-			$out .= '<input style="font-weight:bold" name="finished" value="'.
-				_("Add SPAM Rule") . '" type="submit" />';
-		}
-		return $out;
-	
-		/*
-		if ($part!=1) {
-			$out .= '<input name="prev" value="&lt;&lt; ';
-			$out .= _("Move back to step");
-			$out .= ' '.($part-1).'" type="submit" />';
-		}
-		*/
-		$dummy = _("Move back to step");
 		
-		if ($part=="4") {
-			$out .= '<input style="font-weight:bold"  name="finished" value="'.
-				_("Finished").'" type="submit" />';
-		} else {
-			$out .= '<input name="next" value="'._("Move on to step").' '.($part+1).' &gt;&gt;" type="submit" />';
-		}
+		$this->active_types = $this->get_active_types();
 	}
-
+	
 	/**
-	 * Simple footer that closes tables, form and HTML.
-	 * @return string
+	 * @return array of types valid for the current capabilities.
 	 */
-	function nakedfooter() {
-		return '</td></tr></table> </form></body></html>';
-	}
-
-
-	/**
-	 * Output ruletype select form.
-	 *
-	 * @param string $select 'radio' or 'select'
-	 */
-	function rule_1_type($select = 'radio') {
+	function get_active_types() {
 		global $types, $sieve_capabilities;
-		if($select == 'radio') {
-			$out = '<p>'._("What kind of rule would you like to add?"). '</p>';
-		} elseif($select == 'select') {
-			$out = '<p align="center">' . _("Rule Type") . ': '.
-				'<input type="hidden" name="previoustype" value="'.$this->rule['type'].
-				'" /><select name="type" ';
-			if($this->js) {
-				$out .= 'onChange="addrule.submit();"';
-			}
-			$out .= '>';
-		}
 
 		$active_types = array();
 		foreach($types as $i=>$tp) {
+			/* Skip disabled or not-supported */
 			if(isset($tp['disabled'])) {
 				continue;
 			}
-			if(array_key_exists("dependencies", $tp)) {
+			if(array_key_exists('dependencies', $tp)) {
 				foreach($tp['dependencies'] as $no=>$dep) {
 					if(!avelsieve_capability_exists($dep)) {
 						continue 2;
@@ -148,12 +79,28 @@ class avelsieve_html_edit extends avelsieve_html {
 			}
 			$active_types[$tp['order']] = $i;
 		}
-		sort($active_types);
+		ksort($active_types);
+		return $active_types;
+	}
+
+	/**
+	 * Output rule type select widget.
+	 *
+	 * @param string
+	 */
+	function select_type($name, $selected) {
+		global $types;
+
+		/*
+			$dummy = '<p align="center">' . _("Rule Type") . ': '.
+			$dum = '<p>'._("What kind of rule would you like to add?"). '</p>';
 
 		if($this->rule['type'] == 0 && $select == 'select') {
-			$out .= '<option value="">'. _(" -- Please Select -- ") .'</option>';
+			$dum = '<option value="">'. _(" -- Please Select -- ") .'</option>';
 		}
-
+		*/
+		/* FOR OLD TYPES */
+		/*
 		for($i=0; $i<sizeof($active_types); $i++) {
 			$k = $active_types[$i];
 			if($select == 'radio') {
@@ -180,9 +127,24 @@ class avelsieve_html_edit extends avelsieve_html {
 			$out .= ' <input type="submit" name="changetype" value="'._("Change Type").'" />';
 		}
 		$out .= '<br/>';
+		*/
+		$out = '<input type="hidden" name="previous_'.$name.'" value="'.$selected.'" />'.
+			'<select name="'.$name.'"';
+		if($this->js) {
+			$out .= ' onChange="addrule.submit();"';
+		}
+		$out .= '>';
+
+		foreach($this->active_types as $no=>$type) {
+			$out .= '<option value="'.$type.'"';
+			if($selected == $type) {
+				$out .= ' selected=""';
+			}
+			$out .= '>'.$types[$type]['name'].'</option>';
+		}
+		$out .= '</select>';
 		return $out;
 	}
-
 
 	/**
 	 * Address match
@@ -202,21 +164,45 @@ class avelsieve_html_edit extends avelsieve_html {
  	 */
 	function header_listbox($selected_header, $n) {
 		global $headers;
-		$out = '<select name="header['.$n.']">';
-		/* 'Special' shortcut for To: or Cc: headers */
-		$out .= '<option name="header['.$n.']"  value="toorcc"';
-			if($selected_header=='toorcc')
-				$out .= ' selected=""';
-		$out .= '><strong>'. _("To: or Cc") .':</strong></option>';
-		
-		foreach($headers as $head) {
-			if ($head==$selected_header) {
-				$out .= '<option name="header['.$n.']"  value="'.$head.'" selected="">'.$head.':</option>';
-			} else {
-				$out .= '<option name="header['.$n.']"  value="'.$head.'">'.$head.':</option>';
-			}
+
+		$options = array('toorcc' => _("To: or Cc") );
+		foreach($headers as $no=>$h){
+			$options[$h] = $h;
 		}
-		$out .= '</select>';
+
+		$out = $this->generic_listbox('cond['.$n.'][header]', $options, $selected_header);
+		return $out;
+	}
+	
+	/**
+ 	 * Listbox widget with available address headers to choose from.
+ 	 *
+ 	 * @param $selected_header Selected header
+ 	 * @param $n option number
+ 	 */
+	function address_listbox($selected_header, $n) {
+		global $available_address_headers;
+		$options = array('toorcc' => _("To: or Cc") );
+		foreach($available_address_headers as $no=>$h){
+			$options[$h] = $h;
+		}
+		$out = $this->generic_listbox('cond['.$n.'][address]', $options, $selected_header);
+		return $out;
+	}
+	
+	/**
+ 	 * Listbox widget with available envelope values to choose from.
+ 	 *
+ 	 * @param $selected_envelope Selected header
+ 	 * @param $n option number
+ 	 */
+	function envelope_listbox($selected_envelope, $n) {
+		global $available_envelope;
+		foreach($available_envelope as $no=>$h){
+			$options[$h] = $h;
+		}
+
+		$out = $this->generic_listbox('cond['.$n.'][envelope]', $options, $selected_envelope);
 		return $out;
 	}
 	
@@ -231,38 +217,16 @@ class avelsieve_html_edit extends avelsieve_html {
 	 */
 	function matchtype_listbox($selected_matchtype, $n, $varname = 'matchtype') {
 		global $matchtypes, $comparators, $matchregex, $sieve_capabilities;
-		reset($matchtypes);
-		reset($comparators);
-		reset($matchregex);
-		
-		$out = '<select name="'.$varname.'['.$n.']">';
-		
-		while(list ($matchtype, $matchstring) = each ($matchtypes)) {
-			if ($matchtype==$selected_matchtype) {
-				$out .= '<option value="'.$matchtype.'" selected="">'.$matchstring.'</option>';
-			} else {
-				$out .= '<option value="'.$matchtype.'">'.$matchstring.'</option>';
-			}
-		}
+
+		$options = $matchtypes;
 		if(avelsieve_capability_exists('relational')) {
-			while(list ($matchtype, $matchstring) = each ($comparators)) {
-				if ($matchtype==$selected_matchtype) {
-					$out .= '<option value="'.$matchtype.'" selected="">'.$matchstring.'</option>';
-				} else {
-					$out .= '<option value="'.$matchtype.'">'.$matchstring.'</option>';
-				}
-			}
+			$options = array_merge($options, $comparators);
 		}
 		if(avelsieve_capability_exists('regex')) {
-			while(list ($matchtype, $matchstring) = each ($matchregex)) {
-				if ($matchtype==$selected_matchtype) {
-					$out .= '<option value="'.$matchtype.'" selected="">'.$matchstring.'</option>';
-				} else {
-					$out .= '<option value="'.$matchtype.'">'.$matchstring.'</option>';
-				}
-			}
+			$options = array_merge($options, $matchregex);
 		}
-		$out .= '</select>';
+		
+		$out = $this->generic_listbox('cond['.$n.']['.$varname.']', $options, $selected_matchtype);
 		return $out;
 	}
 	
@@ -272,77 +236,73 @@ class avelsieve_html_edit extends avelsieve_html {
 	 * @return string
 	 */
 	function condition_listbox($selected_condition) {
-		$conditions = array(
-			"and" => _("AND (Every item must match)"),
-			"or" => _("OR (Either item will match)")
-		);
-	
+		global $conditions;
 		$out = _("The condition for the following rules is:").
-			'<select name="condition">';
-	
-		while(list ($condition, $conditionstring) = each ($conditions)) {
-			if($condition==$selected_condition) {
-				$out .= '<option value="'.$condition.'" selected="">'.$conditionstring.'</option>';
-			} else {
-				$out .= '<option value="'.$condition.'">'.$conditionstring.'</option>';
-			}
-		}
-		$out .= '</select>';
+			$this->generic_listbox('condition', $conditions, $selected_condition);
 		return $out;
 	}
-	
-	/**
-	 * Output HTML code for header match rule.
-	 * @return string
-	 */
-	function rule_2_2_header($items = 0) {
-		global $maxitems, $comparators;
 
+	/**
+	 * Output a whole line that represents a condition, that is the $n'th
+	 * condition in the array $this->rule['cond'].
+	 *
+	 */
+	function condition($n) {
+		global $types;
+
+		if(!isset($this->rule['cond'][$n]['type'])) {
+			// $out = $this->select_type('cond['.$n.'][type]', '');
+			$this->rule['cond'][$n]['type'] = 'header';
+		}
+
+		$out = $this->select_type('cond['.$n.'][type]', $this->rule['cond'][$n]['type']);
+
+		if(isset($types[$this->rule['cond'][$n]['type']])) {
+			$methodname = 'condition_' . $this->rule['cond'][$n]['type'];
+			$out .= $this->$methodname($n);
+		}
+		return $out;
+	}
+
+	function all_conditions() {
+		global $maxitems, $startitems, $comparators;
+		
 		if(isset($this->rule['condition'])) {
 			$condition = $this->rule['condition'];
 		} else {
 			$condition = 'and';
 		}
 
-		if(isset($this->rule['header']))
-			$header = $this->rule['header'];
-		if(isset($this->rule['matchtype']))
-			$matchtype = $this->rule['matchtype'];
-		if(isset($this->rule['headermatch'])) 
-			$headermatch = $this->rule['headermatch'];
-		
+		if(isset($_POST['items'])) {
+			$items = $_POST['items'];
+
+		} elseif(isset($this->rule['cond'])) {
+			$items = sizeof($this->rule['cond']);
+		} else {
+			global $items;
+			if(!isset($items)) {
+				$items = $startitems;
+			}
+		}
+		if(isset($_POST['append'])) {
+			$items++;
+		} elseif(isset($_POST['less'])) {
+			$items--;
+		}
+
 		$out = '';
 		if($items > 1) {
 			$out .= $this->condition_listbox($condition);
 		}
-		
+
 		$out .= '<ul>';
-		
 		for ( $n=0; $n< $items; $n++) {
-		
-			$out .= '<li>';
-			$out .= _("The header ");
-			if(isset($header[$n])) {
-				$out .= $this->header_listbox($header[$n], $n);
-			} else {
-				$out .= $this->header_listbox("", $n);
-			}
-			
-			if(isset($matchtype[$n])) {
-				$out .= $this->matchtype_listbox($matchtype[$n], $n);
-			} else {
-				$out .= $this->matchtype_listbox("", $n);
-			}
-		
-			$out .= '<input type="text" name="headermatch['.$n.']" size="24" maxlength="255" value="';
-			if(isset($headermatch[$n])) {
-				$out .= htmlspecialchars($headermatch[$n]);
-			}
-			$out .= '" /></li>';
-		
-		} /* End for loop */
-		
+			$out .= '<li>'. $this->condition($n) . '</li>';
+		}
 		$out .= '</ul><br />';
+
+		$out .= '<input type="hidden" name="items" value="'.$items.'" />';
+		$out .= '<input type="hidden" name="type" value="1" />';
 		
 		if($items > 1) {
 			$out .= '<input name="less" value="'. _("Less...") .'" type="submit" />';
@@ -351,31 +311,116 @@ class avelsieve_html_edit extends avelsieve_html {
 			$out .= '<input name="append" value="'. _("More..."). '" type="submit" />';
 		}
 		return $out;
+		
 	}
 	
+	/**
+	 * Output HTML code for header match rule.
+	 * @return string
+	 */
+	function condition_header($n) {
+
+		if(isset($this->rule['cond'][$n]['header'])) {
+			$header = $this->rule['cond'][$n]['header'];
+		} else {
+			$header = '';
+		}
+		if(isset($this->rule['cond'][$n]['matchtype'])) {
+			$matchtype = $this->rule['cond'][$n]['matchtype'];
+		} else {
+			$matchtype = '';
+		}
+		if(isset($this->rule['cond'][$n]['headermatch'])) { 
+			$headermatch = $this->rule['cond'][$n]['headermatch'];
+		} else {
+			$headermatch = '';
+		}
+		
+		$out = $this->header_listbox($header, $n) .
+			$this->matchtype_listbox($matchtype, $n) .
+			'<input type="text" name="cond['.$n.'][headermatch]" size="24" maxlength="255" value="'.
+			htmlspecialchars($headermatch).'" />';
+		
+		return $out;
+	}
+	
+	/**
+	 * Output HTML code for address match rule.
+	 * @return string
+	 */
+	function condition_address($n) {
+		if(isset($this->rule['cond'][$n]['address'])) {
+			$address = $this->rule['cond'][$n]['address'];
+		} else {
+			$address = '';
+		}
+		if(isset($this->rule['cond'][$n]['matchtype'])) {
+			$matchtype = $this->rule['cond'][$n]['matchtype'];
+		} else {
+			$matchtype = '';
+		}
+		if(isset($this->rule['cond'][$n]['addressmatch'])) { 
+			$addressmatch = $this->rule['cond'][$n]['addressmatch'];
+		} else {
+			$addressmatch = '';
+		}
+		$out = $this->address_listbox($address, $n) .
+			$this->matchtype_listbox($matchtype, $n) .
+			'<input type="text" name="cond['.$n.'][addressmatch]" size="24" maxlength="255" value="'.
+			htmlspecialchars($addressmatch).'" />';
+		return $out;
+	}
+	
+	/**
+	 * Output HTML code for envelope match rule.
+	 * @return string
+	 */
+	function condition_envelope($n) {
+		if(isset($this->rule['cond'][$n]['envelope'])) {
+			$envelope = $this->rule['cond'][$n]['envelope'];
+		} else {
+			$envelope = '';
+		}
+		if(isset($this->rule['cond'][$n]['matchtype'])) {
+			$matchtype = $this->rule['cond'][$n]['matchtype'];
+		} else {
+			$matchtype = '';
+		}
+		if(isset($this->rule['cond'][$n]['envelopematch'])) { 
+			$envelopematch = $this->rule['cond'][$n]['envelopematch'];
+		} else {
+			$envelopematch = '';
+		}
+		$out = $this->envelope_listbox($envelope, $n) .
+			$this->matchtype_listbox($matchtype, $n) .
+			'<input type="text" name="cond['.$n.'][envelopematch]" size="24" maxlength="255" value="'.
+			htmlspecialchars($envelopematch).'" />';
+		return $out;
+	}
+		
 	/**
 	 * Size match
 	 * @return string
 	 */
-	function rule_2_3_size() {
-		if(isset($this->rule['sizerel'])) {
-			$sizerel = $this->rule['sizerel'];
+	function condition_size($n) {
+		if(isset($this->rule['cond'][$n]['sizerel'])) {
+			$sizerel = $this->rule['cond'][$n]['sizerel'];
 		} else {
 			$sizerel = 'bigger';
 		}
-		if(isset($this->rule['sizeamount'])) {
-			$sizeamount = $this->rule['sizeamount'];
+		if(isset($this->rule['cond'][$n]['sizeamount'])) {
+			$sizeamount = $this->rule['cond'][$n]['sizeamount'];
 		} else {
-			$sizeamount = 50;
+			$sizeamount = '';
 		}
-		if(isset($this->rule['sizeunit'])) {
-			$sizeunit = $this->rule['sizeunit'];
+		if(isset($this->rule['cond'][$n]['sizeunit'])) {
+			$sizeunit = $this->rule['cond'][$n]['sizeunit'];
 		} else {
 			$sizeunit = 'kb';
 		}
 
-		$out = '<p>'._("This rule will trigger if message is").
-			'<select name="sizerel"><option value="bigger" name="sizerel"';
+		// $out = '<p>'._("This rule will trigger if message is").
+		$out = '<select name="cond['.$n.'][sizerel]"><option value="bigger" name="sizerel"';
 		if($sizerel == "bigger") $out .= ' selected=""';
 		$out .= '>'. _("bigger") . '</option>'.
 			'<option value="smaller" name="sizerel"';
@@ -383,15 +428,36 @@ class avelsieve_html_edit extends avelsieve_html {
 		$out .= '>'. _("smaller") . '</option>'.
 			'</select>' .
 			_("than") . 
-			'<input type="text" name="sizeamount" size="10" maxlength="10" value="'.$sizeamount.'" /> '.
-			'<select name="sizeunit">'.
+			'<input type="text" name="cond['.$n.'][sizeamount]" size="10" maxlength="10" value="'.$sizeamount.'" /> '.
+			'<select name="cond['.$n.'][sizeunit]">'.
 			'<option value="kb" name="sizeunit';
 		if($sizeunit == 'kb') $out .= ' selected=""';
 		$out .= '">' . _("KB (kilobytes)") . '</option>'.
 			'<option value="mb" name="sizeunit"';
 		if($sizeunit == "mb") $out .= ' selected=""';
 		$out .= '">'. _("MB (megabytes)") . '</option>'.
-			'</select></p><br/>';
+			'</select>';
+		return $out;
+	}
+		
+	/**
+	 * Output HTML code for body match rule.
+	 * @return string
+	 */
+	function condition_body($n) {
+		if(isset($this->rule['cond'][$n]['matchtype'])) {
+			$matchtype = $this->rule['cond'][$n]['matchtype'];
+		} else {
+			$matchtype = '';
+		}
+		if(isset($this->rule['cond'][$n]['bodymatch'])) { 
+			$bodymatch = $this->rule['cond'][$n]['bodymatch'];
+		} else {
+			$bodymatch = '';
+		}
+		$out = $this->matchtype_listbox($matchtype, $n) .
+			'<input type="text" name="cond['.$n.'][bodymatch]" size="24" maxlength="255" value="'.
+			htmlspecialchars($bodymatch).'" />';
 		return $out;
 	}
 		
@@ -399,21 +465,13 @@ class avelsieve_html_edit extends avelsieve_html {
 	 * All messages 
 	 * @return string
 	 */
-	function rule_2_4_allmessages() {
-		$out = _("The following action will be applied to <strong>all</strong> incoming messages that do not match any of the previous rules.");
+	function condition_all() {
+		$out = _("All Messages");
+		$dum = _("The following action will be applied to <strong>all</strong> incoming messages that do not match any of the previous rules.");
 		return $out;
 	}
 	
-	/**
-	 * Mail Body match
-	 * @return string
-	 */
-	function rule_2_5_body() {
-		$out .= '<p>'.
-			_("This rule will trigger upon the occurrence of one or more strings in the body of an e-mail message. ").
-			'</p>';
-		return $out;
-	}
+	// dummy = _("This rule will trigger upon the occurrence of one or more strings in the body of an e-mail message. ")
 	
 	/**
 	 * Output available actions in a radio-button style.
@@ -481,7 +539,6 @@ class avelsieve_html_edit extends avelsieve_html {
 	 */
 	function submit_buttons() {
 		$out = '<tr><td><div style="text-align: center">';
-		if($this->rule['type'] != 0) {
 		switch ($this->mode) {
 			case 'addnew':
 				$out .= '<input type="submit" name="addnew" value="'._("Add New Rule").'" />';
@@ -500,7 +557,6 @@ class avelsieve_html_edit extends avelsieve_html {
 			case 'edit':
 				$out .= '<input type="submit" name="apply" value="'._("Apply Changes").'" />';
 				break;
-		}
 		}
 		if($this->popup) {
 			$out .= ' <input type="submit" name="cancel" onClick="window.close(); return false;" value="'._("Cancel").'" />';
@@ -539,44 +595,21 @@ class avelsieve_html_edit extends avelsieve_html {
 		}
 		
 		/* --------------------- 'if' ----------------------- */
-		$out .= $this->section_start( _("Condition") ).
-			$this->rule_1_type('select').
-			'<br/>';
+		$out .= $this->section_start( _("Condition") );
 
 		switch ($this->rule['type']) { 
+			case 0:
 			case 1: 
-				$out .= 'Not implemented yet.';
+			default:
+				// New-style generic conditions
+				$out .= $this->all_conditions();
 				break;
 			case 2:			/* header */
-				global $items;
-				if(!isset($items)) {
-					if(isset($this->rule['headermatch'])) {
-						$items = sizeof($this->rule['headermatch']) + 1;
-					} else {	
-						global $startitems;
-						$items = $startitems;
-					}
-				}
-				/*
-				if(isset($_POST['append'])) {
-					$items++;
-				} elseif(isset($_POST['less'])) {
-					$items--;
-				}
-				*/
-				$out .= '<input type="hidden" name="items" value="'.$items.'" />';
-				$out .= $this->rule_2_2_header($items);
-				break;		
-				
 			case 3: 		/* size */
-				$out .= $this->rule_2_3_size();
-				break;
-				
 			case 4: 		/* All messages */
-				$out .= $this->rule_2_4_allmessages();
-				break;
-			case 0:			/* Nothing yet... */
-			default:
+				/* Obsolete */
+				/* Something went wrong. Probably re-migrate. */
+				print "DEBUG: Something went wrong. Probably re-migrate.";
 				break;
 				
 		}

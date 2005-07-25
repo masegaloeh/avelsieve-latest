@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: addspamrule.php,v 1.13 2004/12/20 15:58:44 avel Exp $
+ * @version $Id: addspamrule.php,v 1.14 2005/07/25 10:30:27 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -301,10 +301,10 @@ if(!$spamrule_advanced) {
 	print '<p>';
 	echo '<input type="hidden" name="whitelistitems" value="'.$whitelistitems.'" />';
 	for($i=0; $i<$whitelistitems; $i++) {
-		echo avelsieve_html_edit::header_listbox(
+		echo $ht->header_listbox(
 			isset($whitelist[$i]['header']) ? $whitelist[$i]['header'] : 'From' , $i
 		);
-		echo avelsieve_html_edit::matchtype_listbox(
+		echo $ht->matchtype_listbox(
 			isset($whitelist[$i]['matchtype']) ?  $whitelist[$i]['matchtype'] : '' , $i, 'whitelistmatch'
 		);
 		echo '<input name="whitelistvalue['.$i.']" value="'.

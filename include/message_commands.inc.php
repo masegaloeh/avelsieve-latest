@@ -9,7 +9,7 @@
  * This file contains functions for the per-message commands that appear while
  * viewing a message.
  *
- * @version $Id: message_commands.inc.php,v 1.8 2004/11/22 10:57:23 avel Exp $
+ * @version $Id: message_commands.inc.php,v 1.9 2005/07/25 10:30:27 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -70,21 +70,23 @@ function avelsieve_commands_menu_do() {
 	}
 
 	foreach($filtercmds as $c => $i) {
-    	$url = '../plugins/avelsieve/edit.php?addnew=1&amp;type=2';
+    	$url = '../plugins/avelsieve/edit.php?addnew=1&amp;type=1';
 		switch($i['algorithm']) {
 		case 'address':
 			if(isset($hdr->$c) && !empty($hdr->$c)) {
 				if(is_array($hdr->$c)) {
 					for($j=0; $j<sizeof($hdr->$c); $j++) {
-						$url .= '&amp;header['.$j.']='.ucfirst($c);
-						$url .= '&amp;matchtype['.$j.']=contains';
-						$url .= '&amp;headermatch['.$j.']='.urlencode( $hdr->{$c}[$j]->mailbox.'@'.$hdr->{$c}[$j]->host);
+						$url .= '&amp;cond['.$j.'][type]=address';
+						$url .= '&amp;cond['.$j.'][address]='.ucfirst($c);
+						$url .= '&amp;cond['.$j.'][matchtype]=contains';
+						$url .= '&amp;cond['.$j.'][addressmatch]='.urlencode( $hdr->{$c}[$j]->mailbox.'@'.$hdr->{$c}[$j]->host);
 					}
 				} else {
 					$j=0;
-					$url .= '&amp;header['.$j.']='.ucfirst($c);
-					$url .= '&amp;matchtype['.$j.']=contains';
-					$url .= '&amp;headermatch['.$j.']='.urlencode( $hdr->{$c}->mailbox.'@'.$hdr->{$c}->host);
+					$url .= '&amp;cond['.$j.'][type]=address';
+					$url .= '&amp;cond['.$j.'][address]='.ucfirst($c);
+					$url .= '&amp;cond['.$j.'][matchtype]=contains';
+					$url .= '&amp;cond['.$j.'][addressmatch]='.urlencode( $hdr->{$c}->mailbox.'@'.$hdr->{$c}->host);
 				}
 			} else {
 				unset($url);
@@ -94,32 +96,36 @@ function avelsieve_commands_menu_do() {
 		case 'header':
 			if(isset($hdr->$c) && !empty($hdr->$c)) {
 				$j=0;
-				$url .= '&amp;header['.$j.']='.ucfirst($c);
-				$url .= '&amp;matchtype['.$j.']=contains';
-				$url .= '&amp;headermatch['.$j.']='.rawurlencode(decodeHeader($hdr->$c, false, false));
+				$url .= '&amp;cond['.$j.'][type]=header';
+				$url .= '&amp;cond['.$j.'][header]='.ucfirst($c);
+				$url .= '&amp;cond['.$j.'][matchtype]=contains';
+				$url .= '&amp;cond['.$j.'][headermatch]='.rawurlencode(decodeHeader($hdr->$c, false, false));
 				/* TODO: Probably use $utfdecode = true instead of false in the
-				 * above function call of decodeHeader() (second argument. */
+				 * above function call of decodeHeader() (second argument). */
 			}
 			break;
 
 		case 'auto':
 			if(isset($hdr->mlist['id']) && isset($hdr->mlist['id']['href'])) {
 				/* List-Id: (href) */
-				$url .= '&amp;header[0]=List-Id'.
-						'&amp;matchtype[0]=contains'.
-						'&amp;headermatch[0]='.rawurlencode( $hdr->mlist['id']['href'] );
+				$url .= '&amp;cond[0][type]=header';
+				$url .= '&amp;cond[0][header]=List-Id'.
+						'&amp;cond[0][matchtype]=contains'.
+						'&amp;cond[0][headermatch]='.rawurlencode( $hdr->mlist['id']['href'] );
 
 			} elseif(isset($hdr->mlist['id']) && isset($hdr->mlist['id']['mailto'])) {
 				/* List-Id: (mailto) */
-				$url .= '&amp;header[0]=List-Id'.
-						'&amp;matchtype[0]=contains'.
-						'&amp;headermatch[0]='.rawurlencode( $hdr->mlist['id']['mailto'] );
+				$url .= '&amp;cond[0][type]=header';
+				$url .= '&amp;cond[0][header]=List-Id'.
+						'&amp;cond[0][matchtype]=contains'.
+						'&amp;cond[0][headermatch]='.rawurlencode( $hdr->mlist['id']['mailto'] );
 
 			} elseif(isset($hdr->sender) && !empty($hdr->sender)) {
 				/* Sender: */
-				$url .= '&amp;header[0]=Sender'.
-						'&amp;matchtype[0]=contains'.
-						'&amp;headermatch[0]='.rawurlencode($hdr->sender->mailbox.'@'.$hdr->sender->host);
+				$url .= '&amp;cond[0][type]=address';
+				$url .= '&amp;cond[0][address]=Sender'.
+						'&amp;cond[0][matchtype]=contains'.
+						'&amp;cond[0][addressmatch]='.rawurlencode($hdr->sender->mailbox.'@'.$hdr->sender->host);
 			
 			} else {
 				$j = 0;
@@ -130,10 +136,11 @@ function avelsieve_commands_menu_do() {
 					for($k=0; $k<sizeof($hdr->to); $k++) {
 						$tempurl = '';
 						if(!in_array($hdr->to[$k]->mailbox.'@'.$hdr->to[$k]->host,$myemails)) {
-							$tempurl .= '&amp;header['.$j.']=toorcc'.
-							'&amp;matchtype['.$j.']=contains'.
-							'&amp;headermatch['.$j.']='.rawurlencode($hdr->to[$k]->mailbox.'@'.
-							$hdr->to[$k]->host);
+							$tempurl .=
+								'&amp;cond['.$j.'][type]=address'.
+								'&amp;cond['.$j.'][address]=toorcc'.
+								'&amp;cond['.$j.'][matchtype]=contains'.
+								'&amp;cond['.$j.'][addressmatch]='.rawurlencode($hdr->to[$k]->mailbox.'@'.$hdr->to[$k]->host);
 							$j++;
 						}
 					}
@@ -146,16 +153,18 @@ function avelsieve_commands_menu_do() {
 					if(isset($hdr->from) && !empty($hdr->from)) {
 						/* From: */
 						for($k=0; $k<sizeof($hdr->from); $k++) {
-							$url .= '&amp;header[0]=From'.
-								'&amp;matchtype[0]=contains'.
-								'&amp;headermatch[0]='.rawurlencode($hdr->from[$k]->mailbox.'@'.$hdr->from[$k]->host);
+							$url .= '&amp;cond[0][type]=address'.
+								'&amp;cond[0][address]=From'.
+								'&amp;cond[0][matchtype]=contains'.
+								'&amp;cond[0][addressmatch]='.rawurlencode($hdr->from[$k]->mailbox.'@'.$hdr->from[$k]->host);
 						}
 					
 					} elseif(isset($hdr->subject) && !empty($hdr->subject)) {
 						/* Subject */
-						$url .= '&amp;header[0]=Subject'.
-								'&amp;matchtype[0]=contains'.
-								'&amp;headermatch[0]='.rawurlencode($hdr->subject);
+						$url .= '&amp;cond[0][type]=header'.
+								'&amp;cond[0][header]=Subject'.
+								'&amp;cond[0][matchtype]=contains'.
+								'&amp;cond[0][headermatch]='.rawurlencode($hdr->subject);
 					}
 				}
 			}

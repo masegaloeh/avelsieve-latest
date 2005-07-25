@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.22 2005/06/02 15:07:37 avel Exp $
+ * @version $Id: edit.php,v 1.23 2005/07/25 10:30:27 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -49,11 +49,13 @@ sqgetGlobalVar('newfoldername', $newfoldername, SQ_POST);
 sqgetGlobalVar('newfolderparent', $newfolderparent, SQ_POST);
 /* Essentials */
 sqgetGlobalVar('popup', $popup, SQ_GET);
-sqgetGlobalVar('items', $items, SQ_GET);
-sqgetGlobalVar('edit', $edit, SQ_GET & SQ_POST);
+sqgetGlobalVar('edit', $edit, SQ_FORM);
+
 sqgetGlobalVar('previoustype', $previoustype, SQ_POST);
+sqgetGlobalVar('cond', $new_cond, SQ_POST);
+sqgetGlobalVar('previous_cond', $previous_cond, SQ_POST);
+
 sqgetGlobalVar('type', $type_get, SQ_GET);
-sqgetGlobalVar('type', $type_post, SQ_POST);
 
 if(!isset($rules)) {
 	/* FIXME - Make Getting+Caching of rules a function. */
@@ -83,7 +85,6 @@ if(isset($authz)) {
 } else {
 	$sieve=new sieve($imap_server, $sieveport, $username, $acctpass, $username, $preferred_mech);
 }
-
 
 	avelsieve_login();
 	if($sieve->sieve_listscripts()) {
@@ -146,49 +147,43 @@ if(isset($edit)) {
 } elseif(!isset($edit) && isset($type_get)) {
 	/* Adding a new rule through $_GET */
 	$type = $type_get;
-	$rule = process_input(SQ_GET, $errmsg);
+	$rule = process_input(SQ_GET, $errmsg, false);
 } else {
 	/* Adding a new rule from scratch */
 	$rule = array();
 }
 
-if(isset($type_post)) {
-	$type = $type_post;
-	$rule = process_input(SQ_POST, $errmsg);
-}
 
+/* FIXME - old style type */
+/*
 if(isset($previoustype) && (
 	$previoustype == 0 ||
 	(isset($type) && $previoustype != $type)
-	)) {
+  )) {
 		$changetype = true;
 } else {
 		$changetype = false;
 }
+*/
+$changetype = false;
+if(isset($previous_cond) && isset($new_cond)) {
+	foreach($previous_cond as $n=>$t) {
+		if(isset($new_cond[$n]['type']) && $t['type'] != $new_cond[$n]['type']) {
+			$changetype = true;
+		}
+	}
+}
 
 /* Available Actions that occur if submitting the form in a number of ways */
 
-if(isset($_POST['append'])) {
-	/* More header match items */
-	$items = $_POST['items'] + 1;
-
-} elseif(isset($_POST['less'])) {
-	/* Less header match items */
-	$items = $_POST['items'] - 1;
-
-} elseif(isset($_POST['cancel'])) {
+if(isset($_POST['cancel'])) {
 	/* Cancel Editing */
 	header("Location: table.php$popup");
 	exit;
 
-} elseif($changetype) {
-	/* Changing of rule type */
-	$rule['type'] = $_POST['type'];
-	
-
 } elseif(isset($_POST['apply']) && !$changetype) {
 	/* Apply change in existing rule */
-	$editedrule = process_input(SQ_POST, $errmsg);
+	$editedrule = process_input(SQ_POST, $errmsg, true);
 	if(empty($errmsg)) {
 		$_SESSION['rules'][$edit] = $editedrule;
 		$_SESSION['comm']['edited'] = $edit;
@@ -198,7 +193,7 @@ if(isset($_POST['append'])) {
 
 } elseif(isset($_POST['addnew']) && !$changetype) {
 	/* Add new rule */
- 	$newrule = process_input(SQ_POST, $errmsg);
+ 	$newrule = process_input(SQ_POST, $errmsg, true);
 	if(empty($errmsg)) {
 		if(isset($dup)) {
 			// insert moving rule in place
@@ -215,6 +210,10 @@ if(isset($_POST['append'])) {
 		header("Location: table.php$popup");
 		exit;
 	}
+} elseif($changetype || isset($_POST['append']) || isset($_POST['less'])) {
+	/* still in editing; apply any changes. */
+	print "/* still in editing; apply any changes. */";
+	$rule = process_input(SQ_POST, $errmsg, false);
 }
 
 

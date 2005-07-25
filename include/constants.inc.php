@@ -6,48 +6,56 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: constants.inc.php,v 1.7 2005/06/27 11:14:36 avel Exp $
+ * @version $Id: constants.inc.php,v 1.8 2005/07/25 10:30:27 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
 
-$types = array();
-
-$types[1]= array(
-	'order' => 0,
-	'disabled' => true,
-	'name' => _("Address Match"),
-	'description' => _("Perform an action depending on email addresses appearing in message headers.")
+$conditions = array(
+	"and" => _("AND (Every item must match)"),
+	"or" => _("OR (Either item will match)")
 );
 
-$types[2]= array(
-	'order' => 1,
-	'name' => _("Header Match"),
-	'description' => _("Perform an action on messages matching a specified header (From, To etc.).")
+$avelsieve_maintypes = array(
+	1 => _("Rule"),
+	10 => _("Anti-SPAM")
 );
 
-$types[3] = array(
-	'order' => 2,
-	'name' => _("Size"),
-	'description' => _("Perform an action on messages depending on their size.")
+$types = array(
+	'address' => array(
+		'order' => 1,
+		'name' => _("Address"),
+		'description' => _("Perform an action depending on email addresses appearing in message headers.")
+	),
+	'header' => array(
+		'order' => 0,
+		'name' => _("Header"),
+		'description' => _("Perform an action on messages matching a specified header (From, To etc.).")
+	),
+	'envelope' => array(
+		'order' => 2,
+		'name' => _("Envelope"),
+		'description' => _("Perform an action on messages matching a specified envelope header (Envelope FROM, TO).")
+	),
+	'size' => array(
+		'order' => 4,
+		'name' => _("Size"),
+		'description' => _("Perform an action on messages depending on their size.")
+	),
+	'body' => array(
+		'order' => 3,
+		'name' => _("Body"),
+		'description' => _("Perform an action on messages depending on their content (body text)."),
+		'dependencies' => array('body')
+	),
+	'all' => array(
+		'order' => 5,
+		'name' => _("All"),
+		'description' => _("Perform an action on <strong>all</strong> incoming messages.")
+	)
 );
-
-$types[4] = array(
-	'order' => 3,
-	'name' => _("All Messages"),
-	'description' => _("Perform an action on <strong>all</strong> incoming messages.")
-);
-
-$types[5] = array(
-	'disabled' => true,
-	'order' => 4,
-	'name' => _("Body Match"),
-	'description' => _("Perform an action on messages depending on their content (body text)."),
-	'dependencies' => array("body")
-);
-
 
 $actions = array(
 	'keep', 'discard', 'reject', 'redirect', 'fileinto', 'vacation'
@@ -58,27 +66,27 @@ $additional_actions = array(
 
 
 $matchtypes = array(
-"contains" => _("contains"),
-"does not contain" => _("does not contain"),
-"is" => _("is"),
-"is not" => _("is not"),
-"matches" => _("matches") . " " . _("wildcard"),
-"does not match" => _("does not match") . " " . _("wildcard")
+	"contains" => _("contains"),
+	"does not contain" => _("does not contain"),
+	"is" => _("is"),
+	"is not" => _("is not"),
+	"matches" => _("matches") . " " . _("wildcard"),
+	"does not match" => _("does not match") . " " . _("wildcard")
 );
 
 $matchregex = array(
-"regex" => _("matches") . " " . _("regexp"),
-"not regex" => _("does not match") . " " . _("regexp")
+	'regex' => _("matches") . " " . _("regexp"),
+	'not regex' => _("does not match") . " " . _("regexp")
 );
 
 
 $comparators = array(
-'gt' => ">  " . _("is greater than"),
-'ge' => "=> " . _("is greater or equal to"),
-'lt' => "<  " . _("is lower than"),
-'le' => "<= " . _("is lower or equal to"),
-'eq' => "=  " . _("is equal to"),
-'ne' => "!= " . _("is not equal to")
+	'gt' => '>  ' . _("is greater than"),
+	'ge' => '=> ' . _("is greater or equal to"),
+	'lt' => '<  ' . _("is lower than"),
+	'le' => '<= ' . _("is lower or equal to"),
+	'eq' => '=  ' . _("is equal to"),
+	'ne' => '!= ' . _("is not equal to")
 ) ;
 // gt" / "ge" / "lt""le" / "eq" / "ne"
 
@@ -90,15 +98,19 @@ $displaymodes = array(
 	'source' => array( _("source"), _("Display SIEVE source"))
 );
 
-$implemented_capabilities = array("fileinto", "reject", "vacation", "imapflags", "relational", "regex", "notify");
+if(AVELSIEVE_DEBUG == 1) {
+	$displaymodes['debug'] = array('debug', 'Debugging mode (avelsieve variables)');
+}
+
+$implemented_capabilities = array('fileinto', 'reject', 'vacation', 'imapflags', 'relational', 'regex', 'notify');
 
 $cap_dependencies['relational'] = array("comparator-i;ascii-numeric");
 
 
 $prioritystrings = array(
-'low' => _("Low"),
-'normal' => _("Normal"),
-'high' => _("High")
+	'low' => _("Low"),
+	'normal' => _("Normal"),
+	'high' => _("High")
 );
 
 /* Tools (Icons in table.php) */
@@ -177,8 +189,17 @@ $spamrule_actions = array(
 $avelsieve_version = array(
 	'major' => 1,
 	'minor' => 9,
-	'release' => 3,
-	'string' => "1.9.3"
+	'release' => 4,
+	'string' => "1.9.4"
+);
+
+$available_envelope = array('from', 'to');
+
+$available_envelope[] = 'auth';
+
+/* Headers that typically include email addresses, for the :address check */
+$available_address_headers = array(
+	'From', 'To', 'Cc', 'Bcc', 'Reply-To', 'Sender', 'Resent-From', 'Resent-To'
 );
 
 global $implemented_capabilities, $cap_dependencies;  
