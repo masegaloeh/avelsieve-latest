@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.20 2005/07/25 10:30:27 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.21 2005/07/29 14:26:54 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2005 Alexandros Vellis
  * @package plugins
@@ -147,20 +147,10 @@ class avelsieve_html_edit extends avelsieve_html {
 	}
 
 	/**
-	 * Address match
-	 * @todo Not implemented yet.
-	 * @return void
-	 */
-	function rule_2_1_address() {
-		$out = _("The rule will trigger if the following addresses appear anywhere in the message's headers:");
-		return $out;
-	}
-
-	/**
  	 * Listbox widget with available headers to choose from.
  	 *
- 	 * @param $selected_header Selected header
- 	 * @param $n option number
+ 	 * @param string $selected_header Selected header
+ 	 * @param int $n option number
  	 */
 	function header_listbox($selected_header, $n) {
 		global $headers;
@@ -177,8 +167,8 @@ class avelsieve_html_edit extends avelsieve_html {
 	/**
  	 * Listbox widget with available address headers to choose from.
  	 *
- 	 * @param $selected_header Selected header
- 	 * @param $n option number
+ 	 * @param string $selected_header Selected header
+ 	 * @param int $n option number
  	 */
 	function address_listbox($selected_header, $n) {
 		global $available_address_headers;
@@ -193,8 +183,8 @@ class avelsieve_html_edit extends avelsieve_html {
 	/**
  	 * Listbox widget with available envelope values to choose from.
  	 *
- 	 * @param $selected_envelope Selected header
- 	 * @param $n option number
+ 	 * @param string $selected_envelope Selected header
+ 	 * @param int $n option number
  	 */
 	function envelope_listbox($selected_envelope, $n) {
 		global $available_envelope;
@@ -233,6 +223,8 @@ class avelsieve_html_edit extends avelsieve_html {
 	/**
 	 * The condition listbox shows the available conditions for a given match
 	 * type. Usually 'and' and 'or'.
+	 *
+	 * @param string $selected_condition
 	 * @return string
 	 */
 	function condition_listbox($selected_condition) {
@@ -246,6 +238,14 @@ class avelsieve_html_edit extends avelsieve_html {
 	 * Output a whole line that represents a condition, that is the $n'th
 	 * condition in the array $this->rule['cond'].
 	 *
+	 * @param int $n
+	 * @return string
+	 * @see condition_header()
+	 * @see condition_address()
+	 * @see condition_envelope()
+	 * @see condition_size()
+	 * @see condition_body()
+	 * @see condition_all()
 	 */
 	function condition($n) {
 		global $types;
@@ -264,6 +264,10 @@ class avelsieve_html_edit extends avelsieve_html {
 		return $out;
 	}
 
+	/** 
+	 * Output all conditions
+	 * @return string
+	 */
 	function all_conditions() {
 		global $maxitems, $startitems, $comparators;
 		
@@ -316,6 +320,8 @@ class avelsieve_html_edit extends avelsieve_html {
 	
 	/**
 	 * Output HTML code for header match rule.
+	 *
+	 * @param int $n Number of current condition (index of 'cond' array)
 	 * @return string
 	 */
 	function condition_header($n) {
@@ -346,6 +352,8 @@ class avelsieve_html_edit extends avelsieve_html {
 	
 	/**
 	 * Output HTML code for address match rule.
+	 *
+	 * @param int $n Number of current condition (index of 'cond' array)
 	 * @return string
 	 */
 	function condition_address($n) {
@@ -373,6 +381,8 @@ class avelsieve_html_edit extends avelsieve_html {
 	
 	/**
 	 * Output HTML code for envelope match rule.
+	 *
+	 * @param int $n Number of current condition (index of 'cond' array)
 	 * @return string
 	 */
 	function condition_envelope($n) {
@@ -400,6 +410,8 @@ class avelsieve_html_edit extends avelsieve_html {
 		
 	/**
 	 * Size match
+	 *
+	 * @param int $n Number of current condition (index of 'cond' array)
 	 * @return string
 	 */
 	function condition_size($n) {
@@ -442,6 +454,8 @@ class avelsieve_html_edit extends avelsieve_html {
 		
 	/**
 	 * Output HTML code for body match rule.
+	 *
+	 * @param int $n Number of current condition (index of 'cond' array)
 	 * @return string
 	 */
 	function condition_body($n) {
@@ -471,8 +485,6 @@ class avelsieve_html_edit extends avelsieve_html {
 		return $out;
 	}
 	
-	// dummy = _("This rule will trigger upon the occurrence of one or more strings in the body of an e-mail message. ")
-	
 	/**
 	 * Output available actions in a radio-button style.
 	 * @return string
@@ -498,6 +510,12 @@ class avelsieve_html_edit extends avelsieve_html {
 		return $out;
 	}
 	
+	/**
+	 * Output available *additional* actions (notify, stop etc.) in a
+	 * checkbox-button style.
+	 *
+	 * @return string
+	 */
 	function rule_3_additional_actions() {
 		/* Preferences from config.php */
 		global $useimages, $translate_return_msgs;
@@ -519,20 +537,6 @@ class avelsieve_html_edit extends avelsieve_html {
 		}
 		return $out;
 	}
-	
-	/**
-	 * Output notification message for new rule wizard
-	 * @param string $text
-	 * @return string
-	 */
-	function confirmation($text) {
-		$out = '<p>'. _("Your new rule states:") .
-			'</p><blockquote><p>'.$text.'</p></blockquote><p>'.
-			_("If this is what you wanted, select Finished. You can also start over or cancel adding a rule altogether.").
-			'</p>';
-		return $out;
-	}
-
 	/**
 	 * Submit buttons for edit form -- not applicable for wizard
 	 * @return string
