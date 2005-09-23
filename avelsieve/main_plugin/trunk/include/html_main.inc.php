@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_main.inc.php,v 1.4 2005/07/25 10:30:27 avel Exp $
+ * @version $Id: html_main.inc.php,v 1.5 2005/09/23 12:03:48 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -111,20 +111,11 @@ class avelsieve_html {
 	 * Table 'section' start
 	 * @return string
 	 */
-	function section_start($title) {
-		global $color, $addrule_error;
-		$out = "<TR><TD BGCOLOR=\"$color[9]\" ALIGN=CENTER><B>".
-		     $title .
-		     "</B></TD></TR>";
-	
-		if($addrule_error) {
-			$out .= '<TR><TD BGCOLOR="'.$color[2].'" ALIGN="CENTER"><p><font color="'.$color[8].'"><strong>'.
-			$addrule_error .
-		'</strong></font></TD></TR>';
-		
-		}
-		$out .= "<TR><TD BGCOLOR=\"$color[0]\" >";
-		return $out;
+	function section_start($title, $errmsg = '') {
+		global $color;
+		return '<tr><td bgcolor="'.$color[9].'" align="center">'.
+			'<strong>'.$title.'</strong></td></tr>'.
+			'<tr><td bgcolor="'.$color[0].'">';
 	}
 	
 	/**
@@ -133,9 +124,8 @@ class avelsieve_html {
 	 */
 	function section_end() {
 		global $color;
-		$out = "</TD></TR>\n";
-		//echo "</table>";
-		$out .= "<tr><td bgcolor=\"$color[4]\">&nbsp;</td></tr>\n";
+		$out = "</td></tr>\n".
+			"<tr><td bgcolor=\"$color[4]\">&nbsp;</td></tr>\n";
 		return $out;
 	}
 
