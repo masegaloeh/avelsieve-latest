@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: process_user_input.inc.php,v 1.14 2005/07/25 10:50:58 avel Exp $
+ * @version $Id: process_user_input.inc.php,v 1.15 2005/09/23 12:03:48 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -20,13 +20,15 @@ include_once(SM_PATH . 'functions/global.php');
  * namespace (GET or POST). Puts the result in an array and returns that.
  *
  * @param int $search Defaults to $_POST.
- * @param string $errmsg If processing fails, error message will be returned in
+ * @param string $errormsg If processing fails, error message will be returned in
  *    this variable.
  * @param boolean $truncate_empty_conditions
  * @return array Resulting Rule
  * @todo Use the rules, actions etc. schema variables & classes.
  */
-function process_input($search = SQ_POST, &$errmsg, $truncate_empty_conditions = false) {
+function process_input($search = SQ_POST, &$errormsg, $truncate_empty_conditions = false) {
+	global $comparators;
+
 	/* Set Namespace ($ns) referring variable according to $search */
 	switch ($search) {
 		case SQ_GET:
@@ -76,15 +78,14 @@ function process_input($search = SQ_POST, &$errmsg, $truncate_empty_conditions =
 				array_push($vars, 'excuse');
 				break;
 			case "4": /* redirect */
-				$errormsg = array();
-				//avelsieve_action_redirect->validate($ns, $errormsg);
-	
+				avelsieve_action_redirect::validate($ns, $errormsg);
 				array_push($vars, 'redirectemail', 'keep');
 				break;
 			case "5": /* fileinto */
 				array_push($vars, 'folder');
 				break;
 			case "6": /* vacation */
+				avelsieve_action_vacation::validate($ns, $errormsg);
 				array_push($vars, 'vac_addresses', 'vac_days', 'vac_message');
 				break;
 			default:

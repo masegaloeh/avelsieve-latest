@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.21 2005/07/29 14:26:54 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.22 2005/09/23 12:03:48 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2005 Alexandros Vellis
  * @package plugins
@@ -42,6 +42,7 @@ class avelsieve_html_edit extends avelsieve_html {
 	 * @param string $mode
 	 * @param array $rule
 	 * @param boolean $popup
+	 * @param mixed $errmsg Array or string of error messages to display.
 	 * @return void
 	 */
 	function avelsieve_html_edit($mode = 'edit', $rule = array(), $popup = false, $errmsg = '') {
@@ -478,6 +479,7 @@ class avelsieve_html_edit extends avelsieve_html {
 	/**
 	 * All messages 
 	 * @return string
+	 * @obsolete
 	 */
 	function condition_all() {
 		$out = _("All Messages");
@@ -593,9 +595,20 @@ class avelsieve_html_edit extends avelsieve_html {
 		/* ---------- Error (or other) Message, if it exists -------- */
 		if(!empty($this->errmsg)) {
 			$out .= $this->section_start( _("Error Encountered:") ).
-				'<div style="text-align:center; color:'.$color[2].';">'.
-				$this->errmsg .'</div>' .
-				$this->section_end();
+				'<div style="text-align:center; color:'.$color[2].';">';
+
+			if(is_array($this->errmsg)) {
+				$out .= '<ul>';
+				foreach($this->errmsg as $msg) {
+					$out .= '<li>'.$msg.'</li>';
+				}
+				$out .= '</ul>';
+			} else {
+				$out .= '<p>'.$this->errmsg .'</p>';
+			}
+			$out .= '<p>'. _("You must correct the above errors before continuing."). '</p>';
+			
+			$out .= '</div>' . 	$this->section_end();
 		}
 		
 		/* --------------------- 'if' ----------------------- */
@@ -613,6 +626,7 @@ class avelsieve_html_edit extends avelsieve_html {
 			case 4: 		/* All messages */
 				/* Obsolete */
 				/* Something went wrong. Probably re-migrate. */
+				/* FIXME */
 				print "DEBUG: Something went wrong. Probably re-migrate.";
 				break;
 				

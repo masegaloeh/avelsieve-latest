@@ -4,6 +4,45 @@
 
 <ul>
 
+<li>Reorganized the internal structure of the rule condition. Now there is a
+cond array, in which all conditions are stored. Different types of conditions
+can be mixed in the same rule, for instance: &quot;envelope FROM contains foo
+or Address From: contains foo&quot;. Proper migration from intrelnal structure
+of versions &lt;= 1.9.3 is (hopefully) performed.</li>
+
+<li><strong>Envelope, Address and Body capabilities / extensions are now fully
+supported.</strong></li>
+
+<li>Implemented proper validation for some of the fields entered by the user,
+such as in the 'redirect' and 'vacation' email addresses.</li>
+
+<li>The automatic creation of rules, invoked when reading a message, now
+creates rules of type &quot;address&quot;.</li>
+
+<li>Processing of rules from user input (_POST etc.) is more robust.</li>
+
+<li>Added new configuration options:</li>
+
+<ul>
+
+<li>$avelsieve_oldcyrus: In Cyrus 2.3+, the notification action is fully
+supported, as opposed to older Cyrus versions. The oldcyrus variable is for
+supporting the partially implemented notify extension implementation of Cyrus &lt;
+2.3. If you have Cyrus &lt; 2.3, just set this to true.  This only changes the
+informational / help text displayed in avelsieve.</li>
+<br/>
+
+<li>$avelsieve_enable_envelope_auth: If you have Cyrus with an lmtpd that can
+understand the "auth" argument to the :envelope test as the SMTP/LMTP auth, or
+any other Sieve implementation than can understand the authentication ID, then
+you can enable this to provide this functionality to the user.<br/><br/>
+This was not clarified in the base spec of RFC 3028. It will be done correctly
+in a new version of Cyrus, based on a new draft / spec.</li>
+
+
+</ul>
+
+
 </ul>
 
 

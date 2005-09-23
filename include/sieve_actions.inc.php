@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.12 2005/07/25 10:53:56 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.13 2005/09/23 12:03:48 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -268,13 +268,13 @@ class avelsieve_action_redirect extends avelsieve_action {
 		return $out;
 	}
 
-	function validate($val, $errormsg) {
-		if(!preg_match("/^( [a-zA-Z0-9] )+( [a-zA-Z0-9\._-] )*@( [a-zA-Z0-9_-] )+( [a-zA-Z0-9\._-] +)+$/" ,
-			$val['redirectemail'])){
-				$errormsg[] = _("Incorrect email address. You must enter only one valid email address.");
-				return false;
+	function validate($val, &$errormsg) {
+		$onemailregex = "[a-zA-Z0-9]+[a-zA-Z0-9\._-]*@[a-zA-Z0-9_-]+[a-zA-Z0-9\._-]+";
+		
+		if(!preg_match("/^$onemailregex(,$onemailregex)*$/" ,	$val['redirectemail'])){
+		// if(!preg_match("/^( [a-zA-Z0-9] )+( [a-zA-Z0-9\._-] )*@( [a-zA-Z0-9_-] )+( [a-zA-Z0-9\._-] +)+$/" ,
+				$errormsg[] = _("Incorrect email address(es). You must enter one or more valid email addresses, separated by comma.");
 		}
-		return true;
 	}
 }
 
@@ -361,6 +361,19 @@ class avelsieve_action_vacation extends avelsieve_action {
 				'<textarea name="vac_message" rows="4" cols="50">'.$val['vac_message'].'</textarea>';
 	}
 
+	function validate($val, &$errormsg) {
+		if(!is_numeric($val['vac_days']) || !($val['vac_days'] > 1)) {
+			$errormsg[] = _("The number of days between vacation messages must be a positive number.");
+		}
+		if(empty($val['vac_addresses'])) {
+			$errormsg[] = _("Your email addresses for which a vacation message is returned must be defined.");
+		}
+
+		$onemailregex = "[a-zA-Z0-9]+[a-zA-Z0-9\._-]*@[a-zA-Z0-9_-]+[a-zA-Z0-9\._-]+";
+		if(!preg_match("/^$onemailregex(,$onemailregex)*$/" ,	$val['vac_addresses'])){
+			$errormsg[] = _("Incorrect email address(es). You must enter one or more valid email addresses, separated by comma.");
+		}
+	}
 }
 
 

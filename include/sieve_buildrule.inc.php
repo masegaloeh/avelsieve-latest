@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.12 2005/07/25 10:30:27 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.13 2005/09/23 12:03:48 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -163,6 +163,7 @@ function build_rule_snippet($name, $header, $matchtype, $headermatch, $mode='rul
 				$terse .= sprintf( _("Address %s"), htmlspecialchars($header));
 				$tech .= 'address '.htmlspecialchars($header).' ';
 			}
+			break;
 		
 		case 'body':
 			$text .= _("message body");
@@ -518,7 +519,6 @@ function makesinglerule($rule, $mode='rule') {
 	
 	if($rule['type'] == "1") {
 		/* New-style 'cond' array for conditions of different types. */
-
 		/* Condition ('and' / 'or') */
 		if(sizeof($rule['cond']) > 1) {
 			switch ($rule['condition']) {

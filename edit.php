@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.23 2005/07/25 10:30:27 avel Exp $
+ * @version $Id: edit.php,v 1.24 2005/09/23 12:03:48 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -35,7 +35,7 @@ include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
 
 sqsession_is_active();
 
-$errmsg = '';
+$errmsg = array();
 
 /* Session / Server vars */
 sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
@@ -189,6 +189,8 @@ if(isset($_POST['cancel'])) {
 		$_SESSION['comm']['edited'] = $edit;
 		$_SESSION['haschanged'] = true;
 		header("Location: table.php$popup");
+	} else {
+		$rule = $editedrule;
 	}
 
 } elseif(isset($_POST['addnew']) && !$changetype) {
@@ -212,7 +214,6 @@ if(isset($_POST['cancel'])) {
 	}
 } elseif($changetype || isset($_POST['append']) || isset($_POST['less'])) {
 	/* still in editing; apply any changes. */
-	print "/* still in editing; apply any changes. */";
 	$rule = process_input(SQ_POST, $errmsg, false);
 }
 

@@ -6,10 +6,9 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * Various support functions, useful or useless.  NB. THEY MUST NOT DEPEND
- * ELSEWHERE.
+ * Various support functions, useful or useless.
  *
- * @version $Id: support.inc.php,v 1.10 2004/12/21 13:18:37 avel Exp $
+ * @version $Id: support.inc.php,v 1.11 2005/09/23 12:03:48 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -55,9 +54,14 @@ function print_errormsg($errormsg) {
 }
 
 /**
- * Create new folder wrapper function for avelsieve.
+ * Create a new folder: wrapper function for avelsieve.
+ *
  * @param string $foldername
- * @return boolean
+ * @param string $subfolder
+ * @param string $created_mailbox_name
+ * @param array $errmsg Array of error messages, in which to append an error
+ *   message if it occurs.
+ * @return boolean True upon success, otherwise false.
  */
 function avelsieve_create_folder($foldername, $subfolder = '', &$created_mailbox_name, &$errmsg) {
 	/* Copy & paste magic (aka kludge) */
@@ -73,7 +77,7 @@ function avelsieve_create_folder($foldername, $subfolder = '', &$created_mailbox
 	if(isset($foldername) && trim($foldername) != '' ) {
 		$foldername = imap_utf7_encode_local(trim($foldername));
 	} else {
-		$errmsg = _("You have not defined the name for the new folder.") .
+		$errmsg[] = _("You have not defined the name for the new folder.") .
 				' ' . _("Please try again.");
 		return false;
 	}
@@ -84,7 +88,7 @@ function avelsieve_create_folder($foldername, $subfolder = '', &$created_mailbox
 
 	if (strpos($foldername, "\"") || strpos($foldername, "\\") ||
 	strpos($foldername, "'") || strpos($foldername, "$delimiter")) {
-		$errmsg = _("Illegal folder name.  Please select a different name"); 
+		$errmsg[] = _("Illegal folder name.  Please select a different name"); 
 		return false;
 	}
 
@@ -139,7 +143,7 @@ function avelsieve_create_folder($foldername, $subfolder = '', &$created_mailbox
    	sqimap_subscribe ($imapConnection, $mailbox);
 
 	if(strtolower($response) != 'ok') {
-		$errmsg = $message;
+		$errmsg[] = $message;
 		return false;
 	}
 	$created_mailbox_name = $mailbox;
