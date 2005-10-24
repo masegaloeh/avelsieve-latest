@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.13 2005/09/23 12:03:48 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.14 2005/10/24 12:26:16 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -654,6 +654,9 @@ function makesinglerule($rule, $mode='rule') {
 	
 	} elseif($rule['type'] == '4') {/* always */
 		$out .= "true {\n";
+	} elseif($rule['type'] != 10) {
+		/* Other type, probably handled by another plugin. */
+		do_hook_function('avelsieve_buildrule_condition', $args = array($rule, $out, $text, $terse, $tech));
 	}
 	
 	/* step two: make the then clause */
@@ -750,6 +753,7 @@ function makesinglerule($rule, $mode='rule') {
  		break;
 	
 	default:
+		do_hook_function('avelsieve_buildrule_action', $args = array($rule, $out, $text, $terse, $tech));
 		break;
 	}
 	

@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.11 2005/07/25 10:30:27 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.12 2005/10/24 12:26:16 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -156,6 +156,7 @@ class avelsieve_html_rules extends avelsieve_html {
 				'<input name="addspamrule" value="' . _("Add SPAM Rule") . '" type="submit" />'.
 				'</form>';
 		}
+		$out .= concat_hook_function('avelsieve_rulestable_buttons', NULL);
 		if($spamrule_enable == true) {
 			$out .= '</td></tr></table>';
 		}
@@ -332,15 +333,23 @@ class avelsieve_html_rules extends avelsieve_html {
 			/* Edit */
 			if($this->rules[$i]['type'] == 10) {
 				$out .= $this->toolicon("edit", $i, "addspamrule.php", "");
-			} else {
+			} elseif($this->rules[$i]['type'] < 10) {
 				$out .= $this->toolicon("edit", $i, "edit.php", "");
+			} else {
+				$args = do_hook_function('avelsieve_edit_link');
+				$out .= $this->toolicon("edit", $i, $args[0], $args[1]);
+				unset($args);
 			}
 			
 			/* Duplicate */
 			if($this->rules[$i]['type'] == 10) {
 				$out .= $this->toolicon("dup", $i, "addspamrule.php", "edit=$i&amp;dup=1");
-			} else {
+			} elseif($this->rules[$i]['type'] < 10) {
 				$out .= $this->toolicon("dup", $i, "edit.php", "edit=$i&amp;dup=1");
+			} else {
+				$args = do_hook_function('avelsieve_edit_link'); 
+				$out .= $this->toolicon('dup', $i, $args[0], $args[1]);
+				unset($args);
 			}
 		
 			/* Delete */
