@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.14 2005/10/24 12:26:16 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.15 2005/10/24 12:40:46 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -905,6 +905,10 @@ function makesieverule ($rulearray) {
 		}
 		$out .= makesinglerule($rulearray[$i],"rule");
 	}
+	/* It seems that if there is only one rule, and it is disabled, then it
+	 * fails to upload the script. By entering the ...implicit keep explicitly,
+	 * it seems to work: */
+	$out .= "\nkeep;";
 	return avelsieve_encode_script($out);
 }
 
