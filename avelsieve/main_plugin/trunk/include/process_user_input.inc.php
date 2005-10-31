@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: process_user_input.inc.php,v 1.15 2005/09/23 12:03:48 avel Exp $
+ * @version $Id: process_user_input.inc.php,v 1.16 2005/10/31 10:58:27 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -61,6 +61,10 @@ function process_input($search = SQ_POST, &$errormsg, $truncate_empty_conditions
 	
 			foreach($new_cond_indexes as $n => $index) {
 				$rule['cond'][] = $ns['cond'][$index];
+			}
+			/* If it is completely empty, we must return an error. */
+			if(!isset($rule['cond'])) {
+				$errormsg[] =  _("You have to define at least one condition.");
 			}
 		}
 	} else {
