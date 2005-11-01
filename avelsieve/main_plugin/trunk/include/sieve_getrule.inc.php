@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_getrule.inc.php,v 1.2 2005/07/25 10:30:27 avel Exp $
+ * @version $Id: sieve_getrule.inc.php,v 1.3 2005/11/01 15:58:20 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -149,6 +149,53 @@ function avelsieve_migrate_1_9_4(&$rulearray) {
 			/* TODO */
 		}
 	}
+}
+
+/**
+ * Consistency check between folders referred to in filtering rules and folders
+ * that exist to the user.
+ *
+ * @param array $boxes
+ * @param array $rules
+ * @return array of inconsistent folders
+ */
+function avelsieve_folder_consistency_check(&$boxes, &$rules) {
+	global $plugins;
+
+	/* Gather some exceptions for the consistency check. */
+	if(in_array('junkfolder', $plugins)) {
+		global $junkfolder_user, $junkfolder_autocreate;
+		if(!empty($junkfolder_user) && $junkfolder_autocreate) {
+			$exceptions[] = $junkfolder_user;
+		}
+	}
+
+	$inconsistent_folders = array();
+
+	for($i=0; $i<sizeof($boxes); $i++) {
+		$boxes_index[$i] = $boxes[$i]['unformatted'];
+	}
+	for($i=0; $i<sizeof($rules); $i++) {
+		if( ($rules[$i]['type'] == 1 && $rules[$i]['action'] == 5 && isset($rules[$i]['folder'])) &&
+		    (!isset($rules[$i]['disabled']) || (isset($rules[$i]['disabled']) && !$rules[$i]['disabled']))
+		  ) {
+			if(in_array($rules[$i]['folder'], $boxes_index)) {
+				// Check passed
+			} else {
+				// Check failed
+				$inconsistent_folders[] = $rules[$i]['folder'];
+				/*
+				// Would the rule number be of any use to someone?
+				$inconsistent_folders[] = array(
+					'rule' => $i,
+					'folder' => $rules[$i]['folder']
+				);
+				*/
+			}
+		}
+
+	}
+	return $inconsistent_folders;
 }
 
 ?>

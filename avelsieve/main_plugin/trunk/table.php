@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.24 2005/06/02 15:07:37 avel Exp $
+ * @version $Id: table.php,v 1.25 2005/11/01 15:58:20 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -92,6 +92,11 @@ if(AVELSIEVE_DEBUG == 1) {
 	print "DEBUG: Connecting with these parameters: ($imap_server, $sieveport, $username, *****, $username, $preferred_mech)";
 }
 
+sqgetGlobalVar('delimiter', $delimiter, SQ_SESSION);
+if(!isset($delimiter)) {
+	$delimiter = sqimap_get_delimiter($imapConnection);
+}
+
 sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
 
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
@@ -164,10 +169,13 @@ if (!isset($rules)) {
 	/* $sievescript has a SIEVE script. Parse that. */
 	$scriptinfo = array();
 	$rules = getruledata($sievescript, $scriptinfo);
+
+	/* When we first get this script, we probably want to do a validation with
+	 * the folders et al. Here this is done. */
+
 }
 
 unset($sieve->response);
-
 
 /* On to the code that executes if phpscript exists or if a new rule has been
  * created. */
@@ -329,6 +337,7 @@ if( (!$conservative && isset($haschanged) ) ) {
 	if(isset($_SESSION['haschanged'])) {
 		unset($_SESSION['haschanged']);
 	}
+
 }
 
 if(isset($rules)) {
@@ -339,6 +348,15 @@ if(isset($rules)) {
 if(isset($sieve_loggedin)) {
 	$sieve->sieve_logout();
 }
+	
+/* This is the place to do a consistency check, after all changes have been
+ * done. We also grab the list of all folders. */
+	
+// $folder_prefix = "INBOX";
+$imapConnection = sqimap_login($username, $key, $imapServerAddress, $imapPort, 0); 
+$boxes = sqimap_mailbox_list_all($imapConnection);
+sqimap_logout($imapConnection); 
+$inconsistent_folders = avelsieve_folder_consistency_check($boxes, $rules);
 
 /* -------------------- Presentation Logic ------------------- */
 
@@ -384,8 +402,12 @@ if(isset($_GET['mode'])) {
 		$mode = $avelsieve_default_mode;
 	}
 }
-
+	
 $ht = new avelsieve_html_rules($rules, $mode);
+
+if(!empty($inconsistent_folders)) {
+}
+
 if($popup) {
 	echo $ht->rules_confirmation();
 } else {
