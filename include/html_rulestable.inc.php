@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.12 2005/10/24 12:26:16 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.13 2005/11/01 15:58:20 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -69,6 +69,11 @@ class avelsieve_html_rules extends avelsieve_html {
 	
 		if(isset($scriptinfo['created'])) {
 			$out .= $this->scriptinfo($scriptinfo);
+		}
+		
+		global $inconsistent_folders;
+		if(!empty($inconsistent_folders)) {
+			$out .= '<p style="color:'.$color[2].'">' . _("Warning: In your rules, you have defined an action that refers to a folder that does not exist or a folder where you do not have permission to append to.") . '</p>';
 		}
 		
 		$out .= "<p>"._("The following table summarizes your current mail filtering rules.")."</p>";
@@ -316,7 +321,7 @@ class avelsieve_html_rules extends avelsieve_html {
 			$this->all_sections_start().
 			'<form name="rulestable" method="POST" action="table.php">'.
 			$this->rules_blurb();
-		
+
 		$toggle = false;
 		for ($i=0; $i<sizeof($this->rules); $i++) {
 			$out .="<tr";

@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.15 2005/10/24 12:40:46 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.16 2005/11/01 15:58:20 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -325,7 +325,7 @@ function makesinglerule($rule, $mode='rule') {
 		include_once(SM_PATH . 'plugins/avelsieve/include/dumpr.php');
 		return dumpr($rule, true);
 	}
-	global $maxitems, $color;
+	global $maxitems, $color, $inconsistent_folders;
 	$out = $text = $terse = $tech = '';
 
 	/* Step zero: serialize & encode the rule inside the SIEVE script. Also
@@ -728,10 +728,25 @@ function makesinglerule($rule, $mode='rule') {
 	
 	case '5':	/* fileinto folder */
 		$out .= 'fileinto "'.$rule['folder'].'";';
+
+		if(!empty($inconsistent_folders) && in_array($rule['folder'], $inconsistent_folders)) {
+			$clr = '<span style="color:'.$color[2].'">';
+			$text .= $clr;
+			$terse .= $clr;
+			$tech .= $clr;
+		}
 		$text .= sprintf( _("<em>file</em> it into the folder %s"),
 			' <strong>' . htmlspecialchars(imap_utf7_decode_local($rule['folder'])) . '</strong>');
 		$terse .= sprintf( _("File into %s"), htmlspecialchars(imap_utf7_decode_local($rule['folder'])));
 		$tech .= "FILEINTO ".htmlspecialchars(imap_utf7_decode_local($rule['folder']));
+		
+		if(!empty($inconsistent_folders) && in_array($rule['folder'], $inconsistent_folders)) {
+			$cls = '<em>' . _("(Warning: Folder not available)") . '</em></span>';
+			$text .= ' '.$cls;
+			$terse .= '<br/>'.$cls;
+			$tech .= '<br/>'.$cls;
+		}
+		$text .= '. ';
 		break;
 	
 	case '6':      /* vacation message */
