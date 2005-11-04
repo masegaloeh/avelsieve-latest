@@ -8,9 +8,9 @@
  *
  * Functions that have to do with SpamRule Functionality
  *
- * @version $Id: spamrule.inc.php,v 1.1 2004/11/02 15:06:17 avel Exp $
+ * @version $Id: spamrule.inc.php,v 1.2 2005/11/04 11:15:16 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
- * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
+ * @copyright 2004-2005 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
@@ -117,4 +117,63 @@ function avelsieve_askldapforrbls() {
 	return($spamrbls);
 }
 
+/**
+ * Create or update an entry in the squirrelmail highlight list, when there is
+ * a spam rule.
+ *
+ * Note: this function requires a patch in functions/imap_messages.php, which at
+ * the moment is not releasable. Perhaps two new plugin hooks should be in
+ * place in order to support that.
+ *
+ * @param $rules array
+ * @return void
+ */
+function avelsieve_spam_highlight_update(&$rules) {
+	global $data_dir, $username, $color, $avelsieve_spam_highlight_enable;
+	if(!isset($avelsieve_spam_highlight_enable) ||
+	  (isset($avelsieve_spam_highlight_enable) && !$avelsieve_spam_highlight_enable)) {
+		return;
+	}
+
+	/* TODO: Probably move these arguments to configuration file */
+	$avelsieve_hili_name = 'SPAM';
+	$avelsieve_hili_color = $color[3];
+	$avelsieve_hili_value = ';';
+	$avelsieve_hili_match_type = 'x-spam-tests';
+
+	$hili=getPref($data_dir, $username, 'hililist', '');
+	$hilight = unserialize($hili);
+
+	$hilight_exists = false;
+	foreach($hilight as $h) {
+		if($h['name'] == 'SPAM') {
+			$hilight_exists = true;
+		}
+	}
+	
+	$rule_exists = false;
+	for($i=0; $i<sizeof($rules); $i++) {
+		if($rules[$i]['type'] == '10') {
+			$rule_exists = true;
+		}
+	}
+		
+	if($rule_exists) {
+		if(!$hilight_exists) {
+			$hilight[] = array(
+				'name' => $avelsieve_hili_name,
+				'color' => $avelsieve_hili_color,
+				'value' => $avelsieve_hili_value,
+				'match_type' => $avelsieve_hili_match_type
+			);
+			setPref($data_dir, $username, 'hililist', serialize($hilight));
+		}
+	} else {
+		if($hilight_exists) {
+			/* Here we could remove the highlight rule, but I guess it won't
+			 * hurt leaving it in there. */
+		}
+	}
+}
+ 
 ?>
