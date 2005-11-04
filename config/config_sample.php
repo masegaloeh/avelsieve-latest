@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: config_sample.php,v 1.7 2005/07/25 10:53:56 avel Exp $
+ * @version $Id: config_sample.php,v 1.8 2005/11/04 11:15:16 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -202,5 +202,6 @@ $spamrule_tests = array(
 );
 $spamrule_tests_header = 'X-Spam-Tests';
 $spamrule_action_default = 'trash';
+$avelsieve_spam_highlight_enable = false;
 
 ?>

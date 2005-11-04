@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.25 2005/11/01 15:58:20 avel Exp $
+ * @version $Id: table.php,v 1.26 2005/11/04 11:15:16 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -32,6 +32,7 @@ include_once(SM_PATH . 'plugins/avelsieve/config/config.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/html_rulestable.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/sieve.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/spamrule.inc.php');
 
 sqsession_is_active();
 
@@ -187,6 +188,7 @@ if ($logout) {
 	if ($newscript = makesieverule($rules)) {
 
 		avelsieve_upload_script($newscript);
+		avelsieve_spam_highlight_update($rules);
 
 		if(!($sieve->sieve_setactivescript("phpscript"))){
 			/* Just to be safe. */
@@ -202,6 +204,7 @@ if ($logout) {
 		/* upload a null thingie!!! :-) This works for now... some time
 		 * it will get better. */
 		avelsieve_upload_script(""); 
+		avelsieve_spam_highlight_update($rules);
 		/* if(sizeof($rules) == "0") {
 			avelsieve_delete_script();
 		} */
@@ -311,6 +314,7 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected']) ||
 		$newscript = makesieverule($rules);
 		avelsieve_login();
 		avelsieve_upload_script($newscript);
+		avelsieve_spam_highlight_update($rules);
 	}
 }	
 
@@ -334,6 +338,7 @@ if( (!$conservative && isset($haschanged) ) ) {
 	avelsieve_login();
 	$newscript = makesieverule($rules);
 	avelsieve_upload_script($newscript);
+	avelsieve_spam_highlight_update($rules);
 	if(isset($_SESSION['haschanged'])) {
 		unset($_SESSION['haschanged']);
 	}
