@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: addspamrule.php,v 1.14 2005/07/25 10:30:27 avel Exp $
+ * @version $Id: addspamrule.php,v 1.15 2005/11/16 12:01:58 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -121,13 +121,13 @@ if(isset($_POST['whitelist_add'])) {
 }
 
 /* The actual whitelist */
-if(isset($_POST['whitelist_add']) || isset($_POST['whitelistvalue'])) {
+if(isset($_POST['whitelist_add']) || !empty($_POST['cond'][0]['headermatch'])) {
 	$j=0;
 	for($i=0; $i< $whitelistitems; $i++) {
-		if(isset($_POST['whitelistvalue'][$i]) && !empty($_POST['whitelistvalue'][$i])) {
-			$whitelist[$j]['header'] = $_POST['header'][$i];
-			$whitelist[$j]['headermatch'] = $_POST['whitelistvalue'][$i];
-			$whitelist[$j]['matchtype'] = $_POST['whitelistmatch'][$i];
+		if(!empty($_POST['cond'][$i]['headermatch'])) {
+			$whitelist[$j]['header'] = $_POST['cond'][$i]['header'];
+			$whitelist[$j]['matchtype'] = $_POST['cond'][$i]['matchtype'];
+			$whitelist[$j]['headermatch'] = $_POST['cond'][$i]['headermatch'];
 			$j++;
 		}
 	}
@@ -305,9 +305,9 @@ if(!$spamrule_advanced) {
 			isset($whitelist[$i]['header']) ? $whitelist[$i]['header'] : 'From' , $i
 		);
 		echo $ht->matchtype_listbox(
-			isset($whitelist[$i]['matchtype']) ?  $whitelist[$i]['matchtype'] : '' , $i, 'whitelistmatch'
+			isset($whitelist[$i]['matchtype']) ?  $whitelist[$i]['matchtype'] : '' , $i, 'matchtype'
 		);
-		echo '<input name="whitelistvalue['.$i.']" value="'.
+		echo '<input name="cond['.$i.'][headermatch]" value="'.
 			( isset($whitelist[$i]['headermatch']) ? $whitelist[$i]['headermatch'] : '' ) .
 			'" size="18" />'.
 			'<br/>';
