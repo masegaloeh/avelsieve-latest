@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: addspamrule.php,v 1.15 2005/11/16 12:01:58 avel Exp $
+ * @version $Id: addspamrule.php,v 1.16 2005/11/16 12:05:19 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -121,7 +121,7 @@ if(isset($_POST['whitelist_add'])) {
 }
 
 /* The actual whitelist */
-if(isset($_POST['whitelist_add']) || !empty($_POST['cond'][0]['headermatch'])) {
+if(isset($_POST['whitelist_add']) || isset($_POST['apply'])) {
 	$j=0;
 	for($i=0; $i< $whitelistitems; $i++) {
 		if(!empty($_POST['cond'][$i]['headermatch'])) {
