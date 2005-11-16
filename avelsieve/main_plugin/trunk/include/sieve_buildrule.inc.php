@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.17 2005/11/09 20:18:08 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.18 2005/11/16 12:01:36 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -452,7 +452,7 @@ function makesinglerule($rule, $mode='rule') {
 				$terse .= '<li>'. build_rule_snippet('header', $rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
 					$rule['whitelist'][$i]['headermatch'] ,'terse') . '</li>';
 				$tech .= build_rule_snippet('header', $rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
-					$rule['whitelist'][$i]['headermatch'] ,'tech');
+					$rule['whitelist'][$i]['headermatch'] ,'tech') . '<br/>';
 				if($i<sizeof($rule['whitelist'])-1) {
 					$out .= ', ';
 					$text .= ' ' . _("or") . ' ';
@@ -464,7 +464,6 @@ function makesinglerule($rule, $mode='rule') {
 			$out .= " )";
 		}
 		$out .= " )\n{\n";
-		$text .= ', ';
 
 		if($spamrule_advanced == true) {
 			$text .= _("matching the Spam List(s):");
