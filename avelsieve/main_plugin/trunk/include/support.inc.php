@@ -8,7 +8,7 @@
  *
  * Various support functions, useful or useless.
  *
- * @version $Id: support.inc.php,v 1.11 2005/09/23 12:03:48 avel Exp $
+ * @version $Id: support.inc.php,v 1.12 2005/12/06 15:13:31 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -62,6 +62,7 @@ function print_errormsg($errormsg) {
  * @param array $errmsg Array of error messages, in which to append an error
  *   message if it occurs.
  * @return boolean True upon success, otherwise false.
+ * @todo Check for folders that already exist
  */
 function avelsieve_create_folder($foldername, $subfolder = '', &$created_mailbox_name, &$errmsg) {
 	/* Copy & paste magic (aka kludge) */
