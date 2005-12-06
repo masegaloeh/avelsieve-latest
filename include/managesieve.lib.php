@@ -2,7 +2,7 @@
 /**
  * sieve-php.lib.php
  *
- * $Id: managesieve.lib.php,v 1.2 2004/12/06 17:18:03 avel Exp $ 
+ * $Id: managesieve.lib.php,v 1.3 2005/12/06 15:25:16 avel Exp $ 
  *
  * Copyright 2001-2003 Dan Ellis <danellis@rushmore.com>
  *
@@ -112,6 +112,8 @@ class sieve {
 
   /**
    * get response
+   * @todo Test Cyrus version 2.2 vs version 2.1 style referrals parsing
+   * @todo Perhaps do referrals like in functin sieve_get_capability()
    */
   function get_response()
   {
@@ -223,7 +225,16 @@ class sieve {
     	$this->reftok = split(" ", $this->token[1], 3);
     	$this->refsv = substr($this->reftok[1], 0, -2);
     	$this->refsv = substr($this->refsv, 1);
-    	$this->host = $this->refsv;
+
+        /* TODO - perform more testing */
+        if(strstr($this->capabilities['implementation'], 'v2.1')) {
+            /* Cyrus 2.1 - Style referrals */
+        	$this->host = $this->refsv;
+        } else {
+            /* Cyrus 2.2 - Style referrals */
+            $tmp = array_reverse( explode( '/', $this->refsv ) );
+            $this->host = $tmp[0];
+        }
     	$this->loggedin = false;
     	/* flush buffers or anything?  probably not, and the remote has already closed it's
     	   end by now!  */
@@ -240,7 +251,7 @@ class sieve {
     		$this->loggedin = false;
     		fclose($this->fp);
     		$this->error = EC_UNKNOWN;
-    		$this->error_raw = 'UNABLE TO REFERRAL - ' . $this->line;
+    		$this->error_raw = 'UNABLE TO FOLLOW REFERRAL - ' . $this->line;
     		return false;
     	} /* end else of the unhappy ending */
     	
@@ -535,7 +546,7 @@ class sieve {
     $this->script=stripslashes($script);
     $len=strlen($this->script);
     
-    $this->lastcmd = "PUTSCRIPT \"$scriptname\" \{$len+}\r\n$this->script\r\n";
+    $this->lastcmd = 'PUTSCRIPT "'.$scriptname.'" {'.$len.'+}'."\r\n".$this->script."\r\n";
     fputs($this->fp, $this->lastcmd);
     return sieve::get_response();
 
@@ -681,7 +692,7 @@ class sieve {
             $auth=base64_encode("$this->auth\0$this->user\0$this->pass");
    
             $this->len=strlen($auth);			
-            fputs($this->fp, "AUTHENTICATE \"PLAIN\" \{$this->len+}\r\n");
+            fputs($this->fp, 'AUTHENTICATE "PLAIN" {' . $this->len . '+}' . "\r\n");
             fputs($this->fp, "$auth\r\n");
 
             $this->line=fgets($this->fp,1024);		
@@ -807,6 +818,23 @@ class sieve {
         return false;
     fputs($this->fp, "CAPABILITY\r\n"); 
     $this->line=fgets($this->fp,1024);
+
+    $tmp = array();
+    if(preg_match('|^BYE \(REFERRAL "(sieve://)?([^/"]+)"\)|', $this->line, $tmp ) ){
+        $this->host = $tmp[2];
+        $this->loggedin = false;
+        fclose($this->fp);
+
+        if( sieve::sieve_login() ) {
+            return $this->sieve_get_capability();
+        } else {
+            $this->loggedin = false;
+            fclose($this->fp);
+            $this->error = EC_UNKNOWN;
+            $this->error_raw = 'UNABLE TO FOLLOW REFERRAL - ' . $this->line;
+            return false;
+        }
+    }
 
     //Hack for older versions of Sieve Server.  They do not respond with the Cyrus v2. standard
     //response.  They repsond as follows: "Cyrus timsieved v1.0.0" "SASL={PLAIN,........}"
