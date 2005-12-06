@@ -9,7 +9,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: managesieve_wrapper.inc.php,v 1.4 2005/12/06 10:27:14 avel Exp $
+ * @version $Id: managesieve_wrapper.inc.php,v 1.5 2005/12/06 15:14:56 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -83,7 +83,8 @@ function avelsieve_upload_script ($newscript, $scriptname = 'phpscript') {
 		$errormsg .= '</p>';
 
 		if(isset($sieve->error_raw)) {
-			$errormsg = '<p>';
+            print "NIAOY!";
+			$errormsg .= '<p>';
 			$errormsg .= _("Server responded with:");
 			$errormsg .= '<br />';
 			
@@ -94,20 +95,19 @@ function avelsieve_upload_script ($newscript, $scriptname = 'phpscript') {
 			} else {
 				$errormsg .= $sieve->error_raw . "<br />";
 			}
+			$errormsg .= _("Please contact your administrator.");
 		
 			/* The following serves for viewing the script that
 			 * tried to be uploaded, for debugging purposes. */
 			if(AVELSIEVE_DEBUG == 1) {
-				$errormsg .= "<br />DEBUG MODE -
+				$errormsg .= '<br />(Debug mode)
 				<strong>avelsieve bug</strong> <br /> Script
 				that probably is buggy follows.<br /> Please
-				copy/paste it, and email it to <a
+				copy/paste it, together with the error message above, and email it to <a
 				href=\"mailto:avel@users.sourceforge.net\">avel@users.sourceforge.net</a>.
 				<br /><br />
-				<small><pre>" . $newscript
-				."</pre></small>";
+				<div style="font-size:8px;"><pre>' . $newscript. "</pre></div>";
 			}
-			$errormsg .= _("Please contact your administrator.");
 		}
 		print_errormsg($errormsg);
 		return false;
