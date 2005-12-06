@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.24 2005/09/23 12:03:48 avel Exp $
+ * @version $Id: edit.php,v 1.25 2005/12/06 15:12:42 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -227,7 +227,21 @@ if(!isset($delimiter)) {
 }
 // $folder_prefix = "INBOX";
 $imapConnection = sqimap_login($username, $key, $imapServerAddress, $imapPort, 0); 
-$boxes = sqimap_mailbox_list_all($imapConnection);
+if($SQM_INTERNAL_VERSION[0] == 1 && $SQM_INTERNAL_VERSION[1] == 5) {
+    /* In Squirrelmail 1.5.x, use sqimap_mailbox_list() with
+     * $show_only_subscribed_folders flag off. Thanks to Simon Matter */
+    global $show_only_subscribed_folders;
+    $old_show_only_subscribed_folders = $show_only_subscribed_folders;
+    $show_only_subscribed_folders = false;
+    $boxes = sqimap_mailbox_list($imapConnection,true);
+    /* Restore correct folder cache */
+    $show_only_subscribed_folders = $old_show_only_subscribed_folders;
+    $dummy = sqimap_mailbox_list($imapConnection,true);
+
+} else {
+    /* In Squirrelmail 1.4.x, use sqimap_mailbox_list_all() */
+    $boxes = sqimap_mailbox_list_all($imapConnection);
+}
 sqimap_logout($imapConnection); 
 
 /* Mode of operation */
