@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: config_sample.php,v 1.9 2005/12/06 15:27:25 avel Exp $
+ * @version $Id: config_sample.php,v 1.10 2006/01/03 11:52:47 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -48,7 +48,7 @@ $preferred_mech = "PLAIN";
  * Cyrus < 2.3 : $from$, $env-from$, $subject$
  * Cyrus 2.3+  : $from$, $env-from$, $subject$, $text$, $text[n]$
  */
-$avelsieve_oldcyrus = false;
+$avelsieve_oldcyrus = true;
 
 /* If you have Cyrus with an lmtpd that can understand the "auth" argument to
  * the :envelope test as the SMTP/LMTP auth, or any other Sieve implementation,
@@ -202,8 +202,10 @@ $spamrule_tests = array(
 );
 $spamrule_tests_header = 'X-Spam-Tests';
 $spamrule_action_default = 'trash';
-/* Please keep the following setting false; it is alpha + needs Squirrelmail to
- * be patched in three or four places. */
+
+/* Please keep the following setting false; it is alpha + needs Squirrelmail
+ * to be patched in three or four places. */
+
 $avelsieve_spam_highlight_enable = false;
 
 ?>
