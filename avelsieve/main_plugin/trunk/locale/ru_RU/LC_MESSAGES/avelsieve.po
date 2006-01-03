@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-09 13:30+0200\n"
+"POT-Creation-Date: 2005-11-09 17:09+0200\n"
 "PO-Revision-Date: 2003-05-21 13:15+0300\n"
 "Last-Translator: Vadim Kozlov <vad@tomsknet.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -147,18 +147,44 @@ msgstr "Правила фильтрации не определены"
 msgid "Could not set active script on your IMAP server"
 msgstr "Не могу сделать скрипт активным на вашем сервере IMAP"
 
-msgid "Address Match"
+msgid "AND (Every item must match)"
+msgstr "И (выполнение всех условий)"
+
+msgid "OR (Either item will match)"
+msgstr "ИЛИ (выполнение любого условия)"
+
+#, fuzzy
+msgid "Rule"
+msgstr "Тип правила"
+
+msgid "Anti-SPAM"
+msgstr ""
+
+#, fuzzy
+msgid "Address"
 msgstr "Сравнение адреса"
 
 msgid ""
 "Perform an action depending on email addresses appearing in message headers."
 msgstr "Выполнить действие в зависимости email-адресов в заголовках сообщения."
 
-msgid "Header Match"
+#, fuzzy
+msgid "Header"
 msgstr "Сравнение заголовков"
 
 msgid ""
 "Perform an action on messages matching a specified header (From, To etc.)."
+msgstr ""
+"Выполнить действие по результатам анализа заголовков сообщения (From, To и т."
+"д.)."
+
+msgid "Envelope"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Perform an action on messages matching a specified envelope header (Envelope "
+"FROM, TO)."
 msgstr ""
 "Выполнить действие по результатам анализа заголовков сообщения (From, To и т."
 "д.)."
@@ -169,17 +195,17 @@ msgstr "Размер"
 msgid "Perform an action on messages depending on their size."
 msgstr "Выполнить действие в зависимости от размера сообщения."
 
-msgid "All Messages"
-msgstr "Все сообщения"
-
-msgid "Perform an action on <strong>all</strong> incoming messages."
-msgstr "Выполнить действие для <strong>всех</strong> входящих сообщений."
-
-msgid "Body Match"
-msgstr "Сравнение содержания"
+msgid "Body"
+msgstr ""
 
 msgid "Perform an action on messages depending on their content (body text)."
 msgstr "Выполнить действие в зависимости от содержания (текста сообщения)."
+
+msgid "All"
+msgstr ""
+
+msgid "Perform an action on <strong>all</strong> incoming messages."
+msgstr "Выполнить действие для <strong>всех</strong> входящих сообщений."
 
 msgid "contains"
 msgstr "содержит"
@@ -312,61 +338,14 @@ msgstr "Уничтожить спам. Вы не увидите, что тако
 msgid "Server-Side Mail Filtering"
 msgstr "Фильтрация почты на сервере"
 
-msgid "Clear this Form"
-msgstr "Очистить форму"
-
-msgid "Start Over"
-msgstr "Начать заново"
-
-msgid "Cancel"
-msgstr "Отказаться"
-
-msgid "Move back to step"
-msgstr "Вернуться на шаг "
-
-msgid "Finished"
-msgstr "Готово"
-
-msgid "Move on to step"
-msgstr "Следующий шаг "
-
-msgid "What kind of rule would you like to add?"
-msgstr "Правило какого типа Вы хотели бы добавить?"
-
-msgid " -- Please Select -- "
-msgstr ""
-
-#, fuzzy
-msgid "Change Type"
-msgstr "Тип правила"
-
-msgid ""
-"The rule will trigger if the following addresses appear anywhere in the "
-"message's headers:"
-msgstr ""
-"правило срабатывает, если следующие адреса имеются в каком-либо заголовке "
-"сообщения"
-
 msgid "To: or Cc"
 msgstr ""
-
-msgid "AND (Every item must match)"
-msgstr "И (выполнение всех условий)"
-
-msgid "OR (Either item will match)"
-msgstr "ИЛИ (выполнение любого условия)"
 
 msgid "The condition for the following rules is:"
 msgstr "Условием для этого правила является: "
 
-msgid "The header "
-msgstr "Заголовок "
-
 msgid "Less..."
 msgstr "Меньше..."
-
-msgid "This rule will trigger if message is"
-msgstr "Это правило сработает, если сообщение "
 
 msgid "bigger"
 msgstr "больше"
@@ -383,6 +362,9 @@ msgstr "KB (килобайт)"
 msgid "MB (megabytes)"
 msgstr "MB (мегабайт)"
 
+msgid "All Messages"
+msgstr "Все сообщения"
+
 msgid ""
 "The following action will be applied to <strong>all</strong> incoming "
 "messages that do not match any of the previous rules."
@@ -390,28 +372,14 @@ msgstr ""
 "Следующее действие будет применено ко <strong>всем</strong> входящим "
 "сообщениям, не подпадающим под действие ни одного из предыдущих правил."
 
-msgid ""
-"This rule will trigger upon the occurrence of one or more strings in the "
-"body of an e-mail message. "
-msgstr ""
-"Это правило сработает в случае, если в теле сообщения будут найдены одна или "
-"более строк. "
-
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr "Выберите действие, выполняющееся когда срабатывает данное правило:"
 
-msgid "Your new rule states:"
-msgstr "Ваше новое правило гласит:"
-
-msgid ""
-"If this is what you wanted, select Finished. You can also start over or "
-"cancel adding a rule altogether."
-msgstr ""
-"Если это то, что вы хотели, выберите Finished. Вы можете также начать заново "
-"или вообще отказаться от добавления правила"
-
 msgid "Apply Changes"
 msgstr "Сохранить изменения"
+
+msgid "Cancel"
+msgstr "Отказаться"
 
 msgid "Editing Mail Filtering Rule"
 msgstr "Редактирование правила фильтрации"
@@ -424,8 +392,36 @@ msgstr "Имеющиеся правила фильтрации"
 msgid "Error Encountered:"
 msgstr "Встречено ошибок"
 
+msgid "You must correct the above errors before continuing."
+msgstr ""
+
 msgid "Additional Actions"
 msgstr "Дополнительные действия"
+
+msgid "Clear this Form"
+msgstr "Очистить форму"
+
+msgid "Start Over"
+msgstr "Начать заново"
+
+msgid "Move back to step"
+msgstr "Вернуться на шаг "
+
+msgid "Finished"
+msgstr "Готово"
+
+msgid "Move on to step"
+msgstr "Следующий шаг "
+
+msgid "Your new rule states:"
+msgstr "Ваше новое правило гласит:"
+
+msgid ""
+"If this is what you wanted, select Finished. You can also start over or "
+"cancel adding a rule altogether."
+msgstr ""
+"Если это то, что вы хотели, выберите Finished. Вы можете также начать заново "
+"или вообще отказаться от добавления правила"
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
@@ -451,6 +447,12 @@ msgid ""
 msgstr ""
 "Завершив редактирование, <strong>не забудьте</strong> нажать &quot;Сохранить "
 "изменения&quot;, чтобы они вступили в силу"
+
+msgid ""
+"Warning: In your rules, you have defined an action that refers to a folder "
+"that does not exist or a folder where you do not have permission to append "
+"to."
+msgstr ""
 
 msgid "The following table summarizes your current mail filtering rules."
 msgstr ""
@@ -540,6 +542,10 @@ msgstr ""
 msgid "Create Filter"
 msgstr "Фильтры сообщений"
 
+#, fuzzy
+msgid "You have to define at least one condition."
+msgstr "Вы должны определить хотя бы одну строку соответствия заголовка."
+
 msgid "Keep (Default action)"
 msgstr "Сохранить (по умолчанию)"
 
@@ -561,7 +567,9 @@ msgstr "someone@example.org"
 msgid "Keep a local copy as well."
 msgstr ""
 
-msgid "Incorrect email address. You must enter only one valid email address."
+msgid ""
+"Incorrect email address(es). You must enter one or more valid email "
+"addresses, separated by comma."
 msgstr ""
 
 msgid "Move message into"
@@ -608,6 +616,14 @@ msgstr "дней"
 msgid "Use the following message:"
 msgstr "Использовать следующее сообщение:"
 
+msgid "The number of days between vacation messages must be a positive number."
+msgstr ""
+
+msgid ""
+"Your email addresses for which a vacation message is returned must be "
+"defined."
+msgstr ""
+
 msgid "Notify me, using the following method:"
 msgstr "Сообщить мне, используя следующий метод:"
 
@@ -645,8 +661,36 @@ msgstr "Успешно удалено правило #"
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
+#, fuzzy, php-format
+msgid "the header %s"
+msgstr "заголовок"
+
+#, fuzzy, php-format
+msgid "Header %s"
+msgstr "Сравнение заголовков"
+
 msgid "To or Cc"
 msgstr ""
+
+#, php-format
+msgid "the envelope %s"
+msgstr ""
+
+#, php-format
+msgid "Envelope %s"
+msgstr ""
+
+#, php-format
+msgid "the address %s"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Address %s"
+msgstr "Сравнение адреса"
+
+#, fuzzy
+msgid "message body"
+msgstr "Сообщение"
 
 msgid "matches the regural expression"
 msgstr "соответствует регулярному выражению"
@@ -664,12 +708,6 @@ msgid "This rule is currently <strong>DISABLED</strong>:"
 msgstr ""
 
 msgid "DISABLED"
-msgstr ""
-
-msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "Для <strong>ВСЕХ<strong> входящих сообщений; "
-
-msgid "ALL"
 msgstr ""
 
 msgid ""
@@ -731,12 +769,6 @@ msgstr "<em>любой</em> из следующих почтовых загол�
 msgid "<em>all</em> of the following mail headers match: "
 msgstr "<em>все</em> следующие почтовые заголовки соответствуют: "
 
-msgid "the header"
-msgstr "заголовок"
-
-msgid "and"
-msgstr ""
-
 msgid "the size of the message is"
 msgstr "размер сообщения"
 
@@ -745,6 +777,15 @@ msgstr " больше"
 
 msgid " smaller"
 msgstr " меньше"
+
+msgid "For <strong>ALL</strong> incoming messages; "
+msgstr "Для <strong>ВСЕХ<strong> входящих сообщений; "
+
+msgid "ALL"
+msgstr ""
+
+msgid "and"
+msgstr ""
 
 msgid "then"
 msgstr "то"
@@ -784,6 +825,9 @@ msgstr "<em>сохранить</em> в папке <strong>"
 
 #, php-format
 msgid "File into %s"
+msgstr ""
+
+msgid "(Warning: Folder not available)"
 msgstr ""
 
 msgid "reply with this vacation message: "
@@ -838,6 +882,36 @@ msgstr "Недопустимое имя папки. Пожалуйста, выб
 #, fuzzy
 msgid "None"
 msgstr "N правила"
+
+#~ msgid "Body Match"
+#~ msgstr "Сравнение содержания"
+
+#~ msgid "What kind of rule would you like to add?"
+#~ msgstr "Правило какого типа Вы хотели бы добавить?"
+
+#, fuzzy
+#~ msgid "Change Type"
+#~ msgstr "Тип правила"
+
+#~ msgid ""
+#~ "The rule will trigger if the following addresses appear anywhere in the "
+#~ "message's headers:"
+#~ msgstr ""
+#~ "правило срабатывает, если следующие адреса имеются в каком-либо заголовке "
+#~ "сообщения"
+
+#~ msgid "The header "
+#~ msgstr "Заголовок "
+
+#~ msgid "This rule will trigger if message is"
+#~ msgstr "Это правило сработает, если сообщение "
+
+#~ msgid ""
+#~ "This rule will trigger upon the occurrence of one or more strings in the "
+#~ "body of an e-mail message. "
+#~ msgstr ""
+#~ "Это правило сработает в случае, если в теле сообщения будут найдены одна "
+#~ "или более строк. "
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Все Ваши правила были удалены"

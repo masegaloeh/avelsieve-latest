@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-09 13:30+0200\n"
+"POT-Creation-Date: 2005-11-09 17:09+0200\n"
 "PO-Revision-Date: 2003-06-09 16:29-0300\n"
 "Last-Translator: Gleydson Mazioli da Silva <gleydson@debian.org>\n"
 "Language-Team:  <squirrelmail-i18n@lists.sourceforge.net>\n"
@@ -143,7 +143,21 @@ msgstr "Nenhuma regra de Filtagem ainda foi Definida"
 msgid "Could not set active script on your IMAP server"
 msgstr "Não foi possível ajustar scripts ativos em seu servidor IMAP"
 
-msgid "Address Match"
+msgid "AND (Every item must match)"
+msgstr "E (Cada item deve conferir)"
+
+msgid "OR (Either item will match)"
+msgstr "OU (Um ou outro item deve conferir)"
+
+#, fuzzy
+msgid "Rule"
+msgstr "Tipo de Regra"
+
+msgid "Anti-SPAM"
+msgstr ""
+
+#, fuzzy
+msgid "Address"
 msgstr "Endereços que conferem"
 
 #, fuzzy
@@ -151,11 +165,23 @@ msgid ""
 "Perform an action depending on email addresses appearing in message headers."
 msgstr "Realizar uma ação nas mensagens dependendo do seu tamanho"
 
-msgid "Header Match"
+#, fuzzy
+msgid "Header"
 msgstr "Conferência de Cabeçalho"
 
 msgid ""
 "Perform an action on messages matching a specified header (From, To etc.)."
+msgstr ""
+"Realizer uma ação nas mensagens que conferem com um cabeçalho específico "
+"(From, To, etc)"
+
+msgid "Envelope"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Perform an action on messages matching a specified envelope header (Envelope "
+"FROM, TO)."
 msgstr ""
 "Realizer uma ação nas mensagens que conferem com um cabeçalho específico "
 "(From, To, etc)"
@@ -166,18 +192,18 @@ msgstr "Tamanho"
 msgid "Perform an action on messages depending on their size."
 msgstr "Realizar uma ação nas mensagens dependendo do seu tamanho"
 
-msgid "All Messages"
-msgstr "Todas as mensagens"
-
-msgid "Perform an action on <strong>all</strong> incoming messages."
-msgstr "Realizar a ação em <strong>todas</strong> as mensagens de entrada"
-
-msgid "Body Match"
-msgstr "Conferência com o corpo da mensagem"
+msgid "Body"
+msgstr ""
 
 msgid "Perform an action on messages depending on their content (body text)."
 msgstr ""
 "Realizar uma ação em mensagens dependendo do seu conteúdo (texto do corpo)"
+
+msgid "All"
+msgstr ""
+
+msgid "Perform an action on <strong>all</strong> incoming messages."
+msgstr "Realizar a ação em <strong>todas</strong> as mensagens de entrada"
 
 msgid "contains"
 msgstr "contém"
@@ -312,61 +338,14 @@ msgstr ""
 msgid "Server-Side Mail Filtering"
 msgstr "Filtragem de Mensagens no lado do Servidor"
 
-msgid "Clear this Form"
-msgstr "Limpar este formulário"
-
-msgid "Start Over"
-msgstr "Iniciar novamente"
-
-msgid "Cancel"
-msgstr "Cancelar"
-
-msgid "Move back to step"
-msgstr "Voltar um passo"
-
-msgid "Finished"
-msgstr "Finalizado"
-
-msgid "Move on to step"
-msgstr "Avançar um passo"
-
-msgid "What kind of rule would you like to add?"
-msgstr "Que tipo de regra deseja adicionar?"
-
-msgid " -- Please Select -- "
-msgstr ""
-
-#, fuzzy
-msgid "Change Type"
-msgstr "Tipo de Regra"
-
-msgid ""
-"The rule will trigger if the following addresses appear anywhere in the "
-"message's headers:"
-msgstr ""
-"A regra funcionará caso os seguintes endereços apareçam em algum lugar no "
-"cabeçalho da mensagem:"
-
 msgid "To: or Cc"
 msgstr ""
-
-msgid "AND (Every item must match)"
-msgstr "E (Cada item deve conferir)"
-
-msgid "OR (Either item will match)"
-msgstr "OU (Um ou outro item deve conferir)"
 
 msgid "The condition for the following rules is:"
 msgstr "A condição para a seguinte regra é:"
 
-msgid "The header "
-msgstr "O cabeçalho"
-
 msgid "Less..."
 msgstr "Menos..."
-
-msgid "This rule will trigger if message is"
-msgstr "A regra funcionará caso a mensagem seja"
 
 msgid "bigger"
 msgstr "maior"
@@ -383,6 +362,9 @@ msgstr "KB (kilobytes)"
 msgid "MB (megabytes)"
 msgstr "MB (megabytes)"
 
+msgid "All Messages"
+msgstr "Todas as mensagens"
+
 msgid ""
 "The following action will be applied to <strong>all</strong> incoming "
 "messages that do not match any of the previous rules."
@@ -390,28 +372,14 @@ msgstr ""
 "A seguinte ação será aplicada para <strong>todas</strong> as mensagens de "
 "entrada que não conferem com qualquer uma das seguintes regras."
 
-msgid ""
-"This rule will trigger upon the occurrence of one or more strings in the "
-"body of an e-mail message. "
-msgstr ""
-"Esta regra funcionará caso aconteça a ocorrência de uma ou mais strings no "
-"corpo de uma mensagem de email."
-
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr "Escola o que fazer quando esta regra conferir, de uma das seguintes:"
 
-msgid "Your new rule states:"
-msgstr "O estado de sua nova regra:"
-
-msgid ""
-"If this is what you wanted, select Finished. You can also start over or "
-"cancel adding a rule altogether."
-msgstr ""
-"Se isto é o que deseja, selecione Finalizado. Você pode também iniciar "
-"denovo ou cancelar a adição da regra."
-
 msgid "Apply Changes"
 msgstr "Aplicar Mudanças"
+
+msgid "Cancel"
+msgstr "Cancelar"
 
 msgid "Editing Mail Filtering Rule"
 msgstr "Editando a regra de Filtragem de Mensagens"
@@ -424,8 +392,36 @@ msgstr "Regras atuais de Filtragem de Mensagens"
 msgid "Error Encountered:"
 msgstr "Foi encontrado um erro"
 
+msgid "You must correct the above errors before continuing."
+msgstr ""
+
 msgid "Additional Actions"
 msgstr "Ações Adicionais"
+
+msgid "Clear this Form"
+msgstr "Limpar este formulário"
+
+msgid "Start Over"
+msgstr "Iniciar novamente"
+
+msgid "Move back to step"
+msgstr "Voltar um passo"
+
+msgid "Finished"
+msgstr "Finalizado"
+
+msgid "Move on to step"
+msgstr "Avançar um passo"
+
+msgid "Your new rule states:"
+msgstr "O estado de sua nova regra:"
+
+msgid ""
+"If this is what you wanted, select Finished. You can also start over or "
+"cancel adding a rule altogether."
+msgstr ""
+"Se isto é o que deseja, selecione Finalizado. Você pode também iniciar "
+"denovo ou cancelar a adição da regra."
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
@@ -452,6 +448,12 @@ msgid ""
 msgstr ""
 "Quando terminar a edição <strong>lembre-se de selecionar &quot;Save "
 "Changes&quot;</strong> para ativar suas mudanças!"
+
+msgid ""
+"Warning: In your rules, you have defined an action that refers to a folder "
+"that does not exist or a folder where you do not have permission to append "
+"to."
+msgstr ""
 
 msgid "The following table summarizes your current mail filtering rules."
 msgstr "A seguinte tabela resume suas regras atuais de filtragem de mensagem."
@@ -542,6 +544,10 @@ msgstr ""
 msgid "Create Filter"
 msgstr "Filtros de Mensagem"
 
+#, fuzzy
+msgid "You have to define at least one condition."
+msgstr "Você precisa definir pelo menos um cabeçalho que confira com o texto"
+
 msgid "Keep (Default action)"
 msgstr "Manter (Ação padrão)"
 
@@ -563,7 +569,9 @@ msgstr "alguem@example.org"
 msgid "Keep a local copy as well."
 msgstr ""
 
-msgid "Incorrect email address. You must enter only one valid email address."
+msgid ""
+"Incorrect email address(es). You must enter one or more valid email "
+"addresses, separated by comma."
 msgstr ""
 
 msgid "Move message into"
@@ -611,6 +619,14 @@ msgstr "dias"
 msgid "Use the following message:"
 msgstr "Usar a seguinte mensagem:"
 
+msgid "The number of days between vacation messages must be a positive number."
+msgstr ""
+
+msgid ""
+"Your email addresses for which a vacation message is returned must be "
+"defined."
+msgstr ""
+
 msgid "Notify me, using the following method:"
 msgstr "Me notificar, usando o seguinte método:"
 
@@ -648,8 +664,36 @@ msgstr "A regra # foi apagada com sucesso"
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
+#, fuzzy, php-format
+msgid "the header %s"
+msgstr "o cabeçalho"
+
+#, fuzzy, php-format
+msgid "Header %s"
+msgstr "Conferência de Cabeçalho"
+
 msgid "To or Cc"
 msgstr ""
+
+#, php-format
+msgid "the envelope %s"
+msgstr ""
+
+#, php-format
+msgid "Envelope %s"
+msgstr ""
+
+#, php-format
+msgid "the address %s"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Address %s"
+msgstr "Endereços que conferem"
+
+#, fuzzy
+msgid "message body"
+msgstr "Mensagem"
 
 msgid "matches the regural expression"
 msgstr "confere com a expressão regular"
@@ -667,12 +711,6 @@ msgid "This rule is currently <strong>DISABLED</strong>:"
 msgstr ""
 
 msgid "DISABLED"
-msgstr ""
-
-msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "Para <strong>TODAS</strong> as mensagens de entrada;"
-
-msgid "ALL"
 msgstr ""
 
 msgid ""
@@ -734,12 +772,6 @@ msgstr "<em>qualquer</em> um dos seguintes cabeçalhos de e-mail conferem:"
 msgid "<em>all</em> of the following mail headers match: "
 msgstr "<em>todos</em> os seguintes cabeçalhos de e-mail confiram:"
 
-msgid "the header"
-msgstr "o cabeçalho"
-
-msgid "and"
-msgstr ""
-
 msgid "the size of the message is"
 msgstr "o tamanho da mensagem é"
 
@@ -748,6 +780,15 @@ msgstr " maior"
 
 msgid " smaller"
 msgstr " menor"
+
+msgid "For <strong>ALL</strong> incoming messages; "
+msgstr "Para <strong>TODAS</strong> as mensagens de entrada;"
+
+msgid "ALL"
+msgstr ""
+
+msgid "and"
+msgstr ""
 
 msgid "then"
 msgstr "então"
@@ -787,6 +828,9 @@ msgstr "<em>arquiva-lo</em> na pasta <strong>"
 
 #, php-format
 msgid "File into %s"
+msgstr ""
+
+msgid "(Warning: Folder not available)"
 msgstr ""
 
 msgid "reply with this vacation message: "
@@ -841,6 +885,36 @@ msgstr "Nome ilegal de pasta. Por favor selecione um nome diferente"
 #, fuzzy
 msgid "None"
 msgstr "Não"
+
+#~ msgid "Body Match"
+#~ msgstr "Conferência com o corpo da mensagem"
+
+#~ msgid "What kind of rule would you like to add?"
+#~ msgstr "Que tipo de regra deseja adicionar?"
+
+#, fuzzy
+#~ msgid "Change Type"
+#~ msgstr "Tipo de Regra"
+
+#~ msgid ""
+#~ "The rule will trigger if the following addresses appear anywhere in the "
+#~ "message's headers:"
+#~ msgstr ""
+#~ "A regra funcionará caso os seguintes endereços apareçam em algum lugar no "
+#~ "cabeçalho da mensagem:"
+
+#~ msgid "The header "
+#~ msgstr "O cabeçalho"
+
+#~ msgid "This rule will trigger if message is"
+#~ msgstr "A regra funcionará caso a mensagem seja"
+
+#~ msgid ""
+#~ "This rule will trigger upon the occurrence of one or more strings in the "
+#~ "body of an e-mail message. "
+#~ msgstr ""
+#~ "Esta regra funcionará caso aconteça a ocorrência de uma ou mais strings "
+#~ "no corpo de uma mensagem de email."
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Todas as regras foram apagadas"

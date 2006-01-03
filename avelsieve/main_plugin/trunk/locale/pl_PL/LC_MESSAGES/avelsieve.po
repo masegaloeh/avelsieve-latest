@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 1.9.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-09 13:30+0200\n"
+"POT-Creation-Date: 2005-11-09 17:09+0200\n"
 "PO-Revision-Date: 2005-02-23 16:28+0100\n"
 "Last-Translator: Marcin Przybylek <smithpl@softnet.waw.pl>\n"
 "Language-Team: Polish <pl_team@softnet.waw.pl>\n"
@@ -148,18 +148,43 @@ msgstr "Brak zdefiniowanych regu³ filtruj±cych"
 msgid "Could not set active script on your IMAP server"
 msgstr "Nie mo¿na ustawiæ aktywnego skryptu na serwerze IMAP"
 
-msgid "Address Match"
+msgid "AND (Every item must match)"
+msgstr "AND (Ka¿da pozycja musi pasowaæ)"
+
+msgid "OR (Either item will match)"
+msgstr "OR (Jedna z pozycji musi pasowaæ)"
+
+#, fuzzy
+msgid "Rule"
+msgstr "Typ regu³y"
+
+msgid "Anti-SPAM"
+msgstr ""
+
+#, fuzzy
+msgid "Address"
 msgstr "Pasuj±cy adres"
 
 msgid ""
 "Perform an action depending on email addresses appearing in message headers."
 msgstr "Wykonanie akcji na oczekuj±cych mailach opieraj±c siê na nag³ówku."
 
-msgid "Header Match"
-msgstr "Pasuj±cy nag³ówek"
+#, fuzzy
+msgid "Header"
+msgstr "Nadawca"
 
 msgid ""
 "Perform an action on messages matching a specified header (From, To etc.)."
+msgstr ""
+"Wykonanie akcji na wiadomo¶ciach opieraj±c siê na nag³ówku (Od, Do, itp.)."
+
+msgid "Envelope"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Perform an action on messages matching a specified envelope header (Envelope "
+"FROM, TO)."
 msgstr ""
 "Wykonanie akcji na wiadomo¶ciach opieraj±c siê na nag³ówku (Od, Do, itp.)."
 
@@ -169,18 +194,18 @@ msgstr "Wielko¶æ"
 msgid "Perform an action on messages depending on their size."
 msgstr "Filtrowanie wiadomo¶ci na podstawie wielko¶ci."
 
-msgid "All Messages"
-msgstr "Wszystkie wiadomo¶ci"
-
-msgid "Perform an action on <strong>all</strong> incoming messages."
-msgstr ""
-"Wykonanie akcji na <strong>wszystkich</strong> przychodz±cych wiadomo¶ciach."
-
-msgid "Body Match"
+msgid "Body"
 msgstr ""
 
 msgid "Perform an action on messages depending on their content (body text)."
 msgstr "Wykonanie akcji na wiadomo¶ciach opieraj±c siê na zawarto¶ci (tre¶æ) "
+
+msgid "All"
+msgstr ""
+
+msgid "Perform an action on <strong>all</strong> incoming messages."
+msgstr ""
+"Wykonanie akcji na <strong>wszystkich</strong> przychodz±cych wiadomo¶ciach."
 
 msgid "contains"
 msgstr "zawieraj±"
@@ -314,60 +339,14 @@ msgstr ""
 msgid "Server-Side Mail Filtering"
 msgstr "Filtrowanie maili po stronie serwera IMAP"
 
-msgid "Clear this Form"
-msgstr "Wyczy¶æ formularz"
-
-msgid "Start Over"
-msgstr "Volver a empezar"
-
-msgid "Cancel"
-msgstr "Anuluj"
-
-msgid "Move back to step"
-msgstr "Cofnij o krok"
-
-msgid "Finished"
-msgstr "Zakoñcz"
-
-msgid "Move on to step"
-msgstr "Id¼ o krok"
-
-msgid "What kind of rule would you like to add?"
-msgstr "Jaki rodzaj regu³y chcia³by¶ dodaæ?"
-
-msgid " -- Please Select -- "
-msgstr " -- Wybierz -- "
-
-#, fuzzy
-msgid "Change Type"
-msgstr "Zmieñ typ"
-
-msgid ""
-"The rule will trigger if the following addresses appear anywhere in the "
-"message's headers:"
-msgstr ""
-"Ta regu³a jest poprawna je¶li nastêpuj±ce adresy pojawiaj± siê  w nag³ówku:"
-
 msgid "To: or Cc"
 msgstr "Do: lub DW"
-
-msgid "AND (Every item must match)"
-msgstr "AND (Ka¿da pozycja musi pasowaæ)"
-
-msgid "OR (Either item will match)"
-msgstr "OR (Jedna z pozycji musi pasowaæ)"
 
 msgid "The condition for the following rules is:"
 msgstr "Zale¿no¶æ pomiedzy poni¿szymi pozycjami jest: "
 
-msgid "The header "
-msgstr "Nag³ówek "
-
 msgid "Less..."
 msgstr "Mniej..."
-
-msgid "This rule will trigger if message is"
-msgstr "Ta regu³a pasuje je¶li wiadomo¶æ jest "
 
 msgid "bigger"
 msgstr "wiêksza"
@@ -384,6 +363,9 @@ msgstr "KB (kilobytes)"
 msgid "MB (megabytes)"
 msgstr "MB (megabytes)"
 
+msgid "All Messages"
+msgstr "Wszystkie wiadomo¶ci"
+
 msgid ""
 "The following action will be applied to <strong>all</strong> incoming "
 "messages that do not match any of the previous rules."
@@ -391,28 +373,14 @@ msgstr ""
 "Nastêpuj±ca akcja zadzia³a dla <strong>wszystkich</strong> wiadomo¶ci które "
 "nie pasowa³y do poprzednich regu³."
 
-msgid ""
-"This rule will trigger upon the occurrence of one or more strings in the "
-"body of an e-mail message. "
-msgstr ""
-"Ta regu³a jest poprawna je¶li wyraz wystepuje raz lub wielokrotnie w tre¶ci "
-"wiadomo¶ci"
-
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr "Wybierz co zrobiæ je¶li wiadomo¶æ pasuje do regu³y:"
 
-msgid "Your new rule states:"
-msgstr "Status nowej regu³y:"
-
-msgid ""
-"If this is what you wanted, select Finished. You can also start over or "
-"cancel adding a rule altogether."
-msgstr ""
-"Je¶li to jest to czego chcesz, wybierz Zakoñcz. Mo¿esz tak¿e rozpocz±æ lub "
-"anulowaæ dodawanie regu³y."
-
 msgid "Apply Changes"
 msgstr "Zastosuj zmiany"
+
+msgid "Cancel"
+msgstr "Anuluj"
 
 msgid "Editing Mail Filtering Rule"
 msgstr "Edytuj regu³e filtru"
@@ -425,8 +393,36 @@ msgstr "Tworzenie nowej regu³y filtrowania maili"
 msgid "Error Encountered:"
 msgstr "Napotkano b³±d"
 
+msgid "You must correct the above errors before continuing."
+msgstr ""
+
 msgid "Additional Actions"
 msgstr "Dodatkowe akcje"
+
+msgid "Clear this Form"
+msgstr "Wyczy¶æ formularz"
+
+msgid "Start Over"
+msgstr "Volver a empezar"
+
+msgid "Move back to step"
+msgstr "Cofnij o krok"
+
+msgid "Finished"
+msgstr "Zakoñcz"
+
+msgid "Move on to step"
+msgstr "Id¼ o krok"
+
+msgid "Your new rule states:"
+msgstr "Status nowej regu³y:"
+
+msgid ""
+"If this is what you wanted, select Finished. You can also start over or "
+"cancel adding a rule altogether."
+msgstr ""
+"Je¶li to jest to czego chcesz, wybierz Zakoñcz. Mo¿esz tak¿e rozpocz±æ lub "
+"anulowaæ dodawanie regu³y."
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
@@ -453,6 +449,12 @@ msgid ""
 msgstr ""
 "Po zakoñczeniu wprowadzania zmian, <strong>pamiêtaj aby nacisn±æ &quot;"
 "Zapisz zmiany&quot;</strong> w celu aktywacji regu³."
+
+msgid ""
+"Warning: In your rules, you have defined an action that refers to a folder "
+"that does not exist or a folder where you do not have permission to append "
+"to."
+msgstr ""
 
 msgid "The following table summarizes your current mail filtering rules."
 msgstr "Poni¿sza tabela zestawia twoje aktualne regu³y."
@@ -541,6 +543,10 @@ msgstr "Tytu³"
 msgid "Create Filter"
 msgstr "Utwórz filtr"
 
+#, fuzzy
+msgid "You have to define at least one condition."
+msgstr "Musisz mieæ zdefiniowan± przynajmniej jedn± regu³e."
+
 msgid "Keep (Default action)"
 msgstr "Zachowaj (Domy¶lna akcja)"
 
@@ -562,7 +568,9 @@ msgstr "ktokolwiek@domena.com"
 msgid "Keep a local copy as well."
 msgstr "Zachowaj lokaln± kopie"
 
-msgid "Incorrect email address. You must enter only one valid email address."
+msgid ""
+"Incorrect email address(es). You must enter one or more valid email "
+"addresses, separated by comma."
 msgstr ""
 
 msgid "Move message into"
@@ -609,6 +617,14 @@ msgstr "dni"
 msgid "Use the following message:"
 msgstr "U¿yj nastêpuj±cej wiadomo¶ci:"
 
+msgid "The number of days between vacation messages must be a positive number."
+msgstr ""
+
+msgid ""
+"Your email addresses for which a vacation message is returned must be "
+"defined."
+msgstr ""
+
 msgid "Notify me, using the following method:"
 msgstr "Poinformuj mnie nastêpuj±c± metod±:"
 
@@ -646,9 +662,37 @@ msgstr "Napewno usun±æ regu³e?"
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
+#, fuzzy, php-format
+msgid "the header %s"
+msgstr "Nag³ówek"
+
+#, fuzzy, php-format
+msgid "Header %s"
+msgstr "Pasuj±cy nag³ówek"
+
 #, fuzzy
 msgid "To or Cc"
 msgstr "Do: lub DW"
+
+#, php-format
+msgid "the envelope %s"
+msgstr ""
+
+#, php-format
+msgid "Envelope %s"
+msgstr ""
+
+#, php-format
+msgid "the address %s"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Address %s"
+msgstr "Pasuj±cy adres"
+
+#, fuzzy
+msgid "message body"
+msgstr "Wiadomo¶æ"
 
 msgid "matches the regural expression"
 msgstr "spe³nia warunek wyr. regularnego"
@@ -666,12 +710,6 @@ msgid "This rule is currently <strong>DISABLED</strong>:"
 msgstr ""
 
 msgid "DISABLED"
-msgstr ""
-
-msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "Dla <strong>WSZYSTKICH</strong> przychodz±cych wiadomo¶ci; "
-
-msgid "ALL"
 msgstr ""
 
 msgid ""
@@ -736,12 +774,6 @@ msgstr "<em>ka¿dy</em> email z nag³ówkiem pasuj±cym do: "
 msgid "<em>all</em> of the following mail headers match: "
 msgstr "<em>wszystkie</em> email z nag³ówkiem pasuj±cym do: "
 
-msgid "the header"
-msgstr "Nag³ówek"
-
-msgid "and"
-msgstr ""
-
 msgid "the size of the message is"
 msgstr "Wielko¶æ wiadomo¶ci jest"
 
@@ -750,6 +782,15 @@ msgstr " wiêksza"
 
 msgid " smaller"
 msgstr " mniejsza"
+
+msgid "For <strong>ALL</strong> incoming messages; "
+msgstr "Dla <strong>WSZYSTKICH</strong> przychodz±cych wiadomo¶ci; "
+
+msgid "ALL"
+msgstr ""
+
+msgid "and"
+msgstr ""
 
 msgid "then"
 msgstr " "
@@ -790,6 +831,9 @@ msgstr "<em>plik</em> w folderze <strong>"
 
 #, php-format
 msgid "File into %s"
+msgstr ""
+
+msgid "(Warning: Folder not available)"
 msgstr ""
 
 msgid "reply with this vacation message: "
@@ -844,6 +888,36 @@ msgstr "Niepoprawna nazwa folderu. Wprowad¼ inna nazwe"
 #, fuzzy
 msgid "None"
 msgstr "None"
+
+#~ msgid "What kind of rule would you like to add?"
+#~ msgstr "Jaki rodzaj regu³y chcia³by¶ dodaæ?"
+
+#~ msgid " -- Please Select -- "
+#~ msgstr " -- Wybierz -- "
+
+#, fuzzy
+#~ msgid "Change Type"
+#~ msgstr "Zmieñ typ"
+
+#~ msgid ""
+#~ "The rule will trigger if the following addresses appear anywhere in the "
+#~ "message's headers:"
+#~ msgstr ""
+#~ "Ta regu³a jest poprawna je¶li nastêpuj±ce adresy pojawiaj± siê  w "
+#~ "nag³ówku:"
+
+#~ msgid "The header "
+#~ msgstr "Nag³ówek "
+
+#~ msgid "This rule will trigger if message is"
+#~ msgstr "Ta regu³a pasuje je¶li wiadomo¶æ jest "
+
+#~ msgid ""
+#~ "This rule will trigger upon the occurrence of one or more strings in the "
+#~ "body of an e-mail message. "
+#~ msgstr ""
+#~ "Ta regu³a jest poprawna je¶li wyraz wystepuje raz lub wielokrotnie w "
+#~ "tre¶ci wiadomo¶ci"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Wszystkie regu³y zosta³y usuniête"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-09 13:30+0200\n"
+"POT-Creation-Date: 2005-11-09 17:09+0200\n"
 "PO-Revision-Date: 2003-06-13 15:20+0200\n"
 "Last-Translator: Marius Onica <omar@uoradea.ro>\n"
 "Language-Team: Romanian \n"
@@ -147,7 +147,21 @@ msgstr "Nu s-au definit regulile de filtrare deocamdata"
 msgid "Could not set active script on your IMAP server"
 msgstr "Nu pot instala script-ul activ pe serverul de IMAP"
 
-msgid "Address Match"
+msgid "AND (Every item must match)"
+msgstr "AND (Fiecare declaratie trebuie sa coincida"
+
+msgid "OR (Either item will match)"
+msgstr "SAU (Oricare dintre declaratii trebuie sa coincida)"
+
+#, fuzzy
+msgid "Rule"
+msgstr "Tipul regulii de filtrare"
+
+msgid "Anti-SPAM"
+msgstr ""
+
+#, fuzzy
+msgid "Address"
 msgstr "Coincide cu Adresa"
 
 #, fuzzy
@@ -157,11 +171,23 @@ msgstr ""
 "Executa o actiune asupra mesajelor functie de marimea lor (spatiul ocupat de "
 "ele)."
 
-msgid "Header Match"
+#, fuzzy
+msgid "Header"
 msgstr "Coincide cu Mail-Header-ul"
 
 msgid ""
 "Perform an action on messages matching a specified header (From, To etc.)."
+msgstr ""
+"Executa o actiune asupra mesajelor care au un anume Mail-Header de exemplu "
+"(From, To, etc.)"
+
+msgid "Envelope"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Perform an action on messages matching a specified envelope header (Envelope "
+"FROM, TO)."
 msgstr ""
 "Executa o actiune asupra mesajelor care au un anume Mail-Header de exemplu "
 "(From, To, etc.)"
@@ -174,18 +200,18 @@ msgstr ""
 "Executa o actiune asupra mesajelor functie de marimea lor (spatiul ocupat de "
 "ele)."
 
-msgid "All Messages"
-msgstr "Toate Mesajele"
-
-msgid "Perform an action on <strong>all</strong> incoming messages."
-msgstr "Executa o actiune asupra <strong>tuturor</strong> mesajelor sosite"
-
-msgid "Body Match"
-msgstr "Coincide cu Corpul Mesajului"
+msgid "Body"
+msgstr ""
 
 msgid "Perform an action on messages depending on their content (body text)."
 msgstr ""
 "Executa o actiune asupra mesajelor in functie de continutul lor (body text)."
+
+msgid "All"
+msgstr ""
+
+msgid "Perform an action on <strong>all</strong> incoming messages."
+msgstr "Executa o actiune asupra <strong>tuturor</strong> mesajelor sosite"
 
 msgid "contains"
 msgstr "contine"
@@ -320,61 +346,14 @@ msgstr ""
 msgid "Server-Side Mail Filtering"
 msgstr "Filtru de mesaje utilizand serverul de e-mail"
 
-msgid "Clear this Form"
-msgstr "Sterge Formularul"
-
-msgid "Start Over"
-msgstr "Incepe din Nou"
-
-msgid "Cancel"
-msgstr "Cancel"
-
-msgid "Move back to step"
-msgstr "Muta inapoi la pasul"
-
-msgid "Finished"
-msgstr "Terminat"
-
-msgid "Move on to step"
-msgstr "Muta la pasul"
-
-msgid "What kind of rule would you like to add?"
-msgstr "Ce fel de regula doriti sa adaugati ?"
-
-msgid " -- Please Select -- "
-msgstr ""
-
-#, fuzzy
-msgid "Change Type"
-msgstr "Tipul regulii de filtrare"
-
-msgid ""
-"The rule will trigger if the following addresses appear anywhere in the "
-"message's headers:"
-msgstr ""
-"Regula se va declansa daca adresele urmatoare vor aprea undeva in Header-ul "
-"mesajului"
-
 msgid "To: or Cc"
 msgstr ""
-
-msgid "AND (Every item must match)"
-msgstr "AND (Fiecare declaratie trebuie sa coincida"
-
-msgid "OR (Either item will match)"
-msgstr "SAU (Oricare dintre declaratii trebuie sa coincida)"
 
 msgid "The condition for the following rules is:"
 msgstr "Conditia pentru urmatoarele reguli este: "
 
-msgid "The header "
-msgstr "Header-ul "
-
 msgid "Less..."
 msgstr "Mai putin ..."
-
-msgid "This rule will trigger if message is"
-msgstr "Aceasta regula se va declansa dca mesajul este"
 
 msgid "bigger"
 msgstr "mai mare"
@@ -391,6 +370,9 @@ msgstr "KB (Kilobyte)"
 msgid "MB (megabytes)"
 msgstr "MB (Megabyte)"
 
+msgid "All Messages"
+msgstr "Toate Mesajele"
+
 msgid ""
 "The following action will be applied to <strong>all</strong> incoming "
 "messages that do not match any of the previous rules."
@@ -398,31 +380,16 @@ msgstr ""
 "Urmatoarea actiune se va aplica <strong>tuturor</strong> mesajelor sosite "
 "care, nu indeplinesc conditiile regulilor precedente."
 
-msgid ""
-"This rule will trigger upon the occurrence of one or more strings in the "
-"body of an e-mail message. "
-msgstr ""
-"Aceasta regula se va activa cand va detecta existenta a unuia sau mai multe "
-"portiuni de text (strings) in continutul (body) mesajului. "
-
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr ""
 "Alege ce sa faci cand aceasta regula va intra in actiune, din urmatoarele "
 "posibilitati:"
 
-msgid "Your new rule states:"
-msgstr "Noua Dvs. regula afirma:"
-
-msgid ""
-"If this is what you wanted, select Finished. You can also start over or "
-"cancel adding a rule altogether."
-msgstr ""
-"Daca acesta este ceea ce ati dorit sa obtineti, selectati Terminare. De "
-"asemenea puteti saReluati construirea regulii sau sa Anulati actiunea "
-"inceputa."
-
 msgid "Apply Changes"
 msgstr "Salveaza Modificarile"
+
+msgid "Cancel"
+msgstr "Cancel"
 
 msgid "Editing Mail Filtering Rule"
 msgstr "Editare Regula de Filtrare"
@@ -435,8 +402,37 @@ msgstr "Filtrele definite pana in acest moment"
 msgid "Error Encountered:"
 msgstr "Am intampinat o eroare"
 
+msgid "You must correct the above errors before continuing."
+msgstr ""
+
 msgid "Additional Actions"
 msgstr "Actiuni Aditionale"
+
+msgid "Clear this Form"
+msgstr "Sterge Formularul"
+
+msgid "Start Over"
+msgstr "Incepe din Nou"
+
+msgid "Move back to step"
+msgstr "Muta inapoi la pasul"
+
+msgid "Finished"
+msgstr "Terminat"
+
+msgid "Move on to step"
+msgstr "Muta la pasul"
+
+msgid "Your new rule states:"
+msgstr "Noua Dvs. regula afirma:"
+
+msgid ""
+"If this is what you wanted, select Finished. You can also start over or "
+"cancel adding a rule altogether."
+msgstr ""
+"Daca acesta este ceea ce ati dorit sa obtineti, selectati Terminare. De "
+"asemenea puteti saReluati construirea regulii sau sa Anulati actiunea "
+"inceputa."
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
@@ -463,6 +459,12 @@ msgid ""
 msgstr ""
 "Cand ati terminat de editat, <strong>nu uitati sa selectati butonul &quot;"
 "Salveaza Modificarile&quot; </strong> in scopul activarii lor!"
+
+msgid ""
+"Warning: In your rules, you have defined an action that refers to a folder "
+"that does not exist or a folder where you do not have permission to append "
+"to."
+msgstr ""
 
 msgid "The following table summarizes your current mail filtering rules."
 msgstr "Tabelul urmator afiseaza regulile Dvs. de filtrare curente."
@@ -553,6 +555,10 @@ msgstr ""
 msgid "Create Filter"
 msgstr "Filtru de Mesaje"
 
+#, fuzzy
+msgid "You have to define at least one condition."
+msgstr "Trebuie sa definiti cel putin un header match text."
+
 msgid "Keep (Default action)"
 msgstr "Pastreaza (Actiune implicita)"
 
@@ -574,7 +580,9 @@ msgstr "cineva@exemplu.ro"
 msgid "Keep a local copy as well."
 msgstr ""
 
-msgid "Incorrect email address. You must enter only one valid email address."
+msgid ""
+"Incorrect email address(es). You must enter one or more valid email "
+"addresses, separated by comma."
 msgstr ""
 
 msgid "Move message into"
@@ -622,6 +630,14 @@ msgstr "zile"
 msgid "Use the following message:"
 msgstr "Foloseste urmatorul mesaj:"
 
+msgid "The number of days between vacation messages must be a positive number."
+msgstr ""
+
+msgid ""
+"Your email addresses for which a vacation message is returned must be "
+"defined."
+msgstr ""
+
 msgid "Notify me, using the following method:"
 msgstr "Notifica-ma, folosind urmatoarea metoda:"
 
@@ -659,8 +675,36 @@ msgstr "Am sters cu succes regula #"
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
+#, fuzzy, php-format
+msgid "the header %s"
+msgstr "Header-ul"
+
+#, fuzzy, php-format
+msgid "Header %s"
+msgstr "Coincide cu Mail-Header-ul"
+
 msgid "To or Cc"
 msgstr ""
+
+#, php-format
+msgid "the envelope %s"
+msgstr ""
+
+#, php-format
+msgid "Envelope %s"
+msgstr ""
+
+#, php-format
+msgid "the address %s"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Address %s"
+msgstr "Coincide cu Adresa"
+
+#, fuzzy
+msgid "message body"
+msgstr "Mesaj"
 
 msgid "matches the regural expression"
 msgstr "coincide cu expresia regulara"
@@ -678,12 +722,6 @@ msgid "This rule is currently <strong>DISABLED</strong>:"
 msgstr ""
 
 msgid "DISABLED"
-msgstr ""
-
-msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "Pentru <strong>toate</strong> mesajele primite; "
-
-msgid "ALL"
 msgstr ""
 
 msgid ""
@@ -745,12 +783,6 @@ msgstr "<em>oricare</em> din urmatoarele Mail-Header-uri coincid: "
 msgid "<em>all</em> of the following mail headers match: "
 msgstr "<em>toate</em> urmatoarele Mail-Header-uri coincid: "
 
-msgid "the header"
-msgstr "Header-ul"
-
-msgid "and"
-msgstr ""
-
 msgid "the size of the message is"
 msgstr "spatiul ocupat de mesaj este"
 
@@ -759,6 +791,15 @@ msgstr " mai mare"
 
 msgid " smaller"
 msgstr " mai mic"
+
+msgid "For <strong>ALL</strong> incoming messages; "
+msgstr "Pentru <strong>toate</strong> mesajele primite; "
+
+msgid "ALL"
+msgstr ""
+
+msgid "and"
+msgstr ""
 
 msgid "then"
 msgstr "apoi"
@@ -800,6 +841,9 @@ msgstr "<em>salveaza-l</em> in dosarul <strong>"
 
 #, php-format
 msgid "File into %s"
+msgstr ""
+
+msgid "(Warning: Folder not available)"
 msgstr ""
 
 msgid "reply with this vacation message: "
@@ -854,6 +898,36 @@ msgstr "Numele directorului este ilegal.  Va rugam alegeti o alta denumire."
 #, fuzzy
 msgid "None"
 msgstr "Nu"
+
+#~ msgid "Body Match"
+#~ msgstr "Coincide cu Corpul Mesajului"
+
+#~ msgid "What kind of rule would you like to add?"
+#~ msgstr "Ce fel de regula doriti sa adaugati ?"
+
+#, fuzzy
+#~ msgid "Change Type"
+#~ msgstr "Tipul regulii de filtrare"
+
+#~ msgid ""
+#~ "The rule will trigger if the following addresses appear anywhere in the "
+#~ "message's headers:"
+#~ msgstr ""
+#~ "Regula se va declansa daca adresele urmatoare vor aprea undeva in Header-"
+#~ "ul mesajului"
+
+#~ msgid "The header "
+#~ msgstr "Header-ul "
+
+#~ msgid "This rule will trigger if message is"
+#~ msgstr "Aceasta regula se va declansa dca mesajul este"
+
+#~ msgid ""
+#~ "This rule will trigger upon the occurrence of one or more strings in the "
+#~ "body of an e-mail message. "
+#~ msgstr ""
+#~ "Aceasta regula se va activa cand va detecta existenta a unuia sau mai "
+#~ "multe portiuni de text (strings) in continutul (body) mesajului. "
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Toate regulile Dvs. au fost sterse"
