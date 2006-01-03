@@ -5,6 +5,41 @@ stable enough. In 1.9, the code has moved around and a lot of the GUI /
 frontend parts have been ported to a new scheme, while other pars have been
 completely rewritten.</p>
 
+<h3>1.9.4 (The &quot;Happy New Year&quot; Release)</h3>
+
+<p>After almost six (!) months of small and big changes in the CVS, release
+1.9.4 is out.</p>
+
+<p>The major highlight in this release is the new condition GUI, which also
+allows more Sieve features to be used in avelsieve. For example, envelope MAIL
+FROM and TO (as well as AUTH in Cyrus) can be checked against, as well as the
+body text of email messages wherever this is supported.</p>
+
+<p>There is also a transitioning step, which will take place in the first time
+that the rules are loaded. A slightly changed internal format will be written
+back. This means that this version is not backward-compatible with any previous
+'avelsieve' (&lt;= 1.9.3).</p>
+
+<p>So a word of warning to all you early adopters: <strong>This is
+beta</strong> so either</p>
+
+<ul>
+<li><strong>Back up your Sieve scripts.</strong></li>
+<li>Use this new avelsieve in a test, non-critical environment.</li>
+</ul>
+
+<p>That said, this version is up and running in a test environment (<a
+href="http://email.uoa.gr/">email.uoa.gr demo site</a>) and a production
+environment (University of Athens).</p>
+
+<p>There are new configuration options. Keep your config/config.php in sync
+with config/config_sample.php. I suggest <tt>vim -d</tt> ;) </p>
+
+<p>Please feed with any bug reports at this stage. There are still things to be
+done before a stable 2.0 is out. Enable debugging in config/config.php if
+things start going wrong.</p>
+
+
 <h3>1.9.3 (The &quot;We Are Still Alive&quot; Release)</h3>
 
 <p>On the road to 2.0, this is mostly a maintenance and bugfix release for the
