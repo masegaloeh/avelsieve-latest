@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-09 13:30+0200\n"
+"POT-Creation-Date: 2005-11-09 17:09+0200\n"
 "PO-Revision-Date: 2004-05-14 12:00+0200\n"
 "Last-Translator: Veli Pirttila <titus@iki.fi>\n"
 "Language-Team: finnish <fi@li.org>\n"
@@ -148,7 +148,21 @@ msgstr "Ei suodinsäätöjä vielä tehtynä"
 msgid "Could not set active script on your IMAP server"
 msgstr "Ei voitu aktivoida komentotiedostoa palvelimella"
 
-msgid "Address Match"
+msgid "AND (Every item must match)"
+msgstr "JA (Kaikkien tulee sisältyä)"
+
+msgid "OR (Either item will match)"
+msgstr "TAI (Mikä tahansa voi sisältyä)"
+
+#, fuzzy
+msgid "Rule"
+msgstr "Säännön tyyppi"
+
+msgid "Anti-SPAM"
+msgstr ""
+
+#, fuzzy
+msgid "Address"
 msgstr "Osoite sisältää"
 
 msgid ""
@@ -157,11 +171,21 @@ msgstr ""
 "Tee toiminto liittyen e-postiosoitteisiin jotka ovat viestiotsikoiden "
 "sisällä."
 
-msgid "Header Match"
+#, fuzzy
+msgid "Header"
 msgstr "Otsikko sisältyy"
 
 msgid ""
 "Perform an action on messages matching a specified header (From, To etc.)."
+msgstr "Tee toiminto otsikkotietojen (From,To jne) sisältyessä viestiin."
+
+msgid "Envelope"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Perform an action on messages matching a specified envelope header (Envelope "
+"FROM, TO)."
 msgstr "Tee toiminto otsikkotietojen (From,To jne) sisältyessä viestiin."
 
 msgid "Size"
@@ -170,17 +194,17 @@ msgstr "Koko"
 msgid "Perform an action on messages depending on their size."
 msgstr "Tee toiminto liittyen viestin kokoon"
 
-msgid "All Messages"
-msgstr "Kaikki viestit"
-
-msgid "Perform an action on <strong>all</strong> incoming messages."
-msgstr "Tee toiminto <strong>kaikille</strong> sisääntuleville viesteille."
-
-msgid "Body Match"
-msgstr "Viesti sisältää"
+msgid "Body"
+msgstr ""
 
 msgid "Perform an action on messages depending on their content (body text)."
 msgstr "Tee toiminto viestin sisältöön liittyen"
+
+msgid "All"
+msgstr ""
+
+msgid "Perform an action on <strong>all</strong> incoming messages."
+msgstr "Tee toiminto <strong>kaikille</strong> sisääntuleville viesteille."
 
 msgid "contains"
 msgstr "sisältää"
@@ -316,59 +340,14 @@ msgstr ""
 msgid "Server-Side Mail Filtering"
 msgstr "Palvelimen sisäinen suodinjärjestelmä"
 
-msgid "Clear this Form"
-msgstr "Tyhjennä"
-
-msgid "Start Over"
-msgstr "Aloita alusta"
-
-msgid "Cancel"
-msgstr "Peruuta"
-
-msgid "Move back to step"
-msgstr "Siirry takaisin kohtaan"
-
-msgid "Finished"
-msgstr "Valmis"
-
-msgid "Move on to step"
-msgstr "Siirry kohtaan"
-
-msgid "What kind of rule would you like to add?"
-msgstr "Minkä tyyppisen ehdon haluaisit lisätä?"
-
-msgid " -- Please Select -- "
-msgstr ""
-
-#, fuzzy
-msgid "Change Type"
-msgstr "Säännön tyyppi"
-
-msgid ""
-"The rule will trigger if the following addresses appear anywhere in the "
-"message's headers:"
-msgstr "Ehto käynnistyy jos seuraavanlaiset osoitteet ilmestyvät mihinkään"
-
 msgid "To: or Cc"
 msgstr "To: tai Cc"
-
-msgid "AND (Every item must match)"
-msgstr "JA (Kaikkien tulee sisältyä)"
-
-msgid "OR (Either item will match)"
-msgstr "TAI (Mikä tahansa voi sisältyä)"
 
 msgid "The condition for the following rules is:"
 msgstr "Säännön tila on seuraavanlainen:"
 
-msgid "The header "
-msgstr "Otsikko "
-
 msgid "Less..."
 msgstr "Vähemmän.."
-
-msgid "This rule will trigger if message is"
-msgstr "Tämä ehto käynnistyy jos viesti on"
 
 msgid "bigger"
 msgstr "isompi"
@@ -385,6 +364,9 @@ msgstr "KT (kilotavua)"
 msgid "MB (megabytes)"
 msgstr "MT (megatavua)"
 
+msgid "All Messages"
+msgstr "Kaikki viestit"
+
 msgid ""
 "The following action will be applied to <strong>all</strong> incoming "
 "messages that do not match any of the previous rules."
@@ -392,28 +374,14 @@ msgstr ""
 "Seuraava toiminta sisältyy <strong>jokaiseen</strong> sisääntulevaan "
 "viestiin jotka eivät sisälly edellisiin sääntöihin."
 
-msgid ""
-"This rule will trigger upon the occurrence of one or more strings in the "
-"body of an e-mail message. "
-msgstr ""
-"Tämä sääntö käynnistyy yhden tai enempien lauseiden sisältyessäviestin body-"
-"osaan"
-
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr "Valitse seuraavista mitä tehdä kun tämä sääntö käynnistyy:"
 
-msgid "Your new rule states:"
-msgstr "Uusi sääntösi:"
-
-msgid ""
-"If this is what you wanted, select Finished. You can also start over or "
-"cancel adding a rule altogether."
-msgstr ""
-"Jos tämä on se mitä halusit, valitse Valmis. Voit myös valita Aloita alusta "
-"tai olla lisäämättä sääntöä valitsemalla Peruuta"
-
 msgid "Apply Changes"
 msgstr "Tallenna muutokset"
+
+msgid "Cancel"
+msgstr "Peruuta"
 
 msgid "Editing Mail Filtering Rule"
 msgstr "Muokataan suodinsääntöä"
@@ -426,8 +394,36 @@ msgstr "Nykyiset suodinsäännöt"
 msgid "Error Encountered:"
 msgstr "Virhe"
 
+msgid "You must correct the above errors before continuing."
+msgstr ""
+
 msgid "Additional Actions"
 msgstr "Lisätoiminnot"
+
+msgid "Clear this Form"
+msgstr "Tyhjennä"
+
+msgid "Start Over"
+msgstr "Aloita alusta"
+
+msgid "Move back to step"
+msgstr "Siirry takaisin kohtaan"
+
+msgid "Finished"
+msgstr "Valmis"
+
+msgid "Move on to step"
+msgstr "Siirry kohtaan"
+
+msgid "Your new rule states:"
+msgstr "Uusi sääntösi:"
+
+msgid ""
+"If this is what you wanted, select Finished. You can also start over or "
+"cancel adding a rule altogether."
+msgstr ""
+"Jos tämä on se mitä halusit, valitse Valmis. Voit myös valita Aloita alusta "
+"tai olla lisäämättä sääntöä valitsemalla Peruuta"
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
@@ -452,6 +448,12 @@ msgid ""
 msgstr ""
 "Muokkauksen jälkeen, <strong>muista tallentaa muutokset aktivoidaksesi "
 "muutokset!"
+
+msgid ""
+"Warning: In your rules, you have defined an action that refers to a folder "
+"that does not exist or a folder where you do not have permission to append "
+"to."
+msgstr ""
 
 msgid "The following table summarizes your current mail filtering rules."
 msgstr "Alla näet nykyiset suodinsäännöt."
@@ -541,6 +543,10 @@ msgstr ""
 msgid "Create Filter"
 msgstr "Viestien suodattimet"
 
+#, fuzzy
+msgid "You have to define at least one condition."
+msgstr "Tekstin tulee sisältyä ainakin yhteen otsikkokenttään."
+
 msgid "Keep (Default action)"
 msgstr "Ei tehdä mitään (Vakio toiminta)"
 
@@ -562,7 +568,9 @@ msgstr "email@osoite"
 msgid "Keep a local copy as well."
 msgstr "Pidä myös paikallinen kopio."
 
-msgid "Incorrect email address. You must enter only one valid email address."
+msgid ""
+"Incorrect email address(es). You must enter one or more valid email "
+"addresses, separated by comma."
 msgstr ""
 
 msgid "Move message into"
@@ -610,6 +618,14 @@ msgstr "päiviä"
 msgid "Use the following message:"
 msgstr "Käytä seuraavanlaista viestiä:"
 
+msgid "The number of days between vacation messages must be a positive number."
+msgstr ""
+
+msgid ""
+"Your email addresses for which a vacation message is returned must be "
+"defined."
+msgstr ""
+
 msgid "Notify me, using the following method:"
 msgstr "Ilmoita minulle, käyttämällä seuraavanlaista tapaa:"
 
@@ -647,9 +663,37 @@ msgstr "Poistetaanko tämä sääntö oikeasti?"
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
+#, fuzzy, php-format
+msgid "the header %s"
+msgstr "otsikko"
+
+#, fuzzy, php-format
+msgid "Header %s"
+msgstr "Otsikko sisältyy"
+
 #, fuzzy
 msgid "To or Cc"
 msgstr "To: tai Cc"
+
+#, php-format
+msgid "the envelope %s"
+msgstr ""
+
+#, php-format
+msgid "Envelope %s"
+msgstr ""
+
+#, php-format
+msgid "the address %s"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Address %s"
+msgstr "Osoite sisältää"
+
+#, fuzzy
+msgid "message body"
+msgstr "Viesti"
 
 msgid "matches the regural expression"
 msgstr "sisältää rexepin"
@@ -667,12 +711,6 @@ msgid "This rule is currently <strong>DISABLED</strong>:"
 msgstr ""
 
 msgid "DISABLED"
-msgstr ""
-
-msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "<strong>Kaikille</strong> sisääntuleville viesteille; "
-
-msgid "ALL"
 msgstr ""
 
 msgid ""
@@ -737,12 +775,6 @@ msgstr "<em>mikä vain</em> seuraavista otsikkokentistä sisältyy: "
 msgid "<em>all</em> of the following mail headers match: "
 msgstr "<em>kaikki</em> seuraavista otsikkokentistä sisältyy:"
 
-msgid "the header"
-msgstr "otsikko"
-
-msgid "and"
-msgstr ""
-
 msgid "the size of the message is"
 msgstr "viestin koko on"
 
@@ -751,6 +783,15 @@ msgstr " isompi"
 
 msgid " smaller"
 msgstr " pienempi"
+
+msgid "For <strong>ALL</strong> incoming messages; "
+msgstr "<strong>Kaikille</strong> sisääntuleville viesteille; "
+
+msgid "ALL"
+msgstr ""
+
+msgid "and"
+msgstr ""
 
 msgid "then"
 msgstr "silloin"
@@ -790,6 +831,9 @@ msgstr "<em>tallenna</em> se kansioon <strong>"
 
 #, php-format
 msgid "File into %s"
+msgstr ""
+
+msgid "(Warning: Folder not available)"
 msgstr ""
 
 msgid "reply with this vacation message: "
@@ -843,6 +887,34 @@ msgstr "Virheellinen kansion nimi. Valitse muu nimi."
 
 msgid "None"
 msgstr "Ei yhtään"
+
+#~ msgid "Body Match"
+#~ msgstr "Viesti sisältää"
+
+#~ msgid "What kind of rule would you like to add?"
+#~ msgstr "Minkä tyyppisen ehdon haluaisit lisätä?"
+
+#, fuzzy
+#~ msgid "Change Type"
+#~ msgstr "Säännön tyyppi"
+
+#~ msgid ""
+#~ "The rule will trigger if the following addresses appear anywhere in the "
+#~ "message's headers:"
+#~ msgstr "Ehto käynnistyy jos seuraavanlaiset osoitteet ilmestyvät mihinkään"
+
+#~ msgid "The header "
+#~ msgstr "Otsikko "
+
+#~ msgid "This rule will trigger if message is"
+#~ msgstr "Tämä ehto käynnistyy jos viesti on"
+
+#~ msgid ""
+#~ "This rule will trigger upon the occurrence of one or more strings in the "
+#~ "body of an e-mail message. "
+#~ msgstr ""
+#~ "Tämä sääntö käynnistyy yhden tai enempien lauseiden sisältyessäviestin "
+#~ "body-osaan"
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Kaikki sääntösi on tuhottu"

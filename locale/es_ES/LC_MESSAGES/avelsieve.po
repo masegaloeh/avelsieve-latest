@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 1.9.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-09 13:30+0200\n"
+"POT-Creation-Date: 2005-11-09 17:09+0200\n"
 "PO-Revision-Date: 2005-03-16 21:28+0200\n"
 "Last-Translator: Eduardo Mayoral <emayoral@arsys.es>\n"
 "Language-Team: spanish <es@li.org>\n"
@@ -106,8 +106,9 @@ msgstr "Lista Blanca"
 msgid ""
 "Messages that match any of these header rules will never end up in Junk "
 "Folders or regarded as SPAM."
-msgstr "Los mensajes que concuerden con alguna de estas reglas de encabecado"
-" nunca acabar&aacute;n en las carpetas de correo basura o considerados como SPAM"
+msgstr ""
+"Los mensajes que concuerden con alguna de estas reglas de encabecado nunca "
+"acabar&aacute;n en las carpetas de correo basura o considerados como SPAM"
 
 msgid "More..."
 msgstr "M&aacute;s..."
@@ -149,7 +150,22 @@ msgstr "No hay reglas definidas a&uacute;n"
 msgid "Could not set active script on your IMAP server"
 msgstr "No se pudo establecer el script activo en su servidor IMAP"
 
-msgid "Address Match"
+msgid "AND (Every item must match)"
+msgstr "Y (Todos los elementos deben corresponder)"
+
+msgid "OR (Either item will match)"
+msgstr "O (Cualquier elemento corresponder&aacute;)"
+
+#, fuzzy
+msgid "Rule"
+msgstr "Tipo de regla"
+
+#, fuzzy
+msgid "Anti-SPAM"
+msgstr "SPAM"
+
+#, fuzzy
+msgid "Address"
 msgstr "Comprobaci&oacute;n de direcciones"
 
 msgid ""
@@ -158,11 +174,23 @@ msgstr ""
 "Llevar a cabo una acci&oacute;n en mensajes dependiendo de las direcciones "
 "de correo que aparecen en los encabezados."
 
-msgid "Header Match"
-msgstr "Concordancia de cabeceras"
+#, fuzzy
+msgid "Header"
+msgstr "Remitente"
 
 msgid ""
 "Perform an action on messages matching a specified header (From, To etc.)."
+msgstr ""
+"Llevar a cabo una acci&oacute;n en mensajes que tengan una determinada "
+"cabecera (De, Para, etc.)"
+
+msgid "Envelope"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Perform an action on messages matching a specified envelope header (Envelope "
+"FROM, TO)."
 msgstr ""
 "Llevar a cabo una acci&oacute;n en mensajes que tengan una determinada "
 "cabecera (De, Para, etc.)"
@@ -175,21 +203,21 @@ msgstr ""
 "Llevar a cabo una acci&oacute;n en los mensajes dependiendo de su "
 "tama&ntilde;o"
 
-msgid "All Messages"
-msgstr "Todos los mensajes"
-
-msgid "Perform an action on <strong>all</strong> incoming messages."
+msgid "Body"
 msgstr ""
-"Llevar a cabo una acci&oacute;n en <strong>todos</strong> los mensajes "
-"entrantes."
-
-msgid "Body Match"
-msgstr "Concordancia en el contenido"
 
 msgid "Perform an action on messages depending on their content (body text)."
 msgstr ""
 "Llevar a cabo una acci&oacute;n en los mensajes dependiendo de su contenido "
 "(texto del cuerpo)"
+
+msgid "All"
+msgstr ""
+
+msgid "Perform an action on <strong>all</strong> incoming messages."
+msgstr ""
+"Llevar a cabo una acci&oacute;n en <strong>todos</strong> los mensajes "
+"entrantes."
 
 msgid "contains"
 msgstr "contiene"
@@ -249,7 +277,9 @@ msgid "tech"
 msgstr "t&eacute;cnica"
 
 msgid "Even more terse description for technical people"
-msgstr "Descripci&oacute;n a&uacute;n m&aacute;s resumida para personal ti&eacute;cnico"
+msgstr ""
+"Descripci&oacute;n a&uacute;n m&aacute;s resumida para personal ti&eacute;"
+"cnico"
 
 msgid "source"
 msgstr "fuente"
@@ -299,8 +329,9 @@ msgstr ""
 "m&aacute;s de %s d&iacute;as se borrar&aacute;n autom&aacute;ticamente."
 
 msgid "Note that you can set the number of days in Folder Preferences."
-msgstr "Tenga en cuenta que puede especificar el n&uacute;mero de d&iacute;asi"
-" en las preferencias de carpetas"
+msgstr ""
+"Tenga en cuenta que puede especificar el n&uacute;mero de d&iacute;asi en "
+"las preferencias de carpetas"
 
 msgid "Trash Folder"
 msgstr "Carpeta &quot;Basura&quot;"
@@ -325,60 +356,14 @@ msgstr ""
 msgid "Server-Side Mail Filtering"
 msgstr "Filtrado de Correo en el Servidor"
 
-msgid "Clear this Form"
-msgstr "Limpiar este formulario"
-
-msgid "Start Over"
-msgstr "Volver a empezar"
-
-msgid "Cancel"
-msgstr "Cancelar"
-
-msgid "Move back to step"
-msgstr "Volver al paso"
-
-msgid "Finished"
-msgstr "Terminado"
-
-msgid "Move on to step"
-msgstr "Continuar al paso"
-
-msgid "What kind of rule would you like to add?"
-msgstr "¿Que tipo de regla quiere a&ntilde;adir?"
-
-msgid " -- Please Select -- "
-msgstr " -- Por favor seleccione -- "
-
-msgid "Change Type"
-msgstr "Cambiar tipo"
-
-msgid ""
-"The rule will trigger if the following addresses appear anywhere in the "
-"message's headers:"
-msgstr ""
-"La regla se activar&aacute; si las siguientes direcciones aparecen en "
-"cualquier parte de las cabeceras del mensaje:"
-
 msgid "To: or Cc"
 msgstr "To: o Cc"
-
-msgid "AND (Every item must match)"
-msgstr "Y (Todos los elementos deben corresponder)"
-
-msgid "OR (Either item will match)"
-msgstr "O (Cualquier elemento corresponder&aacute;)"
 
 msgid "The condition for the following rules is:"
 msgstr "La condici&oacute;n para las siguientes reglas es:"
 
-msgid "The header "
-msgstr "La cabecera "
-
 msgid "Less..."
 msgstr "Menos..."
-
-msgid "This rule will trigger if message is"
-msgstr "Esta regla se activar&aacute; si el mensaje es"
 
 msgid "bigger"
 msgstr "mayor"
@@ -395,6 +380,9 @@ msgstr "KB (kilobytes)"
 msgid "MB (megabytes)"
 msgstr "MB (megabytes)"
 
+msgid "All Messages"
+msgstr "Todos los mensajes"
+
 msgid ""
 "The following action will be applied to <strong>all</strong> incoming "
 "messages that do not match any of the previous rules."
@@ -402,30 +390,16 @@ msgstr ""
 "La siguiente acci&oacute; se aplicar&aacute; a  <strong>todos</strong> los "
 "mensajes entrantes que no corresponden con ninguna de las reglas anteriores"
 
-msgid ""
-"This rule will trigger upon the occurrence of one or more strings in the "
-"body of an e-mail message. "
-msgstr ""
-"Esta regla se activar&aacute; cuando aparezcan una o m&aacute;scadenas en el "
-"cuerpo de un mensaje"
-
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr ""
 "Escoja qu&eacute; hacer cuando esta regla se active, entre las siguientes "
 "opciones:"
 
-msgid "Your new rule states:"
-msgstr "Su nueva regla dice:"
-
-msgid ""
-"If this is what you wanted, select Finished. You can also start over or "
-"cancel adding a rule altogether."
-msgstr ""
-"Si esto es lo que usted quer&iacute;a, seleccione Terminado. Tambi&eacute;n "
-"puede volver a empezar o cancelar toda la adici&oacute;n de la regla."
-
 msgid "Apply Changes"
 msgstr "Guardar cambios"
+
+msgid "Cancel"
+msgstr "Cancelar"
 
 msgid "Editing Mail Filtering Rule"
 msgstr "Editando regla de filtrado de correo"
@@ -436,8 +410,36 @@ msgstr "Crear nueva regla de filtrado"
 msgid "Error Encountered:"
 msgstr "Se ha encontrado un error:"
 
+msgid "You must correct the above errors before continuing."
+msgstr ""
+
 msgid "Additional Actions"
 msgstr "Acciones adicionales"
+
+msgid "Clear this Form"
+msgstr "Limpiar este formulario"
+
+msgid "Start Over"
+msgstr "Volver a empezar"
+
+msgid "Move back to step"
+msgstr "Volver al paso"
+
+msgid "Finished"
+msgstr "Terminado"
+
+msgid "Move on to step"
+msgstr "Continuar al paso"
+
+msgid "Your new rule states:"
+msgstr "Su nueva regla dice:"
+
+msgid ""
+"If this is what you wanted, select Finished. You can also start over or "
+"cancel adding a rule altogether."
+msgstr ""
+"Si esto es lo que usted quer&iacute;a, seleccione Terminado. Tambi&eacute;n "
+"puede volver a empezar o cancelar toda la adici&oacute;n de la regla."
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
@@ -464,6 +466,12 @@ msgid ""
 msgstr ""
 "Cuando haya terminado de editar, <strong>recuerde seleccionar &quot;Guardar "
 "cambios&quot;</strong> para activar sus cambios."
+
+msgid ""
+"Warning: In your rules, you have defined an action that refers to a folder "
+"that does not exist or a folder where you do not have permission to append "
+"to."
+msgstr ""
 
 msgid "The following table summarizes your current mail filtering rules."
 msgstr "La siguiente tabla resume sus reglas de filtrado de correo actuales."
@@ -552,6 +560,10 @@ msgstr "Asunto"
 msgid "Create Filter"
 msgstr "Crear filtro"
 
+#, fuzzy
+msgid "You have to define at least one condition."
+msgstr "Debe definir al menos un texto de correspondencia de encabezado."
+
 msgid "Keep (Default action)"
 msgstr "Guardar (Acci&oacute;n predeterminada)"
 
@@ -573,8 +585,13 @@ msgstr "alguien@ejemplo.org"
 msgid "Keep a local copy as well."
 msgstr "Guardar tambi&eacute;n una copia local."
 
-msgid "Incorrect email address. You must enter only one valid email address."
-msgstr "Direcci&oacute;n incorrecta. Debe introducir una &uacute;nica direcci&oacute;n de correo v&aacute;alida"
+#, fuzzy
+msgid ""
+"Incorrect email address(es). You must enter one or more valid email "
+"addresses, separated by comma."
+msgstr ""
+"Direcci&oacute;n incorrecta. Debe introducir una &uacute;nica direcci&oacute;"
+"n de correo v&aacute;alida"
 
 msgid "Move message into"
 msgstr "Mover mensaje a:"
@@ -624,6 +641,14 @@ msgstr "d&iacute;as"
 msgid "Use the following message:"
 msgstr "Usar el siguiente mensaje:"
 
+msgid "The number of days between vacation messages must be a positive number."
+msgstr ""
+
+msgid ""
+"Your email addresses for which a vacation message is returned must be "
+"defined."
+msgstr ""
+
 msgid "Notify me, using the following method:"
 msgstr "Avisarme, usando el siguiente m&eacute;todo:"
 
@@ -660,8 +685,36 @@ msgstr "Deshabilitar esta regla"
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr "La regla no tendr&aacute; efecto mientras est&eacute; deshabilitada."
 
+#, fuzzy, php-format
+msgid "the header %s"
+msgstr "la cabecera"
+
+#, fuzzy, php-format
+msgid "Header %s"
+msgstr "Concordancia de cabeceras"
+
 msgid "To or Cc"
 msgstr "To o Cc"
+
+#, php-format
+msgid "the envelope %s"
+msgstr ""
+
+#, php-format
+msgid "Envelope %s"
+msgstr ""
+
+#, php-format
+msgid "the address %s"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Address %s"
+msgstr "Comprobaci&oacute;n de direcciones"
+
+#, fuzzy
+msgid "message body"
+msgstr "Mensaje"
 
 msgid "matches the regural expression"
 msgstr "encaja con la expresi&oacute;n regular"
@@ -680,12 +733,6 @@ msgstr "Esta regla esta actualmente <strong>DESHABILITADA</strong>:"
 
 msgid "DISABLED"
 msgstr "DESHABILITADA"
-
-msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "Para <strong>TODOS</strong> los mensajes entrantes; "
-
-msgid "ALL"
-msgstr "TODO"
 
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
@@ -747,12 +794,6 @@ msgstr "<em>cualquiera</em> de las siguientes cabeceras de correo concuerdan: "
 msgid "<em>all</em> of the following mail headers match: "
 msgstr "<em>todas</em> las siguientes cabeceras de correo concuerdan: "
 
-msgid "the header"
-msgstr "la cabecera"
-
-msgid "and"
-msgstr "y"
-
 msgid "the size of the message is"
 msgstr "el tama&ntilde;o del mensaje es"
 
@@ -761,6 +802,15 @@ msgstr " mayor"
 
 msgid " smaller"
 msgstr " menor"
+
+msgid "For <strong>ALL</strong> incoming messages; "
+msgstr "Para <strong>TODOS</strong> los mensajes entrantes; "
+
+msgid "ALL"
+msgstr "TODO"
+
+msgid "and"
+msgstr "y"
 
 msgid "then"
 msgstr "entonces"
@@ -788,7 +838,8 @@ msgstr "Redirigir a"
 
 #, php-format
 msgid "<em>redirect</em> it to the email addresses: %s."
-msgstr "<em>redir&iacute;gelo</em> a la siguiente direcci&oacute;n de correo: %s"
+msgstr ""
+"<em>redir&iacute;gelo</em> a la siguiente direcci&oacute;n de correo: %s"
 
 msgid "<em>redirect</em> it to the email address"
 msgstr "<em>redir&iacute;gelo</em> a la direcci&oacute;n de correo"
@@ -800,6 +851,9 @@ msgstr "<em>arch&iacute;valo</em> en la carpeta %s"
 #, php-format
 msgid "File into %s"
 msgstr "Archivar en %s"
+
+msgid "(Warning: Folder not available)"
+msgstr ""
 
 msgid "reply with this vacation message: "
 msgstr "responde con este mensaje de vacaciones: "
@@ -851,6 +905,38 @@ msgstr ""
 msgid "None"
 msgstr "Ninguna"
 
+#~ msgid "Body Match"
+#~ msgstr "Concordancia en el contenido"
+
+#~ msgid "What kind of rule would you like to add?"
+#~ msgstr "¿Que tipo de regla quiere a&ntilde;adir?"
+
+#~ msgid " -- Please Select -- "
+#~ msgstr " -- Por favor seleccione -- "
+
+#~ msgid "Change Type"
+#~ msgstr "Cambiar tipo"
+
+#~ msgid ""
+#~ "The rule will trigger if the following addresses appear anywhere in the "
+#~ "message's headers:"
+#~ msgstr ""
+#~ "La regla se activar&aacute; si las siguientes direcciones aparecen en "
+#~ "cualquier parte de las cabeceras del mensaje:"
+
+#~ msgid "The header "
+#~ msgstr "La cabecera "
+
+#~ msgid "This rule will trigger if message is"
+#~ msgstr "Esta regla se activar&aacute; si el mensaje es"
+
+#~ msgid ""
+#~ "This rule will trigger upon the occurrence of one or more strings in the "
+#~ "body of an e-mail message. "
+#~ msgstr ""
+#~ "Esta regla se activar&aacute; cuando aparezcan una o m&aacute;scadenas en "
+#~ "el cuerpo de un mensaje"
+
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Todas sus reglas han sido borradas"
 
@@ -862,4 +948,3 @@ msgstr "Ninguna"
 
 #~ msgid "does not match wildcard"
 #~ msgstr "no corresponde con el comod&iacute;n"
-

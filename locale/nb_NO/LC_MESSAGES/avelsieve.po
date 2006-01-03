@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-09 13:30+0200\n"
+"POT-Creation-Date: 2005-11-09 17:09+0200\n"
 "PO-Revision-Date: 2005-03-30 09:36+0100\n"
 "Last-Translator: Hans Fredrik Nordhaug <hans@nordhaug.priv.no>\n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
@@ -148,7 +148,22 @@ msgstr "Ingen regler definert enda"
 msgid "Could not set active script on your IMAP server"
 msgstr "Kunne ikke aktivere regelsettet p&aring; din IMAP-tjener"
 
-msgid "Address Match"
+msgid "AND (Every item must match)"
+msgstr "OG (Alle punktene m&aring; eksistere)"
+
+msgid "OR (Either item will match)"
+msgstr "ELLER (Et av punktene må eksistere)"
+
+#, fuzzy
+msgid "Rule"
+msgstr "Regeltype"
+
+#, fuzzy
+msgid "Anti-SPAM"
+msgstr "S&Oslash;PPELPOST"
+
+#, fuzzy
+msgid "Address"
 msgstr "Stemmer med epost-adresse"
 
 msgid ""
@@ -157,11 +172,23 @@ msgstr ""
 "Utf&oslash;r en handling p&aring; meldingen avhengig av om epostadresser "
 "finnes i meldingshodet."
 
-msgid "Header Match"
-msgstr "Stemmer med epost-meldingshode"
+#, fuzzy
+msgid "Header"
+msgstr "Avsender"
 
 msgid ""
 "Perform an action on messages matching a specified header (From, To etc.)."
+msgstr ""
+"Utf&oslash;r en handling p&aring; meldingen som inneholder et spesifisert "
+"meldingshode (Fra, Til osv.)."
+
+msgid "Envelope"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Perform an action on messages matching a specified envelope header (Envelope "
+"FROM, TO)."
 msgstr ""
 "Utf&oslash;r en handling p&aring; meldingen som inneholder et spesifisert "
 "meldingshode (Fra, Til osv.)."
@@ -174,19 +201,19 @@ msgstr ""
 "Utf&oslash;r en handling p&aring; meldingen avhengig av dens st&oslash;"
 "rrelse."
 
-msgid "All Messages"
-msgstr "Alle meldinger"
+msgid "Body"
+msgstr ""
+
+msgid "Perform an action on messages depending on their content (body text)."
+msgstr "Utf&oslash;r en handling p&aring; meldinger avhengig av deres innhold."
+
+msgid "All"
+msgstr ""
 
 msgid "Perform an action on <strong>all</strong> incoming messages."
 msgstr ""
 "Utf&oslash;r en handling p&aring; <strong>alle</strong> innkommende "
 "meldinger."
-
-msgid "Body Match"
-msgstr "Stemmer med epostens innhold"
-
-msgid "Perform an action on messages depending on their content (body text)."
-msgstr "Utf&oslash;r en handling p&aring; meldinger avhengig av deres innhold."
 
 msgid "contains"
 msgstr "inneholder"
@@ -318,60 +345,14 @@ msgstr ""
 msgid "Server-Side Mail Filtering"
 msgstr "Filtrering p&aring; epost-tjeneren"
 
-msgid "Clear this Form"
-msgstr "Tøm dette skjemaet"
-
-msgid "Start Over"
-msgstr "Start på nytt"
-
-msgid "Cancel"
-msgstr "Avbryt"
-
-msgid "Move back to step"
-msgstr "Gå tilbake til steg"
-
-msgid "Finished"
-msgstr "Ferdig"
-
-msgid "Move on to step"
-msgstr "G&aring; videre til steg"
-
-msgid "What kind of rule would you like to add?"
-msgstr "Hvilken type regel vil du legge til?"
-
-msgid " -- Please Select -- "
-msgstr " -- Velg -- "
-
-msgid "Change Type"
-msgstr "Endre type"
-
-msgid ""
-"The rule will trigger if the following addresses appear anywhere in the "
-"message's headers:"
-msgstr ""
-"Denne regel vil bli gjort gjeldende hvis meldingshodet inneholder de "
-"f&oslash;lgende adresser:"
-
 msgid "To: or Cc"
 msgstr "To: eller Cc:"
-
-msgid "AND (Every item must match)"
-msgstr "OG (Alle punktene m&aring; eksistere)"
-
-msgid "OR (Either item will match)"
-msgstr "ELLER (Et av punktene må eksistere)"
 
 msgid "The condition for the following rules is:"
 msgstr "Den f&oslash;lgende regelen m&aring; inneholde:"
 
-msgid "The header "
-msgstr "Epostens meldingshode"
-
 msgid "Less..."
 msgstr "Mindre..."
-
-msgid "This rule will trigger if message is"
-msgstr "Denne regelen vil bli gjort gjeldende hvis eposten er"
 
 msgid "bigger"
 msgstr "st&oslash;rre"
@@ -388,6 +369,9 @@ msgstr "KB (kilobyte)"
 msgid "MB (megabytes)"
 msgstr "MB (megabyte)"
 
+msgid "All Messages"
+msgstr "Alle meldinger"
+
 msgid ""
 "The following action will be applied to <strong>all</strong> incoming "
 "messages that do not match any of the previous rules."
@@ -395,30 +379,16 @@ msgstr ""
 "De f&oslash;lgende metodene vil bli utf&oslash;rt p&aring; <strong>alle</"
 "strong> innkommende meldinger som ikke er ber&oslash;rt av tidligere regler."
 
-msgid ""
-"This rule will trigger upon the occurrence of one or more strings in the "
-"body of an e-mail message. "
-msgstr ""
-"Denne regelen vil bli gjort gjeldende n&aring;r eposten inneholder et eller "
-"flere ord i selve epost-teksten. "
-
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr ""
 "Velg hva som skal utf&oslash;res n&aring;r denne regelen blir gjort "
 "gjeldende p&aring; ett av de f&oslash;lgende:"
 
-msgid "Your new rule states:"
-msgstr "Din nye regel utf&oslash;rer:"
-
-msgid ""
-"If this is what you wanted, select Finished. You can also start over or "
-"cancel adding a rule altogether."
-msgstr ""
-"Hvis dette er hva du &oslash;nsker, velg Ferdig. Du kan ogs&aring; starte "
-"p&aring; nytt eller avbryte denne handlingen."
-
 msgid "Apply Changes"
 msgstr "Utf&oslash;r endringer"
+
+msgid "Cancel"
+msgstr "Avbryt"
 
 msgid "Editing Mail Filtering Rule"
 msgstr "Editere regel for epostfiltrering"
@@ -429,8 +399,36 @@ msgstr "Opprett ny e-postfiltreringsregel"
 msgid "Error Encountered:"
 msgstr "Feil oppst&aring;tt:"
 
+msgid "You must correct the above errors before continuing."
+msgstr ""
+
 msgid "Additional Actions"
 msgstr "Flere handlinger"
+
+msgid "Clear this Form"
+msgstr "Tøm dette skjemaet"
+
+msgid "Start Over"
+msgstr "Start på nytt"
+
+msgid "Move back to step"
+msgstr "Gå tilbake til steg"
+
+msgid "Finished"
+msgstr "Ferdig"
+
+msgid "Move on to step"
+msgstr "G&aring; videre til steg"
+
+msgid "Your new rule states:"
+msgstr "Din nye regel utf&oslash;rer:"
+
+msgid ""
+"If this is what you wanted, select Finished. You can also start over or "
+"cancel adding a rule altogether."
+msgstr ""
+"Hvis dette er hva du &oslash;nsker, velg Ferdig. Du kan ogs&aring; starte "
+"p&aring; nytt eller avbryte denne handlingen."
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
@@ -455,6 +453,12 @@ msgid ""
 msgstr ""
 "N&aring;r du er ferdig med &aring; editere, <strong>husk &aring; velge &quot;"
 "Lagre endringer&quot;</strong> for &aring; aktivere dine endringer!"
+
+msgid ""
+"Warning: In your rules, you have defined an action that refers to a folder "
+"that does not exist or a folder where you do not have permission to append "
+"to."
+msgstr ""
 
 msgid "The following table summarizes your current mail filtering rules."
 msgstr "F&oslash;lgende tabell oppsummere dine gjeldende filtreringsregler."
@@ -543,6 +547,10 @@ msgstr "Emne"
 msgid "Create Filter"
 msgstr "Opprett filter"
 
+#, fuzzy
+msgid "You have to define at least one condition."
+msgstr "Du m&aring; definere minst en tekst for treff i meldingshode."
+
 msgid "Keep (Default action)"
 msgstr "Behold (Standard handling)"
 
@@ -564,7 +572,10 @@ msgstr "noen@eksempel.no"
 msgid "Keep a local copy as well."
 msgstr "Behold en lokal kopi også."
 
-msgid "Incorrect email address. You must enter only one valid email address."
+#, fuzzy
+msgid ""
+"Incorrect email address(es). You must enter one or more valid email "
+"addresses, separated by comma."
 msgstr "Ugyldig e-postadresse. Du må oppgi kun en gyldig e-postadresse."
 
 msgid "Move message into"
@@ -611,6 +622,14 @@ msgstr "dager"
 msgid "Use the following message:"
 msgstr "Bruk f&oslash;lgende melding:"
 
+msgid "The number of days between vacation messages must be a positive number."
+msgstr ""
+
+msgid ""
+"Your email addresses for which a vacation message is returned must be "
+"defined."
+msgstr ""
+
 msgid "Notify me, using the following method:"
 msgstr "Varsle meg med f&oslash;lgende metode:"
 
@@ -647,8 +666,36 @@ msgstr "Deaktivere denne regelen"
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr "Regelen vil ikke ha noen effekt s&aring; lenge den er deaktivert."
 
+#, fuzzy, php-format
+msgid "the header %s"
+msgstr "meldingshodet"
+
+#, fuzzy, php-format
+msgid "Header %s"
+msgstr "Stemmer med epost-meldingshode"
+
 msgid "To or Cc"
 msgstr "To eller Cc"
+
+#, php-format
+msgid "the envelope %s"
+msgstr ""
+
+#, php-format
+msgid "Envelope %s"
+msgstr ""
+
+#, php-format
+msgid "the address %s"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Address %s"
+msgstr "Stemmer med epost-adresse"
+
+#, fuzzy
+msgid "message body"
+msgstr "Melding"
 
 msgid "matches the regural expression"
 msgstr "samvarer med det regulære uttrykket"
@@ -667,12 +714,6 @@ msgstr "Denne regelen er for øyeblikket <strong>DEAKTIVERT</strong>:"
 
 msgid "DISABLED"
 msgstr "DEAKTIVERT"
-
-msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "For <strong>ALLE</strong> innkommende meldinger;"
-
-msgid "ALL"
-msgstr "ALT"
 
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
@@ -732,12 +773,6 @@ msgstr "<em>noen</em> av de f&oslash;lgende epost-meldingshodene eksisterer:"
 msgid "<em>all</em> of the following mail headers match: "
 msgstr "<em>alle</em> av de f&oslash;lgende epost-meldingshodene eksisterer: "
 
-msgid "the header"
-msgstr "meldingshodet"
-
-msgid "and"
-msgstr "og"
-
 msgid "the size of the message is"
 msgstr "st&oslash;rrelsen p&aring; meldingen er"
 
@@ -746,6 +781,15 @@ msgstr " st&oslash;rre"
 
 msgid " smaller"
 msgstr " mindre"
+
+msgid "For <strong>ALL</strong> incoming messages; "
+msgstr "For <strong>ALLE</strong> innkommende meldinger;"
+
+msgid "ALL"
+msgstr "ALT"
+
+msgid "and"
+msgstr "og"
 
 msgid "then"
 msgstr "enn"
@@ -785,6 +829,9 @@ msgstr "<em>lagre</em> den i mappen %s"
 #, php-format
 msgid "File into %s"
 msgstr "Lagre i %s"
+
+msgid "(Warning: Folder not available)"
+msgstr ""
 
 msgid "reply with this vacation message: "
 msgstr "svar med denne automatisk-svar-meldingen:"
@@ -834,3 +881,35 @@ msgstr "Ugyldig mappenavn. Velg et annet navn."
 
 msgid "None"
 msgstr "Ingen"
+
+#~ msgid "Body Match"
+#~ msgstr "Stemmer med epostens innhold"
+
+#~ msgid "What kind of rule would you like to add?"
+#~ msgstr "Hvilken type regel vil du legge til?"
+
+#~ msgid " -- Please Select -- "
+#~ msgstr " -- Velg -- "
+
+#~ msgid "Change Type"
+#~ msgstr "Endre type"
+
+#~ msgid ""
+#~ "The rule will trigger if the following addresses appear anywhere in the "
+#~ "message's headers:"
+#~ msgstr ""
+#~ "Denne regel vil bli gjort gjeldende hvis meldingshodet inneholder de "
+#~ "f&oslash;lgende adresser:"
+
+#~ msgid "The header "
+#~ msgstr "Epostens meldingshode"
+
+#~ msgid "This rule will trigger if message is"
+#~ msgstr "Denne regelen vil bli gjort gjeldende hvis eposten er"
+
+#~ msgid ""
+#~ "This rule will trigger upon the occurrence of one or more strings in the "
+#~ "body of an e-mail message. "
+#~ msgstr ""
+#~ "Denne regelen vil bli gjort gjeldende n&aring;r eposten inneholder et "
+#~ "eller flere ord i selve epost-teksten. "

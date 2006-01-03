@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-09 13:30+0200\n"
+"POT-Creation-Date: 2005-11-09 17:09+0200\n"
 "PO-Revision-Date: 2003-06-01 13:15+0300\n"
 "Last-Translator: Þór Sigurðsson <tosi@hi.is>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -137,7 +137,21 @@ msgstr "Engar síur hafa verið skilgreindar ennþá."
 msgid "Could not set active script on your IMAP server"
 msgstr "Gat ekki virkjað síusafn á IMAP þjóni"
 
-msgid "Address Match"
+msgid "AND (Every item must match)"
+msgstr "OG ( Öll skilyrði verða að passa )"
+
+msgid "OR (Either item will match)"
+msgstr "EÐA ( Annað skilyrðið verður að passa )"
+
+#, fuzzy
+msgid "Rule"
+msgstr "Tegund Reglu"
+
+msgid "Anti-SPAM"
+msgstr ""
+
+#, fuzzy
+msgid "Address"
 msgstr "Passar við tölvupóstfang"
 
 #, fuzzy
@@ -145,11 +159,22 @@ msgid ""
 "Perform an action depending on email addresses appearing in message headers."
 msgstr "Framkvæma aðgerð á skeyti eftir stærð þeirra."
 
-msgid "Header Match"
+#, fuzzy
+msgid "Header"
 msgstr "Passar við haus"
 
 msgid ""
 "Perform an action on messages matching a specified header (From, To etc.)."
+msgstr ""
+"Framkvæma aðgerð á skeyti þar sem ákveðinn haus passar ( Frá, Til osfrv. )."
+
+msgid "Envelope"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Perform an action on messages matching a specified envelope header (Envelope "
+"FROM, TO)."
 msgstr ""
 "Framkvæma aðgerð á skeyti þar sem ákveðinn haus passar ( Frá, Til osfrv. )."
 
@@ -159,17 +184,17 @@ msgstr "Stærð"
 msgid "Perform an action on messages depending on their size."
 msgstr "Framkvæma aðgerð á skeyti eftir stærð þeirra."
 
-msgid "All Messages"
-msgstr "Öll skeyti"
-
-msgid "Perform an action on <strong>all</strong> incoming messages."
-msgstr "Framkvæma aðgerð á <strong>öll</strong> viðtekin skeyti."
-
-msgid "Body Match"
-msgstr "Meginmál passar"
+msgid "Body"
+msgstr ""
 
 msgid "Perform an action on messages depending on their content (body text)."
 msgstr "Framkvæma aðgerð á skeyti eftir innihaldi þeirra ( meginmáli )."
+
+msgid "All"
+msgstr ""
+
+msgid "Perform an action on <strong>all</strong> incoming messages."
+msgstr "Framkvæma aðgerð á <strong>öll</strong> viðtekin skeyti."
 
 msgid "contains"
 msgstr "inniheldur"
@@ -304,61 +329,14 @@ msgstr ""
 msgid "Server-Side Mail Filtering"
 msgstr "Tölvupóst síun á þjóni"
 
-msgid "Clear this Form"
-msgstr "Hreinsa þetta form"
-
-msgid "Start Over"
-msgstr "Byrja upp á nýtt"
-
-msgid "Cancel"
-msgstr "Hætta við"
-
-msgid "Move back to step"
-msgstr "Fara aftur á skref"
-
-msgid "Finished"
-msgstr "Búið"
-
-msgid "Move on to step"
-msgstr "Fara áfram á skref"
-
-msgid "What kind of rule would you like to add?"
-msgstr "Hverslags reglu viltu bæta við?"
-
-msgid " -- Please Select -- "
-msgstr ""
-
-#, fuzzy
-msgid "Change Type"
-msgstr "Tegund Reglu"
-
-msgid ""
-"The rule will trigger if the following addresses appear anywhere in the "
-"message's headers:"
-msgstr ""
-"Reglan mun virkja aðgerðina ef eftirfarandi tölvupóstföng koma fyrir "
-"einhversstaðar í hausum skeytisins:"
-
 msgid "To: or Cc"
 msgstr ""
-
-msgid "AND (Every item must match)"
-msgstr "OG ( Öll skilyrði verða að passa )"
-
-msgid "OR (Either item will match)"
-msgstr "EÐA ( Annað skilyrðið verður að passa )"
 
 msgid "The condition for the following rules is:"
 msgstr "Skilyrðin fyrir eftirfarandi reglur eru:"
 
-msgid "The header "
-msgstr "Hausinn"
-
 msgid "Less..."
 msgstr "Minna..."
-
-msgid "This rule will trigger if message is"
-msgstr "Þessi regla virkjast ef skeytið er"
 
 msgid "bigger"
 msgstr "stærra"
@@ -375,6 +353,9 @@ msgstr "KB ( kílóbæti )"
 msgid "MB (megabytes)"
 msgstr "MB ( megabæti )"
 
+msgid "All Messages"
+msgstr "Öll skeyti"
+
 msgid ""
 "The following action will be applied to <strong>all</strong> incoming "
 "messages that do not match any of the previous rules."
@@ -382,29 +363,15 @@ msgstr ""
 "Eftirfarandi regla gildir um <strong>öll</strong> viðtekin skeyti sem ekki "
 "passa við fyrri reglur."
 
-msgid ""
-"This rule will trigger upon the occurrence of one or more strings in the "
-"body of an e-mail message. "
-msgstr ""
-"Þessi regla virkast ef einn eða fleiri textastrengir koma fyrir í meginmáli "
-"skeytis. "
-
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr ""
 "Veldu hvað á að gera þegar þessi regla virkjast, frá einu af eftirfarandi:"
 
-msgid "Your new rule states:"
-msgstr "Nýja reglan þín skilgreinir:"
-
-msgid ""
-"If this is what you wanted, select Finished. You can also start over or "
-"cancel adding a rule altogether."
-msgstr ""
-"Ef þetta er það sem þú vildir, veldu Búið. Þú getur einnig byrjað upp á "
-"nýtt, eða hætt við að bæta við reglu."
-
 msgid "Apply Changes"
 msgstr "Virkja breytingar"
+
+msgid "Cancel"
+msgstr "Hætta við"
 
 msgid "Editing Mail Filtering Rule"
 msgstr "Breyti síun tölvupóstskeyta"
@@ -417,8 +384,36 @@ msgstr "Núverandi Síur Tölvupóstskeyta"
 msgid "Error Encountered:"
 msgstr "Villa kom fyrir"
 
+msgid "You must correct the above errors before continuing."
+msgstr ""
+
 msgid "Additional Actions"
 msgstr "Viðbótar aðgerðir"
+
+msgid "Clear this Form"
+msgstr "Hreinsa þetta form"
+
+msgid "Start Over"
+msgstr "Byrja upp á nýtt"
+
+msgid "Move back to step"
+msgstr "Fara aftur á skref"
+
+msgid "Finished"
+msgstr "Búið"
+
+msgid "Move on to step"
+msgstr "Fara áfram á skref"
+
+msgid "Your new rule states:"
+msgstr "Nýja reglan þín skilgreinir:"
+
+msgid ""
+"If this is what you wanted, select Finished. You can also start over or "
+"cancel adding a rule altogether."
+msgstr ""
+"Ef þetta er það sem þú vildir, veldu Búið. Þú getur einnig byrjað upp á "
+"nýtt, eða hætt við að bæta við reglu."
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
@@ -443,6 +438,12 @@ msgid ""
 msgstr ""
 "Þegar þú ert búin(n) að breyta, <strong>mundu að nota &quot;Vista "
 "breytingum&quot; takkann til að virkja breytingarnar!"
+
+msgid ""
+"Warning: In your rules, you have defined an action that refers to a folder "
+"that does not exist or a folder where you do not have permission to append "
+"to."
+msgstr ""
 
 msgid "The following table summarizes your current mail filtering rules."
 msgstr "Eftirfarandi tafla er yfirlit yfir núverandi síunarreglur."
@@ -533,6 +534,10 @@ msgstr ""
 msgid "Create Filter"
 msgstr "Skeytasíur"
 
+#, fuzzy
+msgid "You have to define at least one condition."
+msgstr "Þú þarft að skilgreina að minnsta kosti eina reglu fyrir hausa skeytis"
+
 msgid "Keep (Default action)"
 msgstr "Geyma ( Sjálfgefið )"
 
@@ -554,7 +559,9 @@ msgstr "einhver@einhversstadar.is"
 msgid "Keep a local copy as well."
 msgstr ""
 
-msgid "Incorrect email address. You must enter only one valid email address."
+msgid ""
+"Incorrect email address(es). You must enter one or more valid email "
+"addresses, separated by comma."
 msgstr ""
 
 msgid "Move message into"
@@ -601,6 +608,14 @@ msgstr "daga"
 msgid "Use the following message:"
 msgstr "Nota eftirfarandi skeyti:"
 
+msgid "The number of days between vacation messages must be a positive number."
+msgstr ""
+
+msgid ""
+"Your email addresses for which a vacation message is returned must be "
+"defined."
+msgstr ""
+
 msgid "Notify me, using the following method:"
 msgstr "Tilkynntu mér með eftirfarandi aðferð:"
 
@@ -638,8 +653,36 @@ msgstr "Það tókst að eyða reglu númer "
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
+#, fuzzy, php-format
+msgid "the header %s"
+msgstr "hausinn"
+
+#, fuzzy, php-format
+msgid "Header %s"
+msgstr "Passar við haus"
+
 msgid "To or Cc"
 msgstr ""
+
+#, php-format
+msgid "the envelope %s"
+msgstr ""
+
+#, php-format
+msgid "Envelope %s"
+msgstr ""
+
+#, php-format
+msgid "the address %s"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Address %s"
+msgstr "Passar við tölvupóstfang"
+
+#, fuzzy
+msgid "message body"
+msgstr "Skilaboð"
 
 msgid "matches the regural expression"
 msgstr "passar við reglulega segð"
@@ -657,12 +700,6 @@ msgid "This rule is currently <strong>DISABLED</strong>:"
 msgstr ""
 
 msgid "DISABLED"
-msgstr ""
-
-msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "Fyrir <strong>ÖLL</strong> viðtekin skeyti;"
-
-msgid "ALL"
 msgstr ""
 
 msgid ""
@@ -724,12 +761,6 @@ msgstr "<em>einhver</em> af eftirfarandi hausum passar:"
 msgid "<em>all</em> of the following mail headers match: "
 msgstr "<em>allir</em> eftirfarandi hausa passa:"
 
-msgid "the header"
-msgstr "hausinn"
-
-msgid "and"
-msgstr ""
-
 msgid "the size of the message is"
 msgstr "stærð skeytis er"
 
@@ -738,6 +769,15 @@ msgstr "stærri en"
 
 msgid " smaller"
 msgstr "minni en"
+
+msgid "For <strong>ALL</strong> incoming messages; "
+msgstr "Fyrir <strong>ÖLL</strong> viðtekin skeyti;"
+
+msgid "ALL"
+msgstr ""
+
+msgid "and"
+msgstr ""
 
 msgid "then"
 msgstr "þá á að"
@@ -777,6 +817,9 @@ msgstr "<em>vista</em> það í möppuna <strong>"
 
 #, php-format
 msgid "File into %s"
+msgstr ""
+
+msgid "(Warning: Folder not available)"
 msgstr ""
 
 msgid "reply with this vacation message: "
@@ -832,6 +875,36 @@ msgstr ""
 #, fuzzy
 msgid "None"
 msgstr "Nei"
+
+#~ msgid "Body Match"
+#~ msgstr "Meginmál passar"
+
+#~ msgid "What kind of rule would you like to add?"
+#~ msgstr "Hverslags reglu viltu bæta við?"
+
+#, fuzzy
+#~ msgid "Change Type"
+#~ msgstr "Tegund Reglu"
+
+#~ msgid ""
+#~ "The rule will trigger if the following addresses appear anywhere in the "
+#~ "message's headers:"
+#~ msgstr ""
+#~ "Reglan mun virkja aðgerðina ef eftirfarandi tölvupóstföng koma fyrir "
+#~ "einhversstaðar í hausum skeytisins:"
+
+#~ msgid "The header "
+#~ msgstr "Hausinn"
+
+#~ msgid "This rule will trigger if message is"
+#~ msgstr "Þessi regla virkjast ef skeytið er"
+
+#~ msgid ""
+#~ "This rule will trigger upon the occurrence of one or more strings in the "
+#~ "body of an e-mail message. "
+#~ msgstr ""
+#~ "Þessi regla virkast ef einn eða fleiri textastrengir koma fyrir í "
+#~ "meginmáli skeytis. "
 
 #~ msgid "All your rules have been deleted"
 #~ msgstr "Öllum þínum reglum hefur verið eytt"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-09 13:30+0200\n"
+"POT-Creation-Date: 2005-11-09 17:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -133,18 +133,38 @@ msgstr ""
 msgid "Could not set active script on your IMAP server"
 msgstr ""
 
-msgid "Address Match"
+msgid "AND (Every item must match)"
+msgstr ""
+
+msgid "OR (Either item will match)"
+msgstr ""
+
+msgid "Rule"
+msgstr ""
+
+msgid "Anti-SPAM"
+msgstr ""
+
+msgid "Address"
 msgstr ""
 
 msgid ""
 "Perform an action depending on email addresses appearing in message headers."
 msgstr ""
 
-msgid "Header Match"
+msgid "Header"
 msgstr ""
 
 msgid ""
 "Perform an action on messages matching a specified header (From, To etc.)."
+msgstr ""
+
+msgid "Envelope"
+msgstr ""
+
+msgid ""
+"Perform an action on messages matching a specified envelope header (Envelope "
+"FROM, TO)."
 msgstr ""
 
 msgid "Size"
@@ -153,16 +173,16 @@ msgstr ""
 msgid "Perform an action on messages depending on their size."
 msgstr ""
 
-msgid "All Messages"
-msgstr ""
-
-msgid "Perform an action on <strong>all</strong> incoming messages."
-msgstr ""
-
-msgid "Body Match"
+msgid "Body"
 msgstr ""
 
 msgid "Perform an action on messages depending on their content (body text)."
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "Perform an action on <strong>all</strong> incoming messages."
 msgstr ""
 
 msgid "contains"
@@ -292,57 +312,13 @@ msgstr ""
 msgid "Server-Side Mail Filtering"
 msgstr ""
 
-msgid "Clear this Form"
-msgstr ""
-
-msgid "Start Over"
-msgstr ""
-
-msgid "Cancel"
-msgstr ""
-
-msgid "Move back to step"
-msgstr ""
-
-msgid "Finished"
-msgstr ""
-
-msgid "Move on to step"
-msgstr ""
-
-msgid "What kind of rule would you like to add?"
-msgstr ""
-
-msgid " -- Please Select -- "
-msgstr ""
-
-msgid "Change Type"
-msgstr ""
-
-msgid ""
-"The rule will trigger if the following addresses appear anywhere in the "
-"message's headers:"
-msgstr ""
-
 msgid "To: or Cc"
-msgstr ""
-
-msgid "AND (Every item must match)"
-msgstr ""
-
-msgid "OR (Either item will match)"
 msgstr ""
 
 msgid "The condition for the following rules is:"
 msgstr ""
 
-msgid "The header "
-msgstr ""
-
 msgid "Less..."
-msgstr ""
-
-msgid "This rule will trigger if message is"
 msgstr ""
 
 msgid "bigger"
@@ -360,28 +336,21 @@ msgstr ""
 msgid "MB (megabytes)"
 msgstr ""
 
+msgid "All Messages"
+msgstr ""
+
 msgid ""
 "The following action will be applied to <strong>all</strong> incoming "
 "messages that do not match any of the previous rules."
 msgstr ""
 
-msgid ""
-"This rule will trigger upon the occurrence of one or more strings in the "
-"body of an e-mail message. "
-msgstr ""
-
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr ""
 
-msgid "Your new rule states:"
-msgstr ""
-
-msgid ""
-"If this is what you wanted, select Finished. You can also start over or "
-"cancel adding a rule altogether."
-msgstr ""
-
 msgid "Apply Changes"
+msgstr ""
+
+msgid "Cancel"
 msgstr ""
 
 msgid "Editing Mail Filtering Rule"
@@ -393,7 +362,33 @@ msgstr ""
 msgid "Error Encountered:"
 msgstr ""
 
+msgid "You must correct the above errors before continuing."
+msgstr ""
+
 msgid "Additional Actions"
+msgstr ""
+
+msgid "Clear this Form"
+msgstr ""
+
+msgid "Start Over"
+msgstr ""
+
+msgid "Move back to step"
+msgstr ""
+
+msgid "Finished"
+msgstr ""
+
+msgid "Move on to step"
+msgstr ""
+
+msgid "Your new rule states:"
+msgstr ""
+
+msgid ""
+"If this is what you wanted, select Finished. You can also start over or "
+"cancel adding a rule altogether."
 msgstr ""
 
 msgid ""
@@ -411,6 +406,12 @@ msgstr ""
 msgid ""
 "When you are done with editing, <strong>remember to select &quot;Save "
 "Changes&quot;</strong> to activate your changes!"
+msgstr ""
+
+msgid ""
+"Warning: In your rules, you have defined an action that refers to a folder "
+"that does not exist or a folder where you do not have permission to append "
+"to."
 msgstr ""
 
 msgid "The following table summarizes your current mail filtering rules."
@@ -498,6 +499,9 @@ msgstr ""
 msgid "Create Filter"
 msgstr ""
 
+msgid "You have to define at least one condition."
+msgstr ""
+
 msgid "Keep (Default action)"
 msgstr ""
 
@@ -519,7 +523,9 @@ msgstr ""
 msgid "Keep a local copy as well."
 msgstr ""
 
-msgid "Incorrect email address. You must enter only one valid email address."
+msgid ""
+"Incorrect email address(es). You must enter one or more valid email "
+"addresses, separated by comma."
 msgstr ""
 
 msgid "Move message into"
@@ -562,6 +568,14 @@ msgstr ""
 msgid "Use the following message:"
 msgstr ""
 
+msgid "The number of days between vacation messages must be a positive number."
+msgstr ""
+
+msgid ""
+"Your email addresses for which a vacation message is returned must be "
+"defined."
+msgstr ""
+
 msgid "Notify me, using the following method:"
 msgstr ""
 
@@ -598,7 +612,34 @@ msgstr ""
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
+#, php-format
+msgid "the header %s"
+msgstr ""
+
+#, php-format
+msgid "Header %s"
+msgstr ""
+
 msgid "To or Cc"
+msgstr ""
+
+#, php-format
+msgid "the envelope %s"
+msgstr ""
+
+#, php-format
+msgid "Envelope %s"
+msgstr ""
+
+#, php-format
+msgid "the address %s"
+msgstr ""
+
+#, php-format
+msgid "Address %s"
+msgstr ""
+
+msgid "message body"
 msgstr ""
 
 msgid "matches the regural expression"
@@ -617,12 +658,6 @@ msgid "This rule is currently <strong>DISABLED</strong>:"
 msgstr ""
 
 msgid "DISABLED"
-msgstr ""
-
-msgid "For <strong>ALL</strong> incoming messages; "
-msgstr ""
-
-msgid "ALL"
 msgstr ""
 
 msgid ""
@@ -683,12 +718,6 @@ msgstr ""
 msgid "<em>all</em> of the following mail headers match: "
 msgstr ""
 
-msgid "the header"
-msgstr ""
-
-msgid "and"
-msgstr ""
-
 msgid "the size of the message is"
 msgstr ""
 
@@ -696,6 +725,15 @@ msgid " bigger"
 msgstr ""
 
 msgid " smaller"
+msgstr ""
+
+msgid "For <strong>ALL</strong> incoming messages; "
+msgstr ""
+
+msgid "ALL"
+msgstr ""
+
+msgid "and"
 msgstr ""
 
 msgid "then"
@@ -735,6 +773,9 @@ msgstr ""
 
 #, php-format
 msgid "File into %s"
+msgstr ""
+
+msgid "(Warning: Folder not available)"
 msgstr ""
 
 msgid "reply with this vacation message: "
