@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: config_sample.php,v 1.10 2006/01/03 11:52:47 avel Exp $
+ * @version $Id: config_sample.php,v 1.11 2006/01/03 12:26:23 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -128,9 +128,12 @@ $maxitems = 10;
 
 $headers = array(
  'From', 'To', 'Cc', 'Bcc', 'Subject', 'Reply-To', 'Sender', 'List-Id',
- 'MailingList', 'Mailing-List', 'X-ML-Name', 'X-List', 'X-List-Name', 'X-MailingList', 'Resent-From',
- 'Resent-To', 'X-Mailer', 'X-MailingList', 'X-Spam-Flag', 'X-Spam-Status',
- 'X-Priority', 'Importance', 'X-MSMail-Priority', 'Precedence');
+ 'MailingList', 'Mailing-List', 'X-ML-Name', 'X-List', 'X-List-Name', 'X-MailingList',
+ 'Resent-From',  'Resent-To', 'X-Mailer', 'X-MailingList',
+ 'X-Spam-Flag', 'X-Spam-Status',
+ 'X-Priority', 'Importance', 'X-MSMail-Priority', 'Precedence',
+ 'Return-Path', 'Received'
+ );
 
 /* Available :method's for the :notify extension (if applicable) */
 $notifymethods = array(
