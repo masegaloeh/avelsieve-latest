@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-11-09 17:09+0200\n"
-"PO-Revision-Date: 2004-08-07 21:42+0100\n"
+"PO-Revision-Date: 2006-01-11 12:42+0100\n"
 "Last-Translator: Karsten Behrens <mail@karsten-behrens.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -78,6 +78,8 @@ msgid ""
 "Select %s to add the predefined rule, or select the advanced SPAM filter to "
 "customize the rule."
 msgstr ""
+"Wählen sie %s um die vorkonfigurierte Regel hinzuzufügen, oder benutzen sie "
+"den erweiterten Spam-Filter."
 
 msgid "Add Spam Rule"
 msgstr "Neue Spam-Regel hinzufügen"
@@ -106,7 +108,7 @@ msgid ""
 msgstr ""
 
 msgid "More..."
-msgstr "Mehr ..."
+msgstr "Mehr..."
 
 msgid "STOP"
 msgstr "STOP"
@@ -116,10 +118,10 @@ msgstr ""
 "Beende das weitere Abarbeiten von Filterregeln, wenn diese Regel zutrifft."
 
 msgid "Could not get SIEVE script from your IMAP server"
-msgstr ""
+msgstr "Konnte das SIEVE-Skript nicht vom IMAP-Server laden"
 
 msgid "(Probably the script is size null)."
-msgstr "(Eventuell ist das Script leer.)"
+msgstr "(Eventuell ist das Skript leer.)"
 
 msgid "Please contact your administrator."
 msgstr "Bitte kontaktieren Sie Ihren Administrator."
@@ -152,23 +154,19 @@ msgstr "UND (Jeder Eintrag muss übereinstimmen)"
 msgid "OR (Either item will match)"
 msgstr "ODER (Nur ein Eintrag muss übereinstimmen)"
 
-#, fuzzy
 msgid "Rule"
 msgstr "Art der Filterregel"
 
 msgid "Anti-SPAM"
-msgstr ""
+msgstr "Anti-SPAM"
 
-#, fuzzy
 msgid "Address"
 msgstr "Adressenübereinstimmung"
 
-#, fuzzy
 msgid ""
 "Perform an action depending on email addresses appearing in message headers."
 msgstr "Mails aufgrund ihrer Headerinformationen behandeln."
 
-#, fuzzy
 msgid "Header"
 msgstr "Überprüfung der Mail-Header"
 
@@ -181,7 +179,6 @@ msgstr ""
 msgid "Envelope"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Perform an action on messages matching a specified envelope header (Envelope "
 "FROM, TO)."
@@ -196,13 +193,13 @@ msgid "Perform an action on messages depending on their size."
 msgstr "Mails aufgrund ihrer Größe behandeln."
 
 msgid "Body"
-msgstr ""
+msgstr "Nachrichtentext"
 
 msgid "Perform an action on messages depending on their content (body text)."
 msgstr "Mails aufgrund ihres Inhalts behandeln (Textkörper)."
 
 msgid "All"
-msgstr ""
+msgstr "Alle"
 
 msgid "Perform an action on <strong>all</strong> incoming messages."
 msgstr "Eine Aktion bei <strong>allen</strong> eingehenden Mails durchführen"
@@ -252,27 +249,26 @@ msgstr "ist ungleich"
 msgid "verbose"
 msgstr "ausführlich"
 
-#, fuzzy
 msgid "Textual descriptions of the rules"
-msgstr "Beschreibung der Regel"
+msgstr "Ausführliche Beschreibung der Regel"
 
 msgid "terse"
 msgstr "kurz"
 
 msgid "More suitable for viewing the table of rules at once"
-msgstr ""
+msgstr "Kurze Darstellung"
 
 msgid "tech"
-msgstr ""
+msgstr "tech"
 
 msgid "Even more terse description for technical people"
-msgstr ""
+msgstr "Sehr kurze, technische Darstellung"
 
 msgid "source"
-msgstr ""
+msgstr "Quelltext"
 
 msgid "Display SIEVE source"
-msgstr ""
+msgstr "SIEVE-Quelltext anzeigen"
 
 msgid "Low"
 msgstr "Niedrig"
@@ -319,12 +315,14 @@ msgid "Note that you can set the number of days in Folder Preferences."
 msgstr "Sie können die Anzahl der Tage in den Ordner Einstellungen ändern."
 
 msgid "Trash Folder"
-msgstr "Papierkorb-Ordner"
+msgstr "Papierkorb"
 
 msgid ""
 "Store SPAM message in your Trash Folder. You will have to purge the folder "
 "yourself."
 msgstr ""
+"Speichere SPAM-Nachrichten im Papierkorb. Nachrichten werden nicht "
+"automatisch gelöscht."
 
 msgid "Discard"
 msgstr "Verwerfen"
@@ -332,19 +330,19 @@ msgstr "Verwerfen"
 msgid ""
 "Discard SPAM message. You will get no indication that the message ever "
 "arrived."
-msgstr ""
+msgstr "SPAM-Nachricht ohne Rückmeldung verwerfen."
 
 msgid "Server-Side Mail Filtering"
 msgstr "Serverseitiges E-Mail-Filtern"
 
 msgid "To: or Cc"
-msgstr "An: oder CC"
+msgstr "An oder CC"
 
 msgid "The condition for the following rules is:"
 msgstr "Modus der folgenden Regeln: "
 
 msgid "Less..."
-msgstr "Weniger ..."
+msgstr "Weniger..."
 
 msgid "bigger"
 msgstr "größer"
@@ -384,16 +382,14 @@ msgstr "Abbruch"
 msgid "Editing Mail Filtering Rule"
 msgstr "Bearbeite Filterregel"
 
-#, fuzzy
 msgid "Create New Mail Filtering Rule"
 msgstr "Zur Zeit definierte Regeln"
 
-#, fuzzy
 msgid "Error Encountered:"
 msgstr "Fehler aufgetreten"
 
 msgid "You must correct the above errors before continuing."
-msgstr ""
+msgstr "Der Fehler muss behoben werden, bevor es weitergeht."
 
 msgid "Additional Actions"
 msgstr "Weitere Aktionen"
@@ -486,10 +482,10 @@ msgid "Add a New Rule"
 msgstr "Neue Regel hinzufügen"
 
 msgid "Enable"
-msgstr ""
+msgstr "Aktivieren"
 
 msgid "Disable"
-msgstr ""
+msgstr "Deaktivieren"
 
 msgid ""
 "When you are done, please click the button below to return to your webmail."
@@ -507,13 +503,13 @@ msgid "Created:"
 msgstr "Erstellt:"
 
 msgid "Close"
-msgstr ""
+msgstr "Schließen"
 
 msgid "Really delete this rule?"
 msgstr "Dieses Regel wirklich löschen?"
 
 msgid "Action for Selected Rules:"
-msgstr ""
+msgstr "Aktion für markierte Regeln:"
 
 msgid "Could not log on to timsieved daemon on your IMAP server"
 msgstr "Konnte den timsieved-Prozess auf Ihrem IMAP-Server nicht erreichen"
@@ -525,25 +521,23 @@ msgid "Server responded with:"
 msgstr "Serverantwort:"
 
 msgid "Automatically"
-msgstr ""
+msgstr "Automatisch"
 
 msgid "Sender"
-msgstr ""
+msgstr "Absender"
 
 msgid "From"
-msgstr ""
+msgstr "Von"
 
 msgid "To"
-msgstr ""
+msgstr "An"
 
 msgid "Subject"
-msgstr ""
+msgstr "Betreff"
 
-#, fuzzy
 msgid "Create Filter"
-msgstr "Nachrichtenfilter"
+msgstr "Nachrichtenfilter erstellen"
 
-#, fuzzy
 msgid "You have to define at least one condition."
 msgstr "Sie müssen mindestens einen Header-Match Text definieren."
 
@@ -572,6 +566,8 @@ msgid ""
 "Incorrect email address(es). You must enter one or more valid email "
 "addresses, separated by comma."
 msgstr ""
+"Falsche E-Mail-Adressen. Sie müssen eine oder mehrere gültige Adressen durch "
+"Kommata getrennt eingeben."
 
 msgid "Move message into"
 msgstr "Verschiebe Nachricht in"
@@ -621,12 +617,13 @@ msgid "Use the following message:"
 msgstr "Folgende Antwortnachricht verwenden:"
 
 msgid "The number of days between vacation messages must be a positive number."
-msgstr ""
+msgstr "Anzahl der Tage muss ein positiver Wert sein."
 
 msgid ""
 "Your email addresses for which a vacation message is returned must be "
 "defined."
 msgstr ""
+"Die Adresse, für die die Abwesenheitsnachricht gilt, muss angegeben sein."
 
 msgid "Notify me, using the following method:"
 msgstr "Benachrichtige mich durch:"
@@ -658,44 +655,41 @@ msgstr "Gültige Variablen sind:"
 msgid "Also keep copy in INBOX, marked as deleted."
 msgstr "Nachricht auch im Posteingang behalten, aber als gelöscht markieren."
 
-#, fuzzy
 msgid "Disable this rule"
-msgstr "Dieses Regel wirklich löschen?"
+msgstr "Diese Regel wirklich deaktivieren?"
 
 msgid "The rule will have no effect for as long as it is disabled."
-msgstr ""
+msgstr "Die Regel hat keine Auswirkungen, solange sie deaktiviert ist."
 
-#, fuzzy, php-format
+#, php-format
 msgid "the header %s"
-msgstr "der Header"
+msgstr "der Header %s"
 
-#, fuzzy, php-format
+#, php-format
 msgid "Header %s"
-msgstr "Überprüfung der Mail-Header"
+msgstr "Header %s"
 
-#, fuzzy
 msgid "To or Cc"
-msgstr "An: oder CC"
+msgstr "An oder CC"
 
 #, php-format
 msgid "the envelope %s"
-msgstr ""
+msgstr "das Envelope %s"
 
 #, php-format
 msgid "Envelope %s"
-msgstr ""
+msgstr "Envelope %s"
 
 #, php-format
 msgid "the address %s"
-msgstr ""
+msgstr "die Adresse %s"
 
-#, fuzzy, php-format
+#, php-format
 msgid "Address %s"
-msgstr "Adressenübereinstimmung"
+msgstr "Adresse %s"
 
-#, fuzzy
 msgid "message body"
-msgstr "Nachricht"
+msgstr "Nachrichtentext"
 
 msgid "matches the regural expression"
 msgstr "entspricht regulärem Ausdruck"
@@ -710,24 +704,22 @@ msgid "does not exist"
 msgstr "existiert nicht"
 
 msgid "This rule is currently <strong>DISABLED</strong>:"
-msgstr ""
+msgstr "Diese Regel ist derzeit <strong>DEAKTIVIERT</strong>:"
 
 msgid "DISABLED"
-msgstr ""
+msgstr "DEAKTIVIERT"
 
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
 "messages)"
-msgstr ""
+msgstr "Alle als <strong>SPAM</strong> eingestuften Nachrichten"
 
 msgid "SPAM"
-msgstr ""
+msgstr "SPAM"
 
-#, fuzzy
 msgid "unless"
-msgstr "bis"
+msgstr "außer"
 
-#, fuzzy
 msgid "Whitelist:"
 msgstr "Whitelist (Ausnahmeliste)"
 
@@ -735,33 +727,33 @@ msgid "or"
 msgstr "oder"
 
 msgid "matching the Spam List(s):"
-msgstr ""
+msgstr "SPAM-Liste(n):"
 
 msgid "Spam List(s):"
-msgstr ""
+msgstr "SPAM-Liste(n):"
 
-#, fuzzy, php-format
+#, php-format
 msgid "and with score greater than %s"
-msgstr "ist größer als"
+msgstr "mit einem SPAM-Wert größer als %s"
 
 #, php-format
 msgid "Score > %s"
-msgstr ""
+msgstr "SPAM-Wert > %s"
 
 msgid "will be"
-msgstr ""
+msgstr "wird"
 
 msgid "stored in the Junk Folder."
 msgstr "gespeichert im Junk-Ordner."
 
 msgid "Junk"
-msgstr ""
+msgstr "Junk"
 
 msgid "stored in the Trash Folder."
-msgstr "gespeichert im Papierkorb-Ordner."
+msgstr "gespeichert im Papierkorb."
 
 msgid "Trash"
-msgstr ""
+msgstr "Papierkorb"
 
 msgid "discarded."
 msgstr "verworfen."
@@ -788,10 +780,10 @@ msgid "For <strong>ALL</strong> incoming messages; "
 msgstr "Für <strong>alle</strong> eingehenden Nachrichten; "
 
 msgid "ALL"
-msgstr ""
+msgstr "ALLE"
 
 msgid "and"
-msgstr ""
+msgstr "und"
 
 msgid "then"
 msgstr "dann"
@@ -799,49 +791,47 @@ msgstr "dann"
 msgid "<em>keep</em> it."
 msgstr "<em>behalten</em>."
 
-#, fuzzy
 msgid "Keep"
-msgstr "regulärem Ausdruck"
+msgstr "behalten"
 
 msgid "<em>discard</em> it."
 msgstr "<em>ignorieren</em>."
 
 msgid "DISCARD"
-msgstr ""
+msgstr "VERWERFEN"
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>verweigern</em> und folgende Nachricht an den Absender schicken:"
 
 msgid "Reject"
-msgstr ""
+msgstr "Abweisen"
 
 msgid "Redirect to"
-msgstr ""
+msgstr "Umleiten an"
 
-#, fuzzy, php-format
+#, php-format
 msgid "<em>redirect</em> it to the email addresses: %s."
-msgstr "<em>weiterleiten</em> an"
+msgstr "<em>weiterleiten</em> an: %s"
 
 msgid "<em>redirect</em> it to the email address"
 msgstr "<em>weiterleiten</em> an"
 
-#, fuzzy, php-format
+#, php-format
 msgid "<em>file</em> it into the folder %s"
-msgstr "<em>speichern</em> im Ordner <strong>"
+msgstr "<em>ablegen</em> im Ordner %s"
 
 #, php-format
 msgid "File into %s"
-msgstr ""
+msgstr "Ablegen in %s"
 
 msgid "(Warning: Folder not available)"
-msgstr ""
+msgstr "(Warnung: Ordner nicht verfügbar)"
 
 msgid "reply with this vacation message: "
-msgstr "antworten mit dieser Urlaubsnachricht: "
+msgstr "antworten mit dieser Abwesenheitsnachricht: "
 
-#, fuzzy
 msgid "Vacation Message"
-msgstr "Ferien"
+msgstr "Abwesenheitsnachricht"
 
 msgid "Also keep a local copy."
 msgstr "Behalte eine lokale Kopie."
@@ -849,9 +839,8 @@ msgstr "Behalte eine lokale Kopie."
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr " Auch im Posteingang behalten (als gelöscht)."
 
-#, fuzzy
 msgid "Keep Deleted"
-msgstr "Gewählte löschen"
+msgstr "Gelöschte behalten"
 
 msgid " Also notify using the method"
 msgstr " Benachrichtigung durch"
@@ -864,17 +853,16 @@ msgstr "Priorität und Nachricht"
 
 #, php-format
 msgid "Notify %s"
-msgstr ""
+msgstr "Benachrichtige %s"
 
-#, fuzzy
 msgid "Then <strong>STOP</strong> processing rules."
 msgstr " Dann Regelverarbeitung beenden."
 
 msgid "Stop"
-msgstr ""
+msgstr "Stop"
 
 msgid "Test for Forged Header"
-msgstr ""
+msgstr "Gefälschten Header prüfen"
 
 msgid "You have not defined the name for the new folder."
 msgstr "Sie haben keinen Namen für den neuen Ordner angegeben."
@@ -894,9 +882,8 @@ msgstr "Keine"
 #~ msgid "What kind of rule would you like to add?"
 #~ msgstr "Welchen Typ von Filterregel möchten Sie hinzuügen?"
 
-#, fuzzy
 #~ msgid "Change Type"
-#~ msgstr "Art der Filterregel"
+#~ msgstr "Art der Filterregel ändern"
 
 #~ msgid ""
 #~ "The rule will trigger if the following addresses appear anywhere in the "
