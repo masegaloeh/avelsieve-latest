@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.26 2005/11/04 11:15:16 avel Exp $
+ * @version $Id: table.php,v 1.27 2006/01/11 16:17:58 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -318,23 +318,16 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected']) ||
 	}
 }	
 
-if (isset($_SESSION['returnnewrule'])) { /* Get the new rule and put it in the script */
-	
+if (isset($_SESSION['returnnewrule'])) {
+    /* There is a new rule to be added */
 	$newrule = $_SESSION['returnnewrule'];
-	// unserialize(base64_decode(urldecode($returnnewrule)));
 	session_unregister('returnnewrule');
-
-	// print "DEBUG: Adding new: ";	print_r($newrule);
-	if (!is_array($rules)) {
-		unset($rules);
-		$rules[0] = $newrule;
-	} else {
-		$rules[] = $newrule;
-	}
+	$rules[] = $newrule;
 	$haschanged = true;
 }
 
 if( (!$conservative && isset($haschanged) ) ) {
+    /* Commit changes */
 	avelsieve_login();
 	$newscript = makesieverule($rules);
 	avelsieve_upload_script($newscript);
