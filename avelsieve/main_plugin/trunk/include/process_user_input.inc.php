@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: process_user_input.inc.php,v 1.17 2005/11/01 17:29:28 avel Exp $
+ * @version $Id: process_user_input.inc.php,v 1.18 2006/01/11 16:08:58 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -50,7 +50,6 @@ function process_input($search = SQ_POST, &$errormsg, $truncate_empty_conditions
 			$match_vars = array('headermatch', 'addressmatch', 'envelopematch', 'sizeamount', 'bodymatch');
 			$new_cond_indexes = array();
 			foreach($ns['cond'] as $n => $c) {
-					print_r($c);
 				foreach($match_vars as $m) {
 					if(!empty($c[$m]) || $c['type'] == 'all') {
 						$new_cond_indexes[] = $n;
