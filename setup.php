@@ -8,7 +8,7 @@
  *
  * Also view plugins/README.plugins for more information.
  *
- * @version $Id: setup.php,v 1.22 2006/01/03 13:44:54 avel Exp $
+ * @version $Id: setup.php,v 1.23 2006/01/11 16:07:06 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -92,7 +92,7 @@ function avelsieve_commands_menu() {
  * @return string
  */
 function avelsieve_version() {
-	return '1.9.4';
+	return '1.9.5cvs';
 }
 
 ?>
