@@ -9,7 +9,7 @@
  * This file contains functions for the per-message commands that appear while
  * viewing a message.
  *
- * @version $Id: message_commands.inc.php,v 1.9 2005/07/25 10:30:27 avel Exp $
+ * @version $Id: message_commands.inc.php,v 1.10 2006/01/13 16:25:28 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins

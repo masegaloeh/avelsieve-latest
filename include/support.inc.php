@@ -8,7 +8,7 @@
  *
  * Various support functions, useful or useless.
  *
- * @version $Id: support.inc.php,v 1.12 2005/12/06 15:13:31 avel Exp $
+ * @version $Id: support.inc.php,v 1.13 2006/01/13 16:25:28 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins

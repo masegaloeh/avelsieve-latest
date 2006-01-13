@@ -2,7 +2,7 @@
 /**
  * sieve-php.lib.php
  *
- * $Id: managesieve.lib.php,v 1.3 2005/12/06 15:25:16 avel Exp $ 
+ * $Id: managesieve.lib.php,v 1.4 2006/01/13 16:25:28 avel Exp $ 
  *
  * Copyright 2001-2003 Dan Ellis <danellis@rushmore.com>
  *

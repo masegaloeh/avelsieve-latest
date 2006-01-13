@@ -8,7 +8,7 @@
  *
  * Functions that have to do with SpamRule Functionality
  *
- * @version $Id: spamrule.inc.php,v 1.2 2005/11/04 11:15:16 avel Exp $
+ * @version $Id: spamrule.inc.php,v 1.3 2006/01/13 16:25:28 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2005 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
