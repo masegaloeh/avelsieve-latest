@@ -8,7 +8,7 @@
  *
  * Also view plugins/README.plugins for more information.
  *
- * @version $Id: setup.php,v 1.23 2006/01/11 16:07:06 avel Exp $
+ * @version $Id: setup.php,v 1.24 2006/01/13 16:25:28 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -28,6 +28,8 @@ function squirrelmail_plugin_init_avelsieve() {
 		'avelsieve_menuline';
 	$squirrelmail_plugin_hooks['read_body_header']['avelsieve'] =
 		'avelsieve_commands_menu';
+	$squirrelmail_plugin_hooks['search_after_form']['avelsieve'] =
+		'avelsieve_search_integration';
 }
 
 /**
@@ -85,6 +87,16 @@ function avelsieve_menuline() {
 function avelsieve_commands_menu() {
 	include_once(SM_PATH . 'plugins/avelsieve/include/message_commands.inc.php');
 	avelsieve_commands_menu_do();
+}
+
+/**
+ * Integration with Advanced Search.
+ * @return void
+ * @see avelsieve_search_integration_do()
+ */
+function avelsieve_search_integration() {
+	include_once(SM_PATH . 'plugins/avelsieve/include/search_integration.inc.php');
+	avelsieve_search_integration_do();
 }
 
 /**

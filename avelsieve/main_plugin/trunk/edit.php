@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.25 2005/12/06 15:12:42 avel Exp $
+ * @version $Id: edit.php,v 1.26 2006/01/13 16:25:28 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -54,6 +54,8 @@ sqgetGlobalVar('edit', $edit, SQ_FORM);
 sqgetGlobalVar('previoustype', $previoustype, SQ_POST);
 sqgetGlobalVar('cond', $new_cond, SQ_POST);
 sqgetGlobalVar('previous_cond', $previous_cond, SQ_POST);
+
+sqgetGlobalVar('serialized_rule', $serialized_rule, SQ_GET);
 
 sqgetGlobalVar('type', $type_get, SQ_GET);
 
@@ -144,6 +146,9 @@ if($newfoldername) {
 if(isset($edit)) {
 	/* Editing an existing rule */
 	$rule = &$rules[$edit];
+} elseif(isset($serialized_rule)) {
+	$type = $type_get;
+    $rule = unserialize(urldecode($serialized_rule));
 } elseif(!isset($edit) && isset($type_get)) {
 	/* Adding a new rule through $_GET */
 	$type = $type_get;
