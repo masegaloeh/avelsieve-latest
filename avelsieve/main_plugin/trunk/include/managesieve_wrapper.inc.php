@@ -9,7 +9,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: managesieve_wrapper.inc.php,v 1.6 2006/01/11 16:08:58 avel Exp $
+ * @version $Id: managesieve_wrapper.inc.php,v 1.7 2006/01/16 11:02:39 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -37,14 +37,20 @@ function avelsieve_login() {
 		return true;
 	} else {
 		$errormsg = _("Could not log on to timsieved daemon on your IMAP server") . 
-				" " . $imapServerAddress.'.<br/>'.
-				_("Please contact your administrator.");
+				" " . $imapServerAddress.'.<br/>';
+        if(!empty($sieve->error)) {
+		    $errormsg .= _("Error Encountered:") . ' ' . $sieve->error . '</br>';
+        }
+		$errormsg .= _("Please contact your administrator.");
 
 		if(AVELSIEVE_DEBUG == 1) {
 			print "<pre>(Debug Mode). Login failed. Capabilities:\n";
 			print_r($sieve_capabilities);
-			print "\nError Message returned:\n";
-			print_r($sieve->error);
+            if(!empty($sieve->error)) {
+			    print "\nError Message returned:\n";
+			    print_r($sieve->error);
+            }
+            print '</pre>';
 		}
 		print_errormsg($errormsg);
 		exit;
