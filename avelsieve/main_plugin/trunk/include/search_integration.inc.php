@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: search_integration.inc.php,v 1.1 2006/01/13 16:25:28 avel Exp $
+ * @version $Id: search_integration.inc.php,v 1.2 2006/01/16 12:58:07 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -14,42 +14,22 @@
  */
 
 include_once(SM_PATH . 'plugins/avelsieve/include/managesieve_wrapper.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/html_main.inc.php');
 
 function avelsieve_search_integration_do() {
     global $mailbox_array, $biop_array, $unop_array, $where_array, $what_array,
         $exclude, $color, $compose_new_win;
     
-    $cond = asearch_to_avelsieve($mailbox_array, $biop_array, $unop_array, $where_array, $what_array, $exclude, $info);
-    $rule = array('cond' => $cond);
+    $rule = asearch_to_avelsieve($mailbox_array, $biop_array, $unop_array, $where_array, $what_array, $exclude, $info);
 
-    /*
-    print "<PRE>";
-    print "\nMailbox:";
-    print_r($mailbox_array);
-    print "\nBiop:";
-    print_r($biop_array);
-    print "\nUnop:";
-    print_r($unop_array);
-    print "\nWhere:";
-    print_r($where_array);
-    print "\nWhat:";
-    print_r($what_array);
-    print "\nExclude:";
-    print_r($exclude_array);
-    print "\nSub:";
-    print_r($sub_array);
-    
-    print "\nCond:";
-    print_r($cond);
-    print "</PRE>";
-    */
-	
-    if(!empty($cond)) {
+    if(!empty($rule) && isset($_GET['submit'])) {
         bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 	    textdomain ('avelsieve');
         
         $url = '../plugins/avelsieve/edit.php?addnew=1&amp;type=1&amp;serialized_rule='.rawurlencode(serialize($rule));
 
+		echo '<table border="0" width="100%" cellpadding="0" cellspacing="0">'.
+            avelsieve_html::section_start( _("Create Filter") );
         echo '<div align="center" style="text-align:center; font-size:120%; padding: 0.3em;">';
         echo '<a href="'.$url.'" style="font-size: 120%"><strong>'. _("Create Filter") . '</strong></a> ' .
             _("(Creates a new server-side filtering rule, based on the above criteria)") . '</a>';
@@ -89,6 +69,9 @@ function avelsieve_search_integration_do() {
         }
         echo '</div>';
 	
+        echo avelsieve_html::section_end();
+        echo '</table>';
+
         bindtextdomain('squirrelmail', SM_PATH . 'locale');
     	textdomain ('squirrelmail');
     }
@@ -106,7 +89,9 @@ function avelsieve_search_integration_do() {
  * @param array $info Some additional information that can be passed back to
  *  the caller. For instance, if $info['features_disabled'] exists, then not
  *  all search criteria could be made into Sieve rules.
- * @return array The condition part of an avelsieve rule structure.
+ * @return array A rule as an avelsieve rule structure, with the 'cond' array
+ *  filled in, and possibly the 'condition' string filled in as well
+ *  ('and'/'or').
  * @todo implement avelsieve_initialize()
  */
 function asearch_to_avelsieve(&$mailbox_array, &$biop_array, &$unop_array, &$where_array, &$what_array, &$exclude, &$info) {
@@ -121,7 +106,8 @@ function asearch_to_avelsieve(&$mailbox_array, &$biop_array, &$unop_array, &$whe
             print "Please Click on the &quot;Filters&quot; page once! :/";
         }
     }
-    $cond = array();
+    $r = array();
+    $r['cond'] = array();
     $info = array();
 
     foreach($where_array as $no=>$w) {
@@ -136,16 +122,16 @@ function asearch_to_avelsieve(&$mailbox_array, &$biop_array, &$unop_array, &$whe
                 case 'TO':
                 case 'CC':
                 case 'BCC':
-                    $cond[$idx]['type'] = 'header';
-                    $cond[$idx]['header'] = ucfirst(strtolower($w));
-                    $cond[$idx]['matchtype'] = 'contains';
-                    $cond[$idx]['headermatch'] = $what_array[$no];
+                    $r['cond'][$idx]['type'] = 'header';
+                    $r['cond'][$idx]['header'] = ucfirst(strtolower($w));
+                    $r['cond'][$idx]['matchtype'] = 'contains';
+                    $r['cond'][$idx]['headermatch'] = $what_array[$no];
                     break;
 
                 /* ----------- Header match - Specialized "any" Header ---------- */
                 case 'HEADER':
-                    $cond[$idx]['type'] = 'header';
-                    $cond[$idx]['matchtype'] = 'contains';
+                    $r['cond'][$idx]['type'] = 'header';
+                    $r['cond'][$idx]['matchtype'] = 'contains';
 
                     preg_match('/^([^:]+):(.*)$/', $what_array[$no], $w_parts);
 
@@ -156,24 +142,24 @@ function asearch_to_avelsieve(&$mailbox_array, &$biop_array, &$unop_array, &$whe
                         if(($pos = strpos($hdr, '-')) !== false) {
                            $hdr[$pos+1] = strtoupper($hdr[$pos+1]);
                         }
-                        $cond[$idx]['header'] = $hdr;
-                        $cond[$idx]['headermatch'] = $w_parts[2];
+                        $r['cond'][$idx]['header'] = $hdr;
+                        $r['cond'][$idx]['headermatch'] = $w_parts[2];
                         unset($w_parts);
                     }
                     break;
                 
                 /* ----------- Header OR Body ---------- */
                 case 'TEXT':
-                    $cond[$idx]['type'] = 'header';
-                    $cond[$idx]['matchtype'] = 'contains';
-                    $cond[$idx]['headermatch'] = $what_array[$no];
+                    $r['cond'][$idx]['type'] = 'header';
+                    $r['cond'][$idx]['matchtype'] = 'contains';
+                    $r['cond'][$idx]['headermatch'] = $what_array[$no];
                     
                     if(avelsieve_capability_exists('body')) {
                         $idx++;
-                        $cond[$idx]['type'] = 'body';
-                        $cond[$idx]['matchtype'] = 'contains';
-                        $cond[$idx]['bodymatch'] = $what_array[$no];
-                        $cond['condition'] = 'or';
+                        $r['cond'][$idx]['type'] = 'body';
+                        $r['cond'][$idx]['matchtype'] = 'contains';
+                        $r['cond'][$idx]['bodymatch'] = $what_array[$no];
+                        $r['condition'] = 'or';
                     } else {
                         $idx--;
                         $info['features_disabled'] = true; 
@@ -185,24 +171,24 @@ function asearch_to_avelsieve(&$mailbox_array, &$biop_array, &$unop_array, &$whe
                 /* ----------- Size ---------- */
                 case 'LARGER':
                 case 'SMALLER':
-                    $cond[$idx]['type'] = 'size';
+                    $r['cond'][$idx]['type'] = 'size';
                     if($w == 'LARGER') {
-                        $cond[$idx]['sizerel'] = 'bigger';
+                        $r['cond'][$idx]['sizerel'] = 'bigger';
                     } elseif($w == 'SMALLER') {
-                        $cond[$idx]['sizerel'] = 'smaller';
+                        $r['cond'][$idx]['sizerel'] = 'smaller';
                     }
-                    $cond[$idx]['sizerel'] = '';
-                    $cond[$idx]['sizeamount'] = floor($what_array[$no] / 1024);
-                    $cond[$idx]['sizeunit'] = 'K';
+                    $r['cond'][$idx]['sizerel'] = '';
+                    $r['cond'][$idx]['sizeamount'] = floor($what_array[$no] / 1024);
+                    $r['cond'][$idx]['sizeunit'] = 'K';
                     break;
 
 
                 /* ----------- Body ---------- */
                 case 'BODY':
                     if(avelsieve_capability_exists('body')) {
-                        $cond[$idx]['type'] = 'body';
-                        $cond[$idx]['matchtype'] = 'contains';
-                        $cond[$idx]['bodymatch'] = $what_array[$no];
+                        $r['cond'][$idx]['type'] = 'body';
+                        $r['cond'][$idx]['matchtype'] = 'contains';
+                        $r['cond'][$idx]['bodymatch'] = $what_array[$no];
                     } else {
                         $idx--;
                         $info['features_disabled'] = true; 
@@ -213,7 +199,7 @@ function asearch_to_avelsieve(&$mailbox_array, &$biop_array, &$unop_array, &$whe
                 
                 /* ----------- All ---------- */
                 case 'ALL':
-                    $cond[$idx]['type'] = 'all';
+                    $r['cond'][$idx]['type'] = 'all';
                     break;
                 
                 /* ----------- Rest, unsupported + catch ---------- */
@@ -253,16 +239,16 @@ function asearch_to_avelsieve(&$mailbox_array, &$biop_array, &$unop_array, &$whe
         }
         $idx++;
     }
-    if(sizeof($cond) > 1 && isset($biop_array[1])) {
+    if(sizeof($r['cond']) > 1 && isset($biop_array[1])) {
         switch($biop_array[1]){
             case 'ALL':
-                $cond['condition'] = 'and';
+                $r['condition'] = 'and';
                 break;
             case 'OR':
-                $cond['condition'] = 'or';
+                $r['condition'] = 'or';
                 break;
         }
     }
-    return $cond;
+    return $r;
 }
 ?>
