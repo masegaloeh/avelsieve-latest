@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: constants.inc.php,v 1.10 2006/01/11 16:08:58 avel Exp $
+ * @version $Id: constants.inc.php,v 1.11 2006/01/16 10:57:59 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -37,7 +37,8 @@ $types = array(
 	'envelope' => array(
 		'order' => 2,
 		'name' => _("Envelope"),
-		'description' => _("Perform an action on messages matching a specified envelope header (Envelope FROM, TO).")
+		'description' => _("Perform an action on messages matching a specified envelope header (Envelope FROM, TO)."),
+        'dependencies' => array('envelope')
 	),
 	'size' => array(
 		'order' => 4,
@@ -102,7 +103,7 @@ if(AVELSIEVE_DEBUG == 1) {
 	$displaymodes['debug'] = array('debug', 'Debugging mode (avelsieve variables)');
 }
 
-$implemented_capabilities = array('fileinto', 'reject', 'vacation', 'imapflags', 'relational', 'regex', 'notify');
+$implemented_capabilities = array('fileinto', 'envelope', 'reject', 'vacation', 'imapflags', 'relational', 'regex', 'notify');
 
 $cap_dependencies['relational'] = array("comparator-i;ascii-numeric");
 
