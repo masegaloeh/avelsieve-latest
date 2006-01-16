@@ -2,7 +2,7 @@
 /**
  * sieve-php.lib.php
  *
- * $Id: managesieve.lib.php,v 1.4 2006/01/13 16:25:28 avel Exp $ 
+ * $Id: managesieve.lib.php,v 1.5 2006/01/16 11:02:21 avel Exp $ 
  *
  * Copyright 2001-2003 Dan Ellis <danellis@rushmore.com>
  *
@@ -113,7 +113,7 @@ class sieve {
   /**
    * get response
    * @todo Test Cyrus version 2.2 vs version 2.1 style referrals parsing
-   * @todo Perhaps do referrals like in functin sieve_get_capability()
+   * @todo Perhaps do referrals like in function sieve_get_capability()
    */
   function get_response()
   {
@@ -247,7 +247,6 @@ class sieve {
     	else{
     		/* what to do?  login failed, should we punt and die? or log back into the referrer?
     		   i'm electing to retn EC_UNKNOWN for now and set the error string. */
-    		   
     		$this->loggedin = false;
     		fclose($this->fp);
     		$this->error = EC_UNKNOWN;
@@ -420,13 +419,13 @@ class sieve {
  
     $this->line=fgets($this->fp,1024);
 
-    //Hack for older versions of Sieve Server.  They do not respond with the Cyrus v2. standard
+    //Hack for older versions of Sieve Server.  They do not respond with the Cyrus v2+ standard
     //response.  They repsond as follows: "Cyrus timsieved v1.0.0" "SASL={PLAIN,........}"
-    //So, if we see IMLEMENTATION in the first line, then we are done.
+    //So, if we see IMPLEMENTATION in the first line, then we are done.
 
     if(ereg("IMPLEMENTATION",$this->line))
     {
-      //we're on the Cyrus V2 sieve server
+      //we're on the Cyrus V2 or Cyrus V3 sieve server
       while(sieve::status($this->line) == F_DATA){
 
           $this->item = sieve::parse_for_quotes($this->line);
@@ -486,9 +485,6 @@ class sieve {
             $this->capabilites[$this->cap_type][$this->module]=true;
     }
 
-
-
-
     if(sieve::status($this->line) == F_NO){		//here we should do some returning of error codes?
         $this->error=EC_UNKNOWN;
         $this->error_raw = "Server not allowing connections.";
@@ -496,7 +492,6 @@ class sieve {
     }
 
     /* decision login to decide what type of authentication to use... */
-
 
      /* Loop through each allowed authentication type and see if the server allows the type */
      foreach(explode(" ", $this->auth_types) as $auth_type)
