@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_main.inc.php,v 1.6 2006/01/13 16:25:28 avel Exp $
+ * @version $Id: html_main.inc.php,v 1.7 2006/01/16 12:57:06 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -64,7 +64,7 @@ class avelsieve_html {
 	 */
 	function table_header($customtitle) {
 		global $color;
-		$out = '<br>
+		$out = '<br/>
 		<table bgcolor="'.$color[0].'" width="95%" align="center" cellpadding="2" cellspacing="0" border="0">
 		<tr><td align="center">
 		    <strong>'.
