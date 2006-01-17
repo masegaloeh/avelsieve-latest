@@ -2,7 +2,7 @@
 /**
  * sieve-php.lib.php
  *
- * $Id: managesieve.lib.php,v 1.5 2006/01/16 11:02:21 avel Exp $ 
+ * $Id: managesieve.lib.php,v 1.6 2006/01/17 11:25:38 avel Exp $ 
  *
  * Copyright 2001-2003 Dan Ellis <danellis@rushmore.com>
  *
@@ -413,9 +413,11 @@ class sieve {
    */
   function sieve_login() {
 
-    $this->fp=fsockopen($this->host,$this->port);
-    if($this->fp == false)
+    $this->fp=@fsockopen($this->host,$this->port, $errno, $errstr);
+    if($this->fp == false) {
+        $this->error = $errno. ' '.$errstr;
         return false;
+    }
  
     $this->line=fgets($this->fp,1024);
 
