@@ -6,15 +6,14 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: config_sample.php,v 1.12 2006/01/13 16:25:28 avel Exp $
+ * This file contains configuration parameters for SIEVE mail filters plugin
+ * (aka avelsieve)
+ *
+ * @version $Id: config_sample.php,v 1.13 2006/01/17 15:49:30 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
- */
-
-/**
- * Configuration parameters for SIEVE mail filters (aka avelsieve)
  */
 
 /**
@@ -28,15 +27,15 @@ define('AVELSIEVE_DEBUG', 0);
 
 /* Port where timsieved listens on the Cyrus IMAP server. Default is 2000. */
 
+global $sieveport;
 $sieveport = 2000;
 
+/**
+ * @var string Space separated list of preferred SASL mechanisms for the
+ * authentication to timsieved. e.g. "PLAIN DIGEST-MD5";*/
 
-/* **** NEW OPTION (as of 0.9.4) ****
- * Space separated list of preferred SASL mechanisms for the authentication to
- * timsieved */
-
-$preferred_mech = "PLAIN";
-//$preferred_mech = "PLAIN DIGEST-MD5";
+global $sieve_preferred_sasl_mech;
+$sieve_preferred_sasl_mech = 'PLAIN';
 
 /* In Cyrus 2.3+, the notification action is a bit more complex than the
  * others. The oldcyrus variable is for supporting the partially implemented
@@ -48,6 +47,7 @@ $preferred_mech = "PLAIN";
  * Cyrus < 2.3 : $from$, $env-from$, $subject$
  * Cyrus 2.3+  : $from$, $env-from$, $subject$, $text$, $text[n]$
  */
+global $avelsieve_oldcyrus;
 $avelsieve_oldcyrus = true;
 
 /* If you have Cyrus with an lmtpd that can understand the "auth" argument to
@@ -57,9 +57,10 @@ $avelsieve_oldcyrus = true;
  * This was not clarified in the base spec of RFC 3028. It will be done
  * correctly in a new version of Cyrus, based on a new draft / spec.
  */
+global $avelsieve_enable_envelope_auth; 
 $avelsieve_enable_envelope_auth = true;
 
-/* **** NEW OPTION (as of 0.9.6) *****  Enable ImapProxy mode.
+/** @var boolean Enable ImapProxy mode.
  * If you use imapproxy, because imapproxy cannot understand and proxy the
  * SIEVE protocol, you must connect to the SIEVE daemon (usually on the IMAP
  * server) itself. So you need to set $imapproxymode to true, and define a
@@ -68,22 +69,24 @@ $avelsieve_enable_envelope_auth = true;
  * 
  * This will not work if you use a perdition-style proxy, where different users
  * go to different IMAP servers; it applies mostly to people running imapproxy
- * for speed and want a quick hack.
- */
+ * for speed and want a quick hack. */
 
-$imapproxymode = false;
-$imapproxyserv = array(
+global $avelsieve_imapproxymode, $avelsieve_imapproxyserv;
+$avelsieve_imapproxymode = false;
+$avelsieve_imapproxyserv = array(
 	'localhost' => 'imap.example.org'
 );
 
-/* Ldapuserdata mode: Gets user's email addresses (including mailAlternate &
- * mailAuthorized) from LDAP Prefs Backend plugin's cache */
+/** @var boolean Ldapuserdata mode: Gets user's email addresses (including
+ * mailAlternate & mailAuthorized) from LDAP Prefs Backend plugin's cache */
 
-$ldapuserdatamode = false;
+global $avelsieve_ldapuserdatamode;
+$avelsieve_ldapuserdatamode = false;
 
-/* Map of cyrus administrator users, for proxy authentication */
+/** @var array Map of cyrus administrator users, for proxy authentication */
 
-$cyrusadmins_map = array(
+global $avelsieve_cyrusadmins_map;
+$avelsieve_cyrusadmins_map = array(
 	'cyrusimap' => 'cyrussieve'
 );
 
