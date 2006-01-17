@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.26 2006/01/13 16:25:28 avel Exp $
+ * @version $Id: edit.php,v 1.27 2006/01/17 11:27:54 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -59,83 +59,9 @@ sqgetGlobalVar('serialized_rule', $serialized_rule, SQ_GET);
 
 sqgetGlobalVar('type', $type_get, SQ_GET);
 
-if(!isset($rules)) {
-	/* FIXME - Make Getting+Caching of rules a function. */
-	sqgetGlobalVar('key', $key, SQ_COOKIE);
-	sqgetGlobalVar('onetimepad', $onetimepad, SQ_SESSION);
-	sqgetGlobalVar('authz', $authz, SQ_SESSION);
-	$acctpass = OneTimePadDecrypt($key, $onetimepad);
+avelsieve_initialize($sieve);
 
-if(isset($authz)) {
-	$imap_server =  sqimap_get_user_server ($imapServerAddress, $authz);
-} else {
-	$imap_server =  sqimap_get_user_server ($imapServerAddress, $username);
-
-	if ($imapproxymode == true) { /* Need to do mapping so as to connect directly to server */
-		$imap_server = $imapproxyserv[$imap_server];
-	}
-}
-
-if(isset($authz)) {
-	if(isset($cyrusadmins_map[$username])) {
-		$bind_username = $cyrusadmins_map[$username];
-	} else {
-		$bind_username = $username;
-	}
-	
-	$sieve=new sieve($imap_server, $sieveport, $bind_username, $acctpass, $authz, $preferred_mech);
-} else {
-	$sieve=new sieve($imap_server, $sieveport, $username, $acctpass, $username, $preferred_mech);
-}
-
-	avelsieve_login();
-	if($sieve->sieve_listscripts()) {
-		if(!isset($sieve->response)) {
-			$rules = array();
-		} elseif(is_array($sieve->response)){
-			$i = 0;
-			foreach($sieve->response as $line){
-				$scripts[$i] = $line;
-				$i++;
-			}
-			if(!in_array('phpscript', $scripts)) {
-				$rules = array();
-			} else {
-				/* Actually get the script 'phpscript' (hardcoded ATM). */
-				$sievescript = '';
-				unset($sieve->response);
-			
-				if($sieve->sieve_getscript("phpscript")){
-					if(is_array($sieve->response)) {
-						foreach($sieve->response as $line){
-							$sievescript .= "$line\n";
-						}
-					} else {
-						$errormsg = _("Could not get SIEVE script from your IMAP server");
-						$errormsg .= " " . $imapServerAddress.".<br />";
-						$errormsg .= _("(Probably the script is size null).");
-						$errormsg .= _("Please contact your administrator.");
-						print_errormsg($errormsg);
-						exit;
-					}
-				}
-				
-				/* $sievescript has a SIEVE script. Parse that. */
-				$scriptinfo = array();
-				$rules = getruledata($sievescript, $scriptinfo);
-			}
-		}
-	}
-
-	$_SESSION['rules'] = $rules;
-	$_SESSION['scriptinfo'] = $scriptinfo;
-}
-
-if(isset($popup)) {
-	$popup = '?popup=1';
-} else {
-	$popup = '';
-}
+isset($popup) ? $popup = '?popup=1' : $popup = '';
 
 /* Create new mailbox, if required by the user. */
 if($newfoldername) {

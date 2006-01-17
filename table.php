@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.27 2006/01/11 16:17:58 avel Exp $
+ * @version $Id: table.php,v 1.28 2006/01/17 11:27:54 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -36,62 +36,21 @@ include_once(SM_PATH . 'plugins/avelsieve/include/spamrule.inc.php');
 
 sqsession_is_active();
 
-sqgetGlobalVar('key', $key, SQ_COOKIE);
-sqgetGlobalVar('onetimepad', $onetimepad, SQ_SESSION);
-
-sqgetGlobalVar('authz', $authz, SQ_SESSION);
-
 sqgetGlobalVar('popup', $popup, SQ_GET);
 sqgetGlobalVar('haschanged', $haschanged, SQ_SESSION);
 
-if(isset($_SESSION['part'])) {
-	session_unregister('part');
-}
-
-if(isset($_SESSION['sess'])) {
-	session_unregister('sess');
-}
-
 $location = get_location();
-
-/* Need the cleartext password to login to timsieved */
-$acctpass = OneTimePadDecrypt($key, $onetimepad);
 
 sqgetGlobalVar('rules', $rules, SQ_SESSION);
 sqgetGlobalVar('scriptinfo', $scriptinfo, SQ_SESSION);
 sqgetGlobalVar('logout', $logout, SQ_POST);
 
-if(isset($popup)) {
-	$popup = '?popup=1';
-} else {
-	$popup = '';
-}
+$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+textdomain ('avelsieve');
 
-if(isset($authz)) {
-	$imap_server =  sqimap_get_user_server ($imapServerAddress, $authz);
-} else {
-	$imap_server =  sqimap_get_user_server ($imapServerAddress, $username);
+avelsieve_initialize($sieve);
 
-	if ($imapproxymode == true) { /* Need to do mapping so as to connect directly to server */
-		$imap_server = $imapproxyserv[$imap_server];
-	}
-}
-
-if(isset($authz)) {
-	if(isset($cyrusadmins_map[$username])) {
-		$bind_username = $cyrusadmins_map[$username];
-	} else {
-		$bind_username = $username;
-	}
-	
-	$sieve=new sieve($imap_server, $sieveport, $bind_username, $acctpass, $authz, $preferred_mech);
-} else {
-	$sieve=new sieve($imap_server, $sieveport, $username, $acctpass, $username, $preferred_mech);
-}
-
-if(AVELSIEVE_DEBUG == 1) {
-	print "DEBUG: Connecting with these parameters: ($imap_server, $sieveport, $username, *****, $username, $preferred_mech)";
-}
+isset($popup) ? $popup = '?popup=1' : $popup = '';
 
 sqgetGlobalVar('delimiter', $delimiter, SQ_SESSION);
 if(!isset($delimiter)) {
@@ -99,16 +58,13 @@ if(!isset($delimiter)) {
 }
 
 sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
-
-$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
-textdomain ('avelsieve');
 	
 require_once (SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
 
 if (!isset($rules)) {
 	/* Login. But if the rules are cached, don't even login to SIEVE
 	 * Server. */ 
-	avelsieve_login();
+	avelsieve_login($sieve);
 
 	/* Get script list from SIEVE server. */
 
@@ -183,11 +139,11 @@ unset($sieve->response);
 
 if ($logout) {
 	/* Activate phpscript and log out. */
-	avelsieve_login();
+	avelsieve_login($sieve);
 
 	if ($newscript = makesieverule($rules)) {
 
-		avelsieve_upload_script($newscript);
+		avelsieve_upload_script($sieve, $newscript);
 		avelsieve_spam_highlight_update($rules);
 
 		if(!($sieve->sieve_setactivescript("phpscript"))){
@@ -203,7 +159,7 @@ if ($logout) {
 	} else {
 		/* upload a null thingie!!! :-) This works for now... some time
 		 * it will get better. */
-		avelsieve_upload_script(""); 
+		avelsieve_upload_script($sieve, ''); 
 		avelsieve_spam_highlight_update($rules);
 		/* if(sizeof($rules) == "0") {
 			avelsieve_delete_script();
@@ -256,12 +212,18 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected']) ||
 
 		if(sizeof($rules) == 0) {
 			if (!$conservative) {
-				/* $ht->section_start( _("All your rules have been deleted")) */
-				avelsieve_login();
-				avelsieve_delete_script();
+				avelsieve_login($sieve);
+				avelsieve_delete_script($sieve, 'phpscript');
 				sqsession_register($rules, 'rules');
 			}
 		} 
+        /* Since removing rules is a destructive function, we should redirect
+         * to ourselves so as to eliminate the 'rm' GET parameter. (User could
+         * do "Reload Frame" in browser) */
+	    sqsession_register($rules, 'rules');
+        session_write_close();
+	    header("Location: $location/table.php\n\n");
+        exit;
 	
 	} elseif(isset($_POST['enableselected']) || isset($_POST['disableselected'])) {
 		foreach($_POST['selectedrules'] as $no=>$sel) {
@@ -312,8 +274,8 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected']) ||
 
 	if ($conservative == false && $rules) {
 		$newscript = makesieverule($rules);
-		avelsieve_login();
-		avelsieve_upload_script($newscript);
+		avelsieve_login($sieve);
+		avelsieve_upload_script($sieve, $newscript);
 		avelsieve_spam_highlight_update($rules);
 	}
 }	
@@ -328,9 +290,9 @@ if (isset($_SESSION['returnnewrule'])) {
 
 if( (!$conservative && isset($haschanged) ) ) {
     /* Commit changes */
-	avelsieve_login();
+	avelsieve_login($sieve);
 	$newscript = makesieverule($rules);
-	avelsieve_upload_script($newscript);
+	avelsieve_upload_script($sieve, $newscript);
 	avelsieve_spam_highlight_update($rules);
 	if(isset($_SESSION['haschanged'])) {
 		unset($_SESSION['haschanged']);
@@ -351,6 +313,7 @@ if(isset($sieve_loggedin)) {
  * done. We also grab the list of all folders. */
 	
 // $folder_prefix = "INBOX";
+sqgetGlobalVar('key', $key, SQ_COOKIE);
 $imapConnection = sqimap_login($username, $key, $imapServerAddress, $imapPort, 0); 
 $boxes = sqimap_mailbox_list_all($imapConnection);
 sqimap_logout($imapConnection); 
@@ -370,7 +333,7 @@ if($popup) {
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
-/* Debugging Part */
+/* Debugging Part - Developers might want to enable this */
 /*
 include_once(SM_PATH . 'plugins/avelsieve/include/dumpr.php');
 echo 'SESSION:';
@@ -380,6 +343,12 @@ dumpr($_POST);
 echo 'Rules:';
 dumpr($rules);
 */
+
+if(AVELSIEVE_DEBUG == 1 && isset($sieve)) {
+	print "DEBUG: Connection with these parameters: \n
+        ($imap_server, $sieveport, $username, *****, $username, $preferred_mech)\n<br/>";
+}
+
 
 if(isset($_GET['mode'])) {
 	if(array_key_exists($_GET['mode'], $displaymodes)) {
