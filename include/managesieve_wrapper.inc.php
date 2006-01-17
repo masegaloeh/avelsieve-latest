@@ -9,7 +9,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: managesieve_wrapper.inc.php,v 1.7 2006/01/16 11:02:39 avel Exp $
+ * @version $Id: managesieve_wrapper.inc.php,v 1.8 2006/01/17 11:26:15 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -18,17 +18,68 @@
 
 include_once(SM_PATH . 'plugins/avelsieve/include/managesieve.lib.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/config/config.php');
 	
 /**
- * Login to SIEVE server.
+ * This function initializes the avelsieve environment. Basically, it makes
+ * sure that there is a valid sieve_capability array.
+ *
+ * An instance of the $sieve handle is placed in the global scope.
+ *
+ * Important: If a valid rules array is needed, then avelsieve_getrules()
+ * should be used.
+ *
+ * @param object $sieve Sieve class connection handler.
+ * @return void
+ */
+function avelsieve_initialize(&$sieve) {
+    sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
+    sqgetGlobalVar('rules', $rules, SQ_SESSION);
+
+    if(!is_object($sieve)) {
+	    sqgetGlobalVar('key', $key, SQ_COOKIE);
+    	sqgetGlobalVar('onetimepad', $onetimepad, SQ_SESSION);
+	    sqgetGlobalVar('authz', $authz, SQ_SESSION);
+        global $imapServerAddress, $username, $imapproxymode, $cyrusadmins_map, $sieveport, $preferred_mech;
+
+        /* Need the cleartext password to login to timsieved */
+    	$acctpass = OneTimePadDecrypt($key, $onetimepad);
+
+        if(isset($authz)) {
+        	$imap_server =  sqimap_get_user_server ($imapServerAddress, $authz);
+        } else {
+        	$imap_server =  sqimap_get_user_server ($imapServerAddress, $username);
+    
+        	if ($imapproxymode == true) { /* Need to do mapping so as to connect directly to server */
+	        	$imap_server = $imapproxyserv[$imap_server];
+    	    }
+        }
+        if(isset($authz)) {
+    	    if(isset($cyrusadmins_map[$username])) {
+        		$bind_username = $cyrusadmins_map[$username];
+	        } else {
+    	    	$bind_username = $username;
+    	    }
+         	$sieve=new sieve($imap_server, $sieveport, $bind_username, $acctpass, $authz, $preferred_mech);
+        } else {
+        	$sieve=new sieve($imap_server, $sieveport, $username, $acctpass, $username, $preferred_mech);
+        }
+	    avelsieve_login($sieve);
+    }
+}
+
+/**
+ * Login to SIEVE server. Also saves the capabilities in Session.
+ *
+ * @param object $sieve Sieve class connection handler.
  * @return boolean
  */
-function avelsieve_login() {
-	global $sieve, $sieve_capabilities, $imapServerAddress, $sieve_loggedin;
-	if(isset($sieve_loggedin)) {
+function avelsieve_login(&$sieve) {
+	global $sieve_capabilities, $imapServerAddress, $sieve_loggedin;
+	if(is_object($sieve) && isset($sieve_loggedin)) {
 		return true;
 	}
-	if ($sieve->sieve_login()){	/* User has logged on */
+	if ($sieve->sieve_login()){ /* User has logged on */
 		if(!isset($sieve_capabilities)) {
 			$sieve_capabilities = $sieve->sieve_get_capability();
 			 $_SESSION['sieve_capabilities'] = $sieve_capabilities;
@@ -37,7 +88,7 @@ function avelsieve_login() {
 		return true;
 	} else {
 		$errormsg = _("Could not log on to timsieved daemon on your IMAP server") . 
-				" " . $imapServerAddress.'.<br/>';
+				" " . $sieve->host.':'.$sieve->port.'.<br/>';
         if(!empty($sieve->error)) {
 		    $errormsg .= _("Error Encountered:") . ' ' . $sieve->error . '</br>';
         }
@@ -58,16 +109,73 @@ function avelsieve_login() {
 }
 
 /**
+ * Get rules from specified script of Sieve server
+ *
+ * @param object $sieve Sieve class connection handler.
+ * @param string $scriptname
+ * @return array
+ */
+function avelsieve_getrules(&$sieve, $scriptname = 'phpscript') {
+    sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
+
+    if(!isset($sieve_capabilities)) {
+        avelsieve_initialize();
+    }
+
+    if($sieve->sieve_listscripts()) {
+        if(!isset($sieve->response)) {
+            $rules = array();
+        } elseif(is_array($sieve->response)){
+            $i = 0;
+            foreach($sieve->response as $line){
+                $scripts[$i] = $line;
+                $i++;
+            }
+            if(!in_array('phpscript', $scripts)) {
+                $rules = array();
+            } else {
+                /* Actually get the script 'phpscript' (hardcoded ATM). */
+                $sievescript = '';
+                unset($sieve->response);
+                    
+                if($sieve->sieve_getscript($scriptname)){
+                    if(is_array($sieve->response)) {
+                        foreach($sieve->response as $line){
+                            $sievescript .= "$line";
+                        }
+                    } else {
+                        $errormsg = _("Could not get SIEVE script from your IMAP server");
+                        $errormsg .= " " . $imapServerAddress.".<br />";
+                        $errormsg .= _("(Probably the script is size null).");
+                        $errormsg .= _("Please contact your administrator.");
+                        print_errormsg($errormsg);
+                        exit;
+                    }
+                }
+                        
+                /* $sievescript has a SIEVE script. Parse that. */
+                $scriptinfo = array();
+                $rules = getruledata($sievescript, $scriptinfo);
+            
+            }
+                    
+            $_SESSION['rules'] = $rules;
+            $_SESSION['scriptinfo'] = $scriptinfo;
+
+        } // valid response
+    } // there are scripts
+    return $rules;
+}
+
+/**
  * Upload script
  *
+ * @param object $sieve Sieve class connection handler.
  * @param string $newscript The SIEVE script to be uploaded
  * @param string $scriptname Name of script
- *
  * @return true on success, false upon failure
  */
-function avelsieve_upload_script ($newscript, $scriptname = 'phpscript') {
-	global $sieve;
-
+function avelsieve_upload_script (&$sieve, $newscript, $scriptname = 'phpscript') {
 	if(isset($sieve->error_raw)) {
 		unset($sieve->error_raw);
 	}
@@ -122,27 +230,35 @@ function avelsieve_upload_script ($newscript, $scriptname = 'phpscript') {
 /**
  * Deletes a script on SIEVE server.
  *
+ * @param object $sieve Sieve class connection handler.
  * @param string $script 
  * @return true on success, false upon failure
  */
-function avelsieve_delete_script ($script = 'phpscript') {
-	global $sieve;
-	if(!$script) {
+function avelsieve_delete_script (&$sieve, $script = 'phpscript') {
+	if(empty($script)) {
 		return false;
 	}
 	if($sieve->sieve_deletescript($script)) {
 		return true;
 	} else {
-		print 'Unable to delete script from server. See server response below:<br />
-		<blockquote><font color="red">';
+		
+        $errormsg = sprintf( _("Could not delete script from server %s."), $sieve->host.':'.$sieve->port) .
+            '<br/>';
+        if(!empty($sieve->error)) {
+		    $errormsg .= _("Error Encountered:") . ' ' . $sieve->error . '</br>';
+        }
+		$errormsg .= _("Please contact your administrator.");
+		print_errormsg($errormsg);
+
+        /*
 		if(is_array($sieve->error_raw)) {
 			foreach($sieve->error_raw as $error_raw)
 				print $error_raw."<br>";
 		} else {
 			print $sieve->error_raw."<br>";
 		}
-	print "</font></blockquote>";
-	return false;
+        */
+	    return false;
 	}
 }
 
@@ -162,8 +278,7 @@ function avelsieve_delete_script ($script = 'phpscript') {
  * then she can use that feature; this option just disables the GUI of it.
  *
  * @param $cap capability to check for
- *
- * @return true if capability exists, false if it does not exist
+ * @return boolean true if capability exists, false if it does not exist
  */
 function avelsieve_capability_exists ($cap) {
 
@@ -181,6 +296,9 @@ function avelsieve_capability_exists ($cap) {
 /** 
  * Escape only double quotes and backslashes, as required by SIEVE RFC. For the
  * reverse procedure, PHP function stripslashes() will do.
+ *
+ * @param string $script
+ * @return string
  */
 function avelsieve_addslashes ($string) {
 
@@ -198,6 +316,9 @@ function avelsieve_addslashes ($string) {
 
 /**
  * Encode script from user's charset to UTF-8.
+ *
+ * @param string $script
+ * @return string
  */
 function avelsieve_encode_script($script) {
 
@@ -242,6 +363,8 @@ function avelsieve_encode_script($script) {
 /**
  * Decode script from UTF8 to user's charset.
  *
+ * @param string $script
+ * @return string
  */
 function avelsieve_decode_script($script) {
 
