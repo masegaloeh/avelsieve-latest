@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.28 2006/01/17 11:27:54 avel Exp $
+ * @version $Id: table.php,v 1.29 2006/01/17 15:46:45 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -66,76 +66,17 @@ if (!isset($rules)) {
 	 * Server. */ 
 	avelsieve_login($sieve);
 
-	/* Get script list from SIEVE server. */
-
-	if($sieve->sieve_listscripts()) {
-		if(!isset($sieve->response)) {
-			/* There is no SIEVE script on the server. */
-			$sieve->sieve_logout();
-			$prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
-			textdomain ('squirrelmail');
-			displayPageHeader($color, 'None');
-			$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
-			textdomain ('avelsieve');
-			printheader2( _("Current Mail Filtering Rules") );
-			print_all_sections_start();
-			print_section_start(_("No Filtering Rules Defined Yet"));
-			print_create_new();
-			print_section_end(); 
-			print_all_sections_end();
-			printfooter();
-			printfooter2();
-			exit;
-			
-		} elseif(is_array($sieve->response)){
-			$i = 0;
-			foreach($sieve->response as $line){
-				$scripts[$i] = $line;
-				$i++;
-			}
-			// print "Available scripts on server: "; print_r($scripts);
-
-		} else {
-			print "sieve-php.lib.php bug: listscripts() returned a string instead of an array.";
-			exit;
-		}
-	}
-
 	/* Actually get the script 'phpscript' (hardcoded ATM). */
-
-	$sievescript = '';
-	unset($sieve->response);
-
-	if($sieve->sieve_getscript("phpscript")){
-		if(is_array($sieve->response)) {
-			foreach($sieve->response as $line){
-				$sievescript .= "$line";
-			}
-		} else {
-			$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
-			textdomain ('avelsieve');
-			$errormsg = _("Could not get SIEVE script from your IMAP server");
-			$errormsg .= " " . $imapServerAddress.".<br />";
-			$errormsg .= _("(Probably the script is size null).");
-			$errormsg .= _("Please contact your administrator.");
-			print_errormsg($errormsg);
-			exit;
-		}
-	}
-	
-	/* $sievescript has a SIEVE script. Parse that. */
-	$scriptinfo = array();
-	$rules = getruledata($sievescript, $scriptinfo);
-
-	/* When we first get this script, we probably want to do a validation with
-	 * the folders et al. Here this is done. */
-
+    if(avelsieve_getrules($sieve, 'phpscript', $rules, $scriptinfo)) {
+        $_SESSION['rules'] = $rules;
+        $_SESSION['scriptinfo'] = $scriptinfo;
+    }
 }
 
 unset($sieve->response);
 
-/* On to the code that executes if phpscript exists or if a new rule has been
- * created. */
+/* On to the code that executes if avelsieve script exists or if a new rule has
+ * been created. */
 
 if ($logout) {
 	/* Activate phpscript and log out. */

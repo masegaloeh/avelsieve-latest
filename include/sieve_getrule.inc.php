@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_getrule.inc.php,v 1.4 2006/01/11 16:08:58 avel Exp $
+ * @version $Id: sieve_getrule.inc.php,v 1.5 2006/01/17 15:46:45 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -16,7 +16,8 @@
  */
 
 /**
- * Decode data from an existing SIEVE script
+ * Decode data from an existing SIEVE script. Data are stored as metadata (PHP
+ * serialized variables). No actual parsing is performed.
  *
  * @param str $sievescript A SIEVE script to get information from
  * @param array $scriptinfo Store Script Information (creation date,
@@ -24,7 +25,7 @@
  *
  * @return array Rules array
  */
-function getruledata($sievescript, &$scriptinfo) {
+function avelsieve_extract_rules($sievescript, &$scriptinfo) {
 	/* Get avelsieve script version info, if it exists. */
 	$regexp = '/AVELSIEVE_VERSION.+\n/sU';
 	if (preg_match($regexp, $sievescript, $verstrings) == 1) {
