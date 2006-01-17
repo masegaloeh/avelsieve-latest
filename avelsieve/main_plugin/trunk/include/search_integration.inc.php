@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: search_integration.inc.php,v 1.2 2006/01/16 12:58:07 avel Exp $
+ * @version $Id: search_integration.inc.php,v 1.3 2006/01/17 11:24:38 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -18,7 +18,7 @@ include_once(SM_PATH . 'plugins/avelsieve/include/html_main.inc.php');
 
 function avelsieve_search_integration_do() {
     global $mailbox_array, $biop_array, $unop_array, $where_array, $what_array,
-        $exclude, $color, $compose_new_win;
+        $exclude, $color, $compose_new_win, $javascript_on;
     
     $rule = asearch_to_avelsieve($mailbox_array, $biop_array, $unop_array, $where_array, $what_array, $exclude, $info);
 
@@ -27,20 +27,42 @@ function avelsieve_search_integration_do() {
 	    textdomain ('avelsieve');
         
         $url = '../plugins/avelsieve/edit.php?addnew=1&amp;type=1&amp;serialized_rule='.rawurlencode(serialize($rule));
+	
+        if(!$compose_new_win) {
+            /* For non-popup page we need to come back to the search results. */
+            /* FIXME */
+        }
+        if($compose_new_win == '1') {
+            $url .= '&amp;popup=1';
+        }
 
 		echo '<table border="0" width="100%" cellpadding="0" cellspacing="0">'.
             avelsieve_html::section_start( _("Create Filter") );
         echo '<div align="center" style="text-align:center; font-size:120%; padding: 0.3em;">';
-        echo '<a href="'.$url.'" style="font-size: 120%"><strong>'. _("Create Filter") . '</strong></a> ' .
-            _("(Creates a new server-side filtering rule, based on the above criteria)") . '</a>';
+        
+        if($compose_new_win == '1') {
+            if($javascript_on) {
+                echo "<a href=\"javascript:void(0)\" onclick=\"comp_in_new('$url')\" ".
+                    'style="font-size:120%"><strong>'. _("Create Filter") . '</strong></a> ';
+            } else {
+                echo '<a href="'.$url.'" style="font-size: 120%" target="_blank">'.
+                    '<strong>'. _("Create Filter") . '</strong></a> ';
+            }
+        }
+        echo _("(Creates a new server-side filtering rule, based on the above criteria)") . '</a>';
 
         if(isset($info['features_disabled'])) {
             echo '<br/><em>' .
-                _("Notice: The following criteria cannot be expressed as server-side filtering rules:") . '</em><ul>';
+                _("Notice: The following criteria cannot be expressed as server-side filtering rules:") . '</em>'.
+                '<ul style="margin: 3px;">';
 
             foreach($info['disabled_criteria'] as $no) {
                 $mailbox_array_tmp = array($mailbox_array[$no]);
-                $biop_array_tmp = array($biop_array[$no]);
+                if(isset($biop_array[$no])) {
+                    $biop_array_tmp = array($biop_array[$no]);
+                } else {
+                    $biop_array_tmp = array();
+                }
                 $unop_array_tmp = array($unop_array[$no]);
                 $where_array_tmp = array($where_array[$no]);
                 $what_array_tmp = array($what_array[$no]);
@@ -56,19 +78,29 @@ function avelsieve_search_integration_do() {
                     $sub_array_tmp = array();
                 }
 
-                echo '<li>('. ($no+1). ') ' .
+                bindtextdomain('squirrelmail', SM_PATH . 'locale');
+            	textdomain ('squirrelmail');
+                echo '<li>('. ($no+1). ') &quot;' .
                     asearch_get_query_display($color, $mailbox_array_tmp, $biop_array_tmp, $unop_array_tmp,
                     $where_array_tmp, $what_array_tmp, $exclude_array_tmp, $sub_array_tmp);
+                bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+            	textdomain ('avelsieve');
             
                 if(isset($info['disabled_criteria_reasons'][$no])) {
-                    echo ' <small>(' . _("Reason:") . ' ' . $info['disabled_criteria_reasons'][$no] . ')</small>';
+                    echo '&quot; - ' . _("Reason:") . ' ' . $info['disabled_criteria_reasons'][$no];
                 }
                 echo '</li>';
             }
-            echo '</ul><br/>';
+            echo '</ul>';
+               
+            /* Additional Notices or information */
+            if(isset($info['notice'])) {
+                foreach($info['notice'] as $notice) {
+                    echo $notice . '</br>';
+                }
+            }
         }
         echo '</div>';
-	
         echo avelsieve_html::section_end();
         echo '</table>';
 
@@ -92,18 +124,15 @@ function avelsieve_search_integration_do() {
  * @return array A rule as an avelsieve rule structure, with the 'cond' array
  *  filled in, and possibly the 'condition' string filled in as well
  *  ('and'/'or').
- * @todo implement avelsieve_initialize()
  */
 function asearch_to_avelsieve(&$mailbox_array, &$biop_array, &$unop_array, &$where_array, &$what_array, &$exclude, &$info) {
-    global $sieve_capabilities;
+    global $sieve, $sieve_capabilities;
     if(!isset($sieve_capabilities)) {
         sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
         if(!isset($sieve_capabilities)) {
             // Have to connect to timsieved to get the capabilities. Luckily
             // this will only happen once.
-            // TODO
-            // avelsieve_initialize();
-            print "Please Click on the &quot;Filters&quot; page once! :/";
+            avelsieve_initialize($sieve);
         }
     }
     $r = array();
@@ -151,6 +180,19 @@ function asearch_to_avelsieve(&$mailbox_array, &$biop_array, &$unop_array, &$whe
                 /* ----------- Header OR Body ---------- */
                 case 'TEXT':
                     $r['cond'][$idx]['type'] = 'header';
+                    $r['cond'][$idx]['header'] = 'toorcc';
+                    $r['cond'][$idx]['matchtype'] = 'contains';
+                    $r['cond'][$idx]['headermatch'] = $what_array[$no];
+
+                    $idx++;
+                    $r['cond'][$idx]['type'] = 'header';
+                    $r['cond'][$idx]['header'] = 'From';
+                    $r['cond'][$idx]['matchtype'] = 'contains';
+                    $r['cond'][$idx]['headermatch'] = $what_array[$no];
+                    
+                    $idx++;
+                    $r['cond'][$idx]['type'] = 'header';
+                    $r['cond'][$idx]['header'] = 'Subject';
                     $r['cond'][$idx]['matchtype'] = 'contains';
                     $r['cond'][$idx]['headermatch'] = $what_array[$no];
                     
@@ -166,6 +208,7 @@ function asearch_to_avelsieve(&$mailbox_array, &$biop_array, &$unop_array, &$whe
                         $info['disabled_criteria'][] = $no;
                         $info['disabled_criteria_reasons'][$no] = _("The Body extension is not supported in this server.");
                     }
+                    $info['notice'][] = _("Note that Only From:, To:, Cc: and Subject: headers will be checked in the server filter.");
                     break;
                 
                 /* ----------- Size ---------- */
