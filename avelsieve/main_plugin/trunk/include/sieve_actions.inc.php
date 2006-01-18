@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.14 2006/01/13 16:25:28 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.15 2006/01/18 15:41:10 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -29,16 +29,19 @@
  */
 class avelsieve_action {
 	var $frontend = '';
-	var $translate_return_msgs = false;
 	var $useimages = true;
 
 	/**
 	 * Constructor function that should be called from every class
 	 */
 	function avelsieve_action($rule, $frontend) {
+        global $translate_return_msgs;
 		$this->frontend = $frontend;
 		$this->rule = $rule;
-			
+        
+        if(isset($translate_return_msgs)) {
+            $this->$translate_return_msgs = $translate_return_msgs;
+        }
 		if ($this->useimages && isset($this->image_src)) {
 			$this->text = ' <img src="'.$this->image_src.'" border="0" alt="'. $this->text.'" align="middle" style="margin-left: 2px; margin-right: 4px;"/> '.
 				$this->text;

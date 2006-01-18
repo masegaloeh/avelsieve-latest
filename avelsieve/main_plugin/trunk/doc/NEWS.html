@@ -6,8 +6,11 @@
 <li>New Feature: In Squirrelmail Search page, a user can now easily add a new
 server-side Sieve rule based on the criteria that are described in the Search
 interface.</li>
-<li>Bugfix: Capability of Envelope is now properly detected. (Thanks to <span
-class="bugreporter">R. Welz</span>)</li>
+<li>Actually honor variable $translate_return_msgs. (Thanks to <span
+class="bugreporter">R.  Welz</span>)</li>
+<li>Bugfix: Capability of Envelope is now properly detected and the proper
+Sieve <em>require</em> command is used. (Thanks to <span class="bugreporter">R.
+Welz</span>)</li>
 <li>Bugfix: When no action has been selected, explicitly select 'keep' as the
 default.</li>
 <li>Improved error message printing. Properly translate error messages that
@@ -15,7 +18,7 @@ relate to connection errors to timsieved. PHP warnings are suppressed during
 these connection errors.</li>
 <li>In deletion of rules: Redirection is performed so as to eliminate the 'rm'
 GET parameter. (User could do &quot;Reload Frame&quot; in browser and delete
-more rules).</li>
+more rules by mistake).</li>
 <li>Internal: Changed all ManageSieve wrapper functions to have the Sieve
 handler as the first function argument. Also changed all script-related
 functions to have the script name as an argument. This will allow for interface
