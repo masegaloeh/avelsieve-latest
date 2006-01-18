@@ -9,7 +9,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: managesieve_wrapper.inc.php,v 1.9 2006/01/17 15:46:45 avel Exp $
+ * @version $Id: managesieve_wrapper.inc.php,v 1.10 2006/01/18 11:15:53 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -110,6 +110,24 @@ function avelsieve_login(&$sieve) {
 }
 
 /**
+ * Get scripts list from SIEVE server.
+ */
+function avelsieve_listscripts($sieve) {
+    $scripts = array();
+	if($sieve->sieve_listscripts()) {
+		if(is_array($sieve->response)){
+                print_r($sieve->response);
+			$i = 0;
+			foreach($sieve->response as $line){
+				$scripts[$i] = $line;
+				$i++;
+			}
+		}
+	}
+    return $scripts;
+}
+
+/**
  * Get rules from specified script of Sieve server
  *
  * @param object $sieve Sieve class connection handler.
@@ -128,18 +146,9 @@ function avelsieve_getrules(&$sieve, $scriptname = 'phpscript', &$rules, &$scrip
     if(!is_object($sieve)) {
         avelsieve_login($sieve); 
     }
-	
-    /* Get script list from SIEVE server. */
-    $scripts = array();
-	if($sieve->sieve_listscripts()) {
-		if(is_array($sieve->response)){
-			$i = 0;
-			foreach($sieve->response as $line){
-				$scripts[$i] = $line;
-				$i++;
-			}
-		}
-	}
+
+    $scripts = avelsieve_listscripts();
+
     if(!in_array($scriptname, $scripts)) {
         /* No avelsieve script. */
         return false;
