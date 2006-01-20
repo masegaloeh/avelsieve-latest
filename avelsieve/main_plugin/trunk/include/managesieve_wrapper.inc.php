@@ -9,7 +9,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: managesieve_wrapper.inc.php,v 1.10 2006/01/18 11:15:53 avel Exp $
+ * @version $Id: managesieve_wrapper.inc.php,v 1.11 2006/01/20 14:01:24 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -116,7 +116,6 @@ function avelsieve_listscripts($sieve) {
     $scripts = array();
 	if($sieve->sieve_listscripts()) {
 		if(is_array($sieve->response)){
-                print_r($sieve->response);
 			$i = 0;
 			foreach($sieve->response as $line){
 				$scripts[$i] = $line;
@@ -132,6 +131,7 @@ function avelsieve_listscripts($sieve) {
  *
  * @param object $sieve Sieve class connection handler.
  * @param string $scriptname
+ * @param array $scriptinfo
  * @return array
  */
 function avelsieve_getrules(&$sieve, $scriptname = 'phpscript', &$rules, &$scriptinfo) {
@@ -147,7 +147,7 @@ function avelsieve_getrules(&$sieve, $scriptname = 'phpscript', &$rules, &$scrip
         avelsieve_login($sieve); 
     }
 
-    $scripts = avelsieve_listscripts();
+    $scripts = avelsieve_listscripts($sieve);
 
     if(!in_array($scriptname, $scripts)) {
         /* No avelsieve script. */
