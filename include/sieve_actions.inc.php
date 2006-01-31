@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.15 2006/01/18 15:41:10 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.16 2006/01/31 12:54:12 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -30,18 +30,30 @@
 class avelsieve_action {
 	var $frontend = '';
 	var $useimages = true;
+    var $translate_return_msgs = false;
 
 	/**
-	 * Constructor function that should be called from every class
+     * Initialize variables that we get from the configuration of avelsieve.
+     * @return void
 	 */
+    function init() {
+        global $translate_return_msgs, $useimages;
+        if(isset($translate_return_msgs)) {
+            $this->translate_return_msgs = $translate_return_msgs;
+        }
+        if(isset($useimages)) {
+            $this->useimages = $useimages;
+        }
+    }
+
+    /**
+     * Initialize other properties based on the ones defined from child classes.
+     * @return void
+     */
 	function avelsieve_action($rule, $frontend) {
-        global $translate_return_msgs;
 		$this->frontend = $frontend;
 		$this->rule = $rule;
         
-        if(isset($translate_return_msgs)) {
-            $this->$translate_return_msgs = $translate_return_msgs;
-        }
 		if ($this->useimages && isset($this->image_src)) {
 			$this->text = ' <img src="'.$this->image_src.'" border="0" alt="'. $this->text.'" align="middle" style="margin-left: 2px; margin-right: 4px;"/> '.
 				$this->text;
@@ -194,6 +206,7 @@ class avelsieve_action_keep extends avelsieve_action {
 	var $options = array(); 
 
 	function avelsieve_action_keep($rule = array(), $frontend = 'html') {
+        $this->init();
 		$this->text = _("Keep (Default action)");
 		if(!isset($rule['action'])) {
 			/* Hack to make the radio button selected for a new rule, for GUI
@@ -213,6 +226,7 @@ class avelsieve_action_discard extends avelsieve_action {
 	var $options = array(); 
 
 	function avelsieve_action_discard($rule = array(), $frontend = 'html') {
+        $this->init();
 		$this->text = _("Discard Silently");
 		$this->avelsieve_action($rule, $frontend);
 	}
@@ -229,6 +243,7 @@ class avelsieve_action_reject extends avelsieve_action {
 	);
  	
 	function avelsieve_action_reject($rule = array(), $frontend = 'html') {
+        $this->init();
 		$this->text = _("Reject, sending this excuse to the sender:");
 
 		if($this->translate_return_msgs==true) {
@@ -251,6 +266,7 @@ class avelsieve_action_redirect extends avelsieve_action {
 	var $num = 4;
 
 	function avelsieve_action_redirect($rule = array(), $frontend = 'html') {
+        $this->init();
 		$this->text = _("Redirect to the following email address:");
 		$this->options = array(
 			'redirectemail' => _("someone@example.org"),
@@ -293,6 +309,7 @@ class avelsieve_action_fileinto extends avelsieve_action {
 	);
 
 	function avelsieve_action_fileinto($rule = array(), $frontend = 'html') {
+        $this->init();
 		$this->text = _("Move message into");
 		$this->avelsieve_action($rule, $frontend);
 	}
@@ -337,6 +354,7 @@ class avelsieve_action_vacation extends avelsieve_action {
 	);
 
 	function avelsieve_action_vacation($rule = array(), $frontend = 'html') {
+        $this->init();
 		$this->text = _("Vacation");
 		$this->options['vac_addresses'] = get_user_addresses();
 
@@ -390,6 +408,7 @@ class avelsieve_action_stop extends avelsieve_action {
 	var $image_src = 'images/stop.gif';
 
 	function avelsieve_action_stop($rule = array(), $frontend = 'html') {
+        $this->init();
 		$this->helptxt = _("If this rule matches, do not check any rules after it.");
 		$this->text = _("STOP");
 		$this->avelsieve_action($rule, $frontend);
@@ -421,6 +440,7 @@ class avelsieve_action_notify extends avelsieve_action {
 	 * @see https://bugzilla.andrew.cmu.edu/show_bug.cgi?id=2135
 	 */
 	function avelsieve_action_notify($rule = array(), $frontend = 'html') {
+        $this->init();
 		global $notifymethods, $avelsieve_oldcyrus;
 		if(isset($notifymethods)) {
 			$this->notifymethods = $notifymethods;
@@ -518,8 +538,7 @@ class avelsieve_action_notify extends avelsieve_action {
 			}
 			$out .= '</textarea><br />';
 			
-			$out .= '<small>';
-			$out .= _("Help: Valid variables are:");
+			$out .= '<small>'. _("Help: Valid variables are:");
 			if($this->oldcyrus) {
 				/* $text$ is not supported by Cyrus IMAP < 2.3 . */
 				$out .= ' $from$, $env-from$, $subject$</small>';
@@ -542,6 +561,7 @@ class avelsieve_action_keepdeleted extends avelsieve_action {
 	var $image_src = 'images/add.png';
 
 	function avelsieve_action_keepdeleted($rule = array(), $frontend = 'html') {
+        $this->init();
 		$this->text = _("Also keep copy in INBOX, marked as deleted.");
 		$this->avelsieve_action($rule, $frontend);
 	}
@@ -556,6 +576,7 @@ class avelsieve_action_disabled extends avelsieve_action {
 	var $image_src = 'images/stock_disconnect.png';
 
 	function avelsieve_action_disabled($rule = array(), $frontend = 'html') {
+        $this->init();
 		$this->text = _("Disable this rule");
 		$this->helptxt = _("The rule will have no effect for as long as it is disabled.");
 		$this->avelsieve_action($rule, $frontend);
