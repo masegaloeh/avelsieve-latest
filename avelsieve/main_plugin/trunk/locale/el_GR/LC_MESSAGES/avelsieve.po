@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 1.9.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-09 17:09+0200\n"
+"POT-Creation-Date: 2006-01-31 14:25+0200\n"
 "PO-Revision-Date: 2005-03-09 13:35+0200\n"
 "Last-Translator: Alexandros Vellis <avel@noc.uoa.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -117,14 +117,8 @@ msgstr "ΣΤΟΠ"
 msgid "If this rule matches, do not check any rules after it."
 msgstr "Αν ο κανόνας ταιριάξει, μην ελέγξεις άλλους κανόνες μετά απ'αυτόν."
 
-msgid "Could not get SIEVE script from your IMAP server"
-msgstr "Αδύνατη η λήψη του SIEVE script από τον IMAP εξυπηρετητή"
-
-msgid "(Probably the script is size null)."
-msgstr "(Ίσως το script έχει μέγεθος μηδέν)."
-
-msgid "Please contact your administrator."
-msgstr "Παρακαλούμε ειδοποιήστε το διαχειριστή σας."
+msgid "Mail Filtering Scripts"
+msgstr "Σενάρια Φίλτρων Ταχυδρομείου"
 
 msgid "Message Filters"
 msgstr "Φίλτρα Μηνυμάτων"
@@ -140,14 +134,30 @@ msgstr ""
 msgid "Filters"
 msgstr "Φίλτρα"
 
-msgid "Current Mail Filtering Rules"
-msgstr "Τρέχοντες Κανόνες Φιλτραρίσματος Ταχυδρομείου"
-
-msgid "No Filtering Rules Defined Yet"
-msgstr "Δεν έχουν οριστεί κανόνες ακόμα"
-
 msgid "Could not set active script on your IMAP server"
 msgstr "Αδύνατη η ενεργοποίηση του ενεργού script στον εξυπηρετητή IMAP"
+
+msgid "Please contact your administrator."
+msgstr "Παρακαλούμε ειδοποιήστε το διαχειριστή σας."
+
+msgid "Could not get SIEVE script from your IMAP server"
+msgstr "Αδύνατη η λήψη του SIEVE script από τον IMAP εξυπηρετητή"
+
+msgid "Error Encountered:"
+msgstr "Παρουσιάστηκε Λάθος:"
+
+msgid "Unable to load script to server."
+msgstr "Αδύνατο το φόρτωμα του script στον εξυπηρετητή."
+
+msgid "Server responded with:"
+msgstr "Ο εξυπηρετητής απάντησε:"
+
+#, php-format
+msgid "Could not delete script from server %s."
+msgstr "Αδύνατη η διαγραφή του script από τον εξυπηρετητή %s."
+
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "Αδύνατη η σύνδεση με τον timsieved daemon στον εξυπηρετητή IMAP σας"
 
 msgid "AND (Every item must match)"
 msgstr "ΚΑΙ (όλες οι συνθήκες πρέπει να ισχύουν)"
@@ -394,9 +404,6 @@ msgstr "Επεξεργασία του κανόνα φιλτραρίσματος"
 msgid "Create New Mail Filtering Rule"
 msgstr "Δημιουργία Νέου Κανόνα Φιλτραρίσματος Ταχυδρομείου"
 
-msgid "Error Encountered:"
-msgstr "Παρουσιάστηκε Λάθος:"
-
 msgid "You must correct the above errors before continuing."
 msgstr "Πρέπει να διορθώσετε τα παραπάνω λάθη πριν συνεχίσετε."
 
@@ -512,23 +519,20 @@ msgstr "Τελευταία τροποποίηση:"
 msgid "Created:"
 msgstr "Δημιουργήθηκε:"
 
+msgid "Current Mail Filtering Rules"
+msgstr "Τρέχοντες Κανόνες Φιλτραρίσματος Ταχυδρομείου"
+
 msgid "Close"
 msgstr "Κλείσιμο"
+
+msgid "No Filtering Rules Defined Yet"
+msgstr "Δεν έχουν οριστεί κανόνες ακόμα"
 
 msgid "Really delete this rule?"
 msgstr "Σίγουρα να διαγραφεί αυτός ο κανόνας;"
 
 msgid "Action for Selected Rules:"
 msgstr "Για τους επιλεγμένους κανόνες:"
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Αδύνατη η σύνδεση με τον timsieved daemon στον εξυπηρετητή IMAP σας"
-
-msgid "Unable to load script to server."
-msgstr "Αδύνατο το φόρτωμα του script στον εξυπηρετητή."
-
-msgid "Server responded with:"
-msgstr "Ο εξυπηρετητής απάντησε:"
 
 msgid "Automatically"
 msgstr "Αυτόματα"
@@ -550,6 +554,32 @@ msgstr "Δημιουργία Φίλτρου"
 
 msgid "You have to define at least one condition."
 msgstr "Πρέπει να ορίσετε τουλάχιστον μία συνθήκη."
+
+msgid "(Creates a new server-side filtering rule, based on the above criteria)"
+msgstr "(Δημιουργεί ένα καινούριο φίλτρο στον εξυπηρετητή, βασισμένο στα παραπάνω κριτήρια)"
+
+msgid ""
+"Notice: The following criteria cannot be expressed as server-side filtering "
+"rules:"
+msgstr ""
+"Σημείωση: Τα ακόλουθα κριτήρια δε μπορούν να εκφραστούν ως φίλτρα στον "
+"εξυπηρετητή:"
+
+msgid "Reason:"
+msgstr "Λόγος:"
+
+msgid "The Body extension is not supported in this server."
+msgstr "Η λειτουργία για ταίριασμα στο σώμα του μηνύματος δεν υποστηρίζεται σε αυτόν τον εξυπηρετητή."
+
+msgid ""
+"Note that Only From:, To:, Cc: and Subject: headers will be checked in the "
+"server filter."
+msgstr ""
+"Σημειώστε ότι μόνο οι κεφαλίδες Από:, Προς: και Συνημ.: θα ελεγθούν στο "
+"φίλτρο του εξυπηρετητή."
+
+msgid "These search expressions are not applicable during message delivery."
+msgstr "Αυτά τα κριτήρια αναζήτησης δεν ισχύουν κατά την παράδοση μηνυμάτων."
 
 msgid "Keep (Default action)"
 msgstr "Κράτηση (προκαθορισμένη ενέργεια)"
@@ -576,8 +606,8 @@ msgid ""
 "Incorrect email address(es). You must enter one or more valid email "
 "addresses, separated by comma."
 msgstr ""
-"Λανθασμένη διεύθυνση(-εις) ηλεκτρονικού ταχυδρομείου. Πρέπει να "
-"εισάγετε μία ή περισσότερες έγκυρες διευθύνσεις, χωριζόμενες με κόμμα."
+"Λανθασμένη διεύθυνση(-εις) ηλεκτρονικού ταχυδρομείου. Πρέπει να εισάγετε μία "
+"ή περισσότερες έγκυρες διευθύνσεις, χωριζόμενες με κόμμα."
 
 msgid "Move message into"
 msgstr "Μετακίνηση μηνύματος"
@@ -624,12 +654,16 @@ msgid "Use the following message:"
 msgstr "Χρησιμοποίησε το ακόλουθο μήνυμα:"
 
 msgid "The number of days between vacation messages must be a positive number."
-msgstr "Ο αριθμός ημερών μεταξύ των μηνυμάτων διακοπών πρέπει να έιναι ένας θετικός αριθμός."
+msgstr ""
+"Ο αριθμός ημερών μεταξύ των μηνυμάτων διακοπών πρέπει να έιναι ένας θετικός "
+"αριθμός."
 
 msgid ""
 "Your email addresses for which a vacation message is returned must be "
 "defined."
-msgstr "Οι διευθύνσεις για τις οποίες θα στέλνεται ένα μήνυμα διακοπών πρέπει να οριστούν."
+msgstr ""
+"Οι διευθύνσεις για τις οποίες θα στέλνεται ένα μήνυμα διακοπών πρέπει να "
+"οριστούν."
 
 msgid "Notify me, using the following method:"
 msgstr "Ειδοποίησέ με, χρησιμοποιώντας την ακόλουθη μέθοδο:"
@@ -806,9 +840,6 @@ msgstr "Κράτησε"
 msgid "<em>discard</em> it."
 msgstr "<em>διέγραψέ το</em>."
 
-msgid "DISCARD"
-msgstr "ΑΠΟΡΡΙΨΗ"
-
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>απόρριψέ το</em>, στέλντας την εξής δικαιολογία στον αποστολέα:"
 
@@ -886,3 +917,8 @@ msgstr "Άκυρο όνομα φακέλου. Παρακαλώ επιλέξτε ένα διαφορετικό όνομα."
 msgid "None"
 msgstr "Κανένα"
 
+#~ msgid "(Probably the script is size null)."
+#~ msgstr "(Ίσως το script έχει μέγεθος μηδέν)."
+
+#~ msgid "DISCARD"
+#~ msgstr "ΑΠΟΡΡΙΨΗ"

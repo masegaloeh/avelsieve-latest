@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-09 17:09+0200\n"
+"POT-Creation-Date: 2006-01-31 14:25+0200\n"
 "PO-Revision-Date: 2003-06-01 13:15+0300\n"
 "Last-Translator: Þór Sigurðsson <tosi@hi.is>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -106,14 +106,9 @@ msgstr "STOPPA"
 msgid "If this rule matches, do not check any rules after it."
 msgstr "Ef þessi regla virkjast, ekki skoða aðrar reglur þegar henni er lokið."
 
-msgid "Could not get SIEVE script from your IMAP server"
-msgstr "Gat ekki nálgast SIEVE síusafn af IMAP þjóni"
-
-msgid "(Probably the script is size null)."
-msgstr "(Trúlega er síusafnið tómt )."
-
-msgid "Please contact your administrator."
-msgstr "Vinsamlegast hafðu samband við kerfisstjóra."
+#, fuzzy
+msgid "Mail Filtering Scripts"
+msgstr "Núverandi Síur Tölvupóstskeyta"
 
 msgid "Message Filters"
 msgstr "Skeytasíur"
@@ -128,14 +123,31 @@ msgstr ""
 msgid "Filters"
 msgstr "Síur"
 
-msgid "Current Mail Filtering Rules"
-msgstr "Núverandi Síur Tölvupóstskeyta"
-
-msgid "No Filtering Rules Defined Yet"
-msgstr "Engar síur hafa verið skilgreindar ennþá."
-
 msgid "Could not set active script on your IMAP server"
 msgstr "Gat ekki virkjað síusafn á IMAP þjóni"
+
+msgid "Please contact your administrator."
+msgstr "Vinsamlegast hafðu samband við kerfisstjóra."
+
+msgid "Could not get SIEVE script from your IMAP server"
+msgstr "Gat ekki nálgast SIEVE síusafn af IMAP þjóni"
+
+#, fuzzy
+msgid "Error Encountered:"
+msgstr "Villa kom fyrir"
+
+msgid "Unable to load script to server."
+msgstr ""
+
+msgid "Server responded with:"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Could not delete script from server %s."
+msgstr "Gat ekki nálgast SIEVE síusafn af IMAP þjóni"
+
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "Gat ekki tengst timsieved þjónustunni á IMAP þjóninum"
 
 msgid "AND (Every item must match)"
 msgstr "OG ( Öll skilyrði verða að passa )"
@@ -380,10 +392,6 @@ msgstr "Breyti síun tölvupóstskeyta"
 msgid "Create New Mail Filtering Rule"
 msgstr "Núverandi Síur Tölvupóstskeyta"
 
-#, fuzzy
-msgid "Error Encountered:"
-msgstr "Villa kom fyrir"
-
 msgid "You must correct the above errors before continuing."
 msgstr ""
 
@@ -496,23 +504,20 @@ msgstr ""
 msgid "Created:"
 msgstr ""
 
+msgid "Current Mail Filtering Rules"
+msgstr "Núverandi Síur Tölvupóstskeyta"
+
 msgid "Close"
 msgstr ""
+
+msgid "No Filtering Rules Defined Yet"
+msgstr "Engar síur hafa verið skilgreindar ennþá."
 
 #, fuzzy
 msgid "Really delete this rule?"
 msgstr "Það tókst að eyða reglu númer "
 
 msgid "Action for Selected Rules:"
-msgstr ""
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Gat ekki tengst timsieved þjónustunni á IMAP þjóninum"
-
-msgid "Unable to load script to server."
-msgstr ""
-
-msgid "Server responded with:"
 msgstr ""
 
 msgid "Automatically"
@@ -537,6 +542,28 @@ msgstr "Skeytasíur"
 #, fuzzy
 msgid "You have to define at least one condition."
 msgstr "Þú þarft að skilgreina að minnsta kosti eina reglu fyrir hausa skeytis"
+
+msgid "(Creates a new server-side filtering rule, based on the above criteria)"
+msgstr ""
+
+msgid ""
+"Notice: The following criteria cannot be expressed as server-side filtering "
+"rules:"
+msgstr ""
+
+msgid "Reason:"
+msgstr ""
+
+msgid "The Body extension is not supported in this server."
+msgstr ""
+
+msgid ""
+"Note that Only From:, To:, Cc: and Subject: headers will be checked in the "
+"server filter."
+msgstr ""
+
+msgid "These search expressions are not applicable during message delivery."
+msgstr ""
 
 msgid "Keep (Default action)"
 msgstr "Geyma ( Sjálfgefið )"
@@ -792,9 +819,6 @@ msgstr "passar við reglulega segð"
 msgid "<em>discard</em> it."
 msgstr "<em>henda</em> því."
 
-msgid "DISCARD"
-msgstr ""
-
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>neita viðtöku</em> á því, með eftirfarandi boðum til sendanda:"
 
@@ -875,6 +899,9 @@ msgstr ""
 #, fuzzy
 msgid "None"
 msgstr "Nei"
+
+#~ msgid "(Probably the script is size null)."
+#~ msgstr "(Trúlega er síusafnið tómt )."
 
 #~ msgid "Body Match"
 #~ msgstr "Meginmál passar"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 1.9.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-09 17:09+0200\n"
+"POT-Creation-Date: 2006-01-31 14:25+0200\n"
 "PO-Revision-Date: 2005-02-23 16:28+0100\n"
 "Last-Translator: Marcin Przybylek <smithpl@softnet.waw.pl>\n"
 "Language-Team: Polish <pl_team@softnet.waw.pl>\n"
@@ -117,14 +117,9 @@ msgstr "PARAR"
 msgid "If this rule matches, do not check any rules after it."
 msgstr "Je¶li ta regu³a pasuje nie sprawdzaj nastêpnych regu³."
 
-msgid "Could not get SIEVE script from your IMAP server"
-msgstr "Nie mogê pobraæ skryptu SIEVE z serwera IMAP"
-
-msgid "(Probably the script is size null)."
-msgstr "(Prawdopodobnie wielko¶æ skryptu jest równa 0)."
-
-msgid "Please contact your administrator."
-msgstr "Prosze skontaktowaæ siê z Administratorem."
+#, fuzzy
+msgid "Mail Filtering Scripts"
+msgstr "Aktualne regu³y filtrowania maili"
 
 msgid "Message Filters"
 msgstr "Filtry wiadomo¶ci"
@@ -139,14 +134,31 @@ msgstr ""
 msgid "Filters"
 msgstr "Filtry"
 
-msgid "Current Mail Filtering Rules"
-msgstr "Aktualne regu³y filtrowania maili"
-
-msgid "No Filtering Rules Defined Yet"
-msgstr "Brak zdefiniowanych regu³ filtruj±cych"
-
 msgid "Could not set active script on your IMAP server"
 msgstr "Nie mo¿na ustawiæ aktywnego skryptu na serwerze IMAP"
+
+msgid "Please contact your administrator."
+msgstr "Prosze skontaktowaæ siê z Administratorem."
+
+msgid "Could not get SIEVE script from your IMAP server"
+msgstr "Nie mogê pobraæ skryptu SIEVE z serwera IMAP"
+
+#, fuzzy
+msgid "Error Encountered:"
+msgstr "Napotkano b³±d"
+
+msgid "Unable to load script to server."
+msgstr "Nie mo¿na za³adowaæ skryptu na serwer."
+
+msgid "Server responded with:"
+msgstr "Serwer odpowiedzia³ z:"
+
+#, fuzzy, php-format
+msgid "Could not delete script from server %s."
+msgstr "Nie mogê pobraæ skryptu SIEVE z serwera IMAP"
+
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "Nie mog³em po³±czyæ siê z demonem Sieve na serwerze IMAP"
 
 msgid "AND (Every item must match)"
 msgstr "AND (Ka¿da pozycja musi pasowaæ)"
@@ -389,10 +401,6 @@ msgstr "Edytuj regu³e filtru"
 msgid "Create New Mail Filtering Rule"
 msgstr "Tworzenie nowej regu³y filtrowania maili"
 
-#, fuzzy
-msgid "Error Encountered:"
-msgstr "Napotkano b³±d"
-
 msgid "You must correct the above errors before continuing."
 msgstr ""
 
@@ -505,8 +513,14 @@ msgstr "Ostatnio zmodyfikowany:"
 msgid "Created:"
 msgstr "Utworzony:"
 
+msgid "Current Mail Filtering Rules"
+msgstr "Aktualne regu³y filtrowania maili"
+
 msgid "Close"
 msgstr "Zamknij"
+
+msgid "No Filtering Rules Defined Yet"
+msgstr "Brak zdefiniowanych regu³ filtruj±cych"
 
 #, fuzzy
 msgid "Really delete this rule?"
@@ -514,15 +528,6 @@ msgstr "Napewno usun±æ regu³e?"
 
 msgid "Action for Selected Rules:"
 msgstr ""
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Nie mog³em po³±czyæ siê z demonem Sieve na serwerze IMAP"
-
-msgid "Unable to load script to server."
-msgstr "Nie mo¿na za³adowaæ skryptu na serwer."
-
-msgid "Server responded with:"
-msgstr "Serwer odpowiedzia³ z:"
 
 msgid "Automatically"
 msgstr "Automatycznie"
@@ -546,6 +551,28 @@ msgstr "Utwórz filtr"
 #, fuzzy
 msgid "You have to define at least one condition."
 msgstr "Musisz mieæ zdefiniowan± przynajmniej jedn± regu³e."
+
+msgid "(Creates a new server-side filtering rule, based on the above criteria)"
+msgstr ""
+
+msgid ""
+"Notice: The following criteria cannot be expressed as server-side filtering "
+"rules:"
+msgstr ""
+
+msgid "Reason:"
+msgstr ""
+
+msgid "The Body extension is not supported in this server."
+msgstr ""
+
+msgid ""
+"Note that Only From:, To:, Cc: and Subject: headers will be checked in the "
+"server filter."
+msgstr ""
+
+msgid "These search expressions are not applicable during message delivery."
+msgstr ""
 
 msgid "Keep (Default action)"
 msgstr "Zachowaj (Domy¶lna akcja)"
@@ -805,9 +832,6 @@ msgstr "regexp"
 msgid "<em>discard</em> it."
 msgstr "<em>odrzuæ</em> go."
 
-msgid "DISCARD"
-msgstr ""
-
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>odrzuæ</em>, wysy³a t± informacjê do nadawcy:"
 
@@ -888,6 +912,9 @@ msgstr "Niepoprawna nazwa folderu. Wprowad¼ inna nazwe"
 #, fuzzy
 msgid "None"
 msgstr "None"
+
+#~ msgid "(Probably the script is size null)."
+#~ msgstr "(Prawdopodobnie wielko¶æ skryptu jest równa 0)."
 
 #~ msgid "What kind of rule would you like to add?"
 #~ msgstr "Jaki rodzaj regu³y chcia³by¶ dodaæ?"

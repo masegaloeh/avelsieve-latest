@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve czech locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-09 17:09+0200\n"
+"POT-Creation-Date: 2006-01-31 14:25+0200\n"
 "PO-Revision-Date: 2004-04-01 20:15+0300\n"
 "Last-Translator: Jiri Demel <demel@fsv.cvut.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -116,14 +116,9 @@ msgstr "STOP"
 msgid "If this rule matches, do not check any rules after it."
 msgstr "Je-li toto pravidlo aktivováno, nezkou¹ej dal¹í pravidla."
 
-msgid "Could not get SIEVE script from your IMAP server"
-msgstr "Nepodaøilo se získat SIEVE skript z tvého IMAP serveru"
-
-msgid "(Probably the script is size null)."
-msgstr "(Skript má pravdìpodobnì nulovou velikost)."
-
-msgid "Please contact your administrator."
-msgstr "Kontaktujte administrátora."
+#, fuzzy
+msgid "Mail Filtering Scripts"
+msgstr "Nyní platná filtrovací pravidla"
 
 msgid "Message Filters"
 msgstr "Filtrovací pravidla"
@@ -138,14 +133,30 @@ msgstr ""
 msgid "Filters"
 msgstr "Filtry"
 
-msgid "Current Mail Filtering Rules"
-msgstr "Nyní platná filtrovací pravidla"
-
-msgid "No Filtering Rules Defined Yet"
-msgstr "®ádná filtrovací pravidla nejsou zatím definována"
-
 msgid "Could not set active script on your IMAP server"
 msgstr "Nepodaøilo se aktivovat skript na IMAP serveru"
+
+msgid "Please contact your administrator."
+msgstr "Kontaktujte administrátora."
+
+msgid "Could not get SIEVE script from your IMAP server"
+msgstr "Nepodaøilo se získat SIEVE skript z tvého IMAP serveru"
+
+msgid "Error Encountered:"
+msgstr ""
+
+msgid "Unable to load script to server."
+msgstr "Nepodaøilo se ulo¾it skript na server."
+
+msgid "Server responded with:"
+msgstr "Odpovìï serveru:"
+
+#, fuzzy, php-format
+msgid "Could not delete script from server %s."
+msgstr "Nepodaøilo se získat SIEVE skript z tvého IMAP serveru"
+
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "Nepodaøilo se pøihlásit k démonu timsieved na IMAP serveru"
 
 msgid "AND (Every item must match)"
 msgstr "A (ka¾dá polo¾ka musí souhlasit)"
@@ -384,9 +395,6 @@ msgstr "Editace filtrovacího pravidla"
 msgid "Create New Mail Filtering Rule"
 msgstr "Nyní platná filtrovací pravidla"
 
-msgid "Error Encountered:"
-msgstr ""
-
 msgid "You must correct the above errors before continuing."
 msgstr ""
 
@@ -499,23 +507,20 @@ msgstr "Naposledy zmìnìno:"
 msgid "Created:"
 msgstr "Vytvoøeno:"
 
+msgid "Current Mail Filtering Rules"
+msgstr "Nyní platná filtrovací pravidla"
+
 msgid "Close"
 msgstr ""
+
+msgid "No Filtering Rules Defined Yet"
+msgstr "®ádná filtrovací pravidla nejsou zatím definována"
 
 msgid "Really delete this rule?"
 msgstr "Opravdu smazat toto pravidlo?"
 
 msgid "Action for Selected Rules:"
 msgstr ""
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Nepodaøilo se pøihlásit k démonu timsieved na IMAP serveru"
-
-msgid "Unable to load script to server."
-msgstr "Nepodaøilo se ulo¾it skript na server."
-
-msgid "Server responded with:"
-msgstr "Odpovìï serveru:"
 
 msgid "Automatically"
 msgstr ""
@@ -539,6 +544,28 @@ msgstr "Filtrovací pravidla"
 #, fuzzy
 msgid "You have to define at least one condition."
 msgstr "Musíte definovat alespoò jednu podmínku."
+
+msgid "(Creates a new server-side filtering rule, based on the above criteria)"
+msgstr ""
+
+msgid ""
+"Notice: The following criteria cannot be expressed as server-side filtering "
+"rules:"
+msgstr ""
+
+msgid "Reason:"
+msgstr ""
+
+msgid "The Body extension is not supported in this server."
+msgstr ""
+
+msgid ""
+"Note that Only From:, To:, Cc: and Subject: headers will be checked in the "
+"server filter."
+msgstr ""
+
+msgid "These search expressions are not applicable during message delivery."
+msgstr ""
 
 msgid "Keep (Default action)"
 msgstr "Podr¾et (default)"
@@ -796,9 +823,6 @@ msgstr "regulární výraz"
 msgid "<em>discard</em> it."
 msgstr "<em>zahoï</em> jej."
 
-msgid "DISCARD"
-msgstr ""
-
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>odmítni</em> jej s touto omluvou odesílateli:"
 
@@ -877,6 +901,9 @@ msgstr "Chybné jméno slo¾ky. Zkuste jiné jméno."
 
 msgid "None"
 msgstr "Nic"
+
+#~ msgid "(Probably the script is size null)."
+#~ msgstr "(Skript má pravdìpodobnì nulovou velikost)."
 
 #~ msgid "Body Match"
 #~ msgstr "Shoda v tìle"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-09 17:09+0200\n"
+"POT-Creation-Date: 2006-01-31 14:25+0200\n"
 "PO-Revision-Date: 2002-09-30 16:13+0800\n"
 "Last-Translator: Wei Gao <wei@gaofamily.org>\n"
 "Language-Team: Chinese Simplified <LL@li.org>\n"
@@ -104,14 +104,9 @@ msgstr "停止"
 msgid "If this rule matches, do not check any rules after it."
 msgstr "如果这个规则匹配上了，就要再检查它后面的。"
 
-msgid "Could not get SIEVE script from your IMAP server"
-msgstr "无法从你的IMAP服务器上得到SIEVE角本"
-
-msgid "(Probably the script is size null)."
-msgstr "（可能角本大小为空）"
-
-msgid "Please contact your administrator."
-msgstr "请同你的系统管理员联系"
+#, fuzzy
+msgid "Mail Filtering Scripts"
+msgstr "当前的信件过滤规则"
 
 msgid "Message Filters"
 msgstr "信件过滤器"
@@ -124,14 +119,31 @@ msgstr "服务器端的信件过滤器使你加入一些条件以自动转发，删除或移动一个文件夹。"
 msgid "Filters"
 msgstr "过滤器"
 
-msgid "Current Mail Filtering Rules"
-msgstr "当前的信件过滤规则"
-
-msgid "No Filtering Rules Defined Yet"
-msgstr "还没有定义过滤规则"
-
 msgid "Could not set active script on your IMAP server"
 msgstr "无法在你的IMAP服务器上设置动作角本"
+
+msgid "Please contact your administrator."
+msgstr "请同你的系统管理员联系"
+
+msgid "Could not get SIEVE script from your IMAP server"
+msgstr "无法从你的IMAP服务器上得到SIEVE角本"
+
+#, fuzzy
+msgid "Error Encountered:"
+msgstr "总共出错"
+
+msgid "Unable to load script to server."
+msgstr ""
+
+msgid "Server responded with:"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Could not delete script from server %s."
+msgstr "无法从你的IMAP服务器上得到SIEVE角本"
+
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "无法登陆到你的IMAP服务器的timsieved服务"
 
 msgid "AND (Every item must match)"
 msgstr "与（所有项都必须满足）"
@@ -373,10 +385,6 @@ msgstr "修改信件过滤规则"
 msgid "Create New Mail Filtering Rule"
 msgstr "当前的信件过滤规则"
 
-#, fuzzy
-msgid "Error Encountered:"
-msgstr "总共出错"
-
 msgid "You must correct the above errors before continuing."
 msgstr ""
 
@@ -485,23 +493,20 @@ msgstr ""
 msgid "Created:"
 msgstr ""
 
+msgid "Current Mail Filtering Rules"
+msgstr "当前的信件过滤规则"
+
 msgid "Close"
 msgstr ""
+
+msgid "No Filtering Rules Defined Yet"
+msgstr "还没有定义过滤规则"
 
 #, fuzzy
 msgid "Really delete this rule?"
 msgstr "成功的删除了规则#"
 
 msgid "Action for Selected Rules:"
-msgstr ""
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "无法登陆到你的IMAP服务器的timsieved服务"
-
-msgid "Unable to load script to server."
-msgstr ""
-
-msgid "Server responded with:"
 msgstr ""
 
 msgid "Automatically"
@@ -526,6 +531,28 @@ msgstr "信件过滤器"
 #, fuzzy
 msgid "You have to define at least one condition."
 msgstr "你必须定义至少一个信头匹配的内容"
+
+msgid "(Creates a new server-side filtering rule, based on the above criteria)"
+msgstr ""
+
+msgid ""
+"Notice: The following criteria cannot be expressed as server-side filtering "
+"rules:"
+msgstr ""
+
+msgid "Reason:"
+msgstr ""
+
+msgid "The Body extension is not supported in this server."
+msgstr ""
+
+msgid ""
+"Note that Only From:, To:, Cc: and Subject: headers will be checked in the "
+"server filter."
+msgstr ""
+
+msgid "These search expressions are not applicable during message delivery."
+msgstr ""
 
 msgid "Keep (Default action)"
 msgstr "保持（默认的动作）"
@@ -778,9 +805,6 @@ msgstr ""
 msgid "<em>discard</em> it."
 msgstr "<em>勿略</em>它。"
 
-msgid "DISCARD"
-msgstr ""
-
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>拒收</em>它，收送下面的信息给发件人："
 
@@ -861,6 +885,9 @@ msgstr ""
 #, fuzzy
 msgid "None"
 msgstr "序号"
+
+#~ msgid "(Probably the script is size null)."
+#~ msgstr "（可能角本大小为空）"
 
 #, fuzzy
 #~ msgid "Body Match"

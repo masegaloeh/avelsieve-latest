@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-09 17:09+0200\n"
+"POT-Creation-Date: 2006-01-31 14:25+0200\n"
 "PO-Revision-Date: 2004-08-07 21:42+0100\n"
 "Last-Translator: Karsten Behrens <mail@karsten-behrens.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
@@ -121,14 +121,9 @@ msgid "If this rule matches, do not check any rules after it."
 msgstr ""
 "Beende das weitere Abarbeiten von Filterregeln, wenn diese Regel zutrifft."
 
-msgid "Could not get SIEVE script from your IMAP server"
-msgstr "Konnte SIEVE Skript nicht von Ihrem IMAP Server holen"
-
-msgid "(Probably the script is size null)."
-msgstr "(Eventuell ist das Script leer.)"
-
-msgid "Please contact your administrator."
-msgstr "Bitte kontaktieren Sie Ihren Administrator."
+#, fuzzy
+msgid "Mail Filtering Scripts"
+msgstr "Zur Zeit definierte Regeln"
 
 msgid "Message Filters"
 msgstr "Nachrichtenfilter"
@@ -143,14 +138,30 @@ msgstr ""
 msgid "Filters"
 msgstr "Filter"
 
-msgid "Current Mail Filtering Rules"
-msgstr "Zur Zeit definierte Regeln"
-
-msgid "No Filtering Rules Defined Yet"
-msgstr "Noch keine Filter definiert"
-
 msgid "Could not set active script on your IMAP server"
 msgstr "Konnte Ihr SIEVE Skript nicht auf Ihrem IMAP Server aktivieren"
+
+msgid "Please contact your administrator."
+msgstr "Bitte kontaktieren Sie Ihren Administrator."
+
+msgid "Could not get SIEVE script from your IMAP server"
+msgstr "Konnte SIEVE Skript nicht von Ihrem IMAP Server holen"
+
+msgid "Error Encountered:"
+msgstr "Fehler aufgetreten:"
+
+msgid "Unable to load script to server."
+msgstr "Konnte Skript nicht hochladen"
+
+msgid "Server responded with:"
+msgstr "Serverantwort:"
+
+#, fuzzy, php-format
+msgid "Could not delete script from server %s."
+msgstr "Konnte SIEVE Skript nicht von Ihrem IMAP Server holen"
+
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "Konnte den timsieved-Prozess auf Ihrem IMAP-Server nicht erreichen"
 
 msgid "AND (Every item must match)"
 msgstr "UND (Jeder Eintrag muss übereinstimmen)"
@@ -391,9 +402,6 @@ msgstr "Bearbeite Filterregel"
 msgid "Create New Mail Filtering Rule"
 msgstr "Erstelle neue Regel"
 
-msgid "Error Encountered:"
-msgstr "Fehler aufgetreten:"
-
 msgid "You must correct the above errors before continuing."
 msgstr "Sie müssen die obigen Fehler korrigieren, bevor es weitergeht"
 
@@ -511,23 +519,20 @@ msgstr "Letzte Änderung:"
 msgid "Created:"
 msgstr "Erstellt:"
 
+msgid "Current Mail Filtering Rules"
+msgstr "Zur Zeit definierte Regeln"
+
 msgid "Close"
 msgstr "Schliessen"
+
+msgid "No Filtering Rules Defined Yet"
+msgstr "Noch keine Filter definiert"
 
 msgid "Really delete this rule?"
 msgstr "Diese Regel wirklich löschen?"
 
 msgid "Action for Selected Rules:"
 msgstr "Ausgewählte Regeln:"
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Konnte den timsieved-Prozess auf Ihrem IMAP-Server nicht erreichen"
-
-msgid "Unable to load script to server."
-msgstr "Konnte Skript nicht hochladen"
-
-msgid "Server responded with:"
-msgstr "Serverantwort:"
 
 msgid "Automatically"
 msgstr "Automatisch"
@@ -549,6 +554,28 @@ msgstr "Nachrichtenfilter"
 
 msgid "You have to define at least one condition."
 msgstr "Sie müssen mindestens eine Bedingung angeben."
+
+msgid "(Creates a new server-side filtering rule, based on the above criteria)"
+msgstr ""
+
+msgid ""
+"Notice: The following criteria cannot be expressed as server-side filtering "
+"rules:"
+msgstr ""
+
+msgid "Reason:"
+msgstr ""
+
+msgid "The Body extension is not supported in this server."
+msgstr ""
+
+msgid ""
+"Note that Only From:, To:, Cc: and Subject: headers will be checked in the "
+"server filter."
+msgstr ""
+
+msgid "These search expressions are not applicable during message delivery."
+msgstr ""
 
 msgid "Keep (Default action)"
 msgstr "Behalten (Standardeinstellung)"
@@ -811,9 +838,6 @@ msgstr "behalte"
 msgid "<em>discard</em> it."
 msgstr "<em>ignorieren</em>."
 
-msgid "DISCARD"
-msgstr "LÖSCHE"
-
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>verweigern</em> und folgende Nachricht an den Absender schicken:"
 
@@ -889,3 +913,9 @@ msgstr "Ungültiger Ordnername. Bitte wählen Sie einen anderen aus."
 
 msgid "None"
 msgstr "Keine"
+
+#~ msgid "(Probably the script is size null)."
+#~ msgstr "(Eventuell ist das Script leer.)"
+
+#~ msgid "DISCARD"
+#~ msgstr "LÖSCHE"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 1.9.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-09 17:09+0200\n"
+"POT-Creation-Date: 2006-01-31 14:25+0200\n"
 "PO-Revision-Date: 2005-03-16 21:28+0200\n"
 "Last-Translator: Eduardo Mayoral <emayoral@arsys.es>\n"
 "Language-Team: spanish <es@li.org>\n"
@@ -119,14 +119,9 @@ msgstr "PARAR"
 msgid "If this rule matches, do not check any rules after it."
 msgstr "Si esta regla concuerda, no comprobar m&aacute;s reglas tras ella."
 
-msgid "Could not get SIEVE script from your IMAP server"
-msgstr "No se pudo cargar el script SIEVE desde su servidor IMAP"
-
-msgid "(Probably the script is size null)."
-msgstr "(Probablemente el script es de tama&ntilde;o 0)."
-
-msgid "Please contact your administrator."
-msgstr "Por favor p&oacute;ngase en contacto con su administrador"
+#, fuzzy
+msgid "Mail Filtering Scripts"
+msgstr "Reglas de Filtrado de Correo actuales"
 
 msgid "Message Filters"
 msgstr "Filtros de mensajes"
@@ -141,14 +136,30 @@ msgstr ""
 msgid "Filters"
 msgstr "Filtros"
 
-msgid "Current Mail Filtering Rules"
-msgstr "Reglas de Filtrado de Correo actuales"
-
-msgid "No Filtering Rules Defined Yet"
-msgstr "No hay reglas definidas a&uacute;n"
-
 msgid "Could not set active script on your IMAP server"
 msgstr "No se pudo establecer el script activo en su servidor IMAP"
+
+msgid "Please contact your administrator."
+msgstr "Por favor p&oacute;ngase en contacto con su administrador"
+
+msgid "Could not get SIEVE script from your IMAP server"
+msgstr "No se pudo cargar el script SIEVE desde su servidor IMAP"
+
+msgid "Error Encountered:"
+msgstr "Se ha encontrado un error:"
+
+msgid "Unable to load script to server."
+msgstr "No se ha podido cargar el script en el servidor."
+
+msgid "Server responded with:"
+msgstr "El servidor respondi&oacute; con:"
+
+#, fuzzy, php-format
+msgid "Could not delete script from server %s."
+msgstr "No se pudo cargar el script SIEVE desde su servidor IMAP"
+
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "No se pudo entrar en el demonio timsieved de su servidor IMAP"
 
 msgid "AND (Every item must match)"
 msgstr "Y (Todos los elementos deben corresponder)"
@@ -407,9 +418,6 @@ msgstr "Editando regla de filtrado de correo"
 msgid "Create New Mail Filtering Rule"
 msgstr "Crear nueva regla de filtrado"
 
-msgid "Error Encountered:"
-msgstr "Se ha encontrado un error:"
-
 msgid "You must correct the above errors before continuing."
 msgstr ""
 
@@ -524,23 +532,20 @@ msgstr "Última modificaci&oacute;n:"
 msgid "Created:"
 msgstr "Creada:"
 
+msgid "Current Mail Filtering Rules"
+msgstr "Reglas de Filtrado de Correo actuales"
+
 msgid "Close"
 msgstr "Cerrar"
+
+msgid "No Filtering Rules Defined Yet"
+msgstr "No hay reglas definidas a&uacute;n"
 
 msgid "Really delete this rule?"
 msgstr "¿Seguro que quiere borrar esta regla? "
 
 msgid "Action for Selected Rules:"
 msgstr "Acci&oacute;n para las reglas seleccionadas:"
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "No se pudo entrar en el demonio timsieved de su servidor IMAP"
-
-msgid "Unable to load script to server."
-msgstr "No se ha podido cargar el script en el servidor."
-
-msgid "Server responded with:"
-msgstr "El servidor respondi&oacute; con:"
 
 msgid "Automatically"
 msgstr "Auntom&aacute;ticamente"
@@ -563,6 +568,28 @@ msgstr "Crear filtro"
 #, fuzzy
 msgid "You have to define at least one condition."
 msgstr "Debe definir al menos un texto de correspondencia de encabezado."
+
+msgid "(Creates a new server-side filtering rule, based on the above criteria)"
+msgstr ""
+
+msgid ""
+"Notice: The following criteria cannot be expressed as server-side filtering "
+"rules:"
+msgstr ""
+
+msgid "Reason:"
+msgstr ""
+
+msgid "The Body extension is not supported in this server."
+msgstr ""
+
+msgid ""
+"Note that Only From:, To:, Cc: and Subject: headers will be checked in the "
+"server filter."
+msgstr ""
+
+msgid "These search expressions are not applicable during message delivery."
+msgstr ""
 
 msgid "Keep (Default action)"
 msgstr "Guardar (Acci&oacute;n predeterminada)"
@@ -824,9 +851,6 @@ msgstr "conservar"
 msgid "<em>discard</em> it."
 msgstr "<em>des&eacute;chalo</em>."
 
-msgid "DISCARD"
-msgstr "DESECHAR"
-
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>rech&aacute;zalo</em>, enviado esta excusa de vuelta al remitente:"
 
@@ -904,6 +928,12 @@ msgstr ""
 
 msgid "None"
 msgstr "Ninguna"
+
+#~ msgid "(Probably the script is size null)."
+#~ msgstr "(Probablemente el script es de tama&ntilde;o 0)."
+
+#~ msgid "DISCARD"
+#~ msgstr "DESECHAR"
 
 #~ msgid "Body Match"
 #~ msgstr "Concordancia en el contenido"
