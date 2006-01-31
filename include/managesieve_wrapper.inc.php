@@ -9,7 +9,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: managesieve_wrapper.inc.php,v 1.11 2006/01/20 14:01:24 avel Exp $
+ * @version $Id: managesieve_wrapper.inc.php,v 1.12 2006/01/31 11:56:48 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -41,7 +41,7 @@ function avelsieve_initialize(&$sieve) {
     	sqgetGlobalVar('onetimepad', $onetimepad, SQ_SESSION);
 	    sqgetGlobalVar('authz', $authz, SQ_SESSION);
         global $imapServerAddress, $username, $avelsieve_imapproxymode, $avelsieve_cyrusadmins_map, $sieveport,
-            $sieve_preferred_sasl_mech;
+            $avelsieve_imapproxyserv, $sieve_preferred_sasl_mech;
 
         /* Need the cleartext password to login to timsieved */
     	$acctpass = OneTimePadDecrypt($key, $onetimepad);
