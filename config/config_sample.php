@@ -9,7 +9,7 @@
  * This file contains configuration parameters for SIEVE mail filters plugin
  * (aka avelsieve)
  *
- * @version $Id: config_sample.php,v 1.13 2006/01/17 15:49:30 avel Exp $
+ * @version $Id: config_sample.php,v 1.14 2006/01/31 12:53:04 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -109,6 +109,7 @@ $useimages = true;
  * default behaviour since 0.9 is not to translate them. Change to true if in
  * an intranet environment or in a same-language environment. */
 
+global $translate_return_msgs;
 $translate_return_msgs = false;
 
 /* Theme to use for the images. A directory with the same name must exist under
@@ -139,6 +140,7 @@ $headers = array(
  );
 
 /* Available :method's for the :notify extension (if applicable) */
+global $notifymethods;
 $notifymethods = array(
 'mailto', 'sms'
 );
@@ -161,13 +163,16 @@ $notifymethods = array(
  * valid values */
 
 // $disable_avelsieve_capabilities = array("notify");
+global $disable_avelsieve_capabilities;
 $disable_avelsieve_capabilities = array();
 
 /* Display Filters link in the top Squirrelmail header? */
 
+global $avelsieveheaderlink;
 $avelsieveheaderlink = true;
 
 /* Default rules table display mode, one of 'verbose' or 'terse' */
+global $avelsieve_default_mode; 
 $avelsieve_default_mode = 'terse';
 
 
