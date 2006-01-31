@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-09 17:09+0200\n"
+"POT-Creation-Date: 2006-01-31 14:25+0200\n"
 "PO-Revision-Date: 2004-05-14 12:00+0200\n"
 "Last-Translator: Veli Pirttila <titus@iki.fi>\n"
 "Language-Team: finnish <fi@li.org>\n"
@@ -116,14 +116,9 @@ msgstr "PYSƒHDY"
 msgid "If this rule matches, do not check any rules after it."
 msgstr "Jos t‰m‰ s‰‰ntˆ t‰sm‰‰, ‰l‰ tarkasta en‰‰ muita s‰‰ntˆj‰ sen j‰lkeen."
 
-msgid "Could not get SIEVE script from your IMAP server"
-msgstr "Ei voitu hakea komentotiedostoa palvelimelta"
-
-msgid "(Probably the script is size null)."
-msgstr "(Ehk‰ komentotiedosto ei sis‰ll‰ mit‰‰n)."
-
-msgid "Please contact your administrator."
-msgstr "Ota yhteytt‰ yll‰pit‰j‰‰n"
+#, fuzzy
+msgid "Mail Filtering Scripts"
+msgstr "Nykyiset suodins‰‰nnˆt"
 
 msgid "Message Filters"
 msgstr "Viestien suodattimet"
@@ -139,14 +134,31 @@ msgstr ""
 msgid "Filters"
 msgstr "Suodattimet"
 
-msgid "Current Mail Filtering Rules"
-msgstr "Nykyiset suodins‰‰nnˆt"
-
-msgid "No Filtering Rules Defined Yet"
-msgstr "Ei suodins‰‰tˆj‰ viel‰ tehtyn‰"
-
 msgid "Could not set active script on your IMAP server"
 msgstr "Ei voitu aktivoida komentotiedostoa palvelimella"
+
+msgid "Please contact your administrator."
+msgstr "Ota yhteytt‰ yll‰pit‰j‰‰n"
+
+msgid "Could not get SIEVE script from your IMAP server"
+msgstr "Ei voitu hakea komentotiedostoa palvelimelta"
+
+#, fuzzy
+msgid "Error Encountered:"
+msgstr "Virhe"
+
+msgid "Unable to load script to server."
+msgstr "Ei voitu vied‰ scripti‰ palvelimelle."
+
+msgid "Server responded with:"
+msgstr "Palvelin vastasi seuraavanlaisesti:"
+
+#, fuzzy, php-format
+msgid "Could not delete script from server %s."
+msgstr "Ei voitu hakea komentotiedostoa palvelimelta"
+
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "Ei voitu sis‰‰nkirjautua palveluun"
 
 msgid "AND (Every item must match)"
 msgstr "JA (Kaikkien tulee sis‰lty‰)"
@@ -390,10 +402,6 @@ msgstr "Muokataan suodins‰‰ntˆ‰"
 msgid "Create New Mail Filtering Rule"
 msgstr "Nykyiset suodins‰‰nnˆt"
 
-#, fuzzy
-msgid "Error Encountered:"
-msgstr "Virhe"
-
 msgid "You must correct the above errors before continuing."
 msgstr ""
 
@@ -506,23 +514,20 @@ msgstr "Viimeksi muutettu:"
 msgid "Created:"
 msgstr "Tehty:"
 
+msgid "Current Mail Filtering Rules"
+msgstr "Nykyiset suodins‰‰nnˆt"
+
 msgid "Close"
 msgstr ""
+
+msgid "No Filtering Rules Defined Yet"
+msgstr "Ei suodins‰‰tˆj‰ viel‰ tehtyn‰"
 
 msgid "Really delete this rule?"
 msgstr "Poistetaanko t‰m‰ s‰‰ntˆ oikeasti?"
 
 msgid "Action for Selected Rules:"
 msgstr ""
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Ei voitu sis‰‰nkirjautua palveluun"
-
-msgid "Unable to load script to server."
-msgstr "Ei voitu vied‰ scripti‰ palvelimelle."
-
-msgid "Server responded with:"
-msgstr "Palvelin vastasi seuraavanlaisesti:"
 
 msgid "Automatically"
 msgstr ""
@@ -546,6 +551,28 @@ msgstr "Viestien suodattimet"
 #, fuzzy
 msgid "You have to define at least one condition."
 msgstr "Tekstin tulee sis‰lty‰ ainakin yhteen otsikkokentt‰‰n."
+
+msgid "(Creates a new server-side filtering rule, based on the above criteria)"
+msgstr ""
+
+msgid ""
+"Notice: The following criteria cannot be expressed as server-side filtering "
+"rules:"
+msgstr ""
+
+msgid "Reason:"
+msgstr ""
+
+msgid "The Body extension is not supported in this server."
+msgstr ""
+
+msgid ""
+"Note that Only From:, To:, Cc: and Subject: headers will be checked in the "
+"server filter."
+msgstr ""
+
+msgid "These search expressions are not applicable during message delivery."
+msgstr ""
 
 msgid "Keep (Default action)"
 msgstr "Ei tehd‰ mit‰‰n (Vakio toiminta)"
@@ -806,9 +833,6 @@ msgstr "regexpi"
 msgid "<em>discard</em> it."
 msgstr "<em>tuhoa</em> se."
 
-msgid "DISCARD"
-msgstr ""
-
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>hylk‰‰</em> se ja l‰het‰ seuraavanlainen viesti l‰hett‰j‰lle:"
 
@@ -887,6 +911,9 @@ msgstr "Virheellinen kansion nimi. Valitse muu nimi."
 
 msgid "None"
 msgstr "Ei yht‰‰n"
+
+#~ msgid "(Probably the script is size null)."
+#~ msgstr "(Ehk‰ komentotiedosto ei sis‰ll‰ mit‰‰n)."
 
 #~ msgid "Body Match"
 #~ msgstr "Viesti sis‰lt‰‰"

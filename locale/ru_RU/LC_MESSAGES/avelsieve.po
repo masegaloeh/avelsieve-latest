@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-09 17:09+0200\n"
+"POT-Creation-Date: 2006-01-31 14:25+0200\n"
 "PO-Revision-Date: 2003-05-21 13:15+0300\n"
 "Last-Translator: Vadim Kozlov <vad@tomsknet.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -115,14 +115,9 @@ msgstr "ЗАКОНЧИТЬ"
 msgid "If this rule matches, do not check any rules after it."
 msgstr "Если это правило срабатывает, не проверять другие правила после него"
 
-msgid "Could not get SIEVE script from your IMAP server"
-msgstr "Не могу получить скрипт с вашего сервера IMAP"
-
-msgid "(Probably the script is size null)."
-msgstr "(Возможно, скрипт имеет нулевой размер)."
-
-msgid "Please contact your administrator."
-msgstr "Пожалуйста, сообщите вашему администратору."
+#, fuzzy
+msgid "Mail Filtering Scripts"
+msgstr "Имеющиеся правила фильтрации"
 
 msgid "Message Filters"
 msgstr "Фильтры сообщений"
@@ -138,14 +133,31 @@ msgstr ""
 msgid "Filters"
 msgstr "Фильтры"
 
-msgid "Current Mail Filtering Rules"
-msgstr "Имеющиеся правила фильтрации"
-
-msgid "No Filtering Rules Defined Yet"
-msgstr "Правила фильтрации не определены"
-
 msgid "Could not set active script on your IMAP server"
 msgstr "Не могу сделать скрипт активным на вашем сервере IMAP"
+
+msgid "Please contact your administrator."
+msgstr "Пожалуйста, сообщите вашему администратору."
+
+msgid "Could not get SIEVE script from your IMAP server"
+msgstr "Не могу получить скрипт с вашего сервера IMAP"
+
+#, fuzzy
+msgid "Error Encountered:"
+msgstr "Встречено ошибок"
+
+msgid "Unable to load script to server."
+msgstr "Не могу загрузить фильтр на сервер."
+
+msgid "Server responded with:"
+msgstr "Сервер ответил:"
+
+#, fuzzy, php-format
+msgid "Could not delete script from server %s."
+msgstr "Не могу получить скрипт с вашего сервера IMAP"
+
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "Не могу соединится с демоном timsiaved на вашем сервере IMAP"
 
 msgid "AND (Every item must match)"
 msgstr "И (выполнение всех условий)"
@@ -388,10 +400,6 @@ msgstr "Редактирование правила фильтрации"
 msgid "Create New Mail Filtering Rule"
 msgstr "Имеющиеся правила фильтрации"
 
-#, fuzzy
-msgid "Error Encountered:"
-msgstr "Встречено ошибок"
-
 msgid "You must correct the above errors before continuing."
 msgstr ""
 
@@ -504,8 +512,14 @@ msgstr "Изменено:"
 msgid "Created:"
 msgstr "Создано:"
 
+msgid "Current Mail Filtering Rules"
+msgstr "Имеющиеся правила фильтрации"
+
 msgid "Close"
 msgstr ""
+
+msgid "No Filtering Rules Defined Yet"
+msgstr "Правила фильтрации не определены"
 
 #, fuzzy
 msgid "Really delete this rule?"
@@ -513,15 +527,6 @@ msgstr "Успешно удалено правило #"
 
 msgid "Action for Selected Rules:"
 msgstr ""
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Не могу соединится с демоном timsiaved на вашем сервере IMAP"
-
-msgid "Unable to load script to server."
-msgstr "Не могу загрузить фильтр на сервер."
-
-msgid "Server responded with:"
-msgstr "Сервер ответил:"
 
 msgid "Automatically"
 msgstr ""
@@ -545,6 +550,28 @@ msgstr "Фильтры сообщений"
 #, fuzzy
 msgid "You have to define at least one condition."
 msgstr "Вы должны определить хотя бы одну строку соответствия заголовка."
+
+msgid "(Creates a new server-side filtering rule, based on the above criteria)"
+msgstr ""
+
+msgid ""
+"Notice: The following criteria cannot be expressed as server-side filtering "
+"rules:"
+msgstr ""
+
+msgid "Reason:"
+msgstr ""
+
+msgid "The Body extension is not supported in this server."
+msgstr ""
+
+msgid ""
+"Note that Only From:, To:, Cc: and Subject: headers will be checked in the "
+"server filter."
+msgstr ""
+
+msgid "These search expressions are not applicable during message delivery."
+msgstr ""
 
 msgid "Keep (Default action)"
 msgstr "Сохранить (по умолчанию)"
@@ -800,9 +827,6 @@ msgstr "регулярное выражение"
 msgid "<em>discard</em> it."
 msgstr "<em>уничтожить на сервере</em>"
 
-msgid "DISCARD"
-msgstr ""
-
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>вернуть отправителю</em> с пояснением: "
 
@@ -882,6 +906,9 @@ msgstr "Недопустимое имя папки. Пожалуйста, выб
 #, fuzzy
 msgid "None"
 msgstr "N правила"
+
+#~ msgid "(Probably the script is size null)."
+#~ msgstr "(Возможно, скрипт имеет нулевой размер)."
 
 #~ msgid "Body Match"
 #~ msgstr "Сравнение содержания"

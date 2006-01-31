@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-09 17:09+0200\n"
+"POT-Creation-Date: 2006-01-31 14:25+0200\n"
 "PO-Revision-Date: 2005-03-30 09:36+0100\n"
 "Last-Translator: Hans Fredrik Nordhaug <hans@nordhaug.priv.no>\n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
@@ -116,14 +116,9 @@ msgstr "STOPP"
 msgid "If this rule matches, do not check any rules after it."
 msgstr "Hvis denne regelen blir gjort gjeldende, ikke sjekk flere regler."
 
-msgid "Could not get SIEVE script from your IMAP server"
-msgstr "Kunne ikke hente SIEVE regelsettet fra IMAP-tjeneren din."
-
-msgid "(Probably the script is size null)."
-msgstr "(Sannsynligvis er regelsettet tomt)."
-
-msgid "Please contact your administrator."
-msgstr "Vennligst kontakt din systemadministrator"
+#, fuzzy
+msgid "Mail Filtering Scripts"
+msgstr "N&aring;v&aelig;rende regler"
 
 msgid "Message Filters"
 msgstr "Meldingsfilter"
@@ -139,14 +134,30 @@ msgstr ""
 msgid "Filters"
 msgstr "Filtre"
 
-msgid "Current Mail Filtering Rules"
-msgstr "N&aring;v&aelig;rende regler"
-
-msgid "No Filtering Rules Defined Yet"
-msgstr "Ingen regler definert enda"
-
 msgid "Could not set active script on your IMAP server"
 msgstr "Kunne ikke aktivere regelsettet p&aring; din IMAP-tjener"
+
+msgid "Please contact your administrator."
+msgstr "Vennligst kontakt din systemadministrator"
+
+msgid "Could not get SIEVE script from your IMAP server"
+msgstr "Kunne ikke hente SIEVE regelsettet fra IMAP-tjeneren din."
+
+msgid "Error Encountered:"
+msgstr "Feil oppst&aring;tt:"
+
+msgid "Unable to load script to server."
+msgstr "Klarte ikke laste opp skriptet til tjener."
+
+msgid "Server responded with:"
+msgstr "Tjener svarte med:"
+
+#, fuzzy, php-format
+msgid "Could not delete script from server %s."
+msgstr "Kunne ikke hente SIEVE regelsettet fra IMAP-tjeneren din."
+
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "Kunne ikke logge p&aring; timsieved nissen p&aring; din IMAP-tjener"
 
 msgid "AND (Every item must match)"
 msgstr "OG (Alle punktene m&aring; eksistere)"
@@ -396,9 +407,6 @@ msgstr "Editere regel for epostfiltrering"
 msgid "Create New Mail Filtering Rule"
 msgstr "Opprett ny e-postfiltreringsregel"
 
-msgid "Error Encountered:"
-msgstr "Feil oppst&aring;tt:"
-
 msgid "You must correct the above errors before continuing."
 msgstr ""
 
@@ -511,23 +519,20 @@ msgstr "Sist endret:"
 msgid "Created:"
 msgstr "Opprettet:"
 
+msgid "Current Mail Filtering Rules"
+msgstr "N&aring;v&aelig;rende regler"
+
 msgid "Close"
 msgstr "Lukk"
+
+msgid "No Filtering Rules Defined Yet"
+msgstr "Ingen regler definert enda"
 
 msgid "Really delete this rule?"
 msgstr "Vil du virkelig slette denne regelen?"
 
 msgid "Action for Selected Rules:"
 msgstr "Handling for valgte regler:"
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Kunne ikke logge p&aring; timsieved nissen p&aring; din IMAP-tjener"
-
-msgid "Unable to load script to server."
-msgstr "Klarte ikke laste opp skriptet til tjener."
-
-msgid "Server responded with:"
-msgstr "Tjener svarte med:"
 
 msgid "Automatically"
 msgstr "Automatisk"
@@ -550,6 +555,28 @@ msgstr "Opprett filter"
 #, fuzzy
 msgid "You have to define at least one condition."
 msgstr "Du m&aring; definere minst en tekst for treff i meldingshode."
+
+msgid "(Creates a new server-side filtering rule, based on the above criteria)"
+msgstr ""
+
+msgid ""
+"Notice: The following criteria cannot be expressed as server-side filtering "
+"rules:"
+msgstr ""
+
+msgid "Reason:"
+msgstr ""
+
+msgid "The Body extension is not supported in this server."
+msgstr ""
+
+msgid ""
+"Note that Only From:, To:, Cc: and Subject: headers will be checked in the "
+"server filter."
+msgstr ""
+
+msgid "These search expressions are not applicable during message delivery."
+msgstr ""
 
 msgid "Keep (Default action)"
 msgstr "Behold (Standard handling)"
@@ -803,9 +830,6 @@ msgstr "Behold"
 msgid "<em>discard</em> it."
 msgstr "<em>kassér</em> den."
 
-msgid "DISCARD"
-msgstr "KASSÉR"
-
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>avvis</em> den, og send dette svaret tilbake til senderen:"
 
@@ -881,6 +905,12 @@ msgstr "Ugyldig mappenavn. Velg et annet navn."
 
 msgid "None"
 msgstr "Ingen"
+
+#~ msgid "(Probably the script is size null)."
+#~ msgstr "(Sannsynligvis er regelsettet tomt)."
+
+#~ msgid "DISCARD"
+#~ msgstr "KASSÉR"
 
 #~ msgid "Body Match"
 #~ msgstr "Stemmer med epostens innhold"

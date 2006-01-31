@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-09 17:09+0200\n"
+"POT-Creation-Date: 2006-01-31 14:25+0200\n"
 "PO-Revision-Date: 2003-06-13 15:20+0200\n"
 "Last-Translator: Marius Onica <omar@uoradea.ro>\n"
 "Language-Team: Romanian \n"
@@ -115,14 +115,9 @@ msgstr ""
 "Daca aceasta regula se aplica (match), nu verifica nici o alta regula dupa "
 "aceasta."
 
-msgid "Could not get SIEVE script from your IMAP server"
-msgstr "Nu pot citi script-ul SIEVE de pe serverul de IMAP"
-
-msgid "(Probably the script is size null)."
-msgstr "Probabil script-ul este de lungime zero"
-
-msgid "Please contact your administrator."
-msgstr "Va rog contactati Administratorul Dvs.."
+#, fuzzy
+msgid "Mail Filtering Scripts"
+msgstr "Filtrele definite pana in acest moment"
 
 msgid "Message Filters"
 msgstr "Filtru de Mesaje"
@@ -138,14 +133,31 @@ msgstr ""
 msgid "Filters"
 msgstr "Filtru"
 
-msgid "Current Mail Filtering Rules"
-msgstr "Filtrele definite pana in acest moment"
-
-msgid "No Filtering Rules Defined Yet"
-msgstr "Nu s-au definit regulile de filtrare deocamdata"
-
 msgid "Could not set active script on your IMAP server"
 msgstr "Nu pot instala script-ul activ pe serverul de IMAP"
+
+msgid "Please contact your administrator."
+msgstr "Va rog contactati Administratorul Dvs.."
+
+msgid "Could not get SIEVE script from your IMAP server"
+msgstr "Nu pot citi script-ul SIEVE de pe serverul de IMAP"
+
+#, fuzzy
+msgid "Error Encountered:"
+msgstr "Am intampinat o eroare"
+
+msgid "Unable to load script to server."
+msgstr ""
+
+msgid "Server responded with:"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Could not delete script from server %s."
+msgstr "Nu pot citi script-ul SIEVE de pe serverul de IMAP"
+
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "Nu ma pot loga la daemon-ul de timsieve pe serverul Dvs. de IMAP"
 
 msgid "AND (Every item must match)"
 msgstr "AND (Fiecare declaratie trebuie sa coincida"
@@ -398,10 +410,6 @@ msgstr "Editare Regula de Filtrare"
 msgid "Create New Mail Filtering Rule"
 msgstr "Filtrele definite pana in acest moment"
 
-#, fuzzy
-msgid "Error Encountered:"
-msgstr "Am intampinat o eroare"
-
 msgid "You must correct the above errors before continuing."
 msgstr ""
 
@@ -517,23 +525,20 @@ msgstr ""
 msgid "Created:"
 msgstr ""
 
+msgid "Current Mail Filtering Rules"
+msgstr "Filtrele definite pana in acest moment"
+
 msgid "Close"
 msgstr ""
+
+msgid "No Filtering Rules Defined Yet"
+msgstr "Nu s-au definit regulile de filtrare deocamdata"
 
 #, fuzzy
 msgid "Really delete this rule?"
 msgstr "Am sters cu succes regula #"
 
 msgid "Action for Selected Rules:"
-msgstr ""
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Nu ma pot loga la daemon-ul de timsieve pe serverul Dvs. de IMAP"
-
-msgid "Unable to load script to server."
-msgstr ""
-
-msgid "Server responded with:"
 msgstr ""
 
 msgid "Automatically"
@@ -558,6 +563,28 @@ msgstr "Filtru de Mesaje"
 #, fuzzy
 msgid "You have to define at least one condition."
 msgstr "Trebuie sa definiti cel putin un header match text."
+
+msgid "(Creates a new server-side filtering rule, based on the above criteria)"
+msgstr ""
+
+msgid ""
+"Notice: The following criteria cannot be expressed as server-side filtering "
+"rules:"
+msgstr ""
+
+msgid "Reason:"
+msgstr ""
+
+msgid "The Body extension is not supported in this server."
+msgstr ""
+
+msgid ""
+"Note that Only From:, To:, Cc: and Subject: headers will be checked in the "
+"server filter."
+msgstr ""
+
+msgid "These search expressions are not applicable during message delivery."
+msgstr ""
 
 msgid "Keep (Default action)"
 msgstr "Pastreaza (Actiune implicita)"
@@ -814,9 +841,6 @@ msgstr "coincide cu o expresie regulara"
 msgid "<em>discard</em> it."
 msgstr "<em>ignora</em>."
 
-msgid "DISCARD"
-msgstr ""
-
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr ""
 "<em>respinge-l</em> si transmite urmatorul mesaj (cu explicatii) inapoi la "
@@ -898,6 +922,9 @@ msgstr "Numele directorului este ilegal.  Va rugam alegeti o alta denumire."
 #, fuzzy
 msgid "None"
 msgstr "Nu"
+
+#~ msgid "(Probably the script is size null)."
+#~ msgstr "Probabil script-ul este de lungime zero"
 
 #~ msgid "Body Match"
 #~ msgstr "Coincide cu Corpul Mesajului"

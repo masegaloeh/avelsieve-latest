@@ -3,13 +3,13 @@
 # Copyright (C) 2003 Alexandros Vellis
 # This file is distributed under the same license as the PACKAGE package.
 # Tomas Kuliavas <tokul@users.sourceforge.net>, 2003.
-# $Id: avelsieve.po,v 1.12 2006/01/13 16:25:28 avel Exp $
+# $Id: avelsieve.po,v 1.13 2006/01/31 12:30:38 avel Exp $
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: (avelsieve 0.9.7)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-09 17:09+0200\n"
+"POT-Creation-Date: 2006-01-31 14:25+0200\n"
 "PO-Revision-Date: 2003-10-09 19:56+0200\n"
 "Last-Translator: Tomas Kuliavas <tokul@users.sourceforge.net>\n"
 "Language-Team: SquirrelMail I18N Team <squirrelmail-i18n@lists.sourceforge."
@@ -120,14 +120,9 @@ msgstr "Sustoti"
 msgid "If this rule matches, do not check any rules after it."
 msgstr "Jei taisyklė sutampa, nebetikrinti kitų taisyklių."
 
-msgid "Could not get SIEVE script from your IMAP server"
-msgstr "Nepavyko gauti SIEVE skripto iš jūsų IMAP serverio"
-
-msgid "(Probably the script is size null)."
-msgstr "(Greičiausiai skripto dydis yra nulinis)."
-
-msgid "Please contact your administrator."
-msgstr "Susisiekite su jūsų pašto administratoriumi."
+#, fuzzy
+msgid "Mail Filtering Scripts"
+msgstr "Esamos pašto filtravimo taisyklės"
 
 msgid "Message Filters"
 msgstr "Žinučių filtrai"
@@ -143,14 +138,31 @@ msgstr ""
 msgid "Filters"
 msgstr "Filtrai"
 
-msgid "Current Mail Filtering Rules"
-msgstr "Esamos pašto filtravimo taisyklės"
-
-msgid "No Filtering Rules Defined Yet"
-msgstr "Nėra jokių pašto filtravimo taisyklių"
-
 msgid "Could not set active script on your IMAP server"
 msgstr "Nepavyko nustatyti aktyvaus skripto jūsų IMAP serveryje"
+
+msgid "Please contact your administrator."
+msgstr "Susisiekite su jūsų pašto administratoriumi."
+
+msgid "Could not get SIEVE script from your IMAP server"
+msgstr "Nepavyko gauti SIEVE skripto iš jūsų IMAP serverio"
+
+#, fuzzy
+msgid "Error Encountered:"
+msgstr "Įvyko klaida"
+
+msgid "Unable to load script to server."
+msgstr "Nepavyko patalpinti programos serveryje."
+
+msgid "Server responded with:"
+msgstr "Serveris atsakė"
+
+#, fuzzy, php-format
+msgid "Could not delete script from server %s."
+msgstr "Nepavyko gauti SIEVE skripto iš jūsų IMAP serverio"
+
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "Nepavyko prisijungti prie jūsų IMAP serverio timsieved posistemės"
 
 msgid "AND (Every item must match)"
 msgstr "IR (Turi sutapti visi požymiai)"
@@ -400,10 +412,6 @@ msgstr "Taisoma pašto filtravimo taisyklė"
 msgid "Create New Mail Filtering Rule"
 msgstr "Esamos pašto filtravimo taisyklės"
 
-#, fuzzy
-msgid "Error Encountered:"
-msgstr "Įvyko klaida"
-
 msgid "You must correct the above errors before continuing."
 msgstr ""
 
@@ -516,8 +524,14 @@ msgstr "Paskutinį kartą taisyta:"
 msgid "Created:"
 msgstr "Sukurta:"
 
+msgid "Current Mail Filtering Rules"
+msgstr "Esamos pašto filtravimo taisyklės"
+
 msgid "Close"
 msgstr ""
+
+msgid "No Filtering Rules Defined Yet"
+msgstr "Nėra jokių pašto filtravimo taisyklių"
 
 #, fuzzy
 msgid "Really delete this rule?"
@@ -525,15 +539,6 @@ msgstr "Sėkmingai ištrinta taisyklė Nr."
 
 msgid "Action for Selected Rules:"
 msgstr ""
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Nepavyko prisijungti prie jūsų IMAP serverio timsieved posistemės"
-
-msgid "Unable to load script to server."
-msgstr "Nepavyko patalpinti programos serveryje."
-
-msgid "Server responded with:"
-msgstr "Serveris atsakė"
 
 msgid "Automatically"
 msgstr ""
@@ -557,6 +562,28 @@ msgstr "Žinučių filtrai"
 #, fuzzy
 msgid "You have to define at least one condition."
 msgstr "Jūs turite nurodyti bent vieną antraštę atitinkančią teksto eilutę."
+
+msgid "(Creates a new server-side filtering rule, based on the above criteria)"
+msgstr ""
+
+msgid ""
+"Notice: The following criteria cannot be expressed as server-side filtering "
+"rules:"
+msgstr ""
+
+msgid "Reason:"
+msgstr ""
+
+msgid "The Body extension is not supported in this server."
+msgstr ""
+
+msgid ""
+"Note that Only From:, To:, Cc: and Subject: headers will be checked in the "
+"server filter."
+msgstr ""
+
+msgid "These search expressions are not applicable during message delivery."
+msgstr ""
 
 msgid "Keep (Default action)"
 msgstr "Išsaugoti nepakeista (standartinis veiksmas)"
@@ -814,9 +841,6 @@ msgstr "speciali išraiška"
 msgid "<em>discard</em> it."
 msgstr "<em>atsikratyti</em>"
 
-msgid "DISCARD"
-msgstr ""
-
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>atmesti</em> siuntėjui su nurodytu pranešimu:"
 
@@ -896,6 +920,9 @@ msgstr "Netinkamas aplanko vardas. Pasirinkite kita"
 #, fuzzy
 msgid "None"
 msgstr "Ne"
+
+#~ msgid "(Probably the script is size null)."
+#~ msgstr "(Greičiausiai skripto dydis yra nulinis)."
 
 #~ msgid "Body Match"
 #~ msgstr "Turinio sutapimas"

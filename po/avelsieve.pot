@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-09 17:09+0200\n"
+"POT-Creation-Date: 2006-01-31 14:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,13 +104,7 @@ msgstr ""
 msgid "If this rule matches, do not check any rules after it."
 msgstr ""
 
-msgid "Could not get SIEVE script from your IMAP server"
-msgstr ""
-
-msgid "(Probably the script is size null)."
-msgstr ""
-
-msgid "Please contact your administrator."
+msgid "Mail Filtering Scripts"
 msgstr ""
 
 msgid "Message Filters"
@@ -124,13 +118,29 @@ msgstr ""
 msgid "Filters"
 msgstr ""
 
-msgid "Current Mail Filtering Rules"
-msgstr ""
-
-msgid "No Filtering Rules Defined Yet"
-msgstr ""
-
 msgid "Could not set active script on your IMAP server"
+msgstr ""
+
+msgid "Please contact your administrator."
+msgstr ""
+
+msgid "Could not get SIEVE script from your IMAP server"
+msgstr ""
+
+msgid "Error Encountered:"
+msgstr ""
+
+msgid "Unable to load script to server."
+msgstr ""
+
+msgid "Server responded with:"
+msgstr ""
+
+#, php-format
+msgid "Could not delete script from server %s."
+msgstr ""
+
+msgid "Could not log on to timsieved daemon on your IMAP server"
 msgstr ""
 
 msgid "AND (Every item must match)"
@@ -359,9 +369,6 @@ msgstr ""
 msgid "Create New Mail Filtering Rule"
 msgstr ""
 
-msgid "Error Encountered:"
-msgstr ""
-
 msgid "You must correct the above errors before continuing."
 msgstr ""
 
@@ -463,22 +470,19 @@ msgstr ""
 msgid "Created:"
 msgstr ""
 
+msgid "Current Mail Filtering Rules"
+msgstr ""
+
 msgid "Close"
+msgstr ""
+
+msgid "No Filtering Rules Defined Yet"
 msgstr ""
 
 msgid "Really delete this rule?"
 msgstr ""
 
 msgid "Action for Selected Rules:"
-msgstr ""
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr ""
-
-msgid "Unable to load script to server."
-msgstr ""
-
-msgid "Server responded with:"
 msgstr ""
 
 msgid "Automatically"
@@ -500,6 +504,28 @@ msgid "Create Filter"
 msgstr ""
 
 msgid "You have to define at least one condition."
+msgstr ""
+
+msgid "(Creates a new server-side filtering rule, based on the above criteria)"
+msgstr ""
+
+msgid ""
+"Notice: The following criteria cannot be expressed as server-side filtering "
+"rules:"
+msgstr ""
+
+msgid "Reason:"
+msgstr ""
+
+msgid "The Body extension is not supported in this server."
+msgstr ""
+
+msgid ""
+"Note that Only From:, To:, Cc: and Subject: headers will be checked in the "
+"server filter."
+msgstr ""
+
+msgid "These search expressions are not applicable during message delivery."
 msgstr ""
 
 msgid "Keep (Default action)"
@@ -746,9 +772,6 @@ msgid "Keep"
 msgstr ""
 
 msgid "<em>discard</em> it."
-msgstr ""
-
-msgid "DISCARD"
 msgstr ""
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"

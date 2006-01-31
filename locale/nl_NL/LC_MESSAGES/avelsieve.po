@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 1.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-09 17:09+0200\n"
+"POT-Creation-Date: 2006-01-31 14:25+0200\n"
 "PO-Revision-Date: 2005-02-09 12:44+0100\n"
 "Last-Translator: Maxim Baars <mmbaars@bccs.nl>\n"
 "Language-Team: \n"
@@ -121,14 +121,9 @@ msgstr ""
 "Als deze regel van toepassing is, stop dan met controleren van alle volgende "
 "regels."
 
-msgid "Could not get SIEVE script from your IMAP server"
-msgstr "Kon SIEVE script niet ophalen van de IMAP server"
-
-msgid "(Probably the script is size null)."
-msgstr "(Waarschijnlijk is het script leeg)."
-
-msgid "Please contact your administrator."
-msgstr "Neem contact op met de beheerder."
+#, fuzzy
+msgid "Mail Filtering Scripts"
+msgstr "Huidige regels"
 
 msgid "Message Filters"
 msgstr "Berichtfilters"
@@ -144,14 +139,31 @@ msgstr ""
 msgid "Filters"
 msgstr "Filters"
 
-msgid "Current Mail Filtering Rules"
-msgstr "Huidige regels"
-
-msgid "No Filtering Rules Defined Yet"
-msgstr "Nog geen filterregels gedefinieerd"
-
 msgid "Could not set active script on your IMAP server"
 msgstr "Kon script niet activeren op de IMAP server"
+
+msgid "Please contact your administrator."
+msgstr "Neem contact op met de beheerder."
+
+msgid "Could not get SIEVE script from your IMAP server"
+msgstr "Kon SIEVE script niet ophalen van de IMAP server"
+
+#, fuzzy
+msgid "Error Encountered:"
+msgstr "Fout geconstateerd"
+
+msgid "Unable to load script to server."
+msgstr "Script kan niet naar de server verzonden worden."
+
+msgid "Server responded with:"
+msgstr "Server reageerde met:"
+
+#, fuzzy, php-format
+msgid "Could not delete script from server %s."
+msgstr "Kon SIEVE script niet ophalen van de IMAP server"
+
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "Kon niet inloggen op de timeseived daemon op de IMAP server"
 
 msgid "AND (Every item must match)"
 msgstr "EN (elke conditie moet waar zijn)"
@@ -399,10 +411,6 @@ msgstr "Wijzigen Mail Filter Regel"
 msgid "Create New Mail Filtering Rule"
 msgstr "Huidige regels"
 
-#, fuzzy
-msgid "Error Encountered:"
-msgstr "Fout geconstateerd"
-
 msgid "You must correct the above errors before continuing."
 msgstr ""
 
@@ -515,23 +523,20 @@ msgstr "Laatst gewijzigd:"
 msgid "Created:"
 msgstr "Gemaakt:"
 
+msgid "Current Mail Filtering Rules"
+msgstr "Huidige regels"
+
 msgid "Close"
 msgstr ""
+
+msgid "No Filtering Rules Defined Yet"
+msgstr "Nog geen filterregels gedefinieerd"
 
 msgid "Really delete this rule?"
 msgstr "Wilt u deze regel echt verwijderen?"
 
 msgid "Action for Selected Rules:"
 msgstr ""
-
-msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Kon niet inloggen op de timeseived daemon op de IMAP server"
-
-msgid "Unable to load script to server."
-msgstr "Script kan niet naar de server verzonden worden."
-
-msgid "Server responded with:"
-msgstr "Server reageerde met:"
 
 msgid "Automatically"
 msgstr ""
@@ -556,6 +561,28 @@ msgstr "Berichtfilters"
 msgid "You have to define at least one condition."
 msgstr ""
 "U dient minstens één tekst op te geven die in de berichtkop moet voorkomen."
+
+msgid "(Creates a new server-side filtering rule, based on the above criteria)"
+msgstr ""
+
+msgid ""
+"Notice: The following criteria cannot be expressed as server-side filtering "
+"rules:"
+msgstr ""
+
+msgid "Reason:"
+msgstr ""
+
+msgid "The Body extension is not supported in this server."
+msgstr ""
+
+msgid ""
+"Note that Only From:, To:, Cc: and Subject: headers will be checked in the "
+"server filter."
+msgstr ""
+
+msgid "These search expressions are not applicable during message delivery."
+msgstr ""
 
 msgid "Keep (Default action)"
 msgstr "Bewaar (standaard aktie)"
@@ -817,9 +844,6 @@ msgstr "regexp"
 msgid "<em>discard</em> it."
 msgstr "bericht <em>negeren</em>."
 
-msgid "DISCARD"
-msgstr ""
-
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "bericht <em>weigeren</em> en zend deze reden terug naar de afzender:"
 
@@ -898,6 +922,9 @@ msgstr "Onjuiste mapnaam. Kies een andere naam."
 
 msgid "None"
 msgstr "Geen"
+
+#~ msgid "(Probably the script is size null)."
+#~ msgstr "(Waarschijnlijk is het script leeg)."
 
 #~ msgid "Body Match"
 #~ msgstr "Hoofdtekstconditie"
