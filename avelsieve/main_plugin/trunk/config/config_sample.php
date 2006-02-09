@@ -9,7 +9,7 @@
  * This file contains configuration parameters for SIEVE mail filters plugin
  * (aka avelsieve)
  *
- * @version $Id: config_sample.php,v 1.14 2006/01/31 12:53:04 avel Exp $
+ * @version $Id: config_sample.php,v 1.15 2006/02/09 18:21:46 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -25,6 +25,16 @@ define('AVELSIEVE_DEBUG', 0);
 /* =================== IMAP Server / SIEVE Setup  ========================= */
 /* ======================================================================== */
 
+/* Backend to use */
+global $avelsieve_backend;
+$avelsieve_backend = 'ManageSieve';
+
+
+
+/* ======================================================================== */
+/* =================== ManageSieve Backend Options ======================== */
+/* ======================================================================== */
+
 /* Port where timsieved listens on the Cyrus IMAP server. Default is 2000. */
 
 global $sieveport;
@@ -36,6 +46,12 @@ $sieveport = 2000;
 
 global $sieve_preferred_sasl_mech;
 $sieve_preferred_sasl_mech = 'PLAIN';
+
+
+/* ======================================================================== */
+/* ====== Implementation- and Server-Specific  Options ==================== */
+/* ======================================================================== */
+
 
 /* In Cyrus 2.3+, the notification action is a bit more complex than the
  * others. The oldcyrus variable is for supporting the partially implemented
@@ -59,6 +75,23 @@ $avelsieve_oldcyrus = true;
  */
 global $avelsieve_enable_envelope_auth; 
 $avelsieve_enable_envelope_auth = true;
+
+
+/* If you use Exim4 Filters, set the following to true. */
+global $avelsieve_exim4_format;
+$avelsieve_exim4_format = false;
+
+/* If the backend does not support capabilities reporting, such as the File
+ * Backend, then you should define which capabilities are used by the server
+ * implementation. The following are the capabilities supported by Exim4 as of
+ * Exim version 4.60, according to README.SIEVE. You can change them if a new
+ * version of Exim provides more functionality.
+ */
+global $avelsieve_hardcoded_capabilities;
+$avelsieve_hardcoded_capabilities = array(
+    'envelope', 'fileinto', 'copy', 'vacation', 'comparator-i;ascii-numeric'
+);
+
 
 /** @var boolean Enable ImapProxy mode.
  * If you use imapproxy, because imapproxy cannot understand and proxy the
