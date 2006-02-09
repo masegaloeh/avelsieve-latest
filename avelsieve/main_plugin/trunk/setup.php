@@ -8,7 +8,7 @@
  *
  * Also view plugins/README.plugins for more information.
  *
- * @version $Id: setup.php,v 1.26 2006/01/31 14:36:43 avel Exp $
+ * @version $Id: setup.php,v 1.27 2006/02/09 17:30:27 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -20,7 +20,7 @@
  * @return void
  */
 function squirrelmail_plugin_init_avelsieve() {
-	global $squirrelmail_plugin_hooks;
+	global $squirrelmail_plugin_hooks, $SQM_INTERNAL_VERSION;
 
 	$squirrelmail_plugin_hooks['optpage_register_block']['avelsieve'] =
 		'avelsieve_optpage_register_block';
@@ -28,8 +28,10 @@ function squirrelmail_plugin_init_avelsieve() {
 		'avelsieve_menuline';
 	$squirrelmail_plugin_hooks['read_body_header']['avelsieve'] =
 		'avelsieve_commands_menu';
-	$squirrelmail_plugin_hooks['search_after_form']['avelsieve'] =
-		'avelsieve_search_integration';
+    if($SQM_INTERNAL_VERSION[0] == 1 && $SQM_INTERNAL_VERSION[1] >= 5) {
+         $squirrelmail_plugin_hooks['search_after_form']['avelsieve'] =
+            'avelsieve_search_integration';
+    }
 }
 
 /**
