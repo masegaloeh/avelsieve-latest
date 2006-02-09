@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.29 2006/01/17 15:46:45 avel Exp $
+ * @version $Id: table.php,v 1.30 2006/02/09 17:28:11 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -48,7 +48,9 @@ sqgetGlobalVar('logout', $logout, SQ_POST);
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
-avelsieve_initialize($sieve);
+$backend_class_name = 'DO_Sieve_'.$avelsieve_backend;
+$s = new $backend_class_name;
+$s->init();
 
 isset($popup) ? $popup = '?popup=1' : $popup = '';
 
@@ -64,30 +66,31 @@ require_once (SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
 if (!isset($rules)) {
 	/* Login. But if the rules are cached, don't even login to SIEVE
 	 * Server. */ 
-	avelsieve_login($sieve);
+	$s->login();
 
 	/* Actually get the script 'phpscript' (hardcoded ATM). */
-    if(avelsieve_getrules($sieve, 'phpscript', $rules, $scriptinfo)) {
+    if($s->load('phpscript', $rules, $scriptinfo)) {
         $_SESSION['rules'] = $rules;
         $_SESSION['scriptinfo'] = $scriptinfo;
     }
 }
 
-unset($sieve->response);
+// unset($sieve->response);
+// TODO
 
 /* On to the code that executes if avelsieve script exists or if a new rule has
  * been created. */
 
 if ($logout) {
 	/* Activate phpscript and log out. */
-	avelsieve_login($sieve);
+	$s->login();
 
 	if ($newscript = makesieverule($rules)) {
 
-		avelsieve_upload_script($sieve, $newscript);
+		$s->save($newscript, 'phpscript');
 		avelsieve_spam_highlight_update($rules);
 
-		if(!($sieve->sieve_setactivescript("phpscript"))){
+		if(!($s->setactive('phpscript'))){
 			/* Just to be safe. */
 			$errormsg = _("Could not set active script on your IMAP server");
 			$errormsg .= " " . $imapServerAddress.".<br />";
@@ -95,15 +98,15 @@ if ($logout) {
 			print_errormsg($errormsg);
 			exit;
 		}
-		$sieve->sieve_logout();
+		$s->logout();
 	
 	} else {
 		/* upload a null thingie!!! :-) This works for now... some time
 		 * it will get better. */
-		avelsieve_upload_script($sieve, ''); 
+		$s->save('', 'phpscript'); 
 		avelsieve_spam_highlight_update($rules);
 		/* if(sizeof($rules) == "0") {
-			avelsieve_delete_script();
+			$s->delete('phpscript');
 		} */
 	}
 	session_unregister('rules');
@@ -151,12 +154,17 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected']) ||
 			$_SESSION['comm']['deleted'] = $_GET['rule'];
 		}
 
-		if(sizeof($rules) == 0) {
-			if (!$conservative) {
-				avelsieve_login($sieve);
-				avelsieve_delete_script($sieve, 'phpscript');
-				sqsession_register($rules, 'rules');
-			}
+	    if (!$conservative) {
+		    $s->login();
+		    if(sizeof($rules) == 0) {
+				$s->delete('phpscript');
+			}  else {
+		        $newscript = makesieverule($rules);
+    		    $s->save($newscript, 'phpscript');
+
+            }
+	    	avelsieve_spam_highlight_update($rules);
+		    sqsession_register($rules, 'rules');
 		} 
         /* Since removing rules is a destructive function, we should redirect
          * to ourselves so as to eliminate the 'rm' GET parameter. (User could
@@ -215,8 +223,8 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected']) ||
 
 	if ($conservative == false && $rules) {
 		$newscript = makesieverule($rules);
-		avelsieve_login($sieve);
-		avelsieve_upload_script($sieve, $newscript);
+		$s->login();
+		$s->save($newscript, 'phpscript');
 		avelsieve_spam_highlight_update($rules);
 	}
 }	
@@ -231,9 +239,9 @@ if (isset($_SESSION['returnnewrule'])) {
 
 if( (!$conservative && isset($haschanged) ) ) {
     /* Commit changes */
-	avelsieve_login($sieve);
+	$s->login();
 	$newscript = makesieverule($rules);
-	avelsieve_upload_script($sieve, $newscript);
+	$s->save($newscript, 'phpscript');
 	avelsieve_spam_highlight_update($rules);
 	if(isset($_SESSION['haschanged'])) {
 		unset($_SESSION['haschanged']);
@@ -285,9 +293,8 @@ echo 'Rules:';
 dumpr($rules);
 */
 
-if(AVELSIEVE_DEBUG == 1 && isset($sieve)) {
-	print "DEBUG: Connection with these parameters: \n
-        ($imap_server, $sieveport, $username, *****, $username, $preferred_mech)\n<br/>";
+if(AVELSIEVE_DEBUG == 1) {
+	print "Debug: Using Backend: $avelsieve_backend.<br/>";
 }
 
 

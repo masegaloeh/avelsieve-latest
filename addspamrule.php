@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: addspamrule.php,v 1.17 2006/01/13 16:25:28 avel Exp $
+ * @version $Id: addspamrule.php,v 1.18 2006/02/09 17:28:11 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -40,6 +40,10 @@ sqgetGlobalVar('key', $key, SQ_COOKIE);
 sqgetGlobalVar('rules', $rules, SQ_SESSION);
 
 sqgetGlobalVar('edit', $edit, SQ_GET & SQ_POST);
+
+$backend_class_name = 'DO_Sieve_'.$avelsieve_backend;
+$s = new $backend_class_name;
+$s->init();
 
 if(isset($_POST['cancel'])) {
 	header("Location: ./table.php");
@@ -203,7 +207,7 @@ textdomain ('avelsieve');
 
 require_once (SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
 
-$ht = new avelsieve_html_edit($mode, $rule, false);
+$ht = new avelsieve_html_edit($s, $mode, $rule, false);
 			
 echo '<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
 	$ht->table_header( _("Add SPAM Rule") ) .

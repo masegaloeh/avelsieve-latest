@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_getrule.inc.php,v 1.5 2006/01/17 15:46:45 avel Exp $
+ * @version $Id: sieve_getrule.inc.php,v 1.6 2006/02/09 17:28:11 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -64,7 +64,7 @@ function avelsieve_extract_rules($sievescript, &$scriptinfo) {
 		    	print "Notice: Backward compatibility mode - not decoding script.";
 		}
 	} else {
-		$sievescript = avelsieve_decode_script($sievescript);
+		$sievescript = DO_Sieve::decode_script($sievescript);
 	}
 
 	/* Get Rules */

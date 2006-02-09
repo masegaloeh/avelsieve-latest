@@ -8,7 +8,7 @@
  *
  * Various support functions, useful or useless.
  *
- * @version $Id: support.inc.php,v 1.13 2006/01/13 16:25:28 avel Exp $
+ * @version $Id: support.inc.php,v 1.14 2006/02/09 17:28:11 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -250,4 +250,20 @@ function get_user_addresses() {
 	return $emailaddresses;
 }
  
+/** 
+ * Escape only double quotes and backslashes, as required by SIEVE RFC. For the
+ * reverse procedure, PHP function stripslashes() will do.
+ *
+ * @param string $script
+ * @return string
+ */
+function avelsieve_addslashes($string) {
+    /* 1) quoted string
+     * 2) str_replace
+     * 3) sieve.lib.php
+     * 4) .....
+     */
+    $temp =  str_replace("\\", "\\\\\\\\\\\\\\\\", $string);
+    return str_replace('"', "\\\\\\\\\"", $temp);
+}
 ?>
