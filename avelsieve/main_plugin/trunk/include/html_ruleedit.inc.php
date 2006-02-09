@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.23 2006/01/11 16:08:58 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.24 2006/02/09 17:28:11 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2005 Alexandros Vellis
  * @package plugins
@@ -39,13 +39,15 @@ class avelsieve_html_edit extends avelsieve_html {
 	 * Constructor function. Takes as an optional argument a reference to a
 	 * rule array which will be edited.
 	 *
+     * @param string $s Our Sieve Handler (Data Object). This is needed in
+     *   order to have certain checks for capabilities of the specific backend.
 	 * @param string $mode
 	 * @param array $rule
 	 * @param boolean $popup
 	 * @param mixed $errmsg Array or string of error messages to display.
 	 * @return void
 	 */
-	function avelsieve_html_edit($mode = 'edit', $rule = array(), $popup = false, $errmsg = '') {
+	function avelsieve_html_edit(&$s, $mode = 'edit', $rule = array(), $popup = false, $errmsg = '') {
 		$this->avelsieve_html();
 
 		$this->rule = $rule;
@@ -55,6 +57,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		$this->mode = $mode;
 		$this->popup = $popup;
 		$this->errmsg = $errmsg;
+        $this->s = $s;
 		
 		$this->active_types = $this->get_active_types();
 	}
@@ -73,7 +76,7 @@ class avelsieve_html_edit extends avelsieve_html {
 			}
 			if(array_key_exists('dependencies', $tp)) {
 				foreach($tp['dependencies'] as $no=>$dep) {
-					if(!avelsieve_capability_exists($dep)) {
+					if(!$this->s->capability_exists($dep)) {
 						continue 2;
 					}
 				}
@@ -210,10 +213,10 @@ class avelsieve_html_edit extends avelsieve_html {
 		global $matchtypes, $comparators, $matchregex, $sieve_capabilities;
 
 		$options = $matchtypes;
-		if(avelsieve_capability_exists('relational')) {
+		if($this->s->capability_exists('relational')) {
 			$options = array_merge($options, $comparators);
 		}
-		if(avelsieve_capability_exists('regex')) {
+		if($this->s->capability_exists('regex')) {
 			$options = array_merge($options, $matchregex);
 		}
 		
@@ -503,7 +506,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		foreach($actions as $action) {
 			$classname = 'avelsieve_action_'.$action;
 			if(class_exists($classname)) {
-				$$classname = new $classname($this->rule, 'html');
+				$$classname = new $classname($this->s, $this->rule, 'html');
 				if($$classname->is_action_valid()) {
 					$out .= $$classname->action_html();
 				}
@@ -531,7 +534,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		foreach($additional_actions as $action) {
 			$classname = 'avelsieve_action_'.$action;
 			if(class_exists($classname)) {
-				$$classname = new $classname($this->rule, 'html');
+				$$classname = new $classname($this->s, $this->rule, 'html');
 				if($$classname != null) {
 					$out .= $$classname->action_html();
 				}

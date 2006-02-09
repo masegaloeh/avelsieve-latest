@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.28 2006/01/17 16:03:35 avel Exp $
+ * @version $Id: edit.php,v 1.29 2006/02/09 17:28:11 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -61,7 +61,9 @@ sqgetGlobalVar('type', $type_get, SQ_GET);
 
 isset($popup) ? $popup = '?popup=1' : $popup = '';
 
-avelsieve_initialize($sieve);
+$backend_class_name = 'DO_Sieve_'.$avelsieve_backend;
+$s = new $backend_class_name;
+$s->init();
 
 /* If this page is called before table.php is ever shown, then we have to make
  * the current filtering rules available in the Session. This will happen when
@@ -70,9 +72,9 @@ avelsieve_initialize($sieve);
  * ii) creation of a rule from some search criteria.
  */
 if (!isset($rules)) {
-	avelsieve_login($sieve);
+	$s->login();
 	/* Actually get the script 'phpscript' (hardcoded ATM). */
-    if(avelsieve_getrules($sieve, 'phpscript', $rules, $scriptinfo)) {
+    if($s->load('phpscript', $rules, $scriptinfo)) {
         $_SESSION['rules'] = $rules;
         $_SESSION['scriptinfo'] = $scriptinfo;
     }
@@ -253,7 +255,7 @@ if($popup) {
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
-$ht = new avelsieve_html_edit($mode, $rule, $popup, $errmsg);
+$ht = new avelsieve_html_edit($s, $mode, $rule, $popup, $errmsg);
 
 if(isset($edit)) {
 	echo $ht->edit_rule($edit);

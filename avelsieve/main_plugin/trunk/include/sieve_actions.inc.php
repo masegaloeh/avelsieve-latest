@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.16 2006/01/31 12:54:12 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.17 2006/02/09 17:28:11 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -50,9 +50,10 @@ class avelsieve_action {
      * Initialize other properties based on the ones defined from child classes.
      * @return void
      */
-	function avelsieve_action($rule, $frontend) {
+	function avelsieve_action(&$s, $rule, $frontend) {
 		$this->frontend = $frontend;
 		$this->rule = $rule;
+        $this->s = $s;
         
 		if ($this->useimages && isset($this->image_src)) {
 			$this->text = ' <img src="'.$this->image_src.'" border="0" alt="'. $this->text.'" align="middle" style="margin-left: 2px; margin-right: 4px;"/> '.
@@ -67,7 +68,7 @@ class avelsieve_action {
 	 */
 	function is_action_valid() {
 		if(isset($this->capability) && !empty($this->capability)) {
-			if(!avelsieve_capability_exists($this->capability)) {
+			if(!$this->s->capability_exists($this->capability)) {
 				return false;
 			}
 		}
@@ -205,7 +206,7 @@ class avelsieve_action_keep extends avelsieve_action {
 	var $capability = '';
 	var $options = array(); 
 
-	function avelsieve_action_keep($rule = array(), $frontend = 'html') {
+	function avelsieve_action_keep(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
 		$this->text = _("Keep (Default action)");
 		if(!isset($rule['action'])) {
@@ -213,7 +214,7 @@ class avelsieve_action_keep extends avelsieve_action {
 			 * niceness */
 			$this->rule['action'] = 1;
 		}
-		$this->avelsieve_action($rule, $frontend);
+		$this->avelsieve_action($s, $rule, $frontend);
 	}
 }
 
@@ -225,10 +226,10 @@ class avelsieve_action_discard extends avelsieve_action {
 	var $capability = '';
 	var $options = array(); 
 
-	function avelsieve_action_discard($rule = array(), $frontend = 'html') {
+	function avelsieve_action_discard(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
 		$this->text = _("Discard Silently");
-		$this->avelsieve_action($rule, $frontend);
+		$this->avelsieve_action($s, $rule, $frontend);
 	}
 }
 
@@ -242,7 +243,7 @@ class avelsieve_action_reject extends avelsieve_action {
 		'excuse' => ''
 	);
  	
-	function avelsieve_action_reject($rule = array(), $frontend = 'html') {
+	function avelsieve_action_reject(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
 		$this->text = _("Reject, sending this excuse to the sender:");
 
@@ -251,7 +252,7 @@ class avelsieve_action_reject extends avelsieve_action {
 		} else {
 			$this->options['excuse'] = "Please do not send me large attachments.";
 		}
-		$this->avelsieve_action($rule, $frontend);
+		$this->avelsieve_action($s, $rule, $frontend);
 	}
 
 	function options_html($val) {
@@ -265,14 +266,14 @@ class avelsieve_action_reject extends avelsieve_action {
 class avelsieve_action_redirect extends avelsieve_action {
 	var $num = 4;
 
-	function avelsieve_action_redirect($rule = array(), $frontend = 'html') {
+	function avelsieve_action_redirect(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
 		$this->text = _("Redirect to the following email address:");
 		$this->options = array(
 			'redirectemail' => _("someone@example.org"),
 			'keep' => ''
 		);
-		$this->avelsieve_action($rule, $frontend);
+		$this->avelsieve_action($s, $rule, $frontend);
 	}
 
 	function options_html($val) {
@@ -308,10 +309,10 @@ class avelsieve_action_fileinto extends avelsieve_action {
 		'folder' => '',
 	);
 
-	function avelsieve_action_fileinto($rule = array(), $frontend = 'html') {
+	function avelsieve_action_fileinto(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
 		$this->text = _("Move message into");
-		$this->avelsieve_action($rule, $frontend);
+		$this->avelsieve_action($s, $rule, $frontend);
 	}
 	
 	/**
@@ -353,7 +354,7 @@ class avelsieve_action_vacation extends avelsieve_action {
 		'vac_message' => ''
 	);
 
-	function avelsieve_action_vacation($rule = array(), $frontend = 'html') {
+	function avelsieve_action_vacation(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
 		$this->text = _("Vacation");
 		$this->options['vac_addresses'] = get_user_addresses();
@@ -368,7 +369,7 @@ class avelsieve_action_vacation extends avelsieve_action {
 		
 		$this->helptxt = _("The notice will be sent only once to each person that sends you mail, and will not be sent to a mailing list address.");
 
-		$this->avelsieve_action($rule, $frontend);
+		$this->avelsieve_action($s, $rule, $frontend);
 	}
 
 
@@ -407,11 +408,11 @@ class avelsieve_action_stop extends avelsieve_action {
 	var $text = '';
 	var $image_src = 'images/stop.gif';
 
-	function avelsieve_action_stop($rule = array(), $frontend = 'html') {
+	function avelsieve_action_stop(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
 		$this->helptxt = _("If this rule matches, do not check any rules after it.");
 		$this->text = _("STOP");
-		$this->avelsieve_action($rule, $frontend);
+		$this->avelsieve_action($s, $rule, $frontend);
 	}
 }
 
@@ -439,7 +440,7 @@ class avelsieve_action_notify extends avelsieve_action {
 	 *
 	 * @see https://bugzilla.andrew.cmu.edu/show_bug.cgi?id=2135
 	 */
-	function avelsieve_action_notify($rule = array(), $frontend = 'html') {
+	function avelsieve_action_notify(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
 		global $notifymethods, $avelsieve_oldcyrus;
 		if(isset($notifymethods)) {
@@ -457,7 +458,7 @@ class avelsieve_action_notify extends avelsieve_action {
 		);
 		
 		$this->oldcyrus = $avelsieve_oldcyrus;
-		$this->avelsieve_action($rule, $frontend);
+		$this->avelsieve_action($s, $rule, $frontend);
 	}
 
 	function options_html($val) {
@@ -560,10 +561,10 @@ class avelsieve_action_keepdeleted extends avelsieve_action {
 	var $capability = 'imapflags';
 	var $image_src = 'images/add.png';
 
-	function avelsieve_action_keepdeleted($rule = array(), $frontend = 'html') {
+	function avelsieve_action_keepdeleted(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
 		$this->text = _("Also keep copy in INBOX, marked as deleted.");
-		$this->avelsieve_action($rule, $frontend);
+		$this->avelsieve_action($s, $rule, $frontend);
 	}
 }
 
@@ -575,11 +576,11 @@ class avelsieve_action_disabled extends avelsieve_action {
 	var $name = 'disabled';
 	var $image_src = 'images/stock_disconnect.png';
 
-	function avelsieve_action_disabled($rule = array(), $frontend = 'html') {
+	function avelsieve_action_disabled(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
 		$this->text = _("Disable this rule");
 		$this->helptxt = _("The rule will have no effect for as long as it is disabled.");
-		$this->avelsieve_action($rule, $frontend);
+		$this->avelsieve_action($s, $rule, $frontend);
 	}
 }
 ?>

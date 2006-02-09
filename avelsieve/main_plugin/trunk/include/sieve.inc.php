@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve.inc.php,v 1.2 2006/01/13 16:25:28 avel Exp $
+ * @version $Id: sieve.inc.php,v 1.3 2006/02/09 17:28:11 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -17,7 +17,6 @@
 
 include_once(SM_PATH . 'plugins/avelsieve/include/sieve_getrule.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/sieve_buildrule.inc.php');
-include_once(SM_PATH . 'plugins/avelsieve/include/managesieve.lib.php');
-include_once(SM_PATH . 'plugins/avelsieve/include/managesieve_wrapper.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/DO_Sieve.class.php');
 
 ?>
