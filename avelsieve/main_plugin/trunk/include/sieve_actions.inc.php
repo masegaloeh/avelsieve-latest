@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.17 2006/02/09 17:28:11 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.18 2006/02/09 17:31:50 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -384,7 +384,7 @@ class avelsieve_action_vacation extends avelsieve_action {
 	}
 
 	function validate($val, &$errormsg) {
-		if(!is_numeric($val['vac_days']) || !($val['vac_days'] > 1)) {
+		if(!is_numeric($val['vac_days']) || !($val['vac_days'] > 0)) {
 			$errormsg[] = _("The number of days between vacation messages must be a positive number.");
 		}
 		if(empty($val['vac_addresses'])) {
