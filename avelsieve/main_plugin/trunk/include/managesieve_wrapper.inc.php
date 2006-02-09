@@ -9,7 +9,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: managesieve_wrapper.inc.php,v 1.12 2006/01/31 11:56:48 avel Exp $
+ * @version $Id: managesieve_wrapper.inc.php,v 1.13 2006/02/09 17:41:51 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -31,6 +31,7 @@ include_once(SM_PATH . 'plugins/avelsieve/config/config.php');
  *
  * @param object $sieve Sieve class connection handler.
  * @return void
+ * @obsolete
  */
 function avelsieve_initialize(&$sieve) {
     sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
@@ -74,6 +75,7 @@ function avelsieve_initialize(&$sieve) {
  *
  * @param object $sieve Sieve class connection handler.
  * @return boolean
+ * @obsolete
  */
 function avelsieve_login(&$sieve) {
 	global $sieve_capabilities, $imapServerAddress, $sieve_loggedin;
@@ -111,6 +113,7 @@ function avelsieve_login(&$sieve) {
 
 /**
  * Get scripts list from SIEVE server.
+ * @obsolete
  */
 function avelsieve_listscripts($sieve) {
     $scripts = array();
@@ -133,6 +136,7 @@ function avelsieve_listscripts($sieve) {
  * @param string $scriptname
  * @param array $scriptinfo
  * @return array
+ * @obsolete
  */
 function avelsieve_getrules(&$sieve, $scriptname = 'phpscript', &$rules, &$scriptinfo) {
     sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
@@ -187,6 +191,7 @@ function avelsieve_getrules(&$sieve, $scriptname = 'phpscript', &$rules, &$scrip
  * @param string $newscript The SIEVE script to be uploaded
  * @param string $scriptname Name of script
  * @return true on success, false upon failure
+ * @obsolete
  */
 function avelsieve_upload_script (&$sieve, $newscript, $scriptname = 'phpscript') {
 	if(isset($sieve->error_raw)) {
@@ -246,6 +251,7 @@ function avelsieve_upload_script (&$sieve, $newscript, $scriptname = 'phpscript'
  * @param object $sieve Sieve class connection handler.
  * @param string $script 
  * @return true on success, false upon failure
+ * @obsolete
  */
 function avelsieve_delete_script (&$sieve, $script = 'phpscript') {
 	if(empty($script)) {
@@ -292,6 +298,7 @@ function avelsieve_delete_script (&$sieve, $script = 'phpscript') {
  *
  * @param $cap capability to check for
  * @return boolean true if capability exists, false if it does not exist
+ * @obsolete
  */
 function avelsieve_capability_exists ($cap) {
 
@@ -304,28 +311,6 @@ function avelsieve_capability_exists ($cap) {
 	}
 	return false;
 }
-
-
-/** 
- * Escape only double quotes and backslashes, as required by SIEVE RFC. For the
- * reverse procedure, PHP function stripslashes() will do.
- *
- * @param string $script
- * @return string
- */
-function avelsieve_addslashes ($string) {
-
-	/* 1) quoted string
-	 * 2) str_replace
-	 * 3) sieve.lib.php
-	 * 4) .....
-	 */
-
-	$temp =  str_replace("\\", "\\\\\\\\\\\\\\\\", $string);
-	return str_replace('"', "\\\\\\\\\"", $temp);
-
-}
-
 
 /**
  * Encode script from user's charset to UTF-8.
