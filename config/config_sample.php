@@ -9,7 +9,7 @@
  * This file contains configuration parameters for SIEVE mail filters plugin
  * (aka avelsieve)
  *
- * @version $Id: config_sample.php,v 1.15 2006/02/09 18:21:46 avel Exp $
+ * @version $Id: config_sample.php,v 1.16 2006/02/10 13:21:19 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -76,16 +76,33 @@ $avelsieve_oldcyrus = true;
 global $avelsieve_enable_envelope_auth; 
 $avelsieve_enable_envelope_auth = true;
 
+/* Some Implementations of Sieve need certain things in order to operate
+ * correctly. If you use any of the following server implementations, you MUST
+ * set this variable to the corresponding value for the filtering to work
+ * correctly.
+ * Valid values are:
+ * - Any RFC3028-mostly-compatible implementation: '' (empty).
+ * - Exim MTA: 'exim'
+ * - MFL (as supported by mvmf): 'mfl'
+ */
+global $avelsieve_custom_sieve_implementation;
+$avelsieve_custom_sieve_implementation = '';
 
-/* If you use Exim4 Filters, set the following to true. */
-global $avelsieve_exim4_format;
-$avelsieve_exim4_format = false;
 
 /* If the backend does not support capabilities reporting, such as the File
  * Backend, then you should define which capabilities are used by the server
- * implementation. The following are the capabilities supported by Exim4 as of
- * Exim version 4.60, according to README.SIEVE. You can change them if a new
- * version of Exim provides more functionality.
+ * implementation.
+ *
+ * The following are the capabilities supported by Exim4 as of Exim version
+ * 4.60, according to README.SIEVE. You can change them if a new version of
+ * Exim provides more functionality:
+ *  'envelope', 'fileinto', 'copy', 'vacation', 'comparator-i;ascii-numeric'
+ * 
+ * The following are the capabilities that are suported by MFM, according to:
+ * http://www.mvmf.org/mfl/language.shtml#sieve
+ *  'envelope', 'fileinto', 'reject', 'relational', 'subaddress', 'regex',
+ *  'editheader', 'copy', 'vacation', 'comparator-i;ascii-casemap',
+ *  'comparator-i;octet'
  */
 global $avelsieve_hardcoded_capabilities;
 $avelsieve_hardcoded_capabilities = array(
