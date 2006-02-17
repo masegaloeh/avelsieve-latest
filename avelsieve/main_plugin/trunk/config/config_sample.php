@@ -9,7 +9,7 @@
  * This file contains configuration parameters for SIEVE mail filters plugin
  * (aka avelsieve)
  *
- * @version $Id: config_sample.php,v 1.16 2006/02/10 13:21:19 avel Exp $
+ * @version $Id: config_sample.php,v 1.17 2006/02/17 12:02:49 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -186,7 +186,7 @@ $headers = array(
  'Resent-From',  'Resent-To', 'X-Mailer', 'X-MailingList',
  'X-Spam-Flag', 'X-Spam-Status',
  'X-Priority', 'Importance', 'X-MSMail-Priority', 'Precedence',
- 'Return-Path', 'Received'
+ 'Return-Path', 'Received', 'Auto-Submitted'
  );
 
 /* Available :method's for the :notify extension (if applicable) */
