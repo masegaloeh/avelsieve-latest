@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: constants.inc.php,v 1.13 2006/01/31 13:00:26 avel Exp $
+ * @version $Id: constants.inc.php,v 1.14 2006/02/17 11:02:38 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -105,7 +105,7 @@ if(AVELSIEVE_DEBUG == 1) {
 	$displaymodes['debug'] = array('debug', 'Debugging mode (avelsieve variables)');
 }
 
-$implemented_capabilities = array('fileinto', 'envelope', 'reject', 'vacation', 'imapflags', 'relational', 'regex', 'notify');
+$implemented_capabilities = array('fileinto', 'envelope', 'reject', 'vacation', 'imapflags', 'relational', 'regex', 'notify', 'body');
 
 $cap_dependencies['relational'] = array("comparator-i;ascii-numeric");
 
