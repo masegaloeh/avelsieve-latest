@@ -1,30 +1,30 @@
 
 <h3><a id="introduction">Introduction</a></h3>
 
-<p><em>Avelsieve</em> or, verbosely, &quot;SIEVE Mail Filters Plugin for
+<p><em>Avelsieve</em> or, verbosely, &quot;Sieve Mail Filters Plugin for
 Squirrelmail&quot; is a <a href="http://www.squirrelmail.org">Squirrelmail</a>
 <a href="http://www.squirrelmail.org/plugins.php">plugin</a> for creating <a
-href="http://www.cyrusoft.com/sieve">SIEVE</a> scripts on a Cyrus IMAP server
-that runs timsieved (Tim's SIEVE daemon).</p>
+href="http://www.cyrusoft.com/sieve">Sieve</a> scripts on a Cyrus IMAP server
+that runs timsieved (Tim's Sieve daemon).</p>
 
 <p><em>Avelsieve</em> will also be a part of <a
 href="http://cyrusmaster.edunet.uoa.gr">Cyrusmaster</a>, a web-based Cyrus
 administration tool. It should provide the same interface of the user's filters
 to administrators and/or helpdesk staff.</p>
 
-<p>SIEVE is a mail filtering language, intended for server-side filtering of
+<p>Sieve is a mail filtering language, intended for server-side filtering of
 emails. See <a href="http://www.faqs.org/rfcs/rfc3028.html">RFC 3028</a> and <a
-href="http://www.cyrusoft.com/sieve/">Cyrusoft's page about SIEVE</a> for more
+href="http://www.cyrusoft.com/sieve/">Cyrusoft's page about Sieve</a> for more
 details.</p>
 
 
 <h3><a id="about">About this implementation</a></h3>
 
 <p>The web interface provides a wizard-like interface that, in the end,
-creates part of a SIEVE script, a so called <em>rule</em>. It then assembles
-all the rules to form a SIEVE script.</p>
+creates part of a Sieve script, a so called <em>rule</em>. It then assembles
+all the rules to form a Sieve script.</p>
 
-<p>For the sake of user-friendliness, it provides only a subset of SIEVE's
+<p>For the sake of user-friendliness, it provides only a subset of Sieve's
 functionality; the main goal was to provide a simple interface for Joe User to
 create server-side filters without knowing anything about the language
 itself.</p>
@@ -70,8 +70,8 @@ is HTML-only fallback for accessibility.</li>
 <li>Match messages based on email headers, size, or apply to all messages.</li>
 <li>Configurable number of header matches.</li>
 <li>Support of keeping a message, move to an existing or new folder, email redirection.</li>
-<li>Supports SIEVE Vacation.</li>
-<li>Supports SIEVE Notification action.</li>
+<li>Supports Sieve Vacation.</li>
+<li>Supports Sieve Notification action.</li>
 <li>Create a rule on-the-fly, while reading a message in Squirrelmail. This
 function will auto-detect List-Id: headers for mailing lists.</li>
 <li>Runs through all the rules, but supports a <em>stop</em> command when a rule matches.</li>
@@ -79,13 +79,13 @@ function will auto-detect List-Id: headers for mailing lists.</li>
 <li>Enable / Disable rules on the fly, without deleting them.</li>
 <li>Make a textual description of the rule.</li>
 <li>Localizable.</li>
-<li>Automatic adaption to the capabilities of each site's SIEVE.</li>
+<li>Automatic adaption to the capabilities of each site's Sieve.</li>
 </ul>
 
 <p>..but does <strong>not</strong> provide:</p>
 
 <ul>
-<li>A SIEVE parser.</li>
+<li>A Sieve parser.</li>
 </ul>
 
 
@@ -107,9 +107,9 @@ href="demo.php">Live Demo</a> page for more information.  </p>
 
 <ul>
 
-<li>A SIEVE management daemon (MANAGESIEVE-compatible). It has been tested with
+<li>A Sieve management daemon (ManageSieve-compatible). It has been tested with
 <a href="http://asg.web.cmu.edu/cyrus/">Cyrus IMAP server</a> and its
-<em>timsieved</em> SIEVE parser. There have been reports about it working with
+<em>timsieved</em> Sieve parser. There have been reports about it working with
 <a href="http://www.dbmail.org">DBMail</a>, too.</li>
 
 <li><a href="http://www.squirrelmail.org">Squirrelmail</a> version 1.4.0 or
@@ -121,7 +121,7 @@ robust conversion between character sets. Otherwise, recode or iconv will also
 do the job.</li>
 
 <li><a href="http://sieve-php.sourceforge.net/">sieve-php.lib</a>, a PHP class
-for transporting SIEVE scripts, by <a
+for transporting Sieve scripts, by <a
 href="mailto:danellis__&#64;.com">Dan Ellis</a>. Included.</li>
 
 </ul>
