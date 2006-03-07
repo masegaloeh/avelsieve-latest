@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.29 2006/02/09 17:28:11 avel Exp $
+ * @version $Id: edit.php,v 1.30 2006/03/07 15:40:15 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -78,7 +78,7 @@ if (!isset($rules)) {
         $_SESSION['rules'] = $rules;
         $_SESSION['scriptinfo'] = $scriptinfo;
     }
-    $sieve->sieve_logout();
+    $s->sieve_logout();
 }
 
 /* Create new mailbox, if required by the user. */
