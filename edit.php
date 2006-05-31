@@ -8,17 +8,23 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.30 2006/03/07 15:40:15 avel Exp $
+ * @version $Id: edit.php,v 1.31 2006/05/31 10:42:01 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
 
-define('SM_PATH','../../');
-include_once(SM_PATH . 'include/validate.php');
-include_once(SM_PATH . 'include/load_prefs.php');
-include_once(SM_PATH . 'functions/page_header.php');
+if (file_exists('../../include/init.php')) {
+    include_once('../../include/init.php');
+} else if (file_exists('../../include/validate.php')) {
+    define('SM_PATH','../../');
+    include_once(SM_PATH . 'include/validate.php');
+    include_once(SM_PATH . 'include/load_prefs.php');
+    include_once(SM_PATH . 'functions/page_header.php');
+    include_once(SM_PATH . 'functions/date.php');
+}
+    
 include_once(SM_PATH . 'functions/imap.php');
 
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
@@ -78,7 +84,7 @@ if (!isset($rules)) {
         $_SESSION['rules'] = $rules;
         $_SESSION['scriptinfo'] = $scriptinfo;
     }
-    $s->sieve_logout();
+    $s->logout();
 }
 
 /* Create new mailbox, if required by the user. */

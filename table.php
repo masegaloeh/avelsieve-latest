@@ -14,19 +14,24 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.30 2006/02/09 17:28:11 avel Exp $
+ * @version $Id: table.php,v 1.31 2006/05/31 10:42:01 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
 
-define('SM_PATH','../../');
-require_once(SM_PATH . 'include/validate.php');
-require_once(SM_PATH . 'include/load_prefs.php');
-include_once(SM_PATH . 'functions/page_header.php');
-include_once(SM_PATH . 'functions/imap.php');
-include_once(SM_PATH . 'functions/date.php');
+if (file_exists('../../include/init.php')) {
+    include_once('../../include/init.php');
+} else if (file_exists('../../include/validate.php')) {
+    define('SM_PATH','../../');
+    include_once(SM_PATH . 'include/validate.php');
+    include_once(SM_PATH . 'include/load_prefs.php');
+    include_once(SM_PATH . 'functions/page_header.php');
+    include_once(SM_PATH . 'functions/date.php');
+}
+    
+include_once(SM_PATH . 'functions/imap_general.php');
 
 include_once(SM_PATH . 'plugins/avelsieve/config/config.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
