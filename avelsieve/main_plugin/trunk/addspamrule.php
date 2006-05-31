@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: addspamrule.php,v 1.18 2006/02/09 17:28:11 avel Exp $
+ * @version $Id: addspamrule.php,v 1.19 2006/05/31 10:42:01 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -18,12 +18,17 @@
  * @todo This file needs a lot of work to become like edit.php....
  */
 
-define('SM_PATH','../../');
-
-require_once(SM_PATH . 'include/validate.php');
-require_once(SM_PATH . 'include/load_prefs.php');
-require_once(SM_PATH . 'functions/page_header.php');
-require_once(SM_PATH . 'functions/imap.php');
+if (file_exists('../../include/init.php')) {
+    include_once('../../include/init.php');
+} else if (file_exists('../../include/validate.php')) {
+    define('SM_PATH','../../');
+    include_once(SM_PATH . 'include/validate.php');
+    include_once(SM_PATH . 'include/load_prefs.php');
+    include_once(SM_PATH . 'functions/page_header.php');
+    include_once(SM_PATH . 'functions/date.php');
+}
+    
+include_once(SM_PATH . 'functions/imap.php');
 
 include_once(SM_PATH . 'plugins/avelsieve/config/config.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
