@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.24 2006/06/06 10:45:25 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.25 2006/06/06 10:51:17 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -281,13 +281,13 @@ function build_rule_snippet($name, $header, $matchtype, $headermatch, $mode='rul
 	}
 
 	if($header == 'toorcc') {
-		$out .= ' ["to", "cc"] ';
+		$out .= ' ["to", "cc"]';
 	} elseif($header) {
-		$out .= ' "' . $header . '" ';
+		$out .= ' "' . $header . '"';
 	}
 
 	/* Escape slashes and double quotes */
-	$out .= "\"". avelsieve_addslashes($headermatch) . "\"";
+	$out .= " \"". avelsieve_addslashes($headermatch) . "\"";
 	$text .= " &quot;". htmlspecialchars($headermatch) . "&quot;";
 	$terse .= ' '.htmlspecialchars($headermatch). ' ';
 	$tech .= ' '.htmlspecialchars($headermatch). ' ';
