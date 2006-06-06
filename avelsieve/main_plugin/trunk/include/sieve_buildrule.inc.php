@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.23 2006/02/10 13:21:19 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.24 2006/06/06 10:45:25 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -892,9 +892,9 @@ function makesieverule ($rulearray) {
 	$out .= "#AVELSIEVE_MODIFIED" . $modification_date . "\n";
 	// $out .= "#AVELSIEVE_COMMENT" . $script_comment . "\n"
 
-	/* Capability requirements check */
+	/* Require all capablities that avelsieve supports AND the server supports. */
 	foreach($implemented_capabilities as $no=>$cap) {
-		if(in_array($cap, $sieve_capabilities)) {
+		if(array_key_exists($cap, $sieve_capabilities)) {
 			$torequire[] = $cap;
 			if(array_key_exists($cap, $cap_dependencies)) {
 				foreach($cap_dependencies[$cap] as $no2=>$dep) {
@@ -904,14 +904,7 @@ function makesieverule ($rulearray) {
 		}
 	}
 		
- 	$out .= "require [";
-	for($i=0; $i<sizeof($torequire); $i++) {
-		$out .= '"'.$torequire[$i].'"';
-		if($i != (sizeof($torequire) -1) ) {
-			$out .= ',';
-		}
-	}
-	$out .= "];\n";
+ 	$out .= 'require ["'. implode('","', $torequire) . "\"];\n";
 
 	/* The actual rules */
 	for ($i=0; $i<sizeof($rulearray); $i++) {
