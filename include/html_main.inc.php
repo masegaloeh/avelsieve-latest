@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_main.inc.php,v 1.7 2006/01/16 12:57:06 avel Exp $
+ * @version $Id: html_main.inc.php,v 1.8 2006/06/06 13:24:14 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -115,7 +115,7 @@ class avelsieve_html {
 		global $color;
 		return '<tr><td bgcolor="'.$color[9].'" align="center">'.
 			'<strong>'.$title.'</strong></td></tr>'.
-			'<tr><td bgcolor="'.$color[0].'">';
+			'<tr><td bgcolor="'.$color[0].'" align="left">';
 	}
 	
 	/**
