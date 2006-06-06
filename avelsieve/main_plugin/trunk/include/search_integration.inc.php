@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: search_integration.inc.php,v 1.4 2006/06/06 13:23:23 avel Exp $
+ * @version $Id: search_integration.inc.php,v 1.5 2006/06/06 13:29:14 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -301,6 +301,8 @@ function asearch_to_avelsieve(&$mailbox_array, &$biop_array, &$unop_array, &$whe
                 $r['condition'] = 'or';
                 break;
         }
+    } elseif(sizeof($r['cond']) == 0) {
+        unset($r['cond']);
     }
     return $r;
 }
