@@ -6,16 +6,23 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: search_integration.inc.php,v 1.3 2006/01/17 11:24:38 avel Exp $
+ * @version $Id: search_integration.inc.php,v 1.4 2006/06/06 13:23:23 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
 
+/** Includes */
 include_once(SM_PATH . 'plugins/avelsieve/include/managesieve_wrapper.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/html_main.inc.php');
 
+/**
+ * The main search-integration routine.
+ *
+ * @uses asearch_to_avelsieve()
+ * @return void
+ */
 function avelsieve_search_integration_do() {
     global $mailbox_array, $biop_array, $unop_array, $where_array, $what_array,
         $exclude, $color, $compose_new_win, $javascript_on;
@@ -48,6 +55,9 @@ function avelsieve_search_integration_do() {
                 echo '<a href="'.$url.'" style="font-size: 120%" target="_blank">'.
                     '<strong>'. _("Create Filter") . '</strong></a> ';
             }
+        } else {
+            echo '<a href="'.$url.'" style="font-size: 120%"">'.
+                '<strong>'. _("Create Filter") . '</strong></a> ';
         }
         echo _("(Creates a new server-side filtering rule, based on the above criteria)") . '</a>';
 
