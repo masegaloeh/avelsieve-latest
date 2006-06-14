@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: DO_Sieve.class.php,v 1.1 2006/02/09 18:18:55 avel Exp $
+ * @version $Id: DO_Sieve.class.php,v 1.2 2006/06/14 09:09:58 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2006 Alexandros Vellis
  * @package plugins
@@ -58,7 +58,7 @@ class DO_Sieve {
     function capability_exists($cap) {
 	    global $disable_avelsieve_capabilities, $sieve_capabilities;
 	    
-	    if(in_array($cap, $sieve_capabilities)) {
+	    if(array_key_exists($cap, $sieve_capabilities)) {
 		    if(!in_array($cap, $disable_avelsieve_capabilities)) {
 			    return true;
 		    }

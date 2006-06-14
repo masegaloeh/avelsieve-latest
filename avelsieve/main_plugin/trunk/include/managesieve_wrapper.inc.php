@@ -9,7 +9,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: managesieve_wrapper.inc.php,v 1.13 2006/02/09 17:41:51 avel Exp $
+ * @version $Id: managesieve_wrapper.inc.php,v 1.14 2006/06/14 09:09:58 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -304,7 +304,7 @@ function avelsieve_capability_exists ($cap) {
 
 	global $disable_avelsieve_capabilities, $sieve_capabilities;
 	
-	if(in_array($cap, $sieve_capabilities)) {
+	if(array_key_exists($cap, $sieve_capabilities)) {
 		if(!in_array($cap, $disable_avelsieve_capabilities)) {
 			return true;
 		}
