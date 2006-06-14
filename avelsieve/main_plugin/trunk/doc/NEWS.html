@@ -6,6 +6,9 @@
 
 <li>Compatible with Squirrelmail 1.5.2 (new init scheme).</li>
 
+<li>Add STARTTLS feature for ManageSieve class (thanks to <span
+class="contributor">Anish Mistry</span>)</li>
+
 <li>Bugfix: Typo in edit.php, prevented rule from being added dynamically (e.g.
 from Search Results or from Message View) when the Filters page had not been
 previously loaded.</li>
@@ -13,8 +16,16 @@ previously loaded.</li>
 <li>Bugfix: Due to a programming error, the wrong capabilities were required in
 the Sieve script.</li>
 
+<li>Bugfix: Capabilities check is performed correctly.</li>
+
 <li>Bugfix: Body Sieve code lacked spaces: <code><tt>body
 :contains"foo"</tt></code> , which resulted in syntax error.</li>
+
+<li>Bugfix: Now actually display link to create filter in search integration
+feature, when Compose in new window is true.</li>
+
+<li>Bugfix: Search Integration: When no search criteria could be expressed as
+sieve rules, then the Create Filter link is not displayed.</li>
 
 </ul>
 
