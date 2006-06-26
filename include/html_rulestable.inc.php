@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.14 2006/01/13 16:25:28 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.15 2006/06/26 09:33:24 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -80,9 +80,9 @@ class avelsieve_html_rules extends avelsieve_html {
 		
 		/* NEW*/
 		$out .= '
-		<table cellpadding="3" cellspacing="2" border="0" align="center" valign="middle" width="97%" frame="box">
+		<table cellpadding="3" cellspacing="2" border="0" align="center" width="97%" frame="box">
 		<tr bgcolor="'.$color[0].'">
-		<td nowrap="">';
+		<td style="white-space:nowrap" valign="middle">';
 		
 		$out .= _("No") . '</td><td></td>'.
 			'<td>'. _("Description of Rule").
@@ -91,14 +91,14 @@ class avelsieve_html_rules extends avelsieve_html {
 		
 		foreach($displaymodes as $id=>$info) {
 			if($this->mode == $id) {
-				$out .= ' <strong><span title="'.$info[1].'">'.$info[0].'</strong>';
+				$out .= ' <strong><span title="'.$info[1].'">'.$info[0].'</span></strong>';
 			} else {
 				$out .= ' <a href="'.$_SERVER['SCRIPT_NAME'].'?mode='.$id.'" title="'.$info[1].'">'.$info[0].'</a>';
 			}
 		}
 		$out .= ')</small>';
 		
-		$out .= " </td><td>"._("Options")."</td></tr>";
+		$out .= ' </td><td valign="middle">'._("Options")."</td></tr>\n";
 		return $out;
 	}
 		
@@ -151,20 +151,11 @@ class avelsieve_html_rules extends avelsieve_html {
 	 */
 	function button_addnewrule() {
 		global $spamrule_enable;
-		$out = '<form action="edit.php?addnew=1" method="POST">'.
-			'<input name="addrule" value="' . _("Add a New Rule") . '" type="submit" />'.
-			'</form>';
-		
-		/* Link to add Spam rule */
+		$out = '<input name="addrule" value="' . _("Add a New Rule") . '" type="submit" />';
 		if($spamrule_enable == true) {
-			$out .= '<form action="addspamrule.php" method="POST">'.
-				'<input name="addspamrule" value="' . _("Add SPAM Rule") . '" type="submit" />'.
-				'</form>';
+			$out .= '<br/><input name="addspamrule" value="' . _("Add SPAM Rule") . '" type="submit" />';
 		}
 		$out .= concat_hook_function('avelsieve_rulestable_buttons', NULL);
-		if($spamrule_enable == true) {
-			$out .= '</td></tr></table>';
-		}
 		return $out;
 	}
 	
@@ -197,11 +188,9 @@ class avelsieve_html_rules extends avelsieve_html {
 		global $conservative;
 		$out = '';
 		if($conservative) {
-			$out .= '<div style="text-align: center;"><p>';
-			$out .= _("When you are done, please click the button below to return to your webmail.");
-			$out .= '</p><form action="table.php" method="POST"><input name="logout" value="';
-			$out .= _("Save Changes");
-			$out .= '" type="submit" /></form></div>';
+            $out = '<div style="text-align: center;"><p>'.
+			    _("When you are done, please click the button below to return to your webmail.").
+                '</p><input name="logout" value="'._("Save Changes").'" type="submit" /></div>';
 		}
 		return $out;
 	}
@@ -237,7 +226,7 @@ class avelsieve_html_rules extends avelsieve_html {
 	
 		if($useimages) {
 			$out .= '<img title="'.$desc.'" src="'.$location.'/images/'.$imagetheme.
-			'/'.$img.'" alt="'.$desc.'" value="'.$desc.'" border="0" />';
+			'/'.$img.'" alt="'.$desc.'" border="0" />';
 		} else {
 			$out .= " | ". $desc;
 		}
@@ -306,25 +295,32 @@ class avelsieve_html_rules extends avelsieve_html {
 	 */
 	function rules_table() {
 		global $color;
+		
+        $out = '<form name="rulestable" method="POST" action="table.php">';
 
 		if(empty($this->rules)) {
-			return $this->table_header(_("No Filtering Rules Defined Yet")).
+			$out .= $this->table_header(_("No Filtering Rules Defined Yet")).
 				$this->all_sections_start().
+		        '<tr><td bgcolor="'.$color[4].'" align="center">'.
 				$this->rules_create_new().
 				$this->button_addnewrule().
 				$this->rules_footer().
+                '</td></tr>'.
 				$this->all_sections_end() .
-				$this->rules_table_footer();
+				$this->table_footer().
+                '</form>';
+            return $out;
 		}
 
-		$out = $this->table_header( _("Current Mail Filtering Rules") ).
-			$this->all_sections_start().
-			'<form name="rulestable" method="POST" action="table.php">'.
+		$out .= // $this->all_sections_start().
+            $this->table_header( _("Current Mail Filtering Rules") ).
+		    // '<tr><td bgcolor="'.$color[4].'" align="center">'.
 			$this->rules_blurb();
+            // '</td></tr>';
 
 		$toggle = false;
 		for ($i=0; $i<sizeof($this->rules); $i++) {
-			$out .="<tr";
+			$out .="\n<tr";
 			if ($toggle) {
 				$out .=' bgcolor="'.$color[12].'"';
 			}
@@ -377,7 +373,7 @@ class avelsieve_html_rules extends avelsieve_html {
 				}
 			}
 		
-			$out .='</p></td></tr>';
+			$out .= "</p></td></tr>\n";
 		
 			if(!$toggle) {
 				$toggle = true;
@@ -397,10 +393,9 @@ class avelsieve_html_rules extends avelsieve_html {
 			'</td></tr></table>'. 
 			'</td></tr>'.
 			$this->rules_footer().
-			'</form>'.
-		
 			$this->all_sections_end() .
-			$this->rules_table_footer();
+			$this->table_footer().
+            '</form>';
 
 		return $out;
 	}
