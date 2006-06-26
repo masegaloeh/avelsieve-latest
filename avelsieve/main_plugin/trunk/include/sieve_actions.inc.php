@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.18 2006/02/09 17:31:50 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.19 2006/06/26 11:39:36 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -174,7 +174,7 @@ class avelsieve_action {
 					' id="action_'.$this->num.'" value="'.$this->num.'" ';
 
 			if(isset($this->rule['action'])  && $this->rule['action'] == $this->num) {
-				$out .= ' checked=""';
+				$out .= ' checked="CHECKED"';
 			}
 			$out .= '/> ';
 		} else {
@@ -186,10 +186,10 @@ class avelsieve_action {
 			$out .= '" onClick="ToggleShowDiv(\'options_'.$this->name.'\');return true;"'.
 					' id="'.$this->name.'" ';
 			if(isset($this->two_dimensional_options) && $this->options[$this->name]['on']) {
-				$out .= ' checked=""';
+				$out .= ' checked="CHECKED"';
 			} else {
 				if(isset($this->rule[$this->name])) {
-					$out .= ' checked=""';
+					$out .= ' checked="CHECKED"';
 				}
 			}
 			$out .= '/> ';
@@ -277,11 +277,11 @@ class avelsieve_action_redirect extends avelsieve_action {
 	}
 
 	function options_html($val) {
-		$out = '<input type="text" name="redirectemail" size="26" maxlength="100" value="'.$val['redirectemail'].'"/>'.
+		$out = '<input type="text" name="redirectemail" size="26" maxlength="100" value="'.htmlspecialchars($val['redirectemail']).'"/>'.
 				'<br />'.
 				'<input type="checkbox" name="keep" id="keep" ';
 		if(isset($val['keep'])) {
-				$out .= ' checked=""';
+				$out .= ' checked="CHECKED"';
 		}
 		$out .= '/>'.
 				'<label for="keep">'. _("Keep a local copy as well.") . '</label>';
@@ -322,7 +322,7 @@ class avelsieve_action_fileinto extends avelsieve_action {
 	function options_html ($val) {
 		$out = '<input type="radio" name="newfolderradio" value="5a" onclick="checkOther(\'5\');" ';
 		if(isset($val['folder'])) {
-			$out .= 'checked=""';
+			$out .= 'checked="CHECKED"';
 		}
 		$out .= '/> '. _("the existing folder") . ' ';
 		if(isset($val['folder'])) {
@@ -375,9 +375,9 @@ class avelsieve_action_vacation extends avelsieve_action {
 
 	function options_html($val) {
 	 	return _("Addresses: Only reply if sent to these addresses:").
-				' <input type="text" name="vac_addresses" value="'.$val['vac_addresses'].'" size="80" maxsize="200"><br />'.
+				' <input type="text" name="vac_addresses" value="'.htmlspecialchars($val['vac_addresses']).'" size="80" maxlength="200"><br />'.
 				_("Days: Reply message will be resent after").
-				' <input type="text" name="vac_days" value="'.$val['vac_days'].'" size="3" maxsize="4"> ' . _("days").
+				' <input type="text" name="vac_days" value="'.htmlspecialchars($val['vac_days']).'" size="3" maxlength="4"> ' . _("days").
 				'<br />'.
 				_("Use the following message:") . '<br />' .
 				'<textarea name="vac_message" rows="4" cols="50">'.$val['vac_message'].'</textarea>';
@@ -465,7 +465,7 @@ class avelsieve_action_notify extends avelsieve_action {
 		$out = '';
 		if(is_array($this->notifymethods) && sizeof($this->notifymethods) == 1) {
 				/* No need to provide listbox, there's only one choice */
-				$out .= '<input type="hidden" name="notify[method]" value="'.$this->notifymethods[0].'" />';
+				$out .= '<input type="hidden" name="notify[method]" value="'.htmlspecialchars($this->notifymethods[0]).'" />';
 				if(array_key_exists($this->notifymethods[0], $this->notifystrings)) {
 					$out .= $this->notifystrings[$this->notifymethods[0]];
 				} else {
@@ -476,7 +476,7 @@ class avelsieve_action_notify extends avelsieve_action {
 				/* Listbox */
 				$out .= '<select name="notify[method]">';
 				foreach($this->notifymethods as $no=>$met) {
-					$out .= '<option value="'.$met.'"';
+					$out .= '<option value="'.htmlspecialchars($met).'"';
 					if(isset($val['notify']['method']) &&
 					  $val['notify']['method'] == $met) {
 						$out .= ' selected=""';
@@ -493,7 +493,7 @@ class avelsieve_action_notify extends avelsieve_action {
 				$out .= '</select>';
 				
 		} elseif($this->notifymethods == false) {
-				$out .= '<input name="notify[method]" value="'.$val['notify']['method']. '" size="20" />';
+				$out .= '<input name="notify[method]" value="'.htmlspecialchars($val['notify']['method']). '" size="20" />';
 		}
 		
 			$out .= '<br /><blockquote>';
@@ -505,7 +505,7 @@ class avelsieve_action_notify extends avelsieve_action {
 			$out .= '<input name="notify[id]" value="';
 			if(isset($edit)) {
 				if(isset($_SESSION['rules'][$edit]['notify']['id'])) {
-					$out .= $_SESSION['rules'][$edit]['notify']['id'];
+					$out .= htmlspecialchars($_SESSION['rules'][$edit]['notify']['id']);
 				}
 			}
 			$out .= '" /><br />';
@@ -514,7 +514,7 @@ class avelsieve_action_notify extends avelsieve_action {
 			$out .= _("Destination") . ": ";
 			$out .= '<input name="notify[options]" size="30" value="';
 			if(isset($val['notify']['options'])) {
-				$out .= $val['notify']['options'];
+				$out .= htmlspecialchars($val['notify']['options']);
 			}
 			$out .= '" /><br />';
 		
@@ -522,9 +522,9 @@ class avelsieve_action_notify extends avelsieve_action {
 			
 			$out .= 'Priority: <select name="notify[priority]">';
 			foreach($prioritystrings as $pr=>$te) {
-				$out .= '<option value="'.$pr.'"';
+				$out .= '<option value="'.htmlspecialchars($pr).'"';
 				if(isset($val['notify']['priority']) && $val['notify']['priority'] == $pr) {
-					$out .= ' checked=""';
+					$out .= ' checked="CHECKED"';
 				}
 				$out .= '>';
 				$out .= $prioritystrings[$pr];
