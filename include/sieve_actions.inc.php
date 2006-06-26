@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.19 2006/06/26 11:39:36 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.20 2006/06/26 15:23:45 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -37,13 +37,18 @@ class avelsieve_action {
      * @return void
 	 */
     function init() {
-        global $translate_return_msgs, $useimages;
+        global $translate_return_msgs, $useimages, $javascript_on;
         if(isset($translate_return_msgs)) {
             $this->translate_return_msgs = $translate_return_msgs;
         }
         if(isset($useimages)) {
             $this->useimages = $useimages;
         }
+		if($javascript_on) {
+			$this->js = true;
+		} else {
+			$this->js = false;
+		}
     }
 
     /**
@@ -121,14 +126,14 @@ class avelsieve_action {
 				$out .= '<div id="options_'.$this->num.'"';
 				if(isset($this->rule['action']) && $this->rule['action'] == $this->num) {
 					$out .= '';
-				} else {
+				} elseif($this->js) {
 					$out .= ' style="display:none"';
 				}
 			} else {
 				$out .= '<div id="options_'.$this->name.'"';
 				if(isset($this->rule[$this->name]) && $this->rule[$this->name]) {
 					$out .= '';
-				} else {
+				} elseif($this->js) {
 					$out .= ' style="display:none"';
 				}
 			}
