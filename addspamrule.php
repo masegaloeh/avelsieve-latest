@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: addspamrule.php,v 1.19 2006/05/31 10:42:01 avel Exp $
+ * @version $Id: addspamrule.php,v 1.20 2006/06/26 11:39:36 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -231,13 +231,8 @@ if(!$spamrule_advanced) {
 	$spamfilters = load_spam_filters();
 	*/
 
-	print '<input type="hidden" name="spamrule_advanced" value="1" />';
-
-	print '<ul>';
-
-	print '<li><strong>';
-	print _("Target Score");
-	print '</strong></li>';
+    echo '<input type="hidden" name="spamrule_advanced" value="1" />'.
+        '<ul><li><strong>'. _("Target Score") . '</strong>';
 	
 	/* If using sendmail LDAP configuration, get the sum of maximum score */
 	if(isset($spamrule_rbls)) {
@@ -249,13 +244,10 @@ if(!$spamrule_advanced) {
 		}
 	}
 
-	print '<p>'. sprintf( _("Messages with SPAM-Score higher than the target value, the maximum value being %s, will be considered SPAM.") , $spamrule_score_max ) . '<br />';
-	
-	print _("Target Score") . ': <input name="score" id="score" value="'.$score.'" size="4" /></p><br />';
+	echo '<br/>'. sprintf( _("Messages with SPAM-Score higher than the target value, the maximum value being %s, will be considered SPAM.") , $spamrule_score_max ) .
+        '<br/>'. _("Target Score") . ': <input name="score" id="score" value="'.$score.'" size="4" /><br/><br/>'.
 
-	print '<li><strong>';
-	print _("SPAM Lists to check against");
-	print '</strong></li><p>';
+	    '</li><li><strong>'. _("SPAM Lists to check against") .'</strong><br/>';
 	
 	/**
 	 * Print RBLs that are available in this system.
@@ -266,37 +258,37 @@ if(!$spamrule_advanced) {
 	if(isset($spamrule_rbls)) {
 		/* from LDAP */
 		foreach($spamrule_rbls as $no=>$info) {
-			print '<input type="checkbox" name="tests[]" value="'.$info['test'].'" id="spamrule_test_'.$no.'" ';
+			echo '<input type="checkbox" name="tests[]" value="'.$info['test'].'" id="spamrule_test_'.$no.'" ';
 			if(in_array($info['test'], $tests)) {
-				print 'checked="" ';
+				echo 'checked="CHECKED" ';
 			}
-			print '/> ';
-			print '<label for="spamrule_test_'.$no.'">'.$info['name'].' ('.$info['serverweight'].')</label><br />';
+			echo '/> '.
+			    '<label for="spamrule_test_'.$no.'">'.$info['name'].' ('.$info['serverweight'].')</label><br />';
 		}
 			
 	} elseif(isset($spamrule_tests)) {
 		/* from config.php */
 		foreach($spamrule_tests as $st=>$txt) {
-			print '<input type="checkbox" name="tests[]" value="'.$st.'" id="spamrule_test_'.$st.'" ';
+			echo '<input type="checkbox" name="tests[]" value="'.$st.'" id="spamrule_test_'.$st.'" ';
 			if(in_array($st, $tests)) {
-				print 'checked="" ';
+				echo 'checked="CHECKED" ';
 			}
-			print '/> ';
-			print '<label for="spamrule_test_'.$st.'">'.$txt.'</label><br />';
+			echo '/> '.
+			    '<label for="spamrule_test_'.$st.'">'.$txt.'</label><br />';
 		}
 	/*
 	} elseif(isset($spamrule_filters)) {
 	foreach($spamrule_filters as $st=>$fi) {
-		print '<input type="checkbox" name="tests[]" value="'.$st.'" id="spamrule_test_'.$st.'" ';
+		echo '<input type="checkbox" name="tests[]" value="'.$st.'" id="spamrule_test_'.$st.'" ';
 		if(in_array($st, $tests)) {
-			print 'checked="" ';
+			echo 'checked="CHECKED" ';
 		}
-		print '/> ';
-		print '<label for="spamrule_test_'.$st.'">'$fi.['name'].'</label><br />';
+		echo '/> '.
+		    '<label for="spamrule_test_'.$st.'">'$fi.['name'].'</label><br />';
 	}
 	*/
 	}
-	print '</p><br />';
+	echo '<br/><br/></li>';
 
 	/**
 	 * Whitelist
@@ -304,11 +296,11 @@ if(!$spamrule_advanced) {
 	 * / discard.
 	 */
 	
-	print '<li><strong>' . _("Whitelist") . '</strong></li>'.
-		'<p>'. _("Messages that match any of these header rules will never end up in Junk Folders or regarded as SPAM.") . '</p>';
+	echo '<li><strong>' . _("Whitelist") . '</strong>'.
+		'<br/>'. _("Messages that match any of these header rules will never end up in Junk Folders or regarded as SPAM.") .
+        '<br/><br/>';
+        '<input type="hidden" name="whitelistitems" value="'.$whitelistitems.'" />';
 
-	print '<p>';
-	echo '<input type="hidden" name="whitelistitems" value="'.$whitelistitems.'" />';
 	for($i=0; $i<$whitelistitems; $i++) {
 		echo $ht->header_listbox(
 			isset($whitelist[$i]['header']) ? $whitelist[$i]['header'] : 'From' , $i
@@ -321,16 +313,12 @@ if(!$spamrule_advanced) {
 			'" size="18" />'.
 			'<br/>';
 	}
-	echo '<br/>'.
-		'<input type="submit" name="whitelist_add" value="'._("More...").'"/>'.
-		'</p><br />';
+	echo '<br/><input type="submit" name="whitelist_add" value="'._("More...").'"/><br/><br/></li>';
 
 	/**
 	 * Action
 	 */
-	print '<li><strong>';
-	print _("Action");
-	print '</strong></li><br />';
+	echo '<li><strong>'. _("Action") . '</strong><br/>';
 	
 	$trash_folder = getPref($data_dir, $username, 'trash_folder');
 	foreach($spamrule_actions as $ac=>$in) {
@@ -342,49 +330,41 @@ if(!$spamrule_advanced) {
 			continue;
 		}
 	
-		print '<input type="radio" name="action" id="action_'.$ac.'" value="'.$ac.'" '; 
+		echo '<input type="radio" name="action" id="action_'.$ac.'" value="'.$ac.'" '; 
 		if($action == $ac) {
-			print 'checked="" ';
+			echo 'checked="CHECKED" ';
 		}
-		print '/> ';
+		echo '/> ';
 	
-		print ' <label for="action_'.$ac.'"><strong>'.$in['short'].'</strong> - '.$in['desc'].'</label><br />';
+		echo ' <label for="action_'.$ac.'"><strong>'.$in['short'].'</strong> - '.$in['desc'].'</label><br/>';
 	}
 
 
-	print '</ul>';
+	echo '</li></ul>';
 
 }
 
 if(isset($junkprune_saveme)) {
-	print '<input type="hidden" name="junkprune_saveme" value="'.$junkfolder_days.'" />';
+	echo '<input type="hidden" name="junkprune_saveme" value="'.$junkfolder_days.'" />';
 }
 	
-	/* STOP */
+/* STOP */
 	
-	print '<br /><input type="checkbox" name="stop" id="stop" value="1" ';
-	if(isset($stop)) {
-		print 'checked="" ';
-	}
-	print '/> ';
-	print '<label for="stop">';
-	if ($useimages) {
-		print '<img src="images/stop.gif" width="35" height="33" border="0" alt="';
-		print _("STOP");
-		print '" align="middle" /> ';
-	} else {
-		print "<strong>"._("STOP").":</strong> ";
-	}
-	print _("If this rule matches, do not check any rules after it.");
-	print '</label>';
-		
-	echo $ht->section_end();
-
-echo $ht->submit_buttons();
-
-echo $ht->all_sections_end();
-echo $ht->table_footer() . '</form>';
-
+echo '<br /><input type="checkbox" name="stop" id="stop" value="1" ';
+if(isset($stop)) {
+    echo 'checked="CHECKED" ';
+}
+echo '/><label for="stop">';
+if ($useimages) {
+    echo '<img src="images/stop.gif" width="35" height="33" border="0" alt="'. _("STOP") . '" align="middle" /> ';
+} else {
+    echo "<strong>"._("STOP").":</strong> ";
+}
+echo _("If this rule matches, do not check any rules after it."). '</label>'.
+    $ht->section_end().
+    $ht->submit_buttons(). '</div>'.
+    $ht->all_sections_end().
+    $ht->table_footer() . '</form>';
 
 ?>
 </body></html>

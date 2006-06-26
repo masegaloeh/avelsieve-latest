@@ -8,7 +8,7 @@
  *
  * Various support functions, useful or useless.
  *
- * @version $Id: support.inc.php,v 1.14 2006/02/09 17:28:11 avel Exp $
+ * @version $Id: support.inc.php,v 1.15 2006/06/26 11:39:36 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -186,11 +186,11 @@ function mailboxlist($selectname, $selectedmbox, $sub = false) {
 	            	//$box2 = str_replace(' ', '&nbsp;', $boxes[$i]['formatted']);
 	
 	            	if (strtolower($imap_server_type) != 'courier' || strtolower($box) != 'inbox.trash') {
-	                	$mailboxlist .= "<option value=\"$box\"";
+	                	$mailboxlist .= '<option value="'.htmlspecialchars($box).'"';
 				if($selectedmbox == $box) {
-					$mailboxlist .= ' selected=""';
+					$mailboxlist .= ' selected="SELECTED"';
 				}
-				$mailboxlist .= ">$box2</option>\n";
+				$mailboxlist .= '>'.$box2."</option>\n";
 	            	}
 	    	}
 	    	$mailboxlist .= "</select>\n";

@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.24 2006/02/09 17:28:11 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.25 2006/06/26 11:39:36 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2005 Alexandros Vellis
  * @package plugins
@@ -110,7 +110,7 @@ class avelsieve_html_edit extends avelsieve_html {
 			if($select == 'radio') {
 				$out .= '<input type="radio" name="type" id="type_'.$k.'" value="'.$k.'" ';
 				if($this->rule['type'] == $k) {
-					$out .= 'selected=""';
+					$out .= 'selected="SELECTED"';
 				}
 				$out .= '/> '.
 					'<label for="type_'.$k.'">'.$types[$k]['name'].'<br />'.
@@ -119,7 +119,7 @@ class avelsieve_html_edit extends avelsieve_html {
 			} elseif($select == 'select') {
 				$out .= '<option value="'.$k.'" ';
 				if($this->rule['type'] == $k) {
-					$out .= 'selected=""';
+					$out .= 'selected="SELECTED"';
 				}
 				$out .= '>'. $types[$k]['name'] .'</option>';
 			}
@@ -132,7 +132,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		}
 		$out .= '<br/>';
 		*/
-		$out = '<input type="hidden" name="previous_'.$name.'" value="'.$selected.'" />'.
+		$out = '<input type="hidden" name="previous_'.$name.'" value="'.htmlspecialchars($selected).'" />'.
 			'<select name="'.$name.'"';
 		if($this->js) {
 			$out .= ' onChange="addrule.submit();"';
@@ -142,7 +142,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		foreach($this->active_types as $no=>$type) {
 			$out .= '<option value="'.$type.'"';
 			if($selected == $type) {
-				$out .= ' selected=""';
+				$out .= ' selected="SELECTED"';
 			}
 			$out .= '>'.$types[$type]['name'].'</option>';
 		}
@@ -437,20 +437,20 @@ class avelsieve_html_edit extends avelsieve_html {
 
 		// $out = '<p>'._("This rule will trigger if message is").
 		$out = '<select name="cond['.$n.'][sizerel]"><option value="bigger" name="sizerel"';
-		if($sizerel == "bigger") $out .= ' selected=""';
+		if($sizerel == "bigger") $out .= ' selected="SELECTED"';
 		$out .= '>'. _("bigger") . '</option>'.
 			'<option value="smaller" name="sizerel"';
-		if($sizerel == 'smaller') $out .= ' selected=""';
+		if($sizerel == 'smaller') $out .= ' selected="SELECTED"';
 		$out .= '>'. _("smaller") . '</option>'.
 			'</select>' .
 			_("than") . 
 			'<input type="text" name="cond['.$n.'][sizeamount]" size="10" maxlength="10" value="'.$sizeamount.'" /> '.
 			'<select name="cond['.$n.'][sizeunit]">'.
 			'<option value="kb" name="sizeunit';
-		if($sizeunit == 'kb') $out .= ' selected=""';
+		if($sizeunit == 'kb') $out .= ' selected="SELECTED"';
 		$out .= '">' . _("KB (kilobytes)") . '</option>'.
 			'<option value="mb" name="sizeunit"';
-		if($sizeunit == "mb") $out .= ' selected=""';
+		if($sizeunit == "mb") $out .= ' selected="SELECTED"';
 		$out .= '">'. _("MB (megabytes)") . '</option>'.
 			'</select>';
 		return $out;
@@ -583,17 +583,17 @@ class avelsieve_html_edit extends avelsieve_html {
 	function edit_rule($edit = false) {
 		global $PHP_SELF, $color;
 
-		if($this->mode == 'edit') {
-			/* 'edit' */
-			$out = $this->table_header( _("Editing Mail Filtering Rule") . ' #'. ($edit+1) ).
-			$this->all_sections_start().
-			'<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
-			'<input type="hidden" name="edit" value="'.$edit.'" />';
-		} else {
-			/* 'duplicate' or 'addnew' */
-			$out = $this->table_header( _("Create New Mail Filtering Rule") ).
-			$this->all_sections_start().
-			'<form name="addrule" action="'.$PHP_SELF.'" method="POST">';
+        if($this->mode == 'edit') {
+            /* 'edit' */
+            $out = '<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
+                '<input type="hidden" name="edit" value="'.$edit.'" />'.
+                $this->table_header( _("Editing Mail Filtering Rule") . ' #'. ($edit+1) ).
+                $this->all_sections_start();
+        } else {
+            /* 'duplicate' or 'addnew' */
+            $out = '<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
+                $this->table_header( _("Create New Mail Filtering Rule") ).
+	    		$this->all_sections_start();
 		}
 		/* ---------- Error (or other) Message, if it exists -------- */
 		if(!empty($this->errmsg)) {
@@ -655,9 +655,10 @@ class avelsieve_html_edit extends avelsieve_html {
 		/* --------------------- buttons ----------------------- */
 
 		$out .= $this->submit_buttons().
-			'</div></form></td></tr>'.
+			'</div></td></tr>'.
 			$this->all_sections_end() .
-			$this->table_footer();
+			$this->table_footer().
+            '</form>';
 
 		return $out;
 	}
