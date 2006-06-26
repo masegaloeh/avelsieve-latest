@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_main.inc.php,v 1.8 2006/06/06 13:24:14 avel Exp $
+ * @version $Id: html_main.inc.php,v 1.9 2006/06/26 09:33:24 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -64,18 +64,11 @@ class avelsieve_html {
 	 */
 	function table_header($customtitle) {
 		global $color;
-		$out = '<br/>
-		<table bgcolor="'.$color[0].'" width="95%" align="center" cellpadding="2" cellspacing="0" border="0">
+		$out = "\n<!-- Table header --><br/>".
+		'<table bgcolor="'.$color[0].'" width="95%" align="center" cellpadding="2" cellspacing="0" border="0">
 		<tr><td align="center">
-		    <strong>'.
-		    _("Server-Side Mail Filtering");
-		    
-			if($customtitle) {
-				$out .= ' - '.$customtitle;
-			}
-		 
-		    $out .= '</strong>
-		
+		    <strong>'.  _("Server-Side Mail Filtering") .
+		    ( !empty($customtitle) ? ' - '.$customtitle : '' ) . '</strong>
 		    <table width="100%" border="0" cellpadding="5" cellspacing="0">
 		    <tr><td bgcolor="'.$color[4].'" align="center">
 		';
@@ -96,7 +89,7 @@ class avelsieve_html {
 	 * @return string
 	 */
 	function all_sections_start() {
-		return '<table width="95%" cols="1" align="center" cellpadding="4" cellspacing="0" border="0">';
+		return '<!-- All sect. start --><table width="95%" align="center" cellpadding="4" cellspacing="0" border="0">';
 	}
 	
 	/**
@@ -104,7 +97,7 @@ class avelsieve_html {
 	 * @return string
 	 */
 	function all_sections_end() {
-		return '</table>';
+		return '</table><!-- All sect. end -->';
 	}
 	
 	/**
@@ -113,7 +106,8 @@ class avelsieve_html {
 	 */
 	function section_start($title, $errmsg = '') {
 		global $color;
-		return '<tr><td bgcolor="'.$color[9].'" align="center">'.
+		return "\n<!-- Section start -->".
+            '<tr><td bgcolor="'.$color[9].'" align="center">'.
 			'<strong>'.$title.'</strong></td></tr>'.
 			'<tr><td bgcolor="'.$color[0].'" align="left">';
 	}
@@ -139,9 +133,9 @@ class avelsieve_html {
 		$out = '<select name="'.$name.'">';
 		foreach($options as $o => $desc) {
 			if ($selected_option==$o) {
-				$out .= '<option value="'.$o.'" selected="">'.$desc.'</option>';
+				$out .= '<option value="'.htmlspecialchars($o).'" selected="SELECTED">'.htmlspecialchars($desc).'</option>';
 			} else {
-				$out .= '<option value="'.$o.'">'.$desc.'</option>';
+				$out .= '<option value="'.htmlspecialchars($o).'">'.htmlspecialchars($desc).'</option>';
 			}
 		}
 		$out .= '</select>';

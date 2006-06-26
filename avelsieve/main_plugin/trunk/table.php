@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.31 2006/05/31 10:42:01 avel Exp $
+ * @version $Id: table.php,v 1.32 2006/06/26 09:33:24 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -333,7 +333,6 @@ if($popup) {
 } else {
 	echo $ht->rules_table();
 }
-echo $ht->table_footer();
 
 ?>
 </body></html>
