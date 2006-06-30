@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: DO_Sieve_ManageSieve.class.php,v 1.1 2006/02/09 18:18:55 avel Exp $
+ * @version $Id: DO_Sieve_ManageSieve.class.php,v 1.2 2006/06/30 12:56:10 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2006 Alexandros Vellis
  * @package plugins
@@ -34,6 +34,7 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
     function DO_Sieve_ManageSieve() {
         $this->DO_Sieve();
 
+        /* Get Cached Capabilities if they exist. */
         sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
         if(isset($sieve_capabilities)) {
             $this->capabilities = $sieve_capabilities;
@@ -72,10 +73,7 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
 
     /**
     * This function initializes the avelsieve environment. Basically, it makes
-    * sure that there is a valid sieve_capability array.
-    *
-    * Important: If a valid rules array is needed, then avelsieve_getrules()
-    * should be used.
+    * sure that there is a valid $capability array.
     *
     * @return void
     */
@@ -99,7 +97,7 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
             $this->sieve=new sieve($this->sieveServerAddress, $this->sievePort,
                 $bind_username, $acctpass, $this->sieveAuthZ,
                 $this->sievePreferredSaslMech);
-            $this->login();
+            // $this->login();
         }
     }
 
@@ -113,7 +111,7 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
         if(is_object($this->sieve) && $this->loggedin) {
             return true;
         }
-        if ($this->sieve->sieve_login()){ /* User has logged on */
+        if ($this->sieve->sieve_login()){
             if(!isset($this->sieve_capabilities)) {
                 $this->capabilities = $sieve_capabilities = $this->sieve->sieve_get_capability();
                 $_SESSION['sieve_capabilities'] = $sieve_capabilities;
@@ -147,6 +145,9 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
      * @return array
      */
     function listscripts() {
+        if(!$this->loggedin) {
+            $this->login();
+        }
         $scripts = array();
         if($this->sieve->sieve_listscripts()) {
             if(is_array($this->sieve->response)){
@@ -169,8 +170,6 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
      * @return array
      */
     function load($scriptname = 'phpscript', &$rules, &$scriptinfo) {
-        sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
-        
         $rules = array();
         $scriptinfo = array();
     
@@ -222,6 +221,9 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
         if(isset($this->sieve->error_raw)) {
             unset($this->sieve->error_raw);
         }
+        if(!$this->loggedin) {
+            $this->login();
+        }
     
         if($this->sieve->sieve_sendscript($scriptname, stripslashes($newscript))) {
             if(!($this->sieve->sieve_setactivescript($scriptname))){
@@ -266,16 +268,20 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
     }
     
     /**
-    * Deletes a script on SIEVE server.
-    *
-    * @param object $sieve Sieve class connection handler.
-    * @param string $script 
-    * @return true on success, false upon failure
-    */
+     * Deletes a script on SIEVE server.
+     *
+     * @param object $sieve Sieve class connection handler.
+     * @param string $script 
+     * @return true on success, false upon failure
+     */
     function delete($script = 'phpscript') {
         if(empty($script)) {
             return false;
         }
+        if(!$this->loggedin) {
+            $this->login();
+        }
+    
         if($this->sieve->sieve_deletescript($script)) {
             return true;
         } else {
@@ -300,11 +306,23 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
         }
     }
 
+    /**
+     * Set Active Script on ManageSieve Server.
+     *
+     * @param string $script 
+     * @return true on success, false upon failure
+     */
     function setactive($script) {
+        if(!$this->loggedin) {
+            $this->login();
+        }
         $this->sieve->sieve_setactivescript($script);
         return true;
     }
 
+    /**
+     * Log Out from ManageSieve Server.
+     */
     function logout() {
         $this->sieve->sieve_logout();
     }
