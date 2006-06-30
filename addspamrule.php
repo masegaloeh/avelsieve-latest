@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: addspamrule.php,v 1.20 2006/06/26 11:39:36 avel Exp $
+ * @version $Id: addspamrule.php,v 1.21 2006/06/30 12:56:10 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -160,9 +160,6 @@ if(isset($_POST['stop']))  {
 } else {
 	$stop = 1;
 }
-
-/* Other stuff */
-sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
 
 if(isset($_POST['finished']) || isset($_POST['apply']) || isset($_POST['addnew'])) {
 	/* get it together & save it */

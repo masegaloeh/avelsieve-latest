@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: DO_Sieve.class.php,v 1.2 2006/06/14 09:09:58 avel Exp $
+ * @version $Id: DO_Sieve.class.php,v 1.3 2006/06/30 12:56:10 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2006 Alexandros Vellis
  * @package plugins
@@ -56,14 +56,16 @@ class DO_Sieve {
     * @return boolean true if capability exists, false if it does not exist
     */
     function capability_exists($cap) {
-	    global $disable_avelsieve_capabilities, $sieve_capabilities;
-	    
-	    if(array_key_exists($cap, $sieve_capabilities)) {
-		    if(!in_array($cap, $disable_avelsieve_capabilities)) {
-			    return true;
-		    }
-	    }
-	    return false;
+        global $disable_avelsieve_capabilities;
+        if(empty($this->capabilities)) {
+            /* Abnormal start of a backend. We need to call init() explicitly
+             * in order to get capabilities. */
+            $this->init();
+        }
+        if(array_key_exists($cap, $this->capabilities) && !in_array($cap, $disable_avelsieve_capabilities)) {
+            return true;
+        }
+        return false;
     }
     
     /**
@@ -163,8 +165,8 @@ switch($avelsieve_backend) {
         include_once(SM_PATH . 'plugins/avelsieve/include/DO_Sieve_'.$avelsieve_backend.'.class.php');
         break;
     default:
-        print 'You have specified an invalid backend in config/config.php. Please
-        use a supported value for $avelsieve_backend.';
-        exit;
+        die('You have specified an invalid backend in config/config.php. Please
+        use a supported value for $avelsieve_backend.');
+        break;
 }
 ?>

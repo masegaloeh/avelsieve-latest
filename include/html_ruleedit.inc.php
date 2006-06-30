@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.25 2006/06/26 11:39:36 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.26 2006/06/30 12:56:10 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2005 Alexandros Vellis
  * @package plugins
@@ -66,7 +66,7 @@ class avelsieve_html_edit extends avelsieve_html {
 	 * @return array of types valid for the current capabilities.
 	 */
 	function get_active_types() {
-		global $types, $sieve_capabilities;
+		global $types;
 
 		$active_types = array();
 		foreach($types as $i=>$tp) {
@@ -210,7 +210,7 @@ class avelsieve_html_edit extends avelsieve_html {
 	 * @return string
 	 */
 	function matchtype_listbox($selected_matchtype, $n, $varname = 'matchtype') {
-		global $matchtypes, $comparators, $matchregex, $sieve_capabilities;
+		global $matchtypes, $comparators, $matchregex;
 
 		$options = $matchtypes;
 		if($this->s->capability_exists('relational')) {
@@ -498,7 +498,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		/* Preferences from config.php */
 		global $useimages, $translate_return_msgs;
 		/* Data taken from addrule.php */
-		global $boxes, $emailaddresses, $sieve_capabilities;
+		global $boxes, $emailaddresses;
 		/* Other */
 		global $actions;
 		$out = '<p>'. _("Choose what to do when this rule triggers, from one of the following:"). '</p>';
@@ -525,7 +525,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		/* Preferences from config.php */
 		global $useimages, $translate_return_msgs;
 		/* Data taken from addrule.php */
-		global $boxes, $emailaddresses, $sieve_capabilities;
+		global $boxes, $emailaddresses;
 		/* Other */
 		global $additional_actions;
 
