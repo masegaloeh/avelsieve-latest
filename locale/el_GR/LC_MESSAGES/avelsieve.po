@@ -17,7 +17,7 @@ msgid "You have to define at least one header match text."
 msgstr "Πρέπει να ορίσετε τουλάχιστον ένα κείμενο στο ταίριασμα σε κεφαλίδα."
 
 msgid "Add New Rule"
-msgstr "Πρόσθεση Νέου Κανόνα"
+msgstr "Δημιουργία Νέου Κανόνα"
 
 msgid "New Rule Wizard - Step"
 msgstr "Οδηγός Δημιουργίας Νέου Κανόνα - Βήμα"
@@ -56,7 +56,7 @@ msgstr ""
 "κανόνα."
 
 msgid "Add SPAM Rule"
-msgstr "Πρόσθεση Νέου SPAM Κανόνα"
+msgstr "Δημιουργία Νέου SPAM Κανόνα"
 
 msgid "Configure Anti-SPAM Protection"
 msgstr "Παραμετροποίηση της προστασίας από SPAM"
@@ -79,7 +79,7 @@ msgstr ""
 "επιλογή για προχωρημένους για να παραμετροποιήσετε τον κανόνα."
 
 msgid "Add Spam Rule"
-msgstr "Πρόσθεση Νέου Spam Κανόνα"
+msgstr "Δημιουργία Νέου Spam Κανόνα"
 
 msgid "Advanced Spam Filter..."
 msgstr "Φίλτρο Spam για προχωρημένους..."
@@ -451,7 +451,7 @@ msgid ""
 "to get back to the main options screen."
 msgstr ""
 "Δεν έχετε ορίσει ακόμα κάποιον κανόνα. Μπορείτε να προσθέσετε όσους θέλετε "
-"με το πλήκτρο &quot;Πρόσθεση Νέου Κανόνα&quot;. Όταν τελειώσετε, επιλέξτε "
+"με το πλήκτρο &quot;Δημιουργία Νέου Κανόνα&quot;. Όταν τελειώσετε, επιλέξτε "
 "&quot;Αποθήκευση Αλλαγών&quot; για να επιστρέψετε στην οθόνη των κύριων "
 "επιλογών."
 
@@ -498,7 +498,7 @@ msgid "Successfully deleted rule #"
 msgstr "Διαγράφηκε ο κανόνας #"
 
 msgid "Add a New Rule"
-msgstr "Πρόσθεση Νέου Κανόνα"
+msgstr "Δημιουργία Νέου Κανόνα"
 
 msgid "Enable"
 msgstr "Ενεργοποίηση"
