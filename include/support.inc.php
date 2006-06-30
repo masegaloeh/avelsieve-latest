@@ -8,7 +8,7 @@
  *
  * Various support functions, useful or useless.
  *
- * @version $Id: support.inc.php,v 1.15 2006/06/26 11:39:36 avel Exp $
+ * @version $Id: support.inc.php,v 1.16 2006/06/30 12:28:00 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -66,11 +66,17 @@ function print_errormsg($errormsg) {
  */
 function avelsieve_create_folder($foldername, $subfolder = '', &$created_mailbox_name, &$errmsg) {
 	/* Copy & paste magic (aka kludge) */
-	global $mailboxlist, $delimiter, $username, $imapServerAddress, $imapPort;
+	global $mailboxlist, $delimiter, $username, $imapServerAddress, $imapPort, $imapConnection;
+	
+    sqgetGlobalVar('key', $key, SQ_COOKIE);
+	sqgetGlobalVar('onetimepad', $onetimepad, SQ_SESSION);
 
 	if(!isset($delimiter) && isset($_SESSION['delimiter'])) {
 		$delimiter = $_SESSION['delimiter'];
 	} else { /* Just in case... */
+        if(!isset($imapConnection)) {
+            $imapConnection = sqimap_login($username, $key, $imapServerAddress, $imapPort, 0); 
+        }
 		$delimiter = sqimap_get_delimiter($imapConnection);
 		$_SESSION['delimiter'] = $delimiter;
 	}
@@ -119,10 +125,10 @@ function avelsieve_create_folder($foldername, $subfolder = '', &$created_mailbox
 	    }
 	*/
 	/* Actually create the folder. */
-	sqgetGlobalVar('key', $key, SQ_COOKIE);
-	sqgetGlobalVar('onetimepad', $onetimepad, SQ_SESSION);
 		
-	$imapConnection = sqimap_login($username, $key, $imapServerAddress, $imapPort, 0);
+    if(!isset($imapConnection)) {
+	    $imapConnection = sqimap_login($username, $key, $imapServerAddress, $imapPort, 0);
+    }
 
 	/* Here we could do some more error checking to see if the
 	 * folder already exists. If it exists, the creation will not
@@ -132,11 +138,9 @@ function avelsieve_create_folder($foldername, $subfolder = '', &$created_mailbox
 	
 	// $boxes = sqimap_mailbox_list($imapConnection);
 
-	/* Instead of the following line, I use sqimap_run_command so
-	 * that I will put 'false' in the error handling. */
+    /* Instead of using sqimap_mailbox_create(), I use sqimap_run_command so
+     * that I will put 'false' in the error handling. */
 
-	// sqimap_mailbox_create($imapConnection, $mailbox, '');
-	
 	$response = '';
 	$message = '';
 
