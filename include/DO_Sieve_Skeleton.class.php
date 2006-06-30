@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: DO_Sieve_Skeleton.class.php,v 1.1 2006/02/17 11:02:38 avel Exp $
+ * @version $Id: DO_Sieve_Skeleton.class.php,v 1.2 2006/06/30 12:55:03 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2006 Alexandros Vellis
  * @package plugins
@@ -24,10 +24,17 @@ class DO_Sieve_Skeleton extends DO_Sieve {
      * Class Constructor
      */
     function DO_Sieve_Skeleton() {
+        /* Get Cached Capabilities if they exist. */
         sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
+        if(isset($sieve_capabilities)) {
+            $this->capabilities = $sieve_capabilities;
+        }
         sqgetGlobalVar('rules', $rules, SQ_SESSION);
-        $this->capabilities = $sieve_capabilities;
-        $this->rules = $rules;
+        if(isset($rules)) {
+            $this->rules = $rules;
+        }
+        
+        /* Add other important variable initialization here. */
     }
 
     /**
@@ -37,6 +44,7 @@ class DO_Sieve_Skeleton extends DO_Sieve {
      * @return void
      */
     function init() {
+        /* Initialize here the environment. E.g. create new connection handle. */
     }
 
     /**
@@ -45,9 +53,6 @@ class DO_Sieve_Skeleton extends DO_Sieve {
      * @return boolean
      */
     function login() {
-	    if(is_object($this->sieve)) {
-		    return true;
-	    }
     }
 
     /**
@@ -57,6 +62,7 @@ class DO_Sieve_Skeleton extends DO_Sieve {
         $scripts = array();
         /* ... */
         return $scripts;
+        /* Return an array like this: $scripts = array(0=>'foobar', 1=>'meow') */
     }
 
     /**
@@ -126,7 +132,23 @@ class DO_Sieve_Skeleton extends DO_Sieve {
 	        return false;
 	    }
     }
+
+    /**
+     * Set Active Script
+     *
+     * @param string $script 
+     * @return true on success, false upon failure
+     */
+    function setactive($script) {
+        /* ... */
+    }
+
+    /**
+     * Log Out
+     */
+    function logout() {
+    }
+
 }
     
 ?>
-                                                        
