@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.20 2006/06/26 15:23:45 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.21 2006/07/24 12:46:54 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -379,8 +379,13 @@ class avelsieve_action_vacation extends avelsieve_action {
 
 
 	function options_html($val) {
+        /* Provide sane default for maxlength */
+        $maxlength = 200;
+        if(isset($val['vac_addresses']) && strlen($val['vac_addresses']) > 200) {
+            $maxlength = (string) (strlen($val['vac_addresses']) + 50);
+        }
 	 	return _("Addresses: Only reply if sent to these addresses:").
-				' <input type="text" name="vac_addresses" value="'.htmlspecialchars($val['vac_addresses']).'" size="80" maxlength="200"><br />'.
+				' <input type="text" name="vac_addresses" value="'.htmlspecialchars($val['vac_addresses']).'" size="80" maxlength="'.$maxlength.'"><br />'.
 				_("Days: Reply message will be resent after").
 				' <input type="text" name="vac_days" value="'.htmlspecialchars($val['vac_days']).'" size="3" maxlength="4"> ' . _("days").
 				'<br />'.
