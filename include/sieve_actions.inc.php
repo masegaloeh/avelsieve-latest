@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.21 2006/07/24 12:46:54 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.22 2006/07/28 11:17:43 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -285,7 +285,7 @@ class avelsieve_action_redirect extends avelsieve_action {
 		$out = '<input type="text" name="redirectemail" size="26" maxlength="100" value="'.htmlspecialchars($val['redirectemail']).'"/>'.
 				'<br />'.
 				'<input type="checkbox" name="keep" id="keep" ';
-		if(isset($val['keep'])) {
+        if(!empty($val['keep'])) {
 				$out .= ' checked="CHECKED"';
 		}
 		$out .= '/>'.
