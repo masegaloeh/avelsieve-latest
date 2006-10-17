@@ -2,7 +2,7 @@
 /**
  * sieve-php.lib.php
  *
- * $Id: managesieve.lib.php,v 1.7 2006/06/14 09:13:02 avel Exp $ 
+ * $Id: managesieve.lib.php,v 1.8 2006/10/17 14:31:23 avel Exp $ 
  *
  * Copyright 2001-2003 Dan Ellis <danellis@rushmore.com>
  *
@@ -87,6 +87,11 @@ class sieve {
    */
   var $auth_in_use;
   
+  /**
+   * @var boolean Force disabling of STARTTLS for clients that do not want/need 
+   * it. */
+  var $disabletls = false;
+
   var $line;
   var $fp;
   var $retval;
@@ -495,7 +500,8 @@ class sieve {
     /* decision login to decide what type of authentication to use... */
 
     /* If we allow STARTTLS, use it */ 
-    if($this->capabilities['starttls'] === true && function_exists('stream_socket_enable_crypto') === true) {
+    if($this->capabilities['starttls'] === true && function_exists('stream_socket_enable_crypto') === true
+       && !$this->disabletls ) {
         fputs($this->fp,"STARTTLS\r\n");
         $starttls_response = $this->line=fgets($this->fp,1024);
         if(stream_socket_enable_crypto($this->fp, true, STREAM_CRYPTO_METHOD_TLS_CLIENT) == false) {
