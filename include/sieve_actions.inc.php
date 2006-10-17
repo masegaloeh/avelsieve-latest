@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.22 2006/07/28 11:17:43 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.23 2006/10/17 15:50:31 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -440,6 +440,7 @@ class avelsieve_action_notify extends avelsieve_action {
 			'options' => ''
 		)
 	);
+	var $capability = 'notify';
 	var $image_src = 'images/mail.png';
 	var $two_dimensional_options = true;
 
