@@ -9,7 +9,7 @@
  * This file contains configuration parameters for SIEVE mail filters plugin
  * (aka avelsieve)
  *
- * @version $Id: config_sample.php,v 1.17 2006/02/17 12:02:49 avel Exp $
+ * @version $Id: config_sample.php,v 1.18 2006/10/17 14:32:34 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -47,6 +47,16 @@ $sieveport = 2000;
 global $sieve_preferred_sasl_mech;
 $sieve_preferred_sasl_mech = 'PLAIN';
 
+/**
+ * @var boolean Disable STARTTLS for ManageSieve. You can set this to true,
+ * if you do not wish to use encryption via TLS mechanisms (i.e. the server
+ * is not configured properly, or this is a local connection and TLS is not
+ * needed.
+ * Note that STARTTLS is supported only in PHP5+. In PHP4 this option will
+ * have no effect and STARTTLS will be disabled anyway.
+ */
+global $avelsieve_disabletls;
+$avelsieve_disabletls = false;
 
 /* ======================================================================== */
 /* ====== Implementation- and Server-Specific  Options ==================== */
