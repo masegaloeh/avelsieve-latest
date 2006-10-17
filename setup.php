@@ -8,7 +8,7 @@
  *
  * Also view plugins/README.plugins for more information.
  *
- * @version $Id: setup.php,v 1.32 2006/07/28 11:15:41 avel Exp $
+ * @version $Id: setup.php,v 1.33 2006/10/17 14:32:34 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -20,19 +20,16 @@
  * @return void
  */
 function squirrelmail_plugin_init_avelsieve() {
-    global $squirrelmail_plugin_hooks, $SQM_INTERNAL_VERSION, $version;
-
 	$squirrelmail_plugin_hooks['optpage_register_block']['avelsieve'] =
 		'avelsieve_optpage_register_block';
 	$squirrelmail_plugin_hooks['menuline']['avelsieve'] =
 		'avelsieve_menuline';
 	$squirrelmail_plugin_hooks['read_body_header']['avelsieve'] =
 		'avelsieve_commands_menu';
-    if(($SQM_INTERNAL_VERSION[0] == 1 && $SQM_INTERNAL_VERSION[1] >= 5) ||
-       strstr($version, 'email.uoa.gr')) {
-         $squirrelmail_plugin_hooks['search_after_form']['avelsieve'] =
-            'avelsieve_search_integration';
-    }
+    $squirrelmail_plugin_hooks['search_after_form']['avelsieve'] =
+         'avelsieve_search_integration';
+	$squirrelmail_plugin_hooks['configtest']['avelsieve'] =
+        'avelsieve_configtest';
 }
 
 /**
@@ -98,8 +95,23 @@ function avelsieve_commands_menu() {
  * @see avelsieve_search_integration_do()
  */
 function avelsieve_search_integration() {
-	include_once(SM_PATH . 'plugins/avelsieve/include/search_integration.inc.php');
-	avelsieve_search_integration_do();
+    global $squirrelmail_plugin_hooks, $SQM_INTERNAL_VERSION, $version;
+
+    if(($SQM_INTERNAL_VERSION[0] == 1 && $SQM_INTERNAL_VERSION[1] >= 5) ||
+       strstr($version, 'email.uoa.gr')) {
+               
+            include_once(SM_PATH . 'plugins/avelsieve/include/search_integration.inc.php');
+            avelsieve_search_integration_do();
+    }
+}
+
+/**
+ * Configuration Test
+ * @return boolean
+ */
+function avelsieve_configtest() {
+	include_once(SM_PATH . 'plugins/avelsieve/include/configtest.inc.php');
+	return avelsieve_configtest_do();
 }
 
 /**
