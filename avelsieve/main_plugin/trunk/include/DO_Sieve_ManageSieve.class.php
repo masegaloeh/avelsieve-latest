@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: DO_Sieve_ManageSieve.class.php,v 1.2 2006/06/30 12:56:10 avel Exp $
+ * @version $Id: DO_Sieve_ManageSieve.class.php,v 1.3 2006/10/17 14:31:23 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2006 Alexandros Vellis
  * @package plugins
@@ -46,7 +46,7 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
         
         global $imapServerAddress, $username, $avelsieve_imapproxymode,
             $avelsieve_cyrusadmins_map, $sieveport, $sieve_preferred_sasl_mech,
-            $avelsieve_imapproxyserv;
+            $avelsieve_imapproxyserv, $avelsieve_disabletls;
 
         $this->sieveServerAddress = $imapServerAddress;
         $this->sieveUsername = $username;
@@ -54,6 +54,7 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
         $this->sieveCyrusAdminsMap = $avelsieve_cyrusadmins_map;
         $this->sievePort = $sieveport;
         $this->sievePreferredSaslMech = $sieve_preferred_sasl_mech;
+        $this->disableTls = $avelsieve_disabletls;
 
         sqgetGlobalVar('authz', $authz, SQ_SESSION);
         if(isset($authz)) {
@@ -77,27 +78,37 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
     *
     * @return void
     */
-    function init() {
+    function init($nologin = false) {
         if(!is_object($this->sieve)) {
-            sqgetGlobalVar('key', $key, SQ_COOKIE);
-            sqgetGlobalVar('onetimepad', $onetimepad, SQ_SESSION);
-        
-            /* Need the cleartext password to login to timsieved */
-            $acctpass = OneTimePadDecrypt($key, $onetimepad);
-
-            if($this->sieveAuthZ) {
-                if(isset($this->sieveCyrusAdminsMap[$username])) {
-                    $bind_username = $this->sieveCyrusAdminsMap[$username];
+            if($nologin) {
+                // For configtest purposes
+                $this->sieveusername = $bind_username = 'anonymous';
+                $acctpass = '';
+            } else {
+                sqgetGlobalVar('key', $key, SQ_COOKIE);
+                sqgetGlobalVar('onetimepad', $onetimepad, SQ_SESSION);
+            
+                /* Need the cleartext password to login to timsieved */
+                $acctpass = OneTimePadDecrypt($key, $onetimepad);
+    
+                if($this->sieveAuthZ) {
+                    if(isset($this->sieveCyrusAdminsMap[$username])) {
+                        $bind_username = $this->sieveCyrusAdminsMap[$username];
+                    } else {
+                        $bind_username = $this->sieveUsername;
+                    }
                 } else {
                     $bind_username = $this->sieveUsername;
                 }
-            } else {
-                $bind_username = $this->sieveUsername;
             }
+             
             $this->sieve=new sieve($this->sieveServerAddress, $this->sievePort,
                 $bind_username, $acctpass, $this->sieveAuthZ,
                 $this->sievePreferredSaslMech);
-            // $this->login();
+                $this->sieve->disabletls = $this->disableTls;
+            if(!$nologin) {
+                $this->login();
+            }
         }
     }
 
