@@ -1,0 +1,27 @@
+
+<ul>
+
+<li>
+<strong>Cyrus Sieve server (timsieved) complains about size of Sieve scripts.</strong>
+<br/><br/>
+
+Sieve scripts can get quite large, especially with the metadata that avelsieve saves together
+with the script.
+<br/>
+In Cyrus, you are advised to make the permitted Sieve script size bigger, in imapd.conf:<br/>
+<pre>
+ # Maximum size (in kilobytes) any sieve script can be, enforced at
+ # submission by timsieved(8).
+sieve_maxscriptsize: 32
+</pre>
+<br/>
+Changing the default size of 32 kb to 64 or 128 kb should be OK for most purposes.
+
+</li>
+
+
+</ul>
+
+
+
+
