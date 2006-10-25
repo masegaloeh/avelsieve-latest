@@ -1,24 +1,26 @@
-
 <h3>Medium-priority Items</h3>
 
 <ul>
 
-<li>Support <a
-href="http://www.ietf.org/internet-drafts/draft-degener-sieve-body-00.txt">
-Sieve - body extension</a> (started partial implementation)</li>
-
-<li>Sort out the GUI when adding a new rule. Make it more dynamic and
-support mixed, complicated AND/OR logic.</li>
+<li>Clean up ManageSieve library (e.g. function that gets sieve capabilities
+should not depend on user being logged in).</li>
 
 <li>Support multiple Sieve scripts and switching between them.</li>
 
 <li>Support import / export / backup of Sieve scripts.</li>
 
-<li>Sieve scripts in shared folders, via ANNOTATEMORE as implemented in Cyrus
-2.3.</li>
+<li>Sieve scripts in shared folders, via ANNOTATEMORE (aka METADATA), as
+implemented in Cyrus 2.3.<br/>
+<em>Current status: there is a backend library for ANNOTATEMORE operations
+already written (see annotatemore Squirrelmail plugin). A new
+&quot;storage backend&quot; for avelsieve needs to be written to take
+advantage of it.</em>
+</li>
 
-<li>Support multiple storage backends, instead of just ManageSieve, so that it
-can be used with non-ManageSieve servers such as MTAs (Exim).</li>
+<li>Sort out the GUI when adding a new rule. Make it more dynamic and
+support mixed, complicated AND/OR logic.</li>
+
+<li>Fine-tune TLS connections via stream_context_create() options.</li>
 
 </ul>
 
@@ -26,20 +28,18 @@ can be used with non-ManageSieve servers such as MTAs (Exim).</li>
 <h3>Low Priority</h3>
 
 <ul>
+<li>Use Squirrelmail 1.5.2 template sub-system.</li>
 
 <li>Standalone version that does not depend on Squirrelmail.</li>
 
-<li>Support TLS connects to timsieved, in sieve-php.lib.php.</li>
-
 <li>Support advanced mode, so that the user can edit the Sieve scripts directly
-(if she knows Sieve). However this will disable the nice GUI</li>
+(if she knows Sieve). However this will disable the nice GUI altogether after
+the first edit.</li>
 
-<li>Support <a
-href="http://www.oceana.com/ftp/drafts/draft-segmuller-sieve-relation-01.txt">Sieve
+<li>Support <a href="http://www.oceana.com/ftp/drafts/draft-segmuller-sieve-relation-01.txt">Sieve
 Extension: Relational Tests</a>, the :count matchtype.</li>
 
-<li>Support Sieve spamtest and virustest extensions, due to be enabled in Cyrus
-soon.</li>
+<li>Support Sieve spamtest and virustest extensions.</li>
 
 <li>RFC 3834 suggests to use Auto-Submitted: header for automated replies, such
 as vacation messages. Perhaps this could be added in the automatic rule
@@ -56,12 +56,29 @@ per IANA</a>)</li>
 <p>These are implemented, but they might need some more QA.</p>
 
 <ul>
+<li><a href="http://www.ietf.org/internet-drafts/draft-degener-sieve-body-00.txt">
+        Sieve - body extension</a>
+<br/><em>Status: implemented</em>
+</li>
 
-<li>Error handling when creating a folder with invalid characters etc.</li>
+<li>Error handling when creating a folder with invalid characters etc.
+<br/><em>Status: implemented</em>
+</li>
 
 <li>Synchronization between folders mentioned in fileinto rules and actual
-folders that exist in the Cyrus tree. - Partially implemented: a warning
-message is being displayed when there is such an inconsistency.</li>
+folders that exist in the Cyrus tree.
+<br/><em>Status: Partially implemented: a warning message is being displayed
+        when there is such an inconsistency.</em>
+</li>
+
+<li>Support multiple storage backends, instead of just ManageSieve, so that it
+can be used with non-ManageSieve servers such as MTAs (Exim).
+<br/><em>Status: implemented</em>
+</li>
+
+<li>Support TLS connects to timsieved, in sieve-php.lib.php.
+<br/><em>Status: implemented</em>
+</li>
 
 </ul>
 
@@ -70,7 +87,10 @@ message is being displayed when there is such an inconsistency.</li>
 <ul>
 
 <li>Header match rule: user can put a custom header to be matched against
-(editable box instead of Select).</li>
+(editable box instead of Select).
+<br/><em>Status: tried it with dhtmlgoodies' corresponding widget. It will only
+        work with Javascript, and it looks ugly.</em>
+</li>
 
 <li>Folder creation does not work while editing an existing rule.</li>
 
@@ -82,7 +102,7 @@ Filter</em> etc. (need ideas!)</li>
 href="http://www.irbs.net/internet/info-cyrus/0110/0252.html">(info-cyrus
 relevant mail)</a></li>
 
-<li>Support Sieve Variables.</li>
+<li>Support Sieve Variables Extension.</li>
 
 </ul>
 
