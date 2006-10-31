@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: DO_Sieve.class.php,v 1.3 2006/06/30 12:56:10 avel Exp $
+ * @version $Id: DO_Sieve.class.php,v 1.4 2006/10/31 15:49:01 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2006 Alexandros Vellis
  * @package plugins
@@ -33,6 +33,11 @@ class DO_Sieve {
      * Constructor
      */
     function DO_Sieve() {
+        if(AVELSIEVE_DEBUG == 1) {
+            $this->sieveDebug = true;
+        } else {
+            $this->sieveDebug = false;
+        }
         return;
     }
 
@@ -161,6 +166,7 @@ class DO_Sieve {
 /* Include the appropriate backend class. */
 switch($avelsieve_backend) {
     case 'ManageSieve':
+    case 'NetSieve':
     case 'File':
         include_once(SM_PATH . 'plugins/avelsieve/include/DO_Sieve_'.$avelsieve_backend.'.class.php');
         break;
