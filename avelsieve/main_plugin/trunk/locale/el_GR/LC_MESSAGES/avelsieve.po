@@ -356,7 +356,7 @@ msgid "Server-Side Mail Filtering"
 msgstr "Φίλτρα Ταχυδρομείου στον Εξυπηρετητή"
 
 msgid "To: or Cc"
-msgstr "Προς: ή Συνημ.:"
+msgstr "Προς: ή Κοινοπ.:"
 
 msgid "The condition for the following rules is:"
 msgstr "Η συνθήκη για τους ακόλουθους κανόνες είναι:"
@@ -575,7 +575,7 @@ msgid ""
 "Note that Only From:, To:, Cc: and Subject: headers will be checked in the "
 "server filter."
 msgstr ""
-"Σημειώστε ότι μόνο οι κεφαλίδες Από:, Προς: και Συνημ.: θα ελεγθούν στο "
+"Σημειώστε ότι μόνο οι κεφαλίδες Από:, Προς: και Κοινοποίηση: θα ελεγθούν στο "
 "φίλτρο του εξυπηρετητή."
 
 msgid "These search expressions are not applicable during message delivery."
@@ -711,7 +711,7 @@ msgid "Header %s"
 msgstr "Κεφαλίδα %s"
 
 msgid "To or Cc"
-msgstr "Προς ή Συνημ."
+msgstr "Προς ή Κοινοπ."
 
 #, php-format
 msgid "the envelope %s"
