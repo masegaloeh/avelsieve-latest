@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.27 2006/10/30 15:22:09 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.28 2006/12/19 11:13:52 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -779,7 +779,9 @@ function makesinglerule($rule, $mode='rule') {
 	
 	if (isset($rule['keepdeleted'])) {
 		$text .= _(" Also keep a copy in INBOX, marked as deleted.");
-		$out .= "\naddflag \"\\\\\\\\\\\\\\\\Deleted\";\nkeep;";
+        $out .= "\naddflag \"\\\\\\\\\\\\\\\\Deleted\";\nkeep;";
+        // TODO / FIXME: This is recommended for the file-based backend:
+        //$out .= "\naddflag \"\\\\Deleted\";\nkeep;";
 		$terse .= '<br />' . _("Keep Deleted");
 		$tech .= '<br />KEEP DELETED';
 	}
