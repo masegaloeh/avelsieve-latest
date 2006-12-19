@@ -8,7 +8,7 @@
  *
  * Also view plugins/README.plugins for more information.
  *
- * @version $Id: setup.php,v 1.33 2006/10/17 14:32:34 avel Exp $
+ * @version $Id: setup.php,v 1.34 2006/12/19 11:16:05 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -20,16 +20,12 @@
  * @return void
  */
 function squirrelmail_plugin_init_avelsieve() {
-	$squirrelmail_plugin_hooks['optpage_register_block']['avelsieve'] =
-		'avelsieve_optpage_register_block';
-	$squirrelmail_plugin_hooks['menuline']['avelsieve'] =
-		'avelsieve_menuline';
-	$squirrelmail_plugin_hooks['read_body_header']['avelsieve'] =
-		'avelsieve_commands_menu';
-    $squirrelmail_plugin_hooks['search_after_form']['avelsieve'] =
-         'avelsieve_search_integration';
-	$squirrelmail_plugin_hooks['configtest']['avelsieve'] =
-        'avelsieve_configtest';
+    global $squirrelmail_plugin_hooks;
+    $squirrelmail_plugin_hooks['optpage_register_block']['avelsieve'] = 'avelsieve_optpage_register_block';
+    $squirrelmail_plugin_hooks['menuline']['avelsieve'] = 'avelsieve_menuline';
+    $squirrelmail_plugin_hooks['read_body_header']['avelsieve'] = 'avelsieve_commands_menu';
+    $squirrelmail_plugin_hooks['search_after_form']['avelsieve'] = 'avelsieve_search_integration';
+    $squirrelmail_plugin_hooks['configtest']['avelsieve'] = 'avelsieve_configtest';
 }
 
 /**
