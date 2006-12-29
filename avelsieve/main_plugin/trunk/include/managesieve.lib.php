@@ -2,7 +2,7 @@
 /**
  * sieve-php.lib.php
  *
- * $Id: managesieve.lib.php,v 1.8 2006/10/17 14:31:23 avel Exp $ 
+ * $Id: managesieve.lib.php,v 1.9 2006/12/29 15:02:01 avel Exp $ 
  *
  * Copyright 2001-2003 Dan Ellis <danellis@rushmore.com>
  *
@@ -287,13 +287,13 @@ class sieve {
    * @param $port string Numeric port to connect to. SIEVE daemons usually
    * listen to port 2000.
    *
-   * @param $user string is a super-user or proxy-user that has ACL rights to
-   * login on behalf of the $auth.
+   * @param $user string is the  user identity for which the SIEVE scripts
+   * will be managed (also know as authcid).
    *
    * @param $pass string password to use for authentication
    *
-   * @param $auth string is the authorized user identity for which the SIEVE
-   * scripts will be managed.
+   * @param $auth string is a super-user or proxy-user that has ACL rights to
+   * login on behalf of the $auth (also know as authzid).
    *
    * @param $auth_types string a string containing all the allowed
    * authentication types allowed in order of preference, seperated by spaces.
@@ -703,7 +703,7 @@ class sieve {
     switch ($this->auth_in_use) {
 
         case "PLAIN":
-            $auth=base64_encode("$this->auth\0$this->user\0$this->pass");
+            $auth=base64_encode($this->auth."\0".$this->user."\0".$this->pass);
    
             $this->len=strlen($auth);			
             fputs($this->fp, 'AUTHENTICATE "PLAIN" {' . $this->len . '+}' . "\r\n");
