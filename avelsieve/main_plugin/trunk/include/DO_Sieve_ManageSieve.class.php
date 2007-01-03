@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: DO_Sieve_ManageSieve.class.php,v 1.3 2006/10/17 14:31:23 avel Exp $
+ * @version $Id: DO_Sieve_ManageSieve.class.php,v 1.4 2007/01/03 16:11:21 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2006 Alexandros Vellis
  * @package plugins
@@ -61,11 +61,7 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
             $this->sieveAuthZ = $authz;
         }
         
-        if(isset($authz)) {
-            $this->sieveServerAddress =  sqimap_get_user_server ($imapServerAddress, $authz);
-        } else {
-            $this->sieveServerAddress = sqimap_get_user_server ($imapServerAddress, $username);
-        }
+        $this->sieveServerAddress = sqimap_get_user_server ($imapServerAddress, $username);
         if ($avelsieve_imapproxymode == true) {
             /* Need to do mapping so as to connect directly to server */
             $this->sieveServerAddress = $avelsieve_imapproxyserv[$this->sieveServerAddress];
@@ -82,7 +78,7 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
         if(!is_object($this->sieve)) {
             if($nologin) {
                 // For configtest purposes
-                $this->sieveusername = $bind_username = 'anonymous';
+                $this->sieveUsername = 'anonymous';
                 $acctpass = '';
             } else {
                 sqgetGlobalVar('key', $key, SQ_COOKIE);
@@ -92,18 +88,13 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
                 $acctpass = OneTimePadDecrypt($key, $onetimepad);
     
                 if($this->sieveAuthZ) {
-                    if(isset($this->sieveCyrusAdminsMap[$username])) {
-                        $bind_username = $this->sieveCyrusAdminsMap[$username];
-                    } else {
-                        $bind_username = $this->sieveUsername;
-                    }
-                } else {
-                    $bind_username = $this->sieveUsername;
+                    if(isset($this->sieveCyrusAdminsMap[$this->sieveAuthZ])) {
+                        $this->sieveAuthz = $this->sieveCyrusAdminsMap[$this->sieveAuthz];
                 }
             }
              
             $this->sieve=new sieve($this->sieveServerAddress, $this->sievePort,
-                $bind_username, $acctpass, $this->sieveAuthZ,
+                $this->sieveUsername, $acctpass, $this->sieveAuthZ,
                 $this->sievePreferredSaslMech);
                 $this->sieve->disabletls = $this->disableTls;
             if(!$nologin) {
