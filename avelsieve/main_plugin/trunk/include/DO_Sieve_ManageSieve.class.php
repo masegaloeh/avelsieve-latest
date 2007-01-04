@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: DO_Sieve_ManageSieve.class.php,v 1.5 2007/01/04 10:27:53 avel Exp $
+ * @version $Id: DO_Sieve_ManageSieve.class.php,v 1.6 2007/01/04 10:51:02 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2006 Alexandros Vellis
  * @package plugins
@@ -87,13 +87,10 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
                 /* Need the cleartext password to login to timsieved */
                 $acctpass = OneTimePadDecrypt($key, $onetimepad);
     
-                if($this->sieveAuthZ) {
-                    if(isset($this->sieveCyrusAdminsMap[$this->sieveAuthZ])) {
-                        $this->sieveAuthz = $this->sieveCyrusAdminsMap[$this->sieveAuthz];
-                    }
+                if(!empty($this->sieveAuthZ) && isset($this->sieveCyrusAdminsMap[$this->sieveAuthZ])) {
+                    $this->sieveAuthZ = $this->sieveCyrusAdminsMap[$this->sieveAuthZ];
                 }
             }
-             
             $this->sieve=new sieve($this->sieveServerAddress, $this->sievePort,
                 $this->sieveUsername, $acctpass, $this->sieveAuthZ,
                 $this->sievePreferredSaslMech);
