@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: DO_Sieve_ManageSieve.class.php,v 1.4 2007/01/03 16:11:21 avel Exp $
+ * @version $Id: DO_Sieve_ManageSieve.class.php,v 1.5 2007/01/04 10:27:53 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2006 Alexandros Vellis
  * @package plugins
@@ -90,6 +90,7 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
                 if($this->sieveAuthZ) {
                     if(isset($this->sieveCyrusAdminsMap[$this->sieveAuthZ])) {
                         $this->sieveAuthz = $this->sieveCyrusAdminsMap[$this->sieveAuthz];
+                    }
                 }
             }
              
