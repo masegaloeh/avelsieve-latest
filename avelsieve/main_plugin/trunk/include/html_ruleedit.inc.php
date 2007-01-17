@@ -6,13 +6,14 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.26 2006/06/30 12:56:10 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.27 2007/01/17 13:46:10 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
- * @copyright 2004-2005 Alexandros Vellis
+ * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
 
+/** Includes */
 include_once(SM_PATH . 'plugins/avelsieve/include/html_main.inc.php');
 
 /**

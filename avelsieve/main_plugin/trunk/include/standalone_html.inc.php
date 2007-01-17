@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * User-friendly interface to SIEVE server-side mail filtering.
  * Plugin for Squirrelmail 1.4+
  *
@@ -9,13 +9,14 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: standalone_html.inc.php,v 1.2 2006/01/13 16:25:28 avel Exp $
+ * @version $Id: standalone_html.inc.php,v 1.3 2007/01/17 13:46:11 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
- * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
+ * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
 
+/** Standalone HTML Header */
 function avelsieve_standalone_print_html_header() {
 
 global $startitems;
@@ -66,6 +67,7 @@ h2 {
 
 }
 
+/** Standalone Table Header */
 function avelsieve_standalone_print_table_header() {
 
 global $PHP_SELF, $color, $part;
@@ -77,12 +79,14 @@ valign="middle" bgcolor="'.$color[3].'" width="80%" frame="hsides">
 
 }
 
+/** Standalone Table Footer */
 function avelsieve_standalone_print_table_footer() {
 
 	print '</td></tr></table>';
 
 }
 
+/** Standalone HTML Footer */
 function avelsieve_standalone_print_html_footer() {
 
 	print '</body></html>';

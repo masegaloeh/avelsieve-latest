@@ -1,18 +1,19 @@
 <?php
-/*
+/**
  * User-friendly interface to SIEVE server-side mail filtering.
  * Plugin for Squirrelmail 1.4+
  *
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: DO_Sieve.class.php,v 1.4 2006/10/31 15:49:01 avel Exp $
+ * @version $Id: DO_Sieve.class.php,v 1.5 2007/01/17 13:46:10 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
- * @copyright 2004-2006 Alexandros Vellis
+ * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
 
+/** Includes */
 include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/config/config.php');
 	

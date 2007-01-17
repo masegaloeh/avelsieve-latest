@@ -6,15 +6,13 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.30 2007/01/17 10:50:21 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.31 2007/01/17 13:46:11 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
- * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
+ * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
- */
-
-/**
- * Script Variables Schema
+ *
+ * <h1>Script Variables Schema</h1>
  * NB: Might be Incomplete.
  *
  * The following table tries to describe the variables schema that is used by
