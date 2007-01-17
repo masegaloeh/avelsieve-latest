@@ -2,7 +2,7 @@
 /**
  * sieve-php.lib.php
  *
- * $Id: managesieve.lib.php,v 1.9 2006/12/29 15:02:01 avel Exp $ 
+ * $Id: managesieve.lib.php,v 1.10 2007/01/17 12:54:45 avel Exp $ 
  *
  * Copyright 2001-2003 Dan Ellis <danellis@rushmore.com>
  *
@@ -417,7 +417,6 @@ class sieve {
    * @return boolean
    */
   function sieve_login() {
-
     $this->fp=@fsockopen($this->host,$this->port, $errno, $errstr);
     if($this->fp == false) {
         $this->error = $errno. ' '.$errstr;
@@ -703,7 +702,7 @@ class sieve {
     switch ($this->auth_in_use) {
 
         case "PLAIN":
-            $auth=base64_encode($this->auth."\0".$this->user."\0".$this->pass);
+            $auth=base64_encode($this->user."\0".$this->auth."\0".$this->pass);
    
             $this->len=strlen($auth);			
             fputs($this->fp, 'AUTHENTICATE "PLAIN" {' . $this->len . '+}' . "\r\n");
