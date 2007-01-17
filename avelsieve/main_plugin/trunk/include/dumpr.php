@@ -50,7 +50,7 @@ function dumpr($data, $return = false) {
     $c = preg_replace('/  /', "    ", $c);
     $c = preg_replace("/\"\"(.*?)\"/i", "\"$1\"", $c);
 
-    $c = htmlspecialchars($c, ENT_NOQUOTES);
+    //$c = htmlspecialchars($c, ENT_NOQUOTES);
 
     // Expand numbers (ie. int(10) => int(2) 10, float(128.64) => float(6) 128.64 etc.)
     $c = preg_replace("/(int|float)\(([0-9\.]+)\)/ie", "'$1('.strlen('$2').') <span class=\"number\">$2</span>'", $c);
