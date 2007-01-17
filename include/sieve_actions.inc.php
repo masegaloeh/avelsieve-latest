@@ -4,9 +4,9 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.24 2007/01/03 14:05:01 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.25 2007/01/17 13:46:11 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
- * @copyright 2002-2004 Alexandros Vellis
+ * @copyright 2002-2007 Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */

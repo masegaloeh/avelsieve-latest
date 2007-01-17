@@ -5,6 +5,8 @@
  * Licensed under the terms of the GNU Lesser General Public License:
  *      http://www.opensource.org/licenses/lgpl-license.php
  *
+ * @package plugins
+ * @subpackage avelsieve
  * @author    Jari Berg Jensen &lt;jari@razormotion.com&gt;
  *           http://www.razormotion.com/software/dumpr/
  * @license   LGPL

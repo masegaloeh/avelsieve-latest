@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * User-friendly interface to SIEVE server-side mail filtering.
  * Plugin for Squirrelmail 1.4+
  *
@@ -8,9 +8,9 @@
  *
  * Functions that have to do with SpamRule Functionality
  *
- * @version $Id: spamrule.inc.php,v 1.3 2006/01/13 16:25:28 avel Exp $
+ * @version $Id: spamrule.inc.php,v 1.4 2007/01/17 13:46:11 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
- * @copyright 2004-2005 The SquirrelMail Project Team, Alexandros Vellis
+ * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */

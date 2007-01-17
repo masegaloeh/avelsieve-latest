@@ -6,13 +6,14 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: process_user_input.inc.php,v 1.19 2006/01/17 13:36:55 avel Exp $
+ * @version $Id: process_user_input.inc.php,v 1.20 2007/01/17 13:46:10 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
- * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
+ * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
 
+/** Includes */
 include_once(SM_PATH . 'functions/global.php');
 
 /**

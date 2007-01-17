@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * User-friendly interface to SIEVE server-side mail filtering.
  * Plugin for Squirrelmail 1.4+
  *
@@ -8,13 +8,14 @@
  *
  * Various support functions, useful or useless.
  *
- * @version $Id: support.inc.php,v 1.16 2006/06/30 12:28:00 avel Exp $
+ * @version $Id: support.inc.php,v 1.17 2007/01/17 13:46:11 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
- * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
+ * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
 
+/** Includes */
 include_once(SM_PATH . 'functions/identity.php');
 
 /**

@@ -1,4 +1,17 @@
 <?php
+/**
+ * User-friendly interface to SIEVE server-side mail filtering.
+ * Plugin for Squirrelmail 1.4+
+ *
+ * Licensed under the GNU GPL. For full terms see the file COPYING that came
+ * with the Squirrelmail distribution.
+ *
+ * @version $Id: sieve_buildrule.10.inc.php,v 1.2 2007/01/17 13:46:11 avel Exp $
+ * @author Alexandros Vellis <avel@users.sourceforge.net>
+ * @copyright 2004-2007 Alexandros Vellis
+ * @package plugins
+ * @subpackage avelsieve
+ */
 
 /**
  * Rule type: #10; Description: generic SPAM-rule, with SPAM-score,

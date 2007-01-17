@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * User-friendly interface to SIEVE server-side mail filtering.
  * Plugin for Squirrelmail 1.4+
  *
@@ -9,13 +9,14 @@
  * This file contains functions for the per-message commands that appear while
  * viewing a message.
  *
- * @version $Id: message_commands.inc.php,v 1.10 2006/01/13 16:25:28 avel Exp $
+ * @version $Id: message_commands.inc.php,v 1.11 2007/01/17 13:46:10 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
- * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
+ * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
 
+/** Includes */
 include_once(SM_PATH . 'functions/identity.php');
 
 /**
