@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.16 2007/01/17 09:40:24 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.17 2007/01/17 12:19:04 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -336,7 +336,7 @@ class avelsieve_html_rules extends avelsieve_html {
 			/* Edit */
 			if($this->rules[$i]['type'] == 10) {
 				$out .= $this->toolicon("edit", $i, "addspamrule.php", "");
-			} elseif($this->rules[$i]['type'] < 10) {
+			} elseif($this->rules[$i]['type'] < 100) {
 				$out .= $this->toolicon("edit", $i, "edit.php", "");
 			} else {
 				$args = do_hook('avelsieve_edit_link', $null);
@@ -347,7 +347,7 @@ class avelsieve_html_rules extends avelsieve_html {
 			/* Duplicate */
 			if($this->rules[$i]['type'] == 10) {
 				$out .= $this->toolicon("dup", $i, "addspamrule.php", "edit=$i&amp;dup=1");
-			} elseif($this->rules[$i]['type'] < 10) {
+			} elseif($this->rules[$i]['type'] < 100) {
 				$out .= $this->toolicon("dup", $i, "edit.php", "edit=$i&amp;dup=1");
 			} else {
 				$args = do_hook('avelsieve_duplicate_link', $null); 
