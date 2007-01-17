@@ -8,14 +8,14 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: addrule.php,v 1.12 2006/05/31 10:42:00 avel Exp $
+ * @version $Id: addrule.php,v 1.13 2007/01/17 12:51:26 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
 
-
+/** Includes */
 if (file_exists('../../include/init.php')) {
     include_once('../../include/init.php');
 } else if (file_exists('../../include/validate.php')) {
