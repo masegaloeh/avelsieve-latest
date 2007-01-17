@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * User-friendly interface to SIEVE server-side mail filtering.
  * Plugin for Squirrelmail 1.4+
  *
@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: addspamrule.php,v 1.21 2006/06/30 12:56:10 avel Exp $
+ * @version $Id: addspamrule.php,v 1.22 2007/01/17 12:51:26 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -18,6 +18,7 @@
  * @todo This file needs a lot of work to become like edit.php....
  */
 
+/** Includes */
 if (file_exists('../../include/init.php')) {
     include_once('../../include/init.php');
 } else if (file_exists('../../include/validate.php')) {
