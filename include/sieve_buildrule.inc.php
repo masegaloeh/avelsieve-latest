@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.31 2007/01/17 13:46:11 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.32 2007/01/22 19:48:55 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -355,22 +355,48 @@ function makesinglerule($rule, $mode='rule') {
 	$terse .= '><tr><td align="left">';
 	$tech .= '><tr><td align="left">';
 	
-	/* Step one: make the if clause */
-	/* The actual 'if' will be added by makesieverule() */
+    /** Call external function that builds the Sieve code and desription for 
+     * this special rule. */
 	
 	if(is_numeric($rule['type']) && $rule['type'] >= '10' && $rule['type'] < 100 ) {
         include_once(SM_PATH . 'plugins/avelsieve/include/sieve_buildrule.'.$rule['type'].'.inc.php');
         $res = call_user_func('avelsieve_buildrule_'.$rule['type'], $rule);
-        // Return value is: array($out, $text, $terse, $tech)
+        // Return value is: array($out, $text, $terse, $tech, $params)
         if($res != false) {
             $out .= $res[0];
             $text .= $res[1];
             $terse .= $res[2];
             $tech .= $res[3];
+            if(isset($res[4])) $params = $res[4];
         }
+        if(isset($params)) {
+            if(isset($params['skip_further_execution'])) {
+                // FIXME - Ugly copy/paste hack.
+		        $terse .= '</td></tr></table>';
+        		$tech .= '</td></tr></table>';
+	            switch($mode) {
+		            case 'terse':
+			            return $terse;
+		            case 'text':
+		            case 'verbose':
+			            return $text;
+		            case 'tech':
+			            return $tech;
+		            case 'source':
+                        return (isset($rule['disabled']) ? ' <strong>/*</strong> (<em>DISABLED</em>) <br/>' : '' ).
+                        str_replace("\n", '<br/>', $out).
+                        (isset($rule['disabled']) ? ' <br/><strong>*/</strong>' : '' );
+		            default:
+			            return $out;
+	            }
+            }
+        }
+
         
 	} else {
+	    /* Step one: make the if clause */
 		$text .= "<strong>"._("If")."</strong> ";
+        $out .= "if ";
 	} 
 	
 	if($rule['type'] == "1") {
@@ -518,7 +544,7 @@ function makesinglerule($rule, $mode='rule') {
 	
 	/* step two: make the then clause */
 	
-	if( $rule['type'] != '4' && $rule['type']!=10 ) {
+	if( $rule['type'] != '4' && $rule['type'] < 10 ) {
 		$out .= "{\n";
 		$terse .= '</td><td align="right">';
 		$tech .= '</td><td align="right">';
@@ -532,7 +558,7 @@ function makesinglerule($rule, $mode='rule') {
 	}
 	
 	/* Fallback to default action */
-	if(!isset($rule['action'])) {
+	if(!isset($rule['action']) && $rule['type'] < 10) {
 		$rule['action'] = 1;
 	}
 	
@@ -681,7 +707,7 @@ function makesinglerule($rule, $mode='rule') {
 		$tech .= '<br/>STOP';
 	}
 	
-	$out .= "\n}";
+    $out .= "\n}\n";
 	$terse .= "</td></tr></table>";
 	$tech .= "</td></tr></table>";
 	
@@ -771,7 +797,8 @@ function makesieverule ($rulearray) {
 
 	/* The actual rules */
 	for ($i=0; $i<sizeof($rulearray); $i++) {
-		if (!isset($rulearray[$i]['disabled']) || $rulearray[$i]['disabled'] != 1) {
+            /*
+		if (!isset($rulearray[$i]['disabled']) || $rulearray[$i]['disabled'] != 1 || $rulearray[$i]['type'] >= 10) {
 			switch ($i) {
 				case 0:		$out .= "if\n";		break;
 				default:	$out .= "\nif\n";	break;
@@ -779,6 +806,7 @@ function makesieverule ($rulearray) {
 		} else {
 			$out .= "\n";
 		}
+             */
 		$out .= makesinglerule($rulearray[$i],'rule');
 	}
 

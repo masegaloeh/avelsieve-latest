@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_main.inc.php,v 1.10 2007/01/17 13:46:10 avel Exp $
+ * @version $Id: html_main.inc.php,v 1.11 2007/01/22 19:48:54 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -24,6 +24,11 @@ class avelsieve_html {
 	 * @var boolean Javascript Enabled?
 	 */
 	var $js;
+    
+    /**
+	 * @param boolean Flag for image usage
+	 */
+	var $useimages = true;
 
 	/**
 	 * Constructor function will initialize some variables, depending on the
@@ -37,6 +42,10 @@ class avelsieve_html {
 		} else {
 			$this->js = false;
 		}
+        
+        /* Set up useimages flag */
+        global $useimages;
+		$this->useimages = $useimages;
 	}
 
 	/**
@@ -104,7 +113,7 @@ class avelsieve_html {
 	 * Table 'section' start
 	 * @return string
 	 */
-	function section_start($title, $errmsg = '') {
+	function section_start($title) {
 		global $color;
 		return "\n<!-- Section start -->".
             '<tr><td bgcolor="'.$color[9].'" align="center">'.
@@ -142,6 +151,46 @@ class avelsieve_html {
 		return $out;
 	}
 	
+    /**
+     * Explicitly set Error Messages that might have occured from an external 
+     * source.
+     *
+     * Inside the classes themselves, I use
+     * $this->errmsg[] = 'Message' ...
+     *
+     * @param array $array
+     * @return void
+     */
+    function set_errmsg($array) {
+        $this->errmsg = array_merge($this->errmsg, $array);
+    }
+	
+    /**
+     * Print formatted error message(s), if they exist.
+     * 
+     * @return string
+     */
+    function print_errmsg() {
+        $out = '';
+		if(!empty($this->errmsg)) {
+            global $color;
+			$out .= $this->section_start( _("Error Encountered:") ).
+				'<div style="text-align:center; color:'.$color[2].';">';
+
+			if(is_array($this->errmsg)) {
+				$out .= '<ul>';
+				foreach($this->errmsg as $msg) {
+					$out .= '<li>'.$msg.'</li>';
+				}
+				$out .= '</ul>';
+			} else {
+				$out .= '<p>'.$this->errmsg .'</p>';
+			}
+			$out .= '<p>'. _("You must correct the above errors before continuing."). '</p>';
+			$out .= '</div>' . 	$this->section_end();
+		}
+        return $out;
+    }
 }
 
 ?>

@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.18 2007/01/17 13:46:10 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.19 2007/01/22 19:48:55 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -31,31 +31,45 @@ class avelsieve_html_rules extends avelsieve_html {
 	 * @param string Display mode: 'verbose','terse','tech','source' or 'debug'
 	 */
 	var $mode = 'terse';
+    
+    /**
+	 * @param int
+	 */
+    var $whitelist_rule = -1;
 
 	/**
-	 * Constructor function, that initializes some variables from possible
-	 * template engines.
+     * Constructor function, that initializes the environment for proper
+     * displaying of the rules table.
+     *
 	 * @return void
 	 */
 	function avelsieve_html_rules(&$rules, $mode = 'terse') {
 		$this->avelsieve_html();
 		$this->rules = $rules;
 		$this->mode = $mode;
+        
+        for($i=0; $i<sizeof($this->rules); $i++) {
+            if(isset($this->rules[$i]['type']) && $this->rules[$i]['type'] == 12) {
+                $this->whitelist_rule = $i;
+                break;
+            }
+        }
 	}
 
 	/**
-	 * Create new rules blurb, when none exists.
+	 * "Create new rules" blurb, for when no rules exist.
+     * @return string
 	 */
 	function rules_create_new() {
 		return ' <p>'.
 			_("Here you can add or delete filtering rules for your email account. These filters will always apply to your incoming mail, wherever you check your email.").
 			'</p>' .
 			'<p>' . _("You don't have any rules yet. Feel free to add any with the button &quot;Add a New Rule&quot;. When you are done, please select &quot;Save Changes&quot; to get back to the main options screen.") . "</p>";
-	
 	}
 	
 	/**
-	 * Introductory text
+	 * Introductory text.
+     * @return string
 	 */
 	function rules_blurb() {
 		global $color, $conservative, $displaymodes, $scriptinfo;
@@ -105,7 +119,7 @@ class avelsieve_html_rules extends avelsieve_html {
 		
 	/**
 	 * Returns the 'communication' aka 'comm' string from the previous screen,
-	 * for instance edit.php or addspamrule.php.
+	 * for instance edit.php.
 	 * @return string
 	 */
 	function rules_confirmation_text() {
@@ -148,14 +162,39 @@ class avelsieve_html_rules extends avelsieve_html {
 	}
 	
 	/**
-	 * Submit Buttons for adding new rules
+	 * Submit Links / Buttons for adding new rules and edit screens.
+     *
+     * @param boolean $horizontal
+     * @return string
 	 */
-	function button_addnewrule() {
-		global $spamrule_enable;
-		$out = '<input name="addrule" value="' . _("Add a New Rule") . '" type="submit" />';
-		if($spamrule_enable == true) {
-			$out .= '<br/><input name="addspamrule" value="' . _("Add SPAM Rule") . '" type="submit" />';
-		}
+	function button_addnewrule($horizontal = false) {
+		global $avelsieve_enable_rules, $avelsieve_maintypes;
+
+        if($horizontal) {
+            $links_delimiter = ' | ';
+        } else {
+            $links_delimiter = '<br/>';
+        }
+
+        $out = ' <a href="edit.php?addnew=1" rel="nofollow">'. 
+            ($this->useimages == true ? '<img src="images/icons/add.png" alt="[]" border="0" /> ' : '') .
+            '<strong>' .
+            _("Add a new Rule") . '</strong></a>';
+
+        if(!empty($avelsieve_enable_rules)) {
+            foreach($avelsieve_enable_rules as $r) {
+                if($r == 12 && $this->whitelist_rule > -1) {
+                    // Global whitelist special: edit existing whitelist
+                    $href = 'edit.php?edit='.$this->whitelist_rule.'&amp;type='.$r;
+                } else {
+                    $href = 'edit.php?addnew=1&amp;type='.$r;
+                }
+                $out .= $links_delimiter . '<a href="'.$href.'" rel="nofollow">'.
+                        ($this->useimages == true ? '<img src="'.$avelsieve_maintypes[$r]['img'].'" alt="[]" border="0" /> ' : '') .
+                        '<strong>' . $avelsieve_maintypes[$r]['linktext'] . '</strong></a>';
+            }
+
+        }
         $null = null;
 		$out .= concat_hook_function('avelsieve_rulestable_buttons', $null);
 		return $out;
@@ -206,7 +245,7 @@ class avelsieve_html_rules extends avelsieve_html {
 	 * @param string $xtra Extra stuff to be passed to URL
 	 */
 	function toolicon ($name, $i, $url = "table.php", $xtra = "", $attribs=array()) {
-		global $useimages, $imagetheme, $location, $avelsievetools;
+		global $imagetheme, $location, $avelsievetools;
 	
 		$desc = $avelsievetools[$name]['desc'];
 		$img = $avelsievetools[$name]['img'];
@@ -226,7 +265,7 @@ class avelsieve_html_rules extends avelsieve_html {
 		}
 		$out .= '>';
 	
-		if($useimages) {
+		if($this->useimages) {
 			$out .= '<img title="'.$desc.'" src="'.$location.'/images/'.$imagetheme.
 			'/'.$img.'" alt="'.$desc.'" border="0" />';
 		} else {
@@ -317,6 +356,7 @@ class avelsieve_html_rules extends avelsieve_html {
 
 		$out .= // $this->all_sections_start().
             $this->table_header( _("Current Mail Filtering Rules") ).
+			'<p>'. $this->button_addnewrule(true) . '</p>'.
 		    // '<tr><td bgcolor="'.$color[4].'" align="center">'.
 			$this->rules_blurb();
             // '</td></tr>';
@@ -335,21 +375,17 @@ class avelsieve_html_rules extends avelsieve_html {
 			/* $out .='</td><td><input type="checkbox" name="rm'.$i.'" value="1" /></td></tr>'; */
 			
 			/* Edit */
-			if($this->rules[$i]['type'] == 10) {
-				$out .= $this->toolicon("edit", $i, "addspamrule.php", "");
-			} elseif($this->rules[$i]['type'] < 100) {
-				$out .= $this->toolicon("edit", $i, "edit.php", "");
+			if($this->rules[$i]['type'] < 100) {
+				$out .= $this->toolicon('edit', $i, 'edit.php', "type=".$this->rules[$i]['type']);
 			} else {
 				$args = do_hook('avelsieve_edit_link', $null);
-				$out .= $this->toolicon("edit", $i, $args[0], $args[1]);
+				$out .= $this->toolicon('edit', $i, $args[0], $args[1]);
 				unset($args);
 			}
 			
 			/* Duplicate */
-			if($this->rules[$i]['type'] == 10) {
-				$out .= $this->toolicon("dup", $i, "addspamrule.php", "edit=$i&amp;dup=1");
-			} elseif($this->rules[$i]['type'] < 100) {
-				$out .= $this->toolicon("dup", $i, "edit.php", "edit=$i&amp;dup=1");
+			if($this->rules[$i]['type'] < 100) {
+				$out .= $this->toolicon('dup', $i, "edit.php", "type=".$this->rules[$i]['type']."&amp;dup=1");
 			} else {
 				$args = do_hook('avelsieve_duplicate_link', $null); 
 				$out .= $this->toolicon('dup', $i, $args[0], $args[1]);

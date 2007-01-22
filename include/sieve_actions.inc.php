@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.25 2007/01/17 13:46:11 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.26 2007/01/22 19:48:55 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2007 Alexandros Vellis
  * @package plugins
@@ -210,6 +210,7 @@ class avelsieve_action_keep extends avelsieve_action {
 	var $num = 1;
 	var $capability = '';
 	var $options = array(); 
+    var $image_src = 'images/icons/accept.png';
 
 	function avelsieve_action_keep(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
@@ -230,6 +231,7 @@ class avelsieve_action_discard extends avelsieve_action {
 	var $num = 2;
 	var $capability = '';
 	var $options = array(); 
+    var $image_src = 'images/icons/cross.png';
 
 	function avelsieve_action_discard(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
@@ -247,6 +249,7 @@ class avelsieve_action_reject extends avelsieve_action {
 	var $options = array(
 		'excuse' => ''
 	);
+    var $image_src = 'images/icons/arrow_undo.png';
  	
 	function avelsieve_action_reject(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
@@ -270,6 +273,7 @@ class avelsieve_action_reject extends avelsieve_action {
  */
 class avelsieve_action_redirect extends avelsieve_action {
 	var $num = 4;
+    var $image_src = 'images/icons/arrow_divide.png';
 
 	function avelsieve_action_redirect(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
@@ -313,6 +317,7 @@ class avelsieve_action_fileinto extends avelsieve_action {
 	var $options = array(
 		'folder' => '',
 	);
+    var $image_src = 'images/icons/folder_go.png';
 
 	function avelsieve_action_fileinto(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
@@ -329,7 +334,9 @@ class avelsieve_action_fileinto extends avelsieve_action {
 		if(isset($val['folder'])) {
 			$out .= 'checked="CHECKED"';
 		}
-		$out .= '/> '. _("the existing folder") . ' ';
+        $out .= '/> '.
+            // "images/icons/folder_go.png';
+                _("the existing folder") . ' ';
 		if(isset($val['folder'])) {
 			$out .= mailboxlist('folder', $val['folder']);
 		} else {
@@ -358,6 +365,7 @@ class avelsieve_action_vacation extends avelsieve_action {
 		'vac_days' => '7',
 		'vac_message' => ''
 	);
+    var $image_src = 'images/icons/status_away.png';
 
 	function avelsieve_action_vacation(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
@@ -414,7 +422,7 @@ class avelsieve_action_stop extends avelsieve_action {
 	var $num = 0;
 	var $name = 'stop';
 	var $text = '';
-	var $image_src = 'images/stop.gif';
+	var $image_src = 'images/icons/stop.png';
 
 	function avelsieve_action_stop(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
@@ -439,7 +447,7 @@ class avelsieve_action_notify extends avelsieve_action {
 		)
 	);
 	var $capability = 'notify';
-	var $image_src = 'images/mail.png';
+	var $image_src = 'images/icons/email.png';
 	var $two_dimensional_options = true;
 
 	/**
@@ -568,7 +576,7 @@ class avelsieve_action_keepdeleted extends avelsieve_action {
 	var $num = 0;
 	var $name = 'keepdeleted';
 	var $capability = 'imapflags';
-	var $image_src = 'images/add.png';
+	var $image_src = 'images/icons/email_delete.png';
 
 	function avelsieve_action_keepdeleted(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
@@ -583,7 +591,7 @@ class avelsieve_action_keepdeleted extends avelsieve_action {
 class avelsieve_action_disabled extends avelsieve_action {
 	var $num = 0;
 	var $name = 'disabled';
-	var $image_src = 'images/stock_disconnect.png';
+	var $image_src = 'images/icons/disconnect.png';
 
 	function avelsieve_action_disabled(&$s, $rule = array(), $frontend = 'html') {
         $this->init();

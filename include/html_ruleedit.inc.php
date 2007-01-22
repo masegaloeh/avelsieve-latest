@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.27 2007/01/17 13:46:10 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.28 2007/01/22 19:48:55 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -35,34 +35,62 @@ class avelsieve_html_edit extends avelsieve_html {
 	 * 'wizard', 'addnew', 'edit', 'duplicate'
 	 */
 	var $mode;
-	
+    
+    /**
+     * @var int Rule type
+     */
+    var $type = 0;
+
+    /**
+     * @var array The rule itself.
+	 */
+	var $rule = array();
+
+    /**
+     * @var array Error messages during rule validation or addition
+     */
+	var $errmsg = array();
+
 	/**
-	 * Constructor function. Takes as an optional argument a reference to a
-	 * rule array which will be edited.
+     * Constructor function.
 	 *
      * @param string $s Our Sieve Handler (Data Object). This is needed in
      *   order to have certain checks for capabilities of the specific backend.
 	 * @param string $mode
-	 * @param array $rule
 	 * @param boolean $popup
 	 * @param mixed $errmsg Array or string of error messages to display.
 	 * @return void
 	 */
-	function avelsieve_html_edit(&$s, $mode = 'edit', $rule = array(), $popup = false, $errmsg = '') {
+	function avelsieve_html_edit(&$s, $mode = 'edit', $popup = false) {
 		$this->avelsieve_html();
-
-		$this->rule = $rule;
-		if(!isset($this->rule['type'])) {
-			$this->rule['type'] = 0;
-		}
 		$this->mode = $mode;
 		$this->popup = $popup;
-		$this->errmsg = $errmsg;
         $this->s = $s;
 		
 		$this->active_types = $this->get_active_types();
 	}
-	
+
+    /**
+     * Set Rule data.
+     *
+     * @param array $data
+     * @return void
+     */
+    function set_rule_data($data) {
+        $this->rule = $data;
+    }
+
+    /**
+     * Set Rule type.
+     *
+     * @param int $type
+     * @return void
+     */
+    function set_rule_type($type) {
+        $this->type = $type;
+        $this->rule['type'] = $type;
+    }
+    
 	/**
 	 * @return array of types valid for the current capabilities.
 	 */
@@ -491,13 +519,34 @@ class avelsieve_html_edit extends avelsieve_html {
 		return $out;
 	}
 	
+    /**
+     * Return the HTML markup of the options of Sieve action $action.
+     * This is a wrap around the relevant class of the Avelsieve action.
+     *
+     * If no such action exists, the function simply returns an empty
+     * string.
+     *
+     * @return string
+     */
+    function action_html($action) {
+        $out = '';
+        $classname = 'avelsieve_action_'.$action;
+        if(class_exists($classname)) {
+            $$classname = new $classname($this->s, $this->rule, 'html');
+            if($$classname != null) {
+                $out .= $$classname->action_html();
+            }
+        }
+        return $out;
+    }
+
 	/**
 	 * Output available actions in a radio-button style.
 	 * @return string
 	 */
 	function rule_3_action() {
 		/* Preferences from config.php */
-		global $useimages, $translate_return_msgs;
+		global $translate_return_msgs;
 		/* Data taken from addrule.php */
 		global $boxes, $emailaddresses;
 		/* Other */
@@ -505,13 +554,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		$out = '<p>'. _("Choose what to do when this rule triggers, from one of the following:"). '</p>';
 		
 		foreach($actions as $action) {
-			$classname = 'avelsieve_action_'.$action;
-			if(class_exists($classname)) {
-				$$classname = new $classname($this->s, $this->rule, 'html');
-				if($$classname->is_action_valid()) {
-					$out .= $$classname->action_html();
-				}
-			}
+            $out .= $this->action_html($action);
 		}
 		return $out;
 	}
@@ -524,7 +567,7 @@ class avelsieve_html_edit extends avelsieve_html {
 	 */
 	function rule_3_additional_actions() {
 		/* Preferences from config.php */
-		global $useimages, $translate_return_msgs;
+		global $translate_return_msgs;
 		/* Data taken from addrule.php */
 		global $boxes, $emailaddresses;
 		/* Other */
@@ -533,13 +576,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		$out = '';
 		
 		foreach($additional_actions as $action) {
-			$classname = 'avelsieve_action_'.$action;
-			if(class_exists($classname)) {
-				$$classname = new $classname($this->s, $this->rule, 'html');
-				if($$classname != null) {
-					$out .= $$classname->action_html();
-				}
-			}
+            $out .= $this->action_html($action);
 		}
 		return $out;
 	}
@@ -597,28 +634,12 @@ class avelsieve_html_edit extends avelsieve_html {
 	    		$this->all_sections_start();
 		}
 		/* ---------- Error (or other) Message, if it exists -------- */
-		if(!empty($this->errmsg)) {
-			$out .= $this->section_start( _("Error Encountered:") ).
-				'<div style="text-align:center; color:'.$color[2].';">';
-
-			if(is_array($this->errmsg)) {
-				$out .= '<ul>';
-				foreach($this->errmsg as $msg) {
-					$out .= '<li>'.$msg.'</li>';
-				}
-				$out .= '</ul>';
-			} else {
-				$out .= '<p>'.$this->errmsg .'</p>';
-			}
-			$out .= '<p>'. _("You must correct the above errors before continuing."). '</p>';
-			
-			$out .= '</div>' . 	$this->section_end();
-		}
+        $out .= $this->print_errmsg();
 		
 		/* --------------------- 'if' ----------------------- */
 		$out .= $this->section_start( _("Condition") );
 
-		switch ($this->rule['type']) { 
+		switch ($this->type) { 
 			case 0:
 			case 1: 
 			default:
@@ -641,9 +662,9 @@ class avelsieve_html_edit extends avelsieve_html {
 		
 		$out .= $this->section_start( _("Action") );
 		
-		if(isset($rule['folder'])) {
-			$selectedmailbox = $rule['folder'];
-		}
+		// if(isset($this->rule['folder'])) {
+		//	$selectedmailbox = $this->rule['folder'];
+		//}
 		
 		$out .= $this->rule_3_action().
 			$this->section_end();
@@ -663,5 +684,124 @@ class avelsieve_html_edit extends avelsieve_html {
 
 		return $out;
 	}
+
+    /**
+     * Process HTML submission from namespace $ns (usually $_POST),
+     * and put the resulting rule structure in $this->rule class variable.
+     *
+     * If any error happens,  put a human-readable error message in
+     * $this->errmsg array, and return false. Otherwise, return true.
+     *
+     * @param array $ns
+     * @param boolean $truncate_empty_conditions 
+     * @return boolean
+     */
+    function process_input(&$ns, $truncate_empty_conditions = false) {
+        /* Type is needed for later */
+        //if(isset($ns['type'])) $type = $ns['type'];
+        /* If Part */
+        $vars = array('type', 'condition');
+    
+        if($truncate_empty_conditions) {
+            if(isset($ns['cond'])) {
+                /* Decide how much of the items to use for the condition of the
+                * rule, based on the first zero / null /undefined variable to be
+                * found. Also, reorder the conditions. */
+                $match_vars = array('headermatch', 'addressmatch', 'envelopematch', 'sizeamount', 'bodymatch');
+                $new_cond_indexes = array();
+                foreach($ns['cond'] as $n => $c) {
+                    foreach($match_vars as $m) {
+                        if(!empty($c[$m]) || $c['type'] == 'all') {
+                            $new_cond_indexes[] = $n;
+                        }
+                    }
+                }
+                $new_cond_indexes = array_unique($new_cond_indexes);
+                $new_cond_indexes = array_values($new_cond_indexes);
+        
+                foreach($new_cond_indexes as $n => $index) {
+                    $this->rule['cond'][] = $ns['cond'][$index];
+                }
+                /* If it is completely empty, we must return an error. */
+                if(!isset($this->rule['cond'])) {
+                    $this->errmsg[] =  _("You have to define at least one condition.");
+                }
+            }
+        } else {
+            $vars[] = 'cond';
+        }
+    
+        if(isset($ns['action'])) {
+            array_push($vars, 'action');
+            switch ($ns['action']) { 
+                case "1": /* keep */
+                    break;
+                case "2": /* discard */
+                    break;
+                case "3": /* reject w/ excuse */
+                    array_push($vars, 'excuse');
+                    break;
+                case "4": /* redirect */
+                    avelsieve_action_redirect::validate($ns, $this->errmsg);
+                    array_push($vars, 'redirectemail', 'keep');
+                    break;
+                case "5": /* fileinto */
+                    array_push($vars, 'folder');
+                    break;
+                case "6": /* vacation */
+                    avelsieve_action_vacation::validate($ns, $this->errmsg);
+                    array_push($vars, 'vac_addresses', 'vac_days', 'vac_message');
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            /* User did not select anything from the radio buttons; default to
+            * 'keep' */
+            $this->rule['action'] = '1';
+        }
+        
+        if(isset($ns['keepdeleted'])) {
+            $vars[] = 'keepdeleted';
+        }
+        if(isset($ns['stop'])) {
+            $vars[] = 'stop';
+        }
+        if(isset($ns['notify']['on']) && isset($ns['notify']['options']) &&
+            !empty($ns['notify']['options'])) {
+            $vars[] = 'notify';
+        }
+    
+        if(isset($ns['disabled'])) {
+            $this->rule['disabled'] = 1;
+        }
+        
+        /* Put all variables from the defined namespace (e.g. $_POST in the rule
+        * array. */
+        foreach($vars as $myvar) {
+            if(isset($ns[$myvar])) {
+                $this->rule[$myvar]= $ns[$myvar];
+            }
+        }
+    
+        /* Special hack for newly-created folder */
+        if(isset($this->rule['folder'])) {
+            global $created_mailbox_name;
+            if(isset($created_mailbox_name) && $created_mailbox_name) {
+                $this->rule['folder'] = $created_mailbox_name;
+            }
+        }
+        
+        /* For standard avelsieve rules > #10 */
+        /*
+        if(is_numeric($type) && $type >= 10) {
+            $class_name = 'avelsieve_html_edit_'.$type;
+            if(class_exists($class_name)) {
+                call_user_func(array($class_name, 'process_user_input'), array(&$ns, &$rule, &$this->errmsg));
+            }
+        }
+         */
+    }
+        
 }
 ?>

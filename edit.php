@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.34 2007/01/17 12:51:26 avel Exp $
+ * @version $Id: edit.php,v 1.35 2007/01/22 19:48:54 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -37,7 +37,6 @@ include_once(SM_PATH . 'plugins/avelsieve/include/html_rulestable.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/sieve_actions.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/sieve.inc.php');
-include_once(SM_PATH . 'plugins/avelsieve/include/process_user_input.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
 
 sqsession_is_active();
@@ -94,23 +93,49 @@ if($newfoldername) {
 	avelsieve_create_folder($newfoldername, $newfolderparent, $created_mailbox_name, $errmsg);
 }
 
+/* Mode of operation */
+if(isset($dup)) {
+	$mode = 'duplicate';
+} elseif(isset($addnew)) {
+	$mode = 'addnew';
+} else {
+	$mode = 'edit';
+}
+
+if($type_get > 1 && is_numeric($type_get) &&
+  file_exists(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.'.$type_get.'.inc.php')) {
+    include_once(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.'.$type_get.'.inc.php');
+    $edit_class_name = 'avelsieve_html_edit_'. $type_get;
+} else {
+    $edit_class_name = 'avelsieve_html_edit';
+}
+$ruleobj = new $edit_class_name($s, $mode, $popup);
+$ruleobj->set_errmsg($errmsg);
+
 if(isset($edit)) {
 	/* Editing an existing rule */
-	$rule = &$rules[$edit];
+    $ruleobj->set_rule_type( (isset($rules[$edit]['type']) ? $rules[$edit]['type'] : 1));
+	$ruleobj->set_rule_data($rules[$edit]);
+
 } elseif(isset($serialized_rule)) {
-	$type = $type_get;
-    $rule = unserialize(urldecode($serialized_rule));
+	/* Adding a new rule through $_GET, e.g. from search integration feature. */
+    $ruleobj->set_rule_type($type_get);
+    $ruleobj->set_rule_data(unserialize(urldecode($serialized_rule)));
+
 } elseif(!isset($edit) && isset($type_get)) {
 	/* Adding a new rule through $_GET */
 	$type = $type_get;
-	$rule = process_input(SQ_GET, $errmsg, false);
+	$ruleobj->process_input($_GET, false);
 } else {
 	/* Adding a new rule from scratch */
-	$rule = array();
+    $ruleobj->set_rule_type($type_get);
 }
+$type = $ruleobj->type;
+
+if(!isset($type) || (isset($type) && !is_numeric($type)) ) $type = 1;
 
 
-/* FIXME - old style type */
+/* TODO - use a snippet like this to change type from the edit UI */
 /*
 if(isset($previoustype) && (
 	$previoustype == 0 ||
@@ -121,6 +146,8 @@ if(isset($previoustype) && (
 		$changetype = false;
 }
 */
+
+/* This is for determining if the test of a specific condition has changed */
 $changetype = false;
 if(isset($previous_cond) && isset($new_cond)) {
 	foreach($previous_cond as $n=>$t) {
@@ -139,27 +166,26 @@ if(isset($_POST['cancel'])) {
 
 } elseif(isset($_POST['apply']) && !$changetype) {
 	/* Apply change in existing rule */
-	$editedrule = process_input(SQ_POST, $errmsg, true);
-	if(empty($errmsg)) {
-		$_SESSION['rules'][$edit] = $editedrule;
+	$ruleobj->process_input($_POST, true);
+	if(empty($ruleobj->errmsg)) {
+		$_SESSION['rules'][$edit] = $ruleobj->rule;
 		$_SESSION['comm']['edited'] = $edit;
 		$_SESSION['haschanged'] = true;
 		header("Location: table.php$popup");
-	} else {
-		$rule = $editedrule;
 	}
 
 } elseif(isset($_POST['addnew']) && !$changetype) {
 	/* Add new rule */
- 	$newrule = process_input(SQ_POST, $errmsg, true);
-	if(empty($errmsg)) {
+ 	$ruleobj->process_input($_POST, true);
+	if(empty($ruleobj->errmsg)) {
 		if(isset($dup)) {
 			// insert moving rule in place
-			array_splice($_SESSION['rules'], $edit+1, 0, array($newrule));
+			array_splice($_SESSION['rules'], $edit+1, 0, array($ruleobj->rule));
 			// Reindex
 			$_SESSION['rules'] = array_values($_SESSION['rules']);
 		} else {
-			$_SESSION['rules'][] = $newrule;
+            // Append the new rule at the end of rules table
+			$_SESSION['rules'][] = $ruleobj->rule;
 		}
 		/* Communication: */
 		$_SESSION['comm']['edited'] = $edit;
@@ -167,12 +193,10 @@ if(isset($_POST['cancel'])) {
 		$_SESSION['haschanged'] = true;
 		header("Location: table.php$popup");
 		exit;
-	} else {
-        $rule = $newrule;
     }
-} elseif($changetype || isset($_POST['append']) || isset($_POST['less'])) {
+} elseif($changetype || isset($_POST['append']) || isset($_POST['less']) || isset($_POST['spamrule_advanced'])) {
 	/* still in editing; apply any changes. */
-	$rule = process_input(SQ_POST, $errmsg, false);
+	$ruleobj->process_input($_POST, false);
 }
 
 
@@ -202,14 +226,6 @@ if($SQM_INTERNAL_VERSION[0] == 1 && $SQM_INTERNAL_VERSION[1] == 5) {
 }
 sqimap_logout($imapConnection); 
 
-/* Mode of operation */
-if(isset($dup)) {
-	$mode = 'duplicate';
-} elseif(isset($addnew)) {
-	$mode = 'addnew';
-} else {
-	$mode = 'edit';
-}
 
 /* -------------- Presentation Logic ------------- */
 
@@ -249,6 +265,28 @@ function ToggleShowDiv(divname) {
 	}
   }	
 }
+function ToggleShowDivWithImg(divname) {
+  if(el(divname)) {
+    img_name = divname + \'_img\';
+    if(el(divname).style.display == "none") {
+      el(divname).style.display = "";
+	  if(document[img_name]) {
+	  	document[img_name].src = "images/opentriangle.gif";
+	  }	
+	  if(el(\'divstate_\' + divname )) {
+	  	el(\'divstate_\'+divname).value = 1;
+	  }
+	} else {
+      el(divname).style.display = "none";
+	  if(document[img_name]) {
+	  	document[img_name].src = "images/triangle.gif";
+	  }	
+	  if(el(\'divstate_\'+divname)) {
+	  	el(\'divstate_\'+divname).value = 0;
+	  }
+	}
+  }	
+}
 </script>
 ';
 
@@ -264,12 +302,10 @@ if($popup) {
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
-$ht = new avelsieve_html_edit($s, $mode, $rule, $popup, $errmsg);
-
 if(isset($edit)) {
-	echo $ht->edit_rule($edit);
+	echo $ruleobj->edit_rule($edit);
 } else {
-	echo $ht->edit_rule();
+	echo $ruleobj->edit_rule();
 }
 	
 ?>
