@@ -3,8 +3,36 @@
 <h3><a name="1.9.8">1.9.8cvs - Devel Branch</a></h3>
 
 <ul>
+<li>A large part of the code that is the part of the rule editing procedure has been
+rewritten, in order to accomodate for a more flexible way to add new types of
+rules. The special &quot;SPAM rule&quot; has been rewritten to comply with this
+scheme.</li> 
 
-<li>Bugfix (GUI): When editing rule with redirect action, the 'keep' option was
+<li>A new-style SPAM rule has been implemented. (Rule #11)</li>
+
+<li>Split custom SPAM Sieve rule building to its own file
+(<tt>include/sieve_buildrule.10.inc.php</tt>); this allows for easier defining
+of customized rules, too.</li>
+
+<li>A new, global <strong>Whitelist</strong> rule (Rule #12) has been
+implemented, for the SPAM rules to take advantage of.</li>
+
+<li>Miscellaneous code movement and restructuring. The processing of user input
+has been moved to the rule classes; addspamrule.php has been replaced with the
+class that extends the edit class; an intermediate class for SPAM-rules has
+been implemented; better object consistency is followed; 
+
+<li><acronym title="User Interface">UI</acronym>: The &quot;Add New Rule&quot;
+buttons are now links, and are displayed both at the top and at the bottom of
+the rule table.</li>
+
+<li><acronym title="User Interface">UI</acronym>: Added new icons and used
+different ones, to improve usability. Icons are provided by Mark James' <a
+        href="http://www.famfamfam.com/">famfamfam.com</a>.</li>
+
+<li>Various phpdocumentor fixes.</li>
+
+<li>Bugfix: When editing rule with redirect action, the 'keep' option was
 always checked. (Thanks to <span class="bugreporter">Jonathan
         Lumpkin</span></li>
 
@@ -28,6 +56,7 @@ test.</li>
 
 <li>Bugfix: Authorization login for Squirrelmail 1.5 CVS with authz plugin now
 works.</li>
+
 
 </ul>
 

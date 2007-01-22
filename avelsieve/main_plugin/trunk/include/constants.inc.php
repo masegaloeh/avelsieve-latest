@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: constants.inc.php,v 1.18 2007/01/17 13:46:10 avel Exp $
+ * @version $Id: constants.inc.php,v 1.19 2007/01/22 19:48:54 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -21,9 +21,28 @@ $conditions = array(
 	"or" => _("OR (Either item will match)")
 );
 
+global $avelsieve_maintypes;
 $avelsieve_maintypes = array(
-	1 => _("Rule"),
-	10 => _("Anti-SPAM")
+        1 => array(
+                'desc' =>_("Rule"),
+                'linktext' => sprintf( _("Add a new %s"), _("Rule")),
+                'img' => 'images/icons/add.png'
+        ),
+        10 => array(
+               'desc' =>  _("SPAM Rule"),
+                'linktext' => sprintf( _("Add a new %s"), _("SPAM Rule")),
+                'img' => 'images/icons/add.png'
+        ),
+        11 => array(
+                'desc' => _("SPAM Rule"),
+                'linktext' => sprintf( _("Add a new %s"), _("SPAM Rule")),
+                'img' => 'images/icons/add.png'
+        ),
+        12 => array(
+                'desc' => _("Whitelist"),
+                'linktext' => sprintf( _("Edit %s"), _("Whitelist")),
+                'img' => 'images/icons/email_edit.png'
+        ),
 );
 
 $types = array(
@@ -154,7 +173,7 @@ $avelsievetools = array(
 );
 	
 
-if($spamrule_enable==true) {
+/** Obsolete? */
 
 if(in_array('junkfolder', $plugins)) {
 	include SM_PATH . 'plugins/junkfolder/config.php';
@@ -167,10 +186,11 @@ if(in_array('junkfolder', $plugins)) {
 		}
 	}
 } else {
-	$junkfolder_days = 7; /* Dummy default for E_ALL */
+	$junkfolder_days = 7;
 }
 
 
+global $spamrule_actions;
 $spamrule_actions = array(
 	'junk' => array(
 		'short' => _("Junk Folder"),
@@ -186,8 +206,6 @@ $spamrule_actions = array(
 		'desc' => _("Discard SPAM message. You will get no indication that the message ever arrived.")
 		)
 );
-
-}
 
 /* Version Info for SIEVE scripts */
 

@@ -9,7 +9,7 @@
  * This file contains configuration parameters for SIEVE mail filters plugin
  * (aka avelsieve)
  *
- * @version $Id: config_sample.php,v 1.18 2006/10/17 14:32:34 avel Exp $
+ * @version $Id: config_sample.php,v 1.19 2007/01/22 19:48:54 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -25,7 +25,10 @@ define('AVELSIEVE_DEBUG', 0);
 /* =================== IMAP Server / SIEVE Setup  ========================= */
 /* ======================================================================== */
 
-/* Backend to use */
+/** @var string Backend to use. Available backends are:
+ * 'ManageSieve': Uses the ManageSieve protocol. e.g. Cyrus
+ * 'File': Writes files straight to disk. e.g. Exim4, Dovecot LDA.
+ */
 global $avelsieve_backend;
 $avelsieve_backend = 'ManageSieve';
 
@@ -57,6 +60,15 @@ $sieve_preferred_sasl_mech = 'PLAIN';
  */
 global $avelsieve_disabletls;
 $avelsieve_disabletls = false;
+
+/* ======================================================================== */
+/* ======================= File Backend Options =========================== */
+/* ======================================================================== */
+
+global $avelsieve_file_backend_options, $data_dir, $username;
+$avelsieve_file_backend_options = array(
+    'avelsieve_default_file' => "$data_dir/$username.sievesource"
+);
 
 /* ======================================================================== */
 /* ====== Implementation- and Server-Specific  Options ==================== */
@@ -99,6 +111,12 @@ global $avelsieve_custom_sieve_implementation;
 $avelsieve_custom_sieve_implementation = '';
 
 
+/* For delivery agents that don't know how to handle some mailbox prefixes, you 
+ * can enable this option. Example for Dovecot LDA: 'INBOX.';
+ */
+global $avelsieve_striproot;
+$avelsieve_striproot = '';
+
 /* If the backend does not support capabilities reporting, such as the File
  * Backend, then you should define which capabilities are used by the server
  * implementation.
@@ -113,6 +131,11 @@ $avelsieve_custom_sieve_implementation = '';
  *  'envelope', 'fileinto', 'reject', 'relational', 'subaddress', 'regex',
  *  'editheader', 'copy', 'vacation', 'comparator-i;ascii-casemap',
  *  'comparator-i;octet'
+ *
+ * The following capabilities have been reported to work with Dovecot LDA:
+ *  'envelope', 'fileinto', 'copy', 'vacation', 'comparator-i;ascii-numeric',
+ *  'imapflags', 'subaddress','relational','regex'
+ *
  */
 global $avelsieve_hardcoded_capabilities;
 $avelsieve_hardcoded_capabilities = array(
@@ -176,6 +199,7 @@ $translate_return_msgs = false;
  * plugins/avelsieve/$imagetheme, that contains the files: up.png, down.png,
  * del.png, dup.png, edit.png, top.png, bottom.png. */
 
+//$imagetheme = 'famfamfam';
 $imagetheme = 'bluecurve_24x24';
 //$imagetheme = 'bluecurve_16x16';
 
@@ -196,7 +220,8 @@ $headers = array(
  'Resent-From',  'Resent-To', 'X-Mailer', 'X-MailingList',
  'X-Spam-Flag', 'X-Spam-Status',
  'X-Priority', 'Importance', 'X-MSMail-Priority', 'Precedence',
- 'Return-Path', 'Received', 'Auto-Submitted'
+ 'Return-Path', 'Received', 'Auto-Submitted',
+ 'X-Spam-Flag', 'X-Spam-Status','X-Spam-Tests'
  );
 
 /* Available :method's for the :notify extension (if applicable) */
@@ -241,8 +266,25 @@ $avelsieve_default_mode = 'terse';
 /* ========================= Custom rules Configuration =================== */
 /* ======================================================================== */
 
+/**
+ * @var array
+ * List of additional rules to enable. This must be the numeric id of the
+ * rule.
+ *
+ * 10: Spam Rule (as existed in Avelsieve)
+ * 11: Spam Rule (new-style)
+ * 12: Global Whitelist
+ */
+global $avelsieve_enable_rules;
+$avelsieve_enable_rules = array();
 
-/* Beta - easy anti-spam rule Configuration. Options should be
+global $avelsieve_rules_settings;
+$avelsieve_rules_settings = array();
+
+/**
+ * @var array Rule #10 (Spam Rule) Setttings.
+ *
+ * Beta - easy anti-spam rule Configuration. Options should be
  * self-explanatory. For $spamrule_tests, the key is the spam block list as
  * displayed in the message header inserted by your anti-spam solution, while
  * the value is the user-friendly name displayed to the user in the advanced
@@ -258,21 +300,86 @@ $avelsieve_default_mode = 'terse';
  * $ldap_server[0]['mtarblspambase'] = 'ou=services,dc=example,dc=org';
  *
  */
-
-$spamrule_enable = false;
-$spamrule_score_max = 100;
-$spamrule_score_default = 80;
-$spamrule_score_header = 'X-Spam-Score';
-$spamrule_tests_ldap = false; /* Try to ask Sendmail's LDAP Configuration */
-$spamrule_tests = array(
-	'Open.Relay.DataBase' => "Open Relay Database",
-	'Spamhaus.Block.List' => "Spamhaus Block List",
-	'SpamCop' => "SpamCop",
-	'Composite.Blocking.List' => "Composite Blocking List",
-	'FORGED' => "Forged Header"
+$avelsieve_rules_settings[10] = array(
+    'spamrule_score_max' => 100,
+    'spamrule_score_default' => 80,
+    'spamrule_score_header' => 'X-Spam-Score',
+    'spamrule_tests_ldap' => false, // Try to ask Sendmail's LDAP Configuration 
+    'spamrule_tests' => array(
+    	'Open.Relay.DataBase' => "Open Relay Database",
+	    'Spamhaus.Block.List' => "Spamhaus Block List",
+    	'SpamCop' => "SpamCop",
+	    'Composite.Blocking.List' => "Composite Blocking List",
+    	'FORGED' => "Forged Header"
+    ),
+    'spamrule_tests_header' => 'X-Spam-Tests',
+    'spamrule_action_default' => 'trash'
 );
-$spamrule_tests_header = 'X-Spam-Tests';
-$spamrule_action_default = 'trash';
+
+/**
+ * @var array Rule #11 (New-style Spam Rule) Setttings.
+ */
+$avelsieve_rules_settings[11] = array(
+    'spamrule_score_max' => 100,
+    'spamrule_score_default' => 10,
+    'spamrule_score_header' => 'X-Spam-Score',
+    'spamrule_tests_ldap' => false, // Try to ask Sendmail's LDAP Configuration - FIXME
+    'spamrule_tests_header' => 'X-Spam-Tests',
+    'spamrule_action_default' => 'junk',
+
+    'icons' => array(
+        'OK' => 'images/icons/accept.png',
+        'SPAM' => 'images/icons/exclamation.png',
+        'TEMP_FAIL' => 'images/icons/error.png',
+        'FAIL' => 'images/icons/exclamation.png',
+    ),
+    
+    'spamrule_tests' => array(
+        'rbls' => array(
+            'desc' => _("RBLs are lists of Internet addresses, that have been verified to send SPAM messages."),
+            'available' => array(
+    	        'Spamhaus.Block.List' => "Spamhaus Block List",
+                'SpamCop' => "SpamCop",
+	            'Composite.Blocking.List' => "Composite Blocking List",
+             ),
+             'values' => array(
+                'OK' => _("OK (Not considered as SPAM)"),
+                'SPAM' => _("SPAM (Considered as SPAM)"),
+                'TEMP_FAIL' => _("UNKNOWN (Temporary Failure during RBLCheck)")
+             ),
+        ),
+        'sav' => array(
+             'available' => array(
+                 'Sender.Address.Verficiation' => _("Sender Address Verification"),
+             ),
+             'values' => array(
+                'OK' => _("OK (Sender Address Verified as existing)"),
+                'FAIL' => _("FAILED (Sender Address is Bogus)"),
+                'TEMP_FAIL' => _("UKNOWN (Temporary Failure during Check)")
+             ),
+        ),
+        'additional' => array(
+             'available' => array(
+        	    'FORGED' => _("Forged Header")
+             ),
+             'values' => array(
+                'OK' => _("OK (Message Header is Valid)"),
+                'SPAM' => _("SPAM (Message Header is Forged)"),
+                'TEMP_FAIL' => _("UKNOWN (Temporary Failure during Check)")
+             ),
+        ),
+
+    ),
+    'default_rule' => array(
+       //  '' => 
+    )
+);
+
+/**
+ * @var array Rule #12 (Global White List) Setttings.
+ */
+$avelsieve_rules_settings[12] = array(
+);
 
 /* Please keep the following setting false; it is alpha + needs Squirrelmail
  * to be patched in three or four places. */

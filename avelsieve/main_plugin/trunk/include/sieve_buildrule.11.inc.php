@@ -6,55 +6,27 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.10.inc.php,v 1.3 2007/01/22 19:48:55 avel Exp $
+ * @version $Id: sieve_buildrule.11.inc.php,v 1.1 2007/01/22 19:48:55 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
- * @copyright 2004-2007 Alexandros Vellis
+ * @copyright 2007 Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
 
 /**
- * Rule type: #10; Description: generic SPAM-rule, with SPAM-score,
- * whitelist and RBLs defined in the configuration file.
+ * Rule type: #11; Description: New-style SPAM-rule with
+ * various features.
  *
- * The rule that will be produced (in $out) will be something like:
- *
- * <pre>
- *    if allof( anyof(header :contains "X-Spam-Rule" "Open.Relay.Database" ,
- *                header :contains "X-Spam-Rule" "Spamhaus.Block.List" 
- *            ),
- *         header :value "gt" :comparator "i;ascii-numeric" "80" ) {
- *       
- *       fileinto "INBOX.Junk";
- *       discard;
- *   }
- * </pre>   
- *       
- * Or, if a Whitelist is specified:
- *
- * <pre>
- *   if allof( anyof(header :contains "X-Spam-Rule" "Open.Relay.Database" ,
- *               header :contains "X-Spam-Rule" "Spamhaus.Block.List" 
- *           ),
- *         header :value "gt" :comparator "i;ascii-numeric" "80" ,
- *         not anyof(header :contains "From" "Important Person",
- *               header :contains "From" "Foo Person"
- *         )
- *       ) {
- *       
- *       fileinto "INBOX.Junk";
- *       discard;
- *   }
- * </pre>   
+ * This was written for the needs of the University of Athens
+ * (http://www.uoa.gr, http://email.uoa.gr)
+ * It might not suit your needs without proper adjustments
+ * and hacking.
  */
-function avelsieve_buildrule_10($rule) {
+function avelsieve_buildrule_11($rule) {
     global $avelsieve_rules_settings;
-    
-    $spamrule_score_default = $avelsieve_rules_settings[10]['spamrule_score_default'];
-    $spamrule_score_header = $avelsieve_rules_settings[10]['spamrule_score_header'];
-    $spamrule_tests = $avelsieve_rules_settings[10]['spamrule_tests'];
-    $spamrule_tests_header = $avelsieve_rules_settings[10]['spamrule_tests_header'];
-    $spamrule_action_default = $avelsieve_rules_settings[10]['spamrule_action_default'];
+    extract($avelsieve_rules_settings[11]);
+
+    print $spamrule_score_max; 
 
     $out = '';
     $text = '';
@@ -84,6 +56,31 @@ function avelsieve_buildrule_10($rule) {
     } else {
         $ac = $spamrule_action_default;
     }
+    
+    /*
+    if allof( anyof(header :contains "X-Spam-Rule" "Open.Relay.Database" ,
+                header :contains "X-Spam-Rule" "Spamhaus.Block.List" 
+            ),
+          header :value "gt" :comparator "i;ascii-numeric" "80" ) {
+        
+        fileinto "INBOX.Junk";
+        discard;
+    }
+        
+    // Whitelist scenario:
+    if allof( anyof(header :contains "X-Spam-Rule" "Open.Relay.Database" ,
+                header :contains "X-Spam-Rule" "Spamhaus.Block.List" 
+            ),
+          header :value "gt" :comparator "i;ascii-numeric" "80" ,
+          not anyof(header :contains "From" "Important Person",
+                header :contains "From" "Foo Person"
+          )
+        ) {
+        
+        fileinto "INBOX.Junk";
+        discard;
+    }
+    */
     
     $out .= 'if allof( ';
     $text .= _("All messages considered as <strong>SPAM</strong> (unsolicited commercial messages)");
