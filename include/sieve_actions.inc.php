@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.26 2007/01/22 19:48:55 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.27 2007/01/24 11:28:50 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2007 Alexandros Vellis
  * @package plugins
@@ -62,7 +62,7 @@ class avelsieve_action {
         
 		if ($this->useimages && isset($this->image_src)) {
 			$this->text = ' <img src="'.$this->image_src.'" border="0" alt="'. $this->text.'" align="middle" style="margin-left: 2px; margin-right: 4px;"/> '.
-				$this->text;
+				'<strong>' . $this->text . '</strong>';
 		}
 	}
 
@@ -153,6 +153,32 @@ class avelsieve_action {
 		return $out;
 	}
 
+    /**
+     * Shows whether an action is selected for the current rule.
+     *
+     * @return boolean
+     * @since 1.9.8
+     */
+    function is_selected() {
+        if(is_numeric($this->num) && $this->num > 0) {
+            // For Radio-style numeric id actions.
+            if(isset($this->rule['action']) && $this->rule['action'] == $this->num) {
+                return true;
+            }
+
+        } else {
+            // For Checkbox-style actions.
+			if(isset($this->two_dimensional_options) && $this->options[$this->name]['on']) {
+                return true;
+            } else {
+				if(isset($this->rule[$this->name])) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 	/**
 	 * Generic Options for an action.
 	 *
@@ -176,12 +202,8 @@ class avelsieve_action {
 					}
 				}
 				$out .= 'ShowDiv(\'options_'.$this->num.'\');return true;"'.
-					' id="action_'.$this->num.'" value="'.$this->num.'" ';
-
-			if(isset($this->rule['action'])  && $this->rule['action'] == $this->num) {
-				$out .= ' checked="CHECKED"';
-			}
-			$out .= '/> ';
+					' id="action_'.$this->num.'" value="'.$this->num.'" '.
+			        ($this->is_selected() ? ' checked="CHECKED"' : '') . '/> ';
 		} else {
 			/* Checkbox */
 			$out = '<input type="checkbox" name="'.$this->name;
@@ -189,15 +211,8 @@ class avelsieve_action {
 				$out .= '[on]';
 			}
 			$out .= '" onClick="ToggleShowDiv(\'options_'.$this->name.'\');return true;"'.
-					' id="'.$this->name.'" ';
-			if(isset($this->two_dimensional_options) && $this->options[$this->name]['on']) {
-				$out .= ' checked="CHECKED"';
-			} else {
-				if(isset($this->rule[$this->name])) {
-					$out .= ' checked="CHECKED"';
-				}
-			}
-			$out .= '/> ';
+					' id="'.$this->name.'" ' . ( $this->is_selected() ? ' checked="CHECKED"' : '' ) .
+			        '/> ';
 		}
 		return $out;
 	}
@@ -214,7 +229,8 @@ class avelsieve_action_keep extends avelsieve_action {
 
 	function avelsieve_action_keep(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
-		$this->text = _("Keep (Default action)");
+        $this->text = _("Keep");
+        $this->helptxt = _("(Default Action) Save the message in your INBOX.");
 		if(!isset($rule['action'])) {
 			/* Hack to make the radio button selected for a new rule, for GUI
 			 * niceness */
@@ -235,7 +251,8 @@ class avelsieve_action_discard extends avelsieve_action {
 
 	function avelsieve_action_discard(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
-		$this->text = _("Discard Silently");
+		$this->text = _("Discard");
+		$this->helptxt = _("Silently discards the message; use with caution.");
 		$this->avelsieve_action($s, $rule, $frontend);
 	}
 }
@@ -600,4 +617,39 @@ class avelsieve_action_disabled extends avelsieve_action {
 		$this->avelsieve_action($s, $rule, $frontend);
 	}
 }
-?>
+
+
+/**
+ * SPAM-rule-specific action: Store into junk folder.
+ */
+class avelsieve_action_junk extends avelsieve_action {
+	var $num = 7;
+	var $name = 'junk';
+	var $image_src = 'images/icons/bin.png';
+    
+    function avelsieve_action_junk(&$s, $rule = array(), $frontend = 'html') {
+        global $junkfolder_days;
+        $this->init();
+        $this->text = _("Junk Folder");
+        $this->helptxt = sprintf( _("Store SPAM message in your Junk Folder. Messages older than %s days will be deleted automatically."), $junkfolder_days).
+               ' ' . _("Note that you can set the number of days in Folder Preferences.");
+		$this->avelsieve_action($s, $rule, $frontend);
+    }
+}
+
+/**
+ * SPAM-rule-specific action: Store into trash folder.
+ */
+class avelsieve_action_trash extends avelsieve_action {
+	var $num = 8;
+	var $name = 'junk';
+	var $image_src = 'images/icons/bin.png';
+    
+    function avelsieve_action_trash(&$s, $rule = array(), $frontend = 'html') {
+        $this->init();
+        $this->text = _("Trash Folder");
+        $this->helptxt = _("Store SPAM message in your Trash Folder. You will have to purge the folder yourself.");
+		$this->avelsieve_action($s, $rule, $frontend);
+    }
+}
+
