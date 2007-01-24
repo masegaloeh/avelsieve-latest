@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.12.inc.php,v 1.1 2007/01/22 19:48:55 avel Exp $
+ * @version $Id: sieve_buildrule.12.inc.php,v 1.2 2007/01/24 17:14:56 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2007 Alexandros Vellis
  * @package plugins
@@ -18,6 +18,9 @@
  *
  * This was written for the needs of the University of Athens
  * (http://www.uoa.gr, http://email.uoa.gr)
+ *
+ * @param array $rule
+ * @return array array($out,$text,$terse,$tech, array('skip_further_execution'=>true)))
  */
 function avelsieve_buildrule_12($rule) {
     global $avelsieve_rules_settings;

@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.11.inc.php,v 1.2 2007/01/24 11:30:38 avel Exp $
+ * @version $Id: sieve_buildrule.11.inc.php,v 1.3 2007/01/24 17:14:56 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2007 Alexandros Vellis
  * @package plugins
@@ -53,31 +53,6 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
         $ac = $spamrule_action_default;
     }
     
-    /*
-    if allof( anyof(header :contains "X-Spam-Rule" "Open.Relay.Database" ,
-                header :contains "X-Spam-Rule" "Spamhaus.Block.List" 
-            ),
-          header :value "gt" :comparator "i;ascii-numeric" "80" ) {
-        
-        fileinto "INBOX.Junk";
-        discard;
-    }
-        
-    // Whitelist scenario:
-    if allof( anyof(header :contains "X-Spam-Rule" "Open.Relay.Database" ,
-                header :contains "X-Spam-Rule" "Spamhaus.Block.List" 
-            ),
-          header :value "gt" :comparator "i;ascii-numeric" "80" ,
-          not anyof(header :contains "From" "Important Person",
-                header :contains "From" "Foo Person"
-          )
-        ) {
-        
-        fileinto "INBOX.Junk";
-        discard;
-    }
-    */
-    
     $out .= 'if allof( ';
     $text .= _("All messages considered as <strong>SPAM</strong> (unsolicited commercial messages)");
     $terse .= _("SPAM");
@@ -93,39 +68,10 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
         $out .= $out_part[0];
     }
     
-    /** Placeholder: if there's a score, it should be placed here. */
+    /** Placeholder: if there's a score in the future, it should be placed here. */
     //$out .= "\n";
     //$out .= ' header :value "ge" :comparator "i;ascii-numeric" "'.$spamrule_score_header.'" "'.$sc.'" ';
     
-    /*
-    if(isset($rule['whitelist']) && sizeof($rule['whitelist']) > 0) {
-        $text .= ' (' . _("unless") . ' ';
-        $terse .= '<br/>' . _("Whitelist:") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
-        $tech .= ' !(WHITELIST:<br/>';
-    
-        $out .= " ,\n";
-        $out .= ' not anyof( ';
-        for($i=0; $i<sizeof($rule['whitelist']); $i++ ) {
-            $out .= build_rule_snippet('header', $rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
-                $rule['whitelist'][$i]['headermatch'] ,'rule');
-            $text .= build_rule_snippet('header', $rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
-                $rule['whitelist'][$i]['headermatch'] ,'verbose');
-            $terse .= '<li>'. build_rule_snippet('header', $rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
-                $rule['whitelist'][$i]['headermatch'] ,'terse') . '</li>';
-            $tech .= build_rule_snippet('header', $rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
-                $rule['whitelist'][$i]['headermatch'] ,'tech') . '<br/>';
-            if($i<sizeof($rule['whitelist'])-1) {
-                $out .= ', ';
-                $text .= ' ' . _("or") . ' ';
-            }
-        }
-        $text .= '), '; 
-        $tech .= '), '; 
-        $terse .= '</ul>'; 
-        $out .= " )";
-    }
-    */
-
     /* Search the global variable $rules, to retrieve the whitelist rule data, if any. */
     for($i=0; $i<sizeof($rules); $i++) {
         if($rules[$i]['type'] == 12 && !empty($rules[$i]['whitelist'])) {
@@ -134,12 +80,14 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
         }
     }
 
+    /* And now, use that data to build the actual whitelist in Sieve. */
     if(isset($whitelistRef)) {
         $out .= "\nnot anyof(\n";
 
         $outParts = array();
         foreach($whitelistRef as $w) {
             $outParts[] = build_rule_snippet('header', 'From', 'contains', $w ,'rule');
+            $outParts[] = build_rule_snippet('header', 'Sender', 'contains', $w ,'rule');
         }
         $out .= implode(",\n", $outParts); 
         $out .= ')';
@@ -152,28 +100,36 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
 
     /* The textual descriptions follow */
     if($spamrule_advanced == true || $force_advanced_mode) {
-        $text .= '<br/>' . _("matching the Spam List(s):"). '<ul style="margin-top: 1px; margin-bottom: 1px;">';
-        $terse .= '<br/>' . _("Spam List(s):") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
-        $tech .= '<br/>' . _("Spam List(s):") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
+        $text .= '<ul>'; // 1st level ul
+        $text .= '<li>' . _("matching the Spam tests as follows:"). '</li><ul style="margin-top: 1px; margin-bottom: 1px;">';
+        $terse .= '<br/>' . _("Spam Tests:") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
+        $tech .= '<br/>' . _("Spam Tests:") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
         foreach($tests as $test=>$val) {
             foreach($spamrule_tests as $group=>$data) {
                 if(array_key_exists($test, $data['available'])) {
-                    $text .= '<li>' . $data['available'][$test].'</li>';
+                    $text .= '<li><strong>' . $data['available'][$test]. '</strong> = '. 
+                             ( isset($icons[$val]) ? '<img src="'.$icons[$val].'" alt="'.$val.'" /> ' : '') .
+                             $val. '</li>';
                     $terse .= '<li>' . $data['available'][$test].'</li>';
                     $tech .= '<li>' . $data['available'][$test].'</li>';
                     break;
                 }
             }
         }
-        $text .= '</ul>';
+        $text .= '</ul><br/>';
         $terse .= '</ul>';
         $tech .= '</ul>';
+        
+        if(isset($whitelistRef)) {
+             $text .= '<li>' . _("and where the sender does <em>not</em> match any of the addresses / expressions in your <strong>Whitelist</strong>") . '</li>';
+        }
+        $text .= '</ul>'; // 1st level ul
     }
     
     
     /* ------------------------ 'then' ------------------------ */
 
-    $text .= ' ' . _("will be") . ' ';
+    $text .= '<br/>' . _("will be") . ' ';
     $terse .= '</td><td align="right">';
     $tech .= '</td><td align="right">';
 

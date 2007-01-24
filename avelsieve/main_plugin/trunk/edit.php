@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.35 2007/01/22 19:48:54 avel Exp $
+ * @version $Id: edit.php,v 1.36 2007/01/24 17:14:56 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -53,6 +53,11 @@ sqgetGlobalVar('addnew', $addnew, SQ_GET);
 /* New folder Creation */
 sqgetGlobalVar('newfoldername', $newfoldername, SQ_POST);
 sqgetGlobalVar('newfolderparent', $newfolderparent, SQ_POST);
+
+// intermediate_action is an action during an editing / creation of a rule,
+// that does _not_ imply submitting the new rule data.
+sqgetGlobalVar('intermediate_action', $intermediate_action, SQ_POST);
+
 /* Essentials */
 sqgetGlobalVar('popup', $popup, SQ_GET);
 sqgetGlobalVar('edit', $edit, SQ_FORM);
@@ -102,7 +107,7 @@ if(isset($dup)) {
 	$mode = 'edit';
 }
 
-if($type_get > 1 && is_numeric($type_get) &&
+if(is_numeric($type_get) && $type_get > 1 &&
   file_exists(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.'.$type_get.'.inc.php')) {
     include_once(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.'.$type_get.'.inc.php');
     $edit_class_name = 'avelsieve_html_edit_'. $type_get;
@@ -114,23 +119,28 @@ $ruleobj->set_errmsg($errmsg);
 
 if(isset($edit)) {
 	/* Editing an existing rule */
+	//print "/* Editing an existing rule */";
     $ruleobj->set_rule_type( (isset($rules[$edit]['type']) ? $rules[$edit]['type'] : 1));
 	$ruleobj->set_rule_data($rules[$edit]);
 
 } elseif(isset($serialized_rule)) {
 	/* Adding a new rule through $_GET, e.g. from search integration feature. */
+	//print "/* Adding a new rule through _GET, e.g. from search integration feature. */";
     $ruleobj->set_rule_type($type_get);
     $ruleobj->set_rule_data(unserialize(urldecode($serialized_rule)));
 
 } elseif(!isset($edit) && isset($type_get)) {
 	/* Adding a new rule through $_GET */
-	$type = $type_get;
-	$ruleobj->process_input($_GET, false);
+	//print "/* Adding a new rule through _GET */";
+    $ruleobj->set_rule_type($type_get);
+	//$ruleobj->process_input($_GET, false);
 } else {
 	/* Adding a new rule from scratch */
+	//print "/* Adding a new rule from scratch */";
     $ruleobj->set_rule_type($type_get);
 }
 $type = $ruleobj->type;
+
 
 if(!isset($type) || (isset($type) && !is_numeric($type)) ) $type = 1;
 
@@ -166,6 +176,7 @@ if(isset($_POST['cancel'])) {
 
 } elseif(isset($_POST['apply']) && !$changetype) {
 	/* Apply change in existing rule */
+	//print "/* Apply change in existing rule */";
 	$ruleobj->process_input($_POST, true);
 	if(empty($ruleobj->errmsg)) {
 		$_SESSION['rules'][$edit] = $ruleobj->rule;
@@ -176,6 +187,7 @@ if(isset($_POST['cancel'])) {
 
 } elseif(isset($_POST['addnew']) && !$changetype) {
 	/* Add new rule */
+	//print "/* Add new rule */";
  	$ruleobj->process_input($_POST, true);
 	if(empty($ruleobj->errmsg)) {
 		if(isset($dup)) {
@@ -194,12 +206,10 @@ if(isset($_POST['cancel'])) {
 		header("Location: table.php$popup");
 		exit;
     }
-} elseif($changetype || isset($_POST['append']) || isset($_POST['less']) || isset($_POST['spamrule_advanced'])) {
+} elseif($changetype || isset($_POST['append']) || isset($_POST['less']) || isset($intermediate_action)) {
 	/* still in editing; apply any changes. */
 	$ruleobj->process_input($_POST, false);
 }
-
-
 
 /* Grab the list of my IMAP folders. This is only needed for the GUI, and is
  * done as the last step. */
