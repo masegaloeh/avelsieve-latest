@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: constants.inc.php,v 1.19 2007/01/22 19:48:54 avel Exp $
+ * @version $Id: constants.inc.php,v 1.20 2007/01/24 11:29:44 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -175,6 +175,7 @@ $avelsievetools = array(
 
 /** Obsolete? */
 
+global $junkfolder_days;
 if(in_array('junkfolder', $plugins)) {
 	include SM_PATH . 'plugins/junkfolder/config.php';
 	if(in_array('ldapuserdata', $plugins)) {

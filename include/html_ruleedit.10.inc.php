@@ -3,7 +3,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: html_ruleedit.10.inc.php,v 1.1 2007/01/22 19:48:54 avel Exp $
+ * @version $Id: html_ruleedit.10.inc.php,v 1.2 2007/01/24 11:29:44 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -62,7 +62,7 @@ class avelsieve_html_edit_10 extends avelsieve_html_edit_spamrule {
      */
     function edit_rule($edit = false) {
         global $PHP_SELF, $color, $avelsieve_maintypes, $spamrule_actions, 
-                $data_dir, $username, $plugins;
+                $data_dir, $username, $plugins, $junkfolder_days;
 
         $out = '<form name="addrule" action="'.$PHP_SELF.'" method="POST">';
         $out .= '<input type="hidden" name="type" value="10" />';
