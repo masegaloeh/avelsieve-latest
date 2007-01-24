@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.11.inc.php,v 1.1 2007/01/22 19:48:55 avel Exp $
+ * @version $Id: sieve_buildrule.11.inc.php,v 1.2 2007/01/24 11:30:38 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2007 Alexandros Vellis
  * @package plugins
@@ -21,12 +21,16 @@
  * (http://www.uoa.gr, http://email.uoa.gr)
  * It might not suit your needs without proper adjustments
  * and hacking.
+ *
+ * @param array $rule
+ * @param boolean $force_advanced_mode This flag is used when i want to get
+ *   an analytical textual representation of the spam rule. This is used for
+ *   being shown in the UI ("What does the predefined rule contain?").
+ * @return array
  */
-function avelsieve_buildrule_11($rule) {
-    global $avelsieve_rules_settings;
+function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
+    global $avelsieve_rules_settings, $rules;
     extract($avelsieve_rules_settings[11]);
-
-    print $spamrule_score_max; 
 
     $out = '';
     $text = '';
@@ -35,20 +39,12 @@ function avelsieve_buildrule_11($rule) {
     
     $spamrule_advanced = false;
     
-    if(isset($rule['advanced'])) {
+    if(isset($rule['advanced']) && $rule['advanced']) {
         $spamrule_advanced = true;
     }
     
-    if(isset($rule['score'])) {
-        $sc = $rule['score'];
-    } else {
-        $sc = $spamrule_score_default;
-    }
-    
     if(isset($rule['tests'])) {
-        $te = $rule['tests'];
-    } else {
-        $te = array_keys($spamrule_tests);
+        $tests = $rule['tests'];
     }
     
     if(isset($rule['action'])) {
@@ -87,24 +83,22 @@ function avelsieve_buildrule_11($rule) {
     $terse .= _("SPAM");
     $tech .= 'SPAM';
     
-    if(sizeof($te) > 1) {
-        $out .= ' anyof( ';
-        for($i=0; $i<sizeof($te); $i++ ) {
-            $out .= 'header :contains "'.$spamrule_tests_header.'" "'.$te[$i].'"';
-            if($i < (sizeof($te) -1 ) ) {
-                $out .= ",";
-            }
-        }
-        $out .= " ),\n";
+    $out_part = array();
+    foreach($tests as $test=>$val) {
+        $out_part[] = 'header :contains "'.$spamrule_tests_header.'" "'.$test.':'.$val.'"';
+    }
+    if(sizeof($out_part) > 1) {
+        $out .= ' anyof( '. implode( ",\n", $out_part ) . "),\n";
     } else {
-        $out .= 'header :contains "'.$spamrule_tests_header.'" "'.$te[0].'", ';
+        $out .= $out_part[0];
     }
     
-    $out .= "\n";
-    $out .= ' header :value "ge" :comparator "i;ascii-numeric" "'.$spamrule_score_header.'" "'.$sc.'" ';
+    /** Placeholder: if there's a score, it should be placed here. */
+    //$out .= "\n";
+    //$out .= ' header :value "ge" :comparator "i;ascii-numeric" "'.$spamrule_score_header.'" "'.$sc.'" ';
     
+    /*
     if(isset($rule['whitelist']) && sizeof($rule['whitelist']) > 0) {
-        /* Insert here header-match like rules, ORed of course. */
         $text .= ' (' . _("unless") . ' ';
         $terse .= '<br/>' . _("Whitelist:") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
         $tech .= ' !(WHITELIST:<br/>';
@@ -130,33 +124,140 @@ function avelsieve_buildrule_11($rule) {
         $terse .= '</ul>'; 
         $out .= " )";
     }
-    $out .= " )\n{\n";
+    */
 
-    if($spamrule_advanced == true) {
-        $text .= _("matching the Spam List(s):");
+    /* Search the global variable $rules, to retrieve the whitelist rule data, if any. */
+    for($i=0; $i<sizeof($rules); $i++) {
+        if($rules[$i]['type'] == 12 && !empty($rules[$i]['whitelist'])) {
+            $whitelistRef = &$rules[$i]['whitelist'];
+            break;
+        }
+    }
+
+    if(isset($whitelistRef)) {
+        $out .= "\nnot anyof(\n";
+
+        $outParts = array();
+        foreach($whitelistRef as $w) {
+            $outParts[] = build_rule_snippet('header', 'From', 'contains', $w ,'rule');
+        }
+        $out .= implode(",\n", $outParts); 
+        $out .= ')';
+
+    } else {
+        $out .= "true ";
+    }
+    $out .= ")\n{\n";  // closes 'allof'
+
+
+    /* The textual descriptions follow */
+    if($spamrule_advanced == true || $force_advanced_mode) {
+        $text .= '<br/>' . _("matching the Spam List(s):"). '<ul style="margin-top: 1px; margin-bottom: 1px;">';
         $terse .= '<br/>' . _("Spam List(s):") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
         $tech .= '<br/>' . _("Spam List(s):") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
-        for($i=0; $i<sizeof($te); $i++) {
-            $text .= $spamrule_tests[$te[$i]].', ';
-            $terse .= '<li>' . $spamrule_tests[$te[$i]].'</li>';
-            $tech .= '<li>' . $spamrule_tests[$te[$i]].'</li>';
+        foreach($tests as $test=>$val) {
+            foreach($spamrule_tests as $group=>$data) {
+                if(array_key_exists($test, $data['available'])) {
+                    $text .= '<li>' . $data['available'][$test].'</li>';
+                    $terse .= '<li>' . $data['available'][$test].'</li>';
+                    $tech .= '<li>' . $data['available'][$test].'</li>';
+                    break;
+                }
+            }
         }
-        $text .= sprintf( _("and with score greater than %s") , $sc );
-        $terse .= '</ul>' . sprintf( _("Score > %s") , $sc);
-        $tech .= '</ul>' . sprintf( _("Score > %s") , $sc);
+        $text .= '</ul>';
+        $terse .= '</ul>';
+        $tech .= '</ul>';
     }
     
-    $text .= ', ' . _("will be") . ' ';
+    
+    /* ------------------------ 'then' ------------------------ */
+
+    $text .= ' ' . _("will be") . ' ';
     $terse .= '</td><td align="right">';
     $tech .= '</td><td align="right">';
-    
-    if($ac == 'junk') {
+
+    /* FIXME - Temporary Copy/Paste kludge */
+    switch($rule['action']) {
+	case '1':	/* keep (default) */
+	default:
+		$out .= "keep;";
+		$text .= _("<em>keep</em> it.");
+		$terse .= _("Keep");
+		$tech .= 'KEEP';
+		break;
+	
+	case '2':	/* discard */
+		$out .= "discard;";
+		$text .= _("<em>discard</em> it.");
+		$terse .= _("Discard");
+		$tech .= 'DISCARD';
+		break;
+	
+	case '3':	/* reject w/ excuse */
+		$out .= "reject text:\n".$rule['excuse']."\r\n.\r\n;";
+		$text .= _("<em>reject</em> it, sending this excuse back to the sender:")." \"".htmlspecialchars($rule['excuse'])."\".";
+		$terse .= _("Reject");
+		$tech .= "REJECT";
+		break;
+	
+	case '4':	/* redirect to address */
+		if(strstr(trim($rule['redirectemail']), ' ')) {
+			$redirectemails = explode(' ', trim($rule['redirectemail']));
+		}
+		if(!isset($redirectemails)) {
+			if(strstr(trim($rule['redirectemail']), ',')) {
+				$redirectemails = explode(',', trim($rule['redirectemail']));
+			}
+		}
+		if(isset($redirectemails)) {
+			foreach($redirectemails as $redirectemail) {
+				$out .= 'redirect "'.$redirectemail."\";\n";
+				$terse .= _("Redirect to").' '.htmlspecialchars($redirectemail). '<br/>';
+				$tech .= 'REDIRECT '.htmlspecialchars($redirectemail). '<br/>';
+			}
+			$text .= sprintf( _("<em>redirect</em> it to the email addresses: %s."), implode(', ',$redirectemails));
+		} else {
+			$out .= "redirect \"".$rule['redirectemail']."\";";
+			$text .= _("<em>redirect</em> it to the email address")." ".htmlspecialchars($rule['redirectemail']).".";
+			$terse .= _("Redirect to") . ' ' .htmlspecialchars($rule['redirectemail']);
+			$tech .= 'REDIRECT' . ' ' .htmlspecialchars($rule['redirectemail']);
+		}
+		break;
+	
+	case '5':	/* fileinto folder */
+		$out .= 'fileinto "'.$rule['folder'].'";';
+
+		if(!empty($inconsistent_folders) && in_array($rule['folder'], $inconsistent_folders)) {
+			$clr = '<span style="color:'.$color[2].'">';
+			$text .= $clr;
+			$terse .= $clr;
+			$tech .= $clr;
+		}
+		$text .= sprintf( _("<em>file</em> it into the folder %s"),
+			' <strong>' . htmlspecialchars(imap_utf7_decode_local($rule['folder'])) . '</strong>');
+		$terse .= sprintf( _("File into %s"), htmlspecialchars(imap_utf7_decode_local($rule['folder'])));
+		$tech .= "FILEINTO ".htmlspecialchars(imap_utf7_decode_local($rule['folder']));
+		
+		if(!empty($inconsistent_folders) && in_array($rule['folder'], $inconsistent_folders)) {
+			$cls = '<em>' . _("(Warning: Folder not available)") . '</em></span>';
+			$text .= ' '.$cls;
+			$terse .= '<br/>'.$cls;
+			$tech .= '<br/>'.$cls;
+		}
+		$text .= '. ';
+		break;
+    /* END first copy/paste kludge */
+
+        /* Added */
+	case '7':	/* junk folder */
         $out .= 'fileinto "INBOX.Junk";';
         $text .= _("stored in the Junk Folder.");
         $terse .= _("Junk");
         $tech .= 'JUNK';
+        break;
     
-    } elseif($ac == 'trash') {
+	case '8':	/* junk folder */
         $text .= _("stored in the Trash Folder.");
     
         global $data_dir, $username;
@@ -171,12 +272,8 @@ function avelsieve_buildrule_11($rule) {
 
         $terse .= _("Trash");
         $tech .= 'TRASH';
+        break;
     
-    } elseif($ac == 'discard') {
-        $out .= 'discard;';
-        $text .= _("discarded.");
-        $terse .= _("Discard");
-        $tech .= _("Discard");
     }
 
     return(array($out,$text,$terse,$tech));

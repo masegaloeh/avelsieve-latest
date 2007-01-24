@@ -3,7 +3,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: html_ruleedit.11.inc.php,v 1.1 2007/01/22 19:48:54 avel Exp $
+ * @version $Id: html_ruleedit.11.inc.php,v 1.2 2007/01/24 11:30:38 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -14,6 +14,7 @@
 include_once(SM_PATH . 'plugins/avelsieve/include/html_main.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/sieve_rule_spam.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/sieve_buildrule.11.inc.php');
 
 /**
  * Rule #11: Customized Anti-SPAM rule with features such as RBL
@@ -26,10 +27,11 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
     /** @var boolean Advanced SPAM rule? */
     var $spamrule_advanced = false;
 
-    /** @var int Initial number of whitelist items (input boxes) to display in 
-     * the UI, if none are set in the rule.
-     */
-    var $whitelistitems = 3;
+    /** @var Main actions */
+    var $spamrule_actions_main = array('keep', 'junk', 'trash');
+    
+    /** @var More actions (in a hidden div, initially) */
+    var $spamrule_actions_more = array('fileinto', 'discard');
 
     /**
      * Constructor, that just calls the parent one.
@@ -47,17 +49,19 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
      */
     function module_settings($module) {
         $out = '';
+        $t = &$this->rule['tests']; // Handy reference to current rule's tests
+
         foreach($this->settings['spamrule_tests'][$module]['available'] as $key=>$val) {
             $out .= '<div id="test_'.$key.'"> <p><strong>'.$val.'</strong>';
-            $out .= '<br/><input type="radio" name="'.$key.'" value="NONE" id="'.$key.'_NONE" '.
-                    ((!isset($this->rule[$key]) || (isset($this->rule[$key]) && $this->rule[$key] == 'NONE')) ? 'checked=""' : '' ). 
+            $out .= '<br/><input type="radio" name="tests['.$key.']" value="NONE" id="'.$key.'_NONE" '.
+                    ((!isset($t[$key]) || (isset($t[$key]) && $t[$key] == 'NONE')) ? 'checked=""' : '' ). 
                     '/> '.
                     '<label for="'.$key.'_NONE">'. _("No check") . '</label>';
 
             foreach($this->settings['spamrule_tests'][$module]['values'] as $res=>$res_desc) {
-                    $out .= '<br/><input type="radio" name="'.$key.'" value="'.$res.'" id="'.$key.'_'.$res.'" '.
+                    $out .= '<br/><input type="radio" name="tests['.$key.']" value="'.$res.'" id="'.$key.'_'.$res.'" '.
                         
-                        ((isset($this->rule[$key]) && $this->rule[$key] == $res) ? 'checked=""' : '' ). 
+                        ((isset($t[$key]) && $t[$key] == $res) ? 'checked=""' : '' ). 
                         ' /> '.
                         '<label for="'.$key.'_'.$res.'">'.
                         ( isset($this->settings['icons'][$res]) ?  '<img src="'.$this->settings['icons'][$res].'" alt="[]" /> ' : '' ) .
@@ -81,6 +85,8 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
             /* 'edit' */
             $out = '<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
                 '<input type="hidden" name="edit" value="'.$edit.'" />'.
+                // FIXME
+                // '<input type="advanced" name="edit" value="'.$this->rule['advanced'].'" />'.
                 $this->table_header( _("Editing Mail Filtering Rule") . ' #'. ($edit+1) ).
                 $this->all_sections_start();
         } else {
@@ -95,21 +101,25 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
         /* --------------------- 'module settings ----------------------- */
         
         if(!$this->spamrule_advanced) {
+            $default_rule = avelsieve_buildrule_11($this->settings['default_rule'], true); 
+            $default_rule_desc = $default_rule[1]; 
+
             // FIXME string
             $out .= '<p>'. sprintf( _("Select %s to add the predefined rule, or select the advanced SPAM filter to customize the rule."), '<strong>' . _("Add Spam Rule") . '</strong>' ) . '</p>';
 
-            $out .= '<div width="50%" style="width: 50%; margin-left: auto; margin-right: auto; text-align:center; border: 1px dotted;">'.
-                    '<p><a href="#" onclick="ToggleShowDivWithImg(\'lala\')">'.
-                    '<img src="images/triangle.gif" alt="&gt;" name="lala_img" border="0" />'. 
+            $out .= '<div width="50%" style="width: 50%; margin-left: auto; padding: 0.5em; margin-right: auto; text-align:left; border: 1px dotted;">'.
+                    '<p><a href="#" onclick="ToggleShowDivWithImg(\'predefined_rule_desc\')">'.
+                    '<img src="images/triangle.gif" alt="&gt;" name="predefined_rule_desc_img" border="0" />'. 
                     '<img src="images/icons/information.png" alt="(i)" border="0" />'. ' ' .
                     _("What does the predefined rule contain?") . '</a><p>'.
-                    '<div id="lala" style="display:none">Description</div>'.
+                        '<div id="predefined_rule_desc" style="display:none">'.$default_rule_desc.'</div>'.
                     '</div>';
 
             $out .= '<p style="text-align:center">
                     <input type="submit" name="spamrule_advanced" value="'. _("Advanced Spam Filter...") .'" />
                     </p>';
         } else {
+            $out .= '<input type="hidden" name="spamrule_advanced" value="1" />';
         
             /*
             $out .= $this->section_start( _("Message Spam Checks: RBLs") );
@@ -140,14 +150,29 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
     
             /* --------------------- 'then' ----------------------- */
             
-            $out .= $this->section_start( _("Action") );
+            $out .= $this->section_start( '<a name="anchor_action">'. _("Action"). '</a>' );
     
-            $spamrule_actions = array('keep', 'discard', 'fileinto');
-            foreach($spamrule_actions as $act) $out .= $this->action_html($act);
-            $out .= $this->section_end();
 
-            $out .= $this->section_start( _("Additional Actions") );
-            $out .= $this->rule_3_additional_actions();
+            /**
+             * Main spamrule actions
+             */
+            foreach($this->spamrule_actions_main as $act) $out .= $this->action_html($act);
+            
+            /**
+             * Additional actions: these will initially be in a hidden div.
+             */
+            $out .= '<br/>'.
+                    '<p><a href="#anchor_action" onclick="ToggleShowDivWithImg(\'more_actions\')">'.
+                    '<img src="images/triangle.gif" alt="&gt;" name="more_actions_img" border="0" />'. 
+                    '<strong>'. _("More Actions") . '</strong></a></p><br/>'.
+
+                    '<div id="more_actions" style="display:none;">';
+            foreach($this->spamrule_actions_more as $act) $out .= $this->action_html($act);
+            $out .= '</div>';
+
+            $out .= $this->section_end();
+            
+            //$out .= $this->rule_3_additional_actions();
         }
 
         /* --------------------- buttons ----------------------- */
@@ -174,10 +199,19 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
      */
     function process_input(&$ns, $unused = false) {
         global $startitems;
+
+        /*
+        print "<pre>process input...\n";
+        print_r($ns);
+        print "</pre>";
+         */
+
+        $this->rule['type'] = 11;
+
         if(isset($ns['spamrule_advanced'])) {
             $this->spamrule_advanced = true;
-            $this->rule['advanced'] = true;
-        } elseif (isset($edit) && isset($this->rule['advanced'])) {
+            $this->rule['advanced'] = 1;
+        } elseif (isset($this->rule['advanced']) && $this->rule['advanced']) {
             $this->spamrule_advanced = true; // FIXME
             $this->rule['advanced'] = 1;
         } else {
@@ -185,15 +219,44 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
             $this->rule['advanced'] = 0;
         }
 
+
         foreach($this->settings['spamrule_tests'] as $groupname => $group) {
             foreach($group['available'] as $test=>$desc) {
-                $test_request = str_replace('.', '_', $test); // For $_POST, $_GET variables
-                if(isset($ns[$test_request]) && in_array($ns[$test_request], array_merge( array('NONE'), array_keys($group['values']) ) )) {
-                    $this->rule['tests'][$test] = $ns[$test_request];
+                if(isset($ns['tests'][$test]) && in_array($ns['tests'][$test], array_merge( array('NONE'), array_keys($group['values']) ) )) {
+                    $this->rule['tests'][$test] = $ns['tests'][$test];
                 }
             }
         }
-        //print_r($this->rule);
+        
+        if(!isset($ns['action'])) {
+            $ns['action'] = 1;
+        }
+        
+        // FIXME more variables/options, validation.
+        /*
+         */
+        if(is_numeric($ns['action'])) {
+            $this->rule['action'] = $ns['action'];
+        }
+        foreach($this->spamrule_actions_main as $a) {
+            if(isset($ns[$a])) { 
+                $this->rule[$a] = $ns[$a]; 
+            }
+        }
+        // TODO / FIXME notify options etc.
+        // Process input of actions has to be unified/fixed.
+        foreach($this->spamrule_actions_more as $a) {
+            if(isset($ns[$a])) { 
+                $this->rule[$a] = $ns[$a]; 
+            }
+        }
+
+        /*
+        print " this->rule currently is:";
+        print "<PRE>";
+        print_r($this->rule);
+        print "</PRE>";
+         */
         //$this->errmsg = 'bogus error message for development';
 
     }
