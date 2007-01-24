@@ -9,7 +9,7 @@
  * This file contains configuration parameters for SIEVE mail filters plugin
  * (aka avelsieve)
  *
- * @version $Id: config_sample.php,v 1.19 2007/01/22 19:48:54 avel Exp $
+ * @version $Id: config_sample.php,v 1.20 2007/01/24 17:17:33 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -273,7 +273,10 @@ $avelsieve_default_mode = 'terse';
  *
  * 10: Spam Rule (as existed in Avelsieve)
  * 11: Spam Rule (new-style)
- * 12: Global Whitelist
+ * 12: Global Whitelist (only one exists per Sieve script)
+ * 
+ * Example:
+ * array(10, 11, 12);
  */
 global $avelsieve_enable_rules;
 $avelsieve_enable_rules = array();
@@ -327,11 +330,19 @@ $avelsieve_rules_settings[11] = array(
     'spamrule_tests_header' => 'X-Spam-Tests',
     'spamrule_action_default' => 'junk',
 
+    'spamrule_default' => array(
+        
+    ),
+
     'icons' => array(
         'OK' => 'images/icons/accept.png',
         'SPAM' => 'images/icons/exclamation.png',
+        'NO_MAILBOX' => 'images/icons/exclamation.png',
+
         'TEMP_FAIL' => 'images/icons/error.png',
-        'FAIL' => 'images/icons/exclamation.png',
+        'FAIL' => 'images/icons/error.png',
+        'FAILED' => 'images/icons/error.png',
+        'TEMP_FAILED' => 'images/icons/error.png',
     ),
     
     'spamrule_tests' => array(
@@ -343,19 +354,20 @@ $avelsieve_rules_settings[11] = array(
 	            'Composite.Blocking.List' => "Composite Blocking List",
              ),
              'values' => array(
-                'OK' => _("OK (Not considered as SPAM)"),
-                'SPAM' => _("SPAM (Considered as SPAM)"),
-                'TEMP_FAIL' => _("UNKNOWN (Temporary Failure during RBLCheck)")
+                'OK' => _("Not considered as SPAM"),
+                'SPAM' => _("Considered as SPAM"),
+                'TEMP_FAIL' => _("Temporary Failure during RBL Check")
              ),
         ),
         'sav' => array(
              'available' => array(
-                 'Sender.Address.Verficiation' => _("Sender Address Verification"),
+                 'Sender.Address.Verification' => _("Sender Address Verification"),
              ),
              'values' => array(
-                'OK' => _("OK (Sender Address Verified as existing)"),
-                'FAIL' => _("FAILED (Sender Address is Bogus)"),
-                'TEMP_FAIL' => _("UKNOWN (Temporary Failure during Check)")
+                'OK' => _("Sender Address is valid"),
+                'NO_MAILBOX' => _("Sender Address does not exist"),
+                'FAILED' => _("Unable to verify Sender Address (Permanent Error)"),
+                'TEMP_FAILED' => _("Unable to verify Sender Address (Temporary Error)"),
              ),
         ),
         'additional' => array(
@@ -363,15 +375,26 @@ $avelsieve_rules_settings[11] = array(
         	    'FORGED' => _("Forged Header")
              ),
              'values' => array(
-                'OK' => _("OK (Message Header is Valid)"),
-                'SPAM' => _("SPAM (Message Header is Forged)"),
-                'TEMP_FAIL' => _("UKNOWN (Temporary Failure during Check)")
+                'OK' => _("Message Header is Valid"),
+                'SPAM' => _("Message Header is Forged"),
+                'TEMP_FAIL' => _("Temporary Failure during Check of Message Header")
              ),
         ),
 
     ),
     'default_rule' => array(
-       //  '' => 
+        'type' => 11,
+        'advanced' => 0,
+        'tests' => 
+            array(
+                'Spamhaus.Block.List' => 'SPAM',
+                'SpamCop' => 'SPAM',
+                'Composite.Blocking.List' => 'SPAM',
+                'Sender.Address.Verification' => 'NO_MAILBOX',
+                'FORGED' => 'SPAM'
+            ),
+        'action' => 7,
+        'stop' => true
     )
 );
 
