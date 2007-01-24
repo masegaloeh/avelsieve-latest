@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.28 2007/01/22 19:48:55 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.29 2007/01/24 17:14:56 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -339,6 +339,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		$out .= '</ul><br />';
 
 		$out .= '<input type="hidden" name="items" value="'.$items.'" />';
+        // FIXME What does the type have to do in here?
 		$out .= '<input type="hidden" name="type" value="1" />';
 		
 		if($items > 1) {
@@ -719,6 +720,7 @@ class avelsieve_html_edit extends avelsieve_html {
                 $new_cond_indexes = array_unique($new_cond_indexes);
                 $new_cond_indexes = array_values($new_cond_indexes);
         
+                $this->rule['cond'] = array();
                 foreach($new_cond_indexes as $n => $index) {
                     $this->rule['cond'][] = $ns['cond'][$index];
                 }
@@ -776,7 +778,7 @@ class avelsieve_html_edit extends avelsieve_html {
             $this->rule['disabled'] = 1;
         }
         
-        /* Put all variables from the defined namespace (e.g. $_POST in the rule
+        /* Put all variables from the defined namespace (e.g. $_POST) in the rule
         * array. */
         foreach($vars as $myvar) {
             if(isset($ns[$myvar])) {

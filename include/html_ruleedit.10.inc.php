@@ -3,7 +3,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: html_ruleedit.10.inc.php,v 1.2 2007/01/24 11:29:44 avel Exp $
+ * @version $Id: html_ruleedit.10.inc.php,v 1.3 2007/01/24 17:14:56 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -86,7 +86,7 @@ class avelsieve_html_edit_10 extends avelsieve_html_edit_spamrule {
         if(!$this->spamrule_advanced) {
             // FIXME string
             $out .= '<p>'. sprintf( _("Select %s to add the predefined rule, or select the advanced SPAM filter to customize the rule."), '<strong>' . _("Add Spam Rule") . '</strong>' ) . '</p>'.
-                '<p style="text-align:center"> <input type="submit" name="spamrule_advanced" value="'. _("Advanced Spam Filter...") .'" /></p>';
+                '<p style="text-align:center"> <input type="submit" name="intermediate_action[spamrule_switch_to_advanced]" value="'. _("Advanced Spam Filter...") .'" /></p>';
         
         } else {
         
@@ -229,9 +229,13 @@ class avelsieve_html_edit_10 extends avelsieve_html_edit_spamrule {
      */
     function process_input(&$ns, $unused = false) {
         global $startitems;
-        if(isset($ns['spamrule_advanced'])) {
+        if(isset($ns['intermediate_action']['spamrule_switch_to_advanced'])) {
+            // Just switched to advanced.
             $this->spamrule_advanced = true;
-            $this->rule['advanced'] = true;
+            $this->rule['advanced'] = 1;
+        } elseif(isset($ns['spamrule_advanced'])) {
+            $this->spamrule_advanced = true;
+            $this->rule['advanced'] = 1;
         } elseif (isset($edit) && isset($this->rule['advanced'])) {
             $this->spamrule_advanced = true; // FIXME
             $this->rule['advanced'] = 1;

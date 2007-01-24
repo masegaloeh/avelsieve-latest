@@ -3,7 +3,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: html_ruleedit.11.inc.php,v 1.2 2007/01/24 11:30:38 avel Exp $
+ * @version $Id: html_ruleedit.11.inc.php,v 1.3 2007/01/24 17:14:56 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -27,12 +27,18 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
     /** @var boolean Advanced SPAM rule? */
     var $spamrule_advanced = false;
 
-    /** @var Main actions */
-    var $spamrule_actions_main = array('keep', 'junk', 'trash');
+    /** @var Spamrule actions that will be available. */
+    var $spamrule_actions = array(
+        'group_main' => array(
+                'radio' => array('keep', 'junk', 'trash'),
+                'checkbox' => array('stop')
+        ),
+        'group_additional' => array(
+                'radio' => array('fileinto', 'discard'),
+                'checkbox' => array('notify', 'disabled')
+        )
+    );
     
-    /** @var More actions (in a hidden div, initially) */
-    var $spamrule_actions_more = array('fileinto', 'discard');
-
     /**
      * Constructor, that just calls the parent one.
      */     
@@ -56,7 +62,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
             $out .= '<br/><input type="radio" name="tests['.$key.']" value="NONE" id="'.$key.'_NONE" '.
                     ((!isset($t[$key]) || (isset($t[$key]) && $t[$key] == 'NONE')) ? 'checked=""' : '' ). 
                     '/> '.
-                    '<label for="'.$key.'_NONE">'. _("No check") . '</label>';
+                    '<label for="'.$key.'_NONE"> &nbsp;<small>'. _("No check") . '</small></label>';
 
             foreach($this->settings['spamrule_tests'][$module]['values'] as $res=>$res_desc) {
                     $out .= '<br/><input type="radio" name="tests['.$key.']" value="'.$res.'" id="'.$key.'_'.$res.'" '.
@@ -65,7 +71,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
                         ' /> '.
                         '<label for="'.$key.'_'.$res.'">'.
                         ( isset($this->settings['icons'][$res]) ?  '<img src="'.$this->settings['icons'][$res].'" alt="[]" /> ' : '' ) .
-                        $res_desc.'</label>';
+                        '<em>' . $res . '</em> - ' . $res_desc.'</label>';
                             
             }
         }
@@ -80,7 +86,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
      */
     function edit_rule($edit = false) {
         global $PHP_SELF, $color;
-
+        
         if($this->mode == 'edit') {
             /* 'edit' */
             $out = '<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
@@ -116,7 +122,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
                     '</div>';
 
             $out .= '<p style="text-align:center">
-                    <input type="submit" name="spamrule_advanced" value="'. _("Advanced Spam Filter...") .'" />
+                    <input type="submit" name="intermediate_action[spamrule_switch_to_advanced]" value="'. _("Advanced Spam Filter...") .'" />
                     </p>';
         } else {
             $out .= '<input type="hidden" name="spamrule_advanced" value="1" />';
@@ -156,23 +162,25 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
             /**
              * Main spamrule actions
              */
-            foreach($this->spamrule_actions_main as $act) $out .= $this->action_html($act);
+            foreach($this->spamrule_actions['group_main'] as $k=>$sActions) {
+                foreach($sActions as $act) $out .= $this->action_html($act);
+            }
             
             /**
              * Additional actions: these will initially be in a hidden div.
+             * TODO: open this div when there is an action enabled in there.
              */
             $out .= '<br/>'.
                     '<p><a href="#anchor_action" onclick="ToggleShowDivWithImg(\'more_actions\')">'.
                     '<img src="images/triangle.gif" alt="&gt;" name="more_actions_img" border="0" />'. 
-                    '<strong>'. _("More Actions") . '</strong></a></p><br/>'.
+                    '<strong>'. _("More Actions") . '</strong></a></p>'.
 
                     '<div id="more_actions" style="display:none;">';
-            foreach($this->spamrule_actions_more as $act) $out .= $this->action_html($act);
+            foreach($this->spamrule_actions['group_additional'] as $k=>$sActions) {
+                foreach($sActions as $act) $out .= $this->action_html($act);
+            }
             $out .= '</div>';
-
             $out .= $this->section_end();
-            
-            //$out .= $this->rule_3_additional_actions();
         }
 
         /* --------------------- buttons ----------------------- */
@@ -200,25 +208,24 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
     function process_input(&$ns, $unused = false) {
         global $startitems;
 
-        /*
-        print "<pre>process input...\n";
-        print_r($ns);
-        print "</pre>";
-         */
-
-        $this->rule['type'] = 11;
-
-        if(isset($ns['spamrule_advanced'])) {
+        if(isset($ns['intermediate_action']['spamrule_switch_to_advanced'])) {
+            // Just switched to advanced. Place the default values.
+            $this->rule = $this->settings['default_rule'];
+            $this->spamrule_advanced = true;
+            $this->rule['advanced'] = 1;
+        }elseif(isset($ns['spamrule_advanced'])) {
             $this->spamrule_advanced = true;
             $this->rule['advanced'] = 1;
         } elseif (isset($this->rule['advanced']) && $this->rule['advanced']) {
             $this->spamrule_advanced = true; // FIXME
             $this->rule['advanced'] = 1;
         } else {
+            $this->rule = $this->settings['default_rule'];
             $this->spamrule_advanced = false;
             $this->rule['advanced'] = 0;
         }
 
+        $this->rule['type'] = 11;
 
         foreach($this->settings['spamrule_tests'] as $groupname => $group) {
             foreach($group['available'] as $test=>$desc) {
@@ -228,37 +235,48 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
             }
         }
         
-        if(!isset($ns['action'])) {
-            $ns['action'] = 1;
+        // FIXME more variables/options, validation, also, probably gather this stuff
+        // (user input processing) in the avelsieve actions classes.
+        // Generally, Process input of actions has to be unified/fixed.
+
+        // Gather all actions together
+        $actions_radio = array(); // Mutually Exlcusive actions (junk, fileinto,...)
+        $actions_checkbox = array(); // Optional actions (stop, notify,...)
+        foreach($this->spamrule_actions as $group=>$sActions) {
+            $actions_radio = array_merge($sActions['radio'], $actions_radio);
+            $actions_checkbox = array_merge($sActions['checkbox'], $actions_checkbox);
         }
+
+        // And now process them from user input
+        // foreach($actions_radio as $act)  // Nothing for numeric values, the mapping
+        // is currently only known by the respective classes.
         
-        // FIXME more variables/options, validation.
-        /*
-         */
-        if(is_numeric($ns['action'])) {
+        if(isset($ns['action']) && is_numeric($ns['action'])) {
             $this->rule['action'] = $ns['action'];
         }
-        foreach($this->spamrule_actions_main as $a) {
-            if(isset($ns[$a])) { 
-                $this->rule[$a] = $ns[$a]; 
-            }
-        }
-        // TODO / FIXME notify options etc.
-        // Process input of actions has to be unified/fixed.
-        foreach($this->spamrule_actions_more as $a) {
-            if(isset($ns[$a])) { 
-                $this->rule[$a] = $ns[$a]; 
+    
+        foreach($actions_checkbox as $a) {
+            $classname = 'avelsieve_action_'.$a;
+            if(class_exists($classname)) {
+                $classvars = get_class_vars($classname);
+
+                if(isset($classvars['two_dimensional_options']) && $classvars['two_dimensional_options'] == true) {
+                    // Two dimensional: key 'on' has to be checked
+                    if(isset($ns[$a]) && isset($ns[$a]['on']) && $ns[$a]['on']) { 
+                        $this->rule[$a] = $ns[$a];
+                    }
+                
+                } else {
+                    // simple actions such as 'stop'
+                    if(isset($ns[$a]) && $ns[$a]) { 
+                        $this->rule[$a] = $ns[$a]; 
+                    }
+                }
+                unset($classvars);
             }
         }
 
-        /*
-        print " this->rule currently is:";
-        print "<PRE>";
-        print_r($this->rule);
-        print "</PRE>";
-         */
-        //$this->errmsg = 'bogus error message for development';
-
+        //$this->errmsg = 'This is a bogus error message for development purposes.';
     }
 }
 
