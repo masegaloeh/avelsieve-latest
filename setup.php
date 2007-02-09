@@ -8,7 +8,7 @@
  *
  * Also view plugins/README.plugins for more information.
  *
- * @version $Id: setup.php,v 1.35 2007/01/17 12:51:26 avel Exp $
+ * @version $Id: setup.php,v 1.36 2007/02/09 12:33:50 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -68,7 +68,7 @@ function avelsieve_menuline() {
 		textdomain ('avelsieve');
 		
 		displayInternalLink('plugins/avelsieve/table.php',_("Filters"));
-		echo "&nbsp;&nbsp\n";
+		echo "&nbsp;&nbsp;\n";
 
 		bindtextdomain('squirrelmail', SM_PATH . 'locale');
 		textdomain ('squirrelmail');
