@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.29 2007/01/24 17:14:56 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.30 2007/02/13 09:23:13 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -551,10 +551,10 @@ class avelsieve_html_edit extends avelsieve_html {
 		/* Data taken from addrule.php */
 		global $boxes, $emailaddresses;
 		/* Other */
-		global $actions;
+		global $avelsieve_actions;
 		$out = '<p>'. _("Choose what to do when this rule triggers, from one of the following:"). '</p>';
 		
-		foreach($actions as $action) {
+		foreach($avelsieve_actions as $action) {
             $out .= $this->action_html($action);
 		}
 		return $out;
