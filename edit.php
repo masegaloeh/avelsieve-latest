@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.36 2007/01/24 17:14:56 avel Exp $
+ * @version $Id: edit.php,v 1.37 2007/02/13 10:02:15 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -52,6 +52,7 @@ sqgetGlobalVar('dup', $dup, SQ_GET & SQ_POST);
 sqgetGlobalVar('addnew', $addnew, SQ_GET);
 /* New folder Creation */
 sqgetGlobalVar('newfoldername', $newfoldername, SQ_POST);
+if(isset($newfoldername)) $newfoldername = trim($newfoldername);
 sqgetGlobalVar('newfolderparent', $newfolderparent, SQ_POST);
 
 // intermediate_action is an action during an editing / creation of a rule,
@@ -93,7 +94,8 @@ if (!isset($rules)) {
 }
 
 /* Create new mailbox, if required by the user. */
-if($newfoldername) {
+if(!empty($newfoldername)) {
+    global $created_mailbox_name;
 	$created_mailbox_name = '';
 	avelsieve_create_folder($newfoldername, $newfolderparent, $created_mailbox_name, $errmsg);
 }

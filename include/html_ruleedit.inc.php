@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.30 2007/02/13 09:23:13 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.31 2007/02/13 10:02:15 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -696,6 +696,10 @@ class avelsieve_html_edit extends avelsieve_html {
      * @param array $ns
      * @param boolean $truncate_empty_conditions 
      * @return boolean
+     *
+     * @todo Provide a better interface for $created_mailbox_name (creation
+     *  of a folder on-the-spot, for various operations), instead of the
+     *  current hack.
      */
     function process_input(&$ns, $truncate_empty_conditions = false) {
         /* Type is needed for later */
@@ -789,7 +793,7 @@ class avelsieve_html_edit extends avelsieve_html {
         /* Special hack for newly-created folder */
         if(isset($this->rule['folder'])) {
             global $created_mailbox_name;
-            if(isset($created_mailbox_name) && $created_mailbox_name) {
+            if(!empty($created_mailbox_name)) {
                 $this->rule['folder'] = $created_mailbox_name;
             }
         }

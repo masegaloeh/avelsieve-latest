@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.28 2007/02/13 09:23:13 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.29 2007/02/13 10:02:15 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2007 Alexandros Vellis
  * @package plugins
@@ -340,38 +340,45 @@ class avelsieve_action_fileinto extends avelsieve_action {
 	);
     var $image_src = 'images/icons/folder_go.png';
 
+    /**
+     * The fileinto constructor, unlike other actions, uses the
+     * property "helptxt" to put the actual option box.
+     *
+     * @param object $s
+     * @param array $rule
+     * @param frontend string
+     * @return void
+     */
 	function avelsieve_action_fileinto(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
 		$this->text = _("Move to Folder");
 		$this->avelsieve_action($s, $rule, $frontend);
+		if(isset($rule['folder'])) {
+			$this->helptxt = mailboxlist('folder', $rule['folder']);
+		} else {
+			$this->helptxt = mailboxlist('folder', false);
+		}
 	}
 	
-	/**
-	 * Options for fileinto
-	 * @todo Use "official" function sqimap_mailbox_option_list()
-	 */
-	function options_html ($val) {
-		$out = '<input type="radio" name="newfolderradio" value="5a" onclick="checkOther(\'5\');" ';
-		if(isset($val['folder'])) {
-			$out .= 'checked="CHECKED"';
-		}
-        $out .= '/> '.
-            // "images/icons/folder_go.png';
-                _("the existing folder") . ' ';
-		if(isset($val['folder'])) {
-			$out .= mailboxlist('folder', $val['folder']);
-		} else {
-			$out .= mailboxlist('folder', false);
-		}
-			
-		$out .=	'<br />'.
-				'<input type="radio" name="newfolderradio" value="5b" onclick="checkOther(\'5\');" /> '.
-				_("a new folder, named").
-				' <input type="text" size="15" name="newfoldername" onclick="checkOther(\'5\');" /> '.
-				_("created as a subfolder of"). ' '.
-				mailboxlist('newfolderparent', false, true);
-		return $out;
-	}
+    /**
+     * Options for fileinto
+     *
+     * @param array $val
+     * @todo Use "official" function sqimap_mailbox_option_list()
+     */
+    function options_html ($val) {
+        /*
+        if(isset($val['folder'])) {
+            $this->helptxt = mailboxlist('folder', $val['folder']);
+        } else {
+            $this->helptxt = mailboxlist('folder', false);
+        }
+        */
+            
+        return sprintf( _("Or specify a new folder: %s to be created under %s"), 
+                ' <input type="text" size="15" name="newfoldername" onclick="checkOther(\'5\');" /> ',
+                mailboxlist('newfolderparent', false, true));
+    }
 }
 
 /**
