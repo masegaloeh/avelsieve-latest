@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.27 2007/01/24 11:28:50 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.28 2007/02/13 09:23:13 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2007 Alexandros Vellis
  * @package plugins
@@ -82,22 +82,22 @@ class avelsieve_action {
 
 	/**
 	 * Return All HTML Code that describes this action.
+     *
+     * @return string
 	 */
 	function action_html() {
 		/* Radio button */
 		$out = $this->action_radio();
+        $identifier = ($this->num ? 'action_'.$this->num : $this->name);
 
 		/* Main text */
-		if($this->num) {
-			/* Radio Button */
-			$out .= '<label for="action_'.$this->num.'">' . $this->text .'</label>';
-		} else {
-			/* Checkbox */
-			$out .= '<label for="'.$this->name.'">'. $this->text .'</label>';
-		}
+	    $out .= '<label for="'.$identifier.'">' . $this->text .'</label>';
 
 		if(isset($this->helptxt)) {
-			$out .= ': ' . $this->helptxt;
+
+                $out .= ' <span id="helptxt_'.$identifier.'"'.
+                        ($this->is_selected() ? ' style="display:inline"' : 'style="display:none"') .
+                        '> &#8211; '.$this->helptxt.'</span>';
 		}
 
 		/* Options */
@@ -123,6 +123,7 @@ class avelsieve_action {
 				}
 			}
 			if($this->num) {
+			    /* Radio Button */
 				$out .= '<div id="options_'.$this->num.'"';
 				if(isset($this->rule['action']) && $this->rule['action'] == $this->num) {
 					$out .= '';
@@ -130,6 +131,7 @@ class avelsieve_action {
 					$out .= ' style="display:none"';
 				}
 			} else {
+			    /* Checkbox */
 				$out .= '<div id="options_'.$this->name.'"';
 				if(isset($this->rule[$this->name]) && $this->rule[$this->name]) {
 					$out .= '';
@@ -198,10 +200,10 @@ class avelsieve_action {
 			$out = '<input type="radio" name="action" onClick="';
 				for($i=0;$i<9;$i++) {
 					if($i!=$this->num) {
-						$out .= 'HideDiv(\'options_'.$i.'\');';
+						$out .= 'HideDiv(\'options_'.$i.'\'); HideDiv(\'helptxt_action_'.$i.'\');';
 					}
 				}
-				$out .= 'ShowDiv(\'options_'.$this->num.'\');return true;"'.
+				$out .= 'ShowDiv(\'options_'.$this->num.'\'); ShowDiv(\'helptxt_action_'.$this->num.'\'); return true;"'.
 					' id="action_'.$this->num.'" value="'.$this->num.'" '.
 			        ($this->is_selected() ? ' checked="CHECKED"' : '') . '/> ';
 		} else {
@@ -210,7 +212,7 @@ class avelsieve_action {
 			if(isset($this->two_dimensional_options)) {
 				$out .= '[on]';
 			}
-			$out .= '" onClick="ToggleShowDiv(\'options_'.$this->name.'\');return true;"'.
+			$out .= '" onClick="ToggleShowDiv(\'helptxt_'.$this->name.'\');ToggleShowDiv(\'options_'.$this->name.'\');return true;"'.
 					' id="'.$this->name.'" ' . ( $this->is_selected() ? ' checked="CHECKED"' : '' ) .
 			        '/> ';
 		}
@@ -229,8 +231,8 @@ class avelsieve_action_keep extends avelsieve_action {
 
 	function avelsieve_action_keep(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
-        $this->text = _("Keep");
-        $this->helptxt = _("(Default Action) Save the message in your INBOX.");
+        $this->text = _("Keep Message");
+        $this->helptxt = _("Save the message in your INBOX.");
 		if(!isset($rule['action'])) {
 			/* Hack to make the radio button selected for a new rule, for GUI
 			 * niceness */
@@ -270,7 +272,8 @@ class avelsieve_action_reject extends avelsieve_action {
  	
 	function avelsieve_action_reject(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
-		$this->text = _("Reject, sending this excuse to the sender:");
+		$this->text = _("Reject");
+		$this->helptxt = _("Send the message back to the sender, along with an excuse");
 
 		if($this->translate_return_msgs==true) {
 			$this->options['excuse'] = _("Please do not send me large attachments.");
@@ -294,7 +297,8 @@ class avelsieve_action_redirect extends avelsieve_action {
 
 	function avelsieve_action_redirect(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
-		$this->text = _("Redirect to the following email address:");
+		$this->text = _("Redirect");
+		$this->helptxt = _("Automatically redirect the message to a different email address");
 		$this->options = array(
 			'redirectemail' => _("someone@example.org"),
 			'keep' => ''
@@ -338,7 +342,7 @@ class avelsieve_action_fileinto extends avelsieve_action {
 
 	function avelsieve_action_fileinto(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
-		$this->text = _("Move message into");
+		$this->text = _("Move to Folder");
 		$this->avelsieve_action($s, $rule, $frontend);
 	}
 	
@@ -483,7 +487,8 @@ class avelsieve_action_notify extends avelsieve_action {
 			$this->notifymethods = false;
 		}
 		
-		$this->text = _("Notify me, using the following method:");
+		$this->text = _("Notify");
+		$this->helptxt = _("Send a notification ");
 		$this->notifystrings = array(
 			'sms' => _("Mobile Phone Message (SMS)") ,
 			'mailto' => _("Email notification") ,
@@ -612,7 +617,7 @@ class avelsieve_action_disabled extends avelsieve_action {
 
 	function avelsieve_action_disabled(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
-		$this->text = _("Disable this rule");
+		$this->text = _("Disable");
 		$this->helptxt = _("The rule will have no effect for as long as it is disabled.");
 		$this->avelsieve_action($s, $rule, $frontend);
 	}
@@ -630,8 +635,8 @@ class avelsieve_action_junk extends avelsieve_action {
     function avelsieve_action_junk(&$s, $rule = array(), $frontend = 'html') {
         global $junkfolder_days;
         $this->init();
-        $this->text = _("Junk Folder");
-        $this->helptxt = sprintf( _("Store SPAM message in your Junk Folder. Messages older than %s days will be deleted automatically."), $junkfolder_days).
+        $this->text = _("Move to Junk");
+        $this->helptxt = sprintf( _("Store message in your Junk Folder. Messages older than %s days will be deleted automatically."), $junkfolder_days).
                ' ' . _("Note that you can set the number of days in Folder Preferences.");
 		$this->avelsieve_action($s, $rule, $frontend);
     }
@@ -647,8 +652,8 @@ class avelsieve_action_trash extends avelsieve_action {
     
     function avelsieve_action_trash(&$s, $rule = array(), $frontend = 'html') {
         $this->init();
-        $this->text = _("Trash Folder");
-        $this->helptxt = _("Store SPAM message in your Trash Folder. You will have to purge the folder yourself.");
+        $this->text = _("Move to Trash");
+        $this->helptxt = _("Store message in your Trash Folder. You will have to purge the folder yourself.");
 		$this->avelsieve_action($s, $rule, $frontend);
     }
 }
