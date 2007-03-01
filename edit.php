@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.37 2007/02/13 10:02:15 avel Exp $
+ * @version $Id: edit.php,v 1.38 2007/03/01 11:13:27 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -70,6 +70,8 @@ sqgetGlobalVar('previous_cond', $previous_cond, SQ_POST);
 sqgetGlobalVar('serialized_rule', $serialized_rule, SQ_GET);
 
 sqgetGlobalVar('type', $type_get, SQ_GET);
+
+$base_uri = sqm_baseuri();
 
 isset($popup) ? $popup = '?popup=1' : $popup = '';
 
@@ -240,75 +242,48 @@ sqimap_logout($imapConnection);
 
 
 /* -------------- Presentation Logic ------------- */
-
-$js = '
-<script language="JavaScript" type="text/javascript">
-function checkOther(id){
-	for(var i=0;i<document.addrule.length;i++){
-		if(document.addrule.elements[i].value == id){
-			document.addrule.elements[i].checked = true;
-		}
-	}
+$avelsieve_css = '.avelsieve_div {
+        width: 90%;
+        margin-left: auto;
+        padding: 0.5em;
+        margin-right: auto;
+        text-align:left;
+        border: 3px solid '.$color[0].';
 }
-function el(id) {
-  if (document.getElementById) {
-    return document.getElementById(id);
-  }
-  return false;
+.avelsieve_quoted {
+        border-left: 1em solid '.$color[12].';
 }
-
-function ShowDiv(divname) {
-  if(el(divname)) {
-    el(divname).style.display = "";
-  }
-  return false;
-}
-function HideDiv(divname) {
-  if(el(divname)) {
-    el(divname).style.display = "none";
-  }
-}
-function ToggleShowDiv(divname) {
-  if(el(divname)) {
-    if(el(divname).style.display == "none") {
-      el(divname).style.display = "";
-	} else {
-      el(divname).style.display = "none";
-	}
-  }	
-}
-function ToggleShowDivWithImg(divname) {
-  if(el(divname)) {
-    img_name = divname + \'_img\';
-    if(el(divname).style.display == "none") {
-      el(divname).style.display = "";
-	  if(document[img_name]) {
-	  	document[img_name].src = "images/opentriangle.gif";
-	  }	
-	  if(el(\'divstate_\' + divname )) {
-	  	el(\'divstate_\'+divname).value = 1;
-	  }
-	} else {
-      el(divname).style.display = "none";
-	  if(document[img_name]) {
-	  	document[img_name].src = "images/triangle.gif";
-	  }	
-	  if(el(\'divstate_\'+divname)) {
-	  	el(\'divstate_\'+divname).value = 0;
-	  }
-	}
-  }	
-}
-</script>
 ';
+
+$avelsieve_css_wrapped = '<style type="text/css">
+'.$avelsieve_css.'
+</style>';
+
+if($popup) {
+    // For displayHtmlHeader()
+    $html_additional = $avelsieve_css_wrapped . '
+    <script language="JavaScript" type="text/javascript" src="'.$base_uri.'plugins/avelsieve/javascripts/avelsieve_edit.js"></script>
+    ';
+
+} else {
+    // For displayPageHeader()
+    $js = file_get_contents('./javascripts/avelsieve_edit.js');
+    $js_wrapped = '
+    <script language="JavaScript" type="text/javascript">
+    '.$js.'
+    </script>
+    ';
+
+    $html_additional = $avelsieve_css_wrapped . $js_wrapped;
+}
 
 $prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
 textdomain ('squirrelmail');
 if($popup) {
-	displayHtmlHeader('', $js);
+	displayHtmlHeader('', $html_additional);
 } else {
 	displayPageHeader($color, 'None');
-	echo $js;
+	echo $html_additional;
 }
 
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
