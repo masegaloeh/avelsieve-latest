@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_main.inc.php,v 1.11 2007/01/22 19:48:54 avel Exp $
+ * @version $Id: html_main.inc.php,v 1.12 2007/03/01 11:44:41 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -17,7 +17,8 @@
 
 /**
  * Global HTML Output functions. These contain functions for starting/ending
- * sections, as well as header/footer thingies.
+ * sections, helper functions for determining and printing HTML snippets, 
+ * as well as header/footer thingies.
  */
 class avelsieve_html {
 	/**
@@ -113,14 +114,19 @@ class avelsieve_html {
 	 * Table 'section' start
 	 * @return string
 	 */
-	function section_start($title) {
-		global $color;
-		return "\n<!-- Section start -->".
-            '<tr><td bgcolor="'.$color[9].'" align="center">'.
-			'<strong>'.$title.'</strong></td></tr>'.
-			'<tr><td bgcolor="'.$color[0].'" align="left">';
-	}
-	
+    function section_start($title = '') {
+        global $color;
+        if(empty($title)) {
+            return "\n<!-- Section start -->".
+                '<tr><td bgcolor="'.$color[0].'" align="left">';
+        } else {
+            return "\n<!-- Section start -->".
+                '<tr><td bgcolor="'.$color[9].'" align="center">'.
+                '<strong>'.$title.'</strong></td></tr>'.
+                '<tr><td bgcolor="'.$color[0].'" align="left">';
+        }
+    }
+    
 	/**
 	 * Table 'section' end
 	 * @return string
@@ -166,6 +172,23 @@ class avelsieve_html {
     }
 	
     /**
+     * Small helper function, that returns the appropriate javascript snippet 
+     * for "toggle" links.
+     *
+     * @param string $divname ID of the DIV/SPAN
+     * @param boolean $with_img Enables the use of arrow-style images
+     * @return string
+     */
+    function js_toggle_display($divname, $with_img = false) {
+        if($with_img) {
+            return 'ToggleShowDivWithImg(\''.$divname.'\');';
+        } else {
+            return 'ToggleShowDiv(\''.$divname.'\');';
+        }
+    }
+
+
+    /**
      * Print formatted error message(s), if they exist.
      * 
      * @return string
@@ -190,6 +213,53 @@ class avelsieve_html {
 			$out .= '</div>' . 	$this->section_end();
 		}
         return $out;
+    }
+    
+    /**
+     * Helper function: Find if the option $optname is on, in the current rule.
+     * (Checks if $this->rule[$optname] evaluates to true).
+     *
+     * @param string $optname
+     * @return boolean
+     */
+    function determineState($optname) {
+        if(!isset($this->rule[$optname])) {
+            return false;
+        }
+        if($this->rule[$optname] || $this->rule[$optname] == 'on' || $this->rule['optname'] == true) {
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Returns the checked state for a checkbox that corresponds to option 
+     * $optname. (Helper function).
+     *
+     * @param string $optname
+     * @return string
+     */
+    function stateCheckbox($optname) {
+        if($this->determineState($optname) === true) {
+            return 'checked="" ';
+        } else {
+            return '';
+        }
+    }
+
+    /**
+     * Returns the visibility state for a div that corresponds to more options 
+     * under the "top" option $optname. (Helper function).
+     *
+     * @param string $optname
+     * @return string
+     */
+    function stateVisibility($optname) {
+        if($this->determineState($optname) === true) {
+            return '';
+        } else {
+            return 'style="display:none;" ';
+        }
     }
 }
 
