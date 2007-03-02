@@ -9,7 +9,7 @@
  * This file contains configuration parameters for SIEVE mail filters plugin
  * (aka avelsieve)
  *
- * @version $Id: config_sample.php,v 1.20 2007/01/24 17:17:33 avel Exp $
+ * @version $Id: config_sample.php,v 1.21 2007/03/02 10:42:58 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -19,7 +19,9 @@
 /**
  * Debug Mode. Enable this (change to 1) if you need to send a bug report.
  */
-define('AVELSIEVE_DEBUG', 0);
+if(!defined('AVELSIEVE_DEBUG')) {
+    define('AVELSIEVE_DEBUG', 1);
+}
 
 /* ======================================================================== */
 /* =================== IMAP Server / SIEVE Setup  ========================= */
@@ -214,6 +216,7 @@ $maxitems = 10;
 
 /* Headers to display in listbox widget, when adding a new header rule. */
 
+global $headers;
 $headers = array(
  'From', 'To', 'Cc', 'Bcc', 'Subject', 'Reply-To', 'Sender', 'List-Id',
  'MailingList', 'Mailing-List', 'X-ML-Name', 'X-List', 'X-List-Name', 'X-MailingList',
