@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.33 2007/01/17 12:51:26 avel Exp $
+ * @version $Id: table.php,v 1.34 2007/03/02 10:42:58 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -34,7 +34,7 @@ if (file_exists('../../include/init.php')) {
     
 include_once(SM_PATH . 'functions/imap_general.php');
 
-include_once(SM_PATH . 'plugins/avelsieve/config/config.php');
+include(SM_PATH . 'plugins/avelsieve/config/config.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/html_rulestable.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/sieve.inc.php');
