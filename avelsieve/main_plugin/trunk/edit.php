@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.38 2007/03/01 11:13:27 avel Exp $
+ * @version $Id: edit.php,v 1.39 2007/03/05 14:24:37 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -112,9 +112,28 @@ if(isset($dup)) {
 }
 
 if(is_numeric($type_get) && $type_get > 1 &&
-  file_exists(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.'.$type_get.'.inc.php')) {
+    file_exists(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.'.$type_get.'.inc.php')) {
+    /**
+     * Include the appropriate class for rule editing.
+     */
     include_once(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.'.$type_get.'.inc.php');
     $edit_class_name = 'avelsieve_html_edit_'. $type_get;
+
+    /**
+     * Some rules are unique only. Example: There is only one junk mail rule (#11) and
+     * only one whitelist rule (#12). Here, we replace the 'addnew' mode with 'edit',
+     * if the rule already exists.
+     */
+    if($avelsieve_maintypes[$type_get]['unique']) {
+        foreach($rules as $no=>$rule) {
+            if($rule['type'] == $type_get) {
+                print "switching to edit, $no ";
+                $mode = 'edit';
+                $edit = $no;
+            }
+        }
+    }
+
 } else {
     $edit_class_name = 'avelsieve_html_edit';
 }
