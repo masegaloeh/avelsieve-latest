@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.39 2007/03/05 14:24:37 avel Exp $
+ * @version $Id: edit.php,v 1.40 2007/03/05 15:27:03 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -127,7 +127,6 @@ if(is_numeric($type_get) && $type_get > 1 &&
     if($avelsieve_maintypes[$type_get]['unique']) {
         foreach($rules as $no=>$rule) {
             if($rule['type'] == $type_get) {
-                print "switching to edit, $no ";
                 $mode = 'edit';
                 $edit = $no;
             }
