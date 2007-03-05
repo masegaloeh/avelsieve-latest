@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_main.inc.php,v 1.12 2007/03/01 11:44:41 avel Exp $
+ * @version $Id: html_main.inc.php,v 1.13 2007/03/05 14:26:37 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -226,7 +226,10 @@ class avelsieve_html {
         if(!isset($this->rule[$optname])) {
             return false;
         }
-        if($this->rule[$optname] || $this->rule[$optname] == 'on' || $this->rule['optname'] == true) {
+        if($this->rule[$optname] == 0) {
+            return false;
+        }
+        if($this->rule[$optname] || $this->rule[$optname] == 'on' || $this->rule[$optname] == true) {
             return true;
         }
         return false;
