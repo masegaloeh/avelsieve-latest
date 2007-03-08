@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.34 2007/03/02 10:42:58 avel Exp $
+ * @version $Id: table.php,v 1.35 2007/03/08 12:09:21 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -39,6 +39,7 @@ include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/html_rulestable.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/sieve.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/spamrule.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/styles.inc.php');
 
 sqsession_is_active();
 
@@ -275,14 +276,20 @@ sqimap_logout($imapConnection);
 $inconsistent_folders = avelsieve_folder_consistency_check($boxes, $rules);
 
 /* -------------------- Presentation Logic ------------------- */
+$avelsieve_css = avelsieve_css_styles();
+$avelsieve_css_wrapped = '<style type="text/css">
+'.$avelsieve_css.'
+</style>';
+$html_additional = $avelsieve_css_wrapped;
 
 $prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
 textdomain ('squirrelmail');
 
 if($popup) {
-	displayHtmlHeader('', '');
+	displayHtmlHeader('', $html_additional);
 } else {
 	displayPageHeader($color, 'None');
+	echo $html_additional;
 }
 
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
