@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.19 2007/01/22 19:48:55 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.20 2007/03/08 12:19:39 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -32,11 +32,6 @@ class avelsieve_html_rules extends avelsieve_html {
 	 */
 	var $mode = 'terse';
     
-    /**
-	 * @param int
-	 */
-    var $whitelist_rule = -1;
-
 	/**
      * Constructor function, that initializes the environment for proper
      * displaying of the rules table.
@@ -44,16 +39,11 @@ class avelsieve_html_rules extends avelsieve_html {
 	 * @return void
 	 */
 	function avelsieve_html_rules(&$rules, $mode = 'terse') {
+        global $avelsieve_maintypes;
+
 		$this->avelsieve_html();
 		$this->rules = $rules;
 		$this->mode = $mode;
-        
-        for($i=0; $i<sizeof($this->rules); $i++) {
-            if(isset($this->rules[$i]['type']) && $this->rules[$i]['type'] == 12) {
-                $this->whitelist_rule = $i;
-                break;
-            }
-        }
 	}
 
 	/**
@@ -160,6 +150,34 @@ class avelsieve_html_rules extends avelsieve_html {
 	function rules_table_footer() {
 		return '</table>';
 	}
+        
+    /**
+     * Searches the available rules in a script for the rules that are of "unique" 
+     * type. E.g. whitelist, Junk Mail.
+     * 
+     * @todo Probably a duplicate-rule supression / notification could be handy.
+     *    However, it will do no major harm to leave this without one.
+     *
+     * @todo This is a good place to do the suggesting of rule placement.
+     *
+     * @return array Key: the rule number, Value: the rule position.
+     */
+    function discoverUniqueRules() {
+		global $avelsieve_enable_rules, $avelsieve_maintypes;
+
+        $ret = array();
+
+        foreach($avelsieve_maintypes as $no=>$info) {
+            if($info['unique']) {
+                for($i=0; $i<sizeof($this->rules); $i++) {
+                    if(isset($this->rules[$i]['type']) && $this->rules[$i]['type'] == $no) {
+                        $ret[$no] = $i;
+                        continue 2;
+                    }
+                }
+            }
+        }
+    }
 	
 	/**
 	 * Submit Links / Buttons for adding new rules and edit screens.
@@ -182,10 +200,11 @@ class avelsieve_html_rules extends avelsieve_html {
             _("Add a new Rule") . '</strong></a>';
 
         if(!empty($avelsieve_enable_rules)) {
+            $uniqueRulesPositions = $this->discoverUniqueRules();
             foreach($avelsieve_enable_rules as $r) {
-                if($r == 12 && $this->whitelist_rule > -1) {
+                if($r == 12 && isset($uniqueRulesPositions[12])) {
                     // Global whitelist special: edit existing whitelist
-                    $href = 'edit.php?edit='.$this->whitelist_rule.'&amp;type='.$r;
+                    $href = 'edit.php?edit='.$uniqueRulesPositions[12].'&amp;type='.$r;
                 } else {
                     $href = 'edit.php?addnew=1&amp;type='.$r;
                 }
