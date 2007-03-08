@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.31 2007/02/13 10:02:15 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.32 2007/03/08 12:10:42 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -89,6 +89,19 @@ class avelsieve_html_edit extends avelsieve_html {
     function set_rule_type($type) {
         $this->type = $type;
         $this->rule['type'] = $type;
+    }
+    
+    /**
+     * Set Referrer. This is intended to be set, when after editing a rule / 
+     * Sieve snippet, we want to go back to a different page than the "Rules 
+     * Table" (plugins/avelsieve/table.php).
+     *
+     * @param string $referrerUrl
+     * @param array $referrerArgs
+     */
+    function set_referrer($referrerUrl, $referrerArgs) {
+        $this->referrerUrl = $referrerUrl;
+        $this->referrerArgs = $referrerArgs;
     }
     
 	/**
@@ -613,6 +626,24 @@ class avelsieve_html_edit extends avelsieve_html {
 		}
 		return $out;
 	}
+
+    /**
+     * Output the HTML with the hidden input fields, for the referrer function. 
+     * (After saving a rule or pressing "Cancel", the user is supposed to go 
+     * back to where he was before).
+     *
+     * @return string
+     */
+    function referrer_html() {
+        $out = '';
+        if(isset($this->referrerUrl)) {
+            $out .= '<input name="referrerUrl" type="hidden" value="'.htmlspecialchars($this->referrerUrl).'"/>';
+            if(isset($this->referrerArgs) & !empty($this->referrerArgs)) {
+                $out .= '<input name="referrerArgs" type="hidden" value="'.htmlspecialchars(serialize($this->referrerArgs)).'"/>';
+            }
+        }
+        return $out;
+    }
 
 	/**
 	 * Main function that outputs a form for editing a whole rule.
