@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.40 2007/03/05 15:27:03 avel Exp $
+ * @version $Id: edit.php,v 1.41 2007/03/08 12:09:21 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -38,6 +38,7 @@ include_once(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/sieve_actions.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/sieve.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/styles.inc.php');
 
 sqsession_is_active();
 
@@ -70,6 +71,14 @@ sqgetGlobalVar('previous_cond', $previous_cond, SQ_POST);
 sqgetGlobalVar('serialized_rule', $serialized_rule, SQ_GET);
 
 sqgetGlobalVar('type', $type_get, SQ_GET);
+
+$referrerUrl = $referrerArgs = '';
+sqgetGlobalVar('referrerUrl', $referrerUrl, SQ_FORM);
+sqgetGlobalVar('referrerArgs', $referrerArgs, SQ_FORM);
+if(!empty($referrerArgs)) {
+    $referrerArgs = unserialize($referrerArgs);
+}
+
 
 $base_uri = sqm_baseuri();
 
@@ -189,11 +198,31 @@ if(isset($previous_cond) && isset($new_cond)) {
 	}
 }
 
+/* Calculate referrer URL, if it exists. */
+
+if(!empty($referrerUrl)) {
+    $ruleobj->set_referrer($referrerUrl, $referrerArgs);
+    $redirectUrl = $referrerUrl;
+    if(!empty($referrerArgs)) {
+        $xtra = array();
+        foreach($referrerArgs as $k=>$v) {
+            $xtra[] = $k.'='.$v;
+        }
+        if(strstr($redirectUrl, '?')) {
+            $redirectUrl .= '&' . implode('&', $xtra);
+        } else {
+            $redirectUrl .= '?' . implode('&', $xtra);
+        }
+    }
+} else {
+    $redirectUrl = "table.php$popup";
+}
+
 /* Available Actions that occur if submitting the form in a number of ways */
 
 if(isset($_POST['cancel'])) {
 	/* Cancel Editing */
-	header("Location: table.php$popup");
+	header("Location: $redirectUrl");
 	exit;
 
 } elseif(isset($_POST['apply']) && !$changetype) {
@@ -204,7 +233,8 @@ if(isset($_POST['cancel'])) {
 		$_SESSION['rules'][$edit] = $ruleobj->rule;
 		$_SESSION['comm']['edited'] = $edit;
 		$_SESSION['haschanged'] = true;
-		header("Location: table.php$popup");
+	    header("Location: $redirectUrl");
+        exit;
 	}
 
 } elseif(isset($_POST['addnew']) && !$changetype) {
@@ -225,7 +255,7 @@ if(isset($_POST['cancel'])) {
 		$_SESSION['comm']['edited'] = $edit;
 		$_SESSION['comm']['new'] = true;
 		$_SESSION['haschanged'] = true;
-		header("Location: table.php$popup");
+	    header("Location: $redirectUrl");
 		exit;
     }
 } elseif($changetype || isset($_POST['append']) || isset($_POST['less']) || isset($intermediate_action)) {
@@ -260,19 +290,7 @@ sqimap_logout($imapConnection);
 
 
 /* -------------- Presentation Logic ------------- */
-$avelsieve_css = '.avelsieve_div {
-        width: 90%;
-        margin-left: auto;
-        padding: 0.5em;
-        margin-right: auto;
-        text-align:left;
-        border: 3px solid '.$color[0].';
-}
-.avelsieve_quoted {
-        border-left: 1em solid '.$color[12].';
-}
-';
-
+$avelsieve_css = avelsieve_css_styles();
 $avelsieve_css_wrapped = '<style type="text/css">
 '.$avelsieve_css.'
 </style>';
