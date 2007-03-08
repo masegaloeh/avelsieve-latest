@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: constants.inc.php,v 1.22 2007/03/05 14:24:37 avel Exp $
+ * @version $Id: constants.inc.php,v 1.23 2007/03/08 12:09:45 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -37,8 +37,8 @@ $avelsieve_maintypes = array(
         ),
         11 => array(
                 'desc' => _("Junk Mail Rule"),
-                'linktext' => sprintf( _("Add a new %s"), _("Junk Mail Rule")),
-                'img' => 'images/icons/add.png',
+                'linktext' => sprintf( _("Edit %s"), _("Junk Mail Rule")),
+                'img' => 'images/icons/email_edit.png',
                 'unique' => true
         ),
         12 => array(
