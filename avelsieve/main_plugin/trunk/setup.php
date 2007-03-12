@@ -8,13 +8,15 @@
  *
  * Also view plugins/README.plugins for more information.
  *
- * @version $Id: setup.php,v 1.36 2007/02/09 12:33:50 avel Exp $
+ * @version $Id: setup.php,v 1.37 2007/03/12 11:55:32 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
    
+include_once(SM_PATH . 'plugins/avelsieve/config/config.php');
+
 /**
  * Register Plugin
  * @return void
@@ -26,6 +28,10 @@ function squirrelmail_plugin_init_avelsieve() {
     $squirrelmail_plugin_hooks['read_body_header']['avelsieve'] = 'avelsieve_commands_menu';
     $squirrelmail_plugin_hooks['search_after_form']['avelsieve'] = 'avelsieve_search_integration';
     $squirrelmail_plugin_hooks['configtest']['avelsieve'] = 'avelsieve_configtest';
+    
+    $squirrelmail_plugin_hooks['special_mailbox']['avelsieve'] = 'junkmail_markspecial';
+	$squirrelmail_plugin_hooks['right_main_after_header']['avelsieve'] = 'junkmail_right_main';
+	$squirrelmail_plugin_hooks['folders_bottom']['avelsieve'] = 'junkmail_folders';
 }
 
 /**
@@ -33,7 +39,7 @@ function squirrelmail_plugin_init_avelsieve() {
  * @return void
  */
 function avelsieve_optpage_register_block() {
-	global $optpage_blocks;
+	global $optpage_blocks, $avelsieve_enable_rules;
 	if (defined('SM_PATH')) {
 		bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 	} else {
@@ -47,6 +53,16 @@ function avelsieve_optpage_register_block() {
 		'desc' => _("Server-Side mail filtering enables you to add criteria in order to automatically forward, delete or place a given message into a folder."),
 		'js'   => false
 	);
+
+    if(in_array(11, $avelsieve_enable_rules)) {
+  	    $optpage_blocks[] = array(
+    		'name' => _("Junk Mail Options"),
+	    	'url'  => '../plugins/avelsieve/edit.php?type=11',
+		    'desc' => _("The Junk Mail Filter gathers all unwanted SPAM / Junk messages in your Junk folder."),
+    		'js'   => false
+	    );
+    }
+
 	if (defined('SM_PATH')) {
 		bindtextdomain('squirrelmail', SM_PATH . 'locale');
 	} else {
@@ -61,7 +77,6 @@ function avelsieve_optpage_register_block() {
  */
 function avelsieve_menuline() {
 	global $avelsieveheaderlink;
-	include_once(SM_PATH . 'plugins/avelsieve/config/config.php');
 
 	if($avelsieveheaderlink) {
 		bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
@@ -102,12 +117,52 @@ function avelsieve_search_integration() {
 }
 
 /**
+ * Junk Mail functionality: This marks a junk folder as "special" to Squirrelmail.
+ *
+ * @param string $box
+ * @return mixed Return true if this is the special Junk folder.
+ */
+function junkmail_markspecial($box) {
+    global $avelsieve_enable_rules;
+    if(!in_array(11,$avelsieve_enable_rules)) return;
+
+    if($box == 'Junk' || $box == 'INBOX.Junk') {
+        return true;
+    }
+}
+
+/**
+ * Junk Mail functionality: Link to options, from message list page 
+ * (right_main.php).
+ */
+function junkmail_right_main() {
+    global $avelsieve_enable_rules, $mailbox;
+    if(!in_array(11,$avelsieve_enable_rules)) return;
+
+    if($mailbox == 'Junk' || $mailbox == 'INBOX.Junk') {
+        include_once(SM_PATH . 'plugins/avelsieve/include/junkmail.inc.php');
+        junkmail_right_main_do();
+    }
+}
+
+/**
+ * Junk Mail functionality: Link to options, from Folders Page (folders.php).
+ */
+function junkmail_folders() {
+    global $avelsieve_enable_rules, $mailbox;
+    if(!in_array(11,$avelsieve_enable_rules)) return;
+    
+    include_once(SM_PATH . 'plugins/avelsieve/include/junkmail.inc.php');
+    junkmail_folders_do();
+}
+
+/**
  * Configuration Test
  * @return boolean
  */
 function avelsieve_configtest() {
-	include_once(SM_PATH . 'plugins/avelsieve/include/configtest.inc.php');
-	return avelsieve_configtest_do();
+    include_once(SM_PATH . 'plugins/avelsieve/include/configtest.inc.php');
+    return avelsieve_configtest_do();
 }
 
 /**
@@ -115,7 +170,7 @@ function avelsieve_configtest() {
  * @return string
  */
 function avelsieve_version() {
-	return '1.9.8cvs';
+    return '1.9.8cvs';
 }
 
 ?>
