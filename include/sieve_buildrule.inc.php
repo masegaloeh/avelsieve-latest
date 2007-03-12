@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.34 2007/03/12 13:52:47 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.35 2007/03/12 14:56:00 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -389,6 +389,10 @@ function makesinglerule($rule, $mode='rule') {
                             (isset($rule['disabled']) ? ' <br/><strong>*/</strong>' : '' ) .
                             '</div>';
 		            default:
+                        if(isset($params['replace_output'])){
+                            // TODO: 'disabled' ????
+                            return "#START_SIEVE_RULE\n".$res[0]."#END_SIEVE_RULE\n"; 
+                        }
 			            return $out;
 	            }
             }
