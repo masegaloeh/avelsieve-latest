@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.33 2007/03/12 12:17:30 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.34 2007/03/12 13:52:47 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -340,7 +340,7 @@ function makesinglerule($rule, $mode='rule') {
 			/* For disabled rules, we only need the sieve comment. */
 			return $out;
 		} else {
-			$text .= _("This rule is currently <strong>DISABLED</strong>:").' <span style="font-size: 0.9em; color:'.$color[15].';">';
+			$text .= _("This rule is currently <strong>DISABLED</strong>:").' <span class="avelsieve_rule_disabled">';
 			$terse .= '<div align="center">' . _("DISABLED") . '</div>';
 			$tech .= '<div align="center">' . _("DISABLED") . '</div>';
 		}
@@ -349,8 +349,8 @@ function makesinglerule($rule, $mode='rule') {
 	$terse .= '<table width="100%" border="0" cellspacing="2" cellpadding="2"';
 	$tech .= '<table width="100%" border="0" cellspacing="2" cellpadding="2"';
 	if (isset($rule['disabled']) && $rule['disabled']==1) {
-		$terse .= ' style="font-size: 0.5em; background-color: inherit; color:'.$color[15].';"';
-		$tech .= ' style="font-size: 0.5em; background-color: inherit; color:'.$color[15].';"';
+		$terse .= ' class="avelsieve_rule_disabled"';
+		$tech .= ' class="avelsieve_rule_disabled"';
 	}
 	$terse .= '><tr><td align="left">';
 	$tech .= '><tr><td align="left">';
