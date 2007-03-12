@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.32 2007/01/22 19:48:55 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.33 2007/03/12 12:17:30 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -383,9 +383,11 @@ function makesinglerule($rule, $mode='rule') {
 		            case 'tech':
 			            return $tech;
 		            case 'source':
-                        return (isset($rule['disabled']) ? ' <strong>/*</strong> (<em>DISABLED</em>) <br/>' : '' ).
-                        str_replace("\n", '<br/>', $out).
-                        (isset($rule['disabled']) ? ' <br/><strong>*/</strong>' : '' );
+                        return '<div class="avelsieve_source">'.
+                            (isset($rule['disabled']) ? ' <strong>/*</strong> (<em>DISABLED</em>) <br/>' : '' ).
+                            str_replace("\n", '<br/>', $out).
+                            (isset($rule['disabled']) ? ' <br/><strong>*/</strong>' : '' ) .
+                            '</div>';
 		            default:
 			            return $out;
 	            }
@@ -724,9 +726,11 @@ function makesinglerule($rule, $mode='rule') {
 		case 'tech':
 			return $tech;
 		case 'source':
-            return (isset($rule['disabled']) ? ' <strong>/*</strong> (<em>DISABLED</em>) <br/>' : '' ).
+            return '<div class="avelsieve_source">'.
+                   (isset($rule['disabled']) ? ' <strong>/*</strong> (<em>DISABLED</em>) <br/>' : '' ).
                    str_replace("\n", '<br/>', $out).
                    (isset($rule['disabled']) ? ' <br/><strong>*/</strong>' : '' );
+                    '</div>';
 		default:
 			return $out;
 	}
