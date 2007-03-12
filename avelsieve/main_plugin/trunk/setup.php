@@ -8,7 +8,7 @@
  *
  * Also view plugins/README.plugins for more information.
  *
- * @version $Id: setup.php,v 1.37 2007/03/12 11:55:32 avel Exp $
+ * @version $Id: setup.php,v 1.38 2007/03/12 12:02:12 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -166,11 +166,25 @@ function avelsieve_configtest() {
 }
 
 /**
- * Versioning information
+ * Return information about plugin.
+ * @return array
+ */
+function avelsieve_info() {
+   return array(
+       'english_name' => 'Avelsieve - Sieve Mail Filters',
+       'version' => '1.9.8cvs',
+       'summary' => 'An easy user interface for creating Sieve scripts on a Sieve-compliant (RFC 3028) server.',
+       'details' => 'Avelsieve - Sieve Mail Filters for Squirrelmail - offers a user-friendly interface for creating and editing Sieve scripts on a compliant server, such as Cyrus IMAP or DBMail.'
+   );
+}
+
+/**
+ * Return plugin version.
  * @return string
  */
 function avelsieve_version() {
-    return '1.9.8cvs';
+   $info = avelsieve_info();
+   return $info['version'];
 }
 
 ?>
