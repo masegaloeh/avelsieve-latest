@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_getrule.inc.php,v 1.7 2007/01/17 13:46:11 avel Exp $
+ * @version $Id: sieve_getrule.inc.php,v 1.8 2007/03/12 14:56:00 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -68,16 +68,28 @@ function avelsieve_extract_rules($sievescript, &$scriptinfo) {
 	}
 
 	/* Get Rules */
+    /*
 	$regexp = "/START_SIEVE_RULE.+END_SIEVE_RULE/sU";
 	if (preg_match_all($regexp,$sievescript,$rulestrings)) {
 		for($i=0; $i<sizeof($rulestrings[0]); $i++) {
-			/* remove the last 14 characters from a string */
+			// remove the last 14 characters from a string 
 			$rulestrings[0][$i] = substr($rulestrings[0][$i], 0, -14); 
-			/* remove the first 16 characters from a string */
+			// remove the first 16 characters from a string 
 			$rulestrings[0][$i] = substr($rulestrings[0][$i], 16);
 
 			$rulearray[$i] = unserialize(base64_decode(urldecode($rulestrings[0][$i])));
 		}
+     */
+
+    $regexp = "/START_SIEVE_RULE([^#]+|\s+\n(.+)#)END_SIEVE_RULE/smU";
+    if (preg_match_all($regexp,$sievescript,$rulestrings)) {
+        for($i=0; $i<sizeof($rulestrings[1]); $i++) {
+            if (empty($rulestrings[2][$i])) { 
+                $rulearray[$i] = unserialize(base64_decode(urldecode($rulestrings[1][$i])));
+            }else{
+                $rulearray[$i] = array ( 'type' => 13, 'code' => substr($rulestrings[2][$i], 0, -1));
+            }
+        }
 	} else {
 		/* No rules; return an empty array */
 		return array();

@@ -17,6 +17,13 @@ of customized rules, too.</li>
 <li>A new, global <strong>Whitelist</strong> rule (Rule #12) has been
 implemented, for the SPAM rules to take advantage of.</li>
 
+<li>New, <strong>&quot;Custom Sieve Code&quot;</strong> rule (Rule #13) has
+been implemented; this allows users to enter directly Sieve code snippets
+as a rule. This feature is still alpha / experimental, and needs a rework
+on the error handling, when there are parse errors. Feature contributed by
+<span class="contributor">Konstantinos Koukopoulos (kouk /at/
+noc.uoa.gr)</span></li>
+
 <li>Miscellaneous code movement and restructuring. The processing of user input
 has been moved to the rule classes; addspamrule.php has been replaced with the
 class that extends the edit class; an intermediate class for SPAM-rules has
