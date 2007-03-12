@@ -3,7 +3,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: html_ruleedit.11.inc.php,v 1.4 2007/03/09 10:09:39 avel Exp $
+ * @version $Id: html_ruleedit.11.inc.php,v 1.5 2007/03/12 15:18:17 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -88,6 +88,20 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
      * @return string
      */
     function module_settings($module) {
+        global $squirrelmail_language, $data_dir, $username;
+	    $squirrelmail_language = $lang_iso = getPref($data_dir, $username, 'language');
+        $lang_short = substr($lang_iso, 0, 2);
+        foreach($this->settings['spamrule_tests'][$module]['available'] as $key=>$val) {
+            // Just check which languages are configured for the first entry, to
+            // determine fallback language to use.
+            if(isset($this->settings['spamrule_tests_info'][$key][$lang_short])) {
+                $lang = $lang_short;
+            } elseif(isset($this->settings['spamrule_tests_info'][$key]['en'])) {
+                $lang = 'en';
+            }
+            break; // That's enough, thank you very much.
+        }
+
         $out = '';
         $t = &$this->rule['tests']; // Handy reference to current rule's tests
 
@@ -105,16 +119,16 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
                 '<label for="'.$key.'">'. $val. '</label>' ;
 
             // Js Link to information.
-            if($this->js && isset($this->settings['spamrule_tests_info'][$key]['en'])) {
+            if($this->js && isset($this->settings['spamrule_tests_info'][$key][$lang])) {
                 $out .= '  <small><a href="#'.$key.'" onclick="'.$this->js_toggle_display("div_$jskey", true).'return true;">';
                 $out .= '<img src="images/triangle.gif" alt="&gt;" name="div_'.$jskey.'_img" id="'.$jskey.'_img" border="0" />'.
                         _("Information...") . '</a></small>';
             }
 
-            if(isset($this->settings['spamrule_tests_info'][$key]['en'])) {
+            if(isset($this->settings['spamrule_tests_info'][$key][$lang])) {
                 $out .= '<br/><div class="avelsieve_quoted" id="div_'.$jskey.'"'. ($this->js == true ? 'style="display:none"' : '') .'><blockquote>'.
                     '<img src="images/icons/information.png" alt="(i)" border="0" />'. ' ' .
-                    $this->settings['spamrule_tests_info'][$key]['en'].
+                    $this->settings['spamrule_tests_info'][$key][$lang].
                         ( isset($this->settings['spamrule_tests_info'][$key]['url']) ? 
                         '<br/><a href="'.$this->settings['spamrule_tests_info'][$key]['url'].'" target="_blank">'.
                         '<img src="images/external_link.png" alt="[]" border="0" /> '.
