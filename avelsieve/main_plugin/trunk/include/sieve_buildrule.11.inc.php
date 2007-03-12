@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.11.inc.php,v 1.3 2007/01/24 17:14:56 avel Exp $
+ * @version $Id: sieve_buildrule.11.inc.php,v 1.4 2007/03/12 14:08:55 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2007 Alexandros Vellis
  * @package plugins
@@ -37,24 +37,36 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
     $terse = '';
     $tech = '';
     
-    $spamrule_advanced = false;
-    
+    $advanced = false;
     if(isset($rule['advanced']) && $rule['advanced']) {
-        $spamrule_advanced = true;
+        $advanced = true;
     }
     
-    if(isset($rule['tests'])) {
+    if(isset($rule['tests']) && !empty($rule['tests'])) {
         $tests = $rule['tests'];
     }
+    if(!$advanced) {
+        
+    }
+
+    if(isset($rule['enable']) && $rule['enable']) {
+        $enable = 1;
+    } else {
+        $text = _("SPAM Rule is Disabled");
+        $terse = _("<s>SPAM</s>");
+        $tech = _("<s>SPAM</s>");
+    }
+
+
+    if(!$advanced) {
+    }
+
     
     if(isset($rule['action'])) {
         $ac = $rule['action'];
-    } else {
-        $ac = $spamrule_action_default;
     }
     
     $out .= 'if allof( ';
-    $text .= _("All messages considered as <strong>SPAM</strong> (unsolicited commercial messages)");
     $terse .= _("SPAM");
     $tech .= 'SPAM';
     
@@ -65,7 +77,7 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
     if(sizeof($out_part) > 1) {
         $out .= ' anyof( '. implode( ",\n", $out_part ) . "),\n";
     } else {
-        $out .= $out_part[0];
+        $out .= $out_part[0] . ',';
     }
     
     /** Placeholder: if there's a score in the future, it should be placed here. */
@@ -99,9 +111,9 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
 
 
     /* The textual descriptions follow */
-    if($spamrule_advanced == true || $force_advanced_mode) {
+    if($advanced == true || $force_advanced_mode) {
         $text .= '<ul>'; // 1st level ul
-        $text .= '<li>' . _("matching the Spam tests as follows:"). '</li><ul style="margin-top: 1px; margin-bottom: 1px;">';
+        $text .= '<li>' . _("matching any one of the Spam tests as follows:"). '</li><ul style="margin-top: 1px; margin-bottom: 1px;">';
         $terse .= '<br/>' . _("Spam Tests:") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
         $tech .= '<br/>' . _("Spam Tests:") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
         foreach($tests as $test=>$val) {
@@ -124,7 +136,11 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
              $text .= '<li>' . _("and where the sender does <em>not</em> match any of the addresses / expressions in your <strong>Whitelist</strong>") . '</li>';
         }
         $text .= '</ul>'; // 1st level ul
+    } else {
+        /* Simple textual description for default rule. */
+        $text .= _("The messages that match the system's default <strong>SPAM</strong> checks");
     }
+
     
     
     /* ------------------------ 'then' ------------------------ */
@@ -208,13 +224,13 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
         /* Added */
 	case '7':	/* junk folder */
         $out .= 'fileinto "INBOX.Junk";';
-        $text .= _("stored in the Junk Folder.");
+        $text .= _("stored in the <strong>Junk</strong> Folder.");
         $terse .= _("Junk");
         $tech .= 'JUNK';
         break;
     
 	case '8':	/* junk folder */
-        $text .= _("stored in the Trash Folder.");
+        $text .= _("stored in the <strong>Trash</strong> Folder.");
     
         global $data_dir, $username;
         $trash_folder = getPref($data_dir, $username, 'trash_folder');
