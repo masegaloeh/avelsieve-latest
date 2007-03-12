@@ -11,6 +11,11 @@ function avelsieve_css_styles() {
         text-align:left;
         border: 3px solid '.$color[5].';
 }
+.avelsieve_rule_disabled {
+        font-size: 0.7em;
+        background-color: inherit;
+        color:'.$color[15].';
+}
 .avelsieve_quoted {
         border-left: 1em solid '.$color[12].';
 }
