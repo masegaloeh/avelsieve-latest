@@ -4,18 +4,45 @@
 <p><em>Avelsieve</em> or, verbosely, &quot;Sieve Mail Filters Plugin for
 Squirrelmail&quot; is a <a href="http://www.squirrelmail.org">Squirrelmail</a>
 <a href="http://www.squirrelmail.org/plugins.php">plugin</a> for creating <a
-href="http://www.cyrusoft.com/sieve">Sieve</a> scripts on a Cyrus IMAP server
-that runs timsieved (Tim's Sieve daemon).</p>
-
-<p><em>Avelsieve</em> will also be a part of <a
-href="http://cyrusmaster.edunet.uoa.gr">Cyrusmaster</a>, a web-based Cyrus
-administration tool. It should provide the same interface of the user's filters
-to administrators and/or helpdesk staff.</p>
+        href="http://sieve.info">Sieve</a> scripts on a Sieve-compliant mail server.</li>
 
 <p>Sieve is a mail filtering language, intended for server-side filtering of
-emails. See <a href="http://www.faqs.org/rfcs/rfc3028.html">RFC 3028</a> and <a
-href="http://www.cyrusoft.com/sieve/">Cyrusoft's page about Sieve</a> for more
-details.</p>
+emails.  For more information, please visit <a
+        href="http://sieve.info">http://sieve.info</a> or read <a
+        href="http://www.ietf.org/rfc/rfc3028.txt">RFC 3028</a>.</p>
+
+<p>Avelsieve can either run using different backends, with regard to the
+storage of the Sieve scripts. Currently, three backends are available:</p>
+
+<ol>
+        <li><strong>ManageSieve</strong>: This is the transport protocol for
+        uploading, editing, deleting and verifying Sieve scripts on a mail
+        server. A daemon usually listens to port 2000, where clients such as
+        avelsieve can connect and manage the scripts.<br/>
+        Examples of server implementations that support ManageSieve:
+        <ul>
+                <li><a href="http://cyrusimap.web.cmu.edu">Cyrus IMAPd</a> running <tt>timsieved</tt></li>
+                <li><a href="http://www.dbmail.org">DBMail</a></li>
+                <li><a href="http://www.isode.com/products/m-box.html">Isode M-Box</a></li>
+        </ul>
+        </li>
+
+        <li><strong>File Backend</strong>: For simple storage of scripts in the
+        filesystem. (For instance, the Exim MTA supports such scripts).</li>
+
+        <li><strong>LDAP Backend</strong>: This is a specialized, contributed
+        backend for users of Sun Messaging Server.</li>
+</ol>
+
+<p>More implementations can be found at <a
+        href="http://sieve.info/implementations">http://sieve.info/implementations</a>.</p>
+
+
+
+<p>In the future, <em>Avelsieve</em> will also be a part of <a
+href="http://email.uoa.gr/projects/cyrusmaster/">Cyrusmaster</a>, a web-based Cyrus
+administration tool. It should provide the same interface of the user's filters
+to administrators and/or helpdesk staff.</p>
 
 
 <h3><a id="about">About this implementation</a></h3>
@@ -85,7 +112,7 @@ function will auto-detect List-Id: headers for mailing lists.</li>
 <p>..but does <strong>not</strong> provide:</p>
 
 <ul>
-<li>A Sieve parser.</li>
+<li>A Sieve parser. Yet.</li>
 </ul>
 
 
@@ -112,7 +139,7 @@ href="demo.php">Live Demo</a> page for more information.  </p>
 <em>timsieved</em> Sieve parser. There have been reports about it working with
 <a href="http://www.dbmail.org">DBMail</a>, too.</li>
 
-<li><a href="http://www.squirrelmail.org">Squirrelmail</a> version 1.4.0 or
+<li><a href="http://www.squirrelmail.org">Squirrelmail</a> version 1.4.9 or
 greater.</li>
 
 <li>The <a href="http://www.php.net/manual/en/ref.mbstring.php">multibyte
@@ -121,7 +148,7 @@ robust conversion between character sets. Otherwise, recode or iconv will also
 do the job.</li>
 
 <li><a href="http://sieve-php.sourceforge.net/">sieve-php.lib</a>, a PHP class
-for transporting Sieve scripts, by <a
+for transporting Sieve scripts, originally by <a
 href="mailto:danellis__&#64;.com">Dan Ellis</a>. Included.</li>
 
 </ul>
@@ -147,9 +174,9 @@ License</a> for more details.</p>
 <h3><a id="author">Author</a></h3>
 
 <address>
-<a href="mailto:avel&#64;users.sourceforge.net">Alexandros Vellis</a>,
+<a href="mailto: avel &#64; users.sourceforge.net">Alexandros Vellis</a>,
 <a href="http://www.noc.uoa.gr">Network Operations Centre</a>, <a
 href="http://www.uoa.gr">University of Athens</a><br /> (<a
-href="http://www.noc.uoa.gr/~avel/">Personal home page</a>).<br /> </address>
+href="http://users.uoa.gr/~avel/">Personal home page</a>).<br /> </address>
 
 
