@@ -10,7 +10,7 @@
  *
  * This file contains special functions related to junk mail options.
  *
- * @version $Id: junkmail.inc.php,v 1.1 2007/03/05 14:25:42 avel Exp $
+ * @version $Id: junkmail.inc.php,v 1.2 2007/03/12 12:16:02 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -28,18 +28,76 @@ include_once(SM_PATH . 'plugins/avelsieve/include/html_main.inc.php');
  * @return void
  */
 function junkmail_right_main_do() {
+    global $PHP_SELF;
+
+    sqgetGlobalVar('rules', $rules, SQ_SESSION);
+
+    /* If this page is called before table.php is ever shown, then we have to make
+    * the current filtering rules available in the Session. This will happen when
+    * a user clicks either:
+    * i) creation of a rule from the message commands (while viewing a message)
+    * ii) creation of a rule from some search criteria.
+    */
+    if (!isset($rules)) {
+        global $avelsieve_backend;
+        $backend_class_name = 'DO_Sieve_'.$avelsieve_backend;
+        $s = new $backend_class_name;
+        $s->init();
+	    $s->login();
+    	/* Actually get the script 'phpscript' (hardcoded ATM). */
+        if($s->load('phpscript', $rules, $scriptinfo)) {
+            $_SESSION['rules'] = $rules;
+            $_SESSION['scriptinfo'] = $scriptinfo;
+        }
+        $s->logout();
+    }
+
+    $rule_exists = false;
+    for($i=0; $i<sizeof($rules); $i++) {
+        if(in_array($rules[$i]['type'], array('11'))) {
+            $rule_exists = true;
+            if($rules[$i]['disabled'] == 0) {
+                $rule_enabled = true;
+            } elseif ( $rules[$i]['disabled'] == 1) {
+                $rule_enabled = false;
+            } 
+            $junkmailDays = $rules[$i]['junkmail_prune'];
+            break;
+        }
+    }
+    
     $ht = new avelsieve_html;
-    $ht->useimages = true;
-    echo $ht->all_sections_start() . $ht->section_start() . '<p>'.
+    $ht->useimages = true; // FIXME
+
+    echo $ht->all_sections_start() . $ht->section_start(
+            ($ht->useimages == true ? '<img src="../plugins/avelsieve/images/icons/information.png" alt="(i)" /> ' : '')
+            .   _("Junk Folder Information"))          
+            . '<p>'.
             ($ht->useimages == true ? '<img src="../plugins/avelsieve/images/icons/email_error.png" alt="(i)" /> 
-                <img src="../plugins/avelsieve/images/icons/bin.png" alt="(i)" /> 
             ' : '').
-        _("Messages in this folder have been identified as SPAM / Junk.") . ' '.
-        sprintf( _("Any messages older than %s days are automatically deleted."), "7")  . '</p>'.
-        '<p style="text-align:center">'.
-        '<strong><a href="../plugins/avelsieve/edit.php?addnew=1&amp;type=11">'.
-        _("Edit Junk Mail Options...") . '</a></strong></p>'.
-        $ht->section_end() . $ht->all_sections_end();
+            _("Messages in this folder have been identified as SPAM / Junk.");
+    
+    if(!$rule_exists || !$rule_enabled) {
+        echo '<br/>' .
+             ($ht->useimages == true? '<img src="../plugins/avelsieve/images/icons/exclamation.png" alt="(Warning)" /> ' : '') .
+             '<strong>' . sprintf( _("Note: Junk Mail is currently not enabled. Select &quot;%s&quot; to enable it."),
+                '<em>'._("Edit Junk Mail Options...").'</em>' ) . '</strong>';
+    } else {
+        echo ' ' . sprintf( _("Any messages older than %s days are automatically deleted."), $junkmailDays);
+    }
+    echo '</p>';
+
+    echo '<p style="text-align:center">'.
+        '<strong><a href="../plugins/avelsieve/edit.php?addnew=1&amp;type=11&amp;referrerUrl='.rawurlencode($PHP_SELF).'">'.
+        _("Edit Junk Mail Options...") . '</a></strong></p>';
+
+    if(isset($_GET['junkmailSettingsSaved'])) {
+        echo '<p style="text-align:center;">' .
+             ($ht->useimages == true? '<img src="../plugins/avelsieve/images/icons/tick.png" alt="(OK)" /> ' : '') .
+             '<strong>'.  _("Junk Mail Options have been saved.") . '</strong></p>';
+    }
+
+    echo $ht->section_end() . $ht->all_sections_end();
 }
 
 /**
@@ -201,7 +259,7 @@ function avelsieve_spam_highlight_update(&$rules) {
     
     $rule_exists = false;
     for($i=0; $i<sizeof($rules); $i++) {
-        if($rules[$i]['type'] == '10') {
+        if(in_array($rules[$i]['type'], array('10', '11'))) {
             $rule_exists = true;
         }
     }
