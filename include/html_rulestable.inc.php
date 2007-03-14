@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.21 2007/03/14 11:39:30 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.22 2007/03/14 12:13:18 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -78,7 +78,11 @@ class avelsieve_html_rules extends avelsieve_html {
 		
 		global $inconsistent_folders;
 		if(!empty($inconsistent_folders)) {
-			$out .= '<p style="color:'.$color[2].'">' . _("Warning: In your rules, you have defined an action that refers to a folder that does not exist or a folder where you do not have permission to append to.") . '</p>';
+                print_r($inconsistent_folders);
+            $out .= '<p style="color:'.$color[2].'">' .
+                ($this->useimages ? '<img src="images/icons/exclamation.png" alt="(!)" border="0" />'. ' ' : '' ) .
+                _("Warning: In your rules, you have defined an action that refers to a folder that does not exist or a folder where you do not have permission to append to.") .
+                '</p>';
 		}
 		
 		$out .= "<p>"._("The following table summarizes your current mail filtering rules.")."</p>";
@@ -116,7 +120,8 @@ class avelsieve_html_rules extends avelsieve_html {
 		global $color;
 		$out = '';
 		if(isset($_SESSION['comm'])) {
-			$out .= '<p><font color="'.$color[2].'" align="center">';
+            $out .= '<p style="color:'.$color[11].'; text-align: center;">'.
+                    ($this->useimages ? '<img src="images/icons/information.png" alt="(i)" border="0" />'. ' ' : '');
 		
 			if(isset($_SESSION['comm']['new'])) {
 				$out .= _("Successfully added new rule.");
@@ -139,8 +144,7 @@ class avelsieve_html_rules extends avelsieve_html {
 					$out .= $_SESSION['comm']['deleted']+1;
 				}
 			}
-		
-			$out .= '</font></p>';
+			$out .= '</p>';
 			session_unregister('comm');
 		}
 		return $out;
