@@ -10,7 +10,7 @@
  *
  * This file contains special functions related to junk mail options.
  *
- * @version $Id: junkmail.inc.php,v 1.2 2007/03/12 12:16:02 avel Exp $
+ * @version $Id: junkmail.inc.php,v 1.3 2007/03/14 11:13:22 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -41,6 +41,7 @@ function junkmail_right_main_do() {
     if (!isset($rules)) {
         global $avelsieve_backend;
         $backend_class_name = 'DO_Sieve_'.$avelsieve_backend;
+        include_once(SM_PATH . 'plugins/avelsieve/include/sieve.inc.php');
         $s = new $backend_class_name;
         $s->init();
 	    $s->login();
@@ -56,7 +57,7 @@ function junkmail_right_main_do() {
     for($i=0; $i<sizeof($rules); $i++) {
         if(in_array($rules[$i]['type'], array('11'))) {
             $rule_exists = true;
-            if($rules[$i]['disabled'] == 0) {
+            if(!isset($rules[$i]['disabled'])) {
                 $rule_enabled = true;
             } elseif ( $rules[$i]['disabled'] == 1) {
                 $rule_enabled = false;
@@ -282,4 +283,25 @@ function avelsieve_spam_highlight_update(&$rules) {
     }
 }
  
+/**
+ * JunkPrune Update: LDAPuserdata backend. (Saves the days number in LDAP attribute).
+ *
+ * @param string $username
+ * @param int $junkFolderDays
+ * @return boolean
+ */
+function avelsieve_junkprune_ldapuserdata_update($username, $junkFolderDays) {
+	global $plugins, $data_dir;
+	if(in_array('ldapuserdata', $plugins)) {
+        if($_SESSION['ldap_prefs_cache']['junkprune'] != $junkFolderDays) {
+    		setPref($data_dir, $username, 'junkprune', $junkFolderDays);
+            ldapuserdata_flush();
+            return true;
+        }
+        return false;
+	}
+}
+
+
+
 ?>

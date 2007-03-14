@@ -3,7 +3,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: html_ruleedit.11.inc.php,v 1.5 2007/03/12 15:18:17 avel Exp $
+ * @version $Id: html_ruleedit.11.inc.php,v 1.6 2007/03/14 11:13:14 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -73,7 +73,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
      */
 	function submit_buttons() {
         $out = '<tr><td><div style="text-align: center">'.
-            '<input type="submit" name="apply" value="'._("Apply Changes").'" style="font-weight: bold" />';
+            '<input type="submit" name="'. ($this->mode == 'addnew' ? 'addnew' : 'apply') . '" value="'._("Apply Changes").'" style="font-weight: bold" />';
         if($this->popup) {
             $out .= ' <input type="submit" name="cancel" onClick="window.close(); return false;" value="'._("Cancel").'" />';
         } else {
@@ -88,53 +88,56 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
      * @return string
      */
     function module_settings($module) {
-        global $squirrelmail_language, $data_dir, $username;
-	    $squirrelmail_language = $lang_iso = getPref($data_dir, $username, 'language');
-        $lang_short = substr($lang_iso, 0, 2);
-        foreach($this->settings['spamrule_tests'][$module]['available'] as $key=>$val) {
-            // Just check which languages are configured for the first entry, to
-            // determine fallback language to use.
-            if(isset($this->settings['spamrule_tests_info'][$key][$lang_short])) {
-                $lang = $lang_short;
-            } elseif(isset($this->settings['spamrule_tests_info'][$key]['en'])) {
-                $lang = 'en';
-            }
-            break; // That's enough, thank you very much.
-        }
-
         $out = '';
         $t = &$this->rule['tests']; // Handy reference to current rule's tests
 
         foreach($this->settings['spamrule_tests'][$module]['available'] as $key=>$val) {
-            $jskey = str_replace('.', '_', $key); // because dot (.) is not valid in js
-            
             // Check current state
-            $on = false;
+            $active_value = '';
             if(isset($this->rule['tests'][$key]) &&
              in_array($this->rule['tests'][$key], $this->settings['spamrule_tests'][$module]['fail_values'])) {
-                $on = true;
+                $active_value = $this->rule['tests'][$key];
             }
-            
-            $out .= '<li><input type="checkbox" name="tests['.$key.']" id="'.$key.'" value="1" '. ($on == true ? ' checked=""' : '') .'/>'.
-                '<label for="'.$key.'">'. $val. '</label>' ;
 
-            // Js Link to information.
-            if($this->js && isset($this->settings['spamrule_tests_info'][$key][$lang])) {
-                $out .= '  <small><a href="#'.$key.'" onclick="'.$this->js_toggle_display("div_$jskey", true).'return true;">';
-                $out .= '<img src="images/triangle.gif" alt="&gt;" name="div_'.$jskey.'_img" id="'.$jskey.'_img" border="0" />'.
+            $radio = false;
+            if(sizeof($this->settings['spamrule_tests'][$module]['fail_values']) > 1 ) {
+                $radio = true;
+            }
+
+            foreach($this->settings['spamrule_tests'][$module]['fail_values'] as $fv) {
+                $jskey = str_replace('.', '_', $key . '__'.$fv); // because dot (.) is not valid in js
+                
+                // Checkbox
+                $out .= '<li><input type="'.($radio ? 'checkbox' : 'checkbox').'" name="tests['.$key.']" id="'.$key.'_'.$fv.'" value="'.$fv.'" '; 
+                $out .= ' onclick="radioCheck(this,\''.$key.'_'.
+                        implode( '\',\''.$key.'_', $this->settings['spamrule_tests'][$module]['fail_values']) .
+                        '\'); return true;"';
+
+                $out .= ($active_value == $fv ? ' checked=""' : '') .'/>'.
+                      '<label for="'.$key.'_'.$fv.'">'.
+                      ( isset($this->settings['custom_text'][$key][$fv][$this->lang]) ? $this->settings['custom_text'][$key][$fv][$this->lang] : $val) .
+                      '</label>' ;
+                
+                // Js Link to toggle informational text display.
+                if($this->js && isset($this->settings['spamrule_tests_info'][$key][$fv][$this->lang])) {
+                    $out .= '  <small><a class="avelsieve_expand_link" onclick="'.$this->js_toggle_display("div_$jskey", true).'return true;">';
+                    $out .= '<img src="images/triangle.gif" alt="&gt;" name="div_'.$jskey.'_img" id="'.$jskey.'_img" border="0" /> '.
                         _("Information...") . '</a></small>';
+                }
+
+                // Informational text
+                if(isset($this->settings['spamrule_tests_info'][$key][$fv][$this->lang])) {
+                    $out .= '<br/><div class="avelsieve_quoted" id="div_'.$jskey.'"'. ($this->js == true ? 'style="display:none"' : '') .'><blockquote>'.
+                        '<img src="images/icons/information.png" alt="(i)" border="0" />'. ' ' .
+                        $this->settings['spamrule_tests_info'][$key][$fv][$this->lang].
+                            ( isset($this->settings['spamrule_tests_info'][$key][$fv]['url']) ? 
+                            '<br/><a href="'.$this->settings['spamrule_tests_info'][$key][$fv]['url'].'" target="_blank">'.
+                            '<img src="images/external_link.png" alt="[]" border="0" /> '.
+                            htmlspecialchars($this->settings['spamrule_tests_info'][$key][$fv]['url']).'</a>' : '')  .
+                        '</blockquote></div>';
+                }
             }
 
-            if(isset($this->settings['spamrule_tests_info'][$key][$lang])) {
-                $out .= '<br/><div class="avelsieve_quoted" id="div_'.$jskey.'"'. ($this->js == true ? 'style="display:none"' : '') .'><blockquote>'.
-                    '<img src="images/icons/information.png" alt="(i)" border="0" />'. ' ' .
-                    $this->settings['spamrule_tests_info'][$key][$lang].
-                        ( isset($this->settings['spamrule_tests_info'][$key]['url']) ? 
-                        '<br/><a href="'.$this->settings['spamrule_tests_info'][$key]['url'].'" target="_blank">'.
-                        '<img src="images/external_link.png" alt="[]" border="0" /> '.
-                        htmlspecialchars($this->settings['spamrule_tests_info'][$key]['url']).'</a>' : '')  .
-                    '</blockquote></div>';
-            }
             $out .= '</li>';
         }
         return $out;
@@ -147,15 +150,29 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
      * @return string
      */
     function edit_rule($edit = false) {
-        global $PHP_SELF, $color, $javascript_on, $compose_new_win;
+        global $PHP_SELF, $color, $javascript_on, $compose_new_win, $squirrelmail_language,
+               $data_dir, $username;
+
+        // Determine language and fallback language
+	    $squirrelmail_language = $lang_iso = getPref($data_dir, $username, 'language');
+        $lang_short = substr($lang_iso, 0, 2);
+        foreach($this->settings['spamrule_tests'] as $module=>$info) {
+            // Just check which languages are configured for the first entry, to
+            // determine fallback language to use.
+            if(isset($this->settings['spamrule_tests_info'][$module][$lang_short])) {
+                $this->lang = $lang_short;
+            } elseif(isset($this->settings['spamrule_tests_info'][$module]['en'])) {
+                // FIXME 
+                $this->lang = 'en';
+            } else {
+                $this->lang = 'en';
+            }
+            break; // That's enough, thank you very much.
+        }
         
         $default_rule = avelsieve_buildrule_11($this->settings['default_rule'], true); 
         $default_rule_desc = $default_rule[1]; 
         
-        if($this->mode == 'addnew' && !isset($_POST['addnew'])) {
-            $this->rule = $this->settings['default_rule'];
-        }
-
         $out = '<form name="addrule" action="'.$PHP_SELF.'" method="POST">';
 
         if($this->mode == 'edit') {
@@ -247,17 +264,11 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
         $out .= '<div id="div_junkmail_advanced" class="avelsieve_div" '. $this->stateVisibility('junkmail_advanced') . '>' ;
 
         $out .= '<ul>';
-        $out .= '<li>'. _("Place Messages that are marked in these black lists in the Junk Folder") . '<br/></li>';
-        $out .= '<ul>' . $this->module_settings('rbls') . '</ul>';
-
-        $out .= '<br/><li>'. _("Place Messages whose Sender Email Address does not exist in the Junk Folder") . '<br/></li>';
-        $out .= '<ul>' . $this->module_settings('sav') . '</ul>';
-
-        $out .= '<br/><li>'. _("Additional Verification Tests") . '<br/></li>';
-        $out .= '<ul>' . $this->module_settings('additional') . '</ul>';
+        foreach($this->settings['spamrule_tests'] as $module => $info) {
+            $out .= '<li>'. $info['action'][$this->lang] .'<br/></li>'.
+                '<ul>' . $this->module_settings($module) . '</ul>';
+        }
         $out .= '</ul>';
-
-    
         $out .= '</div>'; // div_junkmail_advanced
         $out .= $this->section_end();
 
@@ -356,7 +367,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
      * @return void
      */
     function process_input(&$ns, $unused = false) {
-        $vars = array('enable', 'junkmail_prune', 'junkmail_days', 
+        $vars = array('enable', 'junkmail_prune',
                 'enable_whitelist', 'whitelist_abook', 'junkmail_advanced');
         
         foreach($vars as $v) {
@@ -366,30 +377,41 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
                 $this->rule[$v] = 0;
             }
         }
+        
+        if(isset($ns['junkmail_days']) && is_numeric($ns['junkmail_days'])) { 
+            $this->rule['junkmail_days'] = $ns['junkmail_days'];
+        }
+
 
         if($this->rule['enable']) {
-            $this->rule['disabled'] = 0; 
+            if(isset($this->rule['disabled'])) unset($this->rule['disabled']);
         } else {
             $this->rule['disabled'] = 1; 
         }
 
-        foreach($this->settings['spamrule_tests'] as $groupname => $group) {
-            foreach($group['available'] as $test=>$desc) {
-                //if(isset($ns['tests'][$test]) && in_array($ns['tests'][$test], array_merge( array('NONE'), array_keys($group['values']) ) )) {
-                if(isset($ns['tests'][$test]) && $ns['tests'][$test] == 1) {
-                    //$this->rule['tests'][$test] = $ns['tests'][$test];
-                    $this->rule['tests'][$test] = $group['fail_values'][0];
-                } else {
-                    if(isset($this->rule['tests'][$test])) {
-                        unset($this->rule['tests'][$test]);
+        if($this->rule['junkmail_advanced']) {
+            foreach($this->settings['spamrule_tests'] as $groupname => $group) {
+                foreach($group['available'] as $test=>$desc) {
+                    //if(isset($ns['tests'][$test]) && in_array($ns['tests'][$test], array_merge( array('NONE'), array_keys($group['values']) ) )) {
+                    if(isset($ns['tests'][$test]) && in_array($ns['tests'][$test], $this->settings['spamrule_tests'][$groupname]['fail_values'])) {
+                        $this->rule['tests'][$test] = $ns['tests'][$test];
+                    } else {
+                        if(isset($this->rule['tests'][$test])) {
+                            unset($this->rule['tests'][$test]);
+                        }
                     }
                 }
             }
-         }
+        } else {
+            if(isset($this->rule['tests'])) unset($this->rule['tests']);
+            $this->rule['tests'] = $this->settings['default_rule']['tests'];
+        }
+
         if(empty($this->rule['tests'])) {
             $this->errmsg = _("You have to enable at least one Junk Mail Test.");
         }
 
+        // Hardcoded ATM:
         $this->rule['action'] = 7;
 
         /* Actions process_input */
@@ -435,6 +457,13 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
             }
         }
          */
+        if(!isset($this->errmsg)) {
+            if(!empty($this->settings['junkprune_backend'])) {
+                $updateFunc = 'avelsieve_junkprune_'.$this->settings['junkprune_backend'].'_update';
+                call_user_func($updateFunc, $username, $junkFolderDays);
+            }
+
+        }
         //$this->errmsg = 'This is a bogus error message for development purposes.';
     }
 }
