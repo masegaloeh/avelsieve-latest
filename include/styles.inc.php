@@ -26,6 +26,12 @@ function avelsieve_css_styles() {
         font-family: monospace;
         font-size: 0.8em;
 }
+.avelsieve_expand_link {
+        color: '.$color[7].';
+        text-decoration: none;
+        cursor: pointer;
+}
+
 ';
 }
 
