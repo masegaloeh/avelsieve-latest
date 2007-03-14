@@ -54,3 +54,14 @@ function ToggleShowDivWithImg(divname) {
 	}
   }	
 }
+function radioCheck(me,group) {
+    var checked = me.checked; 
+    if (checked) for (var i = 1; i < arguments.length; i++) { 
+        var ck = document.getElementById(arguments[i]); 
+        if (ck) ck.checked = false; 
+    } else {
+        return;
+    }
+    //me.checked = checked; // checkbox action 
+    me.checked = true; // radiobox action 
+}
