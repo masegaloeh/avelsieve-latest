@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.20 2007/03/08 12:19:39 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.21 2007/03/14 11:39:30 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -202,6 +202,8 @@ class avelsieve_html_rules extends avelsieve_html {
         if(!empty($avelsieve_enable_rules)) {
             $uniqueRulesPositions = $this->discoverUniqueRules();
             foreach($avelsieve_enable_rules as $r) {
+                if(!isset($avelsieve_maintypes[$r]['linktext'])) continue;
+
                 if($r == 12 && isset($uniqueRulesPositions[12])) {
                     // Global whitelist special: edit existing whitelist
                     $href = 'edit.php?edit='.$uniqueRulesPositions[12].'&amp;type='.$r;
