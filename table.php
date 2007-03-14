@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.35 2007/03/08 12:09:21 avel Exp $
+ * @version $Id: table.php,v 1.36 2007/03/14 19:59:48 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -280,16 +280,31 @@ $avelsieve_css = avelsieve_css_styles();
 $avelsieve_css_wrapped = '<style type="text/css">
 '.$avelsieve_css.'
 </style>';
-$html_additional = $avelsieve_css_wrapped;
+
+
+if($popup) {
+    // For displayHtmlHeader()
+    $html_additional = $avelsieve_css_wrapped . '
+    <script language="JavaScript" type="text/javascript" src="'.$base_uri.'plugins/avelsieve/javascripts/avelsieve_table.js"></script>
+    ';
+} else {
+    // For displayPageHeader()
+    $js = file_get_contents('./javascripts/avelsieve_table.js');
+    $js_wrapped = '
+    <script language="JavaScript" type="text/javascript">
+    '.$js.'
+    </script>
+    ';
+    $html_additional = $avelsieve_css_wrapped . $js_wrapped;
+}
 
 $prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
 textdomain ('squirrelmail');
-
 if($popup) {
-	displayHtmlHeader('', $html_additional);
+    displayHtmlHeader('', $html_additional);
 } else {
-	displayPageHeader($color, 'None');
-	echo $html_additional;
+    displayPageHeader($color, 'None');
+    echo $html_additional;
 }
 
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
