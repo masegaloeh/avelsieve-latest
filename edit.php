@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.41 2007/03/08 12:09:21 avel Exp $
+ * @version $Id: edit.php,v 1.42 2007/03/14 10:22:41 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -160,11 +160,17 @@ if(isset($edit)) {
     $ruleobj->set_rule_type($type_get);
     $ruleobj->set_rule_data(unserialize(urldecode($serialized_rule)));
 
-} elseif(!isset($edit) && isset($type_get)) {
+} elseif(!isset($edit) && isset($type_get) && empty($_POST)) {
 	/* Adding a new rule through $_GET */
 	//print "/* Adding a new rule through _GET */";
     $ruleobj->set_rule_type($type_get);
-	//$ruleobj->process_input($_GET, false);
+    if(isset($avelsieve_rules_settings[$type_get]['default_rule'])) {
+        $ruleobj->set_rule_data($avelsieve_rules_settings[$type_get]['default_rule']);
+    }
+} elseif(!isset($edit) && isset($type_get) && !empty($_POST)) {
+	/* Continuing to add a new rule */
+	//print "/* Continuing to add a new rule */";
+    $ruleobj->set_rule_type($type_get);
 } else {
 	/* Adding a new rule from scratch */
 	//print "/* Adding a new rule from scratch */";
@@ -172,9 +178,7 @@ if(isset($edit)) {
 }
 $type = $ruleobj->type;
 
-
 if(!isset($type) || (isset($type) && !is_numeric($type)) ) $type = 1;
-
 
 /* TODO - use a snippet like this to change type from the edit UI */
 /*
