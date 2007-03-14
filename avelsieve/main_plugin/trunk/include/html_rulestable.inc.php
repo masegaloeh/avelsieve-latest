@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.22 2007/03/14 12:13:18 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.23 2007/03/14 14:17:25 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -78,7 +78,6 @@ class avelsieve_html_rules extends avelsieve_html {
 		
 		global $inconsistent_folders;
 		if(!empty($inconsistent_folders)) {
-                print_r($inconsistent_folders);
             $out .= '<p style="color:'.$color[2].'">' .
                 ($this->useimages ? '<img src="images/icons/exclamation.png" alt="(!)" border="0" />'. ' ' : '' ) .
                 _("Warning: In your rules, you have defined an action that refers to a folder that does not exist or a folder where you do not have permission to append to.") .
@@ -86,14 +85,18 @@ class avelsieve_html_rules extends avelsieve_html {
 		}
 		
 		$out .= "<p>"._("The following table summarizes your current mail filtering rules.")."</p>";
+
+        // EXPERIMENTAL / TODO
+        //$out .= '<p><a href="#" onclick="show_hide_column(\'avelsieve_rules_table\', 1, \'avelsieve_movement_controls\')">'.
+        //        _("Toggle Movement Controls") . '</a>';
 		
 		/* NEW*/
 		$out .= '
-		<table cellpadding="3" cellspacing="2" border="0" align="center" width="97%" frame="box">
+		<table id="avelsieve_rules_table" cellpadding="3" cellspacing="2" border="0" align="center" width="97%" frame="box">
 		<tr bgcolor="'.$color[0].'">
 		<td style="white-space:nowrap" valign="middle">';
 		
-		$out .= _("No") . '</td><td></td>'.
+		$out .= _("No") . '</td><td class="avelsieve_movement_controls">'. _("Position").'</td><td></td>'.
 			'<td>'. _("Description of Rule").
 			' <small>(' . _("Display as:");
 		
@@ -268,6 +271,8 @@ class avelsieve_html_rules extends avelsieve_html {
 	 * @param int $i
 	 * @param string $url Which page to link to
 	 * @param string $xtra Extra stuff to be passed to URL
+	 * @param array $attribs Additional attributes for <a> element.
+     * @return string
 	 */
 	function toolicon ($name, $i, $url = "table.php", $xtra = "", $attribs=array()) {
 		global $imagetheme, $location, $avelsievetools;
@@ -275,13 +280,9 @@ class avelsieve_html_rules extends avelsieve_html {
 		$desc = $avelsievetools[$name]['desc'];
 		$img = $avelsievetools[$name]['img'];
 
-		$out = '';
-	
-		if(empty($xtra)) {
-			$out .= ' <a href="'.$url.'?rule='.$i.'&amp;'.$name.'='.$i.'"';
-		} else {
-			$out .= ' <a href="'.$url.'?rule='.$i.'&amp;'.$name.'='.$i.'&amp;'.$xtra.'"';
-		}
+        $out = ' <a href="'.$url.'?rule='.$i.'&amp;'.$name.'='.$i.
+                (!empty($xtra) ? '&amp;'.$xtra : '') .
+                '" rel="nofollow"';
 	
 		if(sizeof($attribs) > 0) {
 			foreach($attribs as $key=>$val) {
@@ -388,11 +389,40 @@ class avelsieve_html_rules extends avelsieve_html {
 
 		$toggle = false;
 		for ($i=0; $i<sizeof($this->rules); $i++) {
-			$out .="\n<tr";
-			if ($toggle) {
-				$out .=' bgcolor="'.$color[12].'"';
-			}
-			$out .= "><td>".($i+1)."</td><td>".
+            $out .="\n<tr". ($toggle? ' bgcolor="'.$color[12].'"' : '') . '>'.
+                '<td>'.($i+1).'</td>'.
+                '<td style="white-space: nowrap" class="avelsieve_movement_controls">';
+            /** Movement controls */
+			/* Move up / Move to Top */
+			if ($i != 0) {
+				if($i != 1) {
+					$out .=$this->toolicon("mvtop", $i, "table.php", "");
+                } else {
+					$out .= '<span style="margin-left: 12px; margin-right: 12px; display: inline;">&nbsp;</span>';
+                }
+
+				$out .=$this->toolicon("mvup", $i, "table.php", "");
+            } else {
+		        $out .= '<span style="margin-left: 12px; margin-right: 12px; display: inline;">&nbsp;</span>';
+		        $out .= '<span style="margin-left: 12px; margin-right: 12px; display: inline;">&nbsp;</span>';
+            }
+
+		
+			/* Move down / to bottom */
+			if ($i != sizeof($this->rules)-1 ) {
+				$out .=$this->toolicon("mvdn", $i, "table.php", "");
+				if ($i != sizeof($this->rules)-2 ) {
+					$out .=$this->toolicon("mvbottom", $i, "table.php", "");
+                } else {
+					$out .= '<span style="margin-left: 12px; margin-right: 12px; display: inline;">&nbsp;</span>';
+                }
+            } else {
+		        $out .= '<span style="margin-left: 12px; margin-right: 12px; display: inline;">&nbsp;</span>';
+		        $out .= '<span style="margin-left: 12px; margin-right: 12px; display: inline;">&nbsp;</span>';
+            }
+
+		
+            $out .= '</td><td>'.
 				'<input type="checkbox" name="selectedrules[]" value="'.$i.'" /></td><td>';
 			$out .= makesinglerule($this->rules[$i], $this->mode);
 			$out .= '</td><td style="white-space: nowrap"><p>';
@@ -421,22 +451,6 @@ class avelsieve_html_rules extends avelsieve_html {
 			$out .= $this->toolicon("rm", $i, "table.php", "",
 				array('onclick'=>'return confirm(\''._("Really delete this rule?").'\')'));
 		
-			/* Move up / Move to Top */
-			if ($i != 0) {
-				if($i != 1) {
-					$out .=$this->toolicon("mvtop", $i, "table.php", "");
-				}
-				$out .=$this->toolicon("mvup", $i, "table.php", "");
-			}
-		
-			/* Move down / to bottom */
-			if ($i != sizeof($this->rules)-1 ) {
-				$out .=$this->toolicon("mvdn", $i, "table.php", "");
-				if ($i != sizeof($this->rules)-2 ) {
-					$out .=$this->toolicon("mvbottom", $i, "table.php", "");
-				}
-			}
-		
 			$out .= "</p></td></tr>\n";
 		
 			if(!$toggle) {
@@ -446,7 +460,7 @@ class avelsieve_html_rules extends avelsieve_html {
 			}
 		}
 		
-		$out .='<tr><td colspan="4">'.
+		$out .='<tr><td colspan="5">'.
 			'<table width="100%" border="0"><tr><td align="left">'.
 			_("Action for Selected Rules:") . '<br/>' .
 			$this->button_enableselected(). 
