@@ -10,7 +10,7 @@
  *
  * This file contains special functions related to junk mail options.
  *
- * @version $Id: junkmail.inc.php,v 1.3 2007/03/14 11:13:22 avel Exp $
+ * @version $Id: junkmail.inc.php,v 1.4 2007/03/14 19:50:33 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -29,8 +29,25 @@ include_once(SM_PATH . 'plugins/avelsieve/include/html_main.inc.php');
  */
 function junkmail_right_main_do() {
     global $PHP_SELF;
+    
+    bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+    textdomain ('avelsieve');
+    
+    require_once(SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
 
     sqgetGlobalVar('rules', $rules, SQ_SESSION);
+    sqgetGlobalVar('haschanged', $avelsieve_changed, SQ_SESSION);
+
+    /* Initialization of the Sieve storage backend class, for the following
+     * two actions */
+    if (!isset($rules) || isset($avelsieve_changed)) {
+        global $avelsieve_backend;
+        $backend_class_name = 'DO_Sieve_'.$avelsieve_backend;
+        include_once(SM_PATH . 'plugins/avelsieve/include/sieve.inc.php');
+        $s = new $backend_class_name;
+        $s->init();
+	    $s->login();
+    }
 
     /* If this page is called before table.php is ever shown, then we have to make
     * the current filtering rules available in the Session. This will happen when
@@ -39,17 +56,25 @@ function junkmail_right_main_do() {
     * ii) creation of a rule from some search criteria.
     */
     if (!isset($rules)) {
-        global $avelsieve_backend;
-        $backend_class_name = 'DO_Sieve_'.$avelsieve_backend;
-        include_once(SM_PATH . 'plugins/avelsieve/include/sieve.inc.php');
-        $s = new $backend_class_name;
-        $s->init();
-	    $s->login();
     	/* Actually get the script 'phpscript' (hardcoded ATM). */
         if($s->load('phpscript', $rules, $scriptinfo)) {
             $_SESSION['rules'] = $rules;
             $_SESSION['scriptinfo'] = $scriptinfo;
         }
+        $s->logout();
+    }
+
+    /**
+     * Replicate the script-saving code from table.php.
+     * This is for when we get back in this page. The rules have
+     * to be saved to server then.
+     */
+    if(isset($avelsieve_changed) && $avelsieve_changed == true) {
+	    $newscript = makesieverule($rules);
+	    $s->save($newscript, 'phpscript');
+	    avelsieve_spam_highlight_update($rules);
+		sqsession_unregister('haschanged');
+		sqsession_unregister('comm');
         $s->logout();
     }
 
@@ -62,7 +87,7 @@ function junkmail_right_main_do() {
             } elseif ( $rules[$i]['disabled'] == 1) {
                 $rule_enabled = false;
             } 
-            $junkmailDays = $rules[$i]['junkmail_prune'];
+            $junkmailDays = $rules[$i]['junkmail_days'];
             break;
         }
     }
@@ -99,6 +124,9 @@ function junkmail_right_main_do() {
     }
 
     echo $ht->section_end() . $ht->all_sections_end();
+    
+    bindtextdomain('squirrelmail', SM_PATH . 'locale');
+    textdomain('squirrelmail');
 }
 
 /**
