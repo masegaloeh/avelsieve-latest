@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.12.inc.php,v 1.2 2007/01/24 17:14:56 avel Exp $
+ * @version $Id: sieve_buildrule.12.inc.php,v 1.3 2007/03/15 09:59:00 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2007 Alexandros Vellis
  * @package plugins
@@ -57,6 +57,7 @@ function avelsieve_buildrule_12($rule) {
             break;
         }
     }
+    $terse .= '</ul>';
     
     return(array($out,$text,$terse,$tech, array('skip_further_execution'=>true)));
 }
