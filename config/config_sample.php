@@ -9,7 +9,7 @@
  * This file contains configuration parameters for SIEVE mail filters plugin
  * (aka avelsieve)
  *
- * @version $Id: config_sample.php,v 1.22 2007/03/15 09:58:34 avel Exp $
+ * @version $Id: config_sample.php,v 1.23 2007/03/15 16:07:46 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -207,11 +207,11 @@ $imagetheme = 'bluecurve_24x24';
 
 /* Number of items to display _initially_, when displaying the header match
  * rule */
-
+global $startitems;
 $startitems = 3;
 
 /* Maximum number of items to allow in one header match rule. */
-
+global $maxitems;
 $maxitems = 10;
 
 /* Headers to display in listbox widget, when adding a new header rule. */
@@ -275,137 +275,26 @@ $avelsieve_default_mode = 'terse';
  * rule.
  *
  * 10: Spam Rule (as existed in Avelsieve)
- * 11: Spam Rule (new-style)
+ * 11: Junk-Mail Rule (new-style SPAM Rule, only one exists per Sieve script)
  * 12: Global Whitelist (only one exists per Sieve script)
+ * 13: Custom Sieve Code (allows users to enter whatever Sieve code they like - 
+ *     Alpha/Experimental)
  * 
  * Example:
- * array(10, 11, 12);
+ * array(11, 12);
  */
 global $avelsieve_enable_rules;
 $avelsieve_enable_rules = array();
 
 global $avelsieve_rules_settings;
 $avelsieve_rules_settings = array();
-
-/**
- * @var array Rule #10 (Spam Rule) Setttings.
- *
- * Beta - easy anti-spam rule Configuration. Options should be
- * self-explanatory. For $spamrule_tests, the key is the spam block list as
- * displayed in the message header inserted by your anti-spam solution, while
- * the value is the user-friendly name displayed to the user in the advanced
- * configuration. $spamrule_action_default can be one of 'junk', 'trash' or
- * 'discard'. You can set it to 'junk' if you have the Junkfolder plugin
- * installed.
- *
- * If you would like to get the Spam tests from Sendmail's configuration (which
- * resides in LDAP), try something like this in your config/config_local.php:
- *
- * $ldap_server[0]['mtarblspamfilter'] =
- *       '(|(sendmailmtaclassname=SpamRBLs)(sendmailmtaclassname=SpamForged))';
- * $ldap_server[0]['mtarblspambase'] = 'ou=services,dc=example,dc=org';
- *
- */
-$avelsieve_rules_settings[10] = array(
-    'spamrule_score_max' => 100,
-    'spamrule_score_default' => 80,
-    'spamrule_score_header' => 'X-Spam-Score',
-    'spamrule_tests_ldap' => false, // Try to ask Sendmail's LDAP Configuration 
-    'spamrule_tests' => array(
-    	'Open.Relay.DataBase' => "Open Relay Database",
-	    'Spamhaus.Block.List' => "Spamhaus Block List",
-    	'SpamCop' => "SpamCop",
-	    'Composite.Blocking.List' => "Composite Blocking List",
-    	'FORGED' => "Forged Header"
-    ),
-    'spamrule_tests_header' => 'X-Spam-Tests',
-    'spamrule_action_default' => 'trash'
-);
-
-/**
- * @var array Rule #11 (New-style Spam Rule) Setttings.
- */
-$avelsieve_rules_settings[11] = array(
-    'spamrule_score_max' => 100,
-    'spamrule_score_default' => 10,
-    'spamrule_score_header' => 'X-Spam-Score',
-    'spamrule_tests_ldap' => false, // Try to ask Sendmail's LDAP Configuration - FIXME
-    'spamrule_tests_header' => 'X-Spam-Tests',
-    'spamrule_action_default' => 'junk',
-
-    'spamrule_default' => array(
-        
-    ),
-
-    'icons' => array(
-        'OK' => 'images/icons/accept.png',
-        'SPAM' => 'images/icons/exclamation.png',
-        'NO_MAILBOX' => 'images/icons/exclamation.png',
-
-        'TEMP_FAIL' => 'images/icons/error.png',
-        'FAIL' => 'images/icons/error.png',
-        'FAILED' => 'images/icons/error.png',
-        'TEMP_FAILED' => 'images/icons/error.png',
-    ),
-    
-    'spamrule_tests' => array(
-        'rbls' => array(
-            'desc' => _("RBLs are lists of Internet addresses, that have been verified to send SPAM messages."),
-            'available' => array(
-    	        'Spamhaus.Block.List' => "Spamhaus Block List",
-                'SpamCop' => "SpamCop",
-	            'Composite.Blocking.List' => "Composite Blocking List",
-             ),
-             'values' => array(
-                'OK' => _("Not considered as SPAM"),
-                'SPAM' => _("Considered as SPAM"),
-                'TEMP_FAIL' => _("Temporary Failure during RBL Check")
-             ),
-        ),
-        'sav' => array(
-             'available' => array(
-                 'Sender.Address.Verification' => _("Sender Address Verification"),
-             ),
-             'values' => array(
-                'OK' => _("Sender Address is valid"),
-                'NO_MAILBOX' => _("Sender Address does not exist"),
-                'FAILED' => _("Unable to verify Sender Address (Permanent Error)"),
-                'TEMP_FAILED' => _("Unable to verify Sender Address (Temporary Error)"),
-             ),
-        ),
-        'additional' => array(
-             'available' => array(
-        	    'FORGED' => _("Forged Header")
-             ),
-             'values' => array(
-                'OK' => _("Message Header is Valid"),
-                'SPAM' => _("Message Header is Forged"),
-                'TEMP_FAIL' => _("Temporary Failure during Check of Message Header")
-             ),
-        ),
-
-    ),
-    'default_rule' => array(
-        'type' => 11,
-        'advanced' => 0,
-        'tests' => 
-            array(
-                'Spamhaus.Block.List' => 'SPAM',
-                'SpamCop' => 'SPAM',
-                'Composite.Blocking.List' => 'SPAM',
-                'Sender.Address.Verification' => 'NO_MAILBOX',
-                'FORGED' => 'SPAM'
-            ),
-        'action' => 7,
-        'stop' => true
-    )
-);
-
-/**
- * @var array Rule #12 (Global White List) Setttings.
- */
-$avelsieve_rules_settings[12] = array(
-);
+foreach($avelsieve_enable_rules as $r) {
+    if(file_exists(SM_PATH . 'plugins/avelsieve/config/rule.'.$r.'.php'))
+        require(SM_PATH . 'plugins/avelsieve/config/rule.'.$r.'.php');
+    } else {
+        require(SM_PATH . 'plugins/avelsieve/config/rule.'.$r.'.default.php');
+    }
+}
 
 /* Please keep the following setting false; it is alpha + needs Squirrelmail
  * to be patched in three or four places. */
