@@ -9,7 +9,7 @@
  * This file contains configuration parameters for SIEVE mail filters plugin
  * (aka avelsieve)
  *
- * @version $Id: config_sample.php,v 1.21 2007/03/02 10:42:58 avel Exp $
+ * @version $Id: config_sample.php,v 1.22 2007/03/15 09:58:34 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -219,7 +219,7 @@ $maxitems = 10;
 global $headers;
 $headers = array(
  'From', 'To', 'Cc', 'Bcc', 'Subject', 'Reply-To', 'Sender', 'List-Id',
- 'MailingList', 'Mailing-List', 'X-ML-Name', 'X-List', 'X-List-Name', 'X-MailingList',
+ 'MailingList', 'Mailing-List', 'X-ML-Name', 'X-List', 'X-List-Name', 'X-Mailing-List',
  'Resent-From',  'Resent-To', 'X-Mailer', 'X-MailingList',
  'X-Spam-Flag', 'X-Spam-Status',
  'X-Priority', 'Importance', 'X-MSMail-Priority', 'Precedence',
