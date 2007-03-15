@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.32 2007/03/08 12:10:42 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.33 2007/03/15 11:33:49 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -316,7 +316,7 @@ class avelsieve_html_edit extends avelsieve_html {
 	 */
 	function all_conditions() {
 		global $maxitems, $startitems, $comparators;
-		
+
 		if(isset($this->rule['condition'])) {
 			$condition = $this->rule['condition'];
 		} else {
@@ -760,7 +760,7 @@ class avelsieve_html_edit extends avelsieve_html {
                     $this->rule['cond'][] = $ns['cond'][$index];
                 }
                 /* If it is completely empty, we must return an error. */
-                if(!isset($this->rule['cond'])) {
+                if(empty($this->rule['cond'])) {
                     $this->errmsg[] =  _("You have to define at least one condition.");
                 }
             }
