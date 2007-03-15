@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: constants.inc.php,v 1.24 2007/03/12 14:56:00 avel Exp $
+ * @version $Id: constants.inc.php,v 1.25 2007/03/15 15:44:21 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -141,6 +141,7 @@ $implemented_capabilities = array('fileinto', 'envelope', 'reject', 'vacation', 
 global $cap_dependencies;  
 $cap_dependencies['relational'] = array("comparator-i;ascii-numeric");
 
+global $prioritystrings;
 $prioritystrings = array(
 	'low' => _("Low"),
 	'normal' => _("Normal"),
@@ -183,29 +184,12 @@ $avelsievetools = array(
 );
 	
 
-/** Obsolete? */
-
-global $junkfolder_days;
-if(in_array('junkfolder', $plugins)) {
-	include SM_PATH . 'plugins/junkfolder/config.php';
-	if(in_array('ldapuserdata', $plugins)) {
-		$jd = getpref($data_dir, $username, 'junkprune');
-		if(isset($jd) && $jd > 0) {
-			$junkfolder_days = $jd;
-		} else {
-			$junkprune_saveme = true;
-		}
-	}
-} else {
-	$junkfolder_days = 7;
-}
-
-
 global $spamrule_actions;
 $spamrule_actions = array(
+    // FIXME - number of days in this message.
 	'junk' => array(
 		'short' => _("Junk Folder"),
-		'desc' => sprintf( _("Store SPAM message in your Junk Folder. Messages older than %s days will be deleted automatically."), $junkfolder_days) . ' ' . _("Note that you can set the number of days in Folder Preferences.")
+		'desc' => sprintf( _("Store SPAM message in your Junk Folder. Messages older than %s days will be deleted automatically."), 7)
 		),
 	'trash' => array(
 		'short' => _("Trash Folder"),
@@ -229,11 +213,13 @@ $avelsieve_version = array(
 
 $available_envelope = array('from', 'to');
 
+global $avelsieve_enable_envelope_auth;
 if($avelsieve_enable_envelope_auth) {
 	$available_envelope[] = 'auth';
 }
 
 /* Headers that typically include email addresses, for the :address check */
+global $available_address_headers;
 $available_address_headers = array(
 	'From', 'To', 'Cc', 'Bcc', 'Reply-To', 'Sender', 'Resent-From', 'Resent-To'
 );
