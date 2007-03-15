@@ -3,7 +3,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: html_ruleedit.10.inc.php,v 1.3 2007/01/24 17:14:56 avel Exp $
+ * @version $Id: html_ruleedit.10.inc.php,v 1.4 2007/03/15 16:08:03 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -132,14 +132,15 @@ class avelsieve_html_edit_10 extends avelsieve_html_edit_spamrule {
                 }
                     
             } elseif(isset($this->settings['spamrule_tests'])) {
-            /* from config.php */
-            foreach($this->settings['spamrule_tests'] as $st=>$txt) {
-                $out .= '<input type="checkbox" name="tests[]" value="'.$st.'" id="spamrule_test_'.$st.'" ';
-                if(in_array($st, $this->rule['tests'])) {
-                    $out .= 'checked="CHECKED" ';
+            /* from rule configuration */
+                foreach($this->settings['spamrule_tests'] as $st=>$txt) {
+                    $out .= '<input type="checkbox" name="tests[]" value="'.$st.'" id="spamrule_test_'.$st.'" ';
+                    if(in_array($st, $this->rule['tests'])) {
+                        $out .= 'checked="CHECKED" ';
+                    }
+                    $out .= '/> '.
+                        '<label for="spamrule_test_'.$st.'">'.$txt.'</label><br />';
                 }
-                $out .= '/> '.
-                    '<label for="spamrule_test_'.$st.'">'.$txt.'</label><br />';
             }
         /*
         } elseif(isset($spamrule_filters)) {
@@ -152,7 +153,6 @@ class avelsieve_html_edit_10 extends avelsieve_html_edit_spamrule {
                 '<label for="spamrule_test_'.$st.'">'$fi.['name'].'</label><br />';
         }
         */
-        }
         $out .= '<br/><br/></li>';
     
         /**
