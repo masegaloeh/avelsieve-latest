@@ -3,7 +3,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: html_ruleedit.11.inc.php,v 1.7 2007/03/14 19:49:56 avel Exp $
+ * @version $Id: html_ruleedit.11.inc.php,v 1.8 2007/03/15 16:08:40 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -415,6 +415,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
 
         // Hardcoded ATM:
         $this->rule['action'] = 7;
+        $this->rule['stop'] = 1;
 
         /* Actions process_input */
         /*
