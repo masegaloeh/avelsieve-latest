@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.33 2007/03/15 11:33:49 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.34 2007/03/19 16:39:42 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -59,15 +59,26 @@ class avelsieve_html_edit extends avelsieve_html {
 	 * @param string $mode
 	 * @param boolean $popup
 	 * @param mixed $errmsg Array or string of error messages to display.
+     * @param array $additional_options Array of these options:
+     *    * 'position' => int  (requested position for a new rule)
 	 * @return void
 	 */
-	function avelsieve_html_edit(&$s, $mode = 'edit', $popup = false) {
+	function avelsieve_html_edit(&$s, $mode = 'edit', $popup = false, $additional_options = '') {
 		$this->avelsieve_html();
 		$this->mode = $mode;
 		$this->popup = $popup;
         $this->s = $s;
 		
 		$this->active_types = $this->get_active_types();
+
+        $additional_options_available = array('position');
+        if(!empty($additional_options) && is_array($additional_options)) {
+           foreach($additional_options as $opt=>$val) {
+               if(in_array($opt, $additional_options_available )) {
+                   $this->$opt = $val;
+               }
+           }
+        }
 	}
 
     /**
@@ -657,6 +668,7 @@ class avelsieve_html_edit extends avelsieve_html {
             /* 'edit' */
             $out = '<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
                 '<input type="hidden" name="edit" value="'.$edit.'" />'.
+                (isset($this->position) ? '<input type="hidden" name="position" value="'.$this->position.'" />' : '') .
                 $this->table_header( _("Editing Mail Filtering Rule") . ' #'. ($edit+1) ).
                 $this->all_sections_start();
         } else {

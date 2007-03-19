@@ -8,7 +8,7 @@
  *
  * Also view plugins/README.plugins for more information.
  *
- * @version $Id: setup.php,v 1.38 2007/03/12 12:02:12 avel Exp $
+ * @version $Id: setup.php,v 1.39 2007/03/19 16:39:42 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -32,6 +32,8 @@ function squirrelmail_plugin_init_avelsieve() {
     $squirrelmail_plugin_hooks['special_mailbox']['avelsieve'] = 'junkmail_markspecial';
 	$squirrelmail_plugin_hooks['right_main_after_header']['avelsieve'] = 'junkmail_right_main';
 	$squirrelmail_plugin_hooks['folders_bottom']['avelsieve'] = 'junkmail_folders';
+    
+    $squirrelmail_plugin_hooks['javascript_libs_register']['avelsieve'] = 'avelsieve_register_jslibs';
 }
 
 /**
@@ -163,6 +165,16 @@ function junkmail_folders() {
 function avelsieve_configtest() {
     include_once(SM_PATH . 'plugins/avelsieve/include/configtest.inc.php');
     return avelsieve_configtest_do();
+}
+
+/**
+ *
+ */
+function avelsieve_register_jslibs() {
+    global $plugins;
+    if(in_array('javascript_libs', $plugins)) {
+        javascript_libs_register('table.php', array('prototype', 'effects'));
+    }
 }
 
 /**

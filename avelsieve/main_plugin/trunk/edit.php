@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.42 2007/03/14 10:22:41 avel Exp $
+ * @version $Id: edit.php,v 1.43 2007/03/19 16:39:42 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -51,6 +51,7 @@ sqgetGlobalVar('rules', $rules, SQ_SESSION);
 /* Mode of operation */
 sqgetGlobalVar('dup', $dup, SQ_GET & SQ_POST);
 sqgetGlobalVar('addnew', $addnew, SQ_GET);
+sqgetGlobalVar('position', $position, SQ_GET & SQ_POST);
 /* New folder Creation */
 sqgetGlobalVar('newfoldername', $newfoldername, SQ_POST);
 if(isset($newfoldername)) $newfoldername = trim($newfoldername);
@@ -145,6 +146,12 @@ if(is_numeric($type_get) && $type_get > 1 &&
 } else {
     $edit_class_name = 'avelsieve_html_edit';
 }
+
+$additional_options = array();
+if(isset($position) && isset($rules[$position])) {
+    $additional_options['position'] = $position;
+}
+
 $ruleobj = new $edit_class_name($s, $mode, $popup);
 $ruleobj->set_errmsg($errmsg);
 
@@ -251,6 +258,9 @@ if(isset($_POST['cancel'])) {
 			array_splice($_SESSION['rules'], $edit+1, 0, array($ruleobj->rule));
 			// Reindex
 			$_SESSION['rules'] = array_values($_SESSION['rules']);
+        } elseif(isset($position)) {
+			array_splice($_SESSION['rules'], $position+1, 0, array($ruleobj->rule));
+			$_SESSION['rules'] = array_values($_SESSION['rules']);
 		} else {
             // Append the new rule at the end of rules table
 			$_SESSION['rules'][] = $ruleobj->rule;
@@ -299,22 +309,26 @@ $avelsieve_css_wrapped = '<style type="text/css">
 '.$avelsieve_css.'
 </style>';
 
-if($popup) {
-    // For displayHtmlHeader()
-    $html_additional = $avelsieve_css_wrapped . '
-    <script language="JavaScript" type="text/javascript" src="'.$base_uri.'plugins/avelsieve/javascripts/avelsieve_edit.js"></script>
-    ';
-
+if($javascript_on) {
+    if($popup) {
+        // For displayHtmlHeader()
+        $html_additional = $avelsieve_css_wrapped . '
+        <script language="JavaScript" type="text/javascript" src="'.$base_uri.'plugins/avelsieve/javascripts/avelsieve_edit.js"></script>
+        ';
+    
+    } else {
+        // For displayPageHeader()
+        $js = file_get_contents('./javascripts/avelsieve_edit.js');
+        $js_wrapped = '
+        <script language="JavaScript" type="text/javascript">
+        '.$js.'
+        </script>
+        ';
+    
+        $html_additional = $avelsieve_css_wrapped . $js_wrapped;
+    }
 } else {
-    // For displayPageHeader()
-    $js = file_get_contents('./javascripts/avelsieve_edit.js');
-    $js_wrapped = '
-    <script language="JavaScript" type="text/javascript">
-    '.$js.'
-    </script>
-    ';
-
-    $html_additional = $avelsieve_css_wrapped . $js_wrapped;
+    $html_additional = $avelsieve_css_wrapped;
 }
 
 $prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
