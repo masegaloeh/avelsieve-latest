@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: constants.inc.php,v 1.27 2007/03/19 17:56:21 avel Exp $
+ * @version $Id: constants.inc.php,v 1.28 2007/03/19 18:08:49 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -46,7 +46,7 @@ $avelsieve_maintypes = array(
         ),
         12 => array(
                 'desc' => _("Whitelist"),
-                'linktext' => sprintf( _("Edit %s"), _("Whitelist")),
+                //'linktext' => sprintf( _("Edit %s"), _("Whitelist")),
                 'img' => 'images/icons/email_edit.png',
                 'unique' => true,
                 'undeletable' => false,
@@ -132,7 +132,6 @@ $comparators = array(
 $displaymodes = array(
 	'verbose' => array( _("verbose"), _("Textual descriptions of the rules")),
 	'terse' => array( _("terse"), _("More suitable for viewing the table of rules at once")),
-	'tech' => array( _("tech"), _("Even more terse description for technical people")) ,
 	'source' => array( _("source"), _("Display SIEVE source"))
 );
 

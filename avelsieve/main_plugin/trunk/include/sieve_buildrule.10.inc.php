@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.10.inc.php,v 1.3 2007/01/22 19:48:55 avel Exp $
+ * @version $Id: sieve_buildrule.10.inc.php,v 1.4 2007/03/19 18:08:49 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -59,7 +59,6 @@ function avelsieve_buildrule_10($rule) {
     $out = '';
     $text = '';
     $terse = '';
-    $tech = '';
     
     $spamrule_advanced = false;
     
@@ -88,7 +87,6 @@ function avelsieve_buildrule_10($rule) {
     $out .= 'if allof( ';
     $text .= _("All messages considered as <strong>SPAM</strong> (unsolicited commercial messages)");
     $terse .= _("SPAM");
-    $tech .= 'SPAM';
     
     if(sizeof($te) > 1) {
         $out .= ' anyof( ';
@@ -110,7 +108,6 @@ function avelsieve_buildrule_10($rule) {
         /* Insert here header-match like rules, ORed of course. */
         $text .= ' (' . _("unless") . ' ';
         $terse .= '<br/>' . _("Whitelist:") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
-        $tech .= ' !(WHITELIST:<br/>';
     
         $out .= " ,\n";
         $out .= ' not anyof( ';
@@ -121,15 +118,12 @@ function avelsieve_buildrule_10($rule) {
                 $rule['whitelist'][$i]['headermatch'] ,'verbose');
             $terse .= '<li>'. build_rule_snippet('header', $rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
                 $rule['whitelist'][$i]['headermatch'] ,'terse') . '</li>';
-            $tech .= build_rule_snippet('header', $rule['whitelist'][$i]['header'], $rule['whitelist'][$i]['matchtype'],
-                $rule['whitelist'][$i]['headermatch'] ,'tech') . '<br/>';
             if($i<sizeof($rule['whitelist'])-1) {
                 $out .= ', ';
                 $text .= ' ' . _("or") . ' ';
             }
         }
         $text .= '), '; 
-        $tech .= '), '; 
         $terse .= '</ul>'; 
         $out .= " )";
     }
@@ -138,26 +132,21 @@ function avelsieve_buildrule_10($rule) {
     if($spamrule_advanced == true) {
         $text .= _("matching the Spam List(s):");
         $terse .= '<br/>' . _("Spam List(s):") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
-        $tech .= '<br/>' . _("Spam List(s):") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
         for($i=0; $i<sizeof($te); $i++) {
             $text .= $spamrule_tests[$te[$i]].', ';
             $terse .= '<li>' . $spamrule_tests[$te[$i]].'</li>';
-            $tech .= '<li>' . $spamrule_tests[$te[$i]].'</li>';
         }
         $text .= sprintf( _("and with score greater than %s") , $sc );
         $terse .= '</ul>' . sprintf( _("Score > %s") , $sc);
-        $tech .= '</ul>' . sprintf( _("Score > %s") , $sc);
     }
     
     $text .= ', ' . _("will be") . ' ';
     $terse .= '</td><td align="right">';
-    $tech .= '</td><td align="right">';
     
     if($ac == 'junk') {
         $out .= 'fileinto "INBOX.Junk";';
         $text .= _("stored in the Junk Folder.");
         $terse .= _("Junk");
-        $tech .= 'JUNK';
     
     } elseif($ac == 'trash') {
         $text .= _("stored in the Trash Folder.");
@@ -173,16 +162,14 @@ function avelsieve_buildrule_10($rule) {
         $out .= 'fileinto "'.$trash_folder.'";';
 
         $terse .= _("Trash");
-        $tech .= 'TRASH';
     
     } elseif($ac == 'discard') {
         $out .= 'discard;';
         $text .= _("discarded.");
         $terse .= _("Discard");
-        $tech .= _("Discard");
     }
 
-    return(array($out,$text,$terse,$tech));
+    return(array($out,$text,$terse));
 }
 
 ?>
