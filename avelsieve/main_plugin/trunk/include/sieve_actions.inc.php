@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.29 2007/02/13 10:02:15 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.30 2007/03/19 12:33:27 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2007 Alexandros Vellis
  * @package plugins
@@ -94,9 +94,9 @@ class avelsieve_action {
 	    $out .= '<label for="'.$identifier.'">' . $this->text .'</label>';
 
 		if(isset($this->helptxt)) {
-
                 $out .= ' <span id="helptxt_'.$identifier.'"'.
-                        ($this->is_selected() ? ' style="display:inline"' : 'style="display:none"') .
+                        ($this->is_selected() ? ' style="display:inline"' :
+                            ($this->js ? 'style="display:none"': '') ) .
                         '> &#8211; '.$this->helptxt.'</span>';
 		}
 
