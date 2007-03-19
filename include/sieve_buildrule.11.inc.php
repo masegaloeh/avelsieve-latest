@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.11.inc.php,v 1.4 2007/03/12 14:08:55 avel Exp $
+ * @version $Id: sieve_buildrule.11.inc.php,v 1.5 2007/03/19 18:08:49 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2007 Alexandros Vellis
  * @package plugins
@@ -35,7 +35,6 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
     $out = '';
     $text = '';
     $terse = '';
-    $tech = '';
     
     $advanced = false;
     if(isset($rule['advanced']) && $rule['advanced']) {
@@ -54,7 +53,6 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
     } else {
         $text = _("SPAM Rule is Disabled");
         $terse = _("<s>SPAM</s>");
-        $tech = _("<s>SPAM</s>");
     }
 
 
@@ -68,7 +66,6 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
     
     $out .= 'if allof( ';
     $terse .= _("SPAM");
-    $tech .= 'SPAM';
     
     $out_part = array();
     foreach($tests as $test=>$val) {
@@ -115,7 +112,6 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
         $text .= '<ul>'; // 1st level ul
         $text .= '<li>' . _("matching any one of the Spam tests as follows:"). '</li><ul style="margin-top: 1px; margin-bottom: 1px;">';
         $terse .= '<br/>' . _("Spam Tests:") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
-        $tech .= '<br/>' . _("Spam Tests:") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
         foreach($tests as $test=>$val) {
             foreach($spamrule_tests as $group=>$data) {
                 if(array_key_exists($test, $data['available'])) {
@@ -123,14 +119,12 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
                              ( isset($icons[$val]) ? '<img src="'.$icons[$val].'" alt="'.$val.'" /> ' : '') .
                              $val. '</li>';
                     $terse .= '<li>' . $data['available'][$test].'</li>';
-                    $tech .= '<li>' . $data['available'][$test].'</li>';
                     break;
                 }
             }
         }
         $text .= '</ul><br/>';
         $terse .= '</ul>';
-        $tech .= '</ul>';
         
         if(isset($whitelistRef)) {
              $text .= '<li>' . _("and where the sender does <em>not</em> match any of the addresses / expressions in your <strong>Whitelist</strong>") . '</li>';
@@ -147,7 +141,6 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
 
     $text .= '<br/>' . _("will be") . ' ';
     $terse .= '</td><td align="right">';
-    $tech .= '</td><td align="right">';
 
     /* FIXME - Temporary Copy/Paste kludge */
     switch($rule['action']) {
@@ -156,21 +149,18 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
 		$out .= "keep;";
 		$text .= _("<em>keep</em> it.");
 		$terse .= _("Keep");
-		$tech .= 'KEEP';
 		break;
 	
 	case '2':	/* discard */
 		$out .= "discard;";
 		$text .= _("<em>discard</em> it.");
 		$terse .= _("Discard");
-		$tech .= 'DISCARD';
 		break;
 	
 	case '3':	/* reject w/ excuse */
 		$out .= "reject text:\n".$rule['excuse']."\r\n.\r\n;";
 		$text .= _("<em>reject</em> it, sending this excuse back to the sender:")." \"".htmlspecialchars($rule['excuse'])."\".";
 		$terse .= _("Reject");
-		$tech .= "REJECT";
 		break;
 	
 	case '4':	/* redirect to address */
@@ -186,14 +176,12 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
 			foreach($redirectemails as $redirectemail) {
 				$out .= 'redirect "'.$redirectemail."\";\n";
 				$terse .= _("Redirect to").' '.htmlspecialchars($redirectemail). '<br/>';
-				$tech .= 'REDIRECT '.htmlspecialchars($redirectemail). '<br/>';
 			}
 			$text .= sprintf( _("<em>redirect</em> it to the email addresses: %s."), implode(', ',$redirectemails));
 		} else {
 			$out .= "redirect \"".$rule['redirectemail']."\";";
 			$text .= _("<em>redirect</em> it to the email address")." ".htmlspecialchars($rule['redirectemail']).".";
 			$terse .= _("Redirect to") . ' ' .htmlspecialchars($rule['redirectemail']);
-			$tech .= 'REDIRECT' . ' ' .htmlspecialchars($rule['redirectemail']);
 		}
 		break;
 	
@@ -204,18 +192,15 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
 			$clr = '<span style="color:'.$color[2].'">';
 			$text .= $clr;
 			$terse .= $clr;
-			$tech .= $clr;
 		}
 		$text .= sprintf( _("<em>file</em> it into the folder %s"),
 			' <strong>' . htmlspecialchars(imap_utf7_decode_local($rule['folder'])) . '</strong>');
 		$terse .= sprintf( _("File into %s"), htmlspecialchars(imap_utf7_decode_local($rule['folder'])));
-		$tech .= "FILEINTO ".htmlspecialchars(imap_utf7_decode_local($rule['folder']));
 		
 		if(!empty($inconsistent_folders) && in_array($rule['folder'], $inconsistent_folders)) {
 			$cls = '<em>' . _("(Warning: Folder not available)") . '</em></span>';
 			$text .= ' '.$cls;
 			$terse .= '<br/>'.$cls;
-			$tech .= '<br/>'.$cls;
 		}
 		$text .= '. ';
 		break;
@@ -226,7 +211,6 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
         $out .= 'fileinto "INBOX.Junk";';
         $text .= _("stored in the <strong>Junk</strong> Folder.");
         $terse .= _("Junk");
-        $tech .= 'JUNK';
         break;
     
 	case '8':	/* junk folder */
@@ -243,12 +227,11 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
         $out .= 'fileinto "'.$trash_folder.'";';
 
         $terse .= _("Trash");
-        $tech .= 'TRASH';
         break;
     
     }
 
-    return(array($out,$text,$terse,$tech));
+    return(array($out,$text,$terse));
 }
 
 ?>
