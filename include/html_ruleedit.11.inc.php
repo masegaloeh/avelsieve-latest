@@ -3,7 +3,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: html_ruleedit.11.inc.php,v 1.8 2007/03/15 16:08:40 avel Exp $
+ * @version $Id: html_ruleedit.11.inc.php,v 1.9 2007/03/19 17:53:48 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -115,21 +115,21 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
 
                 $out .= ($active_value == $fv ? ' checked=""' : '') .'/>'.
                       '<label for="'.$key.'_'.$fv.'">'.
-                      ( isset($this->settings['custom_text'][$key][$fv][$this->lang]) ? $this->settings['custom_text'][$key][$fv][$this->lang] : $val) .
+                      ( isset($this->settings['custom_text'][$key][$fv]) ? $this->settings['custom_text'][$key][$fv] : $val) .
                       '</label>' ;
                 
                 // Js Link to toggle informational text display.
-                if($this->js && isset($this->settings['spamrule_tests_info'][$key][$fv][$this->lang])) {
+                if($this->js && isset($this->settings['spamrule_tests_info'][$key][$fv])) {
                     $out .= '  <small><a class="avelsieve_expand_link" onclick="'.$this->js_toggle_display("div_$jskey", true).'return true;">';
                     $out .= '<img src="images/triangle.gif" alt="&gt;" name="div_'.$jskey.'_img" id="'.$jskey.'_img" border="0" /> '.
                         _("Information...") . '</a></small>';
                 }
 
                 // Informational text
-                if(isset($this->settings['spamrule_tests_info'][$key][$fv][$this->lang])) {
+                if(isset($this->settings['spamrule_tests_info'][$key][$fv]['desc'])) {
                     $out .= '<br/><div class="avelsieve_quoted" id="div_'.$jskey.'"'. ($this->js == true ? 'style="display:none"' : '') .'><blockquote>'.
                         '<img src="images/icons/information.png" alt="(i)" border="0" />'. ' ' .
-                        $this->settings['spamrule_tests_info'][$key][$fv][$this->lang].
+                        $this->settings['spamrule_tests_info'][$key][$fv]['desc'].
                             ( isset($this->settings['spamrule_tests_info'][$key][$fv]['url']) ? 
                             '<br/><a href="'.$this->settings['spamrule_tests_info'][$key][$fv]['url'].'" target="_blank">'.
                             '<img src="images/external_link.png" alt="[]" border="0" /> '.
@@ -150,25 +150,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
      * @return string
      */
     function edit_rule($edit = false) {
-        global $PHP_SELF, $color, $javascript_on, $compose_new_win, $squirrelmail_language,
-               $data_dir, $username;
-
-        // Determine language and fallback language
-	    $squirrelmail_language = $lang_iso = getPref($data_dir, $username, 'language');
-        $lang_short = substr($lang_iso, 0, 2);
-        foreach($this->settings['spamrule_tests'] as $module=>$info) {
-            // Just check which languages are configured for the first entry, to
-            // determine fallback language to use.
-            if(isset($this->settings['spamrule_tests_info'][$module][$lang_short])) {
-                $this->lang = $lang_short;
-            } elseif(isset($this->settings['spamrule_tests_info'][$module]['en'])) {
-                // FIXME 
-                $this->lang = 'en';
-            } else {
-                $this->lang = 'en';
-            }
-            break; // That's enough, thank you very much.
-        }
+        global $PHP_SELF, $color, $javascript_on, $compose_new_win;
         
         $default_rule = avelsieve_buildrule_11($this->settings['default_rule'], true); 
         $default_rule_desc = $default_rule[1]; 
@@ -265,7 +247,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
 
         $out .= '<ul>';
         foreach($this->settings['spamrule_tests'] as $module => $info) {
-            $out .= '<li>'. $info['action'][$this->lang] .'<br/></li>'.
+            $out .= '<li>'. $info['action'] .'<br/></li>'.
                 '<ul>' . $this->module_settings($module) . '</ul>';
         }
         $out .= '</ul>';
