@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: constants.inc.php,v 1.25 2007/03/15 15:44:21 avel Exp $
+ * @version $Id: constants.inc.php,v 1.26 2007/03/19 14:32:52 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -149,8 +149,16 @@ $prioritystrings = array(
 );
 
 /* Tools (Icons in table.php) */
+global $imagetheme;
+switch($imagetheme) {
+    case 'famfamfam':
+        $fmt = 'png';
+        break;
+    default:
+        $fmt = 'gif';
+        break;
+}
 
-$fmt = 'gif';
 
 $avelsievetools = array(
 	'rm' => array(
@@ -158,7 +166,7 @@ $avelsievetools = array(
 		'img' => "del.$fmt"
 		),
 	'edit' => array(
-		'desc' => _("Edit"),
+		'desc' => '<strong>' . _("Edit") . '</strong>',
 		'img' => "edit.$fmt"
 		),
 	'dup' => array(
