@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: DO_Sieve_ManageSieve.class.php,v 1.7 2007/01/17 13:46:10 avel Exp $
+ * @version $Id: DO_Sieve_ManageSieve.class.php,v 1.8 2007/03/19 16:30:33 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -33,6 +33,8 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
     var $sieveCyrusAdminsMap;
 
     function DO_Sieve_ManageSieve() {
+        global $sieve_capabilities;
+
         $this->DO_Sieve();
 
         /* Get Cached Capabilities if they exist. */
@@ -238,10 +240,10 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
             return true;
     
         } else {
-            $errormsg = '<p>'. _("Unable to load script to server.") . '</p>';
+            $errormsg = '<p>'. _("Unable to load script to server."); 
     
             if(isset($this->sieve->error_raw)) {
-                $errormsg .= '<p>'. _("Server responded with:") . '<br />';
+                $errormsg .= ' '. _("Server responded with:") . '<br /><blockquote>';
                 if (is_array($this->sieve->error_raw)) {
                     foreach($this->sieve->error_raw as $error_raw) {
                         $errormsg .= $error_raw . "<br />";
@@ -249,18 +251,18 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
                 } else {
                     $errormsg .= $this->sieve->error_raw . "<br />";
                 }
-                $errormsg .= _("Please contact your administrator.");
+                $errormsg .= '</blockquote><br/>' . _("Please contact your administrator.");
             
                 /* The following serves for viewing the script that
                 * tried to be uploaded, for debugging purposes. */
                 if(AVELSIEVE_DEBUG == 1) {
-                    $errormsg .= '<br />(Debug mode) <strong>avelsieve
-                    bug</strong> <br /> Script that probably is buggy
-                    follows.<br /> Please copy/paste it, together with the
-                    error message above, and email it to <a
+                    $errormsg .= '<br />(Debug mode) <strong>avelsieve bug</strong>: Script that probably is buggy
+                       follows. Please copy/paste it, together with the error message above and a short description of
+                       what you were attempting to do, and email it to the author, at the email address: <a
                     href="mailto:'.AVELSIEVE_BUGREPORT_EMAIL.'">'.AVELSIEVE_BUGREPORT_EMAIL.'</a>.
-                    <br /><br />
-                    <div style="font-size:8px;"><pre>' . $newscript. "</pre></div>";
+                    <br />
+                    <div style="border: 1px solid grey; width: 95%; overflow: auto; height: 300px; font-family: monospace; font-size:10px;">' .nl2br(htmlspecialchars($newscript)). "</div>";
+
                 }
             }
             print_errormsg($errormsg);
