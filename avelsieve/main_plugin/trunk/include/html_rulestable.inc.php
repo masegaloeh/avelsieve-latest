@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.24 2007/03/19 16:39:42 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.25 2007/03/19 17:37:22 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -368,7 +368,7 @@ class avelsieve_html_rules extends avelsieve_html {
      * @return string
      */
     function rules_table() {
-        global $color;
+        global $color, $avelsieve_maintypes;
         $null = null; // For plugin hooks and PHP4/5 compatibility
         
         $out = '<form name="rulestable" method="POST" action="table.php">'.
@@ -452,15 +452,27 @@ class avelsieve_html_rules extends avelsieve_html {
 
             $out .= '<select name="morecontrols['.$i.']" onchange="avelsieveHandleOptionsSelect(this, '.$i.');">'.
                     '<option value="" style="font-weight: bold" selected="">'. _("More Options...") . '</option>'.
+
+                    /* Movement */
                     '<option value="mvtop" '.($i == 0? 'disabled=""' : '').'>'. _("Move to Top") . '</option>'.
                     '<option value="mvbottom" '.($i == sizeof($this->rules) -1 ? 'disabled=""': '').'>'.
                         _("Move to Bottom") . '</option>'.
-                    ($this->js? '<option value="mvposition">'. _("Move to Position...") . '</option>' : '') .
+                    ($this->js ? '<option value="mvposition" '.(sizeof($this->rules) < 2 ? ' disabled=""': '').'>'. _("Move to Position...") . '</option>' : '') .
                     '<option value="" disabled="">'. _("--------") . '</option>'.
-                    '<option value="duplicate">'. _("Duplicate this Rule") . '</option>'.
+                    
+                    /* Duplicate */
+                    '<option value="duplicate"'.($avelsieve_maintypes[$this->rules[$i]['type']]['unique'] ? ' disabled=""' : '') .
+                        '>'. _("Duplicate this Rule") . '</option>'.
+
+                    /* Insert */
                     '<option value="insert">'. _("Insert a New Rule here") . '</option>'.
+
                     '<option value="" disabled="">'. _("--------") . '</option>'.
-                    (isset($this->rules[$i]['disabled']) ? '<option value="enable">'. _("Enable") . '</option>' : '<option value="disable">'. _("Disable") . '</option>' ).
+
+                    /* Enable / Disable */
+                    (isset($this->rules[$i]['disabled']) ?
+                        '<option value="enable">'. _("Enable") . '</option>' :
+                        '<option value="disable">'. _("Disable") . '</option>' ).
                     //'<option value="" disabled="">'. _("--------") . '</option>'.
                     '</select>'.
                     '</div>';
