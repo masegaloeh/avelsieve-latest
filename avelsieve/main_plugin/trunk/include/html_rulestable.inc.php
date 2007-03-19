@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.25 2007/03/19 17:37:22 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.26 2007/03/19 17:56:21 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -233,7 +233,7 @@ class avelsieve_html_rules extends avelsieve_html {
 	 * Submit button for deleting selected rules
 	 * @return string
 	 */
-	function button_deleteselected() {
+    function button_deleteselected() {
             return '<input type="submit" name="deleteselected" value="' . _("Delete") . '" '.
                 'onclick="return confirm(\''._("Really delete selected rules?").'\');" />';
 	}
@@ -423,8 +423,11 @@ class avelsieve_html_rules extends avelsieve_html {
             
             
             /* Delete */
-            $out .= '<br/>'.$this->toolicon("rm", $i, "table.php", "",
-                array('onclick'=>'return confirm(\''._("Really delete this rule?").'\')'), true);
+            if(!$avelsieve_maintypes[$this->rules[$i]['type']]['undeletable']) {
+                $out .= '<br/>'.$this->toolicon("rm", $i, "table.php", "",
+                    array('onclick'=>'return confirm(\''._("Really delete this rule?").'\')'), true);
+            }
+
 
             /* Duplicate */
             /*
@@ -467,12 +470,14 @@ class avelsieve_html_rules extends avelsieve_html {
                     /* Insert */
                     '<option value="insert">'. _("Insert a New Rule here") . '</option>'.
 
-                    '<option value="" disabled="">'. _("--------") . '</option>'.
+                    '<option value="" disabled="">'. _("--------") . '</option>';
 
                     /* Enable / Disable */
-                    (isset($this->rules[$i]['disabled']) ?
-                        '<option value="enable">'. _("Enable") . '</option>' :
-                        '<option value="disable">'. _("Disable") . '</option>' ).
+            
+                    /* TODO - accomodate for rule #11 which uses the reverse flag 'enabled' */
+            $out .= (isset($this->rules[$i]['disabled']) ?
+                        '<option value="enable"'.($avelsieve_maintypes[$this->rules[$i]['type']]['undeletable'] ? ' disabled=""' : '').'>'. _("Enable") . '</option>' :
+                        '<option value="disable"'.($avelsieve_maintypes[$this->rules[$i]['type']]['undeletable'] ? ' disabled=""' : '').'>'. _("Disable") . '</option>') . 
                     //'<option value="" disabled="">'. _("--------") . '</option>'.
                     '</select>'.
                     '</div>';
