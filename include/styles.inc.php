@@ -3,6 +3,11 @@
 function avelsieve_css_styles() {
     global $color;
     return '
+a:hover {
+        text-decoration: none;
+        background: '.$color[3].';
+}
+
 .avelsieve_div {
         width: 90%;
         margin-left: auto;
@@ -31,7 +36,11 @@ function avelsieve_css_styles() {
         text-decoration: none;
         cursor: pointer;
 }
-
+.avelsieve_more_options_link {
+        color: '.$color[7].';
+        text-decoration: underline;
+        font-size: 0.9em;
+}
 ';
 }
 

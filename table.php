@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.36 2007/03/14 19:59:48 avel Exp $
+ * @version $Id: table.php,v 1.37 2007/03/19 16:39:42 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -41,6 +41,8 @@ include_once(SM_PATH . 'plugins/avelsieve/include/sieve.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/spamrule.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/styles.inc.php');
 
+if(AVELSIEVE_DEBUG == 1) include_once(SM_PATH . 'plugins/avelsieve/include/dumpr.php');
+
 sqsession_is_active();
 
 sqgetGlobalVar('popup', $popup, SQ_GET);
@@ -51,6 +53,8 @@ $location = get_location();
 sqgetGlobalVar('rules', $rules, SQ_SESSION);
 sqgetGlobalVar('scriptinfo', $scriptinfo, SQ_SESSION);
 sqgetGlobalVar('logout', $logout, SQ_POST);
+
+sqgetGlobalVar('position', $position, SQ_FORM);
 
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
@@ -134,9 +138,26 @@ if ($logout) {
 /* Routine for Delete / Delete selected / enable selected / disable selected /
  * edit / duplicate / moveup/down */
 
-if(isset($_GET['rule']) || isset($_POST['deleteselected']) ||
-	isset($_POST['enableselected']) || isset($_POST['disableselected']) ) {
+/* This is the flag to use in order to enable the actual 
+ * routines, after we are done with all the variable retrieval
+ * and validation */
+$modifyEnable = false;
 
+$allowed_actions = array('mvup','mvdown','mvtop','mvbottom','mvposition','duplicate','insert','sendemail', 'enable', 'disable');
+
+if(isset($_POST['morecontrols'])) {
+    foreach($_POST['morecontrols'] as $i => $act) {
+        if(is_numeric($i) && isset($rules[$i]) && !empty($act) && in_array($act,$allowed_actions)) {
+            $modifyRules[] = $i;
+            $modifyAction = $act;
+            $modifyEnable = true;
+        }    
+    }
+}
+
+if(isset($_GET['rule']) || isset($_POST['deleteselected']) ||
+  isset($_POST['enableselected']) || isset($_POST['disableselected']) ) {
+    // 'edit' and 'rm' are simple, get these over with:
 	if (isset($_GET['edit'])) {
 		header("Location: $location/edit.php?edit=".$_POST['rule']."");
 		exit;
@@ -146,6 +167,7 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected']) ||
 		exit;
 
 	} elseif (isset($_GET['rm']) || ( isset($_POST['deleteselected']) && isset($_POST['selectedrules'])) ) {
+
 		if (isset($_POST['deleteselected'])) {
 			$rules2 = $rules;
 			foreach($_POST['selectedrules'] as $no=>$sel) {
@@ -201,27 +223,81 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected']) ||
 		$rules = array_swapval($rules, $_GET['rule'], $_GET['rule']+1);
 	
 	} elseif (isset($_GET['mvtop'])) {
-
-		/* Rule to get to the top: */
-		$ruletop = $rules[$_GET['rule']];
-
-		unset($rules[$_GET['rule']]);
-		array_unshift($rules, $ruletop);
+        // Left over for compatibility reasons or for when the icons are back
+		// Rule to get to the top:
+        $modifyEnable = true;
+        $modifyAction = 'mvtop';
+        $modifyRules = array($_GET['rule']);
 
 	} elseif (isset($_GET['mvbottom'])) {
-		
-		/* Rule to get to the bottom: */
-		$rulebot = $rules[$_GET['rule']];
-		
-		unset($rules[$_GET['rule']]);
-		
-		/* Reindex */
-		$rules = array_values($rules);
-
-		/* Now Append it */
-		$rules[] = $rulebot;
-
+        $modifyEnable = true;
+        $modifyAction = 'mvbottom';
+        $modifyRules = array($_GET['rule']);
 	}
+}
+
+// All (or most of the) actions on the rules, are to be performed in this 
+// block:
+
+if($modifyEnable) {
+
+    switch($modifyAction) {
+        case 'mvtop':
+		    $ruletop = $rules[$modifyRules[0]];
+		    unset($rules[$modifyRules[0]]);
+		    array_unshift($rules, $ruletop);
+            break;
+
+        case 'mvbottom':
+		    /* Rule to get to the bottom: */
+		    $rulebot = $rules[$modifyRules[0]];
+		    unset($rules[$modifyRules[0]]);
+		    /* Reindex */
+		    $rules = array_values($rules);
+		    /* Now Append it */
+		    $rules[] = $rulebot;
+            break;
+
+        case 'mvposition':
+            if(isset($position) && is_numeric($position)) {
+                if(!is_numeric($position) || $position < 1) {
+                    $errormsg = sprintf( _("The entered position, %s, is not valid."), htmlspecialchars($position));
+                } elseif($position > sizeof($rules)) {
+                    $errormsg = sprintf( _("The entered position, %s, is greater than the current number of rules."), htmlspecialchars($position));
+                } else {
+                    $tmprule = $rules[$modifyRules[0]];
+                    unset($rules[$modifyRules[0]]);
+			        array_splice($rules, $position-1, 0, array($tmprule));
+        			// Reindex
+		        	$rules = array_values($rules);
+                    $haschanged = true;
+                }
+            }
+            break;
+
+        case 'duplicate':
+		    header("Location: $location/edit.php?edit=".$modifyRules[0]."&dup=1");
+            exit;
+            break;
+
+        case 'insert':
+	        header("Location: $location/edit.php?addnew=1&position=".$modifyRules[0]);
+            break;
+
+        case 'sendemail':
+            break;
+            
+        case 'enable':
+            if(isset($rules[$modifyRules[0]]['disabled'])) {
+                unset($rules[$modifyRules[0]]['disabled']);
+            }
+            break;
+
+        case 'disable':
+            $rules[$modifyRules[0]]['disabled'] = 1;
+            break;
+    }
+
 
 	sqsession_register($rules, 'rules');
 	
@@ -275,28 +351,34 @@ $boxes = sqimap_mailbox_list_all($imapConnection);
 sqimap_logout($imapConnection); 
 $inconsistent_folders = avelsieve_folder_consistency_check($boxes, $rules);
 
+global $javascript_on;
+
 /* -------------------- Presentation Logic ------------------- */
 $avelsieve_css = avelsieve_css_styles();
 $avelsieve_css_wrapped = '<style type="text/css">
 '.$avelsieve_css.'
 </style>';
 
-
-if($popup) {
-    // For displayHtmlHeader()
-    $html_additional = $avelsieve_css_wrapped . '
-    <script language="JavaScript" type="text/javascript" src="'.$base_uri.'plugins/avelsieve/javascripts/avelsieve_table.js"></script>
-    ';
+if($javascript_on) {
+    if($popup) {
+        // For displayHtmlHeader()
+        $html_additional = $avelsieve_css_wrapped . '
+        <script language="JavaScript" type="text/javascript" src="'.$base_uri.'plugins/avelsieve/javascripts/avelsieve_table.js"></script>
+        ';
+    } else {
+        // For displayPageHeader()
+        $js = file_get_contents('./javascripts/avelsieve_table.js');
+        $js_wrapped = '
+            <script language="JavaScript" type="text/javascript">
+            '.$js.'
+            </script>
+            ';
+        $html_additional = $avelsieve_css_wrapped . $js_wrapped;
+    }
 } else {
-    // For displayPageHeader()
-    $js = file_get_contents('./javascripts/avelsieve_table.js');
-    $js_wrapped = '
-    <script language="JavaScript" type="text/javascript">
-    '.$js.'
-    </script>
-    ';
-    $html_additional = $avelsieve_css_wrapped . $js_wrapped;
+    $html_additional = $avelsieve_css_wrapped;
 }
+
 
 $prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
 textdomain ('squirrelmail');
@@ -312,7 +394,6 @@ textdomain ('avelsieve');
 
 /* Debugging Part - Developers might want to enable this */
 /*
-include_once(SM_PATH . 'plugins/avelsieve/include/dumpr.php');
 echo 'SESSION:';
 dumpr($_SESSION);
 echo 'POST:';

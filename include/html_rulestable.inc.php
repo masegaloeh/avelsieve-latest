@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.23 2007/03/14 14:17:25 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.24 2007/03/19 16:39:42 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -93,10 +93,10 @@ class avelsieve_html_rules extends avelsieve_html {
 		/* NEW*/
 		$out .= '
 		<table id="avelsieve_rules_table" cellpadding="3" cellspacing="2" border="0" align="center" width="97%" frame="box">
-		<tr bgcolor="'.$color[0].'">
+        <tr bgcolor="'.$color[0].'">
 		<td style="white-space:nowrap" valign="middle">';
 		
-		$out .= _("No") . '</td><td class="avelsieve_movement_controls">'. _("Position").'</td><td></td>'.
+		$out .= _("No") . '</td><td></td><td class="avelsieve_controls" valign="middle">'. _("Options").'</td>'.
 			'<td>'. _("Description of Rule").
 			' <small>(' . _("Display as:");
 		
@@ -109,8 +109,9 @@ class avelsieve_html_rules extends avelsieve_html {
 			}
 		}
 		$out .= ')</small>';
+		$out .= '</td><td style="white-space:nowrap;">'. _("Position") ."</td>\n";
 		
-		$out .= ' </td><td valign="middle">'._("Options")."</td></tr>\n";
+		$out .= "</td></tr>\n";
 		return $out;
 	}
 		
@@ -233,7 +234,8 @@ class avelsieve_html_rules extends avelsieve_html {
 	 * @return string
 	 */
 	function button_deleteselected() {
-		return '<input type="submit" name="deleteselected" value="' . _("Delete") . '" />';
+            return '<input type="submit" name="deleteselected" value="' . _("Delete") . '" '.
+                'onclick="return confirm(\''._("Really delete selected rules?").'\');" />';
 	}
 
 	/**
@@ -272,9 +274,10 @@ class avelsieve_html_rules extends avelsieve_html {
 	 * @param string $url Which page to link to
 	 * @param string $xtra Extra stuff to be passed to URL
 	 * @param array $attribs Additional attributes for <a> element.
+     * @param boolean $showText Show the relevant Text alongside
      * @return string
 	 */
-	function toolicon ($name, $i, $url = "table.php", $xtra = "", $attribs=array()) {
+	function toolicon ($name, $i, $url = "table.php", $xtra = "", $attribs=array(), $showText = false) {
 		global $imagetheme, $location, $avelsievetools;
 	
 		$desc = $avelsievetools[$name]['desc'];
@@ -294,9 +297,13 @@ class avelsieve_html_rules extends avelsieve_html {
 		if($this->useimages) {
 			$out .= '<img title="'.$desc.'" src="'.$location.'/images/'.$imagetheme.
 			'/'.$img.'" alt="'.$desc.'" border="0" />';
+            if($showText) {
+                $out .= ' '.$desc;
+            }
 		} else {
-			$out .= " | ". $desc;
+			$out .= $desc;
 		}
+
 		$out .= '</a>';
 		return $out;
 	}
@@ -356,127 +363,149 @@ class avelsieve_html_rules extends avelsieve_html {
 		return $out;
 	}
 
-	/**
-	 * Main function to output a whole table of SIEVE rules.
-	 * @return string
-	 */
-	function rules_table() {
-		global $color;
+    /**
+     * Main function to output a whole table of SIEVE rules.
+     * @return string
+     */
+    function rules_table() {
+        global $color;
         $null = null; // For plugin hooks and PHP4/5 compatibility
-		
-        $out = '<form name="rulestable" method="POST" action="table.php">';
+        
+        $out = '<form name="rulestable" method="POST" action="table.php">'.
+                '<input name="position" value="" type="hidden" />';
 
-		if(empty($this->rules)) {
-			$out .= $this->table_header(_("No Filtering Rules Defined Yet")).
-				$this->all_sections_start().
-		        '<tr><td bgcolor="'.$color[4].'" align="center">'.
-				$this->rules_create_new().
-				$this->button_addnewrule().
-				$this->rules_footer().
+        if(empty($this->rules)) {
+            $out .= $this->table_header(_("No Filtering Rules Defined Yet")).
+                $this->all_sections_start().
+                '<tr><td bgcolor="'.$color[4].'" align="center">'.
+                $this->rules_create_new().
+                $this->button_addnewrule().
+                $this->rules_footer().
                 '</td></tr>'.
-				$this->all_sections_end() .
-				$this->table_footer().
+                $this->all_sections_end() .
+                $this->table_footer().
                 '</form>';
             return $out;
-		}
+        }
 
-		$out .= // $this->all_sections_start().
+        $out .= // $this->all_sections_start().
             $this->table_header( _("Current Mail Filtering Rules") ).
-			'<p>'. $this->button_addnewrule(true) . '</p>'.
-		    // '<tr><td bgcolor="'.$color[4].'" align="center">'.
-			$this->rules_blurb();
+            '<p>'. $this->button_addnewrule(true) . '</p>'.
+            // '<tr><td bgcolor="'.$color[4].'" align="center">'.
+            $this->rules_blurb();
             // '</td></tr>';
 
-		$toggle = false;
-		for ($i=0; $i<sizeof($this->rules); $i++) {
-            $out .="\n<tr". ($toggle? ' bgcolor="'.$color[12].'"' : '') . '>'.
-                '<td>'.($i+1).'</td>'.
-                '<td style="white-space: nowrap" class="avelsieve_movement_controls">';
-            /** Movement controls */
-			/* Move up / Move to Top */
-			if ($i != 0) {
-				if($i != 1) {
-					$out .=$this->toolicon("mvtop", $i, "table.php", "");
-                } else {
-					$out .= '<span style="margin-left: 12px; margin-right: 12px; display: inline;">&nbsp;</span>';
-                }
+        $toggle = false;
+        for ($i=0; $i<sizeof($this->rules); $i++) {
+            $bgcolor = ($toggle? $color[12] : $color[4]);
+            $out .="\n" . '<tr bgcolor="'.$bgcolor.'" id="rule_row_'.$i.'">'.
+                '<td>'.($i+1).'</td>';
+            
+            /* === Column:: Checkbox === */
+            $out .= '<td>'.
+                '<input type="checkbox" name="selectedrules[]" value="'.$i.'" '.
+                ($this->js ? 'onclick="if(this.checked) { document.getElementById(\'rule_row_'.$i.'\').style.backgroundColor = \''.$color[16].'\'; }
+                        else { document.getElementById(\'rule_row_'.$i.'\').style.backgroundColor = \''.$bgcolor.'\'; }; return true; " ' : '' ) 
+                . ' /></td>';
+                
+            /* === Column:: Controls (Edit/ Delete), Buttons === */
+            $out .= '<td style="white-space: nowrap" class="avelsieve_controls">';
 
-				$out .=$this->toolicon("mvup", $i, "table.php", "");
+            /* 1) Important controls: Edit, Move Up, Move Down, Delete */
+            /* Edit */
+            if($this->rules[$i]['type'] < 100) {
+                $out .= $this->toolicon('edit', $i, 'edit.php', "type=".$this->rules[$i]['type'],array(),true);
             } else {
-		        $out .= '<span style="margin-left: 12px; margin-right: 12px; display: inline;">&nbsp;</span>';
-		        $out .= '<span style="margin-left: 12px; margin-right: 12px; display: inline;">&nbsp;</span>';
+                $args = do_hook('avelsieve_edit_link', $null);
+                $out .= $this->toolicon('edit', $i, $args[0], $args[1]);
+                unset($args);
+            }
+            
+            
+            /* Delete */
+            $out .= '<br/>'.$this->toolicon("rm", $i, "table.php", "",
+                array('onclick'=>'return confirm(\''._("Really delete this rule?").'\')'), true);
+
+            /* Duplicate */
+            /*
+            if($this->rules[$i]['type'] < 100) {
+                $out .= $this->toolicon('dup', $i, "edit.php", "type=".$this->rules[$i]['type']."&amp;dup=1");
+            } else {
+                $args = do_hook('avelsieve_duplicate_link', $null); 
+                $out .= $this->toolicon('dup', $i, $args[0], $args[1]);
+                unset($args);
+            }
+             */
+        
+            if($this->js) {
+                $out .= '<br/><div id="show_more_options_'.$i.'">'.
+                    '<a class="avelsieve_more_options_link" onclick="new Effect.Highlight(\'rule_row_'.$i.'\', {duration: 4}); new Effect.SlideDown(\'morecontrols_'.$i.'\');
+                        new Effect.SlideUp(\'show_more_options_'.$i.'\'); return true;">'.
+                    '<img src="images/icons/arrow_right.png" /> '. _("More Options...") .'</a>'.
+                    '</div>';
+            
+                $out .= '<small><a class="avelsieve_expand_link" onclick="'.$this->js_toggle_display("morecontrols_$i", true).'return true;">';
             }
 
-		
-			/* Move down / to bottom */
-			if ($i != sizeof($this->rules)-1 ) {
-				$out .=$this->toolicon("mvdn", $i, "table.php", "");
-				if ($i != sizeof($this->rules)-2 ) {
-					$out .=$this->toolicon("mvbottom", $i, "table.php", "");
-                } else {
-					$out .= '<span style="margin-left: 12px; margin-right: 12px; display: inline;">&nbsp;</span>';
-                }
-            } else {
-		        $out .= '<span style="margin-left: 12px; margin-right: 12px; display: inline;">&nbsp;</span>';
-		        $out .= '<span style="margin-left: 12px; margin-right: 12px; display: inline;">&nbsp;</span>';
-            }
+            $out .= '<br/><div id="morecontrols_'.$i.'" name="morecontrols_'.$i.'" '.
+                    ($this->js ? 'style="display:none"' : '' ) . '>';
 
-		
-            $out .= '</td><td>'.
-				'<input type="checkbox" name="selectedrules[]" value="'.$i.'" /></td><td>';
-			$out .= makesinglerule($this->rules[$i], $this->mode);
-			$out .= '</td><td style="white-space: nowrap"><p>';
-		
-			/* $out .='</td><td><input type="checkbox" name="rm'.$i.'" value="1" /></td></tr>'; */
-			
-			/* Edit */
-			if($this->rules[$i]['type'] < 100) {
-				$out .= $this->toolicon('edit', $i, 'edit.php', "type=".$this->rules[$i]['type']);
-			} else {
-				$args = do_hook('avelsieve_edit_link', $null);
-				$out .= $this->toolicon('edit', $i, $args[0], $args[1]);
-				unset($args);
-			}
-			
-			/* Duplicate */
-			if($this->rules[$i]['type'] < 100) {
-				$out .= $this->toolicon('dup', $i, "edit.php", "type=".$this->rules[$i]['type']."&amp;dup=1");
-			} else {
-				$args = do_hook('avelsieve_duplicate_link', $null); 
-				$out .= $this->toolicon('dup', $i, $args[0], $args[1]);
-				unset($args);
-			}
-		
-			/* Delete */
-			$out .= $this->toolicon("rm", $i, "table.php", "",
-				array('onclick'=>'return confirm(\''._("Really delete this rule?").'\')'));
-		
-			$out .= "</p></td></tr>\n";
-		
-			if(!$toggle) {
-				$toggle = true;
-			} elseif($toggle) {
-				$toggle = false;
-			}
-		}
-		
-		$out .='<tr><td colspan="5">'.
-			'<table width="100%" border="0"><tr><td align="left">'.
-			_("Action for Selected Rules:") . '<br/>' .
-			$this->button_enableselected(). 
-			$this->button_disableselected(). '<br/>' .
-			$this->button_deleteselected(). '<br/>' .
-			'</td><td align="right">'.
-			$this->button_addnewrule().
-			'</td></tr></table>'. 
-			'</td></tr>'.
-			$this->rules_footer().
-			$this->all_sections_end() .
-			$this->table_footer().
+            $out .= '<select name="morecontrols['.$i.']" onchange="avelsieveHandleOptionsSelect(this, '.$i.');">'.
+                    '<option value="" style="font-weight: bold" selected="">'. _("More Options...") . '</option>'.
+                    '<option value="mvtop" '.($i == 0? 'disabled=""' : '').'>'. _("Move to Top") . '</option>'.
+                    '<option value="mvbottom" '.($i == sizeof($this->rules) -1 ? 'disabled=""': '').'>'.
+                        _("Move to Bottom") . '</option>'.
+                    ($this->js? '<option value="mvposition">'. _("Move to Position...") . '</option>' : '') .
+                    '<option value="" disabled="">'. _("--------") . '</option>'.
+                    '<option value="duplicate">'. _("Duplicate this Rule") . '</option>'.
+                    '<option value="insert">'. _("Insert a New Rule here") . '</option>'.
+                    '<option value="" disabled="">'. _("--------") . '</option>'.
+                    (isset($this->rules[$i]['disabled']) ? '<option value="enable">'. _("Enable") . '</option>' : '<option value="disable">'. _("Disable") . '</option>' ).
+                    //'<option value="" disabled="">'. _("--------") . '</option>'.
+                    '</select>'.
+                    '</div>';
+            // Future functionality:
+            $dummy = '<option value="sendemail">'. _("Send this Rule by Email") . '</option>';
+
+            if(!$this->js) {
+                $out .= '<input type="submit" name="morecontrols_submit" value="'. _("Go") .'" />';
+            }
+            $out .= '</td>';
+            
+            
+            /* Column:: Rule description */
+            $out .= '<td class="avelsieve_rule_description">'. makesinglerule($this->rules[$i], $this->mode) .'</td>';
+
+            /* Column:: Movement controls */
+            $out .= '<td style="white-space: nowrap" class="avelsieve_controls">'.
+                ($i != 0 ? $this->toolicon("mvup", $i, "table.php", "") : '<span style="margin-left: 12px; margin-right: 6px; display: inline;">&nbsp;</span>').
+                ($i != sizeof($this->rules)-1 ? $this->toolicon("mvdn", $i, "table.php", "") : '<span style="margin-left: 6px; margin-right: 6px; display: inline;">&nbsp;</span>').
+                "</td></tr>\n";
+        
+            if(!$toggle) {
+                $toggle = true;
+            } elseif($toggle) {
+                $toggle = false;
+            }
+        }
+        
+        $out .='<tr><td colspan="5">'.
+            '<table width="100%" border="0"><tr><td align="left">'.
+            _("Action for Selected Rules:") . '<br/>' .
+            $this->button_enableselected(). 
+            $this->button_disableselected(). '<br/>' .
+            $this->button_deleteselected(). '<br/>' .
+            '</td><td align="right">'.
+            $this->button_addnewrule().
+            '</td></tr></table>'. 
+            '</td></tr>'.
+            $this->rules_footer().
+            $this->all_sections_end() .
+            $this->table_footer().
             '</form>';
 
-		return $out;
-	}
+        return $out;
+    }
 }
-	
+    
 ?>
