@@ -33,6 +33,20 @@ been implemented; better object consistency is followed.</li>
 buttons are now links, and are displayed both at the top and at the bottom of
 the rule table.</li>
 
+<li><acronym title="User Interface">UI</acronym>: <strong> Major rework in the
+UI of both the <em>Rules Table</em> and the <em>Add New Rule / Edit
+Rule</em> pages. The buttons and links have been rearranged for better
+usability, many messages have been changed, visual clues have been introduced,
+options and help texts are hidden with Javascript etc.</strong></li>
+
+<li>New functionality: <strong>&quot;Insert New Rule Here&quot;</strong></li>
+
+<li>New functionality: <strong>&quot;Move Rule to Position&quot;</strong>
+(requires Javascript)</li>
+
+<li>Avelsieve now highly recommends the use of <tt>javascript_libs</tt> plugin
+for some visual effects / UI improvements.</li>
+
 <li><acronym title="User Interface">UI</acronym>: Added new icons and used
 different ones, to improve usability. Icons are provided by Mark James' <a
         href="http://www.famfamfam.com/">famfamfam.com</a>.</li>
@@ -88,6 +102,10 @@ load the javascript separately when it is a popup window.</li>
 exist once in a Sieve script, because UI-wise it would not make sense to have a
 lot of them. For example, the new junk mail rule and the whitelist are such
 constructs.</li>
+
+<li>New concept for &quot;undeletable&quot; rule. This cannot be deleted from
+the UI. The purpose is to allow more user-friendly junk mail or predefined
+rules. The new junk mail rule is such a rule.</li>
 
 <li>More appropriate style for the &quot;<tt>source</tt>&quot; display of
 rules.</li>

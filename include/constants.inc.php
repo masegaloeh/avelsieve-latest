@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: constants.inc.php,v 1.26 2007/03/19 14:32:52 avel Exp $
+ * @version $Id: constants.inc.php,v 1.27 2007/03/19 17:56:21 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -27,31 +27,36 @@ $avelsieve_maintypes = array(
                 'desc' =>_("Rule"),
                 'linktext' => sprintf( _("Add a new %s"), _("Rule")),
                 'img' => 'images/icons/add.png',
-                'unique' => false
+                'unique' => false,
+                'undeletable' => false,
         ),
         10 => array(
                 'desc' =>  _("SPAM Rule"),
                 'linktext' => sprintf( _("Add a new %s"), _("SPAM Rule")),
                 'img' => 'images/icons/add.png',
-                'unique' => false
+                'unique' => false,
+                'undeletable' => false,
         ),
         11 => array(
                 'desc' => _("Junk Mail Rule"),
                 'linktext' => sprintf( _("Edit %s"), _("Junk Mail Rule")),
                 'img' => 'images/icons/email_edit.png',
-                'unique' => true
+                'unique' => true,
+                'undeletable' => true,
         ),
         12 => array(
                 'desc' => _("Whitelist"),
                 'linktext' => sprintf( _("Edit %s"), _("Whitelist")),
                 'img' => 'images/icons/email_edit.png',
-                'unique' => true
+                'unique' => true,
+                'undeletable' => false,
         ),
         13 => array(
                 'desc' => _("Whitelist"),
                 'linktext' => sprintf( _("Add new %s"), _("Sieve Code")),
                 'img' => 'images/icons/add.png',
-                'unique' => false
+                'unique' => false,
+                'undeletable' => false,
         ),
 );
 
