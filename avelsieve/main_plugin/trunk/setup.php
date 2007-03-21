@@ -8,7 +8,7 @@
  *
  * Also view plugins/README.plugins for more information.
  *
- * @version $Id: setup.php,v 1.39 2007/03/19 16:39:42 avel Exp $
+ * @version $Id: setup.php,v 1.40 2007/03/21 13:39:42 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -174,6 +174,7 @@ function avelsieve_register_jslibs() {
     global $plugins;
     if(in_array('javascript_libs', $plugins)) {
         javascript_libs_register('table.php', array('prototype', 'effects'));
+        javascript_libs_register('edit.php', array('prototype', 'effects'));
     }
 }
 
