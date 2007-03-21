@@ -9,7 +9,7 @@
  * This file contains configuration parameters for SIEVE mail filters plugin
  * (aka avelsieve)
  *
- * @version $Id: config_sample.php,v 1.23 2007/03/15 16:07:46 avel Exp $
+ * @version $Id: config_sample.php,v 1.24 2007/03/21 10:33:53 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -20,7 +20,7 @@
  * Debug Mode. Enable this (change to 1) if you need to send a bug report.
  */
 if(!defined('AVELSIEVE_DEBUG')) {
-    define('AVELSIEVE_DEBUG', 1);
+    define('AVELSIEVE_DEBUG', 0);
 }
 
 /* ======================================================================== */
@@ -201,8 +201,8 @@ $translate_return_msgs = false;
  * plugins/avelsieve/$imagetheme, that contains the files: up.png, down.png,
  * del.png, dup.png, edit.png, top.png, bottom.png. */
 
-//$imagetheme = 'famfamfam';
-$imagetheme = 'bluecurve_24x24';
+$imagetheme = 'famfamfam';
+//$imagetheme = 'bluecurve_24x24';
 //$imagetheme = 'bluecurve_16x16';
 
 /* Number of items to display _initially_, when displaying the header match
@@ -289,7 +289,7 @@ $avelsieve_enable_rules = array();
 global $avelsieve_rules_settings;
 $avelsieve_rules_settings = array();
 foreach($avelsieve_enable_rules as $r) {
-    if(file_exists(SM_PATH . 'plugins/avelsieve/config/rule.'.$r.'.php'))
+    if(file_exists(SM_PATH . 'plugins/avelsieve/config/rule.'.$r.'.php')) {
         require(SM_PATH . 'plugins/avelsieve/config/rule.'.$r.'.php');
     } else {
         require(SM_PATH . 'plugins/avelsieve/config/rule.'.$r.'.default.php');
