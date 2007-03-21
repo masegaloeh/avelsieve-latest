@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.37 2007/03/19 16:39:42 avel Exp $
+ * @version $Id: table.php,v 1.38 2007/03/21 13:37:08 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -363,11 +363,12 @@ if($javascript_on) {
     if($popup) {
         // For displayHtmlHeader()
         $html_additional = $avelsieve_css_wrapped . '
+        <script language="JavaScript" type="text/javascript" src="'.$base_uri.'plugins/avelsieve/javascripts/avelsieve_common.js"></script>
         <script language="JavaScript" type="text/javascript" src="'.$base_uri.'plugins/avelsieve/javascripts/avelsieve_table.js"></script>
         ';
     } else {
         // For displayPageHeader()
-        $js = file_get_contents('./javascripts/avelsieve_table.js');
+        $js = file_get_contents('./javascripts/avelsieve_common.js') ."\n".file_get_contents('./javascripts/avelsieve_table.js');
         $js_wrapped = '
             <script language="JavaScript" type="text/javascript">
             '.$js.'
