@@ -3,7 +3,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: html_ruleedit.11.inc.php,v 1.9 2007/03/19 17:53:48 avel Exp $
+ * @version $Id: html_ruleedit.11.inc.php,v 1.10 2007/03/21 13:38:55 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -120,14 +120,14 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
                 
                 // Js Link to toggle informational text display.
                 if($this->js && isset($this->settings['spamrule_tests_info'][$key][$fv])) {
-                    $out .= '  <small><a class="avelsieve_expand_link" onclick="'.$this->js_toggle_display("div_$jskey", true).'return true;">';
+                    $out .= '  <small><a class="avelsieve_expand_link" onclick="'.$this->js_toggle_display("div_$jskey").'return true;">';
                     $out .= '<img src="images/triangle.gif" alt="&gt;" name="div_'.$jskey.'_img" id="'.$jskey.'_img" border="0" /> '.
                         _("Information...") . '</a></small>';
                 }
 
                 // Informational text
                 if(isset($this->settings['spamrule_tests_info'][$key][$fv]['desc'])) {
-                    $out .= '<br/><div class="avelsieve_quoted" id="div_'.$jskey.'"'. ($this->js == true ? 'style="display:none"' : '') .'><blockquote>'.
+                    $out .= '<br/><div class="avelsieve_quoted" id="div_'.$jskey.'"'. ($this->js ? 'style="display:none"' : '') .'><blockquote>'.
                         '<img src="images/icons/information.png" alt="(i)" border="0" />'. ' ' .
                         $this->settings['spamrule_tests_info'][$key][$fv]['desc'].
                             ( isset($this->settings['spamrule_tests_info'][$key][$fv]['url']) ? 

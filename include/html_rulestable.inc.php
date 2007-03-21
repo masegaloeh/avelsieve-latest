@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.27 2007/03/19 18:08:49 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.28 2007/03/21 13:38:55 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -442,8 +442,15 @@ class avelsieve_html_rules extends avelsieve_html {
         
             if($this->js) {
                 $out .= '<br/><div id="show_more_options_'.$i.'">'.
-                    '<a class="avelsieve_more_options_link" onclick="new Effect.Highlight(\'rule_row_'.$i.'\', {duration: 4}); new Effect.SlideDown(\'morecontrols_'.$i.'\');
-                        new Effect.SlideUp(\'show_more_options_'.$i.'\'); return true;">'.
+                    '<a class="avelsieve_more_options_link" onclick="'.
+                        ($this->js == 2 ?
+                            // scriptaculous
+                            'new Effect.Highlight(\'rule_row_'.$i.'\', {duration: 4}); new Effect.SlideDown(\'morecontrols_'.$i.'\');
+                            new Effect.SlideUp(\'show_more_options_'.$i.'\'); return true;' :
+                            // simpler javascript
+                            'HideDiv(\'show_more_options_'.$i.'\'); ShowDiv(\'morecontrols_'.$i.'\');return true;'
+                        ) .
+                    '">'.
                     '<img src="images/icons/arrow_right.png" /> '. _("More Options...") .'</a>'.
                     '</div>';
             
