@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.30 2007/03/19 12:33:27 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.31 2007/03/21 12:54:27 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2007 Alexandros Vellis
  * @package plugins
@@ -28,7 +28,6 @@
  * options_html()	Returns the HTML printout of the action's options 
  */
 class avelsieve_action {
-	var $frontend = '';
 	var $useimages = true;
     var $translate_return_msgs = false;
 
@@ -55,8 +54,7 @@ class avelsieve_action {
      * Initialize other properties based on the ones defined from child classes.
      * @return void
      */
-	function avelsieve_action(&$s, $rule, $frontend) {
-		$this->frontend = $frontend;
+	function avelsieve_action(&$s, $rule) {
 		$this->rule = $rule;
         $this->s = $s;
         
@@ -229,7 +227,7 @@ class avelsieve_action_keep extends avelsieve_action {
 	var $options = array(); 
     var $image_src = 'images/icons/accept.png';
 
-	function avelsieve_action_keep(&$s, $rule = array(), $frontend = 'html') {
+	function avelsieve_action_keep(&$s, $rule = array()) {
         $this->init();
         $this->text = _("Keep Message");
         $this->helptxt = _("Save the message in your INBOX.");
@@ -238,7 +236,7 @@ class avelsieve_action_keep extends avelsieve_action {
 			 * niceness */
 			$this->rule['action'] = 1;
 		}
-		$this->avelsieve_action($s, $rule, $frontend);
+		$this->avelsieve_action($s, $rule);
 	}
 }
 
@@ -251,11 +249,11 @@ class avelsieve_action_discard extends avelsieve_action {
 	var $options = array(); 
     var $image_src = 'images/icons/cross.png';
 
-	function avelsieve_action_discard(&$s, $rule = array(), $frontend = 'html') {
+	function avelsieve_action_discard(&$s, $rule = array()) {
         $this->init();
 		$this->text = _("Discard");
 		$this->helptxt = _("Silently discards the message; use with caution.");
-		$this->avelsieve_action($s, $rule, $frontend);
+		$this->avelsieve_action($s, $rule);
 	}
 }
 
@@ -270,7 +268,7 @@ class avelsieve_action_reject extends avelsieve_action {
 	);
     var $image_src = 'images/icons/arrow_undo.png';
  	
-	function avelsieve_action_reject(&$s, $rule = array(), $frontend = 'html') {
+	function avelsieve_action_reject(&$s, $rule = array()) {
         $this->init();
 		$this->text = _("Reject");
 		$this->helptxt = _("Send the message back to the sender, along with an excuse");
@@ -280,7 +278,7 @@ class avelsieve_action_reject extends avelsieve_action {
 		} else {
 			$this->options['excuse'] = "Please do not send me large attachments.";
 		}
-		$this->avelsieve_action($s, $rule, $frontend);
+		$this->avelsieve_action($s, $rule);
 	}
 
 	function options_html($val) {
@@ -295,7 +293,7 @@ class avelsieve_action_redirect extends avelsieve_action {
 	var $num = 4;
     var $image_src = 'images/icons/arrow_divide.png';
 
-	function avelsieve_action_redirect(&$s, $rule = array(), $frontend = 'html') {
+	function avelsieve_action_redirect(&$s, $rule = array()) {
         $this->init();
 		$this->text = _("Redirect");
 		$this->helptxt = _("Automatically redirect the message to a different email address");
@@ -303,7 +301,7 @@ class avelsieve_action_redirect extends avelsieve_action {
 			'redirectemail' => _("someone@example.org"),
 			'keep' => ''
 		);
-		$this->avelsieve_action($s, $rule, $frontend);
+		$this->avelsieve_action($s, $rule);
 	}
 
 	function options_html($val) {
@@ -346,13 +344,12 @@ class avelsieve_action_fileinto extends avelsieve_action {
      *
      * @param object $s
      * @param array $rule
-     * @param frontend string
      * @return void
      */
-	function avelsieve_action_fileinto(&$s, $rule = array(), $frontend = 'html') {
+	function avelsieve_action_fileinto(&$s, $rule = array()) {
         $this->init();
 		$this->text = _("Move to Folder");
-		$this->avelsieve_action($s, $rule, $frontend);
+		$this->avelsieve_action($s, $rule);
 		if(isset($rule['folder'])) {
 			$this->helptxt = mailboxlist('folder', $rule['folder']);
 		} else {
@@ -395,7 +392,7 @@ class avelsieve_action_vacation extends avelsieve_action {
 	);
     var $image_src = 'images/icons/status_away.png';
 
-	function avelsieve_action_vacation(&$s, $rule = array(), $frontend = 'html') {
+	function avelsieve_action_vacation(&$s, $rule = array()) {
         $this->init();
 		$this->text = _("Vacation");
 		$this->options['vac_addresses'] = get_user_addresses();
@@ -410,7 +407,7 @@ class avelsieve_action_vacation extends avelsieve_action {
 		
 		$this->helptxt = _("The notice will be sent only once to each person that sends you mail, and will not be sent to a mailing list address.");
 
-		$this->avelsieve_action($s, $rule, $frontend);
+		$this->avelsieve_action($s, $rule);
 	}
 
 
@@ -452,11 +449,11 @@ class avelsieve_action_stop extends avelsieve_action {
 	var $text = '';
 	var $image_src = 'images/icons/stop.png';
 
-	function avelsieve_action_stop(&$s, $rule = array(), $frontend = 'html') {
+	function avelsieve_action_stop(&$s, $rule = array()) {
         $this->init();
 		$this->helptxt = _("If this rule matches, do not check any rules after it.");
 		$this->text = _("STOP");
-		$this->avelsieve_action($s, $rule, $frontend);
+		$this->avelsieve_action($s, $rule);
 	}
 }
 
@@ -485,7 +482,7 @@ class avelsieve_action_notify extends avelsieve_action {
 	 *
 	 * @see https://bugzilla.andrew.cmu.edu/show_bug.cgi?id=2135
 	 */
-	function avelsieve_action_notify(&$s, $rule = array(), $frontend = 'html') {
+	function avelsieve_action_notify(&$s, $rule = array()) {
         $this->init();
 		global $notifymethods, $avelsieve_oldcyrus;
 		if(isset($notifymethods)) {
@@ -504,7 +501,7 @@ class avelsieve_action_notify extends avelsieve_action {
 		);
 		
 		$this->oldcyrus = $avelsieve_oldcyrus;
-		$this->avelsieve_action($s, $rule, $frontend);
+		$this->avelsieve_action($s, $rule);
 	}
 
 	function options_html($val) {
@@ -607,10 +604,10 @@ class avelsieve_action_keepdeleted extends avelsieve_action {
 	var $capability = 'imapflags';
 	var $image_src = 'images/icons/email_delete.png';
 
-	function avelsieve_action_keepdeleted(&$s, $rule = array(), $frontend = 'html') {
+	function avelsieve_action_keepdeleted(&$s, $rule = array()) {
         $this->init();
 		$this->text = _("Also keep copy in INBOX, marked as deleted.");
-		$this->avelsieve_action($s, $rule, $frontend);
+		$this->avelsieve_action($s, $rule);
 	}
 }
 
@@ -622,11 +619,11 @@ class avelsieve_action_disabled extends avelsieve_action {
 	var $name = 'disabled';
 	var $image_src = 'images/icons/disconnect.png';
 
-	function avelsieve_action_disabled(&$s, $rule = array(), $frontend = 'html') {
+	function avelsieve_action_disabled(&$s, $rule = array()) {
         $this->init();
 		$this->text = _("Disable");
 		$this->helptxt = _("The rule will have no effect for as long as it is disabled.");
-		$this->avelsieve_action($s, $rule, $frontend);
+		$this->avelsieve_action($s, $rule);
 	}
 }
 
@@ -639,13 +636,13 @@ class avelsieve_action_junk extends avelsieve_action {
 	var $name = 'junk';
 	var $image_src = 'images/icons/bin.png';
     
-    function avelsieve_action_junk(&$s, $rule = array(), $frontend = 'html') {
+    function avelsieve_action_junk(&$s, $rule = array()) {
         global $junkfolder_days;
         $this->init();
         $this->text = _("Move to Junk");
         $this->helptxt = sprintf( _("Store message in your Junk Folder. Messages older than %s days will be deleted automatically."), $junkfolder_days).
                ' ' . _("Note that you can set the number of days in Folder Preferences.");
-		$this->avelsieve_action($s, $rule, $frontend);
+		$this->avelsieve_action($s, $rule);
     }
 }
 
@@ -657,11 +654,11 @@ class avelsieve_action_trash extends avelsieve_action {
 	var $name = 'junk';
 	var $image_src = 'images/icons/bin.png';
     
-    function avelsieve_action_trash(&$s, $rule = array(), $frontend = 'html') {
+    function avelsieve_action_trash(&$s, $rule = array()) {
         $this->init();
         $this->text = _("Move to Trash");
         $this->helptxt = _("Store message in your Trash Folder. You will have to purge the folder yourself.");
-		$this->avelsieve_action($s, $rule, $frontend);
+		$this->avelsieve_action($s, $rule);
     }
 }
 
