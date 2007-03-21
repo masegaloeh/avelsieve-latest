@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.43 2007/03/19 16:39:42 avel Exp $
+ * @version $Id: edit.php,v 1.44 2007/03/21 13:37:08 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -313,12 +313,13 @@ if($javascript_on) {
     if($popup) {
         // For displayHtmlHeader()
         $html_additional = $avelsieve_css_wrapped . '
+        <script language="JavaScript" type="text/javascript" src="'.$base_uri.'plugins/avelsieve/javascripts/avelsieve_common.js"></script>
         <script language="JavaScript" type="text/javascript" src="'.$base_uri.'plugins/avelsieve/javascripts/avelsieve_edit.js"></script>
         ';
     
     } else {
         // For displayPageHeader()
-        $js = file_get_contents('./javascripts/avelsieve_edit.js');
+        $js = file_get_contents('./javascripts/avelsieve_common.js') ."\n".file_get_contents('./javascripts/avelsieve_edit.js');
         $js_wrapped = '
         <script language="JavaScript" type="text/javascript">
         '.$js.'
