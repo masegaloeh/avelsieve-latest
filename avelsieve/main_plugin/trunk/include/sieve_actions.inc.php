@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.31 2007/03/21 12:54:27 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.32 2007/03/21 13:38:55 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2007 Alexandros Vellis
  * @package plugins
@@ -28,15 +28,30 @@
  * options_html()	Returns the HTML printout of the action's options 
  */
 class avelsieve_action {
+    /*
+     * @var boolean Flag to enable use of images and visual enhancements.
+     */
 	var $useimages = true;
+
+    /**
+     * @var boolean Translate generated email messages?
+     */
     var $translate_return_msgs = false;
 
+    /**
+     * @var int Level of Javascript support
+     */
+    var $js = 0;
+
 	/**
-     * Initialize variables that we get from the configuration of avelsieve.
+     * Initialize variables that we get from the configuration of avelsieve and 
+     * the environment of Squirrelmail.
+     *
      * @return void
 	 */
     function init() {
-        global $translate_return_msgs, $useimages, $javascript_on;
+        global $translate_return_msgs, $useimages, $javascript_on, $plugins;
+
         if(isset($translate_return_msgs)) {
             $this->translate_return_msgs = $translate_return_msgs;
         }
@@ -44,9 +59,10 @@ class avelsieve_action {
             $this->useimages = $useimages;
         }
 		if($javascript_on) {
-			$this->js = true;
-		} else {
-			$this->js = false;
+			$this->js++;
+            if(in_array('javascript_libs', $plugins)) {
+			    $this->js++;
+            }
 		}
     }
 

@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_main.inc.php,v 1.13 2007/03/05 14:26:37 avel Exp $
+ * @version $Id: html_main.inc.php,v 1.14 2007/03/21 13:38:55 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -22,9 +22,9 @@
  */
 class avelsieve_html {
 	/**
-	 * @var boolean Javascript Enabled?
+     * @var int Level of Javascript support
 	 */
-	var $js;
+	var $js = 0;
     
     /**
 	 * @param boolean Flag for image usage
@@ -36,16 +36,14 @@ class avelsieve_html {
 	 * environment.
 	 */
 	function avelsieve_html() {
-		/* Set up javascript variable */
-		global $javascript_on;
+		global $plugins, $javascript_on, $useimages;
+
 		if($javascript_on) {
-			$this->js = true;
-		} else {
-			$this->js = false;
-		}
-        
-        /* Set up useimages flag */
-        global $useimages;
+			$this->js++;
+            if(in_array('javascript_libs', $plugins)) {
+			    $this->js++;
+            }
+        }
 		$this->useimages = $useimages;
 	}
 
@@ -176,14 +174,19 @@ class avelsieve_html {
      * for "toggle" links.
      *
      * @param string $divname ID of the DIV/SPAN
-     * @param boolean $with_img Enables the use of arrow-style images
      * @return string
      */
-    function js_toggle_display($divname, $with_img = false) {
-        if($with_img) {
-            return 'ToggleShowDivWithImg(\''.$divname.'\');';
-        } else {
-            return 'ToggleShowDiv(\''.$divname.'\');';
+    function js_toggle_display($divname) {
+        if($this->js == 2) {
+            /* Scriptaculous */
+            return 'Effect.toggle(\''.$divname.'\', \'slide\');';
+        } elseif($this->js ==1) {
+            /* Simple javascript */
+            if($this->useimages) {
+                return 'ToggleShowDivWithImg(\''.$divname.'\');';
+            } else {
+                return 'ToggleShowDiv(\''.$divname.'\');';
+            }
         }
     }
 
