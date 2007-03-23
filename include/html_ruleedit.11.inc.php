@@ -3,7 +3,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: html_ruleedit.11.inc.php,v 1.12 2007/03/23 11:16:47 avel Exp $
+ * @version $Id: html_ruleedit.11.inc.php,v 1.13 2007/03/23 12:38:28 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -161,12 +161,11 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
                 '<p><img src="images/icons/information.png" alt="(i)" border="0" /> '. 
                 sprintf( _("There is currently no Junk Mail Filter, so we are suggesting the following default settings. To add the Junk Mail Filter, simply choose <em>&quot;%s&quot;</em>."), _("Apply Changes")).
                 '</p>'.
-			    '</div>' . 	$this->section_end();
+                '</div>' . $this->section_end();
         }
 
         
         /* ---------- Referrer hidden input fields ------------ */
-        $this->referrerArgs = array('junkmailSettingsSaved' => '1');
         $out .= $this->referrer_html();
 
         /* --------------------- module settings ----------------------- */
@@ -321,6 +320,14 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
                 call_user_func($updateFunc, $username, $this->rule['junkmail_days']);
             }
         }
+    }
+    
+    /**
+     * Return a customized "Rule has been successfully changed"-type message.
+     * @return string
+     */
+    function getSuccessMessage() {
+        return '<strong>'.  _("Junk Mail Options have been saved.") . '</strong>';
     }
 }
 
