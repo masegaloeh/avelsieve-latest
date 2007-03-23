@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.11.inc.php,v 1.5 2007/03/19 18:08:49 avel Exp $
+ * @version $Id: sieve_buildrule.11.inc.php,v 1.6 2007/03/23 10:03:07 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2007 Alexandros Vellis
  * @package plugins
@@ -44,28 +44,19 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
     if(isset($rule['tests']) && !empty($rule['tests'])) {
         $tests = $rule['tests'];
     }
-    if(!$advanced) {
-        
-    }
-
     if(isset($rule['enable']) && $rule['enable']) {
         $enable = 1;
     } else {
-        $text = _("SPAM Rule is Disabled");
-        $terse = _("<s>SPAM</s>");
+        $enable = 0;
+        $text = _("Junk Mail Rule is Disabled");
+        $terse = _("<s></s>");
     }
-
-
-    if(!$advanced) {
-    }
-
-    
     if(isset($rule['action'])) {
         $ac = $rule['action'];
     }
     
     $out .= 'if allof( ';
-    $terse .= _("SPAM");
+    $terse .= _("Junk Mail");
     
     $out_part = array();
     foreach($tests as $test=>$val) {
@@ -108,7 +99,7 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
 
 
     /* The textual descriptions follow */
-    if($advanced == true || $force_advanced_mode) {
+    if($advanced || $force_advanced_mode) {
         $text .= '<ul>'; // 1st level ul
         $text .= '<li>' . _("matching any one of the Spam tests as follows:"). '</li><ul style="margin-top: 1px; margin-bottom: 1px;">';
         $terse .= '<br/>' . _("Spam Tests:") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
@@ -144,91 +135,28 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
 
     /* FIXME - Temporary Copy/Paste kludge */
     switch($rule['action']) {
-	case '1':	/* keep (default) */
-	default:
-		$out .= "keep;";
-		$text .= _("<em>keep</em> it.");
-		$terse .= _("Keep");
-		break;
-	
-	case '2':	/* discard */
-		$out .= "discard;";
-		$text .= _("<em>discard</em> it.");
-		$terse .= _("Discard");
-		break;
-	
-	case '3':	/* reject w/ excuse */
-		$out .= "reject text:\n".$rule['excuse']."\r\n.\r\n;";
-		$text .= _("<em>reject</em> it, sending this excuse back to the sender:")." \"".htmlspecialchars($rule['excuse'])."\".";
-		$terse .= _("Reject");
-		break;
-	
-	case '4':	/* redirect to address */
-		if(strstr(trim($rule['redirectemail']), ' ')) {
-			$redirectemails = explode(' ', trim($rule['redirectemail']));
-		}
-		if(!isset($redirectemails)) {
-			if(strstr(trim($rule['redirectemail']), ',')) {
-				$redirectemails = explode(',', trim($rule['redirectemail']));
-			}
-		}
-		if(isset($redirectemails)) {
-			foreach($redirectemails as $redirectemail) {
-				$out .= 'redirect "'.$redirectemail."\";\n";
-				$terse .= _("Redirect to").' '.htmlspecialchars($redirectemail). '<br/>';
-			}
-			$text .= sprintf( _("<em>redirect</em> it to the email addresses: %s."), implode(', ',$redirectemails));
-		} else {
-			$out .= "redirect \"".$rule['redirectemail']."\";";
-			$text .= _("<em>redirect</em> it to the email address")." ".htmlspecialchars($rule['redirectemail']).".";
-			$terse .= _("Redirect to") . ' ' .htmlspecialchars($rule['redirectemail']);
-		}
-		break;
-	
-	case '5':	/* fileinto folder */
-		$out .= 'fileinto "'.$rule['folder'].'";';
-
-		if(!empty($inconsistent_folders) && in_array($rule['folder'], $inconsistent_folders)) {
-			$clr = '<span style="color:'.$color[2].'">';
-			$text .= $clr;
-			$terse .= $clr;
-		}
-		$text .= sprintf( _("<em>file</em> it into the folder %s"),
-			' <strong>' . htmlspecialchars(imap_utf7_decode_local($rule['folder'])) . '</strong>');
-		$terse .= sprintf( _("File into %s"), htmlspecialchars(imap_utf7_decode_local($rule['folder'])));
-		
-		if(!empty($inconsistent_folders) && in_array($rule['folder'], $inconsistent_folders)) {
-			$cls = '<em>' . _("(Warning: Folder not available)") . '</em></span>';
-			$text .= ' '.$cls;
-			$terse .= '<br/>'.$cls;
-		}
-		$text .= '. ';
-		break;
-    /* END first copy/paste kludge */
-
         /* Added */
-	case '7':	/* junk folder */
-        $out .= 'fileinto "INBOX.Junk";';
-        $text .= _("stored in the <strong>Junk</strong> Folder.");
-        $terse .= _("Junk");
-        break;
+	    case '7':	/* junk folder */
+            $out .= 'fileinto "INBOX.Junk";';
+            $text .= _("stored in the <strong>Junk</strong> Folder.");
+            $terse .= _("Junk");
+            break;
+        
+	    case '8':	/* junk folder */
+            $text .= _("stored in the <strong>Trash</strong> Folder.");
+        
+            global $data_dir, $username;
+            $trash_folder = getPref($data_dir, $username, 'trash_folder');
+            /* Fallback in case it does not exist. Thanks to Eduardo
+            * Mayoral. If not even Trash does not exist, it will end up in
+            * INBOX... */
+            if($trash_folder == '' || $trash_folder == 'none') {
+                $trash_folder = "Trash";
+            }
+            $out .= 'fileinto "'.$trash_folder.'";';
     
-	case '8':	/* junk folder */
-        $text .= _("stored in the <strong>Trash</strong> Folder.");
-    
-        global $data_dir, $username;
-        $trash_folder = getPref($data_dir, $username, 'trash_folder');
-        /* Fallback in case it does not exist. Thanks to Eduardo
-         * Mayoral. If not even Trash does not exist, it will end up in
-         * INBOX... */
-        if($trash_folder == '' || $trash_folder == 'none') {
-            $trash_folder = "Trash";
-        }
-        $out .= 'fileinto "'.$trash_folder.'";';
-
-        $terse .= _("Trash");
-        break;
-    
+            $terse .= _("Trash");
+            break;
     }
 
     return(array($out,$text,$terse));
