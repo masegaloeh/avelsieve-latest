@@ -3,7 +3,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: html_ruleedit.11.inc.php,v 1.13 2007/03/23 12:38:28 avel Exp $
+ * @version $Id: html_ruleedit.11.inc.php,v 1.14 2007/03/23 12:49:19 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -104,18 +104,18 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
                 // Js Link to toggle informational text display.
                 if($this->js && isset($this->settings['spamrule_tests_info'][$key][$fv])) {
                     $out .= '  <small><a class="avelsieve_expand_link" onclick="'.$this->js_toggle_display("div_$jskey", '', 1).'return true;">';
-                    $out .= '<img src="images/triangle.gif" alt="&gt;" name="div_'.$jskey.'_img" id="'.$jskey.'_img" border="0" /> '.
+                    $out .= '<img src="'.$this->imageuri.'triangle.gif" alt="&gt;" name="div_'.$jskey.'_img" id="'.$jskey.'_img" border="0" /> '.
                         _("Information...") . '</a></small>';
                 }
 
                 // Informational text
                 if(isset($this->settings['spamrule_tests_info'][$key][$fv]['desc'])) {
                     $out .= '<br/><div class="avelsieve_quoted" id="div_'.$jskey.'"'. ($this->js ? 'style="display:none"' : '') .'><blockquote>'.
-                        '<img src="images/icons/information.png" alt="(i)" border="0" />'. ' ' .
+                        '<img src="'.$this->iconuri.'information.png" alt="(i)" border="0" />'. ' ' .
                         $this->settings['spamrule_tests_info'][$key][$fv]['desc'].
                             ( isset($this->settings['spamrule_tests_info'][$key][$fv]['url']) ? 
                             '<br/><a href="'.$this->settings['spamrule_tests_info'][$key][$fv]['url'].'" target="_blank">'.
-                            '<img src="images/external_link.png" alt="[]" border="0" /> '.
+                            '<img src="'.$this->imageuri.'external_link.png" alt="[]" border="0" /> '.
                             htmlspecialchars($this->settings['spamrule_tests_info'][$key][$fv]['url']).'</a>' : '')  .
                         '</blockquote></div>';
                 }
@@ -158,7 +158,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
         if($this->mode == 'addnew') {
             $out .= $this->section_start( _("Add New Rule") ).
                 '<div style="text-align:center">'.
-                '<p><img src="images/icons/information.png" alt="(i)" border="0" /> '. 
+                '<p><img src="'.$this->iconuri.'information.png" alt="(i)" border="0" /> '. 
                 sprintf( _("There is currently no Junk Mail Filter, so we are suggesting the following default settings. To add the Junk Mail Filter, simply choose <em>&quot;%s&quot;</em>."), _("Apply Changes")).
                 '</p>'.
                 '</div>' . $this->section_end();

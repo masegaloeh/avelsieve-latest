@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_main.inc.php,v 1.16 2007/03/23 12:38:28 avel Exp $
+ * @version $Id: html_main.inc.php,v 1.17 2007/03/23 12:49:19 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -45,6 +45,9 @@ class avelsieve_html {
             }
         }
 		$this->useimages = $useimages;
+        $this->baseuri = sqm_baseuri();
+        $this->imageuri = $this->baseuri . 'plugins/avelsieve/images/';
+        $this->iconuri = $this->baseuri . 'plugins/avelsieve/images/icons/';
 	}
 
 	/**
@@ -185,7 +188,7 @@ class avelsieve_html {
             $comm = $_SESSION['comm'];
 
             $out .= '<p style="background-color: '.$color[16].'; color:'.$color[8].'; text-align: center;">'.
-                ($this->useimages == true? '<img src="images/icons/tick.png" alt="(OK)" /> ' : '');        
+                ($this->useimages == true? '<img src="'.$this->iconuri.'tick.png" alt="(OK)" /> ' : '');        
             
             if (isset($comm['raw'])) {
                 $out .= $comm['raw'];
