@@ -3,7 +3,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: html_ruleedit.11.inc.php,v 1.11 2007/03/23 09:37:08 avel Exp $
+ * @version $Id: html_ruleedit.11.inc.php,v 1.12 2007/03/23 11:16:47 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -103,7 +103,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
                 
                 // Js Link to toggle informational text display.
                 if($this->js && isset($this->settings['spamrule_tests_info'][$key][$fv])) {
-                    $out .= '  <small><a class="avelsieve_expand_link" onclick="'.$this->js_toggle_display("div_$jskey").'return true;">';
+                    $out .= '  <small><a class="avelsieve_expand_link" onclick="'.$this->js_toggle_display("div_$jskey", '', 1).'return true;">';
                     $out .= '<img src="images/triangle.gif" alt="&gt;" name="div_'.$jskey.'_img" id="'.$jskey.'_img" border="0" /> '.
                         _("Information...") . '</a></small>';
                 }
@@ -154,6 +154,17 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
         /* ---------- Error (or other) Message, if it exists -------- */
         $out .= $this->print_errmsg();
         
+        /* ---------- If adding the default rule, let the user know -------- */
+        if($this->mode == 'addnew') {
+            $out .= $this->section_start( _("Add New Rule") ).
+                '<div style="text-align:center">'.
+                '<p><img src="images/icons/information.png" alt="(i)" border="0" /> '. 
+                sprintf( _("There is currently no Junk Mail Filter, so we are suggesting the following default settings. To add the Junk Mail Filter, simply choose <em>&quot;%s&quot;</em>."), _("Apply Changes")).
+                '</p>'.
+			    '</div>' . 	$this->section_end();
+        }
+
+        
         /* ---------- Referrer hidden input fields ------------ */
         $this->referrerArgs = array('junkmailSettingsSaved' => '1');
         $out .= $this->referrer_html();
@@ -182,7 +193,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
         $form .= '</select>';
 
         $out .= '<br/><input type="checkbox" name="junkmail_prune" id="junkmail_prune" value="1"'.
-                ($this->js ? 'onclick="'.$this->js_toggle_display('span_junkmail_days') : '' ) .'return true;" '.
+                ($this->js ? 'onclick="'.$this->js_toggle_display('span_junkmail_days', 1) : '' ) .'return true;" '.
                 $this->stateCheckbox('junkmail_prune') . '/>'.
                 '<label for="junkmail_prune">'. _("Automatically delete Junk Messages") . '</label>' .
 
