@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_main.inc.php,v 1.14 2007/03/21 13:38:55 avel Exp $
+ * @version $Id: html_main.inc.php,v 1.15 2007/03/23 11:15:34 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -174,22 +174,37 @@ class avelsieve_html {
      * for "toggle" links.
      *
      * @param string $divname ID of the DIV/SPAN
+     * @param int $js Force Javascript level. for instance, sometimes we don't 
+     *   want scriptaculous-style effects, so we set js=1.
+     * @param boolean $imageChange Change the image "$divname_img" to 
+     *   closed/open triangle
      * @return string
      */
-    function js_toggle_display($divname) {
-        if($this->js == 2) {
+    function js_toggle_display($divname, $js = '', $imageChange = '') {
+        if($this->js == 0) {
+            $js = 0;
+        } elseif(empty($js)) {
+            $js = $this->js;
+        }
+        if(empty($imageChange)) $imageChange = $this->useimages;
+
+        if($js == 2) {
             /* Scriptaculous */
-            return 'Effect.toggle(\''.$divname.'\', \'slide\');';
-        } elseif($this->js ==1) {
+            if($imageChange) {
+                return 'ToggleShowDivWithImg(\''.$divname.'\', 1);';
+            } else {
+                return 'Effect.toggle(\''.$divname.'\', \'slide\');';
+            }
+
+        } elseif($js == 1) {
             /* Simple javascript */
-            if($this->useimages) {
+            if($imageChange) {
                 return 'ToggleShowDivWithImg(\''.$divname.'\');';
             } else {
                 return 'ToggleShowDiv(\''.$divname.'\');';
             }
         }
     }
-
 
     /**
      * Print formatted error message(s), if they exist.
