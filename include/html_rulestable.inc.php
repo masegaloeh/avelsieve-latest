@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.30 2007/03/23 12:49:19 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.31 2007/03/23 13:13:52 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -47,7 +47,7 @@ class avelsieve_html_rules extends avelsieve_html {
 	}
 
 	/**
-	 * "Create new rules" blurb, for when no rules exist.
+	 * "Create new rules" text, for when no rules exist.
      * @return string
 	 */
 	function rules_create_new() {
@@ -62,7 +62,7 @@ class avelsieve_html_rules extends avelsieve_html {
      * @return string
 	 */
 	function rules_blurb() {
-		global $color, $conservative, $displaymodes, $scriptinfo;
+		global $color, $conservative, $scriptinfo;
 		
 		$out = " <p>"._("Here you can add or delete filtering rules for your email account. These filters will always apply to your incoming mail, wherever you check your email.")."</p> ";
 		
@@ -83,15 +83,20 @@ class avelsieve_html_rules extends avelsieve_html {
                 _("Warning: In your rules, you have defined an action that refers to a folder that does not exist or a folder where you do not have permission to append to.") .
                 '</p>';
 		}
-		
-		$out .= "<p>"._("The following table summarizes your current mail filtering rules.")."</p>";
 
-        // EXPERIMENTAL / TODO
-        //$out .= '<p><a href="#" onclick="show_hide_column(\'avelsieve_rules_table\', 1, \'avelsieve_movement_controls\')">'.
-        //        _("Toggle Movement Controls") . '</a>';
-		
-		/* NEW*/
-		$out .= '
+        // Removed ATM
+		$dummy = "<p>"._("The following table summarizes your current mail filtering rules.")."</p>";
+
+        return $out;
+    }
+
+    /**
+     * Rules Table Header + 1st row, which is the heading
+     * @return string
+     */
+    function rules_table_header() {
+        global $color, $displaymodes;
+		$out = '
 		<table id="avelsieve_rules_table" cellpadding="3" cellspacing="2" border="0" align="center" width="97%" frame="box">
         <tr bgcolor="'.$color[0].'">
 		<td style="white-space:nowrap" valign="middle">';
@@ -100,7 +105,6 @@ class avelsieve_html_rules extends avelsieve_html {
 			'<td>'. _("Description of Rule").
 			' <small>(' . _("Display as:");
 		
-		
 		foreach($displaymodes as $id=>$info) {
 			if($this->mode == $id) {
 				$out .= ' <strong><span title="'.$info[1].'">'.$info[0].'</span></strong>';
@@ -108,10 +112,9 @@ class avelsieve_html_rules extends avelsieve_html {
 				$out .= ' <a href="'.$_SERVER['SCRIPT_NAME'].'?mode='.$id.'" title="'.$info[1].'">'.$info[0].'</a>';
 			}
 		}
-		$out .= ')</small>';
-		$out .= '</td><td style="white-space:nowrap;">'. _("Position") ."</td>\n";
-		
-		$out .= "</td></tr>\n";
+		$out .= ')</small>'.
+		    '</td><td style="white-space:nowrap;">'. _("Position") .'</td>'.
+    		"</td></tr>\n";
 		return $out;
 	}
 		
@@ -287,6 +290,8 @@ class avelsieve_html_rules extends avelsieve_html {
 	 * Output script information (last modification date etc.)
 	 * @param array $scriptinfo
 	 * @return string
+     * @todo Move these to a different page, so that it will not clutter the 
+     *   main table screen.
 	 */
 	function scriptinfo($scriptinfo) {
 		if(function_exists('getLongDateString')) {
@@ -297,7 +302,7 @@ class avelsieve_html_rules extends avelsieve_html {
 			bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 			textdomain ('avelsieve');
 			
-			$out = '<p><em>'. _("Last modified:").'</em> <strong>'.$mo.'</strong></p>';
+			// $out = '<p><em>'. _("Last modified:").'</em> <strong>'.$mo.'</strong></p>';
 		
 			/*
 			$out = '<p><em>'._("Created:").'</em> '.$cr.'.<br /><em>'.
@@ -311,8 +316,10 @@ class avelsieve_html_rules extends avelsieve_html {
 			$out = '<p><em>'._("Created:").'</em> '.
 			date("Y-m-d H:i:s",$scriptinfo['created']).'. <em>'.
 			*/
-			$out = _("Last modified:").'</em> <strong>'.
-			date("Y-m-d H:i:s",$scriptinfo['modified']).'</strong></p>';
+            $dummy = _("Last modified:");
+            
+            // '</em> <strong>'.
+			//date("Y-m-d H:i:s",$scriptinfo['modified']).'</strong></p>';
 		}
 	
 		if(AVELSIEVE_DEBUG == 1) {
@@ -367,7 +374,8 @@ class avelsieve_html_rules extends avelsieve_html {
             $this->table_header( _("Current Mail Filtering Rules") ).
             '<p>'. $this->button_addnewrule(true) . '</p>'.
             // '<tr><td bgcolor="'.$color[4].'" align="center">'.
-            $this->rules_blurb();
+            $this->rules_blurb().
+            $this->rules_table_header();
             // '</td></tr>';
 
         $toggle = false;
