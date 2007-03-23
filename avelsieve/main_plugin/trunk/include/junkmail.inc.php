@@ -10,7 +10,7 @@
  *
  * This file contains special functions related to junk mail options.
  *
- * @version $Id: junkmail.inc.php,v 1.5 2007/03/23 12:38:28 avel Exp $
+ * @version $Id: junkmail.inc.php,v 1.6 2007/03/23 12:49:19 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -95,15 +95,15 @@ function junkmail_right_main_do() {
     $ht->useimages = true; // FIXME
 
     echo $ht->all_sections_start() . $ht->section_start(
-            ($ht->useimages == true ? '<img src="../plugins/avelsieve/images/icons/information.png" alt="(i)" /> ' : '')
+            ($ht->useimages == true ? '<img src="'.$ht->iconuri.'information.png" alt="(i)" /> ' : '')
             .   _("Junk Folder Information"))          
             . '<p>'.
-            ($ht->useimages == true ? '<img src="../plugins/avelsieve/images/icons/email_error.png" alt="(i)" /> ' : '').
+            ($ht->useimages == true ? '<img src="'.$ht->iconuri.'email_error.png" alt="(i)" /> ' : '').
             _("Messages in this folder have been identified as SPAM / Junk.");
     
     if(!$rule_exists || !$rule_enabled) {
         echo '<br/>' .
-             ($ht->useimages == true? '<img src="../plugins/avelsieve/images/icons/exclamation.png" alt="(Warning)" /> ' : '') .
+             ($ht->useimages == true? '<img src="'.$ht->iconuri.'exclamation.png" alt="(!)" /> ' : '') .
              '<strong>' . sprintf( _("Note: Junk Mail is currently not enabled. Select &quot;%s&quot; to enable it."),
                 '<em>'._("Edit Junk Mail Options...").'</em>' ) . '</strong>';
     } else {

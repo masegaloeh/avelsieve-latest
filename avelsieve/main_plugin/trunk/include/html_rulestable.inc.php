@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.29 2007/03/23 12:38:28 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.30 2007/03/23 12:49:19 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -79,7 +79,7 @@ class avelsieve_html_rules extends avelsieve_html {
 		global $inconsistent_folders;
 		if(!empty($inconsistent_folders)) {
             $out .= '<p style="color:'.$color[2].'">' .
-                ($this->useimages ? '<img src="images/icons/exclamation.png" alt="(!)" border="0" />'. ' ' : '' ) .
+                ($this->useimages ? '<img src="'.$this->iconuri.'exclamation.png" alt="(!)" border="0" />'. ' ' : '' ) .
                 _("Warning: In your rules, you have defined an action that refers to a folder that does not exist or a folder where you do not have permission to append to.") .
                 '</p>';
 		}
@@ -178,7 +178,7 @@ class avelsieve_html_rules extends avelsieve_html {
         }
 
         $out = ' <a href="edit.php?addnew=1" rel="nofollow">'. 
-            ($this->useimages == true ? '<img src="images/icons/add.png" alt="[]" border="0" /> ' : '') .
+            ($this->useimages == true ? '<img src="'.$this->iconuri.'add.png" alt="[]" border="0" /> ' : '') .
             '<strong>' .
             _("Add a new Rule") . '</strong></a>';
 
@@ -426,7 +426,7 @@ class avelsieve_html_rules extends avelsieve_html {
                             'HideDiv(\'show_more_options_'.$i.'\'); ShowDiv(\'morecontrols_'.$i.'\');return true;'
                         ) .
                     '">'.
-                    '<img src="images/icons/arrow_right.png" /> '. _("More Options...") .'</a>'.
+                    '<img src="'.$this->iconuri.'arrow_right.png" /> '. _("More Options...") .'</a>'.
                     '</div>';
             
                 $out .= '<small><a class="avelsieve_expand_link" onclick="'.$this->js_toggle_display("morecontrols_$i", true).'return true;">';
