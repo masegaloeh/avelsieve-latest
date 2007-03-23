@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.36 2007/03/19 18:08:49 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.37 2007/03/23 10:04:10 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -516,13 +516,13 @@ function makesinglerule($rule, $mode='rule') {
 	case '1':	/* keep (default) */
 	default:
 		$out .= "keep;";
-		$text .= _("<em>keep</em> it.");
+		$text .= _("<em>keep</em> the message.");
 		$terse .= _("Keep");
 		break;
 	
 	case '2':	/* discard */
 		$out .= "discard;";
-		$text .= _("<em>discard</em> it.");
+		$text .= _("<em>discard</em> the message.");
 		$terse .= _("Discard");
 		break;
 	
@@ -614,8 +614,10 @@ function makesinglerule($rule, $mode='rule') {
 	
 	if (array_key_exists("notify", $rule) && is_array($rule['notify']) && ($rule['notify']['method'] != '')) {
 		global $notifystrings, $prioritystrings;
+        include_once(SM_PATH . 'plugins/avelsieve/include/sieve_actions.inc.php');
+        $temp_action = new avelsieve_action_notify($sieve, $rule); // To retrieve $notifystrings property
 		$text .= _(" Also notify using the method")
-			. " <em>" . htmlspecialchars($notifystrings[$rule['notify']['method']]) . "</em>, ".
+			. " <em>" . htmlspecialchars($temp_action->notifystrings[$rule['notify']['method']]) . "</em>, ".
 			_("with")
 			. " " . htmlspecialchars($prioritystrings[$rule['notify']['priority']]) . " " .
 			_("priority and the message")
