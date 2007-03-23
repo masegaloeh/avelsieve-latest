@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.32 2007/03/21 13:38:55 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.33 2007/03/23 09:48:03 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2007 Alexandros Vellis
  * @package plugins
@@ -211,15 +211,30 @@ class avelsieve_action {
 	function action_radio() {
 		if($this->num) {
 			/* Radio */
-			$out = '<input type="radio" name="action" onClick="';
+            $out = '<input type="radio" name="action" ';
+            if($this->js) {
+                $out .= 'onClick="';
 				for($i=0;$i<9;$i++) {
 					if($i!=$this->num) {
-						$out .= 'HideDiv(\'options_'.$i.'\'); HideDiv(\'helptxt_action_'.$i.'\');';
+                        if($this->js == 2) {
+                            $out .= 'if(el(\'options_'.$i.'\')) { new Effect.BlindUp(\'options_'.$i.'\'); }
+                                     if(el(\'helpdesk_action_'.$i.'\')) { new Effect.Fade(\'helptxt_action_'.$i.'\'); } ';
+                        } else {
+						    $out .= 'HideDiv(\'options_'.$i.'\'); HideDiv(\'helptxt_action_'.$i.'\');';
+                        }
 					}
 				}
-				$out .= 'ShowDiv(\'options_'.$this->num.'\'); ShowDiv(\'helptxt_action_'.$this->num.'\'); return true;"'.
-					' id="action_'.$this->num.'" value="'.$this->num.'" '.
+                if($this->js == 2) {
+                    $out .= 'if(el(\'options_'.$this->num.'\')) { new Effect.BlindDown(\'options_'.$this->num.'\'); }
+                             if(el(\'helptxt_action_'.$this->num.'\')) { new Effect.Appear(\'helptxt_action_'.$this->num.'\'); }';
+                } else {
+                    $out .= 'ShowDiv(\'options_'.$this->num.'\'); ShowDiv(\'helptxt_action_'.$this->num.'\');';
+                }
+                $out .= ' return true;"';
+            }
+		    $out .= ' id="action_'.$this->num.'" value="'.$this->num.'" '.
 			        ($this->is_selected() ? ' checked="CHECKED"' : '') . '/> ';
+
 		} else {
 			/* Checkbox */
 			$out = '<input type="checkbox" name="'.$this->name;
