@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.38 2007/03/21 13:37:08 avel Exp $
+ * @version $Id: table.php,v 1.39 2007/03/23 12:49:28 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -62,6 +62,8 @@ textdomain ('avelsieve');
 $backend_class_name = 'DO_Sieve_'.$avelsieve_backend;
 $s = new $backend_class_name;
 $s->init();
+
+$base_uri = sqm_baseuri();
 
 isset($popup) ? $popup = '?popup=1' : $popup = '';
 

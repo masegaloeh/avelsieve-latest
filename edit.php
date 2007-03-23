@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.45 2007/03/23 12:38:31 avel Exp $
+ * @version $Id: edit.php,v 1.46 2007/03/23 12:49:28 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -79,7 +79,6 @@ sqgetGlobalVar('referrerArgs', $referrerArgs, SQ_FORM);
 if(!empty($referrerArgs)) {
     $referrerArgs = unserialize($referrerArgs);
 }
-
 
 $base_uri = sqm_baseuri();
 
