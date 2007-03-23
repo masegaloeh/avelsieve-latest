@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.28 2007/03/21 13:38:55 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.29 2007/03/23 12:38:28 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -115,49 +115,24 @@ class avelsieve_html_rules extends avelsieve_html {
 		return $out;
 	}
 		
-	/**
-	 * Returns the 'communication' aka 'comm' string from the previous screen,
-	 * for instance edit.php.
-	 * @return string
-	 */
-	function rules_confirmation_text() {
-		global $color;
-		$out = '';
-		if(isset($_SESSION['comm'])) {
-            $out .= '<p style="color:'.$color[11].'; text-align: center;">'.
-                    ($this->useimages ? '<img src="images/icons/information.png" alt="(i)" border="0" />'. ' ' : '');
-		
-			if(isset($_SESSION['comm']['new'])) {
-				$out .= _("Successfully added new rule.");
-		
-			} elseif (isset($_SESSION['comm']['edited'])) {
-				$out .= _("Successfully updated rule #");
-				$out .= $_SESSION['comm']['edited']+1;
-		
-			} elseif (isset($_SESSION['comm']['deleted'])) {
-				if(is_array($_SESSION['comm']['deleted'])) {
-					$out .= _("Successfully deleted rules #");
-					for ($i=0; $i<sizeof($_SESSION['comm']['deleted']); $i++ ) {
-						$out .= $_SESSION['comm']['deleted'][$i] +1;
-						if($i != (sizeof($_SESSION['comm']['deleted']) -1) ) {
-							$out .= ", ";
-						}
-					}
-				} else {
-					$out .= _("Successfully deleted rule #");
-					$out .= $_SESSION['comm']['deleted']+1;
-				}
-			}
-			$out .= '</p>';
-			session_unregister('comm');
-		}
-		return $out;
-	}
-	
-	
-	function rules_table_footer() {
-		return '</table>';
-	}
+    /**
+     * Returns the 'communication' aka 'comm' string from the previous screen,
+     * for instance edit.php.
+     * @return string
+     */
+    function rules_confirmation_text() {
+        $out = $this->retrieve_avelsieve_messages();
+        session_unregister('comm');
+        return $out;
+    }
+    
+    /**
+     * Footer
+     * @return string
+     */
+    function rules_table_footer() {
+        return '</table>';
+    }
         
     /**
      * Searches the available rules in a script for the rules that are of "unique" 
@@ -171,7 +146,7 @@ class avelsieve_html_rules extends avelsieve_html {
      * @return array Key: the rule number, Value: the rule position.
      */
     function discoverUniqueRules() {
-		global $avelsieve_enable_rules, $avelsieve_maintypes;
+        global $avelsieve_enable_rules, $avelsieve_maintypes;
 
         $ret = array();
 
@@ -186,9 +161,9 @@ class avelsieve_html_rules extends avelsieve_html {
             }
         }
     }
-	
-	/**
-	 * Submit Links / Buttons for adding new rules and edit screens.
+
+    /**
+     * Submit Links / Buttons for adding new rules and edit screens.
      *
      * @param boolean $horizontal
      * @return string

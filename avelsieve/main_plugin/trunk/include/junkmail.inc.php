@@ -10,7 +10,7 @@
  *
  * This file contains special functions related to junk mail options.
  *
- * @version $Id: junkmail.inc.php,v 1.4 2007/03/14 19:50:33 avel Exp $
+ * @version $Id: junkmail.inc.php,v 1.5 2007/03/23 12:38:28 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -74,7 +74,6 @@ function junkmail_right_main_do() {
 	    $s->save($newscript, 'phpscript');
 	    avelsieve_spam_highlight_update($rules);
 		sqsession_unregister('haschanged');
-		sqsession_unregister('comm');
         $s->logout();
     }
 
@@ -99,8 +98,7 @@ function junkmail_right_main_do() {
             ($ht->useimages == true ? '<img src="../plugins/avelsieve/images/icons/information.png" alt="(i)" /> ' : '')
             .   _("Junk Folder Information"))          
             . '<p>'.
-            ($ht->useimages == true ? '<img src="../plugins/avelsieve/images/icons/email_error.png" alt="(i)" /> 
-            ' : '').
+            ($ht->useimages == true ? '<img src="../plugins/avelsieve/images/icons/email_error.png" alt="(i)" /> ' : '').
             _("Messages in this folder have been identified as SPAM / Junk.");
     
     if(!$rule_exists || !$rule_enabled) {
@@ -117,10 +115,11 @@ function junkmail_right_main_do() {
         '<strong><a href="../plugins/avelsieve/edit.php?addnew=1&amp;type=11&amp;referrerUrl='.rawurlencode($PHP_SELF).'">'.
         _("Edit Junk Mail Options...") . '</a></strong></p>';
 
-    if(isset($_GET['junkmailSettingsSaved'])) {
-        echo '<p style="text-align:center;">' .
-             ($ht->useimages == true? '<img src="../plugins/avelsieve/images/icons/tick.png" alt="(OK)" /> ' : '') .
-             '<strong>'.  _("Junk Mail Options have been saved.") . '</strong></p>';
+    
+    $avelsieveMessages = $ht->retrieve_avelsieve_messages();
+    if($avelsieveMessages) {
+        echo '<p style="text-align:center;">' .$avelsieveMessages . '</p>';
+        $ht->clear_avelsieve_messages();
     }
 
     echo $ht->section_end() . $ht->all_sections_end();

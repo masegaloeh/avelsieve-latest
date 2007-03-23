@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_main.inc.php,v 1.15 2007/03/23 11:15:34 avel Exp $
+ * @version $Id: html_main.inc.php,v 1.16 2007/03/23 12:38:28 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -167,6 +167,63 @@ class avelsieve_html {
      */
     function set_errmsg($array) {
         $this->errmsg = array_merge($this->errmsg, $array);
+    }
+    
+    /**
+     * Access the messages queue from session variables, and return what should 
+     * be displayed in the end to the user.
+     *
+     * @todo Implement a proper message queue.
+     * @return array
+     */
+    function retrieve_avelsieve_messages() {
+        global $color;
+        $out = '';
+        $msgs = array();
+
+        if(isset($_SESSION['comm'])) {
+            $comm = $_SESSION['comm'];
+
+            $out .= '<p style="background-color: '.$color[16].'; color:'.$color[8].'; text-align: center;">'.
+                ($this->useimages == true? '<img src="images/icons/tick.png" alt="(OK)" /> ' : '');        
+            
+            if (isset($comm['raw'])) {
+                $out .= $comm['raw'];
+
+            } elseif(isset($comm['new'])) {
+                $out .= _("Successfully added new rule.");
+        
+            } elseif (isset($comm['edited'])) {
+                $out .= sprintf( _("Successfully updated rule #%s"), $comm['edited']+1);
+        
+            } elseif (isset($comm['deleted'])) {
+                if(is_array($comm['deleted'])) {
+                    $deletedRulesNumbers = '';
+                    for ($i=0; $i<sizeof($comm['deleted']); $i++ ) {
+                        $deletedRulesNumbers .= $comm['deleted'][$i] +1;
+                        if($i != (sizeof($comm['deleted']) -1) ) {
+                            $deletedRulesNumbers .= ", ";
+                        }
+                    }
+                    $out .= sprintf( _("Successfully deleted rules #%s"), $deletedRulesNumbers);
+                } else {
+                    $out .= sprintf( _("Successfully deleted rule #%s"), $comm['deleted']+1);
+                }
+            }
+
+            $out .= '</p>';
+        }
+        return $out;
+    }
+    
+    /**
+     * Remove messages from session. 
+     * @return void
+     */
+    function clear_avelsieve_messages() {
+        if(isset($_SESSION['comm'])) {
+            session_unregister('comm');
+        }
     }
 	
     /**

@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.44 2007/03/21 13:37:08 avel Exp $
+ * @version $Id: edit.php,v 1.45 2007/03/23 12:38:31 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -242,7 +242,11 @@ if(isset($_POST['cancel'])) {
 	$ruleobj->process_input($_POST, true);
 	if(empty($ruleobj->errmsg)) {
 		$_SESSION['rules'][$edit] = $ruleobj->rule;
-		$_SESSION['comm']['edited'] = $edit;
+        if($rawSuccessMsg = $ruleobj->getSuccessMessage()) {
+		    $_SESSION['comm']['raw'] = $rawSuccessMsg;
+        } else {
+    		$_SESSION['comm']['edited'] = $edit;
+        }
 		$_SESSION['haschanged'] = true;
 	    header("Location: $redirectUrl");
         exit;
