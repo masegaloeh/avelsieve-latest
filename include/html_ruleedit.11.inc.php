@@ -3,7 +3,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: html_ruleedit.11.inc.php,v 1.10 2007/03/21 13:38:55 avel Exp $
+ * @version $Id: html_ruleedit.11.inc.php,v 1.11 2007/03/23 09:37:08 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -18,28 +18,13 @@ include_once(SM_PATH . 'plugins/avelsieve/include/sieve_buildrule.11.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/junkmail.inc.php');
 
 /**
- * Rule #11: Customized Anti-SPAM rule with features such as RBL
+ * Rule #11: Customized Junk Mail rule with features such as RBL
  * checking, Sender Address Verification (SAV) etc.
  *
  * @package plugins
  * @subpackage avelsieve
  */
 class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
-    /** @var boolean Advanced SPAM rule? */
-    var $spamrule_advanced = false;
-
-    /** @var Spamrule actions that will be available. */
-    var $spamrule_actions = array(
-        'group_main' => array(
-                'radio' => array('keep', 'junk', 'trash'),
-                'checkbox' => array('stop')
-        ),
-        'group_additional' => array(
-                'radio' => array('fileinto', 'discard'),
-                'checkbox' => array('notify', 'disabled')
-        )
-    );
-    
     /**
      * Constructor, that just calls the parent one.
      */     
@@ -59,9 +44,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
                     $this->settings['default_rule']['tests'][$info['test']] =
                             $this->settings['spamrule_tests']['rbls']['fail_values'][0];
                  }
-
              }
-
         }
     }
 
@@ -254,88 +237,12 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
         $out .= '</div>'; // div_junkmail_advanced
         $out .= $this->section_end();
 
-        /*
-        if(!$this->spamrule_advanced) {
-            $default_rule = avelsieve_buildrule_11($this->settings['default_rule'], true); 
-            $default_rule_desc = $default_rule[1]; 
-            $out .= '<div width="50%" style="width: 50%; margin-left: auto; padding: 0.5em; margin-right: auto; text-align:left; border: 1px dotted;">'.
-                    '<p><a href="#" onclick="ToggleShowDivWithImg(\'predefined_rule_desc\')">'.
-                    '<img src="images/triangle.gif" alt="&gt;" name="predefined_rule_desc_img" border="0" />'. 
-                    '<img src="images/icons/information.png" alt="(i)" border="0" />'. ' ' .
-                    _("What does the predefined rule contain?") . '</a><p>'.
-                        '<div id="predefined_rule_desc" style="display:none">'.$default_rule_desc.'</div>'.
-                    '</div>';
-
-            $out .= '<p style="text-align:center">
-                    <input type="submit" name="intermediate_action[spamrule_switch_to_advanced]" value="'. _("Advanced Spam Filter...") .'" />
-                    </p>';
-        } else {
-            $out .= '<input type="hidden" name="spamrule_advanced" value="1" />';
-         */
-        
-            /*
-            $out .= $this->section_start( _("Message Spam Checks: RBLs") );
-            $out .= '<p>'. _("The following RBLs (Real-time SPAM Black Lists) can be enabled:") . '</p>';
-            $out .= $this->module_settings('rbls');
-            $out .= $this->section_end();
-            
-            $out .= $this->section_start( _("Sender Address Verification") );
-            $out .= $this->module_settings('sav');
-            $out .= $this->section_end();
-    
-    
-            $out .= $this->section_start( _("Additional Verification Tests") );
-            $out .= $this->module_settings('additional');
-            $out .= $this->section_end();
-            */
-            /* --------------------- 'then' ----------------------- */
-            
-    
         $out .= '</div>'; // div_junkmail_enable
-
+        
         $out .= '</div>'; // div_junkmail_all
         
         $out .= $this->all_sections_end() .
                 $this->submit_buttons();
-        return $out;
-
-        // TODO - Advanced Junk Mail Actions
-        
-        //$out .= $this->section_start( '<a name="anchor_action">'. _("Action"). '</a>' );
-
-            /**
-             * Main spamrule actions
-             */
-            foreach($this->spamrule_actions['group_main'] as $k=>$sActions) {
-                foreach($sActions as $act) $out .= $this->action_html($act);
-            }
-            
-            /**
-             * Additional actions: these will initially be in a hidden div.
-             * TODO: open this div when there is an action enabled in there.
-             */
-            $out .= '<br/>'.
-                    '<p><a href="#anchor_action" onclick="ToggleShowDivWithImg(\'more_actions\')">'.
-                    '<img src="images/triangle.gif" alt="&gt;" name="more_actions_img" border="0" />'. 
-                    '<strong>'. _("More Actions") . '</strong></a></p>'.
-
-                    '<div id="more_actions" style="display:none;">';
-            foreach($this->spamrule_actions['group_additional'] as $k=>$sActions) {
-                foreach($sActions as $act) $out .= $this->action_html($act);
-            }
-            $out .= '</div>';
-            $out .= $this->section_end();
-
-        /* --------------------- buttons ----------------------- */
-
-        $out .= $this->section_end();
-
-        $out .= $this->submit_buttons().
-            '</div></td></tr>'.
-            $this->all_sections_end() .
-            //$this->table_footer().
-            '</form>';
-
         return $out;
     }
 
@@ -366,7 +273,6 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
             $this->rule['junkmail_days'] = $ns['junkmail_days'];
         }
 
-
         if($this->rule['enable']) {
             if(isset($this->rule['disabled'])) unset($this->rule['disabled']);
         } else {
@@ -376,7 +282,6 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
         if($this->rule['junkmail_advanced']) {
             foreach($this->settings['spamrule_tests'] as $groupname => $group) {
                 foreach($group['available'] as $test=>$desc) {
-                    //if(isset($ns['tests'][$test]) && in_array($ns['tests'][$test], array_merge( array('NONE'), array_keys($group['values']) ) )) {
                     if(isset($ns['tests'][$test]) && in_array($ns['tests'][$test], $this->settings['spamrule_tests'][$groupname]['fail_values'])) {
                         $this->rule['tests'][$test] = $ns['tests'][$test];
                     } else {
@@ -399,57 +304,12 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
         $this->rule['action'] = 7;
         $this->rule['stop'] = 1;
 
-        /* Actions process_input */
-        /*
-        // FIXME more variables/options, validation, also, probably gather this stuff
-        // (user input processing) in the avelsieve actions classes.
-        // Generally, Process input of actions has to be unified/fixed.
-
-        // Gather all actions together
-        $actions_radio = array(); // Mutually Exlcusive actions (junk, fileinto,...)
-        $actions_checkbox = array(); // Optional actions (stop, notify,...)
-        foreach($this->spamrule_actions as $group=>$sActions) {
-            $actions_radio = array_merge($sActions['radio'], $actions_radio);
-            $actions_checkbox = array_merge($sActions['checkbox'], $actions_checkbox);
-        }
-
-        // And now process them from user input
-        // foreach($actions_radio as $act)  // Nothing for numeric values, the mapping
-        // is currently only known by the respective classes.
-        
-        if(isset($ns['action']) && is_numeric($ns['action'])) {
-            $this->rule['action'] = $ns['action'];
-        }
-    
-        foreach($actions_checkbox as $a) {
-            $classname = 'avelsieve_action_'.$a;
-            if(class_exists($classname)) {
-                $classvars = get_class_vars($classname);
-
-                if(isset($classvars['two_dimensional_options']) && $classvars['two_dimensional_options'] == true) {
-                    // Two dimensional: key 'on' has to be checked
-                    if(isset($ns[$a]) && isset($ns[$a]['on']) && $ns[$a]['on']) { 
-                        $this->rule[$a] = $ns[$a];
-                    }
-                
-                } else {
-                    // simple actions such as 'stop'
-                    if(isset($ns[$a]) && $ns[$a]) { 
-                        $this->rule[$a] = $ns[$a]; 
-                    }
-                }
-                unset($classvars);
-            }
-        }
-         */
         if(empty($this->errmsg)) {
             if(!empty($this->settings['junkprune_backend'])) {
                 $updateFunc = 'avelsieve_junkprune_'.$this->settings['junkprune_backend'].'_update';
                 call_user_func($updateFunc, $username, $this->rule['junkmail_days']);
             }
-
         }
-        //$this->errmsg = 'This is a bogus error message for development purposes.';
     }
 }
 
