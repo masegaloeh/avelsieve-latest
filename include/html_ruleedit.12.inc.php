@@ -3,7 +3,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: html_ruleedit.12.inc.php,v 1.1 2007/01/22 19:48:55 avel Exp $
+ * @version $Id: html_ruleedit.12.inc.php,v 1.2 2007/03/27 11:20:53 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2007 Alexandros Vellis
  * @package plugins
@@ -112,5 +112,12 @@ class avelsieve_html_edit_12 extends avelsieve_html_edit {
         }
     }
 
+    /**
+     * Return a customized "Rule has been successfully changed"-type message.
+     * @return string
+     */
+    function getSuccessMessage() {
+        return '<strong>'.  _("Whitelist has been updated.") . '</strong>';
+    }
 }
 
