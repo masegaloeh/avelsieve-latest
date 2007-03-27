@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.12.inc.php,v 1.4 2007/03/19 18:08:49 avel Exp $
+ * @version $Id: sieve_buildrule.12.inc.php,v 1.5 2007/03/27 12:07:24 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2007 Alexandros Vellis
  * @package plugins
@@ -40,7 +40,7 @@ function avelsieve_buildrule_12($rule) {
     $text .= _("<strong>Whitelist</strong> - The following email addresses are whitelisted and will not end up in Junk folders or considered as SPAM:") . ' ';
     $terse .= '<br/>' . _("Whitelist:") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
     
-    $count = 0; $max_count = 6; $too_much_count = 20; // Only for UI purposes
+    $count = 0; $max_count = 6; $too_much_count = 15; // Only for UI purposes
     for($i=0; $i<sizeof($whitelist); $i++ ) {
         $text .= $whitelist[$i];
         if(isset($whitelist[$i+1])) $text .= ', ';
