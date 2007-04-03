@@ -6,15 +6,11 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.37 2007/03/23 10:04:10 avel Exp $
- * @author Alexandros Vellis <avel@users.sourceforge.net>
- * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
- * @package plugins
- * @subpackage avelsieve
+ * Script Variables Schema
  *
- * <h1>Script Variables Schema</h1>
- * NB: Might be Incomplete.
+ * (NB: Might be Incomplete.)
  *
+ * <pre>
  * The following table tries to describe the variables schema that is used by
  * avelsieve.
  *
@@ -104,8 +100,13 @@
  *		'options' => array( [0]=> foo, [1] => bar )
  *		'priority' => low|normal|high
  *		'message' => string
+ * </pre>
  *
- *
+ * @version $Id: sieve_buildrule.inc.php,v 1.38 2007/04/03 09:51:24 avel Exp $
+ * @author Alexandros Vellis <avel@users.sourceforge.net>
+ * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
+ * @package plugins
+ * @subpackage avelsieve
  */ 
 
 /**
