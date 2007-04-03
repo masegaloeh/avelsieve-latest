@@ -14,11 +14,15 @@ function ToggleShowDiv(divname) {
 	}
   }	
 }
-function ToggleShowDivWithImg(divname) {
+function ToggleShowDivWithImg(divname,scriptaculous) {
   if(el(divname)) {
     img_name = divname + '_img';
     if(el(divname).style.display == "none") {
-      el(divname).style.display = "";
+      if(scriptaculous == 1) {
+         Effect.toggle(divname, 'slide');
+      } else {
+         el(divname).style.display = "";
+      }
 	  if(document[img_name]) {
 	  	document[img_name].src = "images/opentriangle.gif";
 	  }	
@@ -26,7 +30,11 @@ function ToggleShowDivWithImg(divname) {
 	  	el('divstate_'+divname).value = 1;
 	  }
 	} else {
-      el(divname).style.display = "none";
+      if(scriptaculous == 1) {
+         Effect.toggle(divname, 'slide');
+      } else {
+         el(divname).style.display = "none";
+      }
 	  if(document[img_name]) {
 	  	document[img_name].src = "images/triangle.gif";
 	  }	
