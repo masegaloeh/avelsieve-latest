@@ -8,7 +8,7 @@
  *
  * Also view plugins/README.plugins for more information.
  *
- * @version $Id: setup.php,v 1.40 2007/03/21 13:39:42 avel Exp $
+ * @version $Id: setup.php,v 1.41 2007/04/03 10:50:49 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -110,11 +110,9 @@ function avelsieve_commands_menu() {
 function avelsieve_search_integration() {
     global $squirrelmail_plugin_hooks, $SQM_INTERNAL_VERSION, $version;
 
-    if(($SQM_INTERNAL_VERSION[0] == 1 && $SQM_INTERNAL_VERSION[1] >= 5) ||
-       strstr($version, 'email.uoa.gr')) {
-               
-            include_once(SM_PATH . 'plugins/avelsieve/include/search_integration.inc.php');
-            avelsieve_search_integration_do();
+    if(($SQM_INTERNAL_VERSION[0] == 1 && $SQM_INTERNAL_VERSION[1] >= 5)) {
+        include_once(SM_PATH . 'plugins/avelsieve/include/search_integration.inc.php');
+        avelsieve_search_integration_do();
     }
 }
 
@@ -125,10 +123,14 @@ function avelsieve_search_integration() {
  * @return mixed Return true if this is the special Junk folder.
  */
 function junkmail_markspecial($box) {
-    global $avelsieve_enable_rules;
+    global $avelsieve_enable_rules, $delimiter;
     if(!in_array(11,$avelsieve_enable_rules)) return;
 
     if($box == 'Junk' || $box == 'INBOX.Junk') {
+        return true;
+    }
+    $parts = split(str_replace('.', '\.',$delimiter), $box);
+    if(sizeof($parts) > 1 && ($parts[0] == 'Junk' || $parts[1] == 'Junk')) {
         return true;
     }
 }
