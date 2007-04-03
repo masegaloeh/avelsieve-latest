@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.39 2007/03/23 12:49:28 avel Exp $
+ * @version $Id: table.php,v 1.40 2007/04/03 10:52:09 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -172,17 +172,40 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected']) ||
 
 		if (isset($_POST['deleteselected'])) {
 			$rules2 = $rules;
+            $deletedrules = array();
+            $notdeletedrules = array();
 			foreach($_POST['selectedrules'] as $no=>$sel) {
-				unset($rules2[$sel]);
+                if(isset($rules2[$sel])) {
+                    if($avelsieve_maintypes[$rules2[$sel]['type']]['undeletable']) {
+                        $notdeletedrules[] = $sel;
+                    } else {
+                        unset($rules2[$sel]);
+                        $deletedrules[] = $sel;
+                    }
+                }
 			} 
+            // The human-readable messages:
 			$rules = array_values($rules2);
-			$_SESSION['comm']['deleted'] = $_POST['selectedrules'];
+            if(!empty($deletedrules)) {
+                $_SESSION['comm']['deleted'] = $deletedrules;
+            }
+            if(!empty($notdeletedrules)) {
+                if(sizeof($notdeletedrules) == 1) {
+                    $errormsg = sprintf( _("Could not delete rule #%s: This type of rule cannot be deleted."), $notdeletedrules[0]);
+                } else {
+                    $errormsg = sprintf( _("Could not delete rules #%s: This type of rule cannot be deleted."), implode(', ', $notdeletedrules) );
+                }
+            }
 
 		} elseif(isset($_GET['rm'])) {
-			$rules2 = $rules;
-			unset($rules2[$_GET['rule']]);
-			$rules = array_values($rules2);
-			$_SESSION['comm']['deleted'] = $_GET['rule'];
+            if(isset($rules[$_GET['rule']]) && $avelsieve_maintypes[$rules[$_GET['rule']]['type']]['undeletable'] ) {
+                $errormsg = sprintf( _("Could not delete rule #%s: This type of rule cannot be deleted."), $_GET['rule']);
+            } else {
+			    $rules2 = $rules;
+			    unset($rules2[$_GET['rule']]);
+			    $rules = array_values($rules2);
+			    $_SESSION['comm']['deleted'] = $_GET['rule'];
+            }
 		}
 
 	    if (!$conservative) {
@@ -403,12 +426,12 @@ echo 'POST:';
 dumpr($_POST);
 echo 'Rules:';
 dumpr($rules);
-*/
 
 if(AVELSIEVE_DEBUG == 1) {
 	print "Debug: Using Backend: $avelsieve_backend.<br/>";
 }
 
+*/
 
 if(isset($_GET['mode'])) {
 	if(array_key_exists($_GET['mode'], $displaymodes)) {
@@ -431,6 +454,11 @@ if(isset($_GET['mode'])) {
 }
 	
 $ht = new avelsieve_html_rules($rules, $mode);
+if(!empty($errormsg)) {
+    $ht->set_errmsg(array($errormsg));
+    $ht->print_errmsg();
+}
+
 
 if(!empty($inconsistent_folders)) {
 }
