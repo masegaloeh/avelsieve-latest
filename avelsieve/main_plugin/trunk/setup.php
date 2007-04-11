@@ -8,7 +8,7 @@
  *
  * Also view plugins/README.plugins for more information.
  *
- * @version $Id: setup.php,v 1.41 2007/04/03 10:50:49 avel Exp $
+ * @version $Id: setup.php,v 1.42 2007/04/11 13:42:10 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -170,13 +170,13 @@ function avelsieve_configtest() {
 }
 
 /**
- *
+ * Register the main avelsieve scripts with the javascript_libs plugin.
  */
 function avelsieve_register_jslibs() {
     global $plugins;
     if(in_array('javascript_libs', $plugins)) {
-        javascript_libs_register('table.php', array('prototype', 'effects'));
-        javascript_libs_register('edit.php', array('prototype', 'effects'));
+        javascript_libs_register('plugins/avelsieve/table.php', array('prototype', 'effects'));
+        javascript_libs_register('plugins/avelsieve/edit.php', array('prototype', 'effects'));
     }
 }
 
