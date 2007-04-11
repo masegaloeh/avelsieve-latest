@@ -102,7 +102,7 @@
  *		'message' => string
  * </pre>
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.38 2007/04/03 09:51:24 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.39 2007/04/11 10:36:59 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -721,6 +721,7 @@ function makesieverule ($rulearray) {
 	// $out .= "#AVELSIEVE_COMMENT" . $script_comment . "\n"
 
 	/* Require all capablities that avelsieve supports AND the server supports. */
+    $torequire = array();
 	foreach($implemented_capabilities as $no=>$cap) {
 		if(array_key_exists($cap, $sieve_capabilities)) {
 			$torequire[] = $cap;
@@ -732,7 +733,9 @@ function makesieverule ($rulearray) {
 		}
 	}
 		
- 	$out .= 'require ["'. implode('","', $torequire) . "\"];\n";
+    if(!empty($torequire)) {
+        $out .= 'require ["'. implode('","', $torequire) . "\"];\n";
+    }
 
 	/* The actual rules */
 	for ($i=0; $i<sizeof($rulearray); $i++) {
