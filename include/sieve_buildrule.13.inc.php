@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.13.inc.php,v 1.2 2007/03/19 18:08:49 avel Exp $
+ * @version $Id: sieve_buildrule.13.inc.php,v 1.3 2007/04/11 10:33:57 avel Exp $
  * @author Kostantinos Koukopoulos <kouk@noc.uoa.gr>
  * @copyright 2007 Alexandros Vellis
  * @package plugins
@@ -14,16 +14,17 @@
  */
 
 /**
- * Rule type: #13; Description: Custom Sieve Code
+ * Rule #13: Custom Sieve Code
  *
  * @param array $rule
  * @return array array($out,$text,$terse, array('skip_further_execution'=>true, 'replace_output'=>true))
+ * @todo Make hyperlink go to the specific rule
  */
 function avelsieve_buildrule_13($rule) {
     global $displaymodes; 
-    $sourcelnk = '<a href="'.$_SERVER['SCRIPT_NAME'].'?mode=source" title="'.$displaymodes['source'][1].'">'.$displaymodes['source'][0].'</a>';
+    $sourcelnk = '<a href="table.php?mode=source" title="'.$displaymodes['source'][1].'">%s</a>';
     $out = $rule['code']; 
-    $text = _("Custom Rule").' ('. _("not avelsieve - view ").$sourcelnk.')';
+    $text = _("Custom Sieve Code") . ' - '. sprintf($sourcelnk, _("View Source")); 
     $terse = $text; 
     
     return(array($out,$text,$terse, array('skip_further_execution'=>true, 'replace_output'=>true)));
