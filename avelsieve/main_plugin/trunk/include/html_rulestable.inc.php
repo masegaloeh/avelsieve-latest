@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.32 2007/03/26 07:51:59 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.33 2007/04/11 11:41:09 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -39,11 +39,16 @@ class avelsieve_html_rules extends avelsieve_html {
 	 * @return void
 	 */
 	function avelsieve_html_rules(&$rules, $mode = 'terse') {
-        global $avelsieve_maintypes;
+        global $avelsieve_maintypes, $scriptHints;
 
 		$this->avelsieve_html();
 		$this->rules = $rules;
 		$this->mode = $mode;
+        
+        // These UI "hints" are initialized and discovered in the table.php script.
+        if(isset($scriptHints)) {
+            $this->scriptHints = $scriptHints;
+        }
 	}
 
 	/**
@@ -75,17 +80,45 @@ class avelsieve_html_rules extends avelsieve_html {
 		if(isset($scriptinfo['created'])) {
 			$out .= $this->scriptinfo($scriptinfo);
 		}
+
+        $out .= $this->scripthints();
 		
-		global $inconsistent_folders;
-		if(!empty($inconsistent_folders)) {
+        // Removed ATM
+		$dummy = "<p>"._("The following table summarizes your current mail filtering rules.")."</p>";
+
+        return $out;
+    }
+
+    /**
+     * Output UI-friendly script "hints":
+     * 1) "inconsistent" folders: a folder is mentioned in "fileinto", but the
+     *    actual folder does not exist.
+     * 2) warning that vacation rule is active. (so that the user will not forget
+     *    to disable it when she comes from vacation).
+     *
+     * @return string
+     */
+    function scripthints() {
+        global $color;
+        $out = '';
+
+        // 1) inconsistent folders / fileinto
+		if(!empty($this->scriptHints['inconsistent_folders'])) {
             $out .= '<p style="color:'.$color[2].'">' .
                 ($this->useimages ? '<img src="'.$this->iconuri.'exclamation.png" alt="(!)" border="0" />'. ' ' : '' ) .
                 _("Warning: In your rules, you have defined an action that refers to a folder that does not exist or a folder where you do not have permission to append to.") .
                 '</p>';
 		}
 
-        // Removed ATM
-		$dummy = "<p>"._("The following table summarizes your current mail filtering rules.")."</p>";
+        // 2) vacation rule is active
+        if(!empty($this->scriptHints['vacation_rules'])) {
+            $fnum = $this->scriptHints['vacation_rules'][0]; // First rule number
+            $out .= '<p style="color:'.$color[8].'; font-weight: bold;">' .
+                ($this->useimages ? '<img src="'.$this->iconuri.'lightbulb.png" alt="(i)" border="0" />'. ' ' : '' ) .
+                sprintf( _("Note: A <a href=\"%s\">vacation rule</a> is active (Rule <a href=\"#rule_row_%s\">#%s</a>). Don't forget to disable it or delete it when you are back."),
+                    'edit.php?edit='.$fnum, $fnum, $fnum+1) .
+                '</p>';
+        }
 
         return $out;
     }

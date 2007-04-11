@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_getrule.inc.php,v 1.8 2007/03/12 14:56:00 avel Exp $
+ * @version $Id: sieve_getrule.inc.php,v 1.9 2007/04/11 11:41:09 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -208,6 +208,23 @@ function avelsieve_folder_consistency_check(&$boxes, &$rules) {
 
 	}
 	return $inconsistent_folders;
+}
+
+/**
+ * Go through rules and find a vacation action.
+ *
+ * @param array $rules
+ * @return array of the indexes of rules, or an empty array if no vacation 
+ *  actions were found.
+ */
+function avelsieve_vacation_check(&$rules) {
+    $vacation_rules = array();
+    for($i=0; $i<sizeof($rules); $i++) {
+        if(isset($rules[$i]['action']) && $rules[$i]['action'] == '6' && !isset($rules[$i]['disabled'])) {
+            $vacation_rules[] = $i;
+        }
+    }
+    return $vacation_rules;
 }
 
 ?>
