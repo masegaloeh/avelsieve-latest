@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.40 2007/04/03 10:52:09 avel Exp $
+ * @version $Id: table.php,v 1.41 2007/04/11 11:41:09 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -374,7 +374,13 @@ sqgetGlobalVar('key', $key, SQ_COOKIE);
 $imapConnection = sqimap_login($username, $key, $imapServerAddress, $imapPort, 0); 
 $boxes = sqimap_mailbox_list_all($imapConnection);
 sqimap_logout($imapConnection); 
-$inconsistent_folders = avelsieve_folder_consistency_check($boxes, $rules);
+
+// In this variable, various script "hints" are to be stored. This is to be passed on /
+// used by the UI, for better usability.
+global $scriptHints;
+$scriptHints = array();
+$scriptHints['inconsistent_folders'] = avelsieve_folder_consistency_check($boxes, $rules);
+$scriptHints['vacation_rules'] = avelsieve_vacation_check($rules);
 
 global $javascript_on;
 
@@ -457,10 +463,6 @@ $ht = new avelsieve_html_rules($rules, $mode);
 if(!empty($errormsg)) {
     $ht->set_errmsg(array($errormsg));
     $ht->print_errmsg();
-}
-
-
-if(!empty($inconsistent_folders)) {
 }
 
 if($popup) {
