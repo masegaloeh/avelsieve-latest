@@ -2,7 +2,7 @@
 /**
  * sieve-php.lib.php
  *
- * $Id: managesieve.lib.php,v 1.11 2007/01/17 13:46:10 avel Exp $ 
+ * $Id: managesieve.lib.php,v 1.12 2007/04/11 10:41:42 avel Exp $ 
  *
  * Copyright 2001-2003 Dan Ellis <danellis@rushmore.com>
  *
@@ -867,10 +867,10 @@ class sieve {
               $this->modules = split(' ', $this->item[1]);
               if(is_array($this->modules)){
                   foreach($this->modules as $m) {
-                      $this->capabilities[$cap_type][$m]=true;
+                      $this->capabilities[$cap_type][strtolower($m)]=true;
                   }
               } elseif(is_string($this->modules)) {
-                  $this->capabilites[$cap_type][$this->modules]=true;
+                  $this->capabilites[$cap_type][strtolower($this->modules)]=true;
               }
           } else { 
               $this->capabilities["unknown"][]=$this->line;
