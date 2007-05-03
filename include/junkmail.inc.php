@@ -10,7 +10,7 @@
  *
  * This file contains special functions related to junk mail options.
  *
- * @version $Id: junkmail.inc.php,v 1.6 2007/03/23 12:49:19 avel Exp $
+ * @version $Id: junkmail.inc.php,v 1.7 2007/05/03 15:13:53 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -131,6 +131,8 @@ function junkmail_right_main_do() {
 /**
  * Informational message and link to Junk Mail options, from Folders Screen 
  * (folders.php).
+ *
+ * TODO - Implement
  *
  * @return void
  */
