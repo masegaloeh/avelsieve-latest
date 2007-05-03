@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.33 2007/04/11 11:41:09 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.34 2007/05/03 15:16:32 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -115,8 +115,8 @@ class avelsieve_html_rules extends avelsieve_html {
             $fnum = $this->scriptHints['vacation_rules'][0]; // First rule number
             $out .= '<p style="color:'.$color[8].'; font-weight: bold;">' .
                 ($this->useimages ? '<img src="'.$this->iconuri.'lightbulb.png" alt="(i)" border="0" />'. ' ' : '' ) .
-                sprintf( _("Note: A <a href=\"%s\">vacation rule</a> is active (Rule <a href=\"#rule_row_%s\">#%s</a>). Don't forget to disable it or delete it when you are back."),
-                    'edit.php?edit='.$fnum, $fnum, $fnum+1) .
+                sprintf( _("Note: A <a href=\"%s\">Vacation Autoresponder</a> is active (<a href=\"%s\">Rule #%s</a> in your current Mail Filtering Rules).<br/>Don't forget to disable it or delete it when you are back."),
+                    'edit.php?edit='.$fnum, '#rule_row_'.$fnum, $fnum+1) .
                 '</p>';
         }
 

@@ -8,7 +8,7 @@
  *
  * Also view plugins/README.plugins for more information.
  *
- * @version $Id: setup.php,v 1.42 2007/04/11 13:42:10 avel Exp $
+ * @version $Id: setup.php,v 1.43 2007/05/03 15:16:24 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -29,8 +29,9 @@ function squirrelmail_plugin_init_avelsieve() {
     $squirrelmail_plugin_hooks['search_after_form']['avelsieve'] = 'avelsieve_search_integration';
     $squirrelmail_plugin_hooks['configtest']['avelsieve'] = 'avelsieve_configtest';
     
+	$squirrelmail_plugin_hooks['right_main_after_header']['avelsieve'] = 'avelsieve_right_main';
+
     $squirrelmail_plugin_hooks['special_mailbox']['avelsieve'] = 'junkmail_markspecial';
-	$squirrelmail_plugin_hooks['right_main_after_header']['avelsieve'] = 'junkmail_right_main';
 	$squirrelmail_plugin_hooks['folders_bottom']['avelsieve'] = 'junkmail_folders';
     
     $squirrelmail_plugin_hooks['javascript_libs_register']['avelsieve'] = 'avelsieve_register_jslibs';
@@ -136,17 +137,16 @@ function junkmail_markspecial($box) {
 }
 
 /**
- * Junk Mail functionality: Link to options, from message list page 
- * (right_main.php).
+ * Call functions that can be called in Message listing (src/right_main.php).
+ *
+ * 1) Junk Mail functionality: Link to options from Junk folder.
+ * 2) Vacation Rule reminder, from INBOX folder.
+ *
+ * @see avelsieve_right_main_do()
  */
-function junkmail_right_main() {
-    global $avelsieve_enable_rules, $mailbox;
-    if(!in_array(11,$avelsieve_enable_rules)) return;
-
-    if($mailbox == 'Junk' || $mailbox == 'INBOX.Junk') {
-        include_once(SM_PATH . 'plugins/avelsieve/include/junkmail.inc.php');
-        junkmail_right_main_do();
-    }
+function avelsieve_right_main() {
+    include_once(SM_PATH . 'plugins/avelsieve/include/right_main.inc.php');
+    avelsieve_right_main_do();
 }
 
 /**
