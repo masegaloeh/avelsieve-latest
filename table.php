@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.41 2007/04/11 11:41:09 avel Exp $
+ * @version $Id: table.php,v 1.42 2007/05/03 14:48:10 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -242,10 +242,14 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected']) ||
 		} 
 
 	} elseif (isset($_GET['mvup'])) {
-		$rules = array_swapval($rules, $_GET['rule'], $_GET['rule']-1);
+        $modifyEnable = true;
+        $modifyAction = 'mvup';
+        $modifyRules = array($_GET['rule']);
 
 	} elseif (isset($_GET['mvdn'])) {
-		$rules = array_swapval($rules, $_GET['rule'], $_GET['rule']+1);
+        $modifyEnable = true;
+        $modifyAction = 'mvdn';
+        $modifyRules = array($_GET['rule']);
 	
 	} elseif (isset($_GET['mvtop'])) {
         // Left over for compatibility reasons or for when the icons are back
@@ -267,10 +271,24 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected']) ||
 if($modifyEnable) {
 
     switch($modifyAction) {
+        case 'mvup':
+		    $rules = array_swapval($rules, $modifyRules[0], $modifyRules[0]-1);
+            /* Flag to write changes back. */ 
+            $haschanged = true;
+            break;
+
+        case 'mvdn':
+		    $rules = array_swapval($rules, $modifyRules[0], $modifyRules[0]+1);
+            /* Flag to write changes back. */ 
+            $haschanged = true;
+            break;
+
         case 'mvtop':
 		    $ruletop = $rules[$modifyRules[0]];
 		    unset($rules[$modifyRules[0]]);
 		    array_unshift($rules, $ruletop);
+            /* Flag to write changes back. */ 
+            $haschanged = true;
             break;
 
         case 'mvbottom':
@@ -281,6 +299,8 @@ if($modifyEnable) {
 		    $rules = array_values($rules);
 		    /* Now Append it */
 		    $rules[] = $rulebot;
+            /* Flag to write changes back. */ 
+            $haschanged = true;
             break;
 
         case 'mvposition':
