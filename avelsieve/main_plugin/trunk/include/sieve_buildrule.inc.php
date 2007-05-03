@@ -102,7 +102,7 @@
  *		'message' => string
  * </pre>
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.39 2007/04/11 10:36:59 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.40 2007/05/03 14:25:41 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -230,14 +230,14 @@ function build_rule_snippet($name, $header, $matchtype, $headermatch, $mode='rul
  				break 1;
  			case 'regex':
  				$out .= sprintf('%s :regex :comparator "i;ascii-casemap"', $name);
-				$text .= _("matches the regural expression");
-				$terse .= _("matches the regural expression");
+				$text .= _("matches the regular expression");
+				$terse .= _("matches the regular expression");
 				$escapeslashes = true;
  				break 1;
  			case 'not regex':
  				$out .= sprintf('not %s :regex :comparator "i;ascii-casemap"', $name);
-				$text .= _("does not match the regural expression");
-				$terse .= _("does not match the regural expression");
+				$text .= _("does not match the regular expression");
+				$terse .= _("does not match the regular expression");
 				$escapeslashes = true;
  				break 1;
  			case 'exists':
