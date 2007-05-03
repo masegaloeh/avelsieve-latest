@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.36 2007/03/23 12:38:28 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.37 2007/05/03 14:47:13 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -745,6 +745,9 @@ class avelsieve_html_edit extends avelsieve_html {
      *  current hack.
      */
     function process_input(&$ns, $truncate_empty_conditions = false) {
+        /* Reset current rule, as it will be overwritten from input */
+        $this->rule = array();
+
         /* Type is needed for later */
         //if(isset($ns['type'])) $type = $ns['type'];
         /* If Part */
