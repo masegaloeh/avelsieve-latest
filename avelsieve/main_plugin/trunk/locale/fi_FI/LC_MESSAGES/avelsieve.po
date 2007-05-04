@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-31 14:25+0200\n"
+"POT-Creation-Date: 2007-05-04 15:51+0300\n"
 "PO-Revision-Date: 2004-05-14 12:00+0200\n"
 "Last-Translator: Veli Pirttila <titus@iki.fi>\n"
 "Language-Team: finnish <fi@li.org>\n"
@@ -53,69 +53,6 @@ msgstr ""
 "Käytä alapuolella olevia nappuloita sen sijaan että käyttäisit selaimesi "
 "päivitä, takaisin, eteenpäin nappuloita tehdäksesi uuden säännön."
 
-msgid "Add SPAM Rule"
-msgstr "Lisää ROSKAPOSTI sääntö"
-
-msgid "Configure Anti-SPAM Protection"
-msgstr "Aseta roskapostinsuojaus"
-
-msgid ""
-"All incoming mail is checked for unsolicited commercial content (SPAM) and "
-"marked accordingly. This special rule allows you to configure what to do "
-"with such messages once they arrive to your Inbox."
-msgstr ""
-"Kaikki sisääntulevat sähköpostit tarkistetaan ei-halutulta "
-"kaupalliseltasisällöltä (SPAM) ja merkataan sellaiseksi. Tämä erikoissääntö "
-"antaa sinulle mahdollisuudenmitä tehdä näille viesteille kun ne saapuvat "
-"postilaatikkoosi."
-
-#, php-format
-msgid ""
-"Select %s to add the predefined rule, or select the advanced SPAM filter to "
-"customize the rule."
-msgstr ""
-"Valitse %s lisätäksesi esiasetetun säännön, tai valitse kehittynyt SPAM "
-"suodatin kustomoidaksesi säännön."
-
-msgid "Add Spam Rule"
-msgstr "Lisää SPAM sääntö"
-
-msgid "Advanced Spam Filter..."
-msgstr "Kehittynyt Spam Suodatin..."
-
-msgid "Target Score"
-msgstr "Kohde Pisteet"
-
-#, php-format
-msgid ""
-"Messages with SPAM-Score higher than the target value, the maximum value "
-"being %s, will be considered SPAM."
-msgstr ""
-"Viestit SPAM-pisteillä jotka ovat enemmän kuin kohdearvo, maksimiarvon "
-"ollessa %s, jotka luetaan roskapostiksi."
-
-msgid "SPAM Lists to check against"
-msgstr "Roskapostilista jota vastaan tarkistaa"
-
-msgid "Whitelist"
-msgstr "Valkoinen lista"
-
-msgid ""
-"Messages that match any of these header rules will never end up in Junk "
-"Folders or regarded as SPAM."
-msgstr ""
-"Viestit jotka osuvat mihinkään näistä otsikkosäännöistä eivät "
-"päädyRoskapostikansioihin tai luetella SPAMmiksi."
-
-msgid "More..."
-msgstr "Enemmän.."
-
-msgid "STOP"
-msgstr "PYSÄHDY"
-
-msgid "If this rule matches, do not check any rules after it."
-msgstr "Jos tämä sääntö täsmää, älä tarkasta enää muita sääntöjä sen jälkeen."
-
 #, fuzzy
 msgid "Mail Filtering Scripts"
 msgstr "Nykyiset suodinsäännöt"
@@ -131,6 +68,14 @@ msgstr ""
 "viestien automaattiseen uudelleenohjaukseen, tuhoamiseen sekä ohjaamiseen "
 "eri kansioihin. Sisältää myös lomavastaaja -toiminnon."
 
+msgid "Junk Mail Options"
+msgstr ""
+
+msgid ""
+"The Junk Mail Filter gathers all unwanted SPAM / Junk messages in your Junk "
+"folder."
+msgstr ""
+
 msgid "Filters"
 msgstr "Suodattimet"
 
@@ -139,6 +84,22 @@ msgstr "Ei voitu aktivoida komentotiedostoa palvelimella"
 
 msgid "Please contact your administrator."
 msgstr "Ota yhteyttä ylläpitäjään"
+
+#, php-format
+msgid "Could not delete rule #%s: This type of rule cannot be deleted."
+msgstr ""
+
+#, php-format
+msgid "Could not delete rules #%s: This type of rule cannot be deleted."
+msgstr ""
+
+#, php-format
+msgid "The entered position, %s, is not valid."
+msgstr ""
+
+#, php-format
+msgid "The entered position, %s, is greater than the current number of rules."
+msgstr ""
 
 msgid "Could not get SIEVE script from your IMAP server"
 msgstr "Ei voitu hakea komentotiedostoa palvelimelta"
@@ -150,15 +111,23 @@ msgstr "Virhe"
 msgid "Unable to load script to server."
 msgstr "Ei voitu viedä scriptiä palvelimelle."
 
-msgid "Server responded with:"
-msgstr "Palvelin vastasi seuraavanlaisesti:"
-
 #, fuzzy, php-format
 msgid "Could not delete script from server %s."
 msgstr "Ei voitu hakea komentotiedostoa palvelimelta"
 
+#, fuzzy
+msgid "Could not set active script on your IMAP server "
+msgstr "Ei voitu aktivoida komentotiedostoa palvelimella"
+
+#, fuzzy
+msgid "Could not delete script from server "
+msgstr "Ei voitu hakea komentotiedostoa palvelimelta"
+
 msgid "Could not log on to timsieved daemon on your IMAP server"
 msgstr "Ei voitu sisäänkirjautua palveluun"
+
+msgid "Server responded with:"
+msgstr "Palvelin vastasi seuraavanlaisesti:"
 
 msgid "AND (Every item must match)"
 msgstr "JA (Kaikkien tulee sisältyä)"
@@ -170,7 +139,29 @@ msgstr "TAI (Mikä tahansa voi sisältyä)"
 msgid "Rule"
 msgstr "Säännön tyyppi"
 
-msgid "Anti-SPAM"
+#, fuzzy, php-format
+msgid "Add a new %s"
+msgstr "Lisää uusi sääntö"
+
+#, fuzzy
+msgid "SPAM Rule"
+msgstr "Lisää ROSKAPOSTI sääntö"
+
+msgid "Junk Mail Rule"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Edit %s"
+msgstr "Muokkaa"
+
+msgid "Whitelist"
+msgstr "Valkoinen lista"
+
+#, fuzzy, php-format
+msgid "Add new %s"
+msgstr "Osoite sisältää"
+
+msgid "Sieve Code"
 msgstr ""
 
 #, fuzzy
@@ -273,12 +264,6 @@ msgstr "suppea"
 msgid "More suitable for viewing the table of rules at once"
 msgstr ""
 
-msgid "tech"
-msgstr ""
-
-msgid "Even more terse description for technical people"
-msgstr ""
-
 msgid "source"
 msgstr ""
 
@@ -326,9 +311,6 @@ msgstr ""
 "Säilytä SPAM-viesti Junk Kansiossa. Vanhemmat viestit kuin %s päivää "
 "tuhoutuvat automaattisesti."
 
-msgid "Note that you can set the number of days in Folder Preferences."
-msgstr "Muista että voit asettaa montako päivää -arvon kansion asetuksissa."
-
 msgid "Trash Folder"
 msgstr "Trash Kansio"
 
@@ -352,6 +334,199 @@ msgstr ""
 msgid "Server-Side Mail Filtering"
 msgstr "Palvelimen sisäinen suodinjärjestelmä"
 
+msgid "Successfully added new rule."
+msgstr "Onnistuneesti lisätty uusi sääntö."
+
+#, fuzzy, php-format
+msgid "Successfully updated rule #%s"
+msgstr "Onnistuneesti muutettu sääntöä #"
+
+#, fuzzy, php-format
+msgid "Successfully deleted rules #%s"
+msgstr "Onnistuneesti poistettu säännöt #"
+
+#, fuzzy, php-format
+msgid "Successfully deleted rule #%s"
+msgstr "Onnistuneesti poistettu sääntö#"
+
+msgid "You must correct the above errors before continuing."
+msgstr ""
+
+msgid "No check"
+msgstr ""
+
+#, php-format
+msgid "Editing %s"
+msgstr ""
+
+#, php-format
+msgid "(Rule #%s)"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Add a new %s "
+msgstr "Lisää uusi sääntö"
+
+msgid "Configure Anti-SPAM Protection"
+msgstr "Aseta roskapostinsuojaus"
+
+msgid ""
+"All incoming mail is checked for unsolicited commercial content (SPAM) and "
+"marked accordingly. This special rule allows you to configure what to do "
+"with such messages once they arrive to your Inbox."
+msgstr ""
+"Kaikki sisääntulevat sähköpostit tarkistetaan ei-halutulta "
+"kaupalliseltasisällöltä (SPAM) ja merkataan sellaiseksi. Tämä erikoissääntö "
+"antaa sinulle mahdollisuudenmitä tehdä näille viesteille kun ne saapuvat "
+"postilaatikkoosi."
+
+#, php-format
+msgid ""
+"Select %s to add the predefined rule, or select the advanced SPAM filter to "
+"customize the rule."
+msgstr ""
+"Valitse %s lisätäksesi esiasetetun säännön, tai valitse kehittynyt SPAM "
+"suodatin kustomoidaksesi säännön."
+
+msgid "Add Spam Rule"
+msgstr "Lisää SPAM sääntö"
+
+msgid "Advanced Spam Filter..."
+msgstr "Kehittynyt Spam Suodatin..."
+
+msgid "Target Score"
+msgstr "Kohde Pisteet"
+
+#, php-format
+msgid ""
+"Messages with SPAM-Score higher than the target value, the maximum value "
+"being %s, will be considered SPAM."
+msgstr ""
+"Viestit SPAM-pisteillä jotka ovat enemmän kuin kohdearvo, maksimiarvon "
+"ollessa %s, jotka luetaan roskapostiksi."
+
+msgid "SPAM Lists to check against"
+msgstr "Roskapostilista jota vastaan tarkistaa"
+
+msgid ""
+"Messages that match any of these header rules will never end up in Junk "
+"Folders or regarded as SPAM."
+msgstr ""
+"Viestit jotka osuvat mihinkään näistä otsikkosäännöistä eivät "
+"päädyRoskapostikansioihin tai luetella SPAMmiksi."
+
+msgid "STOP"
+msgstr "PYSÄHDY"
+
+msgid "If this rule matches, do not check any rules after it."
+msgstr "Jos tämä sääntö täsmää, älä tarkasta enää muita sääntöjä sen jälkeen."
+
+msgid "Apply Changes"
+msgstr "Tallenna muutokset"
+
+msgid "Cancel"
+msgstr "Peruuta"
+
+#, fuzzy
+msgid "Information..."
+msgstr "Varmistus"
+
+#, php-format
+msgid ""
+"There is currently no Junk Mail Filter, so we are suggesting the following "
+"default settings. To add the Junk Mail Filter, simply choose <em>&quot;%"
+"s&quot;</em>."
+msgstr ""
+
+#, fuzzy
+msgid "Enable Junk Mail Filtering"
+msgstr "Nykyiset suodinsäännöt"
+
+msgid "Automatically delete Junk Messages"
+msgstr ""
+
+#, php-format
+msgid "when they are older than %s days"
+msgstr ""
+
+#, fuzzy
+msgid "Enable Whitelist"
+msgstr "Valkoinen lista"
+
+#, fuzzy
+msgid ""
+"Messages sent from the addresses in your Whitelist will never end up in your "
+"Junk Mail folder, or considered as SPAM."
+msgstr ""
+"Viestit jotka osuvat mihinkään näistä otsikkosäännöistä eivät "
+"päädyRoskapostikansioihin tai luetella SPAMmiksi."
+
+#, fuzzy
+msgid "Edit Whitelist...."
+msgstr "Valkoinen lista"
+
+msgid "Automatically add all your Address Book Contacts in the Whitelist"
+msgstr ""
+
+msgid "Configure Advanced Junk Mail Tests"
+msgstr ""
+
+#, fuzzy
+msgid "You have to enable at least one Junk Mail Test."
+msgstr "Tekstin tulee sisältyä ainakin yhteen otsikkokenttään."
+
+msgid "Junk Mail Options have been saved."
+msgstr ""
+
+#, fuzzy
+msgid "Editing Whitelist"
+msgstr "Valkoinen lista"
+
+#, fuzzy
+msgid ""
+"Messages coming from the email addresses that you enter here will never end "
+"up in your Junk folder or be considered as SPAM."
+msgstr ""
+"Viestit jotka osuvat mihinkään näistä otsikkosäännöistä eivät "
+"päädyRoskapostikansioihin tai luetella SPAMmiksi."
+
+msgid ""
+"Enter <strong>one (1) email address per line</strong>. Note that you can "
+"also enter an incomplete address or a mail domain."
+msgstr ""
+
+msgid "Example:"
+msgstr ""
+
+msgid "Whitelist has been updated."
+msgstr ""
+
+#, php-format
+msgid "Editing Sieve Code (Rule #%s)"
+msgstr ""
+
+#, fuzzy
+msgid "Create New Custom Sieve Rule"
+msgstr "Nykyiset suodinsäännöt"
+
+msgid "Custom Rule"
+msgstr ""
+
+msgid "Please enter valid Sieve code in the textbox below."
+msgstr ""
+
+msgid ""
+"Note: The <tt>require</tt> command is not needed; it will be added "
+"automatically at the start of the script."
+msgstr ""
+
+#, php-format
+msgid "Sieve Capabilities supported: %s"
+msgstr ""
+
+msgid "Please enter a valid Sieve code snippet."
+msgstr ""
+
 msgid "To: or Cc"
 msgstr "To: tai Cc"
 
@@ -360,6 +535,9 @@ msgstr "Säännön tila on seuraavanlainen:"
 
 msgid "Less..."
 msgstr "Vähemmän.."
+
+msgid "More..."
+msgstr "Enemmän.."
 
 msgid "bigger"
 msgstr "isompi"
@@ -389,11 +567,8 @@ msgstr ""
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr "Valitse seuraavista mitä tehdä kun tämä sääntö käynnistyy:"
 
-msgid "Apply Changes"
-msgstr "Tallenna muutokset"
-
-msgid "Cancel"
-msgstr "Peruuta"
+msgid "Add SPAM Rule"
+msgstr "Lisää ROSKAPOSTI sääntö"
 
 msgid "Editing Mail Filtering Rule"
 msgstr "Muokataan suodinsääntöä"
@@ -402,11 +577,12 @@ msgstr "Muokataan suodinsääntöä"
 msgid "Create New Mail Filtering Rule"
 msgstr "Nykyiset suodinsäännöt"
 
-msgid "You must correct the above errors before continuing."
-msgstr ""
-
 msgid "Additional Actions"
 msgstr "Lisätoiminnot"
+
+#, fuzzy
+msgid "You have to define at least one condition."
+msgstr "Tekstin tulee sisältyä ainakin yhteen otsikkokenttään."
 
 msgid "Clear this Form"
 msgstr "Tyhjennä"
@@ -457,17 +633,27 @@ msgstr ""
 "Muokkauksen jälkeen, <strong>muista tallentaa muutokset aktivoidaksesi "
 "muutokset!"
 
+msgid "The following table summarizes your current mail filtering rules."
+msgstr "Alla näet nykyiset suodinsäännöt."
+
 msgid ""
 "Warning: In your rules, you have defined an action that refers to a folder "
 "that does not exist or a folder where you do not have permission to append "
 "to."
 msgstr ""
 
-msgid "The following table summarizes your current mail filtering rules."
-msgstr "Alla näet nykyiset suodinsäännöt."
+#, php-format
+msgid ""
+"Note: A <a href=\"%s\">Vacation Autoresponder</a> is active (<a href=\"%s"
+"\">Rule #%s</a> in your current Mail Filtering Rules).<br/>Don't forget to "
+"disable it or delete it when you are back."
+msgstr ""
 
 msgid "No"
 msgstr "Numero"
+
+msgid "Options"
+msgstr "Asetukset"
 
 msgid "Description of Rule"
 msgstr "Säännön kuvaus"
@@ -475,23 +661,17 @@ msgstr "Säännön kuvaus"
 msgid "Display as:"
 msgstr "Näytä seuraavalta:"
 
-msgid "Options"
-msgstr "Asetukset"
+#, fuzzy
+msgid "Position"
+msgstr "Ehto"
 
-msgid "Successfully added new rule."
-msgstr "Onnistuneesti lisätty uusi sääntö."
-
-msgid "Successfully updated rule #"
-msgstr "Onnistuneesti muutettu sääntöä #"
-
-msgid "Successfully deleted rules #"
-msgstr "Onnistuneesti poistettu säännöt #"
-
-msgid "Successfully deleted rule #"
-msgstr "Onnistuneesti poistettu sääntö#"
-
-msgid "Add a New Rule"
+#, fuzzy
+msgid "Add a new Rule"
 msgstr "Lisää uusi sääntö"
+
+#, fuzzy
+msgid "Really delete selected rules?"
+msgstr "Poistetaanko tämä sääntö oikeasti?"
 
 msgid "Enable"
 msgstr ""
@@ -508,11 +688,11 @@ msgstr ""
 msgid "Save Changes"
 msgstr "Tallenna Muutokset"
 
-msgid "Last modified:"
-msgstr "Viimeksi muutettu:"
-
 msgid "Created:"
 msgstr "Tehty:"
+
+msgid "Last modified:"
+msgstr "Viimeksi muutettu:"
 
 msgid "Current Mail Filtering Rules"
 msgstr "Nykyiset suodinsäännöt"
@@ -526,8 +706,57 @@ msgstr "Ei suodinsäätöjä vielä tehtynä"
 msgid "Really delete this rule?"
 msgstr "Poistetaanko tämä sääntö oikeasti?"
 
+#, fuzzy
+msgid "More Options..."
+msgstr "Enemmän.."
+
+#, fuzzy
+msgid "Move to Position..."
+msgstr "Siirry Alas"
+
+msgid "--------"
+msgstr ""
+
+#, fuzzy
+msgid "Duplicate this Rule"
+msgstr "Poistetaanko tämä sääntö oikeasti?"
+
+#, fuzzy
+msgid "Insert a New Rule here"
+msgstr "Lisää uusi sääntö"
+
+msgid "Send this Rule by Email"
+msgstr ""
+
+msgid "Go"
+msgstr ""
+
 msgid "Action for Selected Rules:"
 msgstr ""
+
+#, fuzzy
+msgid "Junk Folder Information"
+msgstr "Junk Kansio"
+
+msgid "Messages in this folder have been identified as SPAM / Junk."
+msgstr ""
+
+#, php-format
+msgid ""
+"Note: Junk Mail is currently not enabled. Select &quot;%s&quot; to enable it."
+msgstr ""
+
+msgid "Edit Junk Mail Options..."
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Any messages older than %s days are automatically deleted."
+msgstr ""
+"Säilytä SPAM-viesti Junk Kansiossa. Vanhemmat viestit kuin %s päivää "
+"tuhoutuvat automaattisesti."
+
+msgid "Test for Forged Header"
+msgstr "Testi väärennetylle otsikolle"
 
 msgid "Automatically"
 msgstr ""
@@ -548,9 +777,8 @@ msgstr ""
 msgid "Create Filter"
 msgstr "Viestien suodattimet"
 
-#, fuzzy
-msgid "You have to define at least one condition."
-msgstr "Tekstin tulee sisältyä ainakin yhteen otsikkokenttään."
+msgid "Vacation Filter Reminder"
+msgstr ""
 
 msgid "(Creates a new server-side filtering rule, based on the above criteria)"
 msgstr ""
@@ -574,20 +802,30 @@ msgstr ""
 msgid "These search expressions are not applicable during message delivery."
 msgstr ""
 
-msgid "Keep (Default action)"
-msgstr "Ei tehdä mitään (Vakio toiminta)"
+#, fuzzy
+msgid "Keep Message"
+msgstr "Viesti"
 
-msgid "Discard Silently"
-msgstr "Tuhoa Äänettömästi"
+msgid "Save the message in your INBOX."
+msgstr ""
 
-msgid "Reject, sending this excuse to the sender:"
-msgstr "Hylkää ja lähetä seuraava viesti lähettäjälle:"
+msgid "Silently discards the message; use with caution."
+msgstr ""
+
+msgid "Reject"
+msgstr ""
+
+msgid "Send the message back to the sender, along with an excuse"
+msgstr ""
 
 msgid "Please do not send me large attachments."
 msgstr "Älä lähetä minulle isoja liitetiedostoja."
 
-msgid "Redirect to the following email address:"
-msgstr "Edelleenohjaa seuraaviin postiosoitteisiin:"
+msgid "Redirect"
+msgstr ""
+
+msgid "Automatically redirect the message to a different email address"
+msgstr ""
 
 msgid "someone@example.org"
 msgstr "email@osoite"
@@ -600,17 +838,13 @@ msgid ""
 "addresses, separated by comma."
 msgstr ""
 
-msgid "Move message into"
-msgstr "Siirrä viesti"
+#, fuzzy
+msgid "Move to Folder"
+msgstr "Siirry Ylös"
 
-msgid "the existing folder"
-msgstr "olemassaolevaan kansioon"
-
-msgid "a new folder, named"
-msgstr "uuteen nimettyyn kansioon"
-
-msgid "created as a subfolder of"
-msgstr "tee alikansioksi"
+#, php-format
+msgid "Or specify a new folder: %s to be created under %s"
+msgstr ""
 
 msgid "Vacation"
 msgstr "Lomavastaaja"
@@ -632,29 +866,47 @@ msgstr ""
 "Muistutus lähetetään vain kerran jokaiselle lähettäjälle ja  "
 "postituslistoille ei myöskään vastata"
 
-msgid "Addresses: Only reply if sent to these addresses:"
+msgid "Subject:"
 msgstr ""
-"Osoitteet: Vastaa vain näihin osoitteisiin (jos tyhjä, vastaa kaikille):"
 
-msgid "Days: Reply message will be resent after"
-msgstr "Päiviä: Vastaus lähetetään uudelleen tämän ajan kuluttua"
+#, fuzzy
+msgid "Optional subject of the vacation message."
+msgstr "vastaa tällä lomaviestillä: "
+
+#, fuzzy
+msgid "Your Addresses:"
+msgstr "Osoite sisältää"
+
+msgid ""
+"A vacation message will be sent only if an email is sent explicitly to one "
+"of these addresses."
+msgstr ""
+
+#, fuzzy
+msgid "Days:"
+msgstr "päiviä"
 
 msgid "days"
 msgstr "päiviä"
 
-msgid "Use the following message:"
-msgstr "Käytä seuraavanlaista viestiä:"
+msgid ""
+"A vacation message will not be resent to the same address, within this "
+"number of days."
+msgstr ""
+
+#, fuzzy
+msgid "Message:"
+msgstr "Viesti"
 
 msgid "The number of days between vacation messages must be a positive number."
 msgstr ""
 
-msgid ""
-"Your email addresses for which a vacation message is returned must be "
-"defined."
+msgid "Notify"
 msgstr ""
 
-msgid "Notify me, using the following method:"
-msgstr "Ilmoita minulle, käyttämällä seuraavanlaista tapaa:"
+#, fuzzy
+msgid "Send a notification "
+msgstr "Sähköpostimuistutus"
 
 msgid "Mobile Phone Message (SMS)"
 msgstr "SMS-Viesti"
@@ -668,11 +920,17 @@ msgstr "Muistutus Zephyrin kautta"
 msgid "Notification via ICQ"
 msgstr "Muistutus ICQn kautta"
 
+msgid "Method"
+msgstr ""
+
 msgid "Notification ID"
 msgstr "Ilmoitus ID"
 
 msgid "Destination"
 msgstr "Kohde"
+
+msgid "Priority"
+msgstr ""
 
 msgid "Message"
 msgstr "Viesti"
@@ -683,62 +941,35 @@ msgstr "Apua: Sallitut muuttujat ovat:"
 msgid "Also keep copy in INBOX, marked as deleted."
 msgstr "Pidä myös kopio sisääntulevissa ja merkkaa tuhotuksi"
 
-#, fuzzy
-msgid "Disable this rule"
-msgstr "Poistetaanko tämä sääntö oikeasti?"
-
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
-#, fuzzy, php-format
-msgid "the header %s"
-msgstr "otsikko"
+#, fuzzy
+msgid "Move to Junk"
+msgstr "Siirry Ylös"
 
 #, fuzzy, php-format
-msgid "Header %s"
-msgstr "Otsikko sisältyy"
+msgid ""
+"Store message in your Junk Folder. Messages older than %s days will be "
+"deleted automatically."
+msgstr ""
+"Säilytä SPAM-viesti Junk Kansiossa. Vanhemmat viestit kuin %s päivää "
+"tuhoutuvat automaattisesti."
+
+msgid "Note that you can set the number of days in Folder Preferences."
+msgstr "Muista että voit asettaa montako päivää -arvon kansion asetuksissa."
 
 #, fuzzy
-msgid "To or Cc"
-msgstr "To: tai Cc"
-
-#, php-format
-msgid "the envelope %s"
-msgstr ""
-
-#, php-format
-msgid "Envelope %s"
-msgstr ""
-
-#, php-format
-msgid "the address %s"
-msgstr ""
-
-#, fuzzy, php-format
-msgid "Address %s"
-msgstr "Osoite sisältää"
+msgid "Move to Trash"
+msgstr "Siirry Ylös"
 
 #, fuzzy
-msgid "message body"
-msgstr "Viesti"
-
-msgid "matches the regural expression"
-msgstr "sisältää rexepin"
-
-msgid "does not match the regural expression"
-msgstr "ei sisällä regexpiä"
-
-msgid "exists"
-msgstr "on olemassa"
-
-msgid "does not exist"
-msgstr "ei ole olemassa"
-
-msgid "This rule is currently <strong>DISABLED</strong>:"
+msgid ""
+"Store message in your Trash Folder. You will have to purge the folder "
+"yourself."
 msgstr ""
-
-msgid "DISABLED"
-msgstr ""
+"Tallenna SPAM-viesti Trash kansioon. Sinun on suoritettava purge-toiminto "
+"kansiolle itse."
 
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
@@ -793,6 +1024,113 @@ msgstr ""
 msgid "discarded."
 msgstr "tuhottu."
 
+msgid "Junk Mail Rule is Disabled"
+msgstr ""
+
+msgid "<s></s>"
+msgstr ""
+
+#, fuzzy
+msgid "Junk Mail"
+msgstr "Junk Kansio"
+
+#, fuzzy
+msgid "matching any one of the Spam tests as follows:"
+msgstr "osuen Spamlistoihin:"
+
+#, fuzzy
+msgid "Spam Tests:"
+msgstr "osuen Spamlistoihin:"
+
+msgid ""
+"and where the sender does <em>not</em> match any of the addresses / "
+"expressions in your <strong>Whitelist</strong>"
+msgstr ""
+
+msgid ""
+"The messages that match the system's default <strong>SPAM</strong> checks"
+msgstr ""
+
+#, fuzzy
+msgid "stored in the <strong>Junk</strong> Folder."
+msgstr "talletettu Junk Kansioon."
+
+#, fuzzy
+msgid "stored in the <strong>Trash</strong> Folder."
+msgstr "talletettu Trash Kansioon."
+
+msgid ""
+"<strong>Whitelist</strong> - The following email addresses are whitelisted "
+"and will not end up in Junk folders or considered as SPAM:"
+msgstr ""
+
+#, php-format
+msgid "and %s more email addresses / expressions."
+msgstr ""
+
+#, php-format
+msgid "%s more entries..."
+msgstr ""
+
+#, fuzzy
+msgid "Custom Sieve Code"
+msgstr "Nykyiset suodinsäännöt"
+
+msgid "View Source"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "the header %s"
+msgstr "otsikko"
+
+#, fuzzy, php-format
+msgid "Header %s"
+msgstr "Otsikko sisältyy"
+
+#, fuzzy
+msgid "To or Cc"
+msgstr "To: tai Cc"
+
+#, php-format
+msgid "the envelope %s"
+msgstr ""
+
+#, php-format
+msgid "Envelope %s"
+msgstr ""
+
+#, php-format
+msgid "the address %s"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Address %s"
+msgstr "Osoite sisältää"
+
+#, fuzzy
+msgid "message body"
+msgstr "Viesti"
+
+#, fuzzy
+msgid "matches the regular expression"
+msgstr "sisältää rexepin"
+
+#, fuzzy
+msgid "does not match the regular expression"
+msgstr "ei sisällä regexpiä"
+
+msgid "exists"
+msgstr "on olemassa"
+
+msgid "does not exist"
+msgstr "ei ole olemassa"
+
+msgid "This rule is currently <strong>DISABLED</strong>:"
+msgstr ""
+
+msgid "DISABLED"
+msgstr ""
+
 msgid "If"
 msgstr "Jos"
 
@@ -823,21 +1161,20 @@ msgstr ""
 msgid "then"
 msgstr "silloin"
 
-msgid "<em>keep</em> it."
+#, fuzzy
+msgid "<em>keep</em> the message."
 msgstr "<em>pidä</em> se."
 
 #, fuzzy
 msgid "Keep"
 msgstr "regexpi"
 
-msgid "<em>discard</em> it."
+#, fuzzy
+msgid "<em>discard</em> the message."
 msgstr "<em>tuhoa</em> se."
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr "<em>hylkää</em> se ja lähetä seuraavanlainen viesti lähettäjälle:"
-
-msgid "Reject"
-msgstr ""
 
 msgid "Redirect to"
 msgstr ""
@@ -897,9 +1234,6 @@ msgstr " Sen jälkeen <strong>Pysähdy</strong> prosessoimasta sääntöjä."
 msgid "Stop"
 msgstr ""
 
-msgid "Test for Forged Header"
-msgstr "Testi väärennetylle otsikolle"
-
 msgid "You have not defined the name for the new folder."
 msgstr "Tekstin tulee sisältyä ainakin yhteen otsikkokenttään."
 
@@ -911,6 +1245,43 @@ msgstr "Virheellinen kansion nimi. Valitse muu nimi."
 
 msgid "None"
 msgstr "Ei yhtään"
+
+#~ msgid "Addresses: Only reply if sent to these addresses:"
+#~ msgstr ""
+#~ "Osoitteet: Vastaa vain näihin osoitteisiin (jos tyhjä, vastaa kaikille):"
+
+#~ msgid "Days: Reply message will be resent after"
+#~ msgstr "Päiviä: Vastaus lähetetään uudelleen tämän ajan kuluttua"
+
+#~ msgid "Use the following message:"
+#~ msgstr "Käytä seuraavanlaista viestiä:"
+
+#~ msgid "Keep (Default action)"
+#~ msgstr "Ei tehdä mitään (Vakio toiminta)"
+
+#~ msgid "Discard Silently"
+#~ msgstr "Tuhoa Äänettömästi"
+
+#~ msgid "Reject, sending this excuse to the sender:"
+#~ msgstr "Hylkää ja lähetä seuraava viesti lähettäjälle:"
+
+#~ msgid "Redirect to the following email address:"
+#~ msgstr "Edelleenohjaa seuraaviin postiosoitteisiin:"
+
+#~ msgid "Move message into"
+#~ msgstr "Siirrä viesti"
+
+#~ msgid "the existing folder"
+#~ msgstr "olemassaolevaan kansioon"
+
+#~ msgid "a new folder, named"
+#~ msgstr "uuteen nimettyyn kansioon"
+
+#~ msgid "created as a subfolder of"
+#~ msgstr "tee alikansioksi"
+
+#~ msgid "Notify me, using the following method:"
+#~ msgstr "Ilmoita minulle, käyttämällä seuraavanlaista tapaa:"
 
 #~ msgid "(Probably the script is size null)."
 #~ msgstr "(Ehkä komentotiedosto ei sisällä mitään)."
