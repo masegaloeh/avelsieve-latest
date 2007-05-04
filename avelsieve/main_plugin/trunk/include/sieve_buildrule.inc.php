@@ -87,7 +87,8 @@
  *
  * vac_days	int
  * vac_addresses	string
- * vac_message	string		valid only for: action==6
+ * vac_subject	    string
+ * vac_message	    string		valid only for: action==6
  *
  * 
  * -) // All
@@ -102,7 +103,7 @@
  *		'message' => string
  * </pre>
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.40 2007/05/03 14:25:41 avel Exp $
+ * @version $Id: sieve_buildrule.inc.php,v 1.41 2007/05/04 12:44:48 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -585,6 +586,10 @@ function makesinglerule($rule, $mode='rule') {
 			$addresses = str_replace(",",'","',str_replace(" ","",$rule['vac_addresses']));
  			$out .= ' :addresses ["'.$addresses.'"]';
 		}
+
+        if(isset($rule['vac_subject']) && trim($rule['vac_subject'])!="") {
+            $out .= ' :subject "'.addslashes($rule['vac_subject']).'" ';
+        }	
 	
 		/* FIXME Replace single dot with dot-stuffed line. RFC 3028 2.4.2 */ 
   		$out .= " text:\n".$rule['vac_message']."\r\n.\r\n;";
