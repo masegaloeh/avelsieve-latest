@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: avelsieve 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-31 14:25+0200\n"
+"POT-Creation-Date: 2007-05-04 15:51+0300\n"
 "PO-Revision-Date: 2003-07-23 17:15+0200\n"
 "Last-Translator: Bachelier Vincent <vincent@solintech.fr>\n"
 "Language-Team: French <fr@solintech.fr>\n"
@@ -57,73 +57,6 @@ msgstr ""
 "venir avec les boutons du navigateur, pour créer une règle."
 
 #, fuzzy
-msgid "Add SPAM Rule"
-msgstr "Ajouter une règle Anti-SPAM"
-
-msgid "Configure Anti-SPAM Protection"
-msgstr "Configurer la protection Anti-SPAM"
-
-msgid ""
-"All incoming mail is checked for unsolicited commercial content (SPAM) and "
-"marked accordingly. This special rule allows you to configure what to do "
-"with such messages once they arrive to your Inbox."
-msgstr ""
-"Tous les messages arrivant sont vérifiés contre les messages commerciaux non-"
-"sollicité (SPAM) etmarqué en fonction. Cette règle spécial vous permet de "
-"configurer quoi faire avec ces messages une fois arrivé dans votre boîte de "
-"réception."
-
-#, php-format
-msgid ""
-"Select %s to add the predefined rule, or select the advanced SPAM filter to "
-"customize the rule."
-msgstr ""
-"Choisir %s pour ajouter une règle prédéfinie, ou choisissez une règle "
-"avancée de filtre Anti-SPAM pour personnaliser votre règle."
-
-#, fuzzy
-msgid "Add Spam Rule"
-msgstr "Ajouter une règle Anti-SPAM"
-
-msgid "Advanced Spam Filter..."
-msgstr "Filtre avancé Anti-SPAM..."
-
-msgid "Target Score"
-msgstr "Score de la cible"
-
-#, php-format
-msgid ""
-"Messages with SPAM-Score higher than the target value, the maximum value "
-"being %s, will be considered SPAM."
-msgstr ""
-"Les messages avec un score supérieur à la valeur cible, le maximum étant %s, "
-"seront concidérés comme des SPAM."
-
-msgid "SPAM Lists to check against"
-msgstr "Liste de SPAM à vérifier"
-
-msgid "Whitelist"
-msgstr "Liste blanche"
-
-msgid ""
-"Messages that match any of these header rules will never end up in Junk "
-"Folders or regarded as SPAM."
-msgstr ""
-"Les messages vérifiant une de ces règles n'iront jamais dans le dossier Junk "
-"ou concidérés comme des SPAM."
-
-msgid "More..."
-msgstr "Plus..."
-
-msgid "STOP"
-msgstr "STOP"
-
-msgid "If this rule matches, do not check any rules after it."
-msgstr ""
-"Si cette r&egrave;gle co&iuml;ncide, ne tester aucune autre r&egrave;gle "
-"apr&egrave;s celle-ci."
-
-#, fuzzy
 msgid "Mail Filtering Scripts"
 msgstr "R&egrave;gles de filtrage existantes"
 
@@ -137,6 +70,14 @@ msgstr ""
 "Ceci vous permet de supprimer, de d&eacute;vier, de r&eacute;pondre ou de "
 "classer les messages entrants."
 
+msgid "Junk Mail Options"
+msgstr ""
+
+msgid ""
+"The Junk Mail Filter gathers all unwanted SPAM / Junk messages in your Junk "
+"folder."
+msgstr ""
+
 msgid "Filters"
 msgstr "Filtres"
 
@@ -145,6 +86,22 @@ msgstr "Impossible d'activer les r&egrave; sur le serveur IMAP."
 
 msgid "Please contact your administrator."
 msgstr "Veuillez contacter votre administrateur."
+
+#, php-format
+msgid "Could not delete rule #%s: This type of rule cannot be deleted."
+msgstr ""
+
+#, php-format
+msgid "Could not delete rules #%s: This type of rule cannot be deleted."
+msgstr ""
+
+#, php-format
+msgid "The entered position, %s, is not valid."
+msgstr ""
+
+#, php-format
+msgid "The entered position, %s, is greater than the current number of rules."
+msgstr ""
 
 msgid "Could not get SIEVE script from your IMAP server"
 msgstr "Impossible de lire les r&egrave; sur le serveur IMAP."
@@ -156,15 +113,23 @@ msgstr "Erreur."
 msgid "Unable to load script to server."
 msgstr "Impossible de charger le script du serveur."
 
-msgid "Server responded with:"
-msgstr "Le serveur à répondu:"
-
 #, fuzzy, php-format
 msgid "Could not delete script from server %s."
 msgstr "Impossible de lire les r&egrave; sur le serveur IMAP."
 
+#, fuzzy
+msgid "Could not set active script on your IMAP server "
+msgstr "Impossible d'activer les r&egrave; sur le serveur IMAP."
+
+#, fuzzy
+msgid "Could not delete script from server "
+msgstr "Impossible de lire les r&egrave; sur le serveur IMAP."
+
 msgid "Could not log on to timsieved daemon on your IMAP server"
 msgstr "Impossible de se connecter au serveur IMAP."
+
+msgid "Server responded with:"
+msgstr "Le serveur à répondu:"
 
 msgid "AND (Every item must match)"
 msgstr "ET (Tous les &eacute;l&eacute;ments doivent co&iuml;ncider)"
@@ -176,7 +141,29 @@ msgstr "OU (Un des &eacute;l&eacute;ments doit co&iuml;ncider)"
 msgid "Rule"
 msgstr "Nouvelle r&egrave;gle"
 
-msgid "Anti-SPAM"
+#, fuzzy, php-format
+msgid "Add a new %s"
+msgstr "Ajouter une nouvelle r&egrave;gle"
+
+#, fuzzy
+msgid "SPAM Rule"
+msgstr "Ajouter une règle Anti-SPAM"
+
+msgid "Junk Mail Rule"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Edit %s"
+msgstr "Editer"
+
+msgid "Whitelist"
+msgstr "Liste blanche"
+
+#, fuzzy, php-format
+msgid "Add new %s"
+msgstr "Filtrage sur les adresses"
+
+msgid "Sieve Code"
 msgstr ""
 
 #, fuzzy
@@ -286,12 +273,6 @@ msgstr "Filtres"
 msgid "More suitable for viewing the table of rules at once"
 msgstr ""
 
-msgid "tech"
-msgstr ""
-
-msgid "Even more terse description for technical people"
-msgstr ""
-
 msgid "source"
 msgstr ""
 
@@ -341,11 +322,6 @@ msgstr ""
 "Garder le SPAM dans votre dossier Junk. Les vieux messages de plus de %s "
 "jours seront supprimé automatiquement."
 
-msgid "Note that you can set the number of days in Folder Preferences."
-msgstr ""
-"Notez que vous pouvez régler le nombre de jours dans votre dossier "
-"Préférences."
-
 msgid "Trash Folder"
 msgstr "Corbeille"
 
@@ -367,6 +343,202 @@ msgstr "Rejeter les SPAM. Vous ne serez pas prévenu de son passage."
 msgid "Server-Side Mail Filtering"
 msgstr "Filtrage du courrier"
 
+msgid "Successfully added new rule."
+msgstr "Nouvelle r&egrave;gle ajout&eacute;e"
+
+#, fuzzy, php-format
+msgid "Successfully updated rule #%s"
+msgstr "R&egrave;gle modifi&eacute;e #"
+
+#, fuzzy, php-format
+msgid "Successfully deleted rules #%s"
+msgstr "R&egrave;gle supprim&eacute;e #"
+
+#, fuzzy, php-format
+msgid "Successfully deleted rule #%s"
+msgstr "R&egrave;gle supprim&eacute;e #"
+
+msgid "You must correct the above errors before continuing."
+msgstr ""
+
+msgid "No check"
+msgstr ""
+
+#, php-format
+msgid "Editing %s"
+msgstr ""
+
+#, php-format
+msgid "(Rule #%s)"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Add a new %s "
+msgstr "Ajouter une nouvelle r&egrave;gle"
+
+msgid "Configure Anti-SPAM Protection"
+msgstr "Configurer la protection Anti-SPAM"
+
+msgid ""
+"All incoming mail is checked for unsolicited commercial content (SPAM) and "
+"marked accordingly. This special rule allows you to configure what to do "
+"with such messages once they arrive to your Inbox."
+msgstr ""
+"Tous les messages arrivant sont vérifiés contre les messages commerciaux non-"
+"sollicité (SPAM) etmarqué en fonction. Cette règle spécial vous permet de "
+"configurer quoi faire avec ces messages une fois arrivé dans votre boîte de "
+"réception."
+
+#, php-format
+msgid ""
+"Select %s to add the predefined rule, or select the advanced SPAM filter to "
+"customize the rule."
+msgstr ""
+"Choisir %s pour ajouter une règle prédéfinie, ou choisissez une règle "
+"avancée de filtre Anti-SPAM pour personnaliser votre règle."
+
+#, fuzzy
+msgid "Add Spam Rule"
+msgstr "Ajouter une règle Anti-SPAM"
+
+msgid "Advanced Spam Filter..."
+msgstr "Filtre avancé Anti-SPAM..."
+
+msgid "Target Score"
+msgstr "Score de la cible"
+
+#, php-format
+msgid ""
+"Messages with SPAM-Score higher than the target value, the maximum value "
+"being %s, will be considered SPAM."
+msgstr ""
+"Les messages avec un score supérieur à la valeur cible, le maximum étant %s, "
+"seront concidérés comme des SPAM."
+
+msgid "SPAM Lists to check against"
+msgstr "Liste de SPAM à vérifier"
+
+msgid ""
+"Messages that match any of these header rules will never end up in Junk "
+"Folders or regarded as SPAM."
+msgstr ""
+"Les messages vérifiant une de ces règles n'iront jamais dans le dossier Junk "
+"ou concidérés comme des SPAM."
+
+msgid "STOP"
+msgstr "STOP"
+
+msgid "If this rule matches, do not check any rules after it."
+msgstr ""
+"Si cette r&egrave;gle co&iuml;ncide, ne tester aucune autre r&egrave;gle "
+"apr&egrave;s celle-ci."
+
+msgid "Apply Changes"
+msgstr "Sauvegarder les modifications"
+
+msgid "Cancel"
+msgstr "Annuler"
+
+#, fuzzy
+msgid "Information..."
+msgstr "Confirmation"
+
+#, php-format
+msgid ""
+"There is currently no Junk Mail Filter, so we are suggesting the following "
+"default settings. To add the Junk Mail Filter, simply choose <em>&quot;%"
+"s&quot;</em>."
+msgstr ""
+
+#, fuzzy
+msgid "Enable Junk Mail Filtering"
+msgstr "R&egrave;gles de filtrage existantes"
+
+msgid "Automatically delete Junk Messages"
+msgstr ""
+
+#, php-format
+msgid "when they are older than %s days"
+msgstr ""
+
+#, fuzzy
+msgid "Enable Whitelist"
+msgstr "Liste blanche"
+
+#, fuzzy
+msgid ""
+"Messages sent from the addresses in your Whitelist will never end up in your "
+"Junk Mail folder, or considered as SPAM."
+msgstr ""
+"Les messages vérifiant une de ces règles n'iront jamais dans le dossier Junk "
+"ou concidérés comme des SPAM."
+
+#, fuzzy
+msgid "Edit Whitelist...."
+msgstr "Liste blanche"
+
+msgid "Automatically add all your Address Book Contacts in the Whitelist"
+msgstr ""
+
+msgid "Configure Advanced Junk Mail Tests"
+msgstr ""
+
+#, fuzzy
+msgid "You have to enable at least one Junk Mail Test."
+msgstr "Vous devez d&eacute;finir au moins un texte d'en-t&ecirc;te."
+
+msgid "Junk Mail Options have been saved."
+msgstr ""
+
+#, fuzzy
+msgid "Editing Whitelist"
+msgstr "Liste blanche"
+
+#, fuzzy
+msgid ""
+"Messages coming from the email addresses that you enter here will never end "
+"up in your Junk folder or be considered as SPAM."
+msgstr ""
+"Les messages vérifiant une de ces règles n'iront jamais dans le dossier Junk "
+"ou concidérés comme des SPAM."
+
+msgid ""
+"Enter <strong>one (1) email address per line</strong>. Note that you can "
+"also enter an incomplete address or a mail domain."
+msgstr ""
+
+msgid "Example:"
+msgstr ""
+
+msgid "Whitelist has been updated."
+msgstr ""
+
+#, php-format
+msgid "Editing Sieve Code (Rule #%s)"
+msgstr ""
+
+#, fuzzy
+msgid "Create New Custom Sieve Rule"
+msgstr "R&egrave;gles de filtrage existantes"
+
+msgid "Custom Rule"
+msgstr ""
+
+msgid "Please enter valid Sieve code in the textbox below."
+msgstr ""
+
+msgid ""
+"Note: The <tt>require</tt> command is not needed; it will be added "
+"automatically at the start of the script."
+msgstr ""
+
+#, php-format
+msgid "Sieve Capabilities supported: %s"
+msgstr ""
+
+msgid "Please enter a valid Sieve code snippet."
+msgstr ""
+
 msgid "To: or Cc"
 msgstr "De: ou Copie"
 
@@ -375,6 +547,9 @@ msgstr "La condition pour la r&egrave;gle suivante est: "
 
 msgid "Less..."
 msgstr "Moins..."
+
+msgid "More..."
+msgstr "Plus..."
 
 msgid "bigger"
 msgstr "plus grand"
@@ -405,11 +580,9 @@ msgstr ""
 msgid "Choose what to do when this rule triggers, from one of the following:"
 msgstr "Choisissez ce que vous voulez faire quand cette r&egrave;gle s'active:"
 
-msgid "Apply Changes"
-msgstr "Sauvegarder les modifications"
-
-msgid "Cancel"
-msgstr "Annuler"
+#, fuzzy
+msgid "Add SPAM Rule"
+msgstr "Ajouter une règle Anti-SPAM"
 
 msgid "Editing Mail Filtering Rule"
 msgstr "R&egrave;gles de filtrage existantes"
@@ -418,11 +591,12 @@ msgstr "R&egrave;gles de filtrage existantes"
 msgid "Create New Mail Filtering Rule"
 msgstr "R&egrave;gles de filtrage existantes"
 
-msgid "You must correct the above errors before continuing."
-msgstr ""
-
 msgid "Additional Actions"
 msgstr "Actions supplémentaires"
+
+#, fuzzy
+msgid "You have to define at least one condition."
+msgstr "Vous devez d&eacute;finir au moins un texte d'en-t&ecirc;te."
 
 msgid "Clear this Form"
 msgstr "R&eacute;initialiser ce formulaire"
@@ -477,17 +651,27 @@ msgstr ""
 "cliquer sur &quot;Sauvegarder les Changements&quot;</strong> pour les "
 "activer !"
 
+msgid "The following table summarizes your current mail filtering rules."
+msgstr "Le tableau suivant r&eacute;sume les r&egrave;gles existantes."
+
 msgid ""
 "Warning: In your rules, you have defined an action that refers to a folder "
 "that does not exist or a folder where you do not have permission to append "
 "to."
 msgstr ""
 
-msgid "The following table summarizes your current mail filtering rules."
-msgstr "Le tableau suivant r&eacute;sume les r&egrave;gles existantes."
+#, php-format
+msgid ""
+"Note: A <a href=\"%s\">Vacation Autoresponder</a> is active (<a href=\"%s"
+"\">Rule #%s</a> in your current Mail Filtering Rules).<br/>Don't forget to "
+"disable it or delete it when you are back."
+msgstr ""
 
 msgid "No"
 msgstr "Non"
+
+msgid "Options"
+msgstr "Options"
 
 msgid "Description of Rule"
 msgstr "Description de la r&egrave;gle"
@@ -495,24 +679,17 @@ msgstr "Description de la r&egrave;gle"
 msgid "Display as:"
 msgstr "Montrer comme:"
 
-msgid "Options"
-msgstr "Options"
-
-msgid "Successfully added new rule."
-msgstr "Nouvelle r&egrave;gle ajout&eacute;e"
-
-msgid "Successfully updated rule #"
-msgstr "R&egrave;gle modifi&eacute;e #"
+#, fuzzy
+msgid "Position"
+msgstr "Condition"
 
 #, fuzzy
-msgid "Successfully deleted rules #"
-msgstr "R&egrave;gle supprim&eacute;e #"
-
-msgid "Successfully deleted rule #"
-msgstr "R&egrave;gle supprim&eacute;e #"
-
-msgid "Add a New Rule"
+msgid "Add a new Rule"
 msgstr "Ajouter une nouvelle r&egrave;gle"
+
+#, fuzzy
+msgid "Really delete selected rules?"
+msgstr "R&egrave;gle supprim&eacute;e #"
 
 msgid "Enable"
 msgstr ""
@@ -527,11 +704,11 @@ msgstr "Quand vous aurez fini, cliquez sur le bouton ci-dessous pour terminer."
 msgid "Save Changes"
 msgstr "Sauvegarder les modifications"
 
-msgid "Last modified:"
-msgstr "Dernière modification:"
-
 msgid "Created:"
 msgstr "Créé:"
+
+msgid "Last modified:"
+msgstr "Dernière modification:"
 
 msgid "Current Mail Filtering Rules"
 msgstr "R&egrave;gles de filtrage existantes"
@@ -547,8 +724,57 @@ msgstr ""
 msgid "Really delete this rule?"
 msgstr "R&egrave;gle supprim&eacute;e #"
 
+#, fuzzy
+msgid "More Options..."
+msgstr "Plus..."
+
+#, fuzzy
+msgid "Move to Position..."
+msgstr "Aller &agrave; l'&eacute;tape"
+
+msgid "--------"
+msgstr ""
+
+#, fuzzy
+msgid "Duplicate this Rule"
+msgstr "R&egrave;gle supprim&eacute;e #"
+
+#, fuzzy
+msgid "Insert a New Rule here"
+msgstr "Ajouter une nouvelle r&egrave;gle"
+
+msgid "Send this Rule by Email"
+msgstr ""
+
+msgid "Go"
+msgstr ""
+
 msgid "Action for Selected Rules:"
 msgstr ""
+
+#, fuzzy
+msgid "Junk Folder Information"
+msgstr "Dossier Junk"
+
+msgid "Messages in this folder have been identified as SPAM / Junk."
+msgstr ""
+
+#, php-format
+msgid ""
+"Note: Junk Mail is currently not enabled. Select &quot;%s&quot; to enable it."
+msgstr ""
+
+msgid "Edit Junk Mail Options..."
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Any messages older than %s days are automatically deleted."
+msgstr ""
+"Garder le SPAM dans votre dossier Junk. Les vieux messages de plus de %s "
+"jours seront supprimé automatiquement."
+
+msgid "Test for Forged Header"
+msgstr "Tester avec les entêtes forgées"
 
 msgid "Automatically"
 msgstr ""
@@ -569,9 +795,8 @@ msgstr ""
 msgid "Create Filter"
 msgstr "Filtrage du courrier"
 
-#, fuzzy
-msgid "You have to define at least one condition."
-msgstr "Vous devez d&eacute;finir au moins un texte d'en-t&ecirc;te."
+msgid "Vacation Filter Reminder"
+msgstr ""
 
 msgid "(Creates a new server-side filtering rule, based on the above criteria)"
 msgstr ""
@@ -595,20 +820,30 @@ msgstr ""
 msgid "These search expressions are not applicable during message delivery."
 msgstr ""
 
-msgid "Keep (Default action)"
-msgstr "Accepter (Action par defaut)"
+#, fuzzy
+msgid "Keep Message"
+msgstr "Tous les messages"
 
-msgid "Discard Silently"
-msgstr "Supprimer"
+msgid "Save the message in your INBOX."
+msgstr ""
 
-msgid "Reject, sending this excuse to the sender:"
-msgstr "Rejeter et envoyer cette explication &agrave; l'exp&eacute;diteur: "
+msgid "Silently discards the message; use with caution."
+msgstr ""
+
+msgid "Reject"
+msgstr ""
+
+msgid "Send the message back to the sender, along with an excuse"
+msgstr ""
 
 msgid "Please do not send me large attachments."
 msgstr "S.V.P., ne m'envoyez pas de grands fichiers joints."
 
-msgid "Redirect to the following email address:"
-msgstr "D&eacute;vier le message vers cette adresse:"
+msgid "Redirect"
+msgstr ""
+
+msgid "Automatically redirect the message to a different email address"
+msgstr ""
 
 msgid "someone@example.org"
 msgstr "quelquechose@example.org"
@@ -621,17 +856,13 @@ msgid ""
 "addresses, separated by comma."
 msgstr ""
 
-msgid "Move message into"
-msgstr "Classer le message dans:"
+#, fuzzy
+msgid "Move to Folder"
+msgstr "Aller &agrave; l'&eacute;tape"
 
-msgid "the existing folder"
-msgstr "le r&eacute;pertoire existant "
-
-msgid "a new folder, named"
-msgstr "un nouveau r&eacute;pertoire, appel&eacute; "
-
-msgid "created as a subfolder of"
-msgstr " cr&eacute;&eacute; comme sous-r&eacute;pertoire de "
+#, php-format
+msgid "Or specify a new folder: %s to be created under %s"
+msgstr ""
 
 msgid "Vacation"
 msgstr "R&eacute;pondeur"
@@ -652,30 +883,47 @@ msgstr ""
 "exp&eacute;diteur. Elle ne sera envoy&eacute;e &agrave; aucune liste de "
 "diffusion."
 
-msgid "Addresses: Only reply if sent to these addresses:"
+msgid "Subject:"
 msgstr ""
-"Ne r&eacute;pondre que si le message est envoy&eacute; &agrave; ces "
-"adresses: "
 
-msgid "Days: Reply message will be resent after"
-msgstr "La r&eacute;ponse sera envoy&eacute; apr&eacute;s"
+#, fuzzy
+msgid "Optional subject of the vacation message."
+msgstr "r&eacute;pondre: "
+
+#, fuzzy
+msgid "Your Addresses:"
+msgstr "Filtrage sur les adresses"
+
+msgid ""
+"A vacation message will be sent only if an email is sent explicitly to one "
+"of these addresses."
+msgstr ""
+
+#, fuzzy
+msgid "Days:"
+msgstr "jours."
 
 msgid "days"
 msgstr "jours."
 
-msgid "Use the following message:"
-msgstr "Utiliser la r&eacute;ponse suivante:"
+msgid ""
+"A vacation message will not be resent to the same address, within this "
+"number of days."
+msgstr ""
+
+#, fuzzy
+msgid "Message:"
+msgstr "Tous les messages"
 
 msgid "The number of days between vacation messages must be a positive number."
 msgstr ""
 
-msgid ""
-"Your email addresses for which a vacation message is returned must be "
-"defined."
+msgid "Notify"
 msgstr ""
 
-msgid "Notify me, using the following method:"
-msgstr "Me prévenir via:"
+#, fuzzy
+msgid "Send a notification "
+msgstr "Notification par email"
 
 msgid "Mobile Phone Message (SMS)"
 msgstr "SMS"
@@ -689,10 +937,16 @@ msgstr "Notification par Zephyr"
 msgid "Notification via ICQ"
 msgstr "Notification par ICQ"
 
+msgid "Method"
+msgstr ""
+
 msgid "Notification ID"
 msgstr "Notification NUM"
 
 msgid "Destination"
+msgstr ""
+
+msgid "Priority"
 msgstr ""
 
 #, fuzzy
@@ -705,63 +959,36 @@ msgstr "Aide: Les valeurs valides sont:"
 msgid "Also keep copy in INBOX, marked as deleted."
 msgstr "Garder une copie marqué supprimé dans votre boîte de réception."
 
-#, fuzzy
-msgid "Disable this rule"
-msgstr "R&egrave;gle supprim&eacute;e #"
-
 msgid "The rule will have no effect for as long as it is disabled."
 msgstr ""
 
-#, fuzzy, php-format
-msgid "the header %s"
-msgstr "l'en-t&ecirc;te"
-
-#, fuzzy, php-format
-msgid "Header %s"
-msgstr "Filtrage sur les en-t&ecirc;tes"
-
 #, fuzzy
-msgid "To or Cc"
-msgstr "De: ou Copie"
-
-#, php-format
-msgid "the envelope %s"
-msgstr ""
-
-#, php-format
-msgid "Envelope %s"
-msgstr ""
-
-#, php-format
-msgid "the address %s"
-msgstr ""
+msgid "Move to Junk"
+msgstr "Aller &agrave; l'&eacute;tape"
 
 #, fuzzy, php-format
-msgid "Address %s"
-msgstr "Filtrage sur les adresses"
+msgid ""
+"Store message in your Junk Folder. Messages older than %s days will be "
+"deleted automatically."
+msgstr ""
+"Garder le SPAM dans votre dossier Junk. Les vieux messages de plus de %s "
+"jours seront supprimé automatiquement."
+
+msgid "Note that you can set the number of days in Folder Preferences."
+msgstr ""
+"Notez que vous pouvez régler le nombre de jours dans votre dossier "
+"Préférences."
 
 #, fuzzy
-msgid "message body"
-msgstr "Tous les messages"
-
-msgid "matches the regural expression"
-msgstr "correspond à l'expression régulière"
-
-msgid "does not match the regural expression"
-msgstr "ne correspond pas à l'expression régulière"
-
-msgid "exists"
-msgstr "contient"
+msgid "Move to Trash"
+msgstr "Aller &agrave; l'&eacute;tape"
 
 #, fuzzy
-msgid "does not exist"
-msgstr "ne contient pas"
-
-msgid "This rule is currently <strong>DISABLED</strong>:"
+msgid ""
+"Store message in your Trash Folder. You will have to purge the folder "
+"yourself."
 msgstr ""
-
-msgid "DISABLED"
-msgstr ""
+"Garder le message dans votre Corbeille. Vous devrez le nettoyer vous même."
 
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
@@ -817,6 +1044,114 @@ msgstr ""
 msgid "discarded."
 msgstr "<em>supprimer</em>."
 
+msgid "Junk Mail Rule is Disabled"
+msgstr ""
+
+msgid "<s></s>"
+msgstr ""
+
+#, fuzzy
+msgid "Junk Mail"
+msgstr "Dossier Junk"
+
+#, fuzzy
+msgid "matching any one of the Spam tests as follows:"
+msgstr "correpondant à la liste de SPAM:"
+
+#, fuzzy
+msgid "Spam Tests:"
+msgstr "correpondant à la liste de SPAM:"
+
+msgid ""
+"and where the sender does <em>not</em> match any of the addresses / "
+"expressions in your <strong>Whitelist</strong>"
+msgstr ""
+
+msgid ""
+"The messages that match the system's default <strong>SPAM</strong> checks"
+msgstr ""
+
+#, fuzzy
+msgid "stored in the <strong>Junk</strong> Folder."
+msgstr "sauvegardé dans votre dossier Junk."
+
+#, fuzzy
+msgid "stored in the <strong>Trash</strong> Folder."
+msgstr "sauvegardé dans votre dossier Corbeille."
+
+msgid ""
+"<strong>Whitelist</strong> - The following email addresses are whitelisted "
+"and will not end up in Junk folders or considered as SPAM:"
+msgstr ""
+
+#, php-format
+msgid "and %s more email addresses / expressions."
+msgstr ""
+
+#, php-format
+msgid "%s more entries..."
+msgstr ""
+
+#, fuzzy
+msgid "Custom Sieve Code"
+msgstr "R&egrave;gles de filtrage existantes"
+
+msgid "View Source"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "the header %s"
+msgstr "l'en-t&ecirc;te"
+
+#, fuzzy, php-format
+msgid "Header %s"
+msgstr "Filtrage sur les en-t&ecirc;tes"
+
+#, fuzzy
+msgid "To or Cc"
+msgstr "De: ou Copie"
+
+#, php-format
+msgid "the envelope %s"
+msgstr ""
+
+#, php-format
+msgid "Envelope %s"
+msgstr ""
+
+#, php-format
+msgid "the address %s"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Address %s"
+msgstr "Filtrage sur les adresses"
+
+#, fuzzy
+msgid "message body"
+msgstr "Tous les messages"
+
+#, fuzzy
+msgid "matches the regular expression"
+msgstr "correspond à l'expression régulière"
+
+#, fuzzy
+msgid "does not match the regular expression"
+msgstr "ne correspond pas à l'expression régulière"
+
+msgid "exists"
+msgstr "contient"
+
+#, fuzzy
+msgid "does not exist"
+msgstr "ne contient pas"
+
+msgid "This rule is currently <strong>DISABLED</strong>:"
+msgstr ""
+
+msgid "DISABLED"
+msgstr ""
+
 msgid "If"
 msgstr "Si"
 
@@ -847,21 +1182,20 @@ msgstr ""
 msgid "then"
 msgstr "alors"
 
-msgid "<em>keep</em> it."
+#, fuzzy
+msgid "<em>keep</em> the message."
 msgstr "<em>accepter</em>."
 
 msgid "Keep"
 msgstr ""
 
-msgid "<em>discard</em> it."
+#, fuzzy
+msgid "<em>discard</em> the message."
 msgstr "<em>supprimer</em>."
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
 msgstr ""
 "<em>le rejeter</em>, envoyer cette explication &agrave; l'exp&eacute;diteur:"
-
-msgid "Reject"
-msgstr ""
 
 msgid "Redirect to"
 msgstr ""
@@ -921,9 +1255,6 @@ msgstr " Alors <strong>ARRETER</strong> le traitement des r&egrave;gles."
 msgid "Stop"
 msgstr ""
 
-msgid "Test for Forged Header"
-msgstr "Tester avec les entêtes forgées"
-
 #, fuzzy
 msgid "You have not defined the name for the new folder."
 msgstr "Vous devez d&eacute;finir au moins un texte d'en-t&ecirc;te."
@@ -937,6 +1268,44 @@ msgstr "Nom de dossier incorrect. Veuillez en essayer un autre"
 #, fuzzy
 msgid "None"
 msgstr "Aucun"
+
+#~ msgid "Addresses: Only reply if sent to these addresses:"
+#~ msgstr ""
+#~ "Ne r&eacute;pondre que si le message est envoy&eacute; &agrave; ces "
+#~ "adresses: "
+
+#~ msgid "Days: Reply message will be resent after"
+#~ msgstr "La r&eacute;ponse sera envoy&eacute; apr&eacute;s"
+
+#~ msgid "Use the following message:"
+#~ msgstr "Utiliser la r&eacute;ponse suivante:"
+
+#~ msgid "Keep (Default action)"
+#~ msgstr "Accepter (Action par defaut)"
+
+#~ msgid "Discard Silently"
+#~ msgstr "Supprimer"
+
+#~ msgid "Reject, sending this excuse to the sender:"
+#~ msgstr "Rejeter et envoyer cette explication &agrave; l'exp&eacute;diteur: "
+
+#~ msgid "Redirect to the following email address:"
+#~ msgstr "D&eacute;vier le message vers cette adresse:"
+
+#~ msgid "Move message into"
+#~ msgstr "Classer le message dans:"
+
+#~ msgid "the existing folder"
+#~ msgstr "le r&eacute;pertoire existant "
+
+#~ msgid "a new folder, named"
+#~ msgstr "un nouveau r&eacute;pertoire, appel&eacute; "
+
+#~ msgid "created as a subfolder of"
+#~ msgstr " cr&eacute;&eacute; comme sous-r&eacute;pertoire de "
+
+#~ msgid "Notify me, using the following method:"
+#~ msgstr "Me prévenir via:"
 
 #~ msgid "(Probably the script is size null)."
 #~ msgstr "(Il est probable que la taille de vos r&eacute;gles soit nulle)."
