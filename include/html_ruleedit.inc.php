@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit.inc.php,v 1.37 2007/05/03 14:47:13 avel Exp $
+ * @version $Id: html_ruleedit.inc.php,v 1.38 2007/05/04 12:44:48 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -802,7 +802,7 @@ class avelsieve_html_edit extends avelsieve_html {
                     break;
                 case "6": /* vacation */
                     avelsieve_action_vacation::validate($ns, $this->errmsg);
-                    array_push($vars, 'vac_addresses', 'vac_days', 'vac_message');
+                    array_push($vars, 'vac_addresses', 'vac_subject', 'vac_days', 'vac_message');
                     break;
                 default:
                     break;

@@ -4,7 +4,7 @@
  * with the Squirrelmail distribution.
  *
  *
- * @version $Id: sieve_actions.inc.php,v 1.34 2007/03/27 12:07:04 avel Exp $
+ * @version $Id: sieve_actions.inc.php,v 1.35 2007/05/04 12:44:48 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2007 Alexandros Vellis
  * @package plugins
@@ -419,6 +419,7 @@ class avelsieve_action_vacation extends avelsieve_action {
 	var $options = array(
 		'vac_addresses' => '',
 		'vac_days' => '7',
+		'vac_subject' => '',
 		'vac_message' => ''
 	);
     var $image_src = 'images/icons/status_away.png';
@@ -448,13 +449,38 @@ class avelsieve_action_vacation extends avelsieve_action {
         if(isset($val['vac_addresses']) && strlen($val['vac_addresses']) > 200) {
             $maxlength = (string) (strlen($val['vac_addresses']) + 50);
         }
-	 	return _("Addresses: Only reply if sent to these addresses:").
-				' <input type="text" name="vac_addresses" value="'.htmlspecialchars($val['vac_addresses']).'" size="80" maxlength="'.$maxlength.'"><br />'.
-				_("Days: Reply message will be resent after").
-				' <input type="text" name="vac_days" value="'.htmlspecialchars($val['vac_days']).'" size="3" maxlength="4"> ' . _("days").
-				'<br />'.
-				_("Use the following message:") . '<br />' .
-				'<textarea name="vac_message" rows="4" cols="50">'.$val['vac_message'].'</textarea>';
+        
+        $out = '<table border="0" width="70%" cellpadding="3">'.
+            '<tr><td align="right" valign="top">'.
+            _("Subject:") .
+            '</td><td align="left">'.
+            '<input type="text" name="vac_subject" value="'.htmlspecialchars($val['vac_subject']).'" size="60" maxlength="300" />'.
+            '<br/><small>'._("Optional subject of the vacation message.") .'</small>'.
+            '</td></tr>'.
+
+            '<tr><td align="right" valign="top">'.
+            _("Your Addresses:").
+            '</td><td align="left">'.
+            ' <input type="text" name="vac_addresses" value="'.htmlspecialchars($val['vac_addresses']).'" size="60" maxlength="'.$maxlength.'" />'.
+            '<br/><small>'._("A vacation message will be sent only if an email is sent explicitly to one of these addresses.") .'</small>'.
+            '</td></tr>'.
+
+            '<tr><td align="right" valign="top">'.
+            _("Days:").
+            '</td><td align="left">'.
+            ' <input type="text" name="vac_days" value="'.htmlspecialchars($val['vac_days']).'" size="3" maxlength="4" /> ' . _("days").
+            '<br/><small>'._("A vacation message will not be resent to the same address, within this number of days.") .'</small>'.
+            '</td></tr>'.
+            
+            '<tr><td align="right" valign="top">'.
+            _("Message:") . 
+            '</td><td align="left">'.
+            '<textarea name="vac_message" rows="4" cols="60">'.$val['vac_message'].'</textarea>'.
+            '</td></tr>'.
+        
+            '</table>';
+
+        return $out;
 	}
 
 	function validate($val, &$errormsg) {
