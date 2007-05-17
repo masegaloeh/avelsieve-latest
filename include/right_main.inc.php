@@ -11,7 +11,7 @@
  * This file contains functions related to printing out information in 
  * Squirrelmail's src/right_main.php
  *
- * @version $Id: right_main.inc.php,v 1.1 2007/05/03 15:18:43 avel Exp $
+ * @version $Id: right_main.inc.php,v 1.2 2007/05/17 13:54:08 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2007 Alexandros Vellis
  * @package plugins
@@ -32,7 +32,7 @@
 function avelsieve_right_main_do() {
     global $avelsieve_enable_rules, $mailbox, $color;
 
-    if(in_array(11,$avelsieve_enable_rules) && $mailbox == 'Junk' || $mailbox == 'INBOX.Junk') {
+    if(in_array(11,$avelsieve_enable_rules) && ($mailbox == 'Junk' || $mailbox == 'INBOX.Junk')) {
         include_once(SM_PATH . 'plugins/avelsieve/include/junkmail.inc.php');
         junkmail_right_main_do();
     }
