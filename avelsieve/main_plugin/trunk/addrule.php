@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: addrule.php,v 1.13 2007/01/17 12:51:26 avel Exp $
+ * @version $Id: addrule.php,v 1.14 2007/05/18 09:13:42 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -27,6 +27,7 @@ if (file_exists('../../include/init.php')) {
     include_once(SM_PATH . 'functions/date.php');
 }
 
+include_once(SM_PATH . 'functions/identity.php');
 include_once(SM_PATH . 'plugins/avelsieve/config/config.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.inc.php');
