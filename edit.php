@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.47 2007/04/03 10:52:09 avel Exp $
+ * @version $Id: edit.php,v 1.48 2007/05/18 09:13:42 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -32,6 +32,7 @@ require(SM_PATH . 'plugins/avelsieve/config/config.php');
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
+include_once(SM_PATH . 'functions/identity.php');
 require_once(SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/html_rulestable.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.inc.php');
