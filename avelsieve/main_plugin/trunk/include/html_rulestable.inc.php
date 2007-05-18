@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_rulestable.inc.php,v 1.34 2007/05/03 15:16:32 avel Exp $
+ * @version $Id: html_rulestable.inc.php,v 1.35 2007/05/18 09:31:54 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -213,7 +213,7 @@ class avelsieve_html_rules extends avelsieve_html {
             $links_delimiter = '<br/>';
         }
 
-        $out = ' <a href="edit.php?addnew=1" rel="nofollow">'. 
+        $out = ' <a href="edit.php?addnew=1" rel="nofollow" style="white-space: nowrap;">'. 
             ($this->useimages == true ? '<img src="'.$this->iconuri.'add.png" alt="[]" border="0" /> ' : '') .
             '<strong>' .
             _("Add a new Rule") . '</strong></a>';
@@ -229,7 +229,7 @@ class avelsieve_html_rules extends avelsieve_html {
                 } else {
                     $href = 'edit.php?addnew=1&amp;type='.$r;
                 }
-                $out .= $links_delimiter . '<a href="'.$href.'" rel="nofollow">'.
+                $out .= $links_delimiter . '<a href="'.$href.'" rel="nofollow" style="white-space: nowrap;">'.
                         ($this->useimages == true ? '<img src="'.$avelsieve_maintypes[$r]['img'].'" alt="[]" border="0" /> ' : '') .
                         '<strong>' . $avelsieve_maintypes[$r]['linktext'] . '</strong></a>';
             }
