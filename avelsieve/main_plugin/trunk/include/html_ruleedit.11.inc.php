@@ -3,7 +3,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: html_ruleedit.11.inc.php,v 1.14 2007/03/23 12:49:19 avel Exp $
+ * @version $Id: html_ruleedit.11.inc.php,v 1.15 2007/05/23 12:45:57 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -75,13 +75,6 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
         $t = &$this->rule['tests']; // Handy reference to current rule's tests
 
         foreach($this->settings['spamrule_tests'][$module]['available'] as $key=>$val) {
-            // Check current state
-            $active_value = '';
-            if(isset($this->rule['tests'][$key]) &&
-             in_array($this->rule['tests'][$key], $this->settings['spamrule_tests'][$module]['fail_values'])) {
-                $active_value = $this->rule['tests'][$key];
-            }
-
             $radio = false;
             if(sizeof($this->settings['spamrule_tests'][$module]['fail_values']) > 1 ) {
                 $radio = true;
@@ -90,13 +83,38 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
             foreach($this->settings['spamrule_tests'][$module]['fail_values'] as $fv) {
                 $jskey = str_replace('.', '_', $key . '__'.$fv); // because dot (.) is not valid in js
                 
+                if(isset($this->rule['tests'][$key]) && !empty($this->rule['tests'][$key]) && !is_array($this->rule['tests'][$key])) {
+                    // convert it to array
+                    $tmp = $this->rule['tests'][$key];
+                    $this->rule['tests'][$key] = array($tmp);
+                    unset($tmp);
+                }
+
+                if(isset($this->rule['tests'][$key]) && isset($this->rule['tests'][$key][$fv]) &&
+                    in_array($this->rule['tests'][$key][$fv], $this->settings['spamrule_tests'][$module]['fail_values'])) {
+                    $active_values = $this->rule['tests'][$key];
+                }
+                
                 // Checkbox
-                $out .= '<li><input type="'.($radio ? 'checkbox' : 'checkbox').'" name="tests['.$key.']" id="'.$key.'_'.$fv.'" value="'.$fv.'" '; 
-                $out .= ' onclick="radioCheck(this,\''.$key.'_'.
-                        implode( '\',\''.$key.'_', $this->settings['spamrule_tests'][$module]['fail_values']) .
+                $out .= '<li><input type="'.($radio ? 'checkbox' : 'checkbox').'" name="tests['.$key.'][]" id="'.$key.'_'.$fv.'" value="'.$fv.'" '; 
+
+                if(isset($this->settings['spamrule_tests'][$module]['fail_values_dependencies']) && 
+                   isset($this->settings['spamrule_tests'][$module]['fail_values_dependencies'][$fv])) { 
+
+                    $out .= ' onclick="alsoCheck(this,\''.$key.'_'.   
+                        implode( '\',\''.$key.'_', $this->settings['spamrule_tests'][$module]['fail_values_dependencies'][$fv]) .
                         '\'); return true;"';
 
-                $out .= ($active_value == $fv ? ' checked=""' : '') .'/>'.
+                } elseif(isset($this->settings['spamrule_tests'][$module]['fail_values_dependencies_reverse']) && 
+                   isset($this->settings['spamrule_tests'][$module]['fail_values_dependencies_reverse'][$fv])) { 
+
+                    $out .= ' onclick="alsoUnCheck(this,\''.$key.'_'.   
+                        implode( '\',\''.$key.'_', $this->settings['spamrule_tests'][$module]['fail_values_dependencies_reverse'][$fv]) .
+                        '\'); return true;"';
+                }
+
+
+                $out .= (!empty($this->rule['tests'][$key]) && in_array($fv, $this->rule['tests'][$key]) ? ' checked=""' : '') .'/>'.
                       '<label for="'.$key.'_'.$fv.'">'.
                       ( isset($this->settings['custom_text'][$key][$fv]) ? $this->settings['custom_text'][$key][$fv] : $val) .
                       '</label>' ;
@@ -289,19 +307,66 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
             $this->rule['disabled'] = 1; 
         }
 
+        /**
+         * If we are in advanced mode, parse the 'tests' to produce the tests 
+         * array. A typical tests array will look like this:
+         *
+         * tests => array('test.name' => array('failvalue'))
+         *
+         * e.g.:
+         *
+         *    [tests] = array(8) {
+         *        [Policy.Block.List] = array(1) {
+         *            [0] = string(4) "SPAM"
+         *        }
+         *        [SORBS.Safe.Aggregate] = array(1) {
+         *            [0] = string(4) "SPAM"
+         *        }
+         *        [Spamhaus.Block.List] = array(1) {
+         *            [0] = string(4) "SPAM"
+         *        }
+         *        [SpamCop] = array(1) {
+         *            [0] = string(4) "SPAM"
+         *        }
+         *        [Composite.Blocking.List] = array(1) {
+         *            [0] = string(4) "SPAM"
+         *        }
+         *        [Exploits.Block.List] = array(1) {
+         *            [0] = string(4) "SPAM"
+         *        }
+         *        [FORGED] = array(1) {
+         *            [0] = string(4) "SPAM"
+         *        }
+         *        [Sender.Address.Verification] = array(2) {
+         *            [0] = string(10) "NO_MAILBOX"
+         *            [1] = string(6) "FAILED"
+         *        }
+         *    }
+         */
         if($this->rule['junkmail_advanced']) {
+            // Delete previously stored tests.
+            $this->rule['tests'] = array();
             foreach($this->settings['spamrule_tests'] as $groupname => $group) {
                 foreach($group['available'] as $test=>$desc) {
-                    if(isset($ns['tests'][$test]) && in_array($ns['tests'][$test], $this->settings['spamrule_tests'][$groupname]['fail_values'])) {
-                        $this->rule['tests'][$test] = $ns['tests'][$test];
-                    } else {
-                        if(isset($this->rule['tests'][$test])) {
-                            unset($this->rule['tests'][$test]);
+                    $this->rule['tests'][$test] = array();
+
+                    foreach($this->settings['spamrule_tests'][$groupname]['fail_values'] as $fv) {
+                        if(isset($ns['tests'][$test]) && in_array($fv, $ns['tests'][$test]) && in_array($fv, $ns['tests'][$test])) {
+                            $this->rule['tests'][$test][] = $fv;
                         }
                     }
+                    
+                    $this->rule['tests'][$test] = array_unique($this->rule['tests'][$test]);
+                /*
+            if(isset($this->rule['tests']) && empty($this->rule['tests'])) {
+                unset($this->rule['tests']);
+*/
                 }
+
             }
         } else {
+            /* Not in advanced mode. Put in here the predefined tests according to
+             * the admin's wishes. */
             if(isset($this->rule['tests'])) unset($this->rule['tests']);
             $this->rule['tests'] = $this->settings['default_rule']['tests'];
         }
