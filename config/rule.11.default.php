@@ -8,7 +8,7 @@
  *
  * Configuration File for Rule #11: Junk Mail Options.
  *
- * @version $Id: rule.11.default.php,v 1.2 2007/03/19 17:53:48 avel Exp $
+ * @version $Id: rule.11.default.php,v 1.3 2007/05/23 12:45:57 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -151,14 +151,14 @@ $avelsieve_rules_settings[11] = array(
         'junkmail_advanced' => 0,
         'tests' => 
             array(
-             'Spamhaus.Block.List' => 'SPAM',
-             'SpamCop' => 'SPAM',
-             'Composite.Blocking.List' => 'SPAM',
-             'Policy.Block.List' => 'SPAM',
-             'SORBS.Safe.Aggregate' => 'SPAM',
-             'Exploits.Block.List' => 'SPAM',
-             'Sender.Address.Verification' => 'NO_MAILBOX',
-             'FORGED' => 'SPAM'
+             'Policy.Block.List' => array('SPAM'),
+             'SORBS.Safe.Aggregate' => array('SPAM'),
+             'Spamhaus.Block.List' => array('SPAM'),
+             'SpamCop' => array('SPAM'),
+             'Composite.Blocking.List' => array('SPAM'),
+             'Exploits.Block.List' => array('SPAM'),
+             'Sender.Address.Verification' => array('NO_MAILBOX'),
+             'FORGED' => array('SPAM'),
             ),
         'action' => 7,
         'stop' => true

@@ -44,6 +44,20 @@ function ToggleShowDivWithImg(divname,scriptaculous) {
 	}
   }	
 }
+function alsoCheck(me,group) {
+    var checked = me.checked; 
+    if (checked) for (var i = 1; i < arguments.length; i++) { 
+        var ck = document.getElementById(arguments[i]); 
+        if (ck) ck.checked = true; 
+    }
+}
+function alsoUnCheck(me,group) {
+    var checked = me.checked; 
+    if (checked == false) for (var i = 1; i < arguments.length; i++) { 
+        var ck = document.getElementById(arguments[i]); 
+        if (ck) ck.checked = false; 
+    }
+}
 function radioCheck(me,group) {
     var checked = me.checked; 
     if (checked) for (var i = 1; i < arguments.length; i++) { 
@@ -52,6 +66,6 @@ function radioCheck(me,group) {
     } else {
         return;
     }
-    //me.checked = checked; // checkbox action 
-    me.checked = true; // radiobox action 
+    me.checked = checked; // checkbox action 
+    //me.checked = true; // radiobox action 
 }

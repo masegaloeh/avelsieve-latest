@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.11.inc.php,v 1.6 2007/03/23 10:03:07 avel Exp $
+ * @version $Id: sieve_buildrule.11.inc.php,v 1.7 2007/05/23 12:45:57 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2007 Alexandros Vellis
  * @package plugins
@@ -37,7 +37,7 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
     $terse = '';
     
     $advanced = false;
-    if(isset($rule['advanced']) && $rule['advanced']) {
+    if(isset($rule['advanced']) && $rule['advanced'] || isset($rule['junkmail_advanced']) && $rule['junkmail_advanced']) {
         $advanced = true;
     }
     
@@ -59,12 +59,20 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
     $terse .= _("Junk Mail");
     
     $out_part = array();
-    foreach($tests as $test=>$val) {
-        $out_part[] = 'header :contains "'.$spamrule_tests_header.'" "'.$test.':'.$val.'"';
+    foreach($tests as $test=>$vals) {
+        if(is_array($vals)) {
+            foreach($vals as $val) {
+                $out_part[] = 'header :contains "'.$spamrule_tests_header.'" "'.$test.':'.$val.'"';
+            }
+        } elseif(is_string($vals)) {
+            // We prefer and build only arrays, but for backward compatibility 
+            // with a previous alpha version...
+            $out_part[] = 'header :contains "'.$spamrule_tests_header.'" "'.$test.':'.$vals.'"';
+        }
     }
     if(sizeof($out_part) > 1) {
         $out .= ' anyof( '. implode( ",\n", $out_part ) . "),\n";
-    } else {
+    } elseif(sizeof($out_part) == 1) {
         $out .= $out_part[0] . ',';
     }
     
@@ -100,14 +108,16 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
 
     /* The textual descriptions follow */
     if($advanced || $force_advanced_mode) {
-        $text .= '<ul>'; // 1st level ul
-        $text .= '<li>' . _("matching any one of the Spam tests as follows:"). '</li><ul style="margin-top: 1px; margin-bottom: 1px;">';
+        $text .= _("All Messages") . ' '.
+                 '<ul>' . // 1st level ul
+                 '<li>' . _("matching any one of the Spam tests as follows:"). '</li><ul style="margin-top: 1px; margin-bottom: 1px;">';
         $terse .= '<br/>' . _("Spam Tests:") . '<ul style="margin-top: 1px; margin-bottom: 1px;">';
         foreach($tests as $test=>$val) {
             foreach($spamrule_tests as $group=>$data) {
                 if(array_key_exists($test, $data['available'])) {
                     $text .= '<li><strong>' . $data['available'][$test]. '</strong> = '. 
-                             ( isset($icons[$val]) ? '<img src="'.$icons[$val].'" alt="'.$val.'" /> ' : '') .
+                             // FIXME
+                             // ( isset($icons[$val]) ? '<img src="'.$icons[$val].'" alt="'.$val.'" /> ' : '') .
                              $val. '</li>';
                     $terse .= '<li>' . $data['available'][$test].'</li>';
                     break;
@@ -130,7 +140,7 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
     
     /* ------------------------ 'then' ------------------------ */
 
-    $text .= '<br/>' . _("will be") . ' ';
+    $text .= ' ' . _("will be") . ' ';
     $terse .= '</td><td align="right">';
 
     /* FIXME - Temporary Copy/Paste kludge */
