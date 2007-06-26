@@ -8,7 +8,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: edit.php,v 1.48 2007/05/18 09:13:42 avel Exp $
+ * @version $Id: edit.php,v 1.49 2007/06/26 10:12:12 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins
@@ -174,6 +174,8 @@ if(isset($edit)) {
     if(isset($avelsieve_rules_settings[$type_get]['default_rule'])) {
         $ruleobj->set_rule_data($avelsieve_rules_settings[$type_get]['default_rule']);
     }
+	$ruleobj->process_input($_GET, true);
+
 } elseif(!isset($edit) && isset($type_get) && !empty($_POST)) {
 	/* Continuing to add a new rule */
 	//print "/* Continuing to add a new rule */";
@@ -201,6 +203,7 @@ if(isset($previoustype) && (
 
 /* This is for determining if the test of a specific condition has changed */
 $changetype = false;
+
 if(isset($previous_cond) && isset($new_cond)) {
 	foreach($previous_cond as $n=>$t) {
 		if(isset($new_cond[$n]['type']) && $t['type'] != $new_cond[$n]['type']) {
