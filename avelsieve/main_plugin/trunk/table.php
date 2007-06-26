@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.42 2007/05/03 14:48:10 avel Exp $
+ * @version $Id: table.php,v 1.43 2007/06/26 09:52:57 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
@@ -229,15 +229,19 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected']) ||
         exit;
 	
 	} elseif(isset($_POST['enableselected']) || isset($_POST['disableselected'])) {
+        /* FIXME - in this block, define the $modifyEnable and $modifyAction vars
+         * instead of doing the actual work. */
 		foreach($_POST['selectedrules'] as $no=>$sel) {
 			if(isset($_POST['enableselected'])) {
 				/* Verify that it is enabled  by removing the disabled flag. */
 				if(isset($rules[$sel]['disabled'])) {
 					unset($rules[$sel]['disabled']);
+                    $haschanged = true;
 				}
 			} elseif(isset($_POST['disableselected'])) {
 				/* Disable! */
 				$rules[$sel]['disabled'] = 1;
+                $haschanged = true;
 			}
 		} 
 
@@ -335,11 +339,13 @@ if($modifyEnable) {
         case 'enable':
             if(isset($rules[$modifyRules[0]]['disabled'])) {
                 unset($rules[$modifyRules[0]]['disabled']);
+                $haschanged = true;
             }
             break;
 
         case 'disable':
             $rules[$modifyRules[0]]['disabled'] = 1;
+            $haschanged = true;
             break;
     }
 
