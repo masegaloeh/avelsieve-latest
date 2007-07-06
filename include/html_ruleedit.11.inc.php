@@ -3,7 +3,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: html_ruleedit.11.inc.php,v 1.16 2007/07/06 11:02:40 avel Exp $
+ * @version $Id: html_ruleedit.11.inc.php,v 1.17 2007/07/06 14:08:04 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -165,6 +165,8 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
                 $this->all_sections_start();
         } else {
             /* 'duplicate' or 'addnew' */
+			$this->rule = $this->settings['default_rule'];
+			
             $out .= '<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
                 //$this->table_header( _("Junk Mail Options") ).
                 $this->all_sections_start();
