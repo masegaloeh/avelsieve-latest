@@ -3,7 +3,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: html_ruleedit.11.inc.php,v 1.15 2007/05/23 12:45:57 avel Exp $
+ * @version $Id: html_ruleedit.11.inc.php,v 1.16 2007/07/06 11:02:40 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -192,7 +192,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
         $out .= '<div id="div_junkmail_all" class="avelsieve_div">';
 
         $out .= '<input type="checkbox" name="enable" id="junkmail_enable" value="1" '. $this->stateCheckbox('enable') .
-                ($this->js ? 'onclick="'.$this->js_toggle_display('div_junkmail_enable') : '' ) .'return true;" />
+                ($this->js ? 'onclick="'.$this->js_toggle_display('div_junkmail_enable').' return true;"' : '' ) .'/>
                 <label for="junkmail_enable">'. _("Enable Junk Mail Filtering") .'</label>'.
                 
                 '<div id="div_junkmail_enable" '. $this->stateVisibility('enable'). '>';
@@ -210,7 +210,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
         $form .= '</select>';
 
         $out .= '<br/><input type="checkbox" name="junkmail_prune" id="junkmail_prune" value="1"'.
-                ($this->js ? 'onclick="'.$this->js_toggle_display('span_junkmail_days', 1) : '' ) .'return true;" '.
+                ($this->js ? 'onclick="'.$this->js_toggle_display('span_junkmail_days', 1).'return true;"' : '' ) .
                 $this->stateCheckbox('junkmail_prune') . '/>'.
                 '<label for="junkmail_prune">'. _("Automatically delete Junk Messages") . '</label>' .
 
@@ -220,7 +220,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
 
         // Whitelist
         $out .= '<br/><input type="checkbox" name="enable_whitelist" id="enable_whitelist" value="1"'. $this->stateCheckbox('enable_whitelist') .
-                ($this->js ? 'onclick="'.$this->js_toggle_display('div_whitelist') : '' ) .'return true;" />'.
+                ($this->js ? 'onclick="'.$this->js_toggle_display('div_whitelist').'return true;"' : '' ) . '/>'.
                 '<label for="enable_whitelist">'. _("Enable Whitelist") . '</label>';
         
         $out .= '<div id="div_whitelist" class="avelsieve_div"'. $this->stateVisibility('enable_whitelist') .'>' .
@@ -251,7 +251,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
 
         // advanced junk mail tests
         $out .= '<br/><input type="checkbox" name="junkmail_advanced" id="junkmail_advanced"  value="1"' . $this->stateCheckbox('junkmail_advanced') .
-                ($this->js ? 'onclick="'.$this->js_toggle_display('div_junkmail_advanced') : '' ) .'return true;" />'.
+                ($this->js ? 'onclick="'.$this->js_toggle_display('div_junkmail_advanced'). 'return true;"' : '' ) . '/>'.
                 '<label for="junkmail_advanced">'. _("Configure Advanced Junk Mail Tests") . '</label>';
 
         $out .= '<div id="div_junkmail_advanced" class="avelsieve_div" '. $this->stateVisibility('junkmail_advanced') . '>' ;
