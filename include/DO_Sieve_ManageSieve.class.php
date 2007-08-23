@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: DO_Sieve_ManageSieve.class.php,v 1.8 2007/03/19 16:30:33 avel Exp $
+ * @version $Id: DO_Sieve_ManageSieve.class.php,v 1.9 2007/08/23 13:48:05 avel Exp $
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
@@ -165,17 +165,13 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
     }
 
     /**
-     * Get rules from specified script of Sieve server
+     * Retrieve the actual script (Sieve code) from Sieve server
      *
-     * @param object $sieve Sieve class connection handler.
      * @param string $scriptname
-     * @param array $scriptinfo
-     * @return array
+     * @return string
+     * @since 1.9.8
      */
-    function load($scriptname = 'phpscript', &$rules, &$scriptinfo) {
-        $rules = array();
-        $scriptinfo = array();
-    
+    function retrieve($scriptname = 'phpscript') {
         if(!$this->loggedin) {
             $this->login();
         }
@@ -207,6 +203,21 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
                 exit;
             }
         }
+        return $sievescript;
+    }
+
+    /**
+     * Get rules from specified script of Sieve server
+     *
+     * @param string $scriptname
+     * @param array $scriptinfo
+     * @return array
+     */
+    function load($scriptname = 'phpscript', &$rules, &$scriptinfo) {
+        $rules = array();
+        $scriptinfo = array();
+
+        $sievescript = $this->retrieve($scriptname);
     
         /* Extract rules from $sievescript. */
         $rules = avelsieve_extract_rules($sievescript, $scriptinfo);
