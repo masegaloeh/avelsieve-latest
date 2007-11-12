@@ -15,4 +15,5 @@ function HideDiv(divname) {
   if(el(divname)) {
     el(divname).style.display = "none";
   }
+  return false;
 }
