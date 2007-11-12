@@ -116,9 +116,7 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
             foreach($spamrule_tests as $group=>$data) {
                 if(array_key_exists($test, $data['available'])) {
                     $text .= '<li><strong>' . $data['available'][$test]. '</strong> = '. 
-                             // FIXME
-                             // ( isset($icons[$val]) ? '<img src="'.$icons[$val].'" alt="'.$val.'" /> ' : '') .
-                             $val. '</li>';
+                             ( is_array($val) ? implode(' | ', $val) : $val ). '</li>';
                     $terse .= '<li>' . $data['available'][$test].'</li>';
                     break;
                 }
