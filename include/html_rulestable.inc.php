@@ -477,7 +477,7 @@ class avelsieve_html_rules extends avelsieve_html {
             $out .= '<br/><div id="morecontrols_'.$i.'" name="morecontrols_'.$i.'" '.
                     ($this->js ? 'style="display:none"' : '' ) . '>';
 
-            $out .= '<select name="morecontrols['.$i.']" onchange="avelsieveHandleOptionsSelect(this, '.$i.');">'.
+            $out .= '<select name="morecontrols['.$i.']" onchange="return avelsieveHandleOptionsSelect(this, '.$i.');">'.
                     '<option value="" style="font-weight: bold" selected="">'. _("More Options...") . '</option>'.
 
                     /* Movement */
