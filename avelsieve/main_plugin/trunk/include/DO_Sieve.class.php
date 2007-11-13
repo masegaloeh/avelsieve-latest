@@ -165,6 +165,7 @@ class DO_Sieve {
 }
 
 /* Include the appropriate backend class. */
+global $avelsieve_backend;
 switch($avelsieve_backend) {
     case 'ManageSieve':
     case 'NetSieve':
@@ -176,4 +177,4 @@ switch($avelsieve_backend) {
         use a supported value for $avelsieve_backend.');
         break;
 }
-?>
+
