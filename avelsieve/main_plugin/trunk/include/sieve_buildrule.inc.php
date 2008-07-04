@@ -103,7 +103,7 @@
  *		'message' => string
  * </pre>
  *
- * @version $Id: sieve_buildrule.inc.php,v 1.41 2007/05/04 12:44:48 avel Exp $
+ * @version $Id$
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins

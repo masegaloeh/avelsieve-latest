@@ -6,7 +6,7 @@
  * This file contains functions that spit out HTML, mostly intended for use by
  * addrule.php and edit.php.
  *
- * @version $Id: html_ruleedit_wizard.inc.php,v 1.3 2007/01/17 13:46:10 avel Exp $
+ * @version $Id$
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins

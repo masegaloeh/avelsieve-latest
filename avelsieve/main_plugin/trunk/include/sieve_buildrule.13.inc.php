@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_buildrule.13.inc.php,v 1.3 2007/04/11 10:33:57 avel Exp $
+ * @version $Id$
  * @author Kostantinos Koukopoulos <kouk@noc.uoa.gr>
  * @copyright 2007 Alexandros Vellis
  * @package plugins

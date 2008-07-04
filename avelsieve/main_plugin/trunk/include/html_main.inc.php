@@ -8,7 +8,7 @@
  *
  * HTML Functions
  *
- * @version $Id: html_main.inc.php,v 1.17 2007/03/23 12:49:19 avel Exp $
+ * @version $Id$
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins

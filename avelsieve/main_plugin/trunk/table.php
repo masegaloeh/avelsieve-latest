@@ -14,7 +14,7 @@
  * table.php: main routine that shows a table of all the rules and allows
  * manipulation.
  *
- * @version $Id: table.php,v 1.43 2007/06/26 09:52:57 avel Exp $
+ * @version $Id$
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins

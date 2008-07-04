@@ -11,7 +11,7 @@
  * 
  * Still not used. Just a draft.
  *
- * @version $Id: standalone.inc.php,v 1.3 2007/01/17 13:46:11 avel Exp $
+ * @version $Id$
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
