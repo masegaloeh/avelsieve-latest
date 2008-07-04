@@ -11,7 +11,7 @@
  * This file contains functions related to printing out information in 
  * Squirrelmail's src/right_main.php
  *
- * @version $Id: right_main.inc.php,v 1.2 2007/05/17 13:54:08 avel Exp $
+ * @version $Id$
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2007 Alexandros Vellis
  * @package plugins

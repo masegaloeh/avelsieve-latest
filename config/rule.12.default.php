@@ -8,7 +8,7 @@
  *
  * Configuration File for Rule #12: Whitelist Rule
  *
- * @version $Id: rule.12.default.php,v 1.1 2007/03/15 16:07:46 avel Exp $
+ * @version $Id$
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2007 Alexandros Vellis
  * @package plugins

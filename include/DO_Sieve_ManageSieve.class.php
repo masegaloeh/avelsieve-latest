@@ -6,7 +6,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: DO_Sieve_ManageSieve.class.php,v 1.9 2007/08/23 13:48:05 avel Exp $
+ * @version $Id$
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins

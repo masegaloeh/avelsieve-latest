@@ -3,7 +3,7 @@
  * Licensed under the GNU GPL. For full terms see the file COPYING that came
  * with the Squirrelmail distribution.
  *
- * @version $Id: sieve_rule_spam.inc.php,v 1.1 2007/01/22 19:48:55 avel Exp $
+ * @version $Id$
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2007 Alexandros Vellis
  * @package plugins

@@ -9,7 +9,7 @@
  * This file contains configuration parameters for SIEVE mail filters plugin
  * (aka avelsieve)
  *
- * @version $Id: config_sample.php,v 1.24 2007/03/21 10:33:53 avel Exp $
+ * @version $Id$
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins

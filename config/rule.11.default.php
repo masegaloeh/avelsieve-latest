@@ -8,7 +8,7 @@
  *
  * Configuration File for Rule #11: Junk Mail Options.
  *
- * @version $Id: rule.11.default.php,v 1.3 2007/05/23 12:45:57 avel Exp $
+ * @version $Id$
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2002-2004 Alexandros Vellis
  * @package plugins

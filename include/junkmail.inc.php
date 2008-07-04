@@ -10,7 +10,7 @@
  *
  * This file contains special functions related to junk mail options.
  *
- * @version $Id: junkmail.inc.php,v 1.7 2007/05/03 15:13:53 avel Exp $
+ * @version $Id$
  * @author Alexandros Vellis <avel@users.sourceforge.net>
  * @copyright 2004-2007 Alexandros Vellis
  * @package plugins
