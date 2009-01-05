@@ -175,8 +175,8 @@ function avelsieve_configtest() {
 function avelsieve_register_jslibs() {
     global $plugins;
     if(in_array('javascript_libs', $plugins)) {
-        javascript_libs_register('plugins/avelsieve/table.php', array('prototype', 'effects'));
-        javascript_libs_register('plugins/avelsieve/edit.php', array('prototype', 'effects'));
+        javascript_libs_register('plugins/avelsieve/table.php', array('prototype-1.6.0.3/prototype.js', 'scriptaculous-1.8.1/effects.js'));
+        javascript_libs_register('plugins/avelsieve/edit.php', array('prototype-1.6.0.3/prototype.js', 'scriptaculous-1.8.1/effects.js'));
     }
 }
 
