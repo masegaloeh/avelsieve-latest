@@ -35,6 +35,7 @@ function squirrelmail_plugin_init_avelsieve() {
 	$squirrelmail_plugin_hooks['folders_bottom']['avelsieve'] = 'junkmail_folders';
     
     $squirrelmail_plugin_hooks['javascript_libs_register']['avelsieve'] = 'avelsieve_register_jslibs';
+    $squirrelmail_plugin_hooks['template_construct_page_header.tpl']['avelsieve'] =  'avelsieve_menuline_devel';
 }
 
 /**
@@ -72,6 +73,26 @@ function avelsieve_optpage_register_block() {
 		bindtextdomain ('squirrelmail', '../locale');
 	}
 	textdomain('squirrelmail');
+}
+
+/**
+ * Display menuline link (Squirrelmail DEVEL 1.5 version)
+ * @return void
+ */
+function avelsieve_menuline_devel() {
+	global $avelsieveheaderlink;
+	if($avelsieveheaderlink) {
+        global $oTemplate, $nbsp;
+
+		bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+		textdomain ('avelsieve');
+		$output = makeInternalLink('plugins/avelsieve/table.php', _("Filters")) . '&nbsp;&nbsp;';
+        
+        bindtextdomain('squirrelmail', SM_PATH . 'locale');
+		textdomain ('squirrelmail');
+
+        return array('menuline' => $output);
+    }
 }
    
 /**
