@@ -3,11 +3,6 @@
 function avelsieve_css_styles() {
     global $color;
     return '
-a:hover {
-        text-decoration: none;
-        background: '.$color[3].';
-}
-
 .avelsieve_div {
         width: 90%;
         margin-left: auto;
