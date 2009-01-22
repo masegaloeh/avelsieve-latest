@@ -238,10 +238,10 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
             if($javascript_on) {
                 $out .= "<a href=\"javascript:void(0)\" onclick=\"comp_in_new('$whitelist_url')\">";
             } else {
-                $out .= '<a href="'.$url.'" target="_blank">';
+                $out .= '<a href="'.$whitelist_url.'" target="_blank">';
             }
         } else {
-            $out .= '<a href="'.$url.'">';
+            $out .= '<a href="'.$whitelist_url.'">';
         }
 
         $out .= '<strong>'. _("Edit Whitelist....") . '</strong></a></p>';
