@@ -69,7 +69,10 @@ class avelsieve_html_rules extends avelsieve_html {
 	function rules_blurb() {
 		global $color, $conservative, $scriptinfo;
 		
-		$out = " <p>"._("Here you can add or delete filtering rules for your email account. These filters will always apply to your incoming mail, wherever you check your email.")."</p> ";
+        $out = '';
+        if(sizeof($this->rules) < 3) {
+            $out = " <p>"._("Here you can add or delete filtering rules for your email account. These filters will always apply to your incoming mail, wherever you check your email.")."</p> ";
+        }
 		
 		if($conservative) {
 			$out .= "<p>"._("When you are done with editing, <strong>remember to select &quot;Save Changes&quot;</strong> to activate your changes!")."</p>";
