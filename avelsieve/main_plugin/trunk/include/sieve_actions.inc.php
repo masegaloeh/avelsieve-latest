@@ -348,10 +348,9 @@ class avelsieve_action_redirect extends avelsieve_action {
 	}
 
 	function validate($val, &$errormsg) {
-		$onemailregex = "[a-zA-Z0-9]+[a-zA-Z0-9\._-]*@[a-zA-Z0-9_-]+[a-zA-Z0-9\._-]+";
+        $onemailregex = "[A-Z0-9]+[A-Z0-9\._\+-]*@[A-Z0-9_-]+[A-Z0-9\._-]+";
 		
-		if(!preg_match("/^$onemailregex(,$onemailregex)*$/" ,	$val['redirectemail'])){
-		// if(!preg_match("/^( [a-zA-Z0-9] )+( [a-zA-Z0-9\._-] )*@( [a-zA-Z0-9_-] )+( [a-zA-Z0-9\._-] +)+$/" ,
+        if(!preg_match("/^$onemailregex(,$onemailregex)*$/i" ,	$val['redirectemail'])){
 				$errormsg[] = _("Incorrect email address(es). You must enter one or more valid email addresses, separated by comma.");
 		}
 	}
