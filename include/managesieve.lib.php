@@ -82,6 +82,12 @@ class sieve {
    * a comma seperated list of allowed auth types, in order of preference
    */
   var $auth_types;
+
+  /** 
+   * options
+   */
+  var $broken_tls;
+
   /**
    * type of authentication attempted
    */
@@ -316,6 +322,9 @@ class sieve {
     else
         $this->auth = $auth;
     $this->auth_types=$auth_types;	/* Allowed authentication types */
+    
+    $this->broken_tls = false;
+
     $this->fp=0;
     $this->line="";
     $this->retval="";
@@ -488,6 +497,10 @@ class sieve {
         } /* end if */
         elseif(is_string($this->modules))
             $this->capabilites[$this->cap_type][$this->module]=true;
+
+	// set broken_tls. Older cyrus servers do not respond with 
+	// capabilities after STARTTLS
+	$broken_tls = true;
     }
 
     if(sieve::status($this->line) == F_NO){		//here we should do some returning of error codes?
@@ -509,8 +522,13 @@ class sieve {
             return false;
         } else {
             $this->loggedin = true;
-            // RFC says that we need to ask for the capabilities again
-            $this->sieve_get_capability();
+            // RFC says that we get an unsolicited capability response after TLS negotiation. Older Cyrus
+            // did not do this. If the server has old/broken TLS we need to send a CAPABILITY command,
+            // otherwise we just parse the unsolicited capability response. 
+            if ( $this->broken_tls )
+                $this->sieve_get_capability();
+            else
+                $this->sieve_read_capability_response();
             $this->loggedin = false;
         }
     }
@@ -827,14 +845,11 @@ class sieve {
   }
 
   /**
-   * Return an array of available capabilities.
+   * Read incoming capability response.
    *
    * @return array
    */
-  function sieve_get_capability() {
-    if($this->loggedin==false)
-        return false;
-    fputs($this->fp, "CAPABILITY\r\n"); 
+  function sieve_read_capability_response() {
     $this->line=fgets($this->fp,1024);
 
     $tmp = array();
@@ -886,6 +901,18 @@ class sieve {
     return $this->capabilities['modules'];
   }
 
+  /**
+   * Return an array of available capabilities.
+   *
+   * @return array
+   */
+  function sieve_get_capability() {
+    if($this->loggedin==false)
+        return false;
+    fputs($this->fp, "CAPABILITY\r\n");
+
+	return $this->sieve_read_capability_response();
+  }
 }
 
 
