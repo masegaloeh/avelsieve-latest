@@ -638,8 +638,13 @@ class sieve {
   function sieve_deletescript($scriptname)   {
     if($this->loggedin==false)
         return false;
-        
-		$this->lastcmd = "DELETESCRIPT \"$scriptname\"\r\n";
+
+    // If there is an active script, "inactivate" it first.
+    $this->sieve_listscripts(); 
+    if ($this->response['ACTIVE'] === $scriptname) 
+        $this->sieve_setactivescript(""); 
+
+    $this->lastcmd = "DELETESCRIPT \"$scriptname\"\r\n"; 
     fputs($this->fp, $this->lastcmd);    
 
     return sieve::get_response();
