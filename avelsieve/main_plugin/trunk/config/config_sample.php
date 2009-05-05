@@ -220,7 +220,7 @@ global $headers;
 $headers = array(
  'From', 'To', 'Cc', 'Bcc', 'Subject', 'Reply-To', 'Sender', 'List-Id',
  'MailingList', 'Mailing-List', 'X-ML-Name', 'X-List', 'X-List-Name', 'X-Mailing-List',
- 'Resent-From',  'Resent-To', 'X-Mailer', 'X-MailingList',
+ 'Resent-From',  'Resent-To', 'X-Mailer', 'X-Mailing-List',
  'X-Spam-Flag', 'X-Spam-Status',
  'X-Priority', 'Importance', 'X-MSMail-Priority', 'Precedence',
  'Return-Path', 'Received', 'Auto-Submitted',
