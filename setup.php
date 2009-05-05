@@ -208,7 +208,7 @@ function avelsieve_register_jslibs() {
 function avelsieve_info() {
    return array(
        'english_name' => 'Avelsieve - Sieve Mail Filters',
-       'version' => '1.9.8cvs',
+       'version' => '1.9.8',
        'summary' => 'An easy user interface for creating Sieve scripts on a Sieve-compliant (RFC 3028) server.',
        'details' => 'Avelsieve - Sieve Mail Filters for Squirrelmail - offers a user-friendly interface for creating and editing Sieve scripts on a compliant server, such as Cyrus IMAP or DBMail.'
    );
