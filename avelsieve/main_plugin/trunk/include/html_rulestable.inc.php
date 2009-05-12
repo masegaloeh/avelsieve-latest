@@ -468,7 +468,7 @@ class avelsieve_html_rules extends avelsieve_html {
                             'new Effect.Highlight(\'rule_row_'.$i.'\', {duration: 4}); new Effect.SlideDown(\'morecontrols_'.$i.'\');
                             new Effect.SlideUp(\'show_more_options_'.$i.'\'); return true;' :
                             // simpler javascript
-                            'HideDiv(\'show_more_options_'.$i.'\'); ShowDiv(\'morecontrols_'.$i.'\');return true;'
+                            'AVELSIEVE.util.hideDiv(\'show_more_options_'.$i.'\'); AVELSIEVE.util.showDiv(\'morecontrols_'.$i.'\');return true;'
                         ) .
                     '">'.
                     '<img src="'.$this->iconuri.'arrow_right.png" /> '. _("More Options...") .'</a>'.
@@ -480,7 +480,7 @@ class avelsieve_html_rules extends avelsieve_html {
             $out .= '<br/><div id="morecontrols_'.$i.'" name="morecontrols_'.$i.'" '.
                     ($this->js ? 'style="display:none"' : '' ) . '>';
 
-            $out .= '<select name="morecontrols['.$i.']" onchange="return avelsieveHandleOptionsSelect(this, '.$i.');">'.
+            $out .= '<select name="morecontrols['.$i.']" onchange="return AVELSIEVE.table.handleOptionsSelect(this, '.$i.');">'.
                     '<option value="" style="font-weight: bold" selected="">'. _("More Options...") . '</option>'.
 
                     /* Movement */

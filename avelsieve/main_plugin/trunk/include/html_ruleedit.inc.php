@@ -144,7 +144,7 @@ class avelsieve_html_edit extends avelsieve_html {
     function select_condition_type($n, &$rule) {
         $out = '<select name="condition_type_'.$n.'" id="condition_type_'.$n.'" ';
         if($this->js) {
-            $out .= ' onChange="avelsieveEditChangeConditionKind('.$n.', this.value);"';
+            $out .= ' onChange="AVELSIEVE.edit.changeConditionKind('.$n.', this.value);"';
         }
         $out .= '>';
 
@@ -210,7 +210,7 @@ class avelsieve_html_edit extends avelsieve_html {
             <input type="hidden" name="previous_'.$name.'" value="'.htmlspecialchars($selected).'" />'.
 			'<select name="'.$name.'" id="condition_select_'.$index.'" id="'.$name.'" ';
 		if($this->js) {
-			$out .= ' onChange="avelsieveEditChangeCondition('.$index.', this.value); return false;"';
+			$out .= ' onChange="AVELSIEVE.edit.changeCondition('.$index.', this.value); return false;"';
 		}
 		$out .= '>';
 
@@ -421,10 +421,10 @@ class avelsieve_html_edit extends avelsieve_html {
 		$out .= '<input type="hidden" name="type" value="1" />';
 		
 		if(true || $items > 1) {
-			$out .= '<input name="less" id="avelsieveconditionless" value="'. _("Less...") .'" onclick="avelsieveEditDeleteLastCondition(); return false;" type="button" />';
+			$out .= '<input name="less" id="avelsieveconditionless" value="'. _("Less...") .'" onclick="AVELSIEVE.edit.deleteLastCondition(); return false;" type="button" />';
 		}
 		if(true || $items < $maxitems) {
-			$out .= '<input name="append" id="avelsieveconditionmore" value="'. _("More..."). '" onclick="avelsieveEditChangeCondition(-1, \'header\'); return false;" type="button" />';
+			$out .= '<input name="append" id="avelsieveconditionmore" value="'. _("More..."). '" onclick="AVELSIEVE.edit.changeCondition(-1, \'header\'); return false;" type="button" />';
 		}
 		return $out;
 		
