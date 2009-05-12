@@ -1,3 +1,6 @@
+var AVELSIEVE = AVELSIEVE || {};
+AVELSIEVE.edit = {};
+
 function checkOther(id){
 	for(var i=0;i<document.addrule.length;i++){
 		if(document.addrule.elements[i].value == id){
@@ -69,3 +72,102 @@ function radioCheck(me,group) {
     me.checked = checked; // checkbox action 
     //me.checked = true; // radiobox action 
 }
+
+/**
+ *
+ * index is the condition index (0, 1, ...) or -1 to add a new one.
+ */
+function avelsieveEditChangeCondition(index, newkind) {
+            
+    if(index == -1) {
+        var index = Number($('condition_items').value); 
+        $('avelsieveconditionless').disabled = false;
+    }
+
+    new Ajax.Request('ajax_handler.php', {
+        method:'get',
+        parameters: {avaction: 'edit_condition', kind: newkind, index: index},
+        onSuccess: function(transport){
+          var response = transport.responseText || "no response text";
+          if( $('condition_line_' + index) ) {
+              $('condition_line_' + index).innerHTML = response;
+          } else {
+            // index does not exist
+            var lastindex = $('condition_items').value - 1;
+            var newindex = lastindex + 1;
+
+            $('conditions').insert(response);
+            $('condition_items').value = Number($('condition_items').value) + 1;
+          }
+
+        },
+        onFailure: function(){ alert('Something went wrong...') }
+    }
+    );
+}
+
+function avelsieveEditDeleteLastCondition() {
+    var lastindex = $('condition_items').value - 1;
+    if($('condition_line_' + lastindex)) {
+        if(lastindex > 0) {
+            $('condition_line_' + lastindex).remove();
+            $('condition_items').value = Number($('condition_items').value) - 1;
+        } else if (lastindex == 0) {
+            $('avelsieveconditionless').disabled = true;
+        }
+    }
+}
+
+function avelsieveEditChangeConditionKind(index, value) {
+    new Ajax.Request('ajax_handler.php', {
+        method:'get',
+        parameters: {avaction: 'edit_condition_kind', value: value, index: index},
+        onSuccess: function(transport){
+          var response = transport.responseText || "no response text";
+          if( $('condition_line_' + index) ) {
+              $('condition_line_' + index).innerHTML = response;
+          } else {
+            // index does not exist
+          }
+        },
+        onFailure: function(){ alert('Something went wrong...') }
+    }
+    );
+}
+
+AVELSIEVE.edit = {
+    datetimeGetChildren: function(name, index) {
+        
+        // Temporarily make input disabled.
+        $('datetime_input_'+name).disabled = true;
+
+        var value = $('datetime_input_'+name).value;
+        if(value == '') {
+            $('datetime_condition_after_' + name).innerHTML = '';
+        } else {
+            var params = $('avelsieve_addrule').serialize(true);
+            params.avaction = 'datetime_get_snippet';
+            params.varname = name;
+            params.varvalue = value;
+            params.index = index;
+
+            new Ajax.Request('ajax_handler.php', {
+                method:'post',
+                // parameters: additionalParams, {avaction: 'datetime_get_snippet', varname: name, varvalue: value, index: index},
+                parameters: params,
+                onSuccess: function(transport){
+                  var response = transport.responseText || "no response text";
+                  $('datetime_condition_after_' + name).innerHTML = response;
+                  // Remove disabled status
+                    $('datetime_input_'+name).disabled = false;
+                },
+                onFailure: function(){ alert('Something went wrong...') }
+                // TODO
+                // picker = new Control.DatePicker('datetime_input_specific_date_picker', {icon: 'images/calendar.png', datePicker: true});
+            }
+            );
+        }
+    }
+}
+
+
