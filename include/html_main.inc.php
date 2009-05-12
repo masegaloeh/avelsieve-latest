@@ -251,7 +251,7 @@ class avelsieve_html {
         if($js == 2) {
             /* Scriptaculous */
             if($imageChange) {
-                return 'ToggleShowDivWithImg(\''.$divname.'\', 1);';
+                return 'AVELSIEVE.edit.toggleShowDivWithImg(\''.$divname.'\', 1);';
             } else {
                 return 'Effect.toggle(\''.$divname.'\', \'slide\');';
             }
@@ -259,9 +259,9 @@ class avelsieve_html {
         } elseif($js == 1) {
             /* Simple javascript */
             if($imageChange) {
-                return 'ToggleShowDivWithImg(\''.$divname.'\');';
+                return 'AVELSIEVE.edit.toggleShowDivWithImg(\''.$divname.'\');';
             } else {
-                return 'ToggleShowDiv(\''.$divname.'\');';
+                return 'AVELSIEVE.edit.toggleShowDiv(\''.$divname.'\');';
             }
         }
     }
