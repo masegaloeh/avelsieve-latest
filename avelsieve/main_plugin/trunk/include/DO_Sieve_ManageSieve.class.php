@@ -115,10 +115,17 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
             return true;
         }
         if ($this->sieve->sieve_login()){
+            // Things to do after login:
+            // 1) Get capabilities
             if(!isset($this->sieve_capabilities)) {
                 $this->capabilities = $sieve_capabilities = $this->sieve->sieve_get_capability();
                 $_SESSION['sieve_capabilities'] = $sieve_capabilities;
             }
+
+            // 2) Map capabilities to condition types
+            $this->condition_types = $this->_get_active_condition_types();
+
+            // All done
             $this->loggedin = true;
             return true;
         } else {
@@ -272,7 +279,7 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
                        what you were attempting to do, and email it to the author, at the email address: <a
                     href="mailto:'.AVELSIEVE_BUGREPORT_EMAIL.'">'.AVELSIEVE_BUGREPORT_EMAIL.'</a>.
                     <br />
-                    <div style="border: 1px solid grey; width: 95%; overflow: auto; height: 300px; font-family: monospace; font-size:10px;">' .nl2br(htmlspecialchars($newscript)). "</div>";
+                    <div style="border: 1px solid grey; width: 650px; overflow: auto; height: 300px; font-family: monospace; font-size:10px;">' .nl2br(htmlspecialchars($newscript)). "</div>";
 
                 }
             }
