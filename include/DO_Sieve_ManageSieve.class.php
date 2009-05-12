@@ -122,8 +122,8 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
                 $_SESSION['sieve_capabilities'] = $sieve_capabilities;
             }
 
-            // 2) Map capabilities to condition types
-            $this->condition_types = $this->_get_active_condition_types();
+            // 2) Map capabilities to condition kinds
+            $this->condition_kinds = $this->_get_active_condition_kinds();
 
             // All done
             $this->loggedin = true;

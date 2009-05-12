@@ -140,12 +140,32 @@ class avelsieve_html_edit extends avelsieve_html {
 		return $active_types;
 	}
 
+    
+    function select_condition_type($n, &$rule) {
+        $out = '<select name="condition_type_'.$n.'" id="condition_type_'.$n.'" ';
+        if($this->js) {
+            $out .= ' onChange="avelsieveEditChangeConditionKind('.$n.', this.value);"';
+        }
+        $out .= '>';
+
+        foreach($this->s->condition_kinds as $kind=>$desc) {
+            $out .= '<option value="'.$kind.'"';
+            if(isset($rule['cond'][$n]['kind']) && $rule['cond'][$n]['kind'] == $kind) {
+                $out .= ' selected="SELECTED"';
+            }
+            $out .= '>'.$desc.'</option>';
+        }
+        $out .= '</select>';
+        return $out;
+    }
+
 	/**
 	 * Output rule type select widget.
 	 *
+     * @param integer $index
 	 * @param string
 	 */
-	function select_type($name, $selected) {
+	function select_type($index, $name, $selected) {
 		global $types;
 
 		/*
@@ -185,10 +205,12 @@ class avelsieve_html_edit extends avelsieve_html {
 		}
 		$out .= '<br/>';
 		*/
-		$out = '<input type="hidden" name="previous_'.$name.'" value="'.htmlspecialchars($selected).'" />'.
-			'<select name="'.$name.'"';
+
+        $out = '
+            <input type="hidden" name="previous_'.$name.'" value="'.htmlspecialchars($selected).'" />'.
+			'<select name="'.$name.'" id="condition_select_'.$index.'" id="'.$name.'" ';
 		if($this->js) {
-			$out .= ' onChange="addrule.submit();"';
+			$out .= ' onChange="avelsieveEditChangeCondition('.$index.', this.value); return false;"';
 		}
 		$out .= '>';
 
@@ -306,18 +328,49 @@ class avelsieve_html_edit extends avelsieve_html {
 	 */
 	function condition($n) {
 		global $types;
-
-		if(!isset($this->rule['cond'][$n]['type'])) {
-			// $out = $this->select_type('cond['.$n.'][type]', '');
-			$this->rule['cond'][$n]['type'] = 'header';
+        $out = '<br/>';
+        // FIXME
+		if(isset($this->rule['cond'][$n]['kind'])) {
+            $kind = $this->rule['cond'][$n]['kind'];
+        } else { 
+            $kind = $this->rule['cond'][$n]['kind'] = 'message';
 		}
 
-		$out = $this->select_type('cond['.$n.'][type]', $this->rule['cond'][$n]['type']);
+        if($kind == 'message') {
+            if(!isset($this->rule['cond'][$n]['type'])) {
+			    $this->rule['cond'][$n]['type'] = 'header';
+            }
+        }
 
-		if(isset($types[$this->rule['cond'][$n]['type']])) {
-			$methodname = 'condition_' . $this->rule['cond'][$n]['type'];
-			$out .= $this->$methodname($n);
-		}
+        /* Debug: */
+        /*
+        d('condition called with index n= '.$n . ', kind = '.$kind);
+        if(isset($this->rule['cond'][$n]['type'])) {
+            d('type= '.$this->rule['cond'][$n]['type'] );
+        }
+         */
+        
+        $out .= $this->select_condition_type($n, $this->rule);
+        $out .= '<span id="condition_type_div_'.$n.'">';
+
+        if($kind == 'message') {
+            $out .= $this->select_type($n, 'cond['.$n.'][type]', $this->rule['cond'][$n]['type']);
+
+            if(isset($types[$this->rule['cond'][$n]['type']])) {
+                $methodname = 'condition_' . $this->rule['cond'][$n]['type'];
+                $out .= $this->$methodname($n);
+            }
+
+        } elseif($kind == 'datetime') {
+            $out .= $this->datetime_common_ui($n, $this->rule);
+
+        } elseif($kind == 'all') {
+            $out .= $this->condition_all();
+        }
+        
+        $out .= '</span>';
+
+        //$out .= '</span>';
 		return $out;
 	}
 
@@ -326,7 +379,7 @@ class avelsieve_html_edit extends avelsieve_html {
 	 * @return string
 	 */
 	function all_conditions() {
-		global $maxitems, $startitems, $comparators;
+		global $maxitems, $comparators;
 
 		if(isset($this->rule['condition'])) {
 			$condition = $this->rule['condition'];
@@ -342,7 +395,7 @@ class avelsieve_html_edit extends avelsieve_html {
 		} else {
 			global $items;
 			if(!isset($items)) {
-				$items = $startitems;
+				$items = 1;
 			}
 		}
 		if(isset($_POST['append'])) {
@@ -352,25 +405,26 @@ class avelsieve_html_edit extends avelsieve_html {
 		}
 
 		$out = '';
-		if($items > 1) {
-			$out .= $this->condition_listbox($condition);
-		}
+		// if($items > 1) {
+			$out .= $this->condition_listbox($condition) .'<br/>';
+		// }
 
-		$out .= '<ul>';
-		for ( $n=0; $n< $items; $n++) {
-			$out .= '<li>'. $this->condition($n) . '</li>';
+        $out .= '<div id="conditions">';
+		for ( $n=0; $n < $items; $n++) {
+            $out .= '<span id="condition_line_'.$n.'">' .  $this->condition($n) . '</span>';
 		}
-		$out .= '</ul><br />';
+		$out .= '</div>';
+		$out .= '<br/><br/>';
 
-		$out .= '<input type="hidden" name="items" value="'.$items.'" />';
+		$out .= '<input type="hidden" id="condition_items" name="items" value="'.$items.'" />';
         // FIXME What does the type have to do in here?
 		$out .= '<input type="hidden" name="type" value="1" />';
 		
-		if($items > 1) {
-			$out .= '<input name="less" value="'. _("Less...") .'" type="submit" />';
+		if(true || $items > 1) {
+			$out .= '<input name="less" id="avelsieveconditionless" value="'. _("Less...") .'" onclick="avelsieveEditDeleteLastCondition(); return false;" type="button" />';
 		}
-		if($items < $maxitems) {
-			$out .= '<input name="append" value="'. _("More..."). '" type="submit" />';
+		if(true || $items < $maxitems) {
+			$out .= '<input name="append" id="avelsieveconditionmore" value="'. _("More..."). '" onclick="avelsieveEditChangeCondition(-1, \'header\'); return false;" type="button" />';
 		}
 		return $out;
 		
@@ -543,6 +597,228 @@ class avelsieve_html_edit extends avelsieve_html {
 		$dum = _("The following action will be applied to <strong>all</strong> incoming messages that do not match any of the previous rules.");
 		return $out;
 	}
+
+    function datetime_common_ui($n, &$rule) {
+        // Get a reference to current condition
+        $cond = &$rule['cond'][$n];
+
+        // Build the default datetime user interface
+        $out = $this->ui_tree_output($n, $cond);
+        return $out;
+    }
+
+    /**
+     * Basically set up variables $ui, $ui_subnodes
+     */
+    function _dateTimeInit() {
+        global $ui, $ui_subnodes;
+
+        $tpl_date_metrics = array(
+            'year' => _("Year"),
+            'month' => _("Month"),
+            'day' => _("Day"),
+            'date' => _("Date"),
+            'hour' => _("Hour"),
+            'minute' => _("Minute"),
+            'second' => _("Second"),
+            'time' => _("Time"),
+            'specificdate' => _("Specific Date"),
+        );
+        $tpl_date_condition = array(
+            'on' => _("On"),
+            'before' => _("Before"),
+            'after' =>  _("After"),
+        );
+        $tpl_cond_2 = array(
+            'is' => _("Is"),
+            'before' => _("Before"),
+            'after' =>  _("After"),
+            // 'matches' => _("Matches"),
+        );
+
+        $tpl_months = array(
+            '1' => _("January"),
+            '2' => _("February"),
+            '3' => _("March"),
+            '4' => _("April"),
+        );
+        
+        /* The "ui_tree" variable describes how the user interface is structured.
+         * Each "varname" array key represents an HTML input widget.
+         */
+        $ui = array();
+
+        $ui['datetype'] = array(
+            'name' => 'datetype',
+            'input' => 'select',
+            'values' => array(
+                'specific_date' => _("Specific Date"),
+                'occurence' => _("Occurence"),
+            ),
+            'children' => array(
+                'specific_date' => 'specific_date_conditional',
+                'occurence' => 'occurence_metric',
+            ),
+        );
+
+        $ui['specific_date_conditional'] = array(
+            'input' => 'select',
+            'values' => $tpl_date_condition,
+            'children' => array(
+                'on' => 'specific_date_picker',
+                'before' => 'specific_date_picker',
+                'after' => 'specific_date_picker',
+            ),
+        );
+        
+        $ui['specific_date_picker'] = array(
+            'input' => 'datepicker',
+            'terminal' => true,
+        );
+
+        $ui['occurence_metric'] = array(
+            'input' => 'select',
+            'values' => $tpl_date_metrics,
+            'children' => array(),
+        );
+        foreach($tpl_date_metrics as $k => $v) {
+            $ui['occurence_metric']['children'][$k] = $k.'_occurence_conditional';
+            $ui[$k.'_occurence_conditional'] = array(
+                'input' => 'select',
+                'values' => $tpl_cond_2,
+                'children' => array()
+            );
+            foreach($tpl_cond_2 as $k2 => $v2) {
+                $ui[$k.'_occurence_conditional']['children'][$k2] = 'occurence_'.$k;
+            }
+            
+            $ui['occurence_'.$k] = array(
+                'input' => 'text',
+                'terminal' => true,
+                'children' => array()
+            );
+        }
+        
+        $ui['occurence_month']['input'] = 'select';
+        $ui['occurence_month']['values'] = $tpl_months;
+
+        $ui['occurence_day']['input'] = 'select';
+        $ui['occurence_day']['values'] = range(1, 31);
+       
+        $ui_subnodes = array(
+            'datetype' => array('specific_date_conditional', 'occurence_metric'),
+            'specific_date_conditional' => array('date'),
+            'occurence_metric' => array('occurence_conditional'),
+            'occurence_conditional' => array('occurence_year', 'occurence_month', 'occurence_day', 'occurence_hour', 'occurence_minute', 'occurence_second'),
+            /*
+            'year' => array(),
+            'month' => array(),
+            'day' => array(),
+            'hour' => array(),
+            'minute' => array(),
+            'second' => array(),
+             */
+        );
+    }
+
+    
+    /**
+     *
+     * @param $n integer        Numeric index to print out
+     * @param $cond array       Line of condition
+     * @param $varname string   Name of input element from which to start off
+     * @param $varvalue string  Value of this input element.
+     * @return string
+     */
+    function ui_tree_output($n, $cond, $varname = '', $varvalue = '') {
+        global $ui, $ui_subnodes;
+        
+        // Auto-configuration
+        $this->_dateTimeInit();
+
+        if(!empty($varname) && !empty($varvalue)) {
+            $k = $this->_getChildOf($cond, $varname, $varvalue);
+        } else {
+            $k = 'datetype';
+        }
+        $out = '';
+        if(!empty($k)) {
+            $out .= $this->_printWidgetHtml($k, $n);
+        }
+
+        return $out;
+    }
+
+    function _printWidgetHtml($k, $n, $selected = '') {
+        global $ui, $ui_subnodes;
+
+        $u = &$ui[$k];
+
+        $out = '<span id="datetime_condition_'.$k.'">';
+
+        switch($u['input']) {
+        case 'select':
+            $out .= '<select name="'.$k.'" id="datetime_input_'.$k.'" ';
+            if(!isset($u['terminal'])) {
+                $out .= 'onchange="AVELSIEVE.edit.datetimeGetChildren(\''.$k.'\', \''.$n.'\'); ';
+            }
+            $out .= '">';
+            $out .= '<option value=""></option>';
+            foreach($u['values'] as $key=>$val) {
+                $out .= '<option value="'.$key.'">'.$val.'</option>';
+            }
+            $out .= '</select>';
+            break;
+
+        case 'datepicker': 
+            $out .= '<input type="text" name="'.$k.'" id="datetime_input_'.$k.'" value="" />';
+            break;
+
+        case 'text': 
+            $out .= '<input type="text" name="'.$k.'" id="datetime_input_'.$k.'" value="" />';
+            break;
+
+        default:
+            $out .= ' nothing ';
+            break;
+        }
+
+        $out .= '</span>';
+        $out .= '<span id="datetime_condition_after_'.$k.'"></span>';
+        return $out;
+    }
+
+    function _getChildOf($cond, $varname, $varvalue) {
+        global $ui, $ui_subnodes;
+
+        // if(isset($ui_subnodes[$varname]) && isset($ui[$varname]['children'])) {
+        if(isset($ui[$varname]['children'])) {
+            foreach($ui[$varname]['children'] as $child => $widget) {
+                if($varvalue == $child) {
+                    return $widget;
+                }
+            }
+        }
+        return false;
+    }
+
+    function _getSubsetOfUiTree(&$ui_tree, $varname, $varvalue) {
+        foreach($ui_tree as $k => $v) {
+            // if(!isset($v['input'])) $fb->warn('this is not a valid uid_tree!');
+            if($k == $varname && isset($v['children']) && isset($v['children'][$varvalue]) ) {
+                // $fb->log('returing children of '.$varvalue);
+                return $v['children'][$varvalue];
+            } else if (isset($v['allchildren'])) {
+                // $fb->log('traversing innerly... through allchildren'.  $k);
+                return $this->_getSubsetOfUiTree($v['allchildren'], $varname, $varvalue);
+            } else if (isset($v['children'])) {
+                // $fb->log('traversing innerly...'.  $k);
+                return $this->_getSubsetOfUiTree($v['children'][$varvalue], $varname, $varvalue);
+            }
+        }
+    }
+
+
 	
     /**
      * Return the HTML markup of the options of Sieve action $action.
@@ -666,14 +942,14 @@ class avelsieve_html_edit extends avelsieve_html {
 
         if($this->mode == 'edit') {
             /* 'edit' */
-            $out = '<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
+            $out = '<form id="avelsieve_addrule" name="addrule" action="'.$PHP_SELF.'" method="POST">'.
                 '<input type="hidden" name="edit" value="'.$edit.'" />'.
                 (isset($this->position) ? '<input type="hidden" name="position" value="'.$this->position.'" />' : '') .
                 $this->table_header( _("Editing Mail Filtering Rule") . ' #'. ($edit+1) ).
                 $this->all_sections_start();
         } else {
             /* 'duplicate' or 'addnew' */
-            $out = '<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
+            $out = '<form id="avelsieve_addrule" name="addrule" action="'.$PHP_SELF.'" method="POST">'.
                 $this->table_header( _("Create New Mail Filtering Rule") ).
 	    		$this->all_sections_start();
 		}

@@ -23,8 +23,8 @@ class DO_Sieve {
     var $sieve;
     
     /*
-     * Condition types
-     * From avelsieve 1.9.8, a condition belongs to one of these:
+     * Condition kinds
+     * From avelsieve 1.9.8, a condition is one of these kinds:
      * - 'message' => a condition that has to do with the mail message being processed
      * - 'datetime' => a condition that has to do with the current date / time
      * - 'all' => a condition that always returns true. Equivalent to sieve's true test
@@ -36,7 +36,7 @@ class DO_Sieve {
      * @var array
      * @access public
      */
-    public $condition_types;
+    public $condition_kinds;
 
 
     /*
@@ -57,7 +57,7 @@ class DO_Sieve {
             $this->sieveDebug = false;
         }
 
-        $this->condition_types = array(
+        $this->condition_kinds = array(
             'message' => array(
                 'desc' => _("Message"),
             ),
@@ -105,13 +105,13 @@ class DO_Sieve {
     }
     
     /**
-     * Gets the applicable condition types according to current capabilities
+     * Gets the applicable condition kinds according to current capabilities
      *
      * @return array
      */
-    protected function _get_active_condition_types() {
+    protected function _get_active_condition_kinds() {
         $out = array();
-        foreach($this->condition_types as $k=>$v) {
+        foreach($this->condition_kinds as $k=>$v) {
             if(!isset($v['capability'])) {
                 $out[$k] = $v['desc'];
                 continue;
