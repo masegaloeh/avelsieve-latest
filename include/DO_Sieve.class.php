@@ -21,6 +21,23 @@ class DO_Sieve {
     var $capabilities;
     var $rules;
     var $sieve;
+    
+    /*
+     * Condition types
+     * From avelsieve 1.9.8, a condition belongs to one of these:
+     * - 'message' => a condition that has to do with the mail message being processed
+     * - 'datetime' => a condition that has to do with the current date / time
+     * - 'all' => a condition that always returns true. Equivalent to sieve's true test
+     *
+     * In the future, the following conditions can be implemented:
+     * - 'variable' => a condition that has to do with a test on a Sieve variable
+     * - 'environment' => a condition that has to do with the mail environment
+     *
+     * @var array
+     * @access public
+     */
+    public $condition_types;
+
 
     /*
     function init()
@@ -39,6 +56,19 @@ class DO_Sieve {
         } else {
             $this->sieveDebug = false;
         }
+
+        $this->condition_types = array(
+            'message' => array(
+                'desc' => _("Message"),
+            ),
+            'datetime' => array(
+                'desc' => _("Date / Time"),
+                'capability' => 'datetime',
+            ),
+            'all' => array(
+                'desc' => _("Always"),
+            ),
+        );
         return;
     }
 
@@ -72,6 +102,26 @@ class DO_Sieve {
             return true;
         }
         return false;
+    }
+    
+    /**
+     * Gets the applicable condition types according to current capabilities
+     *
+     * @return array
+     */
+    protected function _get_active_condition_types() {
+        $out = array();
+        foreach($this->condition_types as $k=>$v) {
+            if(!isset($v['capability'])) {
+                $out[$k] = $v['desc'];
+                continue;
+            }
+            if($this->capability_exists($v['capability'])) {
+                $out[$k] = $v['desc'];
+                continue;
+            }
+        }
+        return $out;
     }
     
     /**
@@ -162,6 +212,7 @@ class DO_Sieve {
 	    }
 	    return $script;
     }
+    
 }
 
 /* Include the appropriate backend class. */
