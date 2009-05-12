@@ -1,5 +1,20 @@
 <?php
+/**
+ * CSS Styles for table & edit pages.
+ *
+ * This is a PHP function as it depends on the global $color theme from Squirrelmail.
+ *
+ * @version $Id$
+ * @author Alexandros Vellis <avel@users.sourceforge.net>
+ * @copyright 2004-2009 Alexandros Vellis
+ * @package plugins
+ * @subpackage avelsieve
+ */
 
+/**
+ * Return a string with CSS style definitions
+ * @return string
+ */
 function avelsieve_css_styles() {
     global $color;
     return '
