@@ -10,11 +10,12 @@
  *
  * @version $Id$
  * @author Alexandros Vellis <avel@users.sourceforge.net>
- * @copyright 2004 The SquirrelMail Project Team, Alexandros Vellis
+ * @copyright 2004-2009 The SquirrelMail Project Team, Alexandros Vellis
  * @package plugins
  * @subpackage avelsieve
  */
    
+/** Include Configuration */
 include_once(SM_PATH . 'plugins/avelsieve/config/config.php');
 
 /**
@@ -29,14 +30,14 @@ function squirrelmail_plugin_init_avelsieve() {
     $squirrelmail_plugin_hooks['search_after_form']['avelsieve'] = 'avelsieve_search_integration';
     $squirrelmail_plugin_hooks['configtest']['avelsieve'] = 'avelsieve_configtest';
     
-	$squirrelmail_plugin_hooks['right_main_after_header']['avelsieve'] = 'avelsieve_right_main';
+    $squirrelmail_plugin_hooks['right_main_after_header']['avelsieve'] = 'avelsieve_right_main';
     
     $squirrelmail_plugin_hooks['javascript_libs_register']['avelsieve'] = 'avelsieve_register_jslibs';
 
     $squirrelmail_plugin_hooks['generic_header']['avelsieve'] = 'avelsieve_generic_header';
 
     $squirrelmail_plugin_hooks['special_mailbox']['avelsieve'] = 'junkmail_markspecial';
-	$squirrelmail_plugin_hooks['folders_bottom']['avelsieve'] = 'junkmail_folders';
+    $squirrelmail_plugin_hooks['folders_bottom']['avelsieve'] = 'junkmail_folders';
     
     $squirrelmail_plugin_hooks['template_construct_page_header.tpl']['avelsieve'] =  'avelsieve_menuline_devel';
 }
@@ -46,36 +47,36 @@ function squirrelmail_plugin_init_avelsieve() {
  * @return void
  */
 function avelsieve_optpage_register_block() {
-	global $optpage_blocks, $avelsieve_enable_rules;
-	if (defined('SM_PATH')) {
-		bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
-	} else {
-		bindtextdomain ('avelsieve', '../plugins/avelsieve/locale');
-	}
-	textdomain ('avelsieve');
+    global $optpage_blocks, $avelsieve_enable_rules;
+    if (defined('SM_PATH')) {
+        bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+    } else {
+        bindtextdomain ('avelsieve', '../plugins/avelsieve/locale');
+    }
+    textdomain ('avelsieve');
 
-	$optpage_blocks[] = array(
-		'name' => _("Message Filters"),
-		'url'  => '../plugins/avelsieve/table.php',
-		'desc' => _("Server-Side mail filtering enables you to add criteria in order to automatically forward, delete or place a given message into a folder."),
-		'js'   => false
-	);
+    $optpage_blocks[] = array(
+        'name' => _("Message Filters"),
+        'url'  => '../plugins/avelsieve/table.php',
+        'desc' => _("Server-Side mail filtering enables you to add criteria in order to automatically forward, delete or place a given message into a folder."),
+        'js'   => false
+    );
 
     if(in_array(11, $avelsieve_enable_rules)) {
-  	    $optpage_blocks[] = array(
-    		'name' => _("Junk Mail Options"),
-	    	'url'  => '../plugins/avelsieve/edit.php?type=11',
-		    'desc' => _("The Junk Mail Filter gathers all unwanted SPAM / Junk messages in your Junk folder."),
-    		'js'   => false
-	    );
+          $optpage_blocks[] = array(
+            'name' => _("Junk Mail Options"),
+            'url'  => '../plugins/avelsieve/edit.php?type=11',
+            'desc' => _("The Junk Mail Filter gathers all unwanted SPAM / Junk messages in your Junk folder."),
+            'js'   => false
+        );
     }
 
-	if (defined('SM_PATH')) {
-		bindtextdomain('squirrelmail', SM_PATH . 'locale');
-	} else {
-		bindtextdomain ('squirrelmail', '../locale');
-	}
-	textdomain('squirrelmail');
+    if (defined('SM_PATH')) {
+        bindtextdomain('squirrelmail', SM_PATH . 'locale');
+    } else {
+        bindtextdomain ('squirrelmail', '../locale');
+    }
+    textdomain('squirrelmail');
 }
 
 /**
@@ -83,16 +84,16 @@ function avelsieve_optpage_register_block() {
  * @return void
  */
 function avelsieve_menuline_devel() {
-	global $avelsieveheaderlink;
-	if($avelsieveheaderlink) {
+    global $avelsieveheaderlink;
+    if($avelsieveheaderlink) {
         global $oTemplate, $nbsp;
 
-		bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
-		textdomain ('avelsieve');
-		$output = makeInternalLink('plugins/avelsieve/table.php', _("Filters")) . '&nbsp;&nbsp;';
+        bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+        textdomain ('avelsieve');
+        $output = makeInternalLink('plugins/avelsieve/table.php', _("Filters")) . '&nbsp;&nbsp;';
         
         bindtextdomain('squirrelmail', SM_PATH . 'locale');
-		textdomain ('squirrelmail');
+        textdomain ('squirrelmail');
 
         return array('menuline' => $output);
     }
@@ -103,18 +104,18 @@ function avelsieve_menuline_devel() {
  * @return void
  */
 function avelsieve_menuline() {
-	global $avelsieveheaderlink;
+    global $avelsieveheaderlink;
 
-	if($avelsieveheaderlink) {
-		bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
-		textdomain ('avelsieve');
-		
-		displayInternalLink('plugins/avelsieve/table.php',_("Filters"));
-		echo "&nbsp;&nbsp;\n";
+    if($avelsieveheaderlink) {
+        bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+        textdomain ('avelsieve');
+        
+        displayInternalLink('plugins/avelsieve/table.php',_("Filters"));
+        echo "&nbsp;&nbsp;\n";
 
-		bindtextdomain('squirrelmail', SM_PATH . 'locale');
-		textdomain ('squirrelmail');
-	}
+        bindtextdomain('squirrelmail', SM_PATH . 'locale');
+        textdomain ('squirrelmail');
+    }
 }    
 
 /**
@@ -123,8 +124,8 @@ function avelsieve_menuline() {
  * @see avelsieve_commands_menu_do()
  */
 function avelsieve_commands_menu() {
-	include_once(SM_PATH . 'plugins/avelsieve/include/message_commands.inc.php');
-	avelsieve_commands_menu_do();
+    include_once(SM_PATH . 'plugins/avelsieve/include/message_commands.inc.php');
+    avelsieve_commands_menu_do();
 }
 
 /**
@@ -238,8 +239,8 @@ function avelsieve_info() {
    return array(
        'english_name' => 'Avelsieve - Sieve Mail Filters',
        'version' => '1.9.9svn',
-       'summary' => 'An easy user interface for creating Sieve scripts on a Sieve-compliant (RFC 3028) server.',
-       'details' => 'Avelsieve - Sieve Mail Filters for Squirrelmail - offers a user-friendly interface for creating and editing Sieve scripts on a compliant server, such as Cyrus IMAP or DBMail.'
+       'summary' => 'An easy user interface for creating Sieve scripts on a Sieve-compliant (RFC 5028) server.',
+       'details' => 'Avelsieve - Sieve Mail Filters for Squirrelmail - allows editing of Sieve mail filtering scripts on a Sieve-compliant (RFC 5028) server.'
    );
 }
 
@@ -252,4 +253,3 @@ function avelsieve_version() {
    return $info['version'];
 }
 
-?>
