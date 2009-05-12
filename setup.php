@@ -30,11 +30,14 @@ function squirrelmail_plugin_init_avelsieve() {
     $squirrelmail_plugin_hooks['configtest']['avelsieve'] = 'avelsieve_configtest';
     
 	$squirrelmail_plugin_hooks['right_main_after_header']['avelsieve'] = 'avelsieve_right_main';
+    
+    $squirrelmail_plugin_hooks['javascript_libs_register']['avelsieve'] = 'avelsieve_register_jslibs';
+
+    $squirrelmail_plugin_hooks['generic_header']['avelsieve'] = 'avelsieve_generic_header';
 
     $squirrelmail_plugin_hooks['special_mailbox']['avelsieve'] = 'junkmail_markspecial';
 	$squirrelmail_plugin_hooks['folders_bottom']['avelsieve'] = 'junkmail_folders';
     
-    $squirrelmail_plugin_hooks['javascript_libs_register']['avelsieve'] = 'avelsieve_register_jslibs';
     $squirrelmail_plugin_hooks['template_construct_page_header.tpl']['avelsieve'] =  'avelsieve_menuline_devel';
 }
 
@@ -135,6 +138,32 @@ function avelsieve_search_integration() {
     if(($SQM_INTERNAL_VERSION[0] == 1 && $SQM_INTERNAL_VERSION[1] >= 5)) {
         include_once(SM_PATH . 'plugins/avelsieve/include/search_integration.inc.php');
         avelsieve_search_integration_do();
+    }
+}
+
+/**
+ * Function to insert stuff in HTML head section, mainly javascripts.
+ *
+ * Used at the moment in avelsieve's edit.php.
+ */
+function avelsieve_generic_header() {
+    global $PHP_SELF, $base_uri, $javascript_on;
+    if(!$javascript_on) return;
+
+    if(stristr(basename($PHP_SELF), 'edit.php')) {
+        // Edit page (edit.php)
+        $js = array('avelsieve_common.js', 'avelsieve_edit.js', 'prototype-base-extensions.js', 'prototype-date-extensions.js', 'datepicker.js');
+        echo "\n".'<link rel="stylesheet" type="text/css" href="'.$base_uri.'plugins/avelsieve/styles/datepicker.css"></link>' . "\n";
+
+    } elseif(stristr(basename($PHP_SELF), 'table.php')) {
+        // Table Page (table.php)
+        $js = array('avelsieve_common.js', 'avelsieve_table.js');
+        echo '<style type="text/css">'.avelsieve_css_styles().'</style>';
+    }
+    if(isset($js)) {
+        foreach($js as $j) {
+            echo "\n".'<script language="JavaScript" type="text/javascript" src="'.$base_uri.'plugins/avelsieve/javascripts/'.$j.'"></script>';
+        }
     }
 }
 

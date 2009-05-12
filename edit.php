@@ -36,6 +36,7 @@ include_once(SM_PATH . 'functions/identity.php');
 require_once(SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/html_rulestable.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/sieve_conditions.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/sieve_actions.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/sieve.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
@@ -315,41 +316,13 @@ sqimap_logout($imapConnection);
 
 
 /* -------------- Presentation Logic ------------- */
-$avelsieve_css = avelsieve_css_styles();
-$avelsieve_css_wrapped = '<style type="text/css">
-'.$avelsieve_css.'
-</style>';
-
-if($javascript_on) {
-    if($popup) {
-        // For displayHtmlHeader()
-        $html_additional = $avelsieve_css_wrapped . '
-        <script language="JavaScript" type="text/javascript" src="'.$base_uri.'plugins/avelsieve/javascripts/avelsieve_common.js"></script>
-        <script language="JavaScript" type="text/javascript" src="'.$base_uri.'plugins/avelsieve/javascripts/avelsieve_edit.js"></script>
-        ';
-    
-    } else {
-        // For displayPageHeader()
-        $js = file_get_contents('./javascripts/avelsieve_common.js') ."\n".file_get_contents('./javascripts/avelsieve_edit.js');
-        $js_wrapped = '
-        <script language="JavaScript" type="text/javascript">
-        '.$js.'
-        </script>
-        ';
-    
-        $html_additional = $avelsieve_css_wrapped . $js_wrapped;
-    }
-} else {
-    $html_additional = $avelsieve_css_wrapped;
-}
 
 $prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
 textdomain ('squirrelmail');
 if($popup) {
-	displayHtmlHeader('', $html_additional);
+	displayHtmlHeader('');
 } else {
 	displayPageHeader($color, 'None');
-	echo $html_additional;
 }
 
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
