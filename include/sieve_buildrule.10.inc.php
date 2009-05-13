@@ -172,4 +172,3 @@ function avelsieve_buildrule_10($rule) {
     return(array($out,$text,$terse));
 }
 
-?>

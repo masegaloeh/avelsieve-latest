@@ -84,4 +84,3 @@ class avelsieve_html_edit_spamrule extends avelsieve_html_edit {
 }
 
 
-?>

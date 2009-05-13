@@ -43,9 +43,9 @@ class DO_Sieve_File extends DO_Sieve {
      * @return boolean
      */
     function login() {
-	    if(is_object($this->sieve)) {
-		    return true;
-	    }
+        if(is_object($this->sieve)) {
+            return true;
+        }
         // fopen();
     }
 
@@ -75,9 +75,9 @@ class DO_Sieve_File extends DO_Sieve {
             $errormsg .= " " . $imapServerAddress.".<br />";
             
             if(!empty($this->sieve->error)) {
-    		    $errormsg .= _("Error Encountered:") . ' ' . $this->sieve->error . '</br>';
-			    $errormsg .= _("Please contact your administrator.");
-			    print_errormsg($errormsg);
+                $errormsg .= _("Error Encountered:") . ' ' . $this->sieve->error . '</br>';
+                $errormsg .= _("Please contact your administrator.");
+                print_errormsg($errormsg);
                 exit;
             }
         }
@@ -94,7 +94,7 @@ class DO_Sieve_File extends DO_Sieve {
      * @return true on success, false upon failure
      */
     function save($newscript, $scriptname = 'phpscript') {
-	    /* Write file... */
+        /* Write file... */
         /* fwrite() */
         if(false) {
             /* Error */
@@ -121,12 +121,11 @@ class DO_Sieve_File extends DO_Sieve {
         if(false) {
             $errormsg = sprintf( _("Could not delete script from server %s."), $sieve->host.':'.$sieve->port) .
                 '<br/>';
-		    $errormsg .= _("Please contact your administrator.");
-		    print_errormsg($errormsg);
-	        return false;
-	    }
+            $errormsg .= _("Please contact your administrator.");
+            print_errormsg($errormsg);
+            return false;
+        }
     }
 }
-    
-?>
-                                                        
+
+

@@ -350,4 +350,3 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
 
 }
 
-?>

@@ -330,8 +330,6 @@ class avelsieve_html_edit_10 extends avelsieve_html_edit_spamrule {
         if(isset($stop) && $stop) {
             $this->rule['stop'] = $stop;
         }
-        
     }
-        
 }
 

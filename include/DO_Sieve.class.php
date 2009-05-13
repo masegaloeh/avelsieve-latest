@@ -16,7 +16,7 @@
 /** Includes */
 include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/config/config.php');
-	
+    
 class DO_Sieve {
     var $capabilities;
     var $rules;
@@ -131,41 +131,41 @@ class DO_Sieve {
     * @return string
     */
     function encode_script($script) {
-	    global $languages, $squirrelmail_language, $default_charset;
+        global $languages, $squirrelmail_language, $default_charset;
     
-	    /* change $default_charset to user's charset */
-	    set_my_charset();
+        /* change $default_charset to user's charset */
+        set_my_charset();
     
-	    if(strtolower($default_charset) == 'utf-8') {
-		    // No need to convert.
-		    return $script;
-	    
+        if(strtolower($default_charset) == 'utf-8') {
+            // No need to convert.
+            return $script;
+        
         } elseif(function_exists('mb_convert_encoding') && function_exists('sqimap_mb_convert_encoding')) {
-		    // sqimap_mb_convert_encoding() returns '' if mb_convert_encoding() doesn't exist!
-		    $utf8_s = sqimap_mb_convert_encoding($script, 'UTF-8', $default_charset, $default_charset);
-		    if(empty($utf8_s)) {
-			    return $script;
-		    } else {
-			    return $utf8_s;
-		    }
+            // sqimap_mb_convert_encoding() returns '' if mb_convert_encoding() doesn't exist!
+            $utf8_s = sqimap_mb_convert_encoding($script, 'UTF-8', $default_charset, $default_charset);
+            if(empty($utf8_s)) {
+                return $script;
+            } else {
+                return $utf8_s;
+            }
     
-	    } elseif(function_exists('mb_convert_encoding')) {
-		    // Squirrelmail 1.4.0 ?
+        } elseif(function_exists('mb_convert_encoding')) {
+            // Squirrelmail 1.4.0 ?
     
-		    if ( stristr($default_charset, 'iso-8859-') ||
-		    stristr($default_charset, 'utf-8') || 
-		    stristr($default_charset, 'iso-2022-jp') ) {
-			    return mb_convert_encoding($script, "UTF-8", $default_charset);
-		    }
+            if ( stristr($default_charset, 'iso-8859-') ||
+            stristr($default_charset, 'utf-8') || 
+            stristr($default_charset, 'iso-2022-jp') ) {
+                return mb_convert_encoding($script, "UTF-8", $default_charset);
+            }
     
-	    } elseif(function_exists('recode_string')) {
-		    return recode_string("$default_charset..UTF-8", $script);
+        } elseif(function_exists('recode_string')) {
+            return recode_string("$default_charset..UTF-8", $script);
     
-	    } elseif(function_exists('iconv')) {
-		    return iconv($default_charset, 'UTF-8', $script);
-	    }
+        } elseif(function_exists('iconv')) {
+            return iconv($default_charset, 'UTF-8', $script);
+        }
     
-	    return $script;
+        return $script;
     }
     
     
@@ -177,40 +177,40 @@ class DO_Sieve {
     */
     function decode_script($script) {
     
-	    global $languages, $squirrelmail_language, $default_charset;
+        global $languages, $squirrelmail_language, $default_charset;
     
-	    /* change $default_charset to user's charset (THANKS Tomas) */
-	    set_my_charset();
+        /* change $default_charset to user's charset (THANKS Tomas) */
+        set_my_charset();
     
-	    if(strtolower($default_charset) == 'utf-8') {
-		    // No need to convert.
-		    return $script;
-	    
-	    } elseif(function_exists('mb_convert_encoding') && function_exists('sqimap_mb_convert_encoding')) {
-		    // sqimap_mb_convert_encoding() returns '' if mb_convert_encoding() doesn't exist!
-		    $un_utf8_s = sqimap_mb_convert_encoding($script, $default_charset, "UTF-8", $default_charset);
-		    if(empty($un_utf8_s)) {
-			    return $script;
-		    } else {
-			    return $un_utf8_s;
-		    }
+        if(strtolower($default_charset) == 'utf-8') {
+            // No need to convert.
+            return $script;
+        
+        } elseif(function_exists('mb_convert_encoding') && function_exists('sqimap_mb_convert_encoding')) {
+            // sqimap_mb_convert_encoding() returns '' if mb_convert_encoding() doesn't exist!
+            $un_utf8_s = sqimap_mb_convert_encoding($script, $default_charset, "UTF-8", $default_charset);
+            if(empty($un_utf8_s)) {
+                return $script;
+            } else {
+                return $un_utf8_s;
+            }
     
-	    } elseif(function_exists('mb_convert_encoding')) {
-		    /* Squirrelmail 1.4.0 ? */
+        } elseif(function_exists('mb_convert_encoding')) {
+            /* Squirrelmail 1.4.0 ? */
     
-		    if ( stristr($default_charset, 'iso-8859-') ||
-		    stristr($default_charset, 'utf-8') || 
-		    stristr($default_charset, 'iso-2022-jp') ) {
-			    return mb_convert_encoding($script, $default_charset, "UTF-8");
-		    }
+            if ( stristr($default_charset, 'iso-8859-') ||
+            stristr($default_charset, 'utf-8') || 
+            stristr($default_charset, 'iso-2022-jp') ) {
+                return mb_convert_encoding($script, $default_charset, "UTF-8");
+            }
     
-	    } elseif(function_exists('recode_string')) {
-		    return recode_string("UTF-8..$default_charset", $script);
+        } elseif(function_exists('recode_string')) {
+            return recode_string("UTF-8..$default_charset", $script);
     
-	    } elseif(function_exists('iconv')) {
-		    return iconv('UTF-8', $default_charset, $script);
-	    }
-	    return $script;
+        } elseif(function_exists('iconv')) {
+            return iconv('UTF-8', $default_charset, $script);
+        }
+        return $script;
     }
     
 }

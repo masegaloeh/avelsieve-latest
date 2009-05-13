@@ -51,8 +51,8 @@ function avelsieve_right_main_do() {
                 include_once(SM_PATH . 'plugins/avelsieve/include/sieve.inc.php');
                 $s = new $backend_class_name;
                 $s->init();
-        	    $s->login();
-        	    /* Actually get the script 'phpscript' (hardcoded ATM). */
+                $s->login();
+                /* Actually get the script 'phpscript' (hardcoded ATM). */
                 if($s->load('phpscript', $rules, $scriptinfo)) {
                     $_SESSION['rules'] = $rules;
                     $_SESSION['scriptinfo'] = $scriptinfo;
@@ -85,6 +85,4 @@ function avelsieve_right_main_do() {
     bindtextdomain('squirrelmail', SM_PATH . 'locale');
     textdomain('squirrelmail');
 }
-
-
 

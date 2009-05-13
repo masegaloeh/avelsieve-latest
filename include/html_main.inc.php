@@ -21,100 +21,100 @@
  * as well as header/footer thingies.
  */
 class avelsieve_html {
-	/**
+    /**
      * @var int Level of Javascript support
-	 */
-	var $js = 0;
+     */
+    var $js = 0;
     
     /**
-	 * @param boolean Flag for image usage
-	 */
-	var $useimages = true;
+     * @param boolean Flag for image usage
+     */
+    var $useimages = true;
 
-	/**
-	 * Constructor function will initialize some variables, depending on the
-	 * environment.
-	 */
-	function avelsieve_html() {
-		global $plugins, $javascript_on, $useimages;
+    /**
+     * Constructor function will initialize some variables, depending on the
+     * environment.
+     */
+    function avelsieve_html() {
+        global $plugins, $javascript_on, $useimages;
 
-		if($javascript_on) {
-			$this->js++;
+        if($javascript_on) {
+            $this->js++;
             if(in_array('javascript_libs', $plugins)) {
-			    $this->js++;
+                $this->js++;
             }
         }
-		$this->useimages = $useimages;
+        $this->useimages = $useimages;
         $this->baseuri = sqm_baseuri();
         $this->imageuri = $this->baseuri . 'plugins/avelsieve/images/';
         $this->iconuri = $this->baseuri . 'plugins/avelsieve/images/icons/';
-	}
+    }
 
-	/**
-	 * Page Header
-	 */
-	function header($customtitle = '') {
-		$out = '<h1>'._("Server-Side Mail Filtering");
-		if($customtitle) {
-			$out .= ' - '.$customtitle;
-		}
-		$out .= '</h1>';
-		return $out;
-	}
-	
-	function my_header() {
-		global $color;
-		return '<br><table width="100%"><tr><td bgcolor="'.$color[0].'">'.
-			'<center><b>' . _("Server-Side Mail Filtering"). '</b></center>'.
-			'</td></tr></table>';
-	}
-	
-	/**
-	 * Squirrelmail-style table header
-	 * @return string
-	 */
-	function table_header($customtitle) {
-		global $color;
-		$out = "\n<!-- Table header --><br/>".
-		'<table bgcolor="'.$color[0].'" width="95%" align="center" cellpadding="2" cellspacing="0" border="0">
-		<tr><td align="center">
-		    <strong>'.  _("Server-Side Mail Filtering") .
-		    ( !empty($customtitle) ? ' - '.$customtitle : '' ) . '</strong>
-		    <table width="100%" border="0" cellpadding="5" cellspacing="0">
-		    <tr><td bgcolor="'.$color[4].'" align="center">
-		';
-		return $out;
-	}
-	
-	/** 
-	 * Squirrelmail-style table footer
-	 * @return string
-	 */
-	function table_footer() {
-		return '</td></tr></table>'.
-			'</td></tr></table>';
-	}
-	
-	/**
-	 * All sections table start
-	 * @return string
-	 */
-	function all_sections_start() {
-		return '<!-- All sect. start --><table width="95%" align="center" cellpadding="4" cellspacing="0" border="0">';
-	}
-	
-	/**
-	 * All sections table end
-	 * @return string
-	 */
-	function all_sections_end() {
-		return '</table><!-- All sect. end -->';
-	}
-	
-	/**
-	 * Table 'section' start
-	 * @return string
-	 */
+    /**
+     * Page Header
+     */
+    function header($customtitle = '') {
+        $out = '<h1>'._("Server-Side Mail Filtering");
+        if($customtitle) {
+            $out .= ' - '.$customtitle;
+        }
+        $out .= '</h1>';
+        return $out;
+    }
+    
+    function my_header() {
+        global $color;
+        return '<br><table width="100%"><tr><td bgcolor="'.$color[0].'">'.
+            '<center><b>' . _("Server-Side Mail Filtering"). '</b></center>'.
+            '</td></tr></table>';
+    }
+    
+    /**
+     * Squirrelmail-style table header
+     * @return string
+     */
+    function table_header($customtitle) {
+        global $color;
+        $out = "\n<!-- Table header --><br/>".
+        '<table bgcolor="'.$color[0].'" width="95%" align="center" cellpadding="2" cellspacing="0" border="0">
+        <tr><td align="center">
+            <strong>'.  _("Server-Side Mail Filtering") .
+            ( !empty($customtitle) ? ' - '.$customtitle : '' ) . '</strong>
+            <table width="100%" border="0" cellpadding="5" cellspacing="0">
+            <tr><td bgcolor="'.$color[4].'" align="center">
+        ';
+        return $out;
+    }
+    
+    /** 
+     * Squirrelmail-style table footer
+     * @return string
+     */
+    function table_footer() {
+        return '</td></tr></table>'.
+            '</td></tr></table>';
+    }
+    
+    /**
+     * All sections table start
+     * @return string
+     */
+    function all_sections_start() {
+        return '<!-- All sect. start --><table width="95%" align="center" cellpadding="4" cellspacing="0" border="0">';
+    }
+    
+    /**
+     * All sections table end
+     * @return string
+     */
+    function all_sections_end() {
+        return '</table><!-- All sect. end -->';
+    }
+    
+    /**
+     * Table 'section' start
+     * @return string
+     */
     function section_start($title = '') {
         global $color;
         if(empty($title)) {
@@ -128,36 +128,36 @@ class avelsieve_html {
         }
     }
     
-	/**
-	 * Table 'section' end
-	 * @return string
-	 */
-	function section_end() {
-		global $color;
-		$out = "</td></tr>\n".
-			"<tr><td bgcolor=\"$color[4]\">&nbsp;</td></tr>\n";
-		return $out;
-	}
+    /**
+     * Table 'section' end
+     * @return string
+     */
+    function section_end() {
+        global $color;
+        $out = "</td></tr>\n".
+            "<tr><td bgcolor=\"$color[4]\">&nbsp;</td></tr>\n";
+        return $out;
+    }
 
-	/**
- 	 * Generic Listbox widget
- 	 *
- 	 * @param $selected_header Selected header
- 	 * @param $n option number
- 	 */
-	function generic_listbox($name, $options, $selected_option = '') {
-		$out = '<select name="'.$name.'">';
-		foreach($options as $o => $desc) {
-			if ($selected_option==$o) {
-				$out .= '<option value="'.htmlspecialchars($o).'" selected="SELECTED">'.htmlspecialchars($desc).'</option>';
-			} else {
-				$out .= '<option value="'.htmlspecialchars($o).'">'.htmlspecialchars($desc).'</option>';
-			}
-		}
-		$out .= '</select>';
-		return $out;
-	}
-	
+    /**
+      * Generic Listbox widget
+      *
+      * @param $selected_header Selected header
+      * @param $n option number
+      */
+    function generic_listbox($name, $options, $selected_option = '') {
+        $out = '<select name="'.$name.'">';
+        foreach($options as $o => $desc) {
+            if ($selected_option==$o) {
+                $out .= '<option value="'.htmlspecialchars($o).'" selected="SELECTED">'.htmlspecialchars($desc).'</option>';
+            } else {
+                $out .= '<option value="'.htmlspecialchars($o).'">'.htmlspecialchars($desc).'</option>';
+            }
+        }
+        $out .= '</select>';
+        return $out;
+    }
+    
     /**
      * Explicitly set Error Messages that might have occured from an external 
      * source.
@@ -228,7 +228,7 @@ class avelsieve_html {
             session_unregister('comm');
         }
     }
-	
+    
     /**
      * Small helper function, that returns the appropriate javascript snippet 
      * for "toggle" links.
@@ -273,23 +273,23 @@ class avelsieve_html {
      */
     function print_errmsg() {
         $out = '';
-		if(!empty($this->errmsg)) {
+        if(!empty($this->errmsg)) {
             global $color;
-			$out .= $this->section_start( _("Error Encountered:") ).
-				'<div style="text-align:center; color:'.$color[2].';">';
+            $out .= $this->section_start( _("Error Encountered:") ).
+                '<div style="text-align:center; color:'.$color[2].';">';
 
-			if(is_array($this->errmsg)) {
-				$out .= '<ul>';
-				foreach($this->errmsg as $msg) {
-					$out .= '<li>'.$msg.'</li>';
-				}
-				$out .= '</ul>';
-			} else {
-				$out .= '<p>'.$this->errmsg .'</p>';
-			}
-			$out .= '<p>'. _("You must correct the above errors before continuing."). '</p>';
-			$out .= '</div>' . 	$this->section_end();
-		}
+            if(is_array($this->errmsg)) {
+                $out .= '<ul>';
+                foreach($this->errmsg as $msg) {
+                    $out .= '<li>'.$msg.'</li>';
+                }
+                $out .= '</ul>';
+            } else {
+                $out .= '<p>'.$this->errmsg .'</p>';
+            }
+            $out .= '<p>'. _("You must correct the above errors before continuing."). '</p>';
+            $out .= '</div>' .     $this->section_end();
+        }
         return $out;
     }
     
@@ -344,4 +344,3 @@ class avelsieve_html {
     }
 }
 
-?>
