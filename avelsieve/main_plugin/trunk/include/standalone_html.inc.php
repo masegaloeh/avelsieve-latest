@@ -28,7 +28,7 @@ print '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
 <style type="text/css">
 body {
         background: '.$color[4].';
-	color: '.$color[8].';
+    color: '.$color[8].';
         font-family: verdana, tahoma, arial, sans-serif;
         }
 a:link {
@@ -53,7 +53,7 @@ h1 {
         text-align: center;
         font-family: tahoma, verdana, lucida, helvetica, sans-serif;
         font-size: 2.0em;
-	color: '.$color[0].';
+    color: '.$color[0].';
         }
 h2 {
         font-weight: bold;
@@ -82,15 +82,14 @@ valign="middle" bgcolor="'.$color[3].'" width="80%" frame="hsides">
 /** Standalone Table Footer */
 function avelsieve_standalone_print_table_footer() {
 
-	print '</td></tr></table>';
+    print '</td></tr></table>';
 
 }
 
 /** Standalone HTML Footer */
 function avelsieve_standalone_print_html_footer() {
 
-	print '</body></html>';
+    print '</body></html>';
 
 }
 
-?>

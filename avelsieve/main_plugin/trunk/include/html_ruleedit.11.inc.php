@@ -54,7 +54,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
      *
      * @return string
      */
-	function submit_buttons() {
+    function submit_buttons() {
         $out = '<tr><td><div style="text-align: center">'.
             '<input type="submit" name="'. ($this->mode == 'addnew' ? 'addnew' : 'apply') . '" value="'._("Apply Changes").'" style="font-weight: bold" />';
         if($this->popup) {
@@ -62,7 +62,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
         } else {
             $out .= ' <input type="submit" name="cancel" value="'._("Cancel").'" />';
         }
-		return $out;
+        return $out;
     }
     
     /**
@@ -165,8 +165,8 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
                 $this->all_sections_start();
         } else {
             /* 'duplicate' or 'addnew' */
-			$this->rule = $this->settings['default_rule'];
-			
+            $this->rule = $this->settings['default_rule'];
+            
             $out .= '<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
                 //$this->table_header( _("Junk Mail Options") ).
                 $this->all_sections_start();

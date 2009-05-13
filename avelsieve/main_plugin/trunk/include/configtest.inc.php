@@ -44,4 +44,3 @@ function avelsieve_configtest_do() {
     return false;
 }
 
-?>

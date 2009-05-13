@@ -58,4 +58,3 @@ function avelsieve_buildrule_12($rule) {
     return(array($out,$text,$terse, array('skip_further_execution'=>true)));
 }
 
-?>

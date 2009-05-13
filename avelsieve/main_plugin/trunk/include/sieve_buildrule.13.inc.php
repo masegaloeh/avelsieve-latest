@@ -29,4 +29,4 @@ function avelsieve_buildrule_13($rule) {
     
     return(array($out,$text,$terse, array('skip_further_execution'=>true, 'replace_output'=>true)));
 }
-?>
+

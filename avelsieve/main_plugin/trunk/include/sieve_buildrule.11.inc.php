@@ -144,13 +144,13 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
     /* FIXME - Temporary Copy/Paste kludge */
     switch($rule['action']) {
         /* Added */
-	    case '7':	/* junk folder */
+        case '7':    /* junk folder */
             $out .= 'fileinto "INBOX.Junk";';
             $text .= _("stored in the <strong>Junk</strong> Folder.");
             $terse .= _("Junk");
             break;
         
-	    case '8':	/* junk folder */
+        case '8':    /* junk folder */
             $text .= _("stored in the <strong>Trash</strong> Folder.");
         
             global $data_dir, $username;
@@ -170,4 +170,3 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
     return(array($out,$text,$terse));
 }
 
-?>

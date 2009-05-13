@@ -16,4 +16,3 @@
 /** Obsolete file, include the new one. */
 include_once(SM_PATH . 'plugins/avelsieve/include/junkmail.inc.php');
 
-?>
