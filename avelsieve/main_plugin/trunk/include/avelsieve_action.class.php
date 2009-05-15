@@ -241,7 +241,7 @@ class avelsieve_action {
             if(isset($this->two_dimensional_options)) {
                 $out .= '[on]';
             }
-            $out .= '" onClick="ToggleShowDiv(\'helptxt_'.$this->name.'\');ToggleShowDiv(\'options_'.$this->name.'\');return true;"'.
+            $out .= '" onClick="AVELSIEVE.edit.toggleShowDiv(\'helptxt_'.$this->name.'\');AVELSIEVE.edit.toggleShowDiv(\'options_'.$this->name.'\');return true;"'.
                     ' id="'.$this->name.'" ' . ( $this->is_selected() ? ' checked="CHECKED"' : '' ) .
                     '/> ';
         }
