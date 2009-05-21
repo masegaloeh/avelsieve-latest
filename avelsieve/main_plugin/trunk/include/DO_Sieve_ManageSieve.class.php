@@ -136,7 +136,7 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
             }
             $errormsg .= _("Please contact your administrator.");
     
-            if(AVELSIEVE_DEBUG == 1) {
+            if(AVELSIEVE_DEBUG > 0) {
                 print "<pre>(Debug Mode). Login failed. Capabilities:\n";
                 print_r($this->sieve_capabilities);
                 if(!empty($this->sieve->error)) {
@@ -273,7 +273,7 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
             
                 /* The following serves for viewing the script that
                 * tried to be uploaded, for debugging purposes. */
-                if(AVELSIEVE_DEBUG == 1) {
+                if(AVELSIEVE_DEBUG > 0) {
                     $errormsg .= '<br />(Debug mode) <strong>avelsieve bug</strong>: Script that probably is buggy
                        follows. Please copy/paste it, together with the error message above and a short description of
                        what you were attempting to do, and email it to the author, at the email address: <a

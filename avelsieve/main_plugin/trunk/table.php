@@ -39,7 +39,7 @@ include_once(SM_PATH . 'plugins/avelsieve/include/sieve.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/spamrule.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/styles.inc.php');
 
-if(AVELSIEVE_DEBUG == 1) include_once(SM_PATH . 'plugins/avelsieve/include/dumpr.php');
+if(AVELSIEVE_DEBUG > 0) include_once(SM_PATH . 'plugins/avelsieve/include/dumpr.php');
 
 sqsession_is_active();
 

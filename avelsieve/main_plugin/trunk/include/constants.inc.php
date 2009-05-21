@@ -135,7 +135,7 @@ $displaymodes = array(
     'source' => array( _("source"), _("Display SIEVE source"))
 );
 
-if(AVELSIEVE_DEBUG == 1) {
+if(AVELSIEVE_DEBUG > 0) {
     $displaymodes['debug'] = array('debug', 'Debugging mode (avelsieve variables)');
 }
 
