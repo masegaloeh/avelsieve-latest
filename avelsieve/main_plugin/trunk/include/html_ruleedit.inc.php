@@ -832,10 +832,13 @@ class avelsieve_html_edit extends avelsieve_html {
     function action_html($action) {
         $out = '';
         $classname = 'avelsieve_action_'.$action;
+         
         if(class_exists($classname)) {
             $$classname = new $classname($this->s, $this->rule);
             if($$classname != null) {
-                $out .= $$classname->action_html();
+                if($$classname->is_action_valid()) {
+                    $out .= $$classname->action_html();
+                }
             }
         }
         return $out;
