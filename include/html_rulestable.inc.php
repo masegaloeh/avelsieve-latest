@@ -359,7 +359,7 @@ class avelsieve_html_rules extends avelsieve_html {
             //date("Y-m-d H:i:s",$scriptinfo['modified']).'</strong></p>';
         }
     
-        if(AVELSIEVE_DEBUG == 1) {
+        if(AVELSIEVE_DEBUG > 0) {
             global $avelsieve_version;
             $out .= '<p>Versioning Information:</p>' .
                 '<ul><li>Script Created using Version: '.$scriptinfo['version']['string'].'</li>'.
