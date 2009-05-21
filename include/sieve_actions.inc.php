@@ -26,6 +26,7 @@ include_once(SM_PATH . 'plugins/avelsieve/include/avelsieve_action_vacation.clas
 /** Include Avelsieve Additional Action classes (Checkboxes) */
 include_once(SM_PATH . 'plugins/avelsieve/include/avelsieve_action_stop.class.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/avelsieve_action_notify.class.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/avelsieve_action_imapflags.class.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/avelsieve_action_keepdeleted.class.php');
 
 /** Include Custom Avelsieve Action classes */
