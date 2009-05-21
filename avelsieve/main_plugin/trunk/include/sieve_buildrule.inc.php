@@ -110,6 +110,9 @@
  * @subpackage avelsieve
  */ 
 
+/** Include Base Avelsieve Action class */
+include_once(SM_PATH . 'plugins/avelsieve/include/avelsieve_action.class.php');
+
 /**
  * Build a snippet which is used for header, address, envelope rules as well as
  * spam rule whitelists.  Takes arguments in natural English language order:
@@ -298,6 +301,16 @@ function makesinglerule($rule, $mode='rule') {
     }
     global $maxitems, $color, $inconsistent_folders;
     $out = $text = $terse = '';
+    
+    /* Step minus one: include any classes that are necessary and initialize them */
+
+    // imap4flags extension
+    $actions = array();
+    if (isset($rule['imapflags']) && isset($rule['imapflags']['flags'])) {
+        include_once(SM_PATH . 'plugins/avelsieve/include/avelsieve_action_imapflags.class.php');
+        // $sieve variable ??? FIXME
+        $actions['imapflags'] = new avelsieve_action_imapflags($sieve, $rule);
+    }
 
     /* Step zero: serialize & encode the rule inside the SIEVE script. Also
      * check if it is disabled. */
@@ -513,13 +526,25 @@ function makesinglerule($rule, $mode='rule') {
     if(!isset($rule['action']) && $rule['type'] < 10) {
         $rule['action'] = 1;
     }
+
+    /* imapflags action: if there is, then there might be more arguments
+     * to 'keep' or 'fileinto' */
+    $flags_out = $flags_text = $flags_terse = '';
+    if(isset($actions['imapflags'])) {
+        list($flags_out, $flags_text, $flags_terse) = $actions['imapflags']->generate_sieve();
+    }
     
     switch ($rule['action']) {
     case '1':    /* keep (default) */
     default:
-        $out .= "keep;";
+        $out .= 'keep' . (!empty($flags_out) ? " $flags_out" : '' ) . ';';
         $text .= _("<em>keep</em> the message.");
         $terse .= _("Keep");
+        if($flags_text) {
+            $text .= ' '.$flags_text;
+            $terse .= '<br/>'.$flags_terse;
+        }
+
         break;
     
     case '2':    /* discard */
@@ -557,7 +582,7 @@ function makesinglerule($rule, $mode='rule') {
         break;
     
     case '5':    /* fileinto folder */
-        $out .= 'fileinto "'.$rule['folder'].'";';
+        $out .= 'fileinto '.$flags_out.' "'.$rule['folder'].'";';
 
         if(!empty($inconsistent_folders) && in_array($rule['folder'], $inconsistent_folders)) {
             $clr = '<span style="color:'.$color[2].'">';
@@ -620,7 +645,7 @@ function makesinglerule($rule, $mode='rule') {
     
     if (array_key_exists("notify", $rule) && is_array($rule['notify']) && ($rule['notify']['method'] != '')) {
         global $notifystrings, $prioritystrings;
-        include_once(SM_PATH . 'plugins/avelsieve/include/sieve_actions.inc.php');
+        include_once(SM_PATH . 'plugins/avelsieve/include/avelsieve_action_notify.class.php');
         $temp_action = new avelsieve_action_notify($sieve, $rule); // To retrieve $notifystrings property
         $text .= _(" Also notify using the method")
             . " <em>" . htmlspecialchars($temp_action->notifystrings[$rule['notify']['method']]) . "</em>, ".

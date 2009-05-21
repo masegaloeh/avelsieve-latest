@@ -1099,6 +1099,29 @@ class avelsieve_html_edit extends avelsieve_html {
             !empty($ns['notify']['options'])) {
             $vars[] = 'notify';
         }
+        
+        if(isset($ns['imapflags']['on'])) {
+            $flagsOptions = array('setflag', 'addflag', 'removeflag', 'flags');
+            $flagsGroups = array('standard', 'labels');
+            foreach($flagsOptions as $O) { 
+                if(!empty($ns['imapflags'][$O])) {
+                    $this->rule['imapflags'][$O] = array();
+                    // For the two groups ('standard', 'labels') that have checkboxes 
+                    foreach($ns['imapflags'][$O] as $k => $v) {
+                        $this->rule['imapflags'][$O][base64_decode($k)] = 1;
+                    }
+                }
+            }
+
+            // For the final group ('custom') that is free-form
+            if(!empty($ns['imapflags']['custom']) && !empty($ns['imapflags']['custom'][$O])) {
+                $input = trim($ns['imapflags']['custom'][$O]);
+                $flagsParsed = preg_split("/[\s,]+/", $input);
+                foreach($flagsParsed as $newflag) {
+                    $this->rule['imapflags'][$O][$newflag] = 1;
+                }
+            }
+        }
     
         if(isset($ns['disabled'])) {
             $this->rule['disabled'] = 1;

@@ -99,7 +99,7 @@ $avelsieve_actions = array(
     'keep', 'fileinto', 'redirect', 'reject', 'discard', 'vacation'
 );
 $additional_actions = array(
-    'stop', 'notify', 'keepdeleted', 'disabled'
+    'stop', 'notify', 'imapflags', 'keepdeleted', 'disabled'
 );
 
 
