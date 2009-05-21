@@ -112,6 +112,11 @@ class DO_Sieve {
     protected function _get_active_condition_kinds() {
         $out = array();
         foreach($this->condition_kinds as $k=>$v) {
+            if(AVELSIEVE_DEBUG == 3) {
+                $out[$k] = $v['desc'];
+                continue;
+            }
+
             if(!isset($v['capability'])) {
                 $out[$k] = $v['desc'];
                 continue;

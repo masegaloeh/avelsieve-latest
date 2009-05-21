@@ -17,7 +17,15 @@
  */
 
 /**
- * Debug Mode. Enable this (change to 1) if you need to send a bug report.
+ * Debug Mode. Enable this (change to 1) if you need to send a bug report,
+ * or to 2 or 3 if you are a developer!
+ *
+ * Valid values:
+ * 0 = No debugging output
+ * 1 = Normal debugging output
+ * 2 = Firebug-enhanced debugging output
+ * 3 = Enhanced debugging output and no Sieve capabilities checks - enables
+ *     all UI features!
  */
 if(!defined('AVELSIEVE_DEBUG')) {
     define('AVELSIEVE_DEBUG', 0);
@@ -301,4 +309,4 @@ foreach($avelsieve_enable_rules as $r) {
 
 $avelsieve_spam_highlight_enable = false;
 
-?>
+
