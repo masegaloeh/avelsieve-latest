@@ -158,19 +158,16 @@ $ruleobj->set_errmsg($errmsg);
 
 if(isset($edit)) {
     /* Editing an existing rule */
-    //print "/* Editing an existing rule */";
     $ruleobj->set_rule_type( (isset($rules[$edit]['type']) ? $rules[$edit]['type'] : 1));
     $ruleobj->set_rule_data($rules[$edit]);
 
 } elseif(isset($serialized_rule)) {
     /* Adding a new rule through $_GET, e.g. from search integration feature. */
-    //print "/* Adding a new rule through _GET, e.g. from search integration feature. */";
     $ruleobj->set_rule_type($type_get);
     $ruleobj->set_rule_data(unserialize(urldecode($serialized_rule)));
 
 } elseif(!isset($edit) && isset($type_get) && empty($_POST)) {
     /* Adding a new rule through $_GET */
-    //print "/* Adding a new rule through _GET */";
     $ruleobj->set_rule_type($type_get);
     if(isset($avelsieve_rules_settings[$type_get]['default_rule'])) {
         $ruleobj->set_rule_data($avelsieve_rules_settings[$type_get]['default_rule']);
@@ -179,11 +176,9 @@ if(isset($edit)) {
 
 } elseif(!isset($edit) && isset($type_get) && !empty($_POST)) {
     /* Continuing to add a new rule */
-    //print "/* Continuing to add a new rule */";
     $ruleobj->set_rule_type($type_get);
 } else {
     /* Adding a new rule from scratch */
-    //print "/* Adding a new rule from scratch */";
     $ruleobj->set_rule_type($type_get);
 }
 $type = $ruleobj->type;
@@ -258,8 +253,8 @@ if(isset($_POST['cancel'])) {
 
 } elseif(isset($_POST['addnew']) && !$changetype) {
     /* Add new rule */
-    //print "/* Add new rule */";
-     $ruleobj->process_input($_POST, true);
+    $ruleobj->process_input($_POST, true);
+
     if(empty($ruleobj->errmsg)) {
         if(isset($dup)) {
             // insert moving rule in place
