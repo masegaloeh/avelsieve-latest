@@ -142,7 +142,7 @@ class avelsieve_html_edit extends avelsieve_html {
 
     
     function select_condition_type($n, &$rule) {
-        $out = '<select name="condition_type_'.$n.'" id="condition_type_'.$n.'" ';
+        $out = '<select name="cond['.$n.'][kind]" id="condition_type_'.$n.'" ';
         if($this->js) {
             $out .= ' onChange="AVELSIEVE.edit.changeConditionKind('.$n.', this.value);"';
         }
@@ -342,14 +342,6 @@ class avelsieve_html_edit extends avelsieve_html {
             }
         }
 
-        /* Debug: */
-        /*
-        d('condition called with index n= '.$n . ', kind = '.$kind);
-        if(isset($this->rule['cond'][$n]['type'])) {
-            d('type= '.$this->rule['cond'][$n]['type'] );
-        }
-         */
-        
         $out .= $this->select_condition_type($n, $this->rule);
         $out .= '<span id="condition_type_div_'.$n.'">';
 
@@ -362,7 +354,8 @@ class avelsieve_html_edit extends avelsieve_html {
             }
 
         } elseif($kind == 'datetime') {
-            $out .= $this->datetime_common_ui($n, $this->rule);
+            $myCondition = new avelsieve_condition_datetime($this->s, $this->rule, $n);
+            $out .= $myCondition->datetime_common_ui();
 
         } elseif($kind == 'all') {
             $out .= $this->condition_all();
@@ -598,210 +591,10 @@ class avelsieve_html_edit extends avelsieve_html {
         return $out;
     }
 
-    function datetime_common_ui($n, &$rule) {
-        // Get a reference to current condition
-        $cond = &$rule['cond'][$n];
-
-        // Build the default datetime user interface
-        $out = $this->ui_tree_output($n, $cond);
-        return $out;
-    }
 
     /**
-     * Basically set up variables $ui, $ui_subnodes
+     * ???????
      */
-    function _dateTimeInit() {
-        global $ui, $ui_subnodes;
-
-        $tpl_date_metrics = array(
-            'year' => _("Year"),
-            'month' => _("Month"),
-            'day' => _("Day"),
-            'date' => _("Date"),
-            'hour' => _("Hour"),
-            'minute' => _("Minute"),
-            'second' => _("Second"),
-            'time' => _("Time"),
-            'specificdate' => _("Specific Date"),
-        );
-        $tpl_date_condition = array(
-            'on' => _("On"),
-            'before' => _("Before"),
-            'after' =>  _("After"),
-        );
-        $tpl_cond_2 = array(
-            'is' => _("Is"),
-            'before' => _("Before"),
-            'after' =>  _("After"),
-            // 'matches' => _("Matches"),
-        );
-
-        $tpl_months = array(
-            '1' => _("January"),
-            '2' => _("February"),
-            '3' => _("March"),
-            '4' => _("April"),
-        );
-        
-        /* The "ui_tree" variable describes how the user interface is structured.
-         * Each "varname" array key represents an HTML input widget.
-         */
-        $ui = array();
-
-        $ui['datetype'] = array(
-            'name' => 'datetype',
-            'input' => 'select',
-            'values' => array(
-                'specific_date' => _("Specific Date"),
-                'occurence' => _("Occurence"),
-            ),
-            'children' => array(
-                'specific_date' => 'specific_date_conditional',
-                'occurence' => 'occurence_metric',
-            ),
-        );
-
-        $ui['specific_date_conditional'] = array(
-            'input' => 'select',
-            'values' => $tpl_date_condition,
-            'children' => array(
-                'on' => 'specific_date_picker',
-                'before' => 'specific_date_picker',
-                'after' => 'specific_date_picker',
-            ),
-        );
-        
-        $ui['specific_date_picker'] = array(
-            'input' => 'datepicker',
-            'terminal' => true,
-        );
-
-        $ui['occurence_metric'] = array(
-            'input' => 'select',
-            'values' => $tpl_date_metrics,
-            'children' => array(),
-        );
-        foreach($tpl_date_metrics as $k => $v) {
-            $ui['occurence_metric']['children'][$k] = $k.'_occurence_conditional';
-            $ui[$k.'_occurence_conditional'] = array(
-                'input' => 'select',
-                'values' => $tpl_cond_2,
-                'children' => array()
-            );
-            foreach($tpl_cond_2 as $k2 => $v2) {
-                $ui[$k.'_occurence_conditional']['children'][$k2] = 'occurence_'.$k;
-            }
-            
-            $ui['occurence_'.$k] = array(
-                'input' => 'text',
-                'terminal' => true,
-                'children' => array()
-            );
-        }
-        
-        $ui['occurence_month']['input'] = 'select';
-        $ui['occurence_month']['values'] = $tpl_months;
-
-        $ui['occurence_day']['input'] = 'select';
-        $ui['occurence_day']['values'] = range(1, 31);
-       
-        $ui_subnodes = array(
-            'datetype' => array('specific_date_conditional', 'occurence_metric'),
-            'specific_date_conditional' => array('date'),
-            'occurence_metric' => array('occurence_conditional'),
-            'occurence_conditional' => array('occurence_year', 'occurence_month', 'occurence_day', 'occurence_hour', 'occurence_minute', 'occurence_second'),
-            /*
-            'year' => array(),
-            'month' => array(),
-            'day' => array(),
-            'hour' => array(),
-            'minute' => array(),
-            'second' => array(),
-             */
-        );
-    }
-
-    
-    /**
-     *
-     * @param $n integer        Numeric index to print out
-     * @param $cond array       Line of condition
-     * @param $varname string   Name of input element from which to start off
-     * @param $varvalue string  Value of this input element.
-     * @return string
-     */
-    function ui_tree_output($n, $cond, $varname = '', $varvalue = '') {
-        global $ui, $ui_subnodes;
-        
-        // Auto-configuration
-        $this->_dateTimeInit();
-
-        if(!empty($varname) && !empty($varvalue)) {
-            $k = $this->_getChildOf($cond, $varname, $varvalue);
-        } else {
-            $k = 'datetype';
-        }
-        $out = '';
-        if(!empty($k)) {
-            $out .= $this->_printWidgetHtml($k, $n);
-        }
-
-        return $out;
-    }
-
-    function _printWidgetHtml($k, $n, $selected = '') {
-        global $ui, $ui_subnodes;
-
-        $u = &$ui[$k];
-
-        $out = '<span id="datetime_condition_'.$k.'">';
-
-        switch($u['input']) {
-        case 'select':
-            $out .= '<select name="'.$k.'" id="datetime_input_'.$k.'" ';
-            if(!isset($u['terminal'])) {
-                $out .= 'onchange="AVELSIEVE.edit.datetimeGetChildren(\''.$k.'\', \''.$n.'\'); ';
-            }
-            $out .= '">';
-            $out .= '<option value=""></option>';
-            foreach($u['values'] as $key=>$val) {
-                $out .= '<option value="'.$key.'">'.$val.'</option>';
-            }
-            $out .= '</select>';
-            break;
-
-        case 'datepicker': 
-            $out .= '<input type="text" name="'.$k.'" id="datetime_input_'.$k.'" value="" />';
-            break;
-
-        case 'text': 
-            $out .= '<input type="text" name="'.$k.'" id="datetime_input_'.$k.'" value="" />';
-            break;
-
-        default:
-            $out .= ' nothing ';
-            break;
-        }
-
-        $out .= '</span>';
-        $out .= '<span id="datetime_condition_after_'.$k.'"></span>';
-        return $out;
-    }
-
-    function _getChildOf($cond, $varname, $varvalue) {
-        global $ui, $ui_subnodes;
-
-        // if(isset($ui_subnodes[$varname]) && isset($ui[$varname]['children'])) {
-        if(isset($ui[$varname]['children'])) {
-            foreach($ui[$varname]['children'] as $child => $widget) {
-                if($varvalue == $child) {
-                    return $widget;
-                }
-            }
-        }
-        return false;
-    }
-
     function _getSubsetOfUiTree(&$ui_tree, $varname, $varvalue) {
         foreach($ui_tree as $k => $v) {
             // if(!isset($v['input'])) $fb->warn('this is not a valid uid_tree!');
@@ -1032,32 +825,48 @@ class avelsieve_html_edit extends avelsieve_html {
         /* If Part */
         $vars = array('type', 'condition');
     
-        if($truncate_empty_conditions) {
-            if(isset($ns['cond'])) {
-                /* Decide how much of the items to use for the condition of the
-                * rule, based on the first zero / null /undefined variable to be
-                * found. Also, reorder the conditions. */
-                $match_vars = array('headermatch', 'addressmatch', 'envelopematch', 'sizeamount', 'bodymatch');
-                $new_cond_indexes = array();
-                foreach($ns['cond'] as $n => $c) {
+        if($truncate_empty_conditions && isset($ns['cond'])) {
+            /* Decide how much of the items to use for the condition of the
+            * rule, based on the first zero / null /undefined variable to be
+            * found. Also, reorder the conditions. */
+
+            $match_vars = array('headermatch', 'addressmatch', 'envelopematch', 'sizeamount', 'bodymatch');
+            $new_cond_indexes = array();
+            foreach($ns['cond'] as $n => $c) {
+                if(isset($c['kind'])) {
+                    $kind = $c['kind'];
+                } else {
+                    $kind = 'message';
+                }
+
+                switch($kind) {
+                case 'message':
+
                     foreach($match_vars as $m) {
                         if(!empty($c[$m]) || $c['type'] == 'all') {
                             $new_cond_indexes[] = $n;
                         }
                     }
-                }
-                $new_cond_indexes = array_unique($new_cond_indexes);
-                $new_cond_indexes = array_values($new_cond_indexes);
-        
-                $this->rule['cond'] = array();
-                foreach($new_cond_indexes as $n => $index) {
-                    $this->rule['cond'][] = $ns['cond'][$index];
-                }
-                /* If it is completely empty, we must return an error. */
-                if(empty($this->rule['cond'])) {
-                    $this->errmsg[] =  _("You have to define at least one condition.");
+                    $new_cond_indexes = array_unique($new_cond_indexes);
+                    $new_cond_indexes = array_values($new_cond_indexes);
+                    break;
+
+                case 'datetime':
+                default:
+                    // TODO - for datetime, perform truncating / checking
+                    $new_cond_indexes = array_keys($ns['cond']);
                 }
             }
+        
+            $this->rule['cond'] = array();
+            foreach($new_cond_indexes as $n => $index) {
+                $this->rule['cond'][] = $ns['cond'][$index];
+            }
+            /* If it is completely empty, we must return an error. */
+            if(empty($this->rule['cond'])) {
+                $this->errmsg[] =  _("You have to define at least one condition.");
+            }
+
         } else {
             $vars[] = 'cond';
         }

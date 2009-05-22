@@ -141,11 +141,11 @@ AVELSIEVE.edit = {
     datetimeGetChildren: function(name, index) {
         
         // Temporarily make input disabled.
-        $('datetime_input_'+name).disabled = true;
+        $('datetime_input_'+name+'_'+index).disabled = true;
 
-        var value = $('datetime_input_'+name).value;
+        var value = $('datetime_input_'+name+'_'+index).value;
         if(value == '') {
-            $('datetime_condition_after_' + name).innerHTML = '';
+            $('datetime_condition_after_' + name+'_'+index).innerHTML = '';
         } else {
             var params = $('avelsieve_addrule').serialize(true);
             params.avaction = 'datetime_get_snippet';
@@ -159,9 +159,9 @@ AVELSIEVE.edit = {
                 parameters: params,
                 onSuccess: function(transport){
                   var response = transport.responseText || "no response text";
-                  $('datetime_condition_after_' + name).innerHTML = response;
+                  $('datetime_condition_after_' + name+'_'+index).innerHTML = response;
                   // Remove disabled status
-                    $('datetime_input_'+name).disabled = false;
+                    $('datetime_input_'+name+'_'+index).disabled = false;
                 },
                 onFailure: function(){ alert('Something went wrong...') }
                 // TODO

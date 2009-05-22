@@ -33,6 +33,8 @@ include_once(SM_PATH . 'functions/imap.php');
 require_once(SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/html_rulestable.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/html_ruleedit.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/sieve_conditions.inc.php');
+include_once(SM_PATH . 'plugins/avelsieve/include/sieve_actions.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/sieve.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
 
@@ -104,7 +106,9 @@ case 'datetime_get_snippet':
         $cond = $ruleobj->rule['cond'][$index];
     }
     
-    echo '<span id="condition_line_'.$index.'">'. $ruleobj->ui_tree_output($index, $cond, $name, $value) .'</span>';
+    $myCondition = new avelsieve_condition_datetime($s, $temprules, $index); // XXX
+
+    echo '<span id="condition_line_'.$index.'">'. $myCondition->ui_tree_output($name, $value) .'</span>';
 
     exit;
 
