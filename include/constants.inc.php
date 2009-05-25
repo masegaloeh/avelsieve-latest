@@ -140,7 +140,7 @@ if(AVELSIEVE_DEBUG > 0) {
 }
 
 global $implemented_capabilities;
-$implemented_capabilities = array('fileinto', 'envelope', 'reject', 'vacation', 'imapflags', 'relational', 'regex', 'notify', 'body');
+$implemented_capabilities = array('fileinto', 'envelope', 'reject', 'vacation', 'imapflags', 'relational', 'regex', 'notify', 'body', 'date', 'index');
 
 global $cap_dependencies;  
 $cap_dependencies['relational'] = array("comparator-i;ascii-numeric");

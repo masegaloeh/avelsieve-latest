@@ -40,7 +40,7 @@ class avelsieve_condition_datetime extends avelsieve_condition {
             'minute' => _("Minute"),
             'second' => _("Second"),
             'time' => _("Time"),
-            'specificdate' => _("Specific Date"),
+            // 'specificdate' => _("Specific Date"),
         );
 
         $tpl_weekdays = array(
@@ -53,23 +53,31 @@ class avelsieve_condition_datetime extends avelsieve_condition {
             '6' => _("Saturday"),
         );
 
-        $tpl_date_condition = array(
-            'on' => _("On"),
-            'before' => _("Before"),
-            'after' =>  _("After"),
-        );
-        $tpl_cond_2 = array(
+        $this->tpl_date_condition = $tpl_date_condition = array(
             'is' => _("Is"),
-            'before' => _("Before"),
-            'after' =>  _("After"),
-            // 'matches' => _("Matches"),
+            'le' => _("Before (&lt;=)"),
+            'ge' =>  _("After (=&gt;)"),
+            'lt' => _("Before (&lt;)"),
+            'gt' =>  _("After (&gt;)"),
         );
+        $tpl_cond_2 = $tpl_date_condition;
+        // This could be separate to allow for more complex conditions, like
+        // regex matches etc.
+        // 'matches' => _("Matches"),
 
         $tpl_months = array(
-            '1' => _("January"),
-            '2' => _("February"),
-            '3' => _("March"),
-            '4' => _("April"),
+            '01' => _("January"),
+            '02' => _("February"),
+            '03' => _("March"),
+            '04' => _("April"),
+            '05' => _("May"),
+            '06' => _("June"),
+            '07' => _("July"),
+            '08' => _("August"),
+            '09' => _("September"),
+            '10' => _("October"),
+            '11' => _("November"),
+            '12' => _("December"),
         );
         
         $this->ui['datetype'] = array(
@@ -127,10 +135,19 @@ class avelsieve_condition_datetime extends avelsieve_condition {
         $this->ui['occurence_month']['values'] = $tpl_months;
         
         $this->ui['occurence_day']['input'] = 'select';
-        $this->ui['occurence_day']['values'] = range(1, 31);
+        $this->ui['occurence_day']['values'] = $this->_rangePadded(1, 31);
         
         $this->ui['occurence_weekday']['input'] = 'select';
         $this->ui['occurence_weekday']['values'] = $tpl_weekdays;
+        
+        $this->ui['occurence_hour']['input'] = 'select';
+        $this->ui['occurence_hour']['values'] = $this->_rangePadded(0, 23);
+        
+        $this->ui['occurence_minute']['input'] = 'select';
+        $this->ui['occurence_minute']['values'] = $this->_rangePadded(0, 59);
+        
+        $this->ui['occurence_second']['input'] = 'select';
+        $this->ui['occurence_second']['values'] = $this->_rangePadded(0, 60);
        
         $this->ui_subnodes = array(
             'datetype' => array('specific_date_conditional', 'occurence_metric'),
@@ -216,7 +233,6 @@ class avelsieve_condition_datetime extends avelsieve_condition {
     }
 
     function _getChildOf($varname, $varvalue) {
-        // if(isset($ui_subnodes[$varname]) && isset($ui[$varname]['children'])) {
         if(isset($this->ui[$varname]['children'])) {
             foreach($this->ui[$varname]['children'] as $child => $widget) {
                 if($varvalue == $child) {
@@ -226,5 +242,111 @@ class avelsieve_condition_datetime extends avelsieve_condition {
         }
         return false;
     }
+
+    /**
+     * Like range(), except that it pads array <i>keys</i> to the same string length
+     * by adding leading zeros.
+     *
+     * @param int $start
+     * @param int $end
+     * @param int $step
+     * @return array
+     */
+    private function _rangePadded($start, $end, $step = 1) {
+        $aNormal = range($start, $end, $step);
+        $length = strlen( $end );
+        
+        $aPadded = $aNormal;
+        foreach($aPadded as &$val) {
+            if($difference = $length - strlen($val)) {
+                if($difference == 1) $pad = '0';
+                if($difference == 2) $pad = '00';
+                if($difference == 3) $pad = '000';
+                $val = $pad.$val;
+            }
+        }
+        $out = array_combine($aPadded, $aNormal);
+        return $out;
+    }
+
+    /**
+     * Generate Sieve code and human-readable texts.
+     *
+     * @return array ($out, $text, $terse) 
+     */
+    public function generate_sieve() {
+        $c = &$this->data;
+
+        $out = $text = $terse = '';
+        $out .= ' currentdate ';
+
+        if(isset($c['originalzone']) && $c['originalzone']) {
+            $out .= ':originalzone ';
+        } elseif(isset($c['zone'])) {
+            $out .= ':zone '.$c['zone'].' ';
+        }
+
+        if($c['datetype'] == 'specific_date') {
+            $cmp = &$c['specific_date_conditional'];
+        } elseif($c['datetype'] == 'occurence') {
+            $cmp = &$c[$c['occurence_metric'].'_occurence_conditional'];
+        }
+        switch($cmp) {
+        case 'is':
+        case 'on':
+        default:
+            $out .= ':is';
+            $text .= _("is");
+            $terse .= _("is");
+            break;
+        case 'le':
+            $out .= ':value "le"';
+            $text .= _("is before than %s (inclusive)");
+            $terse .= ' '.$this->tpl_date_condition[$cmp].' ';
+            break;
+        case 'ge':
+            $out .= ':value "ge"';
+            $text .= _("is after than %s (inclusive)");
+            $terse .= ' '.$this->tpl_date_condition[$cmp].' ';
+            break;
+        case 'lt':
+            $out .= ':value "lt"';
+            $text .= _("is before than %s");
+            $terse .= ' '.$this->tpl_date_condition[$cmp].' ';
+            break;
+        case 'gt':
+            $out .= ':value "gt"';
+            $text .= _("is after than %s");
+            $terse .= ' '.$this->tpl_date_condition[$cmp].' ';
+            break;
+        }
+
+        $out .= ' ';
+
+        /* --- header-name --- (only for date test, not for currentdate) */
+        if(!empty($c['header'])) {
+            $out .= '"'.strtolower($c['header']).'" ';
+        }
+
+        /* --- date-part + key-list --- */
+        if($c['datetype'] == 'specific_date') {
+            // From 'specific date' UI
+
+        } elseif($c['datetype'] == 'occurence') {
+            // From 'occurence' UI
+
+            $out .= '"'.$c['occurence_metric'].'" ';
+
+            if(isset($c['occurence_'.$c['occurence_metric']])) {
+                $out .= '"'.$c['occurence_'.$c['occurence_metric']].'" ';
+            } else {
+                //key occurence_'.$c['occurence_metric'] is empty? 
+                $out .= '""';
+            }
+        }
+
+        return array($out, $text, $terse);
+    }
+
 }
 
