@@ -245,12 +245,12 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
         if(!$this->loggedin) {
             $this->login();
         }
-    
+
         if($this->sieve->sieve_sendscript($scriptname, stripslashes($newscript))) {
             if(!($this->sieve->sieve_setactivescript($scriptname))){
                 /* Just to be safe. */
                 $errormsg = _("Could not set active script on your IMAP server");
-                $errormsg .= " " . $imapServerAddress.".<br />";
+                $errormsg .= " " . $this->sieveServerAddress.".<br />";
                 $errormsg .= _("Please contact your administrator.");
                 print_errormsg($errormsg);
                 return false;
