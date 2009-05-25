@@ -94,8 +94,10 @@ function avelsieve_buildrule_11($rule, $force_advanced_mode = false) {
 
         $outParts = array();
         foreach($whitelistRef as $w) {
-            $outParts[] = build_rule_snippet('header', 'From', 'contains', $w ,'rule');
-            $outParts[] = build_rule_snippet('header', 'Sender', 'contains', $w ,'rule');
+            $aTmp1 = build_rule_snippet('header', 'From', 'contains', $w);
+            $aTmp2 = build_rule_snippet('header', 'Sender', 'contains', $w);
+            $outParts[] = $aTmp1[0];
+            $outParts[] = $aTmp2[0];
         }
         $out .= implode(",\n", $outParts); 
         $out .= ')';

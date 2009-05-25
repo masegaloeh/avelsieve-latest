@@ -127,14 +127,13 @@ include_once(SM_PATH . 'plugins/avelsieve/include/avelsieve_action.class.php');
  * @param string $matchtype Human readable, as defined in avelsieve constants.
  *     E.g. 'contains', 'is' etc.
  * @param string $headermatch The desired value.
- * @param string $mode 'verbose', 'terse' or 'rule'
- *   verbose = return a (verbose) textual description of the rule.
- *   terse = return a very terse description
- *   rule = return a string with the appropriate SIEVE code.
  *
- * @return string 
+ * @return array ($out, $text, $terse)
+ *    $out: a string with the appropriate SIEVE code.
+ *    $text: a (verbose) textual description of the rule.
+ *    $terse: a terse description.
  */
-function build_rule_snippet($name, $header, $matchtype, $headermatch, $mode='rule') {
+function build_rule_snippet($name, $header, $matchtype, $headermatch) {
     $out = $text = $terse = '';
                 
     switch($name) {
@@ -272,16 +271,7 @@ function build_rule_snippet($name, $header, $matchtype, $headermatch, $mode='rul
     $text .= " &quot;". htmlspecialchars($headermatch) . "&quot;";
     $terse .= ' '.htmlspecialchars($headermatch). ' ';
 
-    switch($mode) {
-        case 'terse':
-            return $terse;
-        case 'text':
-        case 'verbose':
-            return $text;
-        case 'rule':
-        default:
-            return $out;
-    }
+    return array($out, $text, $terse);
 }
 
 
@@ -413,30 +403,27 @@ function makesinglerule($rule, $mode='rule') {
                 /* Kind of condition: Message */
                 switch($rule['cond'][$i]['type']) {
                 case 'address':
-                    $out .= build_rule_snippet('address', $rule['cond'][$i]['address'], $rule['cond'][$i]['matchtype'],
-                        $rule['cond'][$i]['addressmatch'],'rule');
-                    $text .= build_rule_snippet('address', $rule['cond'][$i]['address'], $rule['cond'][$i]['matchtype'],
-                        $rule['cond'][$i]['addressmatch'],'verbose');
-                    $terse .= build_rule_snippet('address', $rule['cond'][$i]['address'], $rule['cond'][$i]['matchtype'],
-                        $rule['cond'][$i]['addressmatch'],'terse');
+                    $aTmp = build_rule_snippet('address', $rule['cond'][$i]['address'], $rule['cond'][$i]['matchtype'],
+                        $rule['cond'][$i]['addressmatch']);
+                    $out .= $aTmp[0];
+                    $text .= $aTmp[1];
+                    $terse .= $aTmp[2];
                     break;
 
                 case 'envelope':
-                    $out .= build_rule_snippet('envelope', $rule['cond'][$i]['envelope'], $rule['cond'][$i]['matchtype'],
-                        $rule['cond'][$i]['envelopematch'],'rule');
-                    $text .= build_rule_snippet('envelope', $rule['cond'][$i]['envelope'], $rule['cond'][$i]['matchtype'],
-                        $rule['cond'][$i]['envelopematch'],'verbose');
-                    $terse .= build_rule_snippet('envelope', $rule['cond'][$i]['envelope'], $rule['cond'][$i]['matchtype'],
-                        $rule['cond'][$i]['envelopematch'],'terse');
+                    $aTmp = build_rule_snippet('envelope', $rule['cond'][$i]['envelope'], $rule['cond'][$i]['matchtype'],
+                        $rule['cond'][$i]['envelopematch']);
+                    $out .= $aTmp[0];
+                    $text .= $aTmp[1];
+                    $terse .= $aTmp[2];
                     break;
 
                 case 'header':
-                    $out .= build_rule_snippet('header', $rule['cond'][$i]['header'], $rule['cond'][$i]['matchtype'],
-                        $rule['cond'][$i]['headermatch'],'rule');
-                    $text .= build_rule_snippet('header', $rule['cond'][$i]['header'], $rule['cond'][$i]['matchtype'],
-                        $rule['cond'][$i]['headermatch'],'verbose');
-                    $terse .= build_rule_snippet('header', $rule['cond'][$i]['header'], $rule['cond'][$i]['matchtype'],
-                        $rule['cond'][$i]['headermatch'],'terse');
+                    $aTmp = build_rule_snippet('header', $rule['cond'][$i]['header'], $rule['cond'][$i]['matchtype'],
+                        $rule['cond'][$i]['headermatch']);
+                    $out .= $aTmp[0];
+                    $text .= $aTmp[1];
+                    $terse .= $aTmp[2];
                     break;
 
                 case 'size':
@@ -469,12 +456,10 @@ function makesinglerule($rule, $mode='rule') {
                     break;
              
                 case 'body':
-                    $out .= build_rule_snippet('body', '', $rule['cond'][$i]['matchtype'],
-                        $rule['cond'][$i]['bodymatch'],'rule');
-                    $text .= build_rule_snippet('body', '', $rule['cond'][$i]['matchtype'],
-                        $rule['cond'][$i]['bodymatch'],'verbose');
-                    $terse .= build_rule_snippet('body', '', $rule['cond'][$i]['matchtype'],
-                        $rule['cond'][$i]['bodymatch'],'terse');
+                    $aTmp = build_rule_snippet('body', '', $rule['cond'][$i]['matchtype'], $rule['cond'][$i]['bodymatch']);
+                    $out .= $aTmp[0];
+                    $text .= $aTmp[1];
+                    $terse .= $aTmp[2];
                     break;
 
                 case 'all':
