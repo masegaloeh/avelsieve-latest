@@ -421,21 +421,6 @@ if($popup) {
 $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
-/* Debugging Part - Developers might want to enable this */
-/*
-echo 'SESSION:';
-dumpr($_SESSION);
-echo 'POST:';
-dumpr($_POST);
-echo 'Rules:';
-dumpr($rules);
-
-if(AVELSIEVE_DEBUG == 1) {
-    print "Debug: Using Backend: $avelsieve_backend.<br/>";
-}
-
-*/
-
 if(isset($_GET['mode'])) {
     if(array_key_exists($_GET['mode'], $displaymodes)) {
         $mode = $_GET['mode'];
