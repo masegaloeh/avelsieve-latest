@@ -512,8 +512,8 @@ class sieve {
     /* decision login to decide what type of authentication to use... */
 
     /* If we allow STARTTLS, use it */ 
-    if($this->capabilities['starttls'] === true && function_exists('stream_socket_enable_crypto') === true
-       && !$this->disabletls ) {
+    if(isset($this->capabilities['starttls']) && $this->capabilities['starttls'] === true &&
+      function_exists('stream_socket_enable_crypto') === true && !$this->disabletls ) {
         fputs($this->fp,"STARTTLS\r\n");
         $starttls_response = $this->line=fgets($this->fp,1024);
         if(stream_socket_enable_crypto($this->fp, true, STREAM_CRYPTO_METHOD_TLS_CLIENT) == false) {
