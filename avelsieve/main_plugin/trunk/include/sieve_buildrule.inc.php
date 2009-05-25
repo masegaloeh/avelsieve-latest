@@ -110,6 +110,9 @@
  * @subpackage avelsieve
  */ 
 
+/** Include Base Avelsieve Condition class */
+include_once(SM_PATH . 'plugins/avelsieve/include/avelsieve_condition.class.php');
+
 /** Include Base Avelsieve Action class */
 include_once(SM_PATH . 'plugins/avelsieve/include/avelsieve_action.class.php');
 
@@ -482,9 +485,12 @@ function makesinglerule($rule, $mode='rule') {
                 }
 
             } elseif(isset($rule['cond'][$i]['kind']) && $rule['cond'][$i]['kind'] == 'datetime') {
-                $out .= 'true /* date/time placeholder */';
-                $text .= ' date/time placeholder';
-                $terse .= _("Date / Time");
+                include_once(SM_PATH . 'plugins/avelsieve/include/avelsieve_condition_datetime.class.php');
+                $myCondition = new avelsieve_condition_datetime($sieve, $rule, $i);
+                list($datetimeOut, $datetimeText, $datetimeTerse) = $myCondition->generate_sieve();
+                $out .= $datetimeOut;
+                $text .= $datetimeText;
+                $terse .= $datetimeTerse;
 
             } elseif(isset($rule['cond'][$i]['kind']) && $rule['cond'][$i]['kind'] == 'all') {
                 $out .= 'true';
