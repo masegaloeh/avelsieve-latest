@@ -170,14 +170,15 @@ Control.DatePicker.prototype = {
 			if (!this.datepicker)
 				this.datepicker = new Control.DatePickerPanel(this.options);
 			this.originalValue = this.element.value;
-			var pos = Position.cumulativeOffset(this.element);
+			var pos = Position.positionedOffset(this.element);
 			var dim = Element.getDimensions(this.element);
 			var pickerTop = /MSIE/.test(navigator.userAgent) ? (pos[1] + dim.height) + 'px' : (pos[1] + dim.height - 1) + 'px';
 			this.datepicker.element.style.top = pickerTop;
 			this.datepicker.element.style.left = pos[0] + 'px';
+			this.datepicker.element.style.zIndex = '99';
 			this.datepicker.selectDate(DateFormat.parseFormat(this.element.value, this.options.currentFormat));
 			this.datepicker.captureKeys();
-			document.body.appendChild(this.datepicker.element);
+			this.element.parentNode.appendChild(this.datepicker.element);
 			Event.observe(document, 'click', this.hidePickerListener, true);
 			this.pickerActive = true;
 			Control.DatePicker.activePicker = this;
@@ -257,6 +258,7 @@ Control.DatePicker.Language = {
 			'Time': 'Hora',
 			'Exact minutes': 'Minuto exacto',
 			'Select Date and Time': 'Selecciona Dia y Hora',
+			'Select Time': 'Selecciona Hora',
 			'Open calendar': 'Abre calendario'
 		}
 	},
@@ -269,6 +271,7 @@ Control.DatePicker.Language = {
 			'Time': 'Zeit', 
 			'Exact minutes': 'Exakte minuten', 
 			'Select Date and Time': 'Zeit und Datum Auswählen',
+			'Select Time': 'Zeit Auswählen',
 			'Open calendar': 'Kalender öffnen'
 		}
 	}	
@@ -506,27 +509,28 @@ Object.extend(Control.DatePickerPanel.prototype, {
 			if (!this.options.use24hrs)
 				cell = row.insertCell(2);
 
-			if (this.options.datePicker) {
-				row = timeTable.insertRow(rows++);
-				cell = row.insertCell(0);
-				cell.colSpan = rowwidth;
+			row = timeTable.insertRow(rows++);
+			cell = row.insertCell(0);
+			cell.colSpan = rowwidth;
 
-				hr = document.createElement('hr');
-				Element.setStyle(hr, {'color': 'gray', 'backgroundColor': 'gray', 'height': '1px', 'border': '0', 'marginTop': '3px', 'marginBottom': '3px', 'padding': '0'});
-				cell.appendChild(hr);
+			hr = document.createElement('hr');
+			Element.setStyle(hr, {'color': 'gray', 'backgroundColor': 'gray', 'height': '1px', 'border': '0', 'marginTop': '3px', 'marginBottom': '3px', 'padding': '0'});
+			cell.appendChild(hr);
 
-				row = timeTable.insertRow(rows++);
-				cell = row.insertCell(0);
-				cell.colSpan = rowwidth;
+			row = timeTable.insertRow(rows++);
+			cell = row.insertCell(0);
+			cell.colSpan = rowwidth;
 
-				selectButton = document.createElement('input');
-				selectButton.type = 'button';
+			selectButton = document.createElement('input');
+			selectButton.type = 'button';
+			if (this.options.datePicker)
 				selectButton.value = this.tr('Select Date and Time');
-				selectButton.onclick = function(e) {
-							this.options.onSelect && this.options.onSelect(this.currentDate);
-						}.bindAsEventListener(this);
-				cell.appendChild(selectButton);
-			}
+			else
+				selectButton.value = this.tr('Select Time');
+			selectButton.onclick = function(e) {
+						this.options.onSelect && this.options.onSelect(this.currentDate);
+					}.bindAsEventListener(this);
+			cell.appendChild(selectButton);
 
 		} else {
 			calCont.appendChild(calTable);
@@ -822,7 +826,7 @@ Object.extend(Control.DatePickerPanel.prototype, {
 	},
 	dateClicked: function(date) {
 		if (date) {
-			if ((!this.options.timePicker || !this.options.datePicker) && this.options.onSelect)
+			if (!this.options.timePicker && this.options.onSelect)
 				this.options.onSelect(date);
 			this.selectDate(date);
 		}
