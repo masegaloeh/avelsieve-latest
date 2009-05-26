@@ -129,7 +129,7 @@ class avelsieve_html_edit extends avelsieve_html {
             }
             if(array_key_exists('dependencies', $tp)) {
                 foreach($tp['dependencies'] as $no=>$dep) {
-                    if(!$this->s->capability_exists($dep)) {
+                    if(!$this->s->capability_exists($dep) && AVELSIEVE_DEBUG == 0) {
                         continue 2;
                     }
                 }
@@ -324,6 +324,7 @@ class avelsieve_html_edit extends avelsieve_html {
      * @see condition_envelope()
      * @see condition_size()
      * @see condition_body()
+     * @see condition_datetime()
      * @see condition_all()
      */
     function condition($n) {
@@ -579,6 +580,13 @@ class avelsieve_html_edit extends avelsieve_html {
             htmlspecialchars($bodymatch).'" />';
         return $out;
     }
+    
+    function condition_datetime($n) {
+        $myCondition = new avelsieve_condition_datetime($this->s, $this->rule, $n, 'date');
+        $out = $myCondition->datetime_header_ui();
+        $out .= $myCondition->datetime_common_ui();
+        return $out;
+    }
         
     /**
      * All messages 
@@ -830,7 +838,7 @@ class avelsieve_html_edit extends avelsieve_html {
             * rule, based on the first zero / null /undefined variable to be
             * found. Also, reorder the conditions. */
 
-            $match_vars = array('headermatch', 'addressmatch', 'envelopematch', 'sizeamount', 'bodymatch');
+            $match_vars = array('headermatch', 'addressmatch', 'envelopematch', 'sizeamount', 'bodymatch', 'datetype');
             $new_cond_indexes = array();
             foreach($ns['cond'] as $n => $c) {
                 if(isset($c['kind'])) {

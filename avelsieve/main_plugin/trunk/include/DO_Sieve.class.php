@@ -62,7 +62,7 @@ class DO_Sieve {
                 'desc' => _("Message"),
             ),
             'datetime' => array(
-                'desc' => _("Date / Time"),
+                'desc' => _("Current Date / Time"),
                 'capability' => 'datetime',
             ),
             'all' => array(

@@ -461,6 +461,16 @@ function makesinglerule($rule, $mode='rule') {
                     $text .= $aTmp[1];
                     $terse .= $aTmp[2];
                     break;
+                
+                case 'datetime':
+                    include_once(SM_PATH . 'plugins/avelsieve/include/avelsieve_condition_datetime.class.php');
+                    $myCondition = new avelsieve_condition_datetime($sieve, $rule, $i, 'date');
+                    $aTmp = $myCondition->generate_sieve();
+
+                    $out .= $aTmp[0];
+                    $text .= $aTmp[1];
+                    $terse .= $aTmp[2];
+                    break;
 
                 case 'all':
                     $out .= 'true';
@@ -471,7 +481,7 @@ function makesinglerule($rule, $mode='rule') {
 
             } elseif(isset($rule['cond'][$i]['kind']) && $rule['cond'][$i]['kind'] == 'datetime') {
                 include_once(SM_PATH . 'plugins/avelsieve/include/avelsieve_condition_datetime.class.php');
-                $myCondition = new avelsieve_condition_datetime($sieve, $rule, $i);
+                $myCondition = new avelsieve_condition_datetime($sieve, $rule, $i, 'currentdate');
                 list($datetimeOut, $datetimeText, $datetimeTerse) = $myCondition->generate_sieve();
                 $out .= $datetimeOut;
                 $text .= $datetimeText;

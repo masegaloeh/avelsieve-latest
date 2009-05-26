@@ -78,7 +78,7 @@ $types = array(
         'dependencies' => array('envelope')
     ),
     'size' => array(
-        'order' => 4,
+        'order' => 5,
         'name' => _("Size"),
         'description' => _("Perform an action on messages depending on their size.")
     ),
@@ -88,8 +88,14 @@ $types = array(
         'description' => _("Perform an action on messages depending on their content (body text)."),
         'dependencies' => array('body')
     ),
+    'datetime' => array(
+        'order' => 4,
+        'name' => _("Date"),
+        'description' => _("Perform an action on messages depending on date or time related to the message."),
+        'dependencies' => array('datetime')
+    ),
     'all' => array(
-        'order' => 5,
+        'order' => 10,
         'name' => _("All"),
         'description' => _("Perform an action on <strong>all</strong> incoming messages.")
     )
@@ -126,8 +132,6 @@ $comparators = array(
     'eq' => '=  ' . _("is equal to"),
     'ne' => '!= ' . _("is not equal to")
 ) ;
-// gt" / "ge" / "lt""le" / "eq" / "ne"
-
 
 $displaymodes = array(
     'verbose' => array( _("verbose"), _("Textual descriptions of the rules")),
@@ -140,7 +144,7 @@ if(AVELSIEVE_DEBUG > 0) {
 }
 
 global $implemented_capabilities;
-$implemented_capabilities = array('fileinto', 'envelope', 'reject', 'vacation', 'imapflags', 'relational', 'regex', 'notify', 'body', 'date', 'index');
+$implemented_capabilities = array('fileinto', 'envelope', 'reject', 'vacation', 'imapflags', 'imap4flags', 'relational', 'regex', 'notify', 'body', 'date', 'index');
 
 global $cap_dependencies;  
 $cap_dependencies['relational'] = array("comparator-i;ascii-numeric");

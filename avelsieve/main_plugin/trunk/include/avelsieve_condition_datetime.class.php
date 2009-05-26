@@ -12,7 +12,23 @@
  */
 
 /**
- * Condition for 'date / time' feature
+ * Condition for 'date / time' feature.
+ *
+ * This class actually accomodates for both of the two available date/time tests,
+ * according to RFC 5260.
+ *
+ * (Paragraph 4) date test
+ *    In UI, this is positioned as follows:
+ *    rule['cond']['kind'] = 'message'
+ *    rule['cond']['type'] = 'datetime'
+ *    rule['cond']['header'] = 'date', 'received' etc. (from method datetime_header_ui)
+ *    rule['cond'][...] -> rest of datetime options (so-called "common UI")
+ *
+ * (Paragraph 5) currentdate test
+ *    In UI, this is positioned as follows:
+ *    rule['cond']['kind'] = 'datetime'
+ *    rule['cond'][...] -> rest of datetime options (so-called "common UI")
+ *
  */
 class avelsieve_condition_datetime extends avelsieve_condition {
     /**
@@ -21,14 +37,35 @@ class avelsieve_condition_datetime extends avelsieve_condition {
      */
     public $ui;
 
+    /*
+     * @var string Which test to use / build UI for? 'currentdate' or 'date'?
+     */
+    public $test;
+
     /**
      * Constructor, sets up localized variables of the structures that define
      * the various date/time options (properties $this->ui, $this->ui_subnodes)
      *
+     * @param object $s
+     * @param array $rule
+     * @param integer $n
+     * @param string $test Which test to use / build UI for? 'currentdate' or 'date'
      * @return void
      */
-    function __construct(&$s, $rule, $n) {
+    function __construct(&$s, $rule, $n, $test = 'currentdate') {
         parent::__construct(&$s, $rule, $n);
+
+        if($test == 'currentdate') {
+            $this->test = 'currentdate';
+        } else {
+            $this->test = 'date';
+        }
+
+        /* TODO - add more headers in here or make this extensible. */
+        $this->date_headers = array(
+            'date' => _("Date"),
+            'received' => _("Received")
+        );
 
         $tpl_date_metrics = array(
             'year' => _("Year"),
@@ -166,6 +203,13 @@ class avelsieve_condition_datetime extends avelsieve_condition {
              */
         );
     }
+    
+    public function datetime_header_ui() {
+        $out = ' ' . sprintf ( _("of header %s"), avelsieve_html::generic_listbox('cond['.$this->n.'][header]',
+            $this->date_headers, (isset($this->data['header']) ? $this->data['header'] : '') ) ) . ' ';
+        /* Index extension placeholder */
+        return $out;
+    }
 
     /**
      * @return string
@@ -278,7 +322,7 @@ class avelsieve_condition_datetime extends avelsieve_condition {
         $c = &$this->data;
 
         $out = $text = $terse = '';
-        $out .= ' currentdate ';
+        $out .= ' ' . $this->test . ' ';
 
         if(isset($c['originalzone']) && $c['originalzone']) {
             $out .= ':originalzone ';
@@ -323,7 +367,8 @@ class avelsieve_condition_datetime extends avelsieve_condition {
 
         $out .= ' ';
 
-        /* --- header-name --- (only for date test, not for currentdate) */
+        /* --- header-name --- (only for date test, not for currentdate). Of course,
+         * for date test, this is required. */
         if(!empty($c['header'])) {
             $out .= '"'.strtolower($c['header']).'" ';
         }
