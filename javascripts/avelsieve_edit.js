@@ -81,7 +81,7 @@ AVELSIEVE.edit = {
      *
      * index is the condition index (0, 1, ...) or -1 to add a new one.
      */
-    changeCondition: function(index, newkind) {
+    changeCondition: function(index, newtype) {
         if(index == -1) {
             var index = Number($('condition_items').value); 
             $('avelsieveconditionless').disabled = false;
@@ -89,7 +89,7 @@ AVELSIEVE.edit = {
 
         new Ajax.Request('ajax_handler.php', {
             method:'get',
-            parameters: {avaction: 'edit_condition', kind: newkind, index: index},
+            parameters: {avaction: 'edit_condition', type: newtype, index: index},
             onSuccess: function(transport){
               var response = transport.responseText || "no response text";
               if( $('condition_line_' + index) ) {
