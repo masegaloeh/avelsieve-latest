@@ -253,17 +253,23 @@ class avelsieve_condition_datetime extends avelsieve_condition {
             $out .= '">';
             $out .= '<option value=""></option>';
             foreach($u['values'] as $key=>$val) {
-                $out .= '<option value="'.$key.'">'.$val.'</option>';
+                $out .= '<option value="'.$key.'"';
+                if(isset($this->data[$k]) && $this->data[$k] == $key) {
+                    $out .= ' selected=""';
+                }
+                $out .= '>'.$val.'</option>';
             }
             $out .= '</select>';
             break;
 
         case 'datepicker': 
-            $out .= '<input type="text" name="cond['.$this->n.']['.$k.']" id="datetime_input_'.$k.'_'.$this->n.'" value="" />';
+            $out .= '<input type="text" name="cond['.$this->n.']['.$k.']" id="datetime_input_'.$k.'_'.$this->n.'" '.
+                ' value="'. (isset($this->data[$k]) ? htmlspecialchars($this->data[$k]) : '').'" />';
             break;
 
         case 'text': 
-            $out .= '<input type="text" name="cond['.$this->n.']['.$k.']" id="datetime_input_'.$k.'_'.$this->n.'" value="" />';
+            $out .= '<input type="text" name="cond['.$this->n.']['.$k.']" id="datetime_input_'.$k.'_'.$this->n.'" '.
+                ' value="'. (isset($this->data[$k]) ? htmlspecialchars($this->data[$k]) : '').'" />';
             break;
 
         default:
@@ -272,7 +278,12 @@ class avelsieve_condition_datetime extends avelsieve_condition {
         }
 
         $out .= '</span>';
-        $out .= '<span id="datetime_condition_after_'.$k.'_'.$this->n.'"></span>';
+        $out .= '<span id="datetime_condition_after_'.$k.'_'.$this->n.'">';
+        // Print the inner UI if we are showing a rule that already has data in it.
+        if(isset($this->data[$k]) && !empty($this->data[$k])) {
+            $out .= $this->ui_tree_output($k, $this->data[$k]); 
+        }
+        $out .= '</span>';
         return $out;
     }
 
