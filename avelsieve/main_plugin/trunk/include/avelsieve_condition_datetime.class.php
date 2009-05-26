@@ -133,12 +133,11 @@ class avelsieve_condition_datetime extends avelsieve_condition {
         $this->ui['specific_date_conditional'] = array(
             'input' => 'select',
             'values' => $tpl_date_condition,
-            'children' => array(
-                'on' => 'specific_date_picker',
-                'before' => 'specific_date_picker',
-                'after' => 'specific_date_picker',
-            ),
+            'children' => array()
         );
+        foreach($tpl_date_condition as $key => $val) {
+            $this->ui['specific_date_conditional']['children'][$key] = 'specific_date_picker';
+        }
         
         $this->ui['specific_date_picker'] = array(
             'input' => 'datepicker',
@@ -263,7 +262,7 @@ class avelsieve_condition_datetime extends avelsieve_condition {
             break;
 
         case 'datepicker': 
-            $out .= '<input type="text" name="cond['.$this->n.']['.$k.']" id="datetime_input_'.$k.'_'.$this->n.'" '.
+            $out .= '<input class="avelsieve_datepicker" type="text" name="cond['.$this->n.']['.$k.']" id="datetime_input_'.$k.'_'.$this->n.'" '.
                 ' value="'. (isset($this->data[$k]) ? htmlspecialchars($this->data[$k]) : '').'" />';
             break;
 

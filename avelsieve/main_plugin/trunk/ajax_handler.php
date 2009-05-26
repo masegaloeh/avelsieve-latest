@@ -107,8 +107,9 @@ case 'datetime_get_snippet':
     }
     
     $myCondition = new avelsieve_condition_datetime($s, $temprules, $index); // XXX
+    $htmlOut = $myCondition->ui_tree_output($name, $value);
 
-    echo '<span id="condition_line_'.$index.'">'. $myCondition->ui_tree_output($name, $value) .'</span>';
+    echo json_encode( array('html' => $htmlOut) );
 
     exit;
 
