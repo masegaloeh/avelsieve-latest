@@ -48,7 +48,7 @@ function avelsieve_css_styles() {
 }
 .avelsieve_more_options_link {
         color: '.$color[7].';
-        text-decoration: underline;
+        text-decoration: none;
         font-size: 0.9em;
 }
 ';
