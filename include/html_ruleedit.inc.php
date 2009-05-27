@@ -129,7 +129,7 @@ class avelsieve_html_edit extends avelsieve_html {
             }
             if(array_key_exists('dependencies', $tp)) {
                 foreach($tp['dependencies'] as $no=>$dep) {
-                    if(!$this->s->capability_exists($dep) && AVELSIEVE_DEBUG == 0) {
+                    if(!$this->s->capability_exists($dep)) {
                         continue 2;
                     }
                 }
