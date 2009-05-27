@@ -431,24 +431,28 @@ class avelsieve_html_edit extends avelsieve_html {
      * @return string
      */
     function condition_header($n) {
+        $header = $matchtype = $headermatch = $index = $index_last = '';
 
         if(isset($this->rule['cond'][$n]['header'])) {
             $header = $this->rule['cond'][$n]['header'];
-        } else {
-            $header = '';
         }
         if(isset($this->rule['cond'][$n]['matchtype'])) {
             $matchtype = $this->rule['cond'][$n]['matchtype'];
-        } else {
-            $matchtype = '';
         }
         if(isset($this->rule['cond'][$n]['headermatch'])) { 
             $headermatch = $this->rule['cond'][$n]['headermatch'];
-        } else {
-            $headermatch = '';
+        }
+        if($this->s->capability_exists('index')) {
+            if(isset($this->rule['cond'][$n]['index'])) { 
+                $index = $this->rule['cond'][$n]['index'];
+            }
+            if(isset($this->rule['cond'][$n]['index_last'])) { 
+                $index_last = $this->rule['cond'][$n]['index_last'];
+            }
         }
         
         $out = $this->header_listbox($header, $n) .
+            ($this->s->capability_exists('index') ? $this->index_option($n, $index, $index_last) : '') .
             $this->matchtype_listbox($matchtype, $n) .
             '<input type="text" name="cond['.$n.'][headermatch]" size="24" maxlength="255" value="'.
             htmlspecialchars($headermatch).'" />';
@@ -599,6 +603,38 @@ class avelsieve_html_edit extends avelsieve_html {
         return $out;
     }
 
+    /**
+     * Index
+     *
+     * @param string $selected
+     * @param string $last
+     * @return string
+     */
+    function index_option($n, $selected, $last) {
+        $index_options = array(
+            '' => _(""),
+            '1' => _("1st"),
+            '2' => _("2nd"),
+            '3' => _("3rd"),
+            '4' => _("4th"),
+            '5' => _("5th"),
+            '6' => _("6th"),
+            '7' => _("7th"),
+            '8' => _("8th"),
+            '9' => _("9th"),
+        );
+        $index_last_options = array(
+            '' => _(""),
+            '1' => _("from the end"),
+        );
+
+        $out = 
+            $this->generic_listbox('cond['.$n.'][index]', $index_options, $selected) .
+            $this->generic_listbox('cond['.$n.'][index_last]', $index_last_options, $last) .
+            ;
+
+        return $out;
+    }
 
     /**
      * ???????

@@ -128,12 +128,15 @@ include_once(SM_PATH . 'plugins/avelsieve/include/avelsieve_action.class.php');
  *     E.g. 'contains', 'is' etc.
  * @param string $headermatch The desired value.
  *
+ * @param string $index Number with header index value; only for 'index' capability (RFC5260)
+ * @param string $index_last If equal to "1", enable :last parameter for 'index' option (RFC5260)
+ *
  * @return array ($out, $text, $terse)
  *    $out: a string with the appropriate SIEVE code.
  *    $text: a (verbose) textual description of the rule.
  *    $terse: a terse description.
  */
-function build_rule_snippet($name, $header, $matchtype, $headermatch) {
+function build_rule_snippet($name, $header, $matchtype, $headermatch, $index = '', $index_last = '') {
     $out = $text = $terse = '';
                 
     switch($name) {
@@ -171,77 +174,95 @@ function build_rule_snippet($name, $header, $matchtype, $headermatch) {
     $text .= ' ';
     $terse .= ' ';
 
+    if(($name == 'header' || $name == 'address') && !empty($index) && is_numeric($index)) {
+        $outIndex = ':index '.$index;
+        $text .=  sprintf( _("index number %s"), $index);
+        $terse .= sprintf( _("index #%s"), $index);
+
+        if($index_last == '1') {
+            $outIndex .= ' :last';
+            $text .=  ' ' . _("(counting from last header)");
+            $terse .= ' ' . _("(from end)");
+        }
+        $text .= ' ';
+        $terse .= ' ';
+    }
+    $testStart = $name;
+    if(isset($outIndex)) {
+        $testStart .= ' '.$outIndex;
+    }
+
      switch ($matchtype) {
              case 'is':
-                 $out .= sprintf('%s :is', $name);
+                 $out .= sprintf('%s :is', $testStart);
                 $text .= _("is");
                 $terse .= _("is");
                  break 1;
              case 'is not':
-                 $out .= sprintf("not %s :is", $name);
+                 $out .= sprintf("not %s :is", $testStart);
                 $text .= _("is not");
                 $terse .= _("is not");
                  break 1;
              case "contains":
-                 $out .= sprintf("%s :contains", $name);
+                 $out .= sprintf("%s :contains", $testStart);
                 $text .= _("contains");
                 $terse .= _("contains");
                  break 1;
              case "does not contain":
-                 $out .= sprintf("not %s :contains", $name);
+                 $out .= sprintf("not %s :contains", $testStart);
                 $text .= _("does not contain");
                 $terse .= _("does not contain");
                  break 1;
              case "matches":
-                 $out .= sprintf("%s :matches", $name);
+                 $out .= sprintf("%s :matches", $testStart);
                 $text .= _("matches");
                 $terse .= _("matches");
                 $escapeslashes = true;
                  break 1;
              case "does not match":
-                 $out .= sprintf("not %s :matches", $name);
+                 $out .= sprintf("not %s :matches", $testStart);
                 $text .= _("does not match");
                 $terse .= _("does not match");
                 $escapeslashes = true;
                  break 1;
              case "gt":
-                $out .= sprintf('%s :value "gt" :comparator "i;ascii-numeric"', $name);
+                $out .= sprintf('%s :value "gt" :comparator "i;ascii-numeric"', $testStart);
                 $text .= _("is greater than");
                 $terse .= '>';
                  break 1;
              case "ge":
-                $out .= sprintf('%s :value "ge" :comparator "i;ascii-numeric"', $name);
+                $out .= sprintf('%s :value "ge" :comparator "i;ascii-numeric"', $testStart);
                 $text .= _("is greater or equal to");
                 $terse .= '>=';
                  break 1;
              case "lt":
-                $out .= sprintf('%s :value "lt" :comparator "i;ascii-numeric"', $name);
+                $out .= sprintf('%s :value "lt" :comparator "i;ascii-numeric"', $testStart);
                 $text .= _("is lower than");
                 $terse .= '<';
                  break 1;
              case "le":
-                $out .= sprintf('%s :value "le" :comparator "i;ascii-numeric"', $name);
+                $out .= sprintf('%s :value "le" :comparator "i;ascii-numeric"', $testStart);
                 $text .= _("is lower or equal to");
                 $terse .= '<=';
                  break 1;
              case "eq":
-                $out .= sprintf('%s :value "eq" :comparator "i;ascii-numeric"', $name);
+                $out .= sprintf('%s :value "eq" :comparator "i;ascii-numeric"', $testStart);
                 $text .= _("is equal to");
                 $terse .= '=';
                  break 1;
              case "ne":
-                $out .= sprintf('%s :value "ne" :comparator "i;ascii-numeric"', $name);
+                $out .= sprintf('%s :value "ne" :comparator "i;ascii-numeric"', $testStart);
                 $text .= _("is not equal to");
                 $terse .= '!=';
                  break 1;
              case 'regex':
-                 $out .= sprintf('%s :regex :comparator "i;ascii-casemap"', $name);
+                 $out .= sprintf('%s :regex :comparator "i;ascii-casemap"', $testStart);
                 $text .= _("matches the regular expression");
                 $terse .= _("matches the regular expression");
                 $escapeslashes = true;
                  break 1;
              case 'not regex':
-                 $out .= sprintf('not %s :regex :comparator "i;ascii-casemap"', $name);
+                 $out .= sprintf('not %s :regex :comparator "i;ascii-casemap"', $testStart);
                 $text .= _("does not match the regular expression");
                 $terse .= _("does not match the regular expression");
                 $escapeslashes = true;
@@ -400,11 +421,21 @@ function makesinglerule($rule, $mode='rule') {
         /* Indexed array $rule['cond'] contains a bunch of rule definitions */
         for($i=0;$i<sizeof($rule['cond']);$i++) {
             if(!isset($rule['cond'][$i]['kind']) || $rule['cond'][$i]['kind'] == 'message') {
+
+                $argIndex = $argIndexLast = '';
+                if(isset($rule['cond'][$i]['index']) && !empty($rule['cond'][$i]['index'])) {
+                    $argIndex = $rule['cond'][$i]['index'];
+                    if(isset($rule['cond'][$i]['index_last']) && !empty($rule['cond'][$i]['index_last'])) {
+                        $argIndexLast = $rule['cond'][$i]['index_last'];
+                    }
+                }
+                d($argIndex);
+
                 /* Kind of condition: Message */
                 switch($rule['cond'][$i]['type']) {
                 case 'address':
                     $aTmp = build_rule_snippet('address', $rule['cond'][$i]['address'], $rule['cond'][$i]['matchtype'],
-                        $rule['cond'][$i]['addressmatch']);
+                        $rule['cond'][$i]['addressmatch'], $argIndex, $argIndexLast);
                     $out .= $aTmp[0];
                     $text .= $aTmp[1];
                     $terse .= $aTmp[2];
@@ -420,7 +451,7 @@ function makesinglerule($rule, $mode='rule') {
 
                 case 'header':
                     $aTmp = build_rule_snippet('header', $rule['cond'][$i]['header'], $rule['cond'][$i]['matchtype'],
-                        $rule['cond'][$i]['headermatch']);
+                        $rule['cond'][$i]['headermatch'], $argIndex, $argIndexLast);
                     $out .= $aTmp[0];
                     $text .= $aTmp[1];
                     $terse .= $aTmp[2];
