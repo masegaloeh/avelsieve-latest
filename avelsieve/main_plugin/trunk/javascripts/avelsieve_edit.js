@@ -155,7 +155,6 @@ AVELSIEVE.edit = {
 
             new Ajax.Request('ajax_handler.php', {
                 method:'post',
-                // parameters: additionalParams, {avaction: 'datetime_get_snippet', varname: name, varvalue: value, index: index},
                 parameters: params,
                 onSuccess: function(transport){
                   var response = transport.responseText.evalJSON() || "no response text";
@@ -163,32 +162,31 @@ AVELSIEVE.edit = {
 
                   // For future performance fix.
                   // if(response.triggerDatepickerCreation != null)
-
-                  var dps = document.getElementsByClassName('avelsieve_datepicker', $('conditions'));
-                  if(dps.length == 1) {
-                      // The datepicker icon would be nice, but it doesn't allow proper inline positioning
-                      // of the datepicker input element.
-                      //var picker = new Control.DatePicker($(dps[0]), {icon: 'images/calendar.png', datePicker: true});  
-                      var picker = new Control.DatePicker($(dps[0]), {datePicker: true});  
-                      $(dps[0]).removeClassName('avelsieve_datepicker');
-                  }
-
-                  /*
-                  var dps = document.getElementsByClassName('avelsieve_datepicker', $('conditions')).each(function(s) {
-                      var picker = new Control.DatePicker(s, {icon: 'images/calendar.png', datePicker: true});  
-                  });
-                  */
+                  AVELSIEVE.edit.setupDatepickers();
 
                   // Remove disabled status
                   $('datetime_input_'+name+'_'+index).disabled = false;
                 },
                 onFailure: function(){ alert('Something went wrong...') }
-                // TODO
-                // picker = new Control.DatePicker('datetime_input_specific_date_picker', {icon: 'images/calendar.png', datePicker: true});
-            }
-            );
+            });
         }
+    },
+
+    /**
+     * Set up datepicker controls for all elements with class 'avelsieve_datepicker'
+     */
+    setupDatepickers: function() {
+        $$('#conditions .avelsieve_datepicker').each(function(s) {
+            // The datepicker icon would be nice, but it doesn't allow proper inline positioning
+            // of the datepicker input element.
+            //var picker = new Control.DatePicker(s, {icon: 'images/calendar.png', datePicker: true});  
+            var picker = new Control.DatePicker(s, {datePicker: true});  
+            s.removeClassName('avelsieve_datepicker');
+        });
     }
 }
 
+Event.observe(window, 'load', function() {
+    AVELSIEVE.edit.setupDatepickers();
+});
 
