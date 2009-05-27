@@ -98,6 +98,9 @@ class DO_Sieve {
              * in order to get capabilities. */
             $this->init();
         }
+
+        if(AVELSIEVE_DEBUG >= 3) return true;
+
         if(array_key_exists($cap, $this->capabilities) && !in_array($cap, $disable_avelsieve_capabilities)) {
             return true;
         }
