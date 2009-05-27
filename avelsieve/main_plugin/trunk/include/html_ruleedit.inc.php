@@ -637,27 +637,6 @@ class avelsieve_html_edit extends avelsieve_html {
     }
 
     /**
-     * ???????
-     */
-    function _getSubsetOfUiTree(&$ui_tree, $varname, $varvalue) {
-        foreach($ui_tree as $k => $v) {
-            // if(!isset($v['input'])) $fb->warn('this is not a valid uid_tree!');
-            if($k == $varname && isset($v['children']) && isset($v['children'][$varvalue]) ) {
-                // $fb->log('returing children of '.$varvalue);
-                return $v['children'][$varvalue];
-            } else if (isset($v['allchildren'])) {
-                // $fb->log('traversing innerly... through allchildren'.  $k);
-                return $this->_getSubsetOfUiTree($v['allchildren'], $varname, $varvalue);
-            } else if (isset($v['children'])) {
-                // $fb->log('traversing innerly...'.  $k);
-                return $this->_getSubsetOfUiTree($v['children'][$varvalue], $varname, $varvalue);
-            }
-        }
-    }
-
-
-    
-    /**
      * Return the HTML markup of the options of Sieve action $action.
      * This is a wrap around the relevant class of the Avelsieve action.
      *
@@ -721,6 +700,7 @@ class avelsieve_html_edit extends avelsieve_html {
         }
         return $out;
     }
+
     /**
      * Submit buttons for edit form -- not applicable for wizard
      * @return string
