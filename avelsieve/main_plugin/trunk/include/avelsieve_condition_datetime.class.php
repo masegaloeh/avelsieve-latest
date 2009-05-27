@@ -44,7 +44,7 @@ class avelsieve_condition_datetime extends avelsieve_condition {
 
     /**
      * Constructor, sets up localized variables of the structures that define
-     * the various date/time options (properties $this->ui, $this->ui_subnodes)
+     * the various date/time options (properties $this->ui)
      *
      * @param object $s
      * @param array $rule
@@ -67,17 +67,14 @@ class avelsieve_condition_datetime extends avelsieve_condition {
             'received' => _("Received")
         );
 
-        $tpl_date_metrics = array(
+        $this->tpl_date_metrics = $tpl_date_metrics = array(
             'year' => _("Year"),
             'month' => _("Month"),
             'day' => _("Day"),
             'weekday' => _("Weekday"),
-            //'date' => _("Date"),
             'hour' => _("Hour"),
             'minute' => _("Minute"),
             'second' => _("Second"),
-            'time' => _("Time"),
-            // 'specificdate' => _("Specific Date"),
         );
 
         $tpl_weekdays = array(
@@ -121,15 +118,20 @@ class avelsieve_condition_datetime extends avelsieve_condition {
             'name' => 'datetype',
             'input' => 'select',
             'values' => array(
-                'specific_date' => _("Specific Date"),
                 'occurence' => _("Occurence"),
+                'specific_date' => _("Specific Date"),
+                'specific_time' => _("Specific Time"),
+                // 'specific_date_time' => _("Specific Date and Time"),
             ),
             'children' => array(
-                'specific_date' => 'specific_date_conditional',
                 'occurence' => 'occurence_metric',
+                'specific_date' => 'specific_date_conditional',
+                'specific_time' => 'specific_time_conditional',
+                // 'specific_date_time' => 'specific_date_time_conditional',
             ),
         );
 
+        // Specific Date
         $this->ui['specific_date_conditional'] = array(
             'input' => 'select',
             'values' => $tpl_date_condition,
@@ -138,12 +140,45 @@ class avelsieve_condition_datetime extends avelsieve_condition {
         foreach($tpl_date_condition as $key => $val) {
             $this->ui['specific_date_conditional']['children'][$key] = 'specific_date_picker';
         }
-        
         $this->ui['specific_date_picker'] = array(
             'input' => 'datepicker',
+            'input_options' => 'date',
             'terminal' => true,
         );
 
+        // Specific Time
+        $this->ui['specific_time_conditional'] = array(
+            'input' => 'select',
+            'values' => $tpl_date_condition,
+            'children' => array()
+        );
+        foreach($tpl_date_condition as $key => $val) {
+            $this->ui['specific_time_conditional']['children'][$key] = 'specific_time_picker';
+        }
+        $this->ui['specific_time_picker'] = array(
+            'input' => 'datepicker',
+            'input_options' => 'time',
+            'terminal' => true,
+        );
+        
+        // Specific Date and Time
+        /*
+        $this->ui['specific_date_time_conditional'] = array(
+            'input' => 'select',
+            'values' => $tpl_date_condition,
+            'children' => array()
+        );
+        foreach($tpl_date_condition as $key => $val) {
+            $this->ui['specific_date_time_conditional']['children'][$key] = 'specific_date_time_picker';
+        }
+        $this->ui['specific_date_time_picker'] = array(
+            'input' => 'datepicker',
+            'input_options' => 'datetime',
+            'terminal' => true,
+        );
+         */
+
+        // Occurences
         $this->ui['occurence_metric'] = array(
             'input' => 'select',
             'values' => $tpl_date_metrics,
@@ -184,23 +219,6 @@ class avelsieve_condition_datetime extends avelsieve_condition {
         
         $this->ui['occurence_second']['input'] = 'select';
         $this->ui['occurence_second']['values'] = $this->_rangePadded(0, 60);
-       
-        $this->ui_subnodes = array(
-            'datetype' => array('specific_date_conditional', 'occurence_metric'),
-            'specific_date_conditional' => array('date'),
-            'occurence_metric' => array('occurence_conditional'),
-            'occurence_conditional' => array('occurence_year', 'occurence_month', 'occurence_day',
-                   'occurence_weekday', 'occurence_hour', 'occurence_minute', 'occurence_second'
-            ),
-            /*
-            'year' => array(),
-            'month' => array(),
-            'day' => array(),
-            'hour' => array(),
-            'minute' => array(),
-            'second' => array(),
-             */
-        );
     }
     
     public function datetime_header_ui() {
@@ -262,7 +280,11 @@ class avelsieve_condition_datetime extends avelsieve_condition {
             break;
 
         case 'datepicker': 
-            $out .= '<input class="avelsieve_datepicker" type="text" name="cond['.$this->n.']['.$k.']" id="datetime_input_'.$k.'_'.$this->n.'" '.
+            // Note: there is an issue with autocomplete in firefox occasionally overwriting the datepicker
+            // javascript widget. That's why we disable autocomplete according to:
+            // https://developer.mozilla.org/en/How_to_Turn_Off_form_Autocompletion
+            $out .= '<input class="avelsieve_datepicker_'.$u['input_options'].'" type="text" autocomplete="off"'.
+                ' name="cond['.$this->n.']['.$k.']" id="datetime_input_'.$k.'_'.$this->n.'" '.
                 ' value="'. (isset($this->data[$k]) ? htmlspecialchars($this->data[$k]) : '').'" />';
             break;
 
@@ -333,6 +355,14 @@ class avelsieve_condition_datetime extends avelsieve_condition {
 
         $out = $text = $terse = '';
         $out .= ' ' . $this->test . ' ';
+        if($this->test == 'currentdate') {
+            $text .= _("Current date / time:") . ' ';
+            $terse .= '<em>' . _("Current date:") . '</em> ';
+        } elseif($this->test == 'date') {
+            $text .= _("message header");
+            $terse .= '<em>' . _("Message header") . '</em>';
+        }
+
 
         if(isset($c['originalzone']) && $c['originalzone']) {
             $out .= ':originalzone ';
@@ -342,55 +372,78 @@ class avelsieve_condition_datetime extends avelsieve_condition {
 
         if($c['datetype'] == 'specific_date') {
             $cmp = &$c['specific_date_conditional'];
+
+        } elseif($c['datetype'] == 'specific_time') {
+            $cmp = &$c['specific_time_conditional'];
+
         } elseif($c['datetype'] == 'occurence') {
             $cmp = &$c[$c['occurence_metric'].'_occurence_conditional'];
         }
+
+        // The human-readable texts for the comparators are deferred because we'll
+        // print them out after showing on what message header they apply to, if
+        // applicable.
         switch($cmp) {
         case 'is':
         case 'on':
         default:
             $out .= ':is';
-            $text .= _("is");
-            $terse .= _("is");
+            $textDeferred = _("is %s");
+            $terseDeferred = ' ' . _("is") . ' ';
             break;
         case 'le':
             $out .= ':value "le"';
-            $text .= _("is before than %s (inclusive)");
-            $terse .= ' '.$this->tpl_date_condition[$cmp].' ';
+            $textDeferred = _("is before than %s (inclusive)");
+            $terseDeferred = ' '.$this->tpl_date_condition[$cmp].' ';
             break;
         case 'ge':
             $out .= ':value "ge"';
-            $text .= _("is after than %s (inclusive)");
-            $terse .= ' '.$this->tpl_date_condition[$cmp].' ';
+            $textDeferred = _("is after than %s (inclusive)");
+            $terseDeferred = ' '.$this->tpl_date_condition[$cmp].' ';
             break;
         case 'lt':
             $out .= ':value "lt"';
-            $text .= _("is before than %s");
-            $terse .= ' '.$this->tpl_date_condition[$cmp].' ';
+            $textDeferred = _("is before than %s");
+            $terseDeferred = ' '.$this->tpl_date_condition[$cmp].' ';
             break;
         case 'gt':
             $out .= ':value "gt"';
-            $text .= _("is after than %s");
-            $terse .= ' '.$this->tpl_date_condition[$cmp].' ';
+            $textDeferred = _("is after than %s");
+            $terseDeferred = ' '.$this->tpl_date_condition[$cmp].' ';
             break;
         }
 
         $out .= ' ';
+        $text .= ' ';
+        $terse .= ' ';
 
         /* --- header-name --- (only for date test, not for currentdate). Of course,
          * for date test, this is required. */
         if(!empty($c['header'])) {
             $out .= '"'.strtolower($c['header']).'" ';
+            $text .= ' '. sprintf( _("&quot;%s&quot;"), $this->date_headers[$c['header']] );
+            $terse .=  ' '.sprintf( _("&quot;<tt>%s:</tt>&quot;"), $this->date_headers[$c['header']] ) . '<br/>';
         }
 
         /* --- date-part + key-list --- */
         if($c['datetype'] == 'specific_date') {
             // From 'specific date' UI
+            $out .= '"date" "'.$c['specific_date_picker'].'"';
+            $text .= sprintf($textDeferred, htmlspecialchars($c['specific_date_picker']));
+            $terse .= $terseDeferred . htmlspecialchars($c['specific_date_picker']);
+            
+        } elseif($c['datetype'] == 'specific_time') {
+            // From 'specific time' UI
+            $out .= '"time" "'.$c['specific_time_picker'].':00"';
+            $text .= sprintf($textDeferred, htmlspecialchars($c['specific_time_picker']));
+            $terse .= $terseDeferred . htmlspecialchars($c['specific_time_picker']);
 
         } elseif($c['datetype'] == 'occurence') {
             // From 'occurence' UI
 
             $out .= '"'.$c['occurence_metric'].'" ';
+            $text .= $this->tpl_date_metrics[$c['occurence_metric']] . ' ';
+            $terse .= $this->tpl_date_metrics[$c['occurence_metric']] . ' ';
 
             if(isset($c['occurence_'.$c['occurence_metric']])) {
                 $out .= '"'.$c['occurence_'.$c['occurence_metric']].'" ';
@@ -398,6 +451,14 @@ class avelsieve_condition_datetime extends avelsieve_condition {
                 //key occurence_'.$c['occurence_metric'] is empty? 
                 $out .= '""';
             }
+            if(isset($this->ui['occurence_'.$c['occurence_metric']]['values'][$c['occurence_'.$c['occurence_metric']]])) {
+                $humanReadableValue = $this->ui['occurence_'.$c['occurence_metric']]['values'][$c['occurence_'.$c['occurence_metric']]];
+            } else {
+                $humanReadableValue = $c['occurence_'.$c['occurence_metric']];
+            }
+
+            $text .= sprintf($textDeferred, $humanReadableValue);
+            $terse .= $terseDeferred . $humanReadableValue;
         }
 
         return array($out, $text, $terse);

@@ -174,14 +174,21 @@ AVELSIEVE.edit = {
 
     /**
      * Set up datepicker controls for all elements with class 'avelsieve_datepicker'
+     *
+     * Note: The datepicker icon would be nice, but it doesn't allow proper inline positioning
+     *  of the datepicker input element. e.g.:
+     *  // var picker = new Control.DatePicker(s, {icon: 'images/calendar.png', datePicker: true});  
      */
     setupDatepickers: function() {
-        $$('#conditions .avelsieve_datepicker').each(function(s) {
-            // The datepicker icon would be nice, but it doesn't allow proper inline positioning
-            // of the datepicker input element.
-            //var picker = new Control.DatePicker(s, {icon: 'images/calendar.png', datePicker: true});  
-            var picker = new Control.DatePicker(s, {datePicker: true});  
-            s.removeClassName('avelsieve_datepicker');
+        // date
+        $$('#conditions .avelsieve_datepicker_date').each(function(s) {
+            new Control.DatePicker(s, {datePicker: true, timePicker: false});  
+            s.removeClassName('avelsieve_datepicker_date');
+        });
+        // time
+        $$('#conditions .avelsieve_datepicker_time').each(function(s) {
+            new Control.DatePicker(s, {datePicker: false, timePicker: true});  
+            s.removeClassName('avelsieve_datepicker_time');
         });
     }
 }
