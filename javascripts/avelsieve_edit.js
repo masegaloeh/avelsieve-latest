@@ -182,12 +182,12 @@ AVELSIEVE.edit = {
     setupDatepickers: function() {
         // date
         $$('#conditions .avelsieve_datepicker_date').each(function(s) {
-            new Control.DatePicker(s, {datePicker: true, timePicker: false});  
+            new Control.DatePicker(s, {datePicker: true, timePicker: false, locale: 'en_iso8601'});
             s.removeClassName('avelsieve_datepicker_date');
         });
         // time
         $$('#conditions .avelsieve_datepicker_time').each(function(s) {
-            new Control.DatePicker(s, {datePicker: false, timePicker: true});  
+            new Control.DatePicker(s, {datePicker: false, timePicker: true, locale: 'en_iso8601'});  
             s.removeClassName('avelsieve_datepicker_time');
         });
     }

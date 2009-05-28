@@ -63,7 +63,7 @@ class DO_Sieve {
             ),
             'datetime' => array(
                 'desc' => _("Current Date / Time"),
-                'capability' => 'datetime',
+                'capability' => 'date',
             ),
             'all' => array(
                 'desc' => _("Always"),
