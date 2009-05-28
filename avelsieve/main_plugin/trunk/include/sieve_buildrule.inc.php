@@ -429,7 +429,6 @@ function makesinglerule($rule, $mode='rule') {
                         $argIndexLast = $rule['cond'][$i]['index_last'];
                     }
                 }
-                d($argIndex);
 
                 /* Kind of condition: Message */
                 switch($rule['cond'][$i]['type']) {

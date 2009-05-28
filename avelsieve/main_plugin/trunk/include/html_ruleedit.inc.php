@@ -630,7 +630,7 @@ class avelsieve_html_edit extends avelsieve_html {
 
         $out = 
             $this->generic_listbox('cond['.$n.'][index]', $index_options, $selected) .
-            $this->generic_listbox('cond['.$n.'][index_last]', $index_last_options, $last) .
+            $this->generic_listbox('cond['.$n.'][index_last]', $index_last_options, $last)
             ;
 
         return $out;
