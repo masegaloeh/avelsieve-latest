@@ -50,7 +50,7 @@ class avelsieve_action_imapflags extends avelsieve_action {
         $this->avelsieve_action($s, $rule);
 
         $this->imapflagsGroups = array(
-            'standard' => _("Standard IMAP Flags"),
+            'standard' => _("Standard Flags"),
             'labels' => _("Message Labels"),
             'custom' => _("Custom Flags"),
         );
@@ -136,24 +136,36 @@ class avelsieve_action_imapflags extends avelsieve_action {
      * @return string
      */
     private function _set_of_checkboxes($action, &$rulePart) {
+        global $base_uri;
         $out = '';
-        foreach($this->imapflagsGroups as $group => $t) {
-            $out .= '<p>'.$t;
+        $out .= '<table style="border:none" cellpadding="2" cellspacing="1">';
+        foreach($this->imapflagsGroups as $group => $groupDesc) {
+            $out .= '<tr><td align="left" valign="top">
+                    <img src="'.$base_uri.'plugins/avelsieve/images/icons/tag_blue'.($group == 'custom' ? '_edit' : '') .'.png" /> '.
+                    '<strong><small>'. $groupDesc.'</small></strong>'.
+                '</td>';
+
             foreach($this->imapflags[$group] as $f => $t) {
-                $out .= ' <input type="checkbox" name="imapflags['.$action.']['.$this->_encode_flag($f).']" '.
+                $out .= '<td align="left" style="white-space: nowrap;">'.
+                    '<input type="checkbox" name="imapflags['.$action.']['.$this->_encode_flag($f).']" '.
                     'value="1" id="'.$this->_encode_flag('action_flag_'.$f).'" ';
                 if(isset($rulePart[$f]) && $rulePart[$f]) {
                     $out .= 'checked="CHECKED" ';
                 }
-                $out .= '/><label for="'.$this->_encode_flag('action_flag_'.$f).'"> '.$t.'</label>';
+                $out .= '/><label for="'.$this->_encode_flag('action_flag_'.$f).'"> '.$t.'</label>'.
+                    '</td>';
             }
 
             if($group == 'custom') {
-                $out .= ' <input type="text" name="imapflags[custom]['.$action.']" size="35" value="'.$this->_format_rest_of_imapflags($rulePart).'" />';
+                $out .= '<td colspan="'.sizeof($this->imapflags['labels']).'">'.
+                    '<input type="text" name="imapflags[custom]['.$action.']" size="35" value="'.$this->_format_rest_of_imapflags($rulePart).'" />'.
+                    '<br/><small>'._("Enter here a list of flags separated by spaces. Example: <tt>\$MyFlag \$Special</tt>"). '</small>'.
+                    '</td>';
             }
 
-            $out .= '</p>';
+            $out .= '</tr>';
         }
+        $out .= '</table>';
         return $out;
     }
 
