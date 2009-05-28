@@ -223,8 +223,8 @@ global $avelsieve_version;
 $avelsieve_version = array(
     'major' => 1,
     'minor' => 9,
-    'release' => 7,
-    'string' => "1.9.7"
+    'release' => 9,
+    'string' => "1.9.9"
 );
 
 $available_envelope = array('from', 'to');
