@@ -12,8 +12,14 @@
     <li>New feature: Support for the <strong>Sieve IMAP4Flags Extension</strong>. This
     allows additional Sieve actions that set specific IMAP flags or labels to messages.
     Standard IMAP4 flags, Thunderbird labels and even custom labels are supported.</li>
-    <li>New User Interface: the condition part has been reenabled 
-    <li>New Debug options in <tt>config.php</tt></li>
+    <li>New User Interface: the condition of a rule is now dynamically driven via
+    Javascript. New conditions can be added or changed on-the-fly via AJAX, without
+    reloading the entire page. Also, dynamic blocks within a single condition are
+    supported.</li>
+    <li>All Javascript functions are now under the AVELSIEVE namespace so as not to
+    pollute the global namespace.</li>
+    <li>New Debug options in <tt>config.php</tt>, allow testing of avelsieve features
+    without the actual feature existing on the server.</li>
     <li>Eliminate PHP Notice in STARTTLS check in ManageSieve library.</li>
     <li>Bugfix: Rule actions icons should now be properly vertically-aligned.</li>
     <li>This release is sponsored by <strong>Alexey Melnikov</strong> and by
