@@ -94,27 +94,13 @@ class avelsieve_action_imapflags extends avelsieve_action {
      *
      * @return array ($out, $text, $terse)
      */
-    public function generate_sieve() {
+    public function generate_sieve_tagged_argument() {
         $out = $text = $terse = '';
         if(!empty($this->rule['imapflags']) && !empty($this->rule['imapflags']['flags'])) {
-            $out = ':flags ["' . implode('", "', array_keys($this->rule['imapflags']['flags'])). '"] ';
+            $flags = &$this->rule['imapflags']['flags'];
+            $out = ':flags ' . $this->_sieve_list_of_flags($flags). ' ';
 
-            // Retrieve human-readable (and localized) descriptions
-            $descs = array();
-            foreach($this->imapflags as $key => $val) {
-                foreach($val as $k=>$v) {
-                    $descs[$k] = $v;
-                }
-            }
-            $flags = array_keys($this->rule['imapflags']['flags']);
-            $flagsHumanReadable = array();
-            foreach($flags as $flag) {
-                if(isset($descs[$flag])) {
-                    $flagsHumanReadable[] = $descs[$flag];
-                } else {
-                    $flagsHumanReadable[] = $flag;
-                }
-            }
+            $flagsHumanReadable = $this->_humanReadableFlags($flags);
 
             if(sizeof($flagsHumanReadable) == 1) {
                 $text = sprintf(_("Also, set message flag %s"), '<strong>' . implode(' ', $flagsHumanReadable) . '</strong>');
@@ -125,6 +111,82 @@ class avelsieve_action_imapflags extends avelsieve_action {
         }
         return array($out, $text, $terse);
 
+    }
+
+    /**
+     * Generates setflag, addflag and removeflag tests; list of flags is stored
+     * in 'setflag', 'addflag' and 'removeflag' arrays.
+     *
+     * @param string $test 'setflag', 'addflag' or 'removeflag'
+     * @return array ($out, $text, $terse)
+     */
+    public function generate_sieve_action($test) {
+        $out = $text = $terse = '';
+        
+        if(!empty($this->rule['imapflags']) && !empty($this->rule['imapflags'][$test])) {
+            $flags = &$this->rule['imapflags'][$test];
+            $out = $test . ' ' . $this->_sieve_list_of_flags($flags). ";\n";
+            
+            $flagsHumanReadable = $this->_humanReadableFlags($flags);
+
+            switch($test) {
+            case 'setflag':
+                $textFmt = _("Set (replace) flags as the current set: %s");
+                $terseFmt = _("Set (replace) flags: %s");
+                break;
+            case 'addflag':
+                $textFmt = _("Add flags to current set: %s");
+                $terseFmt = _("Add flags: %s");
+                break;
+            case 'removeflag':
+                $textFmt = _("Remove flags from current set: %s");
+                $terseFmt = _("Remove flags: %s");
+                break;
+            }
+            
+            $text  = sprintf($textFmt,  '<strong>' . implode(' ', $flagsHumanReadable) . '</strong>');
+            $terse = sprintf($terseFmt, implode(' ', $flagsHumanReadable));
+        }
+        return array($out, $text, $terse);
+    }
+    
+    /**
+     * Get sieve snippet of a list of flags.
+     *
+     * @param array $flags (Flag names in array keys)
+     * @return string Sieve snippet of a list of flags
+     */
+    private function _sieve_list_of_flags(&$flags) {
+        return '["' . implode('", "', array_keys($flags)). '"] ';
+    }
+
+    /**
+     * Produce human-readable (and localized) descriptions from a list of flags
+     *
+     * @param array $flags
+     * @return array
+     */
+    private function _humanReadableFlags($flags) {
+        $flagsHumanReadable = array();
+
+        $descs = array();
+        foreach($this->imapflags as $key => $val) {
+            foreach($val as $k=>$v) {
+                $descs[$k] = $v;
+            }
+        }
+        $flags = array_keys($flags);
+        foreach($flags as $flag) {
+            if(isset($descs[$flag])) {
+                $flagsHumanReadable[] = $descs[$flag];
+            } else {
+                $flagsHumanReadable[] = $flag;
+            }
+        }
+        return $flagsHumanReadable;
+    }
+
+    private function _sieve_generate_() {
     }
 
     /**
