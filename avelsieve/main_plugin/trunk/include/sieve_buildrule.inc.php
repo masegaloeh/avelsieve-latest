@@ -576,7 +576,7 @@ function makesinglerule($rule, $mode='rule') {
      * to 'keep' or 'fileinto' */
     $flags_out = $flags_text = $flags_terse = '';
     if(isset($actions['imapflags'])) {
-        list($flags_out, $flags_text, $flags_terse) = $actions['imapflags']->generate_sieve();
+        list($flags_out, $flags_text, $flags_terse) = $actions['imapflags']->generate_sieve_tagged_argument();
     }
     
     switch ($rule['action']) {
@@ -713,6 +713,20 @@ function makesinglerule($rule, $mode='rule') {
         $terse .= '<br/>' . sprintf( _("Notify %s"), $rule['notify']['options']);
     }
     
+    /* imap4flags extension: This part is actually for the :setflag, :addflag and :removeflag
+     * tests. The :flags tagged argument to fileinto or keep has already been dealt with. */
+    if (isset($rule['imapflags'])) {
+        $aFlagActions = array('setflag', 'addflag', 'removeflag');
+        foreach($aFlagActions as $flagAction) {
+            if (isset($rule['imapflags']) && !empty($rule['imapflags'][$flagAction])) {
+                $tmpAction = new avelsieve_action_imapflags($sieve, $rule);
+                list($flags_out, $flags_text, $flags_terse) = $tmpAction->generate_sieve_action($flagAction);
+                $out .= $flags_out;
+                $text .= $flags_text;
+                $terse .= $flags_terse;
+            }
+        }
+    }
     
     /* Stop processing other rules */
     
