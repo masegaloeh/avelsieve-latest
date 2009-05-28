@@ -92,7 +92,7 @@ $types = array(
         'order' => 4,
         'name' => _("Date"),
         'description' => _("Perform an action on messages depending on date or time related to the message."),
-        'dependencies' => array('datetime')
+        'dependencies' => array('date')
     ),
     'all' => array(
         'order' => 10,
