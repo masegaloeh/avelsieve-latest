@@ -75,7 +75,7 @@ class avelsieve_action {
         $this->s = $s;
         
         if ($this->useimages && isset($this->image_src)) {
-            $this->text = ' <img src="'.$this->image_src.'" border="0" alt="'. $this->text.'" align="middle" style="margin-left: 2px; margin-right: 4px;"/> '.
+            $this->text = ' <img src="'.$this->image_src.'" border="0" alt="'. $this->text.'" valign="middle" style="margin-left: 2px; margin-right: 4px;"/> '.
                 '<strong>' . $this->text . '</strong>';
         }
     }
