@@ -12,7 +12,7 @@
  */
 
 /**
- * Vacation Action
+ * Vacation / Autoresponder Action
  */
 class avelsieve_action_vacation extends avelsieve_action {
     var $num = 6;
@@ -28,11 +28,11 @@ class avelsieve_action_vacation extends avelsieve_action {
 
     function avelsieve_action_vacation(&$s, $rule = array()) {
         $this->init();
-        $this->text = _("Vacation");
+        $this->text = _("Vacation / Autoresponder");
         $this->options['vac_addresses'] = get_user_addresses();
 
         if($this->translate_return_msgs==true) {
-            $this->options['vac_message'] = _("This is an automated reply; I am away and will not be able to reply to you immediately.").
+            $this->options['vac_message'] = _("This is an automated reply; I am away and will not be able to reply to you immediately."). ' '.
             _("I will get back to you as soon as I return.");
         } else {
             $this->options['vac_message'] = "This is an automated reply; I am away and will not be able to reply to you immediately.".
@@ -64,14 +64,14 @@ class avelsieve_action_vacation extends avelsieve_action {
             _("Your Addresses:").
             '</td><td align="left">'.
             ' <input type="text" name="vac_addresses" value="'.htmlspecialchars($val['vac_addresses']).'" size="60" maxlength="'.$maxlength.'" />'.
-            '<br/><small>'._("A vacation message will be sent only if an email is sent explicitly to one of these addresses.") .'</small>'.
+            '<br/><small>'._("A vacation / autorespond message will be sent only if an email is sent explicitly to one of these addresses.") .'</small>'.
             '</td></tr>'.
 
             '<tr><td align="right" valign="top">'.
             _("Days:").
             '</td><td align="left">'.
             ' <input type="text" name="vac_days" value="'.htmlspecialchars($val['vac_days']).'" size="3" maxlength="4" /> ' . _("days").
-            '<br/><small>'._("A vacation message will not be resent to the same address, within this number of days.") .'</small>'.
+            '<br/><small>'._("A vacation / autorespond message will not be resent to the same address, within this number of days.") .'</small>'.
             '</td></tr>'.
             
             '<tr><td align="right" valign="top">'.
