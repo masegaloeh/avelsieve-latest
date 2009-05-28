@@ -662,10 +662,10 @@ function makesinglerule($rule, $mode='rule') {
         }    
     
         /* FIXME Replace single dot with dot-stuffed line. RFC 3028 2.4.2 */ 
-          $out .= " text:\n".$rule['vac_message']."\r\n.\r\n;";
-         $text .= _("reply with this vacation message: ") . htmlspecialchars($rule['vac_message']);
-        $terse .= _("Vacation Message");
-         break;
+        $out .= " text:\n".$rule['vac_message']."\r\n.\r\n;";
+        $text .= sprintf( _("reply with a vacation / autoresponder message: "), htmlspecialchars($rule['vac_message']));
+        $terse .= _("Vacation / Autoresponder");
+        break;
     
     default:
         $args = array($rule, $out, $text, $terse);
