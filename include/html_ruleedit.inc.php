@@ -612,7 +612,7 @@ class avelsieve_html_edit extends avelsieve_html {
      */
     function index_option($n, $selected, $last) {
         $index_options = array(
-            '' => _(""),
+            '' => '',
             '1' => _("1st"),
             '2' => _("2nd"),
             '3' => _("3rd"),
@@ -624,7 +624,7 @@ class avelsieve_html_edit extends avelsieve_html {
             '9' => _("9th"),
         );
         $index_last_options = array(
-            '' => _(""),
+            '' => '',
             '1' => _("from the end"),
         );
 
