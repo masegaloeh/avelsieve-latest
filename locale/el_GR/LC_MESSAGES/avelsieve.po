@@ -10,54 +10,54 @@ msgstr ""
 "Last-Translator: Alexandros Vellis <avel@noc.uoa.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-7\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "You have to define at least one header match text."
-msgstr "Πρέπει να ορίσετε τουλάχιστον ένα κείμενο στο ταίριασμα σε κεφαλίδα."
+msgstr "Ξ ΟΞ­Ο€ΞµΞΉ Ξ½Ξ± ΞΏΟΞ―ΟƒΞµΟ„Ξµ Ο„ΞΏΟ…Ξ»Ξ¬Ο‡ΞΉΟƒΟ„ΞΏΞ½ Ξ­Ξ½Ξ± ΞΊΞµΞ―ΞΌΞµΞ½ΞΏ ΟƒΟ„ΞΏ Ο„Ξ±Ξ―ΟΞΉΞ±ΟƒΞΌΞ± ΟƒΞµ ΞΊΞµΟ†Ξ±Ξ»Ξ―Ξ΄Ξ±."
 
 msgid "Add New Rule"
-msgstr "Δημιουργία Νέου Κανόνα"
+msgstr "Ξ”Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ―Ξ± ΞΞ­ΞΏΟ… ΞΞ±Ξ½ΟΞ½Ξ±"
 
 msgid "New Rule Wizard - Step"
-msgstr "Οδηγός Δημιουργίας Νέου Κανόνα - Βήμα"
+msgstr "ΞΞ΄Ξ·Ξ³ΟΟ‚ Ξ”Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ―Ξ±Ο‚ ΞΞ­ΞΏΟ… ΞΞ±Ξ½ΟΞ½Ξ± - Ξ’Ξ®ΞΌΞ±"
 
 msgid "of"
-msgstr "από"
+msgstr "Ξ±Ο€Ο"
 
 msgid "Rule Type"
-msgstr "Τύπος Κανόνα"
+msgstr "Ξ¤ΟΟ€ΞΏΟ‚ ΞΞ±Ξ½ΟΞ½Ξ±"
 
 msgid "Condition"
-msgstr "Συνθήκη"
+msgstr "Ξ£Ο…Ξ½ΞΈΞ®ΞΊΞ·"
 
 msgid "Action"
-msgstr "Ενέργεια"
+msgstr "Ξ•Ξ½Ξ­ΟΞ³ΞµΞΉΞ±"
 
 msgid "Confirmation"
-msgstr "Επιβεβαίωση"
+msgstr "Ξ•Ο€ΞΉΞ²ΞµΞ²Ξ±Ξ―Ο‰ΟƒΞ·"
 
 msgid ""
 "<p>You have chosen to keep every mail. This is the default action anyway, so "
 "you might want to start over with a rule that makes more sense. Select &quot;"
 "finished&quot; to save this rule nonetheless.</p>"
 msgstr ""
-"<p>Επιλέξατε να κρατήσετε όλα τα μηνύματα. Αυτή είναι η προκαθορισμένη "
-"ενέργεια ούτως ή άλλως, οπότε ίσως θέλετε να φτιάξετε έναν νέο κανόνα. "
-"Επιλέξτε &quot;Τέλος&quot; για να αποθηκεύσετε αυτόν τον κανόνα παρ'όλα αυτά."
+"<p>Ξ•Ο€ΞΉΞ»Ξ­ΞΎΞ±Ο„Ξµ Ξ½Ξ± ΞΊΟΞ±Ο„Ξ®ΟƒΞµΟ„Ξµ ΟΞ»Ξ± Ο„Ξ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ±. Ξ‘Ο…Ο„Ξ® ΞµΞ―Ξ½Ξ±ΞΉ Ξ· Ο€ΟΞΏΞΊΞ±ΞΈΞΏΟΞΉΟƒΞΌΞ­Ξ½Ξ· "
+"ΞµΞ½Ξ­ΟΞ³ΞµΞΉΞ± ΞΏΟΟ„Ο‰Ο‚ Ξ® Ξ¬Ξ»Ξ»Ο‰Ο‚, ΞΏΟ€ΟΟ„Ξµ Ξ―ΟƒΟ‰Ο‚ ΞΈΞ­Ξ»ΞµΟ„Ξµ Ξ½Ξ± Ο†Ο„ΞΉΞ¬ΞΎΞµΟ„Ξµ Ξ­Ξ½Ξ±Ξ½ Ξ½Ξ­ΞΏ ΞΊΞ±Ξ½ΟΞ½Ξ±. "
+"Ξ•Ο€ΞΉΞ»Ξ­ΞΎΟ„Ξµ &quot;Ξ¤Ξ­Ξ»ΞΏΟ‚&quot; Ξ³ΞΉΞ± Ξ½Ξ± Ξ±Ο€ΞΏΞΈΞ·ΞΊΞµΟΟƒΞµΟ„Ξµ Ξ±Ο…Ο„ΟΞ½ Ο„ΞΏΞ½ ΞΊΞ±Ξ½ΟΞ½Ξ± Ο€Ξ±Ο'ΟΞ»Ξ± Ξ±Ο…Ο„Ξ¬."
 "</p>"
 
 msgid ""
 "Please use the buttons on the bottom instead of your browser's reload, back "
 "and forward buttons, to build a rule."
 msgstr ""
-"Παρακαλώ χρησιμοποιήστε τα κουμπιά στο κάτω μέρος της σελίδας, αντί για τις "
-"λειτουργίες πίσω/μπροστά/ανανέωση του φυλλομετρητή σας, όταν φτιάχνετε έναν "
-"κανόνα."
+"Ξ Ξ±ΟΞ±ΞΊΞ±Ξ»Ο Ο‡ΟΞ·ΟƒΞΉΞΌΞΏΟ€ΞΏΞΉΞ®ΟƒΟ„Ξµ Ο„Ξ± ΞΊΞΏΟ…ΞΌΟ€ΞΉΞ¬ ΟƒΟ„ΞΏ ΞΊΞ¬Ο„Ο‰ ΞΌΞ­ΟΞΏΟ‚ Ο„Ξ·Ο‚ ΟƒΞµΞ»Ξ―Ξ΄Ξ±Ο‚, Ξ±Ξ½Ο„Ξ― Ξ³ΞΉΞ± Ο„ΞΉΟ‚ "
+"Ξ»ΞµΞΉΟ„ΞΏΟ…ΟΞ³Ξ―ΞµΟ‚ Ο€Ξ―ΟƒΟ‰/ΞΌΟ€ΟΞΏΟƒΟ„Ξ¬/Ξ±Ξ½Ξ±Ξ½Ξ­Ο‰ΟƒΞ· Ο„ΞΏΟ… Ο†Ο…Ξ»Ξ»ΞΏΞΌΞµΟ„ΟΞ·Ο„Ξ® ΟƒΞ±Ο‚, ΟΟ„Ξ±Ξ½ Ο†Ο„ΞΉΞ¬Ο‡Ξ½ΞµΟ„Ξµ Ξ­Ξ½Ξ±Ξ½ "
+"ΞΊΞ±Ξ½ΟΞ½Ξ±."
 
 #, fuzzy
 msgid "Display and Edit"
-msgstr "Δείξε ως:"
+msgstr "Ξ”ΞµΞ―ΞΎΞµ Ο‰Ο‚:"
 
 msgid ""
 "Shows a table of the mail filtering rules of this script and allows editing "
@@ -79,7 +79,7 @@ msgid ""
 msgstr ""
 
 msgid "Mail Filtering Scripts"
-msgstr "Σενάρια Φίλτρων Ταχυδρομείου"
+msgstr "Ξ£ΞµΞ½Ξ¬ΟΞΉΞ± Ξ¦Ξ―Ξ»Ο„ΟΟ‰Ξ½ Ξ¤Ξ±Ο‡Ο…Ξ΄ΟΞΏΞΌΞµΞ―ΞΏΟ…"
 
 msgid "Script Name"
 msgstr ""
@@ -89,117 +89,117 @@ msgstr ""
 
 #, fuzzy
 msgid "Actions"
-msgstr "Ενέργεια"
+msgstr "Ξ•Ξ½Ξ­ΟΞ³ΞµΞΉΞ±"
 
 msgid "Initial / Predefined script"
 msgstr ""
 
 msgid "Message Filters"
-msgstr "Φίλτρα Μηνυμάτων"
+msgstr "Ξ¦Ξ―Ξ»Ο„ΟΞ± ΞΞ·Ξ½Ο…ΞΌΞ¬Ο„Ο‰Ξ½"
 
 msgid ""
 "Server-Side mail filtering enables you to add criteria in order to "
 "automatically forward, delete or place a given message into a folder."
 msgstr ""
-"Τα Φϊλτρα μηνυμάτων στον εξυπηρετητή σάς δίνουν τη δυνατότητα να ορίζετε "
-"συνθήκες ώστε να ταξινομείτε, προωθείτε ή απορρίπτετε τα μηνύματά σας με "
-"αυτόματο τρόπο."
+"Ξ¤Ξ± Ξ¦ΟΞ»Ο„ΟΞ± ΞΌΞ·Ξ½Ο…ΞΌΞ¬Ο„Ο‰Ξ½ ΟƒΟ„ΞΏΞ½ ΞµΞΎΟ…Ο€Ξ·ΟΞµΟ„Ξ·Ο„Ξ® ΟƒΞ¬Ο‚ Ξ΄Ξ―Ξ½ΞΏΟ…Ξ½ Ο„Ξ· Ξ΄Ο…Ξ½Ξ±Ο„ΟΟ„Ξ·Ο„Ξ± Ξ½Ξ± ΞΏΟΞ―Ξ¶ΞµΟ„Ξµ "
+"ΟƒΟ…Ξ½ΞΈΞ®ΞΊΞµΟ‚ ΟΟƒΟ„Ξµ Ξ½Ξ± Ο„Ξ±ΞΎΞΉΞ½ΞΏΞΌΞµΞ―Ο„Ξµ, Ο€ΟΞΏΟ‰ΞΈΞµΞ―Ο„Ξµ Ξ® Ξ±Ο€ΞΏΟΟΞ―Ο€Ο„ΞµΟ„Ξµ Ο„Ξ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ¬ ΟƒΞ±Ο‚ ΞΌΞµ "
+"Ξ±Ο…Ο„ΟΞΌΞ±Ο„ΞΏ Ο„ΟΟΟ€ΞΏ."
 
 msgid "Junk Mail Options"
-msgstr "Επιλογές Φακέλου Αχρήστων"
+msgstr "Ξ•Ο€ΞΉΞ»ΞΏΞ³Ξ­Ο‚ Ξ¦Ξ±ΞΊΞ­Ξ»ΞΏΟ… Ξ‘Ο‡ΟΞ®ΟƒΟ„Ο‰Ξ½"
 
 msgid ""
 "The Junk Mail Filter gathers all unwanted SPAM / Junk messages in your Junk "
 "folder."
 msgstr ""
-"Το Φίλτρο ¶χρηστων Μηνυμάτων (Junk Mail) συγκεντρώνει όλα τα ανεπιθύμητα "
-"SPAM μηνύματα στον φάκελο αχρήστων (Junk)"
+"Ξ¤ΞΏ Ξ¦Ξ―Ξ»Ο„ΟΞΏ Ξ†Ο‡ΟΞ·ΟƒΟ„Ο‰Ξ½ ΞΞ·Ξ½Ο…ΞΌΞ¬Ο„Ο‰Ξ½ (Junk Mail) ΟƒΟ…Ξ³ΞΊΞµΞ½Ο„ΟΟΞ½ΞµΞΉ ΟΞ»Ξ± Ο„Ξ± Ξ±Ξ½ΞµΟ€ΞΉΞΈΟΞΌΞ·Ο„Ξ± "
+"SPAM ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ± ΟƒΟ„ΞΏΞ½ Ο†Ξ¬ΞΊΞµΞ»ΞΏ Ξ±Ο‡ΟΞ®ΟƒΟ„Ο‰Ξ½ (Junk)"
 
 msgid "Filters"
-msgstr "Φίλτρα"
+msgstr "Ξ¦Ξ―Ξ»Ο„ΟΞ±"
 
 msgid "Could not set active script on your IMAP server"
-msgstr "Αδύνατη η ενεργοποίηση του ενεργού script στον εξυπηρετητή IMAP"
+msgstr "Ξ‘Ξ΄ΟΞ½Ξ±Ο„Ξ· Ξ· ΞµΞ½ΞµΟΞ³ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ· Ο„ΞΏΟ… ΞµΞ½ΞµΟΞ³ΞΏΟ script ΟƒΟ„ΞΏΞ½ ΞµΞΎΟ…Ο€Ξ·ΟΞµΟ„Ξ·Ο„Ξ® IMAP"
 
 msgid "Please contact your administrator."
-msgstr "Παρακαλούμε ειδοποιήστε το διαχειριστή σας."
+msgstr "Ξ Ξ±ΟΞ±ΞΊΞ±Ξ»ΞΏΟΞΌΞµ ΞµΞΉΞ΄ΞΏΟ€ΞΏΞΉΞ®ΟƒΟ„Ξµ Ο„ΞΏ Ξ΄ΞΉΞ±Ο‡ΞµΞΉΟΞΉΟƒΟ„Ξ® ΟƒΞ±Ο‚."
 
 #, php-format
 msgid "Could not delete rule #%s: This type of rule cannot be deleted."
 msgstr ""
-"Αδύνατη η διαγραφή του κανόνα #%s: αυτός ο τύπος κανόνα δε μπορεί να "
-"διαγραφεί."
+"Ξ‘Ξ΄ΟΞ½Ξ±Ο„Ξ· Ξ· Ξ΄ΞΉΞ±Ξ³ΟΞ±Ο†Ξ® Ο„ΞΏΟ… ΞΊΞ±Ξ½ΟΞ½Ξ± #%s: Ξ±Ο…Ο„ΟΟ‚ ΞΏ Ο„ΟΟ€ΞΏΟ‚ ΞΊΞ±Ξ½ΟΞ½Ξ± Ξ΄Ξµ ΞΌΟ€ΞΏΟΞµΞ― Ξ½Ξ± "
+"Ξ΄ΞΉΞ±Ξ³ΟΞ±Ο†ΞµΞ―."
 
 #, php-format
 msgid "Could not delete rules #%s: This type of rule cannot be deleted."
 msgstr ""
-"Αδύνατη η διαγραφή των κανόνων #%s: Αυτός ο τύπος κανόνα δε μπορεί να "
-"διαγραφεί."
+"Ξ‘Ξ΄ΟΞ½Ξ±Ο„Ξ· Ξ· Ξ΄ΞΉΞ±Ξ³ΟΞ±Ο†Ξ® Ο„Ο‰Ξ½ ΞΊΞ±Ξ½ΟΞ½Ο‰Ξ½ #%s: Ξ‘Ο…Ο„ΟΟ‚ ΞΏ Ο„ΟΟ€ΞΏΟ‚ ΞΊΞ±Ξ½ΟΞ½Ξ± Ξ΄Ξµ ΞΌΟ€ΞΏΟΞµΞ― Ξ½Ξ± "
+"Ξ΄ΞΉΞ±Ξ³ΟΞ±Ο†ΞµΞ―."
 
 #, php-format
 msgid "The entered position, %s, is not valid."
-msgstr "Η θέση %s που εισάγατε δεν είναι έγκυρη."
+msgstr "Ξ— ΞΈΞ­ΟƒΞ· %s Ο€ΞΏΟ… ΞµΞΉΟƒΞ¬Ξ³Ξ±Ο„Ξµ Ξ΄ΞµΞ½ ΞµΞ―Ξ½Ξ±ΞΉ Ξ­Ξ³ΞΊΟ…ΟΞ·."
 
 #, php-format
 msgid "The entered position, %s, is greater than the current number of rules."
-msgstr "Η θέση %s που εισάγατε είναι μεγαλύτερη από τον αριθμό των κανόνων."
+msgstr "Ξ— ΞΈΞ­ΟƒΞ· %s Ο€ΞΏΟ… ΞµΞΉΟƒΞ¬Ξ³Ξ±Ο„Ξµ ΞµΞ―Ξ½Ξ±ΞΉ ΞΌΞµΞ³Ξ±Ξ»ΟΟ„ΞµΟΞ· Ξ±Ο€Ο Ο„ΞΏΞ½ Ξ±ΟΞΉΞΈΞΌΟ Ο„Ο‰Ξ½ ΞΊΞ±Ξ½ΟΞ½Ο‰Ξ½."
 
 msgid "Message"
-msgstr "Μήνυμα"
+msgstr "ΞΞ®Ξ½Ο…ΞΌΞ±"
 
 msgid "Current Date / Time"
 msgstr ""
 
 #, fuzzy
 msgid "Always"
-msgstr "ημέρες"
+msgstr "Ξ·ΞΌΞ­ΟΞµΟ‚"
 
 msgid "Could not get SIEVE script from your IMAP server"
-msgstr "Αδύνατη η λήψη του SIEVE script από τον IMAP εξυπηρετητή"
+msgstr "Ξ‘Ξ΄ΟΞ½Ξ±Ο„Ξ· Ξ· Ξ»Ξ®ΟΞ· Ο„ΞΏΟ… SIEVE script Ξ±Ο€Ο Ο„ΞΏΞ½ IMAP ΞµΞΎΟ…Ο€Ξ·ΟΞµΟ„Ξ·Ο„Ξ®"
 
 msgid "Error Encountered:"
-msgstr "Παρουσιάστηκε Λάθος:"
+msgstr "Ξ Ξ±ΟΞΏΟ…ΟƒΞΉΞ¬ΟƒΟ„Ξ·ΞΊΞµ Ξ›Ξ¬ΞΈΞΏΟ‚:"
 
 msgid "Unable to load script to server."
-msgstr "Αδύνατο το φόρτωμα του script στον εξυπηρετητή."
+msgstr "Ξ‘Ξ΄ΟΞ½Ξ±Ο„ΞΏ Ο„ΞΏ Ο†ΟΟΟ„Ο‰ΞΌΞ± Ο„ΞΏΟ… script ΟƒΟ„ΞΏΞ½ ΞµΞΎΟ…Ο€Ξ·ΟΞµΟ„Ξ·Ο„Ξ®."
 
 #, php-format
 msgid "Could not delete script from server %s."
-msgstr "Αδύνατη η διαγραφή του script από τον εξυπηρετητή %s."
+msgstr "Ξ‘Ξ΄ΟΞ½Ξ±Ο„Ξ· Ξ· Ξ΄ΞΉΞ±Ξ³ΟΞ±Ο†Ξ® Ο„ΞΏΟ… script Ξ±Ο€Ο Ο„ΞΏΞ½ ΞµΞΎΟ…Ο€Ξ·ΟΞµΟ„Ξ·Ο„Ξ® %s."
 
 msgid "Could not set active script on your IMAP server "
-msgstr "Αδύνατη η ενεργοποίηση του  script στον εξυπηρετητή IMAP"
+msgstr "Ξ‘Ξ΄ΟΞ½Ξ±Ο„Ξ· Ξ· ΞµΞ½ΞµΟΞ³ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ· Ο„ΞΏΟ…  script ΟƒΟ„ΞΏΞ½ ΞµΞΎΟ…Ο€Ξ·ΟΞµΟ„Ξ·Ο„Ξ® IMAP"
 
 msgid "Could not delete script from server "
-msgstr "Αδύνατη η διαγραφή του script από τον εξυπηρετητή"
+msgstr "Ξ‘Ξ΄ΟΞ½Ξ±Ο„Ξ· Ξ· Ξ΄ΞΉΞ±Ξ³ΟΞ±Ο†Ξ® Ο„ΞΏΟ… script Ξ±Ο€Ο Ο„ΞΏΞ½ ΞµΞΎΟ…Ο€Ξ·ΟΞµΟ„Ξ·Ο„Ξ®"
 
 msgid "Could not log on to timsieved daemon on your IMAP server"
-msgstr "Αδύνατη η σύνδεση με τον timsieved daemon στον εξυπηρετητή IMAP σας"
+msgstr "Ξ‘Ξ΄ΟΞ½Ξ±Ο„Ξ· Ξ· ΟƒΟΞ½Ξ΄ΞµΟƒΞ· ΞΌΞµ Ο„ΞΏΞ½ timsieved daemon ΟƒΟ„ΞΏΞ½ ΞµΞΎΟ…Ο€Ξ·ΟΞµΟ„Ξ·Ο„Ξ® IMAP ΟƒΞ±Ο‚"
 
 msgid "Server responded with:"
-msgstr "Ο εξυπηρετητής απάντησε:"
+msgstr "Ξ ΞµΞΎΟ…Ο€Ξ·ΟΞµΟ„Ξ·Ο„Ξ®Ο‚ Ξ±Ο€Ξ¬Ξ½Ο„Ξ·ΟƒΞµ:"
 
 msgid "Disable"
-msgstr "Απενεργοποίηση"
+msgstr "Ξ‘Ο€ΞµΞ½ΞµΟΞ³ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ·"
 
 msgid "The rule will have no effect for as long as it is disabled."
-msgstr "Αυτός ο κανόνας δε θα έχει καμμία ισχύ, όσο είναι απενεργοποιημένος."
+msgstr "Ξ‘Ο…Ο„ΟΟ‚ ΞΏ ΞΊΞ±Ξ½ΟΞ½Ξ±Ο‚ Ξ΄Ξµ ΞΈΞ± Ξ­Ο‡ΞµΞΉ ΞΊΞ±ΞΌΞΌΞ―Ξ± ΞΉΟƒΟ‡Ο, ΟΟƒΞΏ ΞµΞ―Ξ½Ξ±ΞΉ Ξ±Ο€ΞµΞ½ΞµΟΞ³ΞΏΟ€ΞΏΞΉΞ·ΞΌΞ­Ξ½ΞΏΟ‚."
 
 msgid "Discard"
-msgstr "Διαγραφή"
+msgstr "Ξ”ΞΉΞ±Ξ³ΟΞ±Ο†Ξ®"
 
 msgid "Silently discards the message; use with caution."
 msgstr ""
-"Διαγράφει σιωπηλά το μήνυμα, χωρίς καμμία ειδοποίηση. Χρησιμοποιήστε με "
-"προσοχή."
+"Ξ”ΞΉΞ±Ξ³ΟΞ¬Ο†ΞµΞΉ ΟƒΞΉΟ‰Ο€Ξ·Ξ»Ξ¬ Ο„ΞΏ ΞΌΞ®Ξ½Ο…ΞΌΞ±, Ο‡Ο‰ΟΞ―Ο‚ ΞΊΞ±ΞΌΞΌΞ―Ξ± ΞµΞΉΞ΄ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ·. Ξ§ΟΞ·ΟƒΞΉΞΌΞΏΟ€ΞΏΞΉΞ®ΟƒΟ„Ξµ ΞΌΞµ "
+"Ο€ΟΞΏΟƒΞΏΟ‡Ξ®."
 
 msgid "Move to Folder"
-msgstr "Μετακίνηση στο Φάκελο"
+msgstr "ΞΞµΟ„Ξ±ΞΊΞ―Ξ½Ξ·ΟƒΞ· ΟƒΟ„ΞΏ Ξ¦Ξ¬ΞΊΞµΞ»ΞΏ"
 
 #, php-format
 msgid "Or specify a new folder: %s to be created under %s"
 msgstr ""
-"Ή διευκρινίστε έναν καινούριο φάκελο: %s που θα δημιουργηθεί κάτω από τον %s"
+"Ξ‰ Ξ΄ΞΉΞµΟ…ΞΊΟΞΉΞ½Ξ―ΟƒΟ„Ξµ Ξ­Ξ½Ξ±Ξ½ ΞΊΞ±ΞΉΞ½ΞΏΟΟΞΉΞΏ Ο†Ξ¬ΞΊΞµΞ»ΞΏ: %s Ο€ΞΏΟ… ΞΈΞ± Ξ΄Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ·ΞΈΞµΞ― ΞΊΞ¬Ο„Ο‰ Ξ±Ο€Ο Ο„ΞΏΞ½ %s"
 
 msgid "Flag"
 msgstr ""
@@ -212,15 +212,15 @@ msgstr ""
 
 #, fuzzy
 msgid "Message Labels"
-msgstr "Φίλτρα Μηνυμάτων"
+msgstr "Ξ¦Ξ―Ξ»Ο„ΟΞ± ΞΞ·Ξ½Ο…ΞΌΞ¬Ο„Ο‰Ξ½"
 
 #, fuzzy
 msgid "Custom Flags"
-msgstr "Custom Κανόνας"
+msgstr "Custom ΞΞ±Ξ½ΟΞ½Ξ±Ο‚"
 
 #, fuzzy
 msgid "Seen"
-msgstr "Αποστολέας"
+msgstr "Ξ‘Ο€ΞΏΟƒΟ„ΞΏΞ»Ξ­Ξ±Ο‚"
 
 msgid "Answered"
 msgstr ""
@@ -230,7 +230,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Deleted"
-msgstr "Διαγραφή"
+msgstr "Ξ”ΞΉΞ±Ξ³ΟΞ±Ο†Ξ®"
 
 msgid "Draft"
 msgstr ""
@@ -240,25 +240,25 @@ msgstr ""
 
 #, fuzzy
 msgid "Work"
-msgstr "ή"
+msgstr "Ξ®"
 
 msgid "Personal"
 msgstr ""
 
 #, fuzzy
 msgid "To Do"
-msgstr "Προς ή Κοινοπ."
+msgstr "Ξ ΟΞΏΟ‚ Ξ® ΞΞΏΞΉΞ½ΞΏΟ€."
 
 #, fuzzy
 msgid "Later"
-msgstr "σύντομα"
+msgstr "ΟƒΟΞ½Ο„ΞΏΞΌΞ±"
 
 msgid "Junk"
-msgstr "Φάκελος Αχρήστων"
+msgstr "Ξ¦Ξ¬ΞΊΞµΞ»ΞΏΟ‚ Ξ‘Ο‡ΟΞ®ΟƒΟ„Ο‰Ξ½"
 
 #, fuzzy
 msgid "Not Junk"
-msgstr "Μετακίνηση στο Φάκελο Αχρήστων"
+msgstr "ΞΞµΟ„Ξ±ΞΊΞ―Ξ½Ξ·ΟƒΞ· ΟƒΟ„ΞΏ Ξ¦Ξ¬ΞΊΞµΞ»ΞΏ Ξ‘Ο‡ΟΞ®ΟƒΟ„Ο‰Ξ½"
 
 #, php-format
 msgid "Also, set message flag %s"
@@ -286,7 +286,7 @@ msgstr ""
 
 #, fuzzy, php-format
 msgid "Add flags: %s"
-msgstr "Δημιουργία %s"
+msgstr "Ξ”Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ―Ξ± %s"
 
 #, php-format
 msgid "Remove flags from current set: %s"
@@ -302,207 +302,207 @@ msgid ""
 msgstr ""
 
 msgid "Move to Junk"
-msgstr "Μετακίνηση στο Φάκελο Αχρήστων"
+msgstr "ΞΞµΟ„Ξ±ΞΊΞ―Ξ½Ξ·ΟƒΞ· ΟƒΟ„ΞΏ Ξ¦Ξ¬ΞΊΞµΞ»ΞΏ Ξ‘Ο‡ΟΞ®ΟƒΟ„Ο‰Ξ½"
 
 #, php-format
 msgid ""
 "Store message in your Junk Folder. Messages older than %s days will be "
 "deleted automatically."
 msgstr ""
-"Αποθήκευσε το μήνυμα στον Φάκελο Αχρήστων. Μηνύματα παλαιότερα από %s μέρες "
-"θα διαγράφονται αυτόματα."
+"Ξ‘Ο€ΞΏΞΈΞ®ΞΊΞµΟ…ΟƒΞµ Ο„ΞΏ ΞΌΞ®Ξ½Ο…ΞΌΞ± ΟƒΟ„ΞΏΞ½ Ξ¦Ξ¬ΞΊΞµΞ»ΞΏ Ξ‘Ο‡ΟΞ®ΟƒΟ„Ο‰Ξ½. ΞΞ·Ξ½ΟΞΌΞ±Ο„Ξ± Ο€Ξ±Ξ»Ξ±ΞΉΟΟ„ΞµΟΞ± Ξ±Ο€Ο %s ΞΌΞ­ΟΞµΟ‚ "
+"ΞΈΞ± Ξ΄ΞΉΞ±Ξ³ΟΞ¬Ο†ΞΏΞ½Ο„Ξ±ΞΉ Ξ±Ο…Ο„ΟΞΌΞ±Ο„Ξ±."
 
 msgid "Note that you can set the number of days in Folder Preferences."
 msgstr ""
-"Σημειώστε ότι μπορείτε να θέσετε τον αριθμό των ημερών στις Επιλογές Φακέλων."
+"Ξ£Ξ·ΞΌΞµΞΉΟΟƒΟ„Ξµ ΟΟ„ΞΉ ΞΌΟ€ΞΏΟΞµΞ―Ο„Ξµ Ξ½Ξ± ΞΈΞ­ΟƒΞµΟ„Ξµ Ο„ΞΏΞ½ Ξ±ΟΞΉΞΈΞΌΟ Ο„Ο‰Ξ½ Ξ·ΞΌΞµΟΟΞ½ ΟƒΟ„ΞΉΟ‚ Ξ•Ο€ΞΉΞ»ΞΏΞ³Ξ­Ο‚ Ξ¦Ξ±ΞΊΞ­Ξ»Ο‰Ξ½."
 
 msgid "Keep Message"
-msgstr "Κράτησε το Μήνυμα"
+msgstr "ΞΟΞ¬Ο„Ξ·ΟƒΞµ Ο„ΞΏ ΞΞ®Ξ½Ο…ΞΌΞ±"
 
 msgid "Save the message in your INBOX."
-msgstr "Αποθήκευση του μηνύματος στα ΕΙΣΕΡΧΟΜΕΝΑ."
+msgstr "Ξ‘Ο€ΞΏΞΈΞ®ΞΊΞµΟ…ΟƒΞ· Ο„ΞΏΟ… ΞΌΞ·Ξ½ΟΞΌΞ±Ο„ΞΏΟ‚ ΟƒΟ„Ξ± Ξ•Ξ™Ξ£Ξ•Ξ΅Ξ§ΞΞΞ•ΞΞ‘."
 
 msgid "Also keep copy in INBOX, marked as deleted."
 msgstr ""
-"Επίσης κράτησε ένα αντίγραφο στα ΕΙΣΕΡΧΟΜΕΝΑ, μαρκαρισμένο ως διαγραμμένο."
+"Ξ•Ο€Ξ―ΟƒΞ·Ο‚ ΞΊΟΞ¬Ο„Ξ·ΟƒΞµ Ξ­Ξ½Ξ± Ξ±Ξ½Ο„Ξ―Ξ³ΟΞ±Ο†ΞΏ ΟƒΟ„Ξ± Ξ•Ξ™Ξ£Ξ•Ξ΅Ξ§ΞΞΞ•ΞΞ‘, ΞΌΞ±ΟΞΊΞ±ΟΞΉΟƒΞΌΞ­Ξ½ΞΏ Ο‰Ο‚ Ξ΄ΞΉΞ±Ξ³ΟΞ±ΞΌΞΌΞ­Ξ½ΞΏ."
 
 msgid "Notify"
-msgstr "Ειδοποίηση"
+msgstr "Ξ•ΞΉΞ΄ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ·"
 
 msgid "Send a notification "
-msgstr "Αποστολή ειδοποίησης"
+msgstr "Ξ‘Ο€ΞΏΟƒΟ„ΞΏΞ»Ξ® ΞµΞΉΞ΄ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ·Ο‚"
 
 msgid "Mobile Phone Message (SMS)"
-msgstr "Μήνυμα σε Κινητό Τηλέφωνο (SMS)"
+msgstr "ΞΞ®Ξ½Ο…ΞΌΞ± ΟƒΞµ ΞΞΉΞ½Ξ·Ο„Ο Ξ¤Ξ·Ξ»Ξ­Ο†Ο‰Ξ½ΞΏ (SMS)"
 
 msgid "Email notification"
-msgstr "Ειδοποίηση μέσω Email"
+msgstr "Ξ•ΞΉΞ΄ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ· ΞΌΞ­ΟƒΟ‰ Email"
 
 msgid "Notification via Zephyr"
-msgstr "Ειδοποίηση μέσω Zephyr"
+msgstr "Ξ•ΞΉΞ΄ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ· ΞΌΞ­ΟƒΟ‰ Zephyr"
 
 msgid "Notification via ICQ"
-msgstr "Ειδοποίηση μέσω ICQ"
+msgstr "Ξ•ΞΉΞ΄ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ· ΞΌΞ­ΟƒΟ‰ ICQ"
 
 msgid "Method"
-msgstr "Μέθοδος"
+msgstr "ΞΞ­ΞΈΞΏΞ΄ΞΏΟ‚"
 
 msgid "Notification ID"
-msgstr "Όνομα Ειδοποίησης"
+msgstr "ΞΞ½ΞΏΞΌΞ± Ξ•ΞΉΞ΄ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ·Ο‚"
 
 msgid "Destination"
-msgstr "Προορισμός"
+msgstr "Ξ ΟΞΏΞΏΟΞΉΟƒΞΌΟΟ‚"
 
 msgid "Priority"
-msgstr "Προτεραιότητα"
+msgstr "Ξ ΟΞΏΟ„ΞµΟΞ±ΞΉΟΟ„Ξ·Ο„Ξ±"
 
 msgid "Help: Valid variables are:"
-msgstr "Βοήθεια: Έγκυρες μεταβητές είναι:"
+msgstr "Ξ’ΞΏΞ®ΞΈΞµΞΉΞ±: ΞΞ³ΞΊΟ…ΟΞµΟ‚ ΞΌΞµΟ„Ξ±Ξ²Ξ·Ο„Ξ­Ο‚ ΞµΞ―Ξ½Ξ±ΞΉ:"
 
 msgid "Redirect"
-msgstr "Ανακατεύθυνση"
+msgstr "Ξ‘Ξ½Ξ±ΞΊΞ±Ο„ΞµΟΞΈΟ…Ξ½ΟƒΞ·"
 
 msgid "Automatically redirect the message to a different email address"
 msgstr ""
-"Αυτόματη ανακατεύθυνση του μηνύματος σε μία διαφορετική email διεύθυνση"
+"Ξ‘Ο…Ο„ΟΞΌΞ±Ο„Ξ· Ξ±Ξ½Ξ±ΞΊΞ±Ο„ΞµΟΞΈΟ…Ξ½ΟƒΞ· Ο„ΞΏΟ… ΞΌΞ·Ξ½ΟΞΌΞ±Ο„ΞΏΟ‚ ΟƒΞµ ΞΌΞ―Ξ± Ξ΄ΞΉΞ±Ο†ΞΏΟΞµΟ„ΞΉΞΊΞ® email Ξ΄ΞΉΞµΟΞΈΟ…Ξ½ΟƒΞ·"
 
 msgid "someone@example.org"
 msgstr "someone@example.org"
 
 msgid "Keep a local copy as well."
-msgstr "Επίσης κράτησε ένα τοπικό αντίγραφο."
+msgstr "Ξ•Ο€Ξ―ΟƒΞ·Ο‚ ΞΊΟΞ¬Ο„Ξ·ΟƒΞµ Ξ­Ξ½Ξ± Ο„ΞΏΟ€ΞΉΞΊΟ Ξ±Ξ½Ο„Ξ―Ξ³ΟΞ±Ο†ΞΏ."
 
 msgid ""
 "Incorrect email address(es). You must enter one or more valid email "
 "addresses, separated by comma."
 msgstr ""
-"Λανθασμένη διεύθυνση(-εις) ηλεκτρονικού ταχυδρομείου. Πρέπει να εισάγετε μία "
-"ή περισσότερες έγκυρες διευθύνσεις, χωριζόμενες με κόμμα."
+"Ξ›Ξ±Ξ½ΞΈΞ±ΟƒΞΌΞ­Ξ½Ξ· Ξ΄ΞΉΞµΟΞΈΟ…Ξ½ΟƒΞ·(-ΞµΞΉΟ‚) Ξ·Ξ»ΞµΞΊΟ„ΟΞΏΞ½ΞΉΞΊΞΏΟ Ο„Ξ±Ο‡Ο…Ξ΄ΟΞΏΞΌΞµΞ―ΞΏΟ…. Ξ ΟΞ­Ο€ΞµΞΉ Ξ½Ξ± ΞµΞΉΟƒΞ¬Ξ³ΞµΟ„Ξµ ΞΌΞ―Ξ± "
+"Ξ® Ο€ΞµΟΞΉΟƒΟƒΟΟ„ΞµΟΞµΟ‚ Ξ­Ξ³ΞΊΟ…ΟΞµΟ‚ Ξ΄ΞΉΞµΟ…ΞΈΟΞ½ΟƒΞµΞΉΟ‚, Ο‡Ο‰ΟΞΉΞ¶ΟΞΌΞµΞ½ΞµΟ‚ ΞΌΞµ ΞΊΟΞΌΞΌΞ±."
 
 msgid "Reject"
-msgstr "Απόρριψη"
+msgstr "Ξ‘Ο€ΟΟΟΞΉΟΞ·"
 
 msgid "Send the message back to the sender, along with an excuse"
-msgstr "Επιστροφή του μηνύματος πίσω στον αποστολέα, μαζί με μία δικαιολογία."
+msgstr "Ξ•Ο€ΞΉΟƒΟ„ΟΞΏΟ†Ξ® Ο„ΞΏΟ… ΞΌΞ·Ξ½ΟΞΌΞ±Ο„ΞΏΟ‚ Ο€Ξ―ΟƒΟ‰ ΟƒΟ„ΞΏΞ½ Ξ±Ο€ΞΏΟƒΟ„ΞΏΞ»Ξ­Ξ±, ΞΌΞ±Ξ¶Ξ― ΞΌΞµ ΞΌΞ―Ξ± Ξ΄ΞΉΞΊΞ±ΞΉΞΏΞ»ΞΏΞ³Ξ―Ξ±."
 
 msgid "Please do not send me large attachments."
-msgstr "Παρακαλώ μη μού στέλνετε μεγάλα συνημμένα αρχεία."
+msgstr "Ξ Ξ±ΟΞ±ΞΊΞ±Ξ»Ο ΞΌΞ· ΞΌΞΏΟ ΟƒΟ„Ξ­Ξ»Ξ½ΞµΟ„Ξµ ΞΌΞµΞ³Ξ¬Ξ»Ξ± ΟƒΟ…Ξ½Ξ·ΞΌΞΌΞ­Ξ½Ξ± Ξ±ΟΟ‡ΞµΞ―Ξ±."
 
 msgid "If this rule matches, do not check any rules after it."
-msgstr "Αν ο κανόνας ταιριάξει, μην ελέγξεις άλλους κανόνες μετά απ'αυτόν."
+msgstr "Ξ‘Ξ½ ΞΏ ΞΊΞ±Ξ½ΟΞ½Ξ±Ο‚ Ο„Ξ±ΞΉΟΞΉΞ¬ΞΎΞµΞΉ, ΞΌΞ·Ξ½ ΞµΞ»Ξ­Ξ³ΞΎΞµΞΉΟ‚ Ξ¬Ξ»Ξ»ΞΏΟ…Ο‚ ΞΊΞ±Ξ½ΟΞ½ΞµΟ‚ ΞΌΞµΟ„Ξ¬ Ξ±Ο€'Ξ±Ο…Ο„ΟΞ½."
 
 msgid "STOP"
-msgstr "ΣΤΟΠ"
+msgstr "Ξ£Ξ¤ΞΞ "
 
 msgid "Move to Trash"
-msgstr "Μετακίνηση στο Φάκελο Διαγραμμένων"
+msgstr "ΞΞµΟ„Ξ±ΞΊΞ―Ξ½Ξ·ΟƒΞ· ΟƒΟ„ΞΏ Ξ¦Ξ¬ΞΊΞµΞ»ΞΏ Ξ”ΞΉΞ±Ξ³ΟΞ±ΞΌΞΌΞ­Ξ½Ο‰Ξ½"
 
 msgid ""
 "Store message in your Trash Folder. You will have to purge the folder "
 "yourself."
 msgstr ""
-"Αποθήκευσε το μήνυμα στο Φάκελο Διαγραμμένων. Θα πρέπει να κάνετε τακτικά "
-"εκκαθάριση αυτού του φακέλου."
+"Ξ‘Ο€ΞΏΞΈΞ®ΞΊΞµΟ…ΟƒΞµ Ο„ΞΏ ΞΌΞ®Ξ½Ο…ΞΌΞ± ΟƒΟ„ΞΏ Ξ¦Ξ¬ΞΊΞµΞ»ΞΏ Ξ”ΞΉΞ±Ξ³ΟΞ±ΞΌΞΌΞ­Ξ½Ο‰Ξ½. ΞΞ± Ο€ΟΞ­Ο€ΞµΞΉ Ξ½Ξ± ΞΊΞ¬Ξ½ΞµΟ„Ξµ Ο„Ξ±ΞΊΟ„ΞΉΞΊΞ¬ "
+"ΞµΞΊΞΊΞ±ΞΈΞ¬ΟΞΉΟƒΞ· Ξ±Ο…Ο„ΞΏΟ Ο„ΞΏΟ… Ο†Ξ±ΞΊΞ­Ξ»ΞΏΟ…."
 
 #, fuzzy
 msgid "Vacation / Autoresponder"
-msgstr "Υπενθύμιση Φίλτρου Αυτόματης Απάντησης Διακοπών"
+msgstr "Ξ¥Ο€ΞµΞ½ΞΈΟΞΌΞΉΟƒΞ· Ξ¦Ξ―Ξ»Ο„ΟΞΏΟ… Ξ‘Ο…Ο„ΟΞΌΞ±Ο„Ξ·Ο‚ Ξ‘Ο€Ξ¬Ξ½Ο„Ξ·ΟƒΞ·Ο‚ Ξ”ΞΉΞ±ΞΊΞΏΟ€ΟΞ½"
 
 msgid ""
 "This is an automated reply; I am away and will not be able to reply to you "
 "immediately."
 msgstr ""
-"Αυτή είναι μια αυτόματη απάντηση· δε βρίσκομαι κοντά σε υπολογιστή και δε θα "
-"μπορέσω να σάς απαντήσω άμεσα."
+"Ξ‘Ο…Ο„Ξ® ΞµΞ―Ξ½Ξ±ΞΉ ΞΌΞΉΞ± Ξ±Ο…Ο„ΟΞΌΞ±Ο„Ξ· Ξ±Ο€Ξ¬Ξ½Ο„Ξ·ΟƒΞ·Β· Ξ΄Ξµ Ξ²ΟΞ―ΟƒΞΊΞΏΞΌΞ±ΞΉ ΞΊΞΏΞ½Ο„Ξ¬ ΟƒΞµ Ο…Ο€ΞΏΞ»ΞΏΞ³ΞΉΟƒΟ„Ξ® ΞΊΞ±ΞΉ Ξ΄Ξµ ΞΈΞ± "
+"ΞΌΟ€ΞΏΟΞ­ΟƒΟ‰ Ξ½Ξ± ΟƒΞ¬Ο‚ Ξ±Ο€Ξ±Ξ½Ο„Ξ®ΟƒΟ‰ Ξ¬ΞΌΞµΟƒΞ±."
 
 msgid "I will get back to you as soon as I return."
-msgstr "Θα επικοινωνήσω μαζί σας με το που θα επιστρέψω."
+msgstr "ΞΞ± ΞµΟ€ΞΉΞΊΞΏΞΉΞ½Ο‰Ξ½Ξ®ΟƒΟ‰ ΞΌΞ±Ξ¶Ξ― ΟƒΞ±Ο‚ ΞΌΞµ Ο„ΞΏ Ο€ΞΏΟ… ΞΈΞ± ΞµΟ€ΞΉΟƒΟ„ΟΞ­ΟΟ‰."
 
 msgid ""
 "The notice will be sent only once to each person that sends you mail, and "
 "will not be sent to a mailing list address."
 msgstr ""
-"Η σημείωση αυτή θα σταλεί μόνο μία φορά σε κάθε άτομο που σάς στέλνει "
-"μήνυμα, και δε θα σταλεί σε λίστα ταχυδρομείου."
+"Ξ— ΟƒΞ·ΞΌΞµΞ―Ο‰ΟƒΞ· Ξ±Ο…Ο„Ξ® ΞΈΞ± ΟƒΟ„Ξ±Ξ»ΞµΞ― ΞΌΟΞ½ΞΏ ΞΌΞ―Ξ± Ο†ΞΏΟΞ¬ ΟƒΞµ ΞΊΞ¬ΞΈΞµ Ξ¬Ο„ΞΏΞΌΞΏ Ο€ΞΏΟ… ΟƒΞ¬Ο‚ ΟƒΟ„Ξ­Ξ»Ξ½ΞµΞΉ "
+"ΞΌΞ®Ξ½Ο…ΞΌΞ±, ΞΊΞ±ΞΉ Ξ΄Ξµ ΞΈΞ± ΟƒΟ„Ξ±Ξ»ΞµΞ― ΟƒΞµ Ξ»Ξ―ΟƒΟ„Ξ± Ο„Ξ±Ο‡Ο…Ξ΄ΟΞΏΞΌΞµΞ―ΞΏΟ…."
 
 msgid "Subject:"
-msgstr "Θέμα:"
+msgstr "ΞΞ­ΞΌΞ±:"
 
 msgid "Optional subject of the vacation message."
-msgstr "Προαιρετικό Θέμα του μηνύματος διακοπών."
+msgstr "Ξ ΟΞΏΞ±ΞΉΟΞµΟ„ΞΉΞΊΟ ΞΞ­ΞΌΞ± Ο„ΞΏΟ… ΞΌΞ·Ξ½ΟΞΌΞ±Ο„ΞΏΟ‚ Ξ΄ΞΉΞ±ΞΊΞΏΟ€ΟΞ½."
 
 msgid "Your Addresses:"
-msgstr "Οι Διευθύνσεις σας:"
+msgstr "ΞΞΉ Ξ”ΞΉΞµΟ…ΞΈΟΞ½ΟƒΞµΞΉΟ‚ ΟƒΞ±Ο‚:"
 
 #, fuzzy
 msgid ""
 "A vacation / autorespond message will be sent only if an email is sent "
 "explicitly to one of these addresses."
 msgstr ""
-"Ένα μήνυμα διακοπών θα σταλεί μόνο εφ όσον κάποιο email στέλνεται ρητά προς "
-"μία από τις ακόλουθες διευθύνσεις."
+"ΞΞ½Ξ± ΞΌΞ®Ξ½Ο…ΞΌΞ± Ξ΄ΞΉΞ±ΞΊΞΏΟ€ΟΞ½ ΞΈΞ± ΟƒΟ„Ξ±Ξ»ΞµΞ― ΞΌΟΞ½ΞΏ ΞµΟ† ΟΟƒΞΏΞ½ ΞΊΞ¬Ο€ΞΏΞΉΞΏ email ΟƒΟ„Ξ­Ξ»Ξ½ΞµΟ„Ξ±ΞΉ ΟΞ·Ο„Ξ¬ Ο€ΟΞΏΟ‚ "
+"ΞΌΞ―Ξ± Ξ±Ο€Ο Ο„ΞΉΟ‚ Ξ±ΞΊΟΞ»ΞΏΟ…ΞΈΞµΟ‚ Ξ΄ΞΉΞµΟ…ΞΈΟΞ½ΟƒΞµΞΉΟ‚."
 
 msgid "Days:"
-msgstr "Ημέρες:"
+msgstr "Ξ—ΞΌΞ­ΟΞµΟ‚:"
 
 msgid "days"
-msgstr "ημέρες"
+msgstr "Ξ·ΞΌΞ­ΟΞµΟ‚"
 
 #, fuzzy
 msgid ""
 "A vacation / autorespond message will not be resent to the same address, "
 "within this number of days."
 msgstr ""
-"Ένα μήνυμα διακοπών δε θα σταλθεί ξανά στην ίδια διεύθυνση, μέσα σε αυτό το "
-"διάστημα ημερών."
+"ΞΞ½Ξ± ΞΌΞ®Ξ½Ο…ΞΌΞ± Ξ΄ΞΉΞ±ΞΊΞΏΟ€ΟΞ½ Ξ΄Ξµ ΞΈΞ± ΟƒΟ„Ξ±Ξ»ΞΈΞµΞ― ΞΎΞ±Ξ½Ξ¬ ΟƒΟ„Ξ·Ξ½ Ξ―Ξ΄ΞΉΞ± Ξ΄ΞΉΞµΟΞΈΟ…Ξ½ΟƒΞ·, ΞΌΞ­ΟƒΞ± ΟƒΞµ Ξ±Ο…Ο„Ο Ο„ΞΏ "
+"Ξ΄ΞΉΞ¬ΟƒΟ„Ξ·ΞΌΞ± Ξ·ΞΌΞµΟΟΞ½."
 
 msgid "Message:"
-msgstr "Μήνυμα:"
+msgstr "ΞΞ®Ξ½Ο…ΞΌΞ±:"
 
 msgid "The number of days between vacation messages must be a positive number."
 msgstr ""
-"Ο αριθμός ημερών μεταξύ των μηνυμάτων διακοπών πρέπει να έιναι ένας θετικός "
-"αριθμός."
+"Ξ Ξ±ΟΞΉΞΈΞΌΟΟ‚ Ξ·ΞΌΞµΟΟΞ½ ΞΌΞµΟ„Ξ±ΞΎΟ Ο„Ο‰Ξ½ ΞΌΞ·Ξ½Ο…ΞΌΞ¬Ο„Ο‰Ξ½ Ξ΄ΞΉΞ±ΞΊΞΏΟ€ΟΞ½ Ο€ΟΞ­Ο€ΞµΞΉ Ξ½Ξ± Ξ­ΞΉΞ½Ξ±ΞΉ Ξ­Ξ½Ξ±Ο‚ ΞΈΞµΟ„ΞΉΞΊΟΟ‚ "
+"Ξ±ΟΞΉΞΈΞΌΟΟ‚."
 
 #, fuzzy
 msgid "Date"
-msgstr "Αναπαραγωγή"
+msgstr "Ξ‘Ξ½Ξ±Ο€Ξ±ΟΞ±Ξ³Ο‰Ξ³Ξ®"
 
 msgid "Received"
 msgstr ""
 
 #, fuzzy
 msgid "Year"
-msgstr "Κεφαλίδα"
+msgstr "ΞΞµΟ†Ξ±Ξ»Ξ―Ξ΄Ξ±"
 
 msgid "Month"
 msgstr ""
 
 #, fuzzy
 msgid "Day"
-msgstr "Ημέρες:"
+msgstr "Ξ—ΞΌΞ­ΟΞµΟ‚:"
 
 msgid "Weekday"
 msgstr ""
 
 #, fuzzy
 msgid "Hour"
-msgstr "ή"
+msgstr "Ξ®"
 
 msgid "Minute"
 msgstr ""
 
 #, fuzzy
 msgid "Second"
-msgstr "Αποστολέας"
+msgstr "Ξ‘Ο€ΞΏΟƒΟ„ΞΏΞ»Ξ­Ξ±Ο‚"
 
 #, fuzzy
 msgid "Sunday"
-msgstr "ημέρες"
+msgstr "Ξ·ΞΌΞ­ΟΞµΟ‚"
 
 #, fuzzy
 msgid "Monday"
-msgstr "Κύριο Μέρος"
+msgstr "ΞΟΟΞΉΞΏ ΞΞ­ΟΞΏΟ‚"
 
 msgid "Tuesday"
 msgstr ""
@@ -515,7 +515,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Friday"
-msgstr "ημέρες"
+msgstr "Ξ·ΞΌΞ­ΟΞµΟ‚"
 
 msgid "Saturday"
 msgstr ""
@@ -552,7 +552,7 @@ msgstr ""
 
 #, fuzzy
 msgid "June"
-msgstr "Φάκελος Αχρήστων"
+msgstr "Ξ¦Ξ¬ΞΊΞµΞ»ΞΏΟ‚ Ξ‘Ο‡ΟΞ®ΟƒΟ„Ο‰Ξ½"
 
 msgid "July"
 msgstr ""
@@ -583,29 +583,29 @@ msgstr ""
 
 #, fuzzy, php-format
 msgid "of header %s"
-msgstr "η κεφαλίδα %s"
+msgstr "Ξ· ΞΊΞµΟ†Ξ±Ξ»Ξ―Ξ΄Ξ± %s"
 
 msgid "Current date / time:"
 msgstr ""
 
 #, fuzzy
 msgid "Current date:"
-msgstr "Δημιουργήθηκε:"
+msgstr "Ξ”Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ®ΞΈΞ·ΞΊΞµ:"
 
 #, fuzzy
 msgid "message header"
-msgstr "σώμα μηνύματος"
+msgstr "ΟƒΟΞΌΞ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„ΞΏΟ‚"
 
 #, fuzzy
 msgid "Message header"
-msgstr "Φίλτρα Μηνυμάτων"
+msgstr "Ξ¦Ξ―Ξ»Ο„ΟΞ± ΞΞ·Ξ½Ο…ΞΌΞ¬Ο„Ο‰Ξ½"
 
 #, fuzzy, php-format
 msgid "is %s"
-msgstr "Επεξεργασία %s"
+msgstr "Ξ•Ο€ΞµΞΎΞµΟΞ³Ξ±ΟƒΞ―Ξ± %s"
 
 msgid "is"
-msgstr "είναι"
+msgstr "ΞµΞ―Ξ½Ξ±ΞΉ"
 
 #, php-format
 msgid "is before than %s (inclusive)"
@@ -617,11 +617,11 @@ msgstr ""
 
 #, fuzzy, php-format
 msgid "is before than %s"
-msgstr "είναι μικρότερη από"
+msgstr "ΞµΞ―Ξ½Ξ±ΞΉ ΞΌΞΉΞΊΟΟΟ„ΞµΟΞ· Ξ±Ο€Ο"
 
 #, fuzzy, php-format
 msgid "is after than %s"
-msgstr "είναι μεγαλύτερη από"
+msgstr "ΞµΞ―Ξ½Ξ±ΞΉ ΞΌΞµΞ³Ξ±Ξ»ΟΟ„ΞµΟΞ· Ξ±Ο€Ο"
 
 #, php-format
 msgid "&quot;%s&quot;"
@@ -632,301 +632,301 @@ msgid "&quot;<tt>%s:</tt>&quot;"
 msgstr ""
 
 msgid "AND (Every item must match)"
-msgstr "ΚΑΙ (όλες οι συνθήκες πρέπει να ισχύουν)"
+msgstr "ΞΞ‘Ξ™ (ΟΞ»ΞµΟ‚ ΞΏΞΉ ΟƒΟ…Ξ½ΞΈΞ®ΞΊΞµΟ‚ Ο€ΟΞ­Ο€ΞµΞΉ Ξ½Ξ± ΞΉΟƒΟ‡ΟΞΏΟ…Ξ½)"
 
 msgid "OR (Either item will match)"
-msgstr "Ή (οποιαδήποτε συνθήκη μπορεί να ισχύει)"
+msgstr "Ξ‰ (ΞΏΟ€ΞΏΞΉΞ±Ξ΄Ξ®Ο€ΞΏΟ„Ξµ ΟƒΟ…Ξ½ΞΈΞ®ΞΊΞ· ΞΌΟ€ΞΏΟΞµΞ― Ξ½Ξ± ΞΉΟƒΟ‡ΟΞµΞΉ)"
 
 msgid "Rule"
-msgstr "Κανόνας"
+msgstr "ΞΞ±Ξ½ΟΞ½Ξ±Ο‚"
 
 #, php-format
 msgid "Add a new %s"
-msgstr "Δημιουργία %s"
+msgstr "Ξ”Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ―Ξ± %s"
 
 msgid "SPAM Rule"
-msgstr "SPAM Κανόνα"
+msgstr "SPAM ΞΞ±Ξ½ΟΞ½Ξ±"
 
 msgid "Junk Mail Rule"
-msgstr "Κανόνα Ανεπιθύμητης Αλληλογραφίας"
+msgstr "ΞΞ±Ξ½ΟΞ½Ξ± Ξ‘Ξ½ΞµΟ€ΞΉΞΈΟΞΌΞ·Ο„Ξ·Ο‚ Ξ‘Ξ»Ξ»Ξ·Ξ»ΞΏΞ³ΟΞ±Ο†Ξ―Ξ±Ο‚"
 
 #, php-format
 msgid "Edit %s"
-msgstr "Επεξεργασία %s"
+msgstr "Ξ•Ο€ΞµΞΎΞµΟΞ³Ξ±ΟƒΞ―Ξ± %s"
 
 msgid "Whitelist"
-msgstr "Εξαιρέσεις (Whitelist)"
+msgstr "Ξ•ΞΎΞ±ΞΉΟΞ­ΟƒΞµΞΉΟ‚ (Whitelist)"
 
 #, php-format
 msgid "Add new %s"
-msgstr "Δημιουργία %s"
+msgstr "Ξ”Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ―Ξ± %s"
 
 msgid "Sieve Code"
-msgstr "Κώδικα Sieve"
+msgstr "ΞΟΞ΄ΞΉΞΊΞ± Sieve"
 
 msgid "Address"
-msgstr "Διεύθυνση"
+msgstr "Ξ”ΞΉΞµΟΞΈΟ…Ξ½ΟƒΞ·"
 
 msgid ""
 "Perform an action depending on email addresses appearing in message headers."
 msgstr ""
-"Ορισμός μιας ενέργειας στα μηνύματα όπου ταιριάζουν ηλεκτρονικές διευθύνσεις "
-"στις κεφαλίδες τους."
+"ΞΟΞΉΟƒΞΌΟΟ‚ ΞΌΞΉΞ±Ο‚ ΞµΞ½Ξ­ΟΞ³ΞµΞΉΞ±Ο‚ ΟƒΟ„Ξ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ± ΟΟ€ΞΏΟ… Ο„Ξ±ΞΉΟΞΉΞ¬Ξ¶ΞΏΟ…Ξ½ Ξ·Ξ»ΞµΞΊΟ„ΟΞΏΞ½ΞΉΞΊΞ­Ο‚ Ξ΄ΞΉΞµΟ…ΞΈΟΞ½ΟƒΞµΞΉΟ‚ "
+"ΟƒΟ„ΞΉΟ‚ ΞΊΞµΟ†Ξ±Ξ»Ξ―Ξ΄ΞµΟ‚ Ο„ΞΏΟ…Ο‚."
 
 msgid "Header"
-msgstr "Κεφαλίδα"
+msgstr "ΞΞµΟ†Ξ±Ξ»Ξ―Ξ΄Ξ±"
 
 msgid ""
 "Perform an action on messages matching a specified header (From, To etc.)."
 msgstr ""
-"Ορισμός μιας ενέργειας στα μηνύματα που ταιριάζει μία κεφαλίδα (Από, Προς κ."
-"λπ.)"
+"ΞΟΞΉΟƒΞΌΟΟ‚ ΞΌΞΉΞ±Ο‚ ΞµΞ½Ξ­ΟΞ³ΞµΞΉΞ±Ο‚ ΟƒΟ„Ξ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ± Ο€ΞΏΟ… Ο„Ξ±ΞΉΟΞΉΞ¬Ξ¶ΞµΞΉ ΞΌΞ―Ξ± ΞΊΞµΟ†Ξ±Ξ»Ξ―Ξ΄Ξ± (Ξ‘Ο€Ο, Ξ ΟΞΏΟ‚ ΞΊ."
+"Ξ»Ο€.)"
 
 msgid "Envelope"
-msgstr "Φάκελος"
+msgstr "Ξ¦Ξ¬ΞΊΞµΞ»ΞΏΟ‚"
 
 msgid ""
 "Perform an action on messages matching a specified envelope header (Envelope "
 "FROM, TO)."
 msgstr ""
-"Ορισμός μιας ενέργειας στα μηνύματα όπου ταιριάζει κάποιο στοιχείο φακελου "
+"ΞΟΞΉΟƒΞΌΟΟ‚ ΞΌΞΉΞ±Ο‚ ΞµΞ½Ξ­ΟΞ³ΞµΞΉΞ±Ο‚ ΟƒΟ„Ξ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ± ΟΟ€ΞΏΟ… Ο„Ξ±ΞΉΟΞΉΞ¬Ξ¶ΞµΞΉ ΞΊΞ¬Ο€ΞΏΞΉΞΏ ΟƒΟ„ΞΏΞΉΟ‡ΞµΞ―ΞΏ Ο†Ξ±ΞΊΞµΞ»ΞΏΟ… "
 "Envelope FROM, TO)."
 
 msgid "Size"
-msgstr "Μέγεθος"
+msgstr "ΞΞ­Ξ³ΞµΞΈΞΏΟ‚"
 
 msgid "Perform an action on messages depending on their size."
 msgstr ""
-"Ορισμός μίας ενέργειας στα μηνύματα που έχουν κάποιο συγκεκριμένο μέγεθος."
+"ΞΟΞΉΟƒΞΌΟΟ‚ ΞΌΞ―Ξ±Ο‚ ΞµΞ½Ξ­ΟΞ³ΞµΞΉΞ±Ο‚ ΟƒΟ„Ξ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ± Ο€ΞΏΟ… Ξ­Ο‡ΞΏΟ…Ξ½ ΞΊΞ¬Ο€ΞΏΞΉΞΏ ΟƒΟ…Ξ³ΞΊΞµΞΊΟΞΉΞΌΞ­Ξ½ΞΏ ΞΌΞ­Ξ³ΞµΞΈΞΏΟ‚."
 
 msgid "Body"
-msgstr "Κύριο Μέρος"
+msgstr "ΞΟΟΞΉΞΏ ΞΞ­ΟΞΏΟ‚"
 
 msgid "Perform an action on messages depending on their content (body text)."
 msgstr ""
-"Ορισμός μιας ενέργειας σε μηνύματα ανάλογα με το περιεχόμενο του ίδιου του "
-"μηνύματος."
+"ΞΟΞΉΟƒΞΌΟΟ‚ ΞΌΞΉΞ±Ο‚ ΞµΞ½Ξ­ΟΞ³ΞµΞΉΞ±Ο‚ ΟƒΞµ ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ± Ξ±Ξ½Ξ¬Ξ»ΞΏΞ³Ξ± ΞΌΞµ Ο„ΞΏ Ο€ΞµΟΞΉΞµΟ‡ΟΞΌΞµΞ½ΞΏ Ο„ΞΏΟ… Ξ―Ξ΄ΞΉΞΏΟ… Ο„ΞΏΟ… "
+"ΞΌΞ·Ξ½ΟΞΌΞ±Ο„ΞΏΟ‚."
 
 #, fuzzy
 msgid ""
 "Perform an action on messages depending on date or time related to the "
 "message."
 msgstr ""
-"Ορισμός μίας ενέργειας στα μηνύματα που έχουν κάποιο συγκεκριμένο μέγεθος."
+"ΞΟΞΉΟƒΞΌΟΟ‚ ΞΌΞ―Ξ±Ο‚ ΞµΞ½Ξ­ΟΞ³ΞµΞΉΞ±Ο‚ ΟƒΟ„Ξ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ± Ο€ΞΏΟ… Ξ­Ο‡ΞΏΟ…Ξ½ ΞΊΞ¬Ο€ΞΏΞΉΞΏ ΟƒΟ…Ξ³ΞΊΞµΞΊΟΞΉΞΌΞ­Ξ½ΞΏ ΞΌΞ­Ξ³ΞµΞΈΞΏΟ‚."
 
 msgid "All"
-msgstr "Όλα"
+msgstr "ΞΞ»Ξ±"
 
 msgid "Perform an action on <strong>all</strong> incoming messages."
 msgstr ""
-"Ορισμός μιας ενέργειας για <strong>όλα</strong> τα εισερχόμενα μηνύματα."
+"ΞΟΞΉΟƒΞΌΟΟ‚ ΞΌΞΉΞ±Ο‚ ΞµΞ½Ξ­ΟΞ³ΞµΞΉΞ±Ο‚ Ξ³ΞΉΞ± <strong>ΟΞ»Ξ±</strong> Ο„Ξ± ΞµΞΉΟƒΞµΟΟ‡ΟΞΌΞµΞ½Ξ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ±."
 
 msgid "contains"
-msgstr "περιέχει"
+msgstr "Ο€ΞµΟΞΉΞ­Ο‡ΞµΞΉ"
 
 msgid "does not contain"
-msgstr "δεν περιέχει"
+msgstr "Ξ΄ΞµΞ½ Ο€ΞµΟΞΉΞ­Ο‡ΞµΞΉ"
 
 msgid "is not"
-msgstr "δεν είναι"
+msgstr "Ξ΄ΞµΞ½ ΞµΞ―Ξ½Ξ±ΞΉ"
 
 msgid "matches"
-msgstr "ταιριάζει στο"
+msgstr "Ο„Ξ±ΞΉΟΞΉΞ¬Ξ¶ΞµΞΉ ΟƒΟ„ΞΏ"
 
 msgid "wildcard"
 msgstr "wildcard"
 
 msgid "does not match"
-msgstr "δεν ταιριάζει στο"
+msgstr "Ξ΄ΞµΞ½ Ο„Ξ±ΞΉΟΞΉΞ¬Ξ¶ΞµΞΉ ΟƒΟ„ΞΏ"
 
 msgid "regexp"
 msgstr "regexp"
 
 msgid "is greater than"
-msgstr "είναι μεγαλύτερη από"
+msgstr "ΞµΞ―Ξ½Ξ±ΞΉ ΞΌΞµΞ³Ξ±Ξ»ΟΟ„ΞµΟΞ· Ξ±Ο€Ο"
 
 msgid "is greater or equal to"
-msgstr "είναι μεγαλύτερη ή ίση με"
+msgstr "ΞµΞ―Ξ½Ξ±ΞΉ ΞΌΞµΞ³Ξ±Ξ»ΟΟ„ΞµΟΞ· Ξ® Ξ―ΟƒΞ· ΞΌΞµ"
 
 msgid "is lower than"
-msgstr "είναι μικρότερη από"
+msgstr "ΞµΞ―Ξ½Ξ±ΞΉ ΞΌΞΉΞΊΟΟΟ„ΞµΟΞ· Ξ±Ο€Ο"
 
 msgid "is lower or equal to"
-msgstr "είναι μικρότερη ή ίση με"
+msgstr "ΞµΞ―Ξ½Ξ±ΞΉ ΞΌΞΉΞΊΟΟΟ„ΞµΟΞ· Ξ® Ξ―ΟƒΞ· ΞΌΞµ"
 
 msgid "is equal to"
-msgstr "ισούται με"
+msgstr "ΞΉΟƒΞΏΟΟ„Ξ±ΞΉ ΞΌΞµ"
 
 msgid "is not equal to"
-msgstr "δεν ισούται με"
+msgstr "Ξ΄ΞµΞ½ ΞΉΟƒΞΏΟΟ„Ξ±ΞΉ ΞΌΞµ"
 
 msgid "verbose"
-msgstr "αναλυτικά"
+msgstr "Ξ±Ξ½Ξ±Ξ»Ο…Ο„ΞΉΞΊΞ¬"
 
 msgid "Textual descriptions of the rules"
-msgstr "Αναλυτικές περιγραφές των κανόνων"
+msgstr "Ξ‘Ξ½Ξ±Ξ»Ο…Ο„ΞΉΞΊΞ­Ο‚ Ο€ΞµΟΞΉΞ³ΟΞ±Ο†Ξ­Ο‚ Ο„Ο‰Ξ½ ΞΊΞ±Ξ½ΟΞ½Ο‰Ξ½"
 
 msgid "terse"
-msgstr "σύντομα"
+msgstr "ΟƒΟΞ½Ο„ΞΏΞΌΞ±"
 
 msgid "More suitable for viewing the table of rules at once"
-msgstr "Πιο κατάλληλο για να βλέπετε εποπτικά τους κανόνες"
+msgstr "Ξ ΞΉΞΏ ΞΊΞ±Ο„Ξ¬Ξ»Ξ»Ξ·Ξ»ΞΏ Ξ³ΞΉΞ± Ξ½Ξ± Ξ²Ξ»Ξ­Ο€ΞµΟ„Ξµ ΞµΟ€ΞΏΟ€Ο„ΞΉΞΊΞ¬ Ο„ΞΏΟ…Ο‚ ΞΊΞ±Ξ½ΟΞ½ΞµΟ‚"
 
 msgid "source"
-msgstr "κώδικας"
+msgstr "ΞΊΟΞ΄ΞΉΞΊΞ±Ο‚"
 
 msgid "Display SIEVE source"
-msgstr "Εμφάνιση πηγαίου κώδικα SIEVE"
+msgstr "Ξ•ΞΌΟ†Ξ¬Ξ½ΞΉΟƒΞ· Ο€Ξ·Ξ³Ξ±Ξ―ΞΏΟ… ΞΊΟΞ΄ΞΉΞΊΞ± SIEVE"
 
 msgid "Low"
-msgstr "Χαμηλή"
+msgstr "Ξ§Ξ±ΞΌΞ·Ξ»Ξ®"
 
 msgid "Normal"
-msgstr "Κανονική"
+msgstr "ΞΞ±Ξ½ΞΏΞ½ΞΉΞΊΞ®"
 
 msgid "High"
-msgstr "Υψηλή"
+msgstr "Ξ¥ΟΞ·Ξ»Ξ®"
 
 msgid "Delete"
-msgstr "Διαγραφή"
+msgstr "Ξ”ΞΉΞ±Ξ³ΟΞ±Ο†Ξ®"
 
 msgid "Edit"
-msgstr "Επεξεργασία"
+msgstr "Ξ•Ο€ΞµΞΎΞµΟΞ³Ξ±ΟƒΞ―Ξ±"
 
 msgid "Duplicate"
-msgstr "Αναπαραγωγή"
+msgstr "Ξ‘Ξ½Ξ±Ο€Ξ±ΟΞ±Ξ³Ο‰Ξ³Ξ®"
 
 msgid "Move Up"
-msgstr "Μετακίνηση Πάνω"
+msgstr "ΞΞµΟ„Ξ±ΞΊΞ―Ξ½Ξ·ΟƒΞ· Ξ Ξ¬Ξ½Ο‰"
 
 msgid "Move to Top"
-msgstr "Μετακίνηση στην Αρχή"
+msgstr "ΞΞµΟ„Ξ±ΞΊΞ―Ξ½Ξ·ΟƒΞ· ΟƒΟ„Ξ·Ξ½ Ξ‘ΟΟ‡Ξ®"
 
 msgid "Move Down"
-msgstr "Μετακίνηση Κάτω"
+msgstr "ΞΞµΟ„Ξ±ΞΊΞ―Ξ½Ξ·ΟƒΞ· ΞΞ¬Ο„Ο‰"
 
 msgid "Move to Bottom"
-msgstr "Μετακίνηση στο Τέλος"
+msgstr "ΞΞµΟ„Ξ±ΞΊΞ―Ξ½Ξ·ΟƒΞ· ΟƒΟ„ΞΏ Ξ¤Ξ­Ξ»ΞΏΟ‚"
 
 msgid "Junk Folder"
-msgstr "Φάκελος Αχρήστων"
+msgstr "Ξ¦Ξ¬ΞΊΞµΞ»ΞΏΟ‚ Ξ‘Ο‡ΟΞ®ΟƒΟ„Ο‰Ξ½"
 
 #, php-format
 msgid ""
 "Store SPAM message in your Junk Folder. Messages older than %s days will be "
 "deleted automatically."
 msgstr ""
-"Αποθήκευσε το μήνυμα SPAM στον Φάκελο Αχρήστων. Μηνύματα παλαιότερα από %s "
-"μέρες θα διαγράφονται αυτόματα."
+"Ξ‘Ο€ΞΏΞΈΞ®ΞΊΞµΟ…ΟƒΞµ Ο„ΞΏ ΞΌΞ®Ξ½Ο…ΞΌΞ± SPAM ΟƒΟ„ΞΏΞ½ Ξ¦Ξ¬ΞΊΞµΞ»ΞΏ Ξ‘Ο‡ΟΞ®ΟƒΟ„Ο‰Ξ½. ΞΞ·Ξ½ΟΞΌΞ±Ο„Ξ± Ο€Ξ±Ξ»Ξ±ΞΉΟΟ„ΞµΟΞ± Ξ±Ο€Ο %s "
+"ΞΌΞ­ΟΞµΟ‚ ΞΈΞ± Ξ΄ΞΉΞ±Ξ³ΟΞ¬Ο†ΞΏΞ½Ο„Ξ±ΞΉ Ξ±Ο…Ο„ΟΞΌΞ±Ο„Ξ±."
 
 msgid "Trash Folder"
-msgstr "Φάκελος Διαγραμμένων"
+msgstr "Ξ¦Ξ¬ΞΊΞµΞ»ΞΏΟ‚ Ξ”ΞΉΞ±Ξ³ΟΞ±ΞΌΞΌΞ­Ξ½Ο‰Ξ½"
 
 msgid ""
 "Store SPAM message in your Trash Folder. You will have to purge the folder "
 "yourself."
 msgstr ""
-"Αποθήκευσε το μήνυμα SPAM στον Φάκελο Διαγραμμένων. Θα πρέπει να κάνετε "
-"τακτικά εκκαθάριση αυτού του φακέλου."
+"Ξ‘Ο€ΞΏΞΈΞ®ΞΊΞµΟ…ΟƒΞµ Ο„ΞΏ ΞΌΞ®Ξ½Ο…ΞΌΞ± SPAM ΟƒΟ„ΞΏΞ½ Ξ¦Ξ¬ΞΊΞµΞ»ΞΏ Ξ”ΞΉΞ±Ξ³ΟΞ±ΞΌΞΌΞ­Ξ½Ο‰Ξ½. ΞΞ± Ο€ΟΞ­Ο€ΞµΞΉ Ξ½Ξ± ΞΊΞ¬Ξ½ΞµΟ„Ξµ "
+"Ο„Ξ±ΞΊΟ„ΞΉΞΊΞ¬ ΞµΞΊΞΊΞ±ΞΈΞ¬ΟΞΉΟƒΞ· Ξ±Ο…Ο„ΞΏΟ Ο„ΞΏΟ… Ο†Ξ±ΞΊΞ­Ξ»ΞΏΟ…."
 
 msgid ""
 "Discard SPAM message. You will get no indication that the message ever "
 "arrived."
 msgstr ""
-"Απόρριψη του μηνύματος SPAM. Δε θα λαμβάνετε καμμία ειδοποίηση ότι το μήνυμα "
-"αυτό έφτασε ποτέ."
+"Ξ‘Ο€ΟΟΟΞΉΟΞ· Ο„ΞΏΟ… ΞΌΞ·Ξ½ΟΞΌΞ±Ο„ΞΏΟ‚ SPAM. Ξ”Ξµ ΞΈΞ± Ξ»Ξ±ΞΌΞ²Ξ¬Ξ½ΞµΟ„Ξµ ΞΊΞ±ΞΌΞΌΞ―Ξ± ΞµΞΉΞ΄ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ· ΟΟ„ΞΉ Ο„ΞΏ ΞΌΞ®Ξ½Ο…ΞΌΞ± "
+"Ξ±Ο…Ο„Ο Ξ­Ο†Ο„Ξ±ΟƒΞµ Ο€ΞΏΟ„Ξ­."
 
 msgid "Server-Side Mail Filtering"
-msgstr "Φίλτρα Ταχυδρομείου στον Εξυπηρετητή"
+msgstr "Ξ¦Ξ―Ξ»Ο„ΟΞ± Ξ¤Ξ±Ο‡Ο…Ξ΄ΟΞΏΞΌΞµΞ―ΞΏΟ… ΟƒΟ„ΞΏΞ½ Ξ•ΞΎΟ…Ο€Ξ·ΟΞµΟ„Ξ·Ο„Ξ®"
 
 msgid "Successfully added new rule."
-msgstr "Νέος κανόνας προστέθηκε με επιτυχία."
+msgstr "ΞΞ­ΞΏΟ‚ ΞΊΞ±Ξ½ΟΞ½Ξ±Ο‚ Ο€ΟΞΏΟƒΟ„Ξ­ΞΈΞ·ΞΊΞµ ΞΌΞµ ΞµΟ€ΞΉΟ„Ο…Ο‡Ξ―Ξ±."
 
 #, php-format
 msgid "Successfully updated rule #%s"
-msgstr "Ενημερώθηκε ο κανόνας #%s"
+msgstr "Ξ•Ξ½Ξ·ΞΌΞµΟΟΞΈΞ·ΞΊΞµ ΞΏ ΞΊΞ±Ξ½ΟΞ½Ξ±Ο‚ #%s"
 
 #, php-format
 msgid "Successfully deleted rules #%s"
-msgstr "Διαγράφηκαν οι κανόνες #%s"
+msgstr "Ξ”ΞΉΞ±Ξ³ΟΞ¬Ο†Ξ·ΞΊΞ±Ξ½ ΞΏΞΉ ΞΊΞ±Ξ½ΟΞ½ΞµΟ‚ #%s"
 
 #, php-format
 msgid "Successfully deleted rule #%s"
-msgstr "Διαγράφηκε ο κανόνας #%s"
+msgstr "Ξ”ΞΉΞ±Ξ³ΟΞ¬Ο†Ξ·ΞΊΞµ ΞΏ ΞΊΞ±Ξ½ΟΞ½Ξ±Ο‚ #%s"
 
 msgid "You must correct the above errors before continuing."
-msgstr "Πρέπει να διορθώσετε τα παραπάνω λάθη πριν συνεχίσετε."
+msgstr "Ξ ΟΞ­Ο€ΞµΞΉ Ξ½Ξ± Ξ΄ΞΉΞΏΟΞΈΟΟƒΞµΟ„Ξµ Ο„Ξ± Ο€Ξ±ΟΞ±Ο€Ξ¬Ξ½Ο‰ Ξ»Ξ¬ΞΈΞ· Ο€ΟΞΉΞ½ ΟƒΟ…Ξ½ΞµΟ‡Ξ―ΟƒΞµΟ„Ξµ."
 
 msgid "No check"
-msgstr "Χωρίς Έλεγχο"
+msgstr "Ξ§Ο‰ΟΞ―Ο‚ ΞΞ»ΞµΞ³Ο‡ΞΏ"
 
 #, php-format
 msgid "Editing %s"
-msgstr "Επεξεργασία %s"
+msgstr "Ξ•Ο€ΞµΞΎΞµΟΞ³Ξ±ΟƒΞ―Ξ± %s"
 
 #, php-format
 msgid "(Rule #%s)"
-msgstr "(Κανόνας #%s)"
+msgstr "(ΞΞ±Ξ½ΟΞ½Ξ±Ο‚ #%s)"
 
 #, php-format
 msgid "Add a new %s "
-msgstr "Δημιουργία ενός %s"
+msgstr "Ξ”Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ―Ξ± ΞµΞ½ΟΟ‚ %s"
 
 msgid "Configure Anti-SPAM Protection"
-msgstr "Παραμετροποίηση της προστασίας από SPAM"
+msgstr "Ξ Ξ±ΟΞ±ΞΌΞµΟ„ΟΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ· Ο„Ξ·Ο‚ Ο€ΟΞΏΟƒΟ„Ξ±ΟƒΞ―Ξ±Ο‚ Ξ±Ο€Ο SPAM"
 
 msgid ""
 "All incoming mail is checked for unsolicited commercial content (SPAM) and "
 "marked accordingly. This special rule allows you to configure what to do "
 "with such messages once they arrive to your Inbox."
 msgstr ""
-"Όλα τα εισερχόμενα μηνύματα ελέγχονται αν έχουν διαφημιστικό περιεχόμενο "
-"(SPAM) και μαρκάρονται ανάλογα. Αυτός ο ειδικός κανόνας σάς επιτρέπει να "
-"ορίσετε τι θα γίνεται σε αυτά τα μηνύματα όταν φτάσουν στα εισερχόμενα."
+"ΞΞ»Ξ± Ο„Ξ± ΞµΞΉΟƒΞµΟΟ‡ΟΞΌΞµΞ½Ξ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ± ΞµΞ»Ξ­Ξ³Ο‡ΞΏΞ½Ο„Ξ±ΞΉ Ξ±Ξ½ Ξ­Ο‡ΞΏΟ…Ξ½ Ξ΄ΞΉΞ±Ο†Ξ·ΞΌΞΉΟƒΟ„ΞΉΞΊΟ Ο€ΞµΟΞΉΞµΟ‡ΟΞΌΞµΞ½ΞΏ "
+"(SPAM) ΞΊΞ±ΞΉ ΞΌΞ±ΟΞΊΞ¬ΟΞΏΞ½Ο„Ξ±ΞΉ Ξ±Ξ½Ξ¬Ξ»ΞΏΞ³Ξ±. Ξ‘Ο…Ο„ΟΟ‚ ΞΏ ΞµΞΉΞ΄ΞΉΞΊΟΟ‚ ΞΊΞ±Ξ½ΟΞ½Ξ±Ο‚ ΟƒΞ¬Ο‚ ΞµΟ€ΞΉΟ„ΟΞ­Ο€ΞµΞΉ Ξ½Ξ± "
+"ΞΏΟΞ―ΟƒΞµΟ„Ξµ Ο„ΞΉ ΞΈΞ± Ξ³Ξ―Ξ½ΞµΟ„Ξ±ΞΉ ΟƒΞµ Ξ±Ο…Ο„Ξ¬ Ο„Ξ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ± ΟΟ„Ξ±Ξ½ Ο†Ο„Ξ¬ΟƒΞΏΟ…Ξ½ ΟƒΟ„Ξ± ΞµΞΉΟƒΞµΟΟ‡ΟΞΌΞµΞ½Ξ±."
 
 #, php-format
 msgid ""
 "Select %s to add the predefined rule, or select the advanced SPAM filter to "
 "customize the rule."
 msgstr ""
-"Επιλέξτε %s για να προσθέσετε τον προκαθορισμένο κανόνα, ή επιλέξτε την "
-"επιλογή για προχωρημένους για να παραμετροποιήσετε τον κανόνα."
+"Ξ•Ο€ΞΉΞ»Ξ­ΞΎΟ„Ξµ %s Ξ³ΞΉΞ± Ξ½Ξ± Ο€ΟΞΏΟƒΞΈΞ­ΟƒΞµΟ„Ξµ Ο„ΞΏΞ½ Ο€ΟΞΏΞΊΞ±ΞΈΞΏΟΞΉΟƒΞΌΞ­Ξ½ΞΏ ΞΊΞ±Ξ½ΟΞ½Ξ±, Ξ® ΞµΟ€ΞΉΞ»Ξ­ΞΎΟ„Ξµ Ο„Ξ·Ξ½ "
+"ΞµΟ€ΞΉΞ»ΞΏΞ³Ξ® Ξ³ΞΉΞ± Ο€ΟΞΏΟ‡Ο‰ΟΞ·ΞΌΞ­Ξ½ΞΏΟ…Ο‚ Ξ³ΞΉΞ± Ξ½Ξ± Ο€Ξ±ΟΞ±ΞΌΞµΟ„ΟΞΏΟ€ΞΏΞΉΞ®ΟƒΞµΟ„Ξµ Ο„ΞΏΞ½ ΞΊΞ±Ξ½ΟΞ½Ξ±."
 
 msgid "Add Spam Rule"
-msgstr "Δημιουργία Νέου Spam Κανόνα"
+msgstr "Ξ”Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ―Ξ± ΞΞ­ΞΏΟ… Spam ΞΞ±Ξ½ΟΞ½Ξ±"
 
 msgid "Advanced Spam Filter..."
-msgstr "Φίλτρο Spam για προχωρημένους..."
+msgstr "Ξ¦Ξ―Ξ»Ο„ΟΞΏ Spam Ξ³ΞΉΞ± Ο€ΟΞΏΟ‡Ο‰ΟΞ·ΞΌΞ­Ξ½ΞΏΟ…Ο‚..."
 
 msgid "Target Score"
-msgstr "Επιθυμητό Σκορ"
+msgstr "Ξ•Ο€ΞΉΞΈΟ…ΞΌΞ·Ο„Ο Ξ£ΞΊΞΏΟ"
 
 #, php-format
 msgid ""
 "Messages with SPAM-Score higher than the target value, the maximum value "
 "being %s, will be considered SPAM."
 msgstr ""
-"Μηνύματα με Σκορ πάνω από την τιμή του επιθυμητού, με το μέγιστο να είναι %"
-"s, θα θεωρούνται SPAM."
+"ΞΞ·Ξ½ΟΞΌΞ±Ο„Ξ± ΞΌΞµ Ξ£ΞΊΞΏΟ Ο€Ξ¬Ξ½Ο‰ Ξ±Ο€Ο Ο„Ξ·Ξ½ Ο„ΞΉΞΌΞ® Ο„ΞΏΟ… ΞµΟ€ΞΉΞΈΟ…ΞΌΞ·Ο„ΞΏΟ, ΞΌΞµ Ο„ΞΏ ΞΌΞ­Ξ³ΞΉΟƒΟ„ΞΏ Ξ½Ξ± ΞµΞ―Ξ½Ξ±ΞΉ %"
+"s, ΞΈΞ± ΞΈΞµΟ‰ΟΞΏΟΞ½Ο„Ξ±ΞΉ SPAM."
 
 msgid "SPAM Lists to check against"
-msgstr "Λίστες SPAM με τις οποίες θα γίνει ο έλεγχος"
+msgstr "Ξ›Ξ―ΟƒΟ„ΞµΟ‚ SPAM ΞΌΞµ Ο„ΞΉΟ‚ ΞΏΟ€ΞΏΞ―ΞµΟ‚ ΞΈΞ± Ξ³Ξ―Ξ½ΞµΞΉ ΞΏ Ξ­Ξ»ΞµΞ³Ο‡ΞΏΟ‚"
 
 msgid ""
 "Messages that match any of these header rules will never end up in Junk "
 "Folders or regarded as SPAM."
 msgstr ""
-"Τα μηνύματα όπου ταιριάζει οποιαδήποτε από τις παρακάτω κεφαλίδες δε θα "
-"καταλήξουν ποτέ σε φάκελο αχρήστων, ούτε θα θεωρηθούν ως SPAM."
+"Ξ¤Ξ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ± ΟΟ€ΞΏΟ… Ο„Ξ±ΞΉΟΞΉΞ¬Ξ¶ΞµΞΉ ΞΏΟ€ΞΏΞΉΞ±Ξ΄Ξ®Ο€ΞΏΟ„Ξµ Ξ±Ο€Ο Ο„ΞΉΟ‚ Ο€Ξ±ΟΞ±ΞΊΞ¬Ο„Ο‰ ΞΊΞµΟ†Ξ±Ξ»Ξ―Ξ΄ΞµΟ‚ Ξ΄Ξµ ΞΈΞ± "
+"ΞΊΞ±Ο„Ξ±Ξ»Ξ®ΞΎΞΏΟ…Ξ½ Ο€ΞΏΟ„Ξ­ ΟƒΞµ Ο†Ξ¬ΞΊΞµΞ»ΞΏ Ξ±Ο‡ΟΞ®ΟƒΟ„Ο‰Ξ½, ΞΏΟΟ„Ξµ ΞΈΞ± ΞΈΞµΟ‰ΟΞ·ΞΈΞΏΟΞ½ Ο‰Ο‚ SPAM."
 
 msgid "Apply Changes"
-msgstr "Ενεργοποίηση Αλλαγών"
+msgstr "Ξ•Ξ½ΞµΟΞ³ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ· Ξ‘Ξ»Ξ»Ξ±Ξ³ΟΞ½"
 
 msgid "Cancel"
-msgstr "Ακύρωση"
+msgstr "Ξ‘ΞΊΟΟΟ‰ΟƒΞ·"
 
 msgid "Information..."
-msgstr "Πληροφορίες..."
+msgstr "Ξ Ξ»Ξ·ΟΞΏΟ†ΞΏΟΞ―ΞµΟ‚..."
 
 #, php-format
 msgid ""
@@ -934,118 +934,118 @@ msgid ""
 "default settings. To add the Junk Mail Filter, simply choose <em>&quot;%"
 "s&quot;</em>."
 msgstr ""
-"Αυτή τη στιγμή δεν υπάρχει Φίλτρο Ανεπιθύμητης Αλληλογραφίας, οπότε "
-"συστήνουμε τις ακόλουθες προεπιλογές. Για να προσθέσετε αυτό το Φίλτρο "
-"Ανεπιθύμητης Αλληλογραφίας, απλά επιλέξτε <em>&quot;%s&quot;</em>."
+"Ξ‘Ο…Ο„Ξ® Ο„Ξ· ΟƒΟ„ΞΉΞ³ΞΌΞ® Ξ΄ΞµΞ½ Ο…Ο€Ξ¬ΟΟ‡ΞµΞΉ Ξ¦Ξ―Ξ»Ο„ΟΞΏ Ξ‘Ξ½ΞµΟ€ΞΉΞΈΟΞΌΞ·Ο„Ξ·Ο‚ Ξ‘Ξ»Ξ»Ξ·Ξ»ΞΏΞ³ΟΞ±Ο†Ξ―Ξ±Ο‚, ΞΏΟ€ΟΟ„Ξµ "
+"ΟƒΟ…ΟƒΟ„Ξ®Ξ½ΞΏΟ…ΞΌΞµ Ο„ΞΉΟ‚ Ξ±ΞΊΟΞ»ΞΏΟ…ΞΈΞµΟ‚ Ο€ΟΞΏΞµΟ€ΞΉΞ»ΞΏΞ³Ξ­Ο‚. Ξ“ΞΉΞ± Ξ½Ξ± Ο€ΟΞΏΟƒΞΈΞ­ΟƒΞµΟ„Ξµ Ξ±Ο…Ο„Ο Ο„ΞΏ Ξ¦Ξ―Ξ»Ο„ΟΞΏ "
+"Ξ‘Ξ½ΞµΟ€ΞΉΞΈΟΞΌΞ·Ο„Ξ·Ο‚ Ξ‘Ξ»Ξ»Ξ·Ξ»ΞΏΞ³ΟΞ±Ο†Ξ―Ξ±Ο‚, Ξ±Ο€Ξ»Ξ¬ ΞµΟ€ΞΉΞ»Ξ­ΞΎΟ„Ξµ <em>&quot;%s&quot;</em>."
 
 msgid "Enable Junk Mail Filtering"
-msgstr "Ενεργοποίηση Φίλτρου Ανεπιθύμητης Αλληλογραφίας"
+msgstr "Ξ•Ξ½ΞµΟΞ³ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ· Ξ¦Ξ―Ξ»Ο„ΟΞΏΟ… Ξ‘Ξ½ΞµΟ€ΞΉΞΈΟΞΌΞ·Ο„Ξ·Ο‚ Ξ‘Ξ»Ξ»Ξ·Ξ»ΞΏΞ³ΟΞ±Ο†Ξ―Ξ±Ο‚"
 
 msgid "Automatically delete Junk Messages"
-msgstr "Διέγραψε τα μηνύματα ανεπιθύμητης αλληλογραφίας αυτόματα"
+msgstr "Ξ”ΞΉΞ­Ξ³ΟΞ±ΟΞµ Ο„Ξ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ± Ξ±Ξ½ΞµΟ€ΞΉΞΈΟΞΌΞ·Ο„Ξ·Ο‚ Ξ±Ξ»Ξ»Ξ·Ξ»ΞΏΞ³ΟΞ±Ο†Ξ―Ξ±Ο‚ Ξ±Ο…Ο„ΟΞΌΞ±Ο„Ξ±"
 
 #, php-format
 msgid "when they are older than %s days"
-msgstr "όταν είναι παλαιότερα από %s ημέρες"
+msgstr "ΟΟ„Ξ±Ξ½ ΞµΞ―Ξ½Ξ±ΞΉ Ο€Ξ±Ξ»Ξ±ΞΉΟΟ„ΞµΟΞ± Ξ±Ο€Ο %s Ξ·ΞΌΞ­ΟΞµΟ‚"
 
 msgid "Enable Whitelist"
-msgstr "Ενεργοποίηση Λίστας Εξαιρέσεων (Whitelist)"
+msgstr "Ξ•Ξ½ΞµΟΞ³ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ· Ξ›Ξ―ΟƒΟ„Ξ±Ο‚ Ξ•ΞΎΞ±ΞΉΟΞ­ΟƒΞµΟ‰Ξ½ (Whitelist)"
 
 msgid ""
 "Messages sent from the addresses in your Whitelist will never end up in your "
 "Junk Mail folder, or considered as SPAM."
 msgstr ""
-"Τα μηνύματα που στάλθηκαν από διευθύνσεις που βρίσκονται στη λίστα "
-"εξαιρέσεων, δε θα καταλήξουν ποτέ σε φάκελο αχρήστων, ούτε θα θεωρηθούν ως "
+"Ξ¤Ξ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ± Ο€ΞΏΟ… ΟƒΟ„Ξ¬Ξ»ΞΈΞ·ΞΊΞ±Ξ½ Ξ±Ο€Ο Ξ΄ΞΉΞµΟ…ΞΈΟΞ½ΟƒΞµΞΉΟ‚ Ο€ΞΏΟ… Ξ²ΟΞ―ΟƒΞΊΞΏΞ½Ο„Ξ±ΞΉ ΟƒΟ„Ξ· Ξ»Ξ―ΟƒΟ„Ξ± "
+"ΞµΞΎΞ±ΞΉΟΞ­ΟƒΞµΟ‰Ξ½, Ξ΄Ξµ ΞΈΞ± ΞΊΞ±Ο„Ξ±Ξ»Ξ®ΞΎΞΏΟ…Ξ½ Ο€ΞΏΟ„Ξ­ ΟƒΞµ Ο†Ξ¬ΞΊΞµΞ»ΞΏ Ξ±Ο‡ΟΞ®ΟƒΟ„Ο‰Ξ½, ΞΏΟΟ„Ξµ ΞΈΞ± ΞΈΞµΟ‰ΟΞ·ΞΈΞΏΟΞ½ Ο‰Ο‚ "
 "SPAM."
 
 msgid "Edit Whitelist...."
-msgstr "Επεξεργασία Λίστας Εξαιρέσεων..."
+msgstr "Ξ•Ο€ΞµΞΎΞµΟΞ³Ξ±ΟƒΞ―Ξ± Ξ›Ξ―ΟƒΟ„Ξ±Ο‚ Ξ•ΞΎΞ±ΞΉΟΞ­ΟƒΞµΟ‰Ξ½..."
 
 msgid "Automatically add all your Address Book Contacts in the Whitelist"
 msgstr ""
-"Αυτόματη προσθήκη των επαφών του Βιβλίου Διευθύνσεων στη Λίστα Εξαιρέσεων"
+"Ξ‘Ο…Ο„ΟΞΌΞ±Ο„Ξ· Ο€ΟΞΏΟƒΞΈΞ®ΞΊΞ· Ο„Ο‰Ξ½ ΞµΟ€Ξ±Ο†ΟΞ½ Ο„ΞΏΟ… Ξ’ΞΉΞ²Ξ»Ξ―ΞΏΟ… Ξ”ΞΉΞµΟ…ΞΈΟΞ½ΟƒΞµΟ‰Ξ½ ΟƒΟ„Ξ· Ξ›Ξ―ΟƒΟ„Ξ± Ξ•ΞΎΞ±ΞΉΟΞ­ΟƒΞµΟ‰Ξ½"
 
 msgid "Configure Advanced Junk Mail Tests"
-msgstr "Επεξεργασία Προχωρημένων Ελέγχων Ανεπιθύμητης Αλληλογραφίας"
+msgstr "Ξ•Ο€ΞµΞΎΞµΟΞ³Ξ±ΟƒΞ―Ξ± Ξ ΟΞΏΟ‡Ο‰ΟΞ·ΞΌΞ­Ξ½Ο‰Ξ½ Ξ•Ξ»Ξ­Ξ³Ο‡Ο‰Ξ½ Ξ‘Ξ½ΞµΟ€ΞΉΞΈΟΞΌΞ·Ο„Ξ·Ο‚ Ξ‘Ξ»Ξ»Ξ·Ξ»ΞΏΞ³ΟΞ±Ο†Ξ―Ξ±Ο‚"
 
 msgid "You have to enable at least one Junk Mail Test."
 msgstr ""
-"Πρέπει να ενεργοποιήσετε τουλάχιστον ένα Τεστ Ανεπιθύμητης Αλληλογραφίας"
+"Ξ ΟΞ­Ο€ΞµΞΉ Ξ½Ξ± ΞµΞ½ΞµΟΞ³ΞΏΟ€ΞΏΞΉΞ®ΟƒΞµΟ„Ξµ Ο„ΞΏΟ…Ξ»Ξ¬Ο‡ΞΉΟƒΟ„ΞΏΞ½ Ξ­Ξ½Ξ± Ξ¤ΞµΟƒΟ„ Ξ‘Ξ½ΞµΟ€ΞΉΞΈΟΞΌΞ·Ο„Ξ·Ο‚ Ξ‘Ξ»Ξ»Ξ·Ξ»ΞΏΞ³ΟΞ±Ο†Ξ―Ξ±Ο‚"
 
 msgid "Junk Mail Options have been saved."
-msgstr "Οι Επιλογές Ανεπιθύμητης Αλληλογραφίας έχουν αποθηκευτεί."
+msgstr "ΞΞΉ Ξ•Ο€ΞΉΞ»ΞΏΞ³Ξ­Ο‚ Ξ‘Ξ½ΞµΟ€ΞΉΞΈΟΞΌΞ·Ο„Ξ·Ο‚ Ξ‘Ξ»Ξ»Ξ·Ξ»ΞΏΞ³ΟΞ±Ο†Ξ―Ξ±Ο‚ Ξ­Ο‡ΞΏΟ…Ξ½ Ξ±Ο€ΞΏΞΈΞ·ΞΊΞµΟ…Ο„ΞµΞ―."
 
 msgid "Editing Whitelist"
-msgstr "Επεξεργασία Εξαιρέσεων (Whitelist)"
+msgstr "Ξ•Ο€ΞµΞΎΞµΟΞ³Ξ±ΟƒΞ―Ξ± Ξ•ΞΎΞ±ΞΉΟΞ­ΟƒΞµΟ‰Ξ½ (Whitelist)"
 
 msgid ""
 "Messages coming from the email addresses that you enter here will never end "
 "up in your Junk folder or be considered as SPAM."
 msgstr ""
-"Τα μηνύματα που προέρχονται από τις email διευθύνσεις που εισάγετε εδώ, δε "
-"θα καταλήξουν ποτέ σε φάκελο αχρήστων, ούτε θα θεωρηθούν ως SPAM."
+"Ξ¤Ξ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ± Ο€ΞΏΟ… Ο€ΟΞΏΞ­ΟΟ‡ΞΏΞ½Ο„Ξ±ΞΉ Ξ±Ο€Ο Ο„ΞΉΟ‚ email Ξ΄ΞΉΞµΟ…ΞΈΟΞ½ΟƒΞµΞΉΟ‚ Ο€ΞΏΟ… ΞµΞΉΟƒΞ¬Ξ³ΞµΟ„Ξµ ΞµΞ΄Ο, Ξ΄Ξµ "
+"ΞΈΞ± ΞΊΞ±Ο„Ξ±Ξ»Ξ®ΞΎΞΏΟ…Ξ½ Ο€ΞΏΟ„Ξ­ ΟƒΞµ Ο†Ξ¬ΞΊΞµΞ»ΞΏ Ξ±Ο‡ΟΞ®ΟƒΟ„Ο‰Ξ½, ΞΏΟΟ„Ξµ ΞΈΞ± ΞΈΞµΟ‰ΟΞ·ΞΈΞΏΟΞ½ Ο‰Ο‚ SPAM."
 
 msgid ""
 "Enter <strong>one (1) email address per line</strong>. Note that you can "
 "also enter an incomplete address or a mail domain."
 msgstr ""
-"Εισάγετε <strong>μία (1) διεύθυνση σε κάθε γραμμή</strong>. Σημειώστε ότι "
-"μπορείτε επίσης να εισάγετε κομμάτι μιας διεύθυνσης ή ένα domain."
+"Ξ•ΞΉΟƒΞ¬Ξ³ΞµΟ„Ξµ <strong>ΞΌΞ―Ξ± (1) Ξ΄ΞΉΞµΟΞΈΟ…Ξ½ΟƒΞ· ΟƒΞµ ΞΊΞ¬ΞΈΞµ Ξ³ΟΞ±ΞΌΞΌΞ®</strong>. Ξ£Ξ·ΞΌΞµΞΉΟΟƒΟ„Ξµ ΟΟ„ΞΉ "
+"ΞΌΟ€ΞΏΟΞµΞ―Ο„Ξµ ΞµΟ€Ξ―ΟƒΞ·Ο‚ Ξ½Ξ± ΞµΞΉΟƒΞ¬Ξ³ΞµΟ„Ξµ ΞΊΞΏΞΌΞΌΞ¬Ο„ΞΉ ΞΌΞΉΞ±Ο‚ Ξ΄ΞΉΞµΟΞΈΟ…Ξ½ΟƒΞ·Ο‚ Ξ® Ξ­Ξ½Ξ± domain."
 
 msgid "Example:"
-msgstr "Παράδειγμα:"
+msgstr "Ξ Ξ±ΟΞ¬Ξ΄ΞµΞΉΞ³ΞΌΞ±:"
 
 msgid "Whitelist has been updated."
-msgstr "Η Λίστα Εξαιρέσεων (Whitelist) ενημερώθηκε."
+msgstr "Ξ— Ξ›Ξ―ΟƒΟ„Ξ± Ξ•ΞΎΞ±ΞΉΟΞ­ΟƒΞµΟ‰Ξ½ (Whitelist) ΞµΞ½Ξ·ΞΌΞµΟΟΞΈΞ·ΞΊΞµ."
 
 #, php-format
 msgid "Editing Sieve Code (Rule #%s)"
-msgstr "Επεξεργασία Κώδικα Sieve (Κανόνας #%s)"
+msgstr "Ξ•Ο€ΞµΞΎΞµΟΞ³Ξ±ΟƒΞ―Ξ± ΞΟΞ΄ΞΉΞΊΞ± Sieve (ΞΞ±Ξ½ΟΞ½Ξ±Ο‚ #%s)"
 
 msgid "Create New Custom Sieve Rule"
-msgstr "Δημιουργία Νέου Sieve Κανόνα"
+msgstr "Ξ”Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ―Ξ± ΞΞ­ΞΏΟ… Sieve ΞΞ±Ξ½ΟΞ½Ξ±"
 
 msgid "Custom Rule"
-msgstr "Custom Κανόνας"
+msgstr "Custom ΞΞ±Ξ½ΟΞ½Ξ±Ο‚"
 
 msgid "Please enter valid Sieve code in the textbox below."
-msgstr "Παρακαλώ εισάγετε έγκυρο κώδικα Sieve στο ακόλουθο πεδίο κειμένου."
+msgstr "Ξ Ξ±ΟΞ±ΞΊΞ±Ξ»Ο ΞµΞΉΟƒΞ¬Ξ³ΞµΟ„Ξµ Ξ­Ξ³ΞΊΟ…ΟΞΏ ΞΊΟΞ΄ΞΉΞΊΞ± Sieve ΟƒΟ„ΞΏ Ξ±ΞΊΟΞ»ΞΏΟ…ΞΈΞΏ Ο€ΞµΞ΄Ξ―ΞΏ ΞΊΞµΞΉΞΌΞ­Ξ½ΞΏΟ…."
 
 msgid ""
 "Note: The <tt>require</tt> command is not needed; it will be added "
 "automatically at the start of the script."
 msgstr ""
-"Σημείωση. Η εντολή <tt>require</tt> δεν είναι αναγκαία. Θα προστεθεί "
-"αυτόματα στην αρχή του script."
+"Ξ£Ξ·ΞΌΞµΞ―Ο‰ΟƒΞ·. Ξ— ΞµΞ½Ο„ΞΏΞ»Ξ® <tt>require</tt> Ξ΄ΞµΞ½ ΞµΞ―Ξ½Ξ±ΞΉ Ξ±Ξ½Ξ±Ξ³ΞΊΞ±Ξ―Ξ±. ΞΞ± Ο€ΟΞΏΟƒΟ„ΞµΞΈΞµΞ― "
+"Ξ±Ο…Ο„ΟΞΌΞ±Ο„Ξ± ΟƒΟ„Ξ·Ξ½ Ξ±ΟΟ‡Ξ® Ο„ΞΏΟ… script."
 
 #, php-format
 msgid "Sieve Capabilities supported: %s"
-msgstr "Υποστηριζόμενες Sieve Capabilities: %s"
+msgstr "Ξ¥Ο€ΞΏΟƒΟ„Ξ·ΟΞΉΞ¶ΟΞΌΞµΞ½ΞµΟ‚ Sieve Capabilities: %s"
 
 msgid "Please enter a valid Sieve code snippet."
-msgstr "Παρακαλώ εισάγετε ένα έγκυρο κομμάτι κώδικα Sieve."
+msgstr "Ξ Ξ±ΟΞ±ΞΊΞ±Ξ»Ο ΞµΞΉΟƒΞ¬Ξ³ΞµΟ„Ξµ Ξ­Ξ½Ξ± Ξ­Ξ³ΞΊΟ…ΟΞΏ ΞΊΞΏΞΌΞΌΞ¬Ο„ΞΉ ΞΊΟΞ΄ΞΉΞΊΞ± Sieve."
 
 msgid "To: or Cc"
-msgstr "Προς: ή Κοινοπ.:"
+msgstr "Ξ ΟΞΏΟ‚: Ξ® ΞΞΏΞΉΞ½ΞΏΟ€.:"
 
 msgid "The condition for the following rules is:"
-msgstr "Η συνθήκη για τους ακόλουθους κανόνες είναι:"
+msgstr "Ξ— ΟƒΟ…Ξ½ΞΈΞ®ΞΊΞ· Ξ³ΞΉΞ± Ο„ΞΏΟ…Ο‚ Ξ±ΞΊΟΞ»ΞΏΟ…ΞΈΞΏΟ…Ο‚ ΞΊΞ±Ξ½ΟΞ½ΞµΟ‚ ΞµΞ―Ξ½Ξ±ΞΉ:"
 
 msgid "Less..."
-msgstr "Λιγότερα..."
+msgstr "Ξ›ΞΉΞ³ΟΟ„ΞµΟΞ±..."
 
 msgid "More..."
-msgstr "Περισσότερα..."
+msgstr "Ξ ΞµΟΞΉΟƒΟƒΟΟ„ΞµΟΞ±..."
 
 msgid "bigger"
-msgstr "μεγαλύτερο"
+msgstr "ΞΌΞµΞ³Ξ±Ξ»ΟΟ„ΞµΟΞΏ"
 
 msgid "smaller"
-msgstr "μικρότερο"
+msgstr "ΞΌΞΉΞΊΟΟΟ„ΞµΟΞΏ"
 
 msgid "than"
-msgstr "από"
+msgstr "Ξ±Ο€Ο"
 
 msgid "KB (kilobytes)"
 msgstr "KB (kilobytes)"
@@ -1054,21 +1054,21 @@ msgid "MB (megabytes)"
 msgstr "MB (megabytes)"
 
 msgid "All Messages"
-msgstr "Όλα τα Μηνύματα"
+msgstr "ΞΞ»Ξ± Ο„Ξ± ΞΞ·Ξ½ΟΞΌΞ±Ο„Ξ±"
 
 msgid ""
 "The following action will be applied to <strong>all</strong> incoming "
 "messages that do not match any of the previous rules."
 msgstr ""
-"Αυτός ο κανόνας θα ισχύσει για <strong>όλα</strong> τα εισερχόμενα μηνύματα "
-"στα οποία δεν ταιριάζει ένας από τους προηγούμενος κανόνες."
+"Ξ‘Ο…Ο„ΟΟ‚ ΞΏ ΞΊΞ±Ξ½ΟΞ½Ξ±Ο‚ ΞΈΞ± ΞΉΟƒΟ‡ΟΟƒΞµΞΉ Ξ³ΞΉΞ± <strong>ΟΞ»Ξ±</strong> Ο„Ξ± ΞµΞΉΟƒΞµΟΟ‡ΟΞΌΞµΞ½Ξ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ± "
+"ΟƒΟ„Ξ± ΞΏΟ€ΞΏΞ―Ξ± Ξ΄ΞµΞ½ Ο„Ξ±ΞΉΟΞΉΞ¬Ξ¶ΞµΞΉ Ξ­Ξ½Ξ±Ο‚ Ξ±Ο€Ο Ο„ΞΏΟ…Ο‚ Ο€ΟΞΏΞ·Ξ³ΞΏΟΞΌΞµΞ½ΞΏΟ‚ ΞΊΞ±Ξ½ΟΞ½ΞµΟ‚."
 
 msgid "1st"
 msgstr ""
 
 #, fuzzy
 msgid "2nd"
-msgstr "και"
+msgstr "ΞΊΞ±ΞΉ"
 
 msgid "3rd"
 msgstr ""
@@ -1095,85 +1095,85 @@ msgid "from the end"
 msgstr ""
 
 msgid "Choose what to do when this rule triggers, from one of the following:"
-msgstr "Επιλέξτε την ενέργεια εάν αυτός ο κανόνας ισχύσει, από τα ακόλουθα:"
+msgstr "Ξ•Ο€ΞΉΞ»Ξ­ΞΎΟ„Ξµ Ο„Ξ·Ξ½ ΞµΞ½Ξ­ΟΞ³ΞµΞΉΞ± ΞµΞ¬Ξ½ Ξ±Ο…Ο„ΟΟ‚ ΞΏ ΞΊΞ±Ξ½ΟΞ½Ξ±Ο‚ ΞΉΟƒΟ‡ΟΟƒΞµΞΉ, Ξ±Ο€Ο Ο„Ξ± Ξ±ΞΊΟΞ»ΞΏΟ…ΞΈΞ±:"
 
 msgid "Add SPAM Rule"
-msgstr "Δημιουργία Νέου SPAM Κανόνα"
+msgstr "Ξ”Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ―Ξ± ΞΞ­ΞΏΟ… SPAM ΞΞ±Ξ½ΟΞ½Ξ±"
 
 msgid "Editing Mail Filtering Rule"
-msgstr "Επεξεργασία του κανόνα φιλτραρίσματος"
+msgstr "Ξ•Ο€ΞµΞΎΞµΟΞ³Ξ±ΟƒΞ―Ξ± Ο„ΞΏΟ… ΞΊΞ±Ξ½ΟΞ½Ξ± Ο†ΞΉΞ»Ο„ΟΞ±ΟΞ―ΟƒΞΌΞ±Ο„ΞΏΟ‚"
 
 msgid "Create New Mail Filtering Rule"
-msgstr "Δημιουργία Νέου Κανόνα Φιλτραρίσματος Ταχυδρομείου"
+msgstr "Ξ”Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ―Ξ± ΞΞ­ΞΏΟ… ΞΞ±Ξ½ΟΞ½Ξ± Ξ¦ΞΉΞ»Ο„ΟΞ±ΟΞ―ΟƒΞΌΞ±Ο„ΞΏΟ‚ Ξ¤Ξ±Ο‡Ο…Ξ΄ΟΞΏΞΌΞµΞ―ΞΏΟ…"
 
 msgid "Additional Actions"
-msgstr "Επιπρόσθετες Ενέργειες"
+msgstr "Ξ•Ο€ΞΉΟ€ΟΟΟƒΞΈΞµΟ„ΞµΟ‚ Ξ•Ξ½Ξ­ΟΞ³ΞµΞΉΞµΟ‚"
 
 msgid "You have to define at least one condition."
-msgstr "Πρέπει να ορίσετε τουλάχιστον μία συνθήκη."
+msgstr "Ξ ΟΞ­Ο€ΞµΞΉ Ξ½Ξ± ΞΏΟΞ―ΟƒΞµΟ„Ξµ Ο„ΞΏΟ…Ξ»Ξ¬Ο‡ΞΉΟƒΟ„ΞΏΞ½ ΞΌΞ―Ξ± ΟƒΟ…Ξ½ΞΈΞ®ΞΊΞ·."
 
 msgid "Clear this Form"
-msgstr "Επαναφορά Φόρμας"
+msgstr "Ξ•Ο€Ξ±Ξ½Ξ±Ο†ΞΏΟΞ¬ Ξ¦ΟΟΞΌΞ±Ο‚"
 
 msgid "Start Over"
-msgstr "Από την Αρχή"
+msgstr "Ξ‘Ο€Ο Ο„Ξ·Ξ½ Ξ‘ΟΟ‡Ξ®"
 
 msgid "Move back to step"
-msgstr "Πίσω στο Βήμα"
+msgstr "Ξ Ξ―ΟƒΟ‰ ΟƒΟ„ΞΏ Ξ’Ξ®ΞΌΞ±"
 
 msgid "Finished"
-msgstr "Τέλος"
+msgstr "Ξ¤Ξ­Ξ»ΞΏΟ‚"
 
 msgid "Move on to step"
-msgstr "Συνέχεια στο βήμα"
+msgstr "Ξ£Ο…Ξ½Ξ­Ο‡ΞµΞΉΞ± ΟƒΟ„ΞΏ Ξ²Ξ®ΞΌΞ±"
 
 msgid "Your new rule states:"
-msgstr "Ο νέος σας κανόνας λέει:"
+msgstr "Ξ Ξ½Ξ­ΞΏΟ‚ ΟƒΞ±Ο‚ ΞΊΞ±Ξ½ΟΞ½Ξ±Ο‚ Ξ»Ξ­ΞµΞΉ:"
 
 msgid ""
 "If this is what you wanted, select Finished. You can also start over or "
 "cancel adding a rule altogether."
 msgstr ""
-"Αν είναι αυτό που θέλατε, επιλέξτε Τέλος. Επίσης μπορείτε να ξεκινήσετε από "
-"την αρχή ή να ακυρώσετε τη δημιουργία νέου κανόνα."
+"Ξ‘Ξ½ ΞµΞ―Ξ½Ξ±ΞΉ Ξ±Ο…Ο„Ο Ο€ΞΏΟ… ΞΈΞ­Ξ»Ξ±Ο„Ξµ, ΞµΟ€ΞΉΞ»Ξ­ΞΎΟ„Ξµ Ξ¤Ξ­Ξ»ΞΏΟ‚. Ξ•Ο€Ξ―ΟƒΞ·Ο‚ ΞΌΟ€ΞΏΟΞµΞ―Ο„Ξµ Ξ½Ξ± ΞΎΞµΞΊΞΉΞ½Ξ®ΟƒΞµΟ„Ξµ Ξ±Ο€Ο "
+"Ο„Ξ·Ξ½ Ξ±ΟΟ‡Ξ® Ξ® Ξ½Ξ± Ξ±ΞΊΟ…ΟΟΟƒΞµΟ„Ξµ Ο„Ξ· Ξ΄Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ―Ξ± Ξ½Ξ­ΞΏΟ… ΞΊΞ±Ξ½ΟΞ½Ξ±."
 
 msgid ""
 "Here you can add or delete filtering rules for your email account. These "
 "filters will always apply to your incoming mail, wherever you check your "
 "email."
 msgstr ""
-"Εδώ μπορείτε να προσθέσετε ή να διαγράψετε κανόνες φιλτραρίσματος για τον "
-"λογαριασμό του ηλεκτρονικού ταχυδρομείου σας. Αυτά τα φίλτρα θα ελέγχονται "
-"πάντα κατά τη λήψη ταχυδρομείου, ανεξάρτητα από το πού ελέγχετε το  "
-"ταχυδρομείο σας."
+"Ξ•Ξ΄Ο ΞΌΟ€ΞΏΟΞµΞ―Ο„Ξµ Ξ½Ξ± Ο€ΟΞΏΟƒΞΈΞ­ΟƒΞµΟ„Ξµ Ξ® Ξ½Ξ± Ξ΄ΞΉΞ±Ξ³ΟΞ¬ΟΞµΟ„Ξµ ΞΊΞ±Ξ½ΟΞ½ΞµΟ‚ Ο†ΞΉΞ»Ο„ΟΞ±ΟΞ―ΟƒΞΌΞ±Ο„ΞΏΟ‚ Ξ³ΞΉΞ± Ο„ΞΏΞ½ "
+"Ξ»ΞΏΞ³Ξ±ΟΞΉΞ±ΟƒΞΌΟ Ο„ΞΏΟ… Ξ·Ξ»ΞµΞΊΟ„ΟΞΏΞ½ΞΉΞΊΞΏΟ Ο„Ξ±Ο‡Ο…Ξ΄ΟΞΏΞΌΞµΞ―ΞΏΟ… ΟƒΞ±Ο‚. Ξ‘Ο…Ο„Ξ¬ Ο„Ξ± Ο†Ξ―Ξ»Ο„ΟΞ± ΞΈΞ± ΞµΞ»Ξ­Ξ³Ο‡ΞΏΞ½Ο„Ξ±ΞΉ "
+"Ο€Ξ¬Ξ½Ο„Ξ± ΞΊΞ±Ο„Ξ¬ Ο„Ξ· Ξ»Ξ®ΟΞ· Ο„Ξ±Ο‡Ο…Ξ΄ΟΞΏΞΌΞµΞ―ΞΏΟ…, Ξ±Ξ½ΞµΞΎΞ¬ΟΟ„Ξ·Ο„Ξ± Ξ±Ο€Ο Ο„ΞΏ Ο€ΞΏΟ ΞµΞ»Ξ­Ξ³Ο‡ΞµΟ„Ξµ Ο„ΞΏ  "
+"Ο„Ξ±Ο‡Ο…Ξ΄ΟΞΏΞΌΞµΞ―ΞΏ ΟƒΞ±Ο‚."
 
 msgid ""
 "You don't have any rules yet. Feel free to add any with the button &quot;Add "
 "a New Rule&quot;. When you are done, please select &quot;Save Changes&quot; "
 "to get back to the main options screen."
 msgstr ""
-"Δεν έχετε ορίσει ακόμα κάποιον κανόνα. Μπορείτε να προσθέσετε όσους θέλετε "
-"με το πλήκτρο &quot;Δημιουργία Νέου Κανόνα&quot;. Όταν τελειώσετε, επιλέξτε "
-"&quot;Αποθήκευση Αλλαγών&quot; για να επιστρέψετε στην οθόνη των κύριων "
-"επιλογών."
+"Ξ”ΞµΞ½ Ξ­Ο‡ΞµΟ„Ξµ ΞΏΟΞ―ΟƒΞµΞΉ Ξ±ΞΊΟΞΌΞ± ΞΊΞ¬Ο€ΞΏΞΉΞΏΞ½ ΞΊΞ±Ξ½ΟΞ½Ξ±. ΞΟ€ΞΏΟΞµΞ―Ο„Ξµ Ξ½Ξ± Ο€ΟΞΏΟƒΞΈΞ­ΟƒΞµΟ„Ξµ ΟΟƒΞΏΟ…Ο‚ ΞΈΞ­Ξ»ΞµΟ„Ξµ "
+"ΞΌΞµ Ο„ΞΏ Ο€Ξ»Ξ®ΞΊΟ„ΟΞΏ &quot;Ξ”Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ―Ξ± ΞΞ­ΞΏΟ… ΞΞ±Ξ½ΟΞ½Ξ±&quot;. ΞΟ„Ξ±Ξ½ Ο„ΞµΞ»ΞµΞΉΟΟƒΞµΟ„Ξµ, ΞµΟ€ΞΉΞ»Ξ­ΞΎΟ„Ξµ "
+"&quot;Ξ‘Ο€ΞΏΞΈΞ®ΞΊΞµΟ…ΟƒΞ· Ξ‘Ξ»Ξ»Ξ±Ξ³ΟΞ½&quot; Ξ³ΞΉΞ± Ξ½Ξ± ΞµΟ€ΞΉΟƒΟ„ΟΞ­ΟΞµΟ„Ξµ ΟƒΟ„Ξ·Ξ½ ΞΏΞΈΟΞ½Ξ· Ο„Ο‰Ξ½ ΞΊΟΟΞΉΟ‰Ξ½ "
+"ΞµΟ€ΞΉΞ»ΞΏΞ³ΟΞ½."
 
 msgid ""
 "When you are done with editing, <strong>remember to select &quot;Save "
 "Changes&quot;</strong> to activate your changes!"
 msgstr ""
-"Όταν τελειώσετε την επεξεργασία, <strong>θυμηθείτε να επιλέξετε &quot;"
-"Αποθήκευση Αλλαγών&quot;</strong> για να ενεργοποιήσετε τις αλλαγές σας!"
+"ΞΟ„Ξ±Ξ½ Ο„ΞµΞ»ΞµΞΉΟΟƒΞµΟ„Ξµ Ο„Ξ·Ξ½ ΞµΟ€ΞµΞΎΞµΟΞ³Ξ±ΟƒΞ―Ξ±, <strong>ΞΈΟ…ΞΌΞ·ΞΈΞµΞ―Ο„Ξµ Ξ½Ξ± ΞµΟ€ΞΉΞ»Ξ­ΞΎΞµΟ„Ξµ &quot;"
+"Ξ‘Ο€ΞΏΞΈΞ®ΞΊΞµΟ…ΟƒΞ· Ξ‘Ξ»Ξ»Ξ±Ξ³ΟΞ½&quot;</strong> Ξ³ΞΉΞ± Ξ½Ξ± ΞµΞ½ΞµΟΞ³ΞΏΟ€ΞΏΞΉΞ®ΟƒΞµΟ„Ξµ Ο„ΞΉΟ‚ Ξ±Ξ»Ξ»Ξ±Ξ³Ξ­Ο‚ ΟƒΞ±Ο‚!"
 
 msgid "The following table summarizes your current mail filtering rules."
-msgstr "Ο παρακάτω πίνακας δείχνει τους τρέχοντες κανόνες αλληλογραφίας σας."
+msgstr "Ξ Ο€Ξ±ΟΞ±ΞΊΞ¬Ο„Ο‰ Ο€Ξ―Ξ½Ξ±ΞΊΞ±Ο‚ Ξ΄ΞµΞ―Ο‡Ξ½ΞµΞΉ Ο„ΞΏΟ…Ο‚ Ο„ΟΞ­Ο‡ΞΏΞ½Ο„ΞµΟ‚ ΞΊΞ±Ξ½ΟΞ½ΞµΟ‚ Ξ±Ξ»Ξ»Ξ·Ξ»ΞΏΞ³ΟΞ±Ο†Ξ―Ξ±Ο‚ ΟƒΞ±Ο‚."
 
 msgid ""
 "Warning: In your rules, you have defined an action that refers to a folder "
 "that does not exist or a folder where you do not have permission to append "
 "to."
 msgstr ""
-"Προσοχή: στους κανόνες σας, έχετε ορίσει μία ενέργεια που αναφέρεται σε "
-"φάκελο, ο οποίος δεν υπάρχει ή στον οποίο δεν έχετε κατάλληλη πρόσβαση."
+"Ξ ΟΞΏΟƒΞΏΟ‡Ξ®: ΟƒΟ„ΞΏΟ…Ο‚ ΞΊΞ±Ξ½ΟΞ½ΞµΟ‚ ΟƒΞ±Ο‚, Ξ­Ο‡ΞµΟ„Ξµ ΞΏΟΞ―ΟƒΞµΞΉ ΞΌΞ―Ξ± ΞµΞ½Ξ­ΟΞ³ΞµΞΉΞ± Ο€ΞΏΟ… Ξ±Ξ½Ξ±Ο†Ξ­ΟΞµΟ„Ξ±ΞΉ ΟƒΞµ "
+"Ο†Ξ¬ΞΊΞµΞ»ΞΏ, ΞΏ ΞΏΟ€ΞΏΞ―ΞΏΟ‚ Ξ΄ΞµΞ½ Ο…Ο€Ξ¬ΟΟ‡ΞµΞΉ Ξ® ΟƒΟ„ΞΏΞ½ ΞΏΟ€ΞΏΞ―ΞΏ Ξ΄ΞµΞ½ Ξ­Ο‡ΞµΟ„Ξµ ΞΊΞ±Ο„Ξ¬Ξ»Ξ»Ξ·Ξ»Ξ· Ο€ΟΟΟƒΞ²Ξ±ΟƒΞ·."
 
 #, php-format
 msgid ""
@@ -1181,292 +1181,292 @@ msgid ""
 "\">Rule #%s</a> in your current Mail Filtering Rules).<br/>Don't forget to "
 "disable it or delete it when you are back."
 msgstr ""
-"Σημείωση: Μία <a href=\"%s\">αυτόματη απάντηση με μήνυμα διακοπών</a> είναι "
-"ενεργή (<a href=\"%s\">Κανόνας #%s</a> στους τρέχοντες κανόνες Φίλτρων "
-"Εισερχόμενης Αλληλογραφίας). Μην ξεχάσετε να τον απενεργοποιήσετε ή να τον "
-"διαγράψετε, όταν επιστρέψετε."
+"Ξ£Ξ·ΞΌΞµΞ―Ο‰ΟƒΞ·: ΞΞ―Ξ± <a href=\"%s\">Ξ±Ο…Ο„ΟΞΌΞ±Ο„Ξ· Ξ±Ο€Ξ¬Ξ½Ο„Ξ·ΟƒΞ· ΞΌΞµ ΞΌΞ®Ξ½Ο…ΞΌΞ± Ξ΄ΞΉΞ±ΞΊΞΏΟ€ΟΞ½</a> ΞµΞ―Ξ½Ξ±ΞΉ "
+"ΞµΞ½ΞµΟΞ³Ξ® (<a href=\"%s\">ΞΞ±Ξ½ΟΞ½Ξ±Ο‚ #%s</a> ΟƒΟ„ΞΏΟ…Ο‚ Ο„ΟΞ­Ο‡ΞΏΞ½Ο„ΞµΟ‚ ΞΊΞ±Ξ½ΟΞ½ΞµΟ‚ Ξ¦Ξ―Ξ»Ο„ΟΟ‰Ξ½ "
+"Ξ•ΞΉΟƒΞµΟΟ‡ΟΞΌΞµΞ½Ξ·Ο‚ Ξ‘Ξ»Ξ»Ξ·Ξ»ΞΏΞ³ΟΞ±Ο†Ξ―Ξ±Ο‚). ΞΞ·Ξ½ ΞΎΞµΟ‡Ξ¬ΟƒΞµΟ„Ξµ Ξ½Ξ± Ο„ΞΏΞ½ Ξ±Ο€ΞµΞ½ΞµΟΞ³ΞΏΟ€ΞΏΞΉΞ®ΟƒΞµΟ„Ξµ Ξ® Ξ½Ξ± Ο„ΞΏΞ½ "
+"Ξ΄ΞΉΞ±Ξ³ΟΞ¬ΟΞµΟ„Ξµ, ΟΟ„Ξ±Ξ½ ΞµΟ€ΞΉΟƒΟ„ΟΞ­ΟΞµΟ„Ξµ."
 
 msgid "No"
-msgstr "α/α"
+msgstr "Ξ±/Ξ±"
 
 msgid "Options"
-msgstr "Επιλογές"
+msgstr "Ξ•Ο€ΞΉΞ»ΞΏΞ³Ξ­Ο‚"
 
 msgid "Description of Rule"
-msgstr "Περιγραφή Κανόνα"
+msgstr "Ξ ΞµΟΞΉΞ³ΟΞ±Ο†Ξ® ΞΞ±Ξ½ΟΞ½Ξ±"
 
 msgid "Display as:"
-msgstr "Δείξε ως:"
+msgstr "Ξ”ΞµΞ―ΞΎΞµ Ο‰Ο‚:"
 
 msgid "Position"
-msgstr "Θέση"
+msgstr "ΞΞ­ΟƒΞ·"
 
 msgid "Add a new Rule"
-msgstr "Δημιουργία Νέου Κανόνα"
+msgstr "Ξ”Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ―Ξ± ΞΞ­ΞΏΟ… ΞΞ±Ξ½ΟΞ½Ξ±"
 
 msgid "Really delete selected rules?"
-msgstr "Σίγουρα να διαγραφούν οι επιλεγμένοι κανόνες;"
+msgstr "Ξ£Ξ―Ξ³ΞΏΟ…ΟΞ± Ξ½Ξ± Ξ΄ΞΉΞ±Ξ³ΟΞ±Ο†ΞΏΟΞ½ ΞΏΞΉ ΞµΟ€ΞΉΞ»ΞµΞ³ΞΌΞ­Ξ½ΞΏΞΉ ΞΊΞ±Ξ½ΟΞ½ΞµΟ‚;"
 
 msgid "Enable"
-msgstr "Ενεργοποίηση"
+msgstr "Ξ•Ξ½ΞµΟΞ³ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ·"
 
 msgid ""
 "When you are done, please click the button below to return to your webmail."
-msgstr "Όταν τελειώσετε, κάντε κλικ στο ακόλουθο κουμπί για να επιστρέψετε."
+msgstr "ΞΟ„Ξ±Ξ½ Ο„ΞµΞ»ΞµΞΉΟΟƒΞµΟ„Ξµ, ΞΊΞ¬Ξ½Ο„Ξµ ΞΊΞ»ΞΉΞΊ ΟƒΟ„ΞΏ Ξ±ΞΊΟΞ»ΞΏΟ…ΞΈΞΏ ΞΊΞΏΟ…ΞΌΟ€Ξ― Ξ³ΞΉΞ± Ξ½Ξ± ΞµΟ€ΞΉΟƒΟ„ΟΞ­ΟΞµΟ„Ξµ."
 
 msgid "Save Changes"
-msgstr "Αποθήκευση Αλλαγών"
+msgstr "Ξ‘Ο€ΞΏΞΈΞ®ΞΊΞµΟ…ΟƒΞ· Ξ‘Ξ»Ξ»Ξ±Ξ³ΟΞ½"
 
 msgid "Created:"
-msgstr "Δημιουργήθηκε:"
+msgstr "Ξ”Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ®ΞΈΞ·ΞΊΞµ:"
 
 msgid "Last modified:"
-msgstr "Τελευταία τροποποίηση:"
+msgstr "Ξ¤ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―Ξ± Ο„ΟΞΏΟ€ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ·:"
 
 msgid "Current Mail Filtering Rules"
-msgstr "Τρέχοντες Κανόνες Φιλτραρίσματος Ταχυδρομείου"
+msgstr "Ξ¤ΟΞ­Ο‡ΞΏΞ½Ο„ΞµΟ‚ ΞΞ±Ξ½ΟΞ½ΞµΟ‚ Ξ¦ΞΉΞ»Ο„ΟΞ±ΟΞ―ΟƒΞΌΞ±Ο„ΞΏΟ‚ Ξ¤Ξ±Ο‡Ο…Ξ΄ΟΞΏΞΌΞµΞ―ΞΏΟ…"
 
 msgid "Close"
-msgstr "Κλείσιμο"
+msgstr "ΞΞ»ΞµΞ―ΟƒΞΉΞΌΞΏ"
 
 msgid "No Filtering Rules Defined Yet"
-msgstr "Δεν έχουν οριστεί κανόνες ακόμα"
+msgstr "Ξ”ΞµΞ½ Ξ­Ο‡ΞΏΟ…Ξ½ ΞΏΟΞΉΟƒΟ„ΞµΞ― ΞΊΞ±Ξ½ΟΞ½ΞµΟ‚ Ξ±ΞΊΟΞΌΞ±"
 
 msgid "Really delete this rule?"
-msgstr "Σίγουρα να διαγραφεί αυτός ο κανόνας;"
+msgstr "Ξ£Ξ―Ξ³ΞΏΟ…ΟΞ± Ξ½Ξ± Ξ΄ΞΉΞ±Ξ³ΟΞ±Ο†ΞµΞ― Ξ±Ο…Ο„ΟΟ‚ ΞΏ ΞΊΞ±Ξ½ΟΞ½Ξ±Ο‚;"
 
 msgid "More Options..."
-msgstr "Περισσότερες Επιλογές..."
+msgstr "Ξ ΞµΟΞΉΟƒΟƒΟΟ„ΞµΟΞµΟ‚ Ξ•Ο€ΞΉΞ»ΞΏΞ³Ξ­Ο‚..."
 
 msgid "Move to Position..."
-msgstr "Μετακίνηση στη Θέση..."
+msgstr "ΞΞµΟ„Ξ±ΞΊΞ―Ξ½Ξ·ΟƒΞ· ΟƒΟ„Ξ· ΞΞ­ΟƒΞ·..."
 
 msgid "--------"
 msgstr "--------"
 
 msgid "Duplicate this Rule"
-msgstr "Αντιγραφή αυτού του κανόνα"
+msgstr "Ξ‘Ξ½Ο„ΞΉΞ³ΟΞ±Ο†Ξ® Ξ±Ο…Ο„ΞΏΟ Ο„ΞΏΟ… ΞΊΞ±Ξ½ΟΞ½Ξ±"
 
 msgid "Insert a New Rule here"
-msgstr "Εισαγωγή Νέου Κανόνα εδώ"
+msgstr "Ξ•ΞΉΟƒΞ±Ξ³Ο‰Ξ³Ξ® ΞΞ­ΞΏΟ… ΞΞ±Ξ½ΟΞ½Ξ± ΞµΞ΄Ο"
 
 msgid "Send this Rule by Email"
-msgstr "Αποστολή αυτού του κανόνα"
+msgstr "Ξ‘Ο€ΞΏΟƒΟ„ΞΏΞ»Ξ® Ξ±Ο…Ο„ΞΏΟ Ο„ΞΏΟ… ΞΊΞ±Ξ½ΟΞ½Ξ±"
 
 msgid "Go"
-msgstr "Πήγαινε"
+msgstr "Ξ Ξ®Ξ³Ξ±ΞΉΞ½Ξµ"
 
 msgid "Action for Selected Rules:"
-msgstr "Για τους επιλεγμένους κανόνες:"
+msgstr "Ξ“ΞΉΞ± Ο„ΞΏΟ…Ο‚ ΞµΟ€ΞΉΞ»ΞµΞ³ΞΌΞ­Ξ½ΞΏΟ…Ο‚ ΞΊΞ±Ξ½ΟΞ½ΞµΟ‚:"
 
 msgid "Junk Folder Information"
-msgstr "Πληροφορίες Φακέλου Αχρήστων"
+msgstr "Ξ Ξ»Ξ·ΟΞΏΟ†ΞΏΟΞ―ΞµΟ‚ Ξ¦Ξ±ΞΊΞ­Ξ»ΞΏΟ… Ξ‘Ο‡ΟΞ®ΟƒΟ„Ο‰Ξ½"
 
 msgid "Messages in this folder have been identified as SPAM / Junk."
 msgstr ""
-"Τα μηνύματα σε αυτόν τον φάκελο έχουν χαρακτηριστεί ως SPAM / Ανεπιθύμητα."
+"Ξ¤Ξ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ± ΟƒΞµ Ξ±Ο…Ο„ΟΞ½ Ο„ΞΏΞ½ Ο†Ξ¬ΞΊΞµΞ»ΞΏ Ξ­Ο‡ΞΏΟ…Ξ½ Ο‡Ξ±ΟΞ±ΞΊΟ„Ξ·ΟΞΉΟƒΟ„ΞµΞ― Ο‰Ο‚ SPAM / Ξ‘Ξ½ΞµΟ€ΞΉΞΈΟΞΌΞ·Ο„Ξ±."
 
 #, php-format
 msgid ""
 "Note: Junk Mail is currently not enabled. Select &quot;%s&quot; to enable it."
 msgstr ""
-"Σημείωση: Η Ανεπιθύμητη Αλληλογραφία δεν είναι ενεργοποιημένη. Επιλέξτε "
-"&quot;%s&quot; για να την ενεργοποιήσετε."
+"Ξ£Ξ·ΞΌΞµΞ―Ο‰ΟƒΞ·: Ξ— Ξ‘Ξ½ΞµΟ€ΞΉΞΈΟΞΌΞ·Ο„Ξ· Ξ‘Ξ»Ξ»Ξ·Ξ»ΞΏΞ³ΟΞ±Ο†Ξ―Ξ± Ξ΄ΞµΞ½ ΞµΞ―Ξ½Ξ±ΞΉ ΞµΞ½ΞµΟΞ³ΞΏΟ€ΞΏΞΉΞ·ΞΌΞ­Ξ½Ξ·. Ξ•Ο€ΞΉΞ»Ξ­ΞΎΟ„Ξµ "
+"&quot;%s&quot; Ξ³ΞΉΞ± Ξ½Ξ± Ο„Ξ·Ξ½ ΞµΞ½ΞµΟΞ³ΞΏΟ€ΞΏΞΉΞ®ΟƒΞµΟ„Ξµ."
 
 msgid "Edit Junk Mail Options..."
-msgstr "Επεξεργασία Επιλογών Ανεπιθύμητης Αλληλογραφίας..."
+msgstr "Ξ•Ο€ΞµΞΎΞµΟΞ³Ξ±ΟƒΞ―Ξ± Ξ•Ο€ΞΉΞ»ΞΏΞ³ΟΞ½ Ξ‘Ξ½ΞµΟ€ΞΉΞΈΟΞΌΞ·Ο„Ξ·Ο‚ Ξ‘Ξ»Ξ»Ξ·Ξ»ΞΏΞ³ΟΞ±Ο†Ξ―Ξ±Ο‚..."
 
 #, php-format
 msgid "Any messages older than %s days are automatically deleted."
-msgstr "Μηνύματα παλαιότερα από %s  μέρες θα διαγράφονται αυτόματα."
+msgstr "ΞΞ·Ξ½ΟΞΌΞ±Ο„Ξ± Ο€Ξ±Ξ»Ξ±ΞΉΟΟ„ΞµΟΞ± Ξ±Ο€Ο %s  ΞΌΞ­ΟΞµΟ‚ ΞΈΞ± Ξ΄ΞΉΞ±Ξ³ΟΞ¬Ο†ΞΏΞ½Ο„Ξ±ΞΉ Ξ±Ο…Ο„ΟΞΌΞ±Ο„Ξ±."
 
 msgid "Test for Forged Header"
-msgstr "Εξέταση για Πλαστογραφημένη Κεφαλίδα"
+msgstr "Ξ•ΞΎΞ­Ο„Ξ±ΟƒΞ· Ξ³ΞΉΞ± Ξ Ξ»Ξ±ΟƒΟ„ΞΏΞ³ΟΞ±Ο†Ξ·ΞΌΞ­Ξ½Ξ· ΞΞµΟ†Ξ±Ξ»Ξ―Ξ΄Ξ±"
 
 msgid "Automatically"
-msgstr "Αυτόματα"
+msgstr "Ξ‘Ο…Ο„ΟΞΌΞ±Ο„Ξ±"
 
 msgid "Sender"
-msgstr "Αποστολέας"
+msgstr "Ξ‘Ο€ΞΏΟƒΟ„ΞΏΞ»Ξ­Ξ±Ο‚"
 
 msgid "From"
-msgstr "Από"
+msgstr "Ξ‘Ο€Ο"
 
 msgid "To"
-msgstr "Προς"
+msgstr "Ξ ΟΞΏΟ‚"
 
 msgid "Subject"
-msgstr "Θέμα"
+msgstr "ΞΞ­ΞΌΞ±"
 
 msgid "Create Filter"
-msgstr "Δημιουργία Φίλτρου"
+msgstr "Ξ”Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ―Ξ± Ξ¦Ξ―Ξ»Ο„ΟΞΏΟ…"
 
 msgid "Vacation Filter Reminder"
-msgstr "Υπενθύμιση Φίλτρου Αυτόματης Απάντησης Διακοπών"
+msgstr "Ξ¥Ο€ΞµΞ½ΞΈΟΞΌΞΉΟƒΞ· Ξ¦Ξ―Ξ»Ο„ΟΞΏΟ… Ξ‘Ο…Ο„ΟΞΌΞ±Ο„Ξ·Ο‚ Ξ‘Ο€Ξ¬Ξ½Ο„Ξ·ΟƒΞ·Ο‚ Ξ”ΞΉΞ±ΞΊΞΏΟ€ΟΞ½"
 
 msgid "(Creates a new server-side filtering rule, based on the above criteria)"
 msgstr ""
-"(Δημιουργεί ένα καινούριο φίλτρο στον εξυπηρετητή, βασισμένο στα παραπάνω "
-"κριτήρια)"
+"(Ξ”Ξ·ΞΌΞΉΞΏΟ…ΟΞ³ΞµΞ― Ξ­Ξ½Ξ± ΞΊΞ±ΞΉΞ½ΞΏΟΟΞΉΞΏ Ο†Ξ―Ξ»Ο„ΟΞΏ ΟƒΟ„ΞΏΞ½ ΞµΞΎΟ…Ο€Ξ·ΟΞµΟ„Ξ·Ο„Ξ®, Ξ²Ξ±ΟƒΞΉΟƒΞΌΞ­Ξ½ΞΏ ΟƒΟ„Ξ± Ο€Ξ±ΟΞ±Ο€Ξ¬Ξ½Ο‰ "
+"ΞΊΟΞΉΟ„Ξ®ΟΞΉΞ±)"
 
 msgid ""
 "Notice: The following criteria cannot be expressed as server-side filtering "
 "rules:"
 msgstr ""
-"Σημείωση: Τα ακόλουθα κριτήρια δε μπορούν να εκφραστούν ως φίλτρα στον "
-"εξυπηρετητή:"
+"Ξ£Ξ·ΞΌΞµΞ―Ο‰ΟƒΞ·: Ξ¤Ξ± Ξ±ΞΊΟΞ»ΞΏΟ…ΞΈΞ± ΞΊΟΞΉΟ„Ξ®ΟΞΉΞ± Ξ΄Ξµ ΞΌΟ€ΞΏΟΞΏΟΞ½ Ξ½Ξ± ΞµΞΊΟ†ΟΞ±ΟƒΟ„ΞΏΟΞ½ Ο‰Ο‚ Ο†Ξ―Ξ»Ο„ΟΞ± ΟƒΟ„ΞΏΞ½ "
+"ΞµΞΎΟ…Ο€Ξ·ΟΞµΟ„Ξ·Ο„Ξ®:"
 
 msgid "Reason:"
-msgstr "Λόγος:"
+msgstr "Ξ›ΟΞ³ΞΏΟ‚:"
 
 msgid "The Body extension is not supported in this server."
 msgstr ""
-"Η λειτουργία για ταίριασμα στο σώμα του μηνύματος δεν υποστηρίζεται σε αυτόν "
-"τον εξυπηρετητή."
+"Ξ— Ξ»ΞµΞΉΟ„ΞΏΟ…ΟΞ³Ξ―Ξ± Ξ³ΞΉΞ± Ο„Ξ±Ξ―ΟΞΉΞ±ΟƒΞΌΞ± ΟƒΟ„ΞΏ ΟƒΟΞΌΞ± Ο„ΞΏΟ… ΞΌΞ·Ξ½ΟΞΌΞ±Ο„ΞΏΟ‚ Ξ΄ΞµΞ½ Ο…Ο€ΞΏΟƒΟ„Ξ·ΟΞ―Ξ¶ΞµΟ„Ξ±ΞΉ ΟƒΞµ Ξ±Ο…Ο„ΟΞ½ "
+"Ο„ΞΏΞ½ ΞµΞΎΟ…Ο€Ξ·ΟΞµΟ„Ξ·Ο„Ξ®."
 
 msgid ""
 "Note that Only From:, To:, Cc: and Subject: headers will be checked in the "
 "server filter."
 msgstr ""
-"Σημειώστε ότι μόνο οι κεφαλίδες Από:, Προς: και Κοινοποίηση: θα ελεγθούν στο "
-"φίλτρο του εξυπηρετητή."
+"Ξ£Ξ·ΞΌΞµΞΉΟΟƒΟ„Ξµ ΟΟ„ΞΉ ΞΌΟΞ½ΞΏ ΞΏΞΉ ΞΊΞµΟ†Ξ±Ξ»Ξ―Ξ΄ΞµΟ‚ Ξ‘Ο€Ο:, Ξ ΟΞΏΟ‚: ΞΊΞ±ΞΉ ΞΞΏΞΉΞ½ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ·: ΞΈΞ± ΞµΞ»ΞµΞ³ΞΈΞΏΟΞ½ ΟƒΟ„ΞΏ "
+"Ο†Ξ―Ξ»Ο„ΟΞΏ Ο„ΞΏΟ… ΞµΞΎΟ…Ο€Ξ·ΟΞµΟ„Ξ·Ο„Ξ®."
 
 msgid "These search expressions are not applicable during message delivery."
-msgstr "Αυτά τα κριτήρια αναζήτησης δεν ισχύουν κατά την παράδοση μηνυμάτων."
+msgstr "Ξ‘Ο…Ο„Ξ¬ Ο„Ξ± ΞΊΟΞΉΟ„Ξ®ΟΞΉΞ± Ξ±Ξ½Ξ±Ξ¶Ξ®Ο„Ξ·ΟƒΞ·Ο‚ Ξ΄ΞµΞ½ ΞΉΟƒΟ‡ΟΞΏΟ…Ξ½ ΞΊΞ±Ο„Ξ¬ Ο„Ξ·Ξ½ Ο€Ξ±ΟΞ¬Ξ΄ΞΏΟƒΞ· ΞΌΞ·Ξ½Ο…ΞΌΞ¬Ο„Ο‰Ξ½."
 
 msgid ""
 "All messages considered as <strong>SPAM</strong> (unsolicited commercial "
 "messages)"
 msgstr ""
-"Όλα τα μηνύματα που θεωρούνται <strong>SPAM</strong> (ανεπιθύμητα "
-"διαφημιστικά μηνύματα)"
+"ΞΞ»Ξ± Ο„Ξ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ± Ο€ΞΏΟ… ΞΈΞµΟ‰ΟΞΏΟΞ½Ο„Ξ±ΞΉ <strong>SPAM</strong> (Ξ±Ξ½ΞµΟ€ΞΉΞΈΟΞΌΞ·Ο„Ξ± "
+"Ξ΄ΞΉΞ±Ο†Ξ·ΞΌΞΉΟƒΟ„ΞΉΞΊΞ¬ ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ±)"
 
 msgid "SPAM"
 msgstr "SPAM"
 
 msgid "unless"
-msgstr "εκτός αν"
+msgstr "ΞµΞΊΟ„ΟΟ‚ Ξ±Ξ½"
 
 msgid "Whitelist:"
-msgstr "Εξαιρέσεις (Whitelist):"
+msgstr "Ξ•ΞΎΞ±ΞΉΟΞ­ΟƒΞµΞΉΟ‚ (Whitelist):"
 
 msgid "or"
-msgstr "ή"
+msgstr "Ξ®"
 
 msgid "matching the Spam List(s):"
-msgstr "που ταιριάζουν στη/στις λίστες Spam:"
+msgstr "Ο€ΞΏΟ… Ο„Ξ±ΞΉΟΞΉΞ¬Ξ¶ΞΏΟ…Ξ½ ΟƒΟ„Ξ·/ΟƒΟ„ΞΉΟ‚ Ξ»Ξ―ΟƒΟ„ΞµΟ‚ Spam:"
 
 msgid "Spam List(s):"
-msgstr "Λίστες Spam:"
+msgstr "Ξ›Ξ―ΟƒΟ„ΞµΟ‚ Spam:"
 
 #, php-format
 msgid "and with score greater than %s"
-msgstr "και με σκορ μεγαλύτερο από %s"
+msgstr "ΞΊΞ±ΞΉ ΞΌΞµ ΟƒΞΊΞΏΟ ΞΌΞµΞ³Ξ±Ξ»ΟΟ„ΞµΟΞΏ Ξ±Ο€Ο %s"
 
 #, php-format
 msgid "Score > %s"
-msgstr "Σκορ > %s"
+msgstr "Ξ£ΞΊΞΏΟ > %s"
 
 msgid "will be"
-msgstr "θα"
+msgstr "ΞΈΞ±"
 
 msgid "stored in the Junk Folder."
-msgstr "αποθηκευτούν στον Φάκελο Αχρήστων."
+msgstr "Ξ±Ο€ΞΏΞΈΞ·ΞΊΞµΟ…Ο„ΞΏΟΞ½ ΟƒΟ„ΞΏΞ½ Ξ¦Ξ¬ΞΊΞµΞ»ΞΏ Ξ‘Ο‡ΟΞ®ΟƒΟ„Ο‰Ξ½."
 
 msgid "stored in the Trash Folder."
-msgstr "αποθηκευτούν στον Φάκελο Διαγραμμένων."
+msgstr "Ξ±Ο€ΞΏΞΈΞ·ΞΊΞµΟ…Ο„ΞΏΟΞ½ ΟƒΟ„ΞΏΞ½ Ξ¦Ξ¬ΞΊΞµΞ»ΞΏ Ξ”ΞΉΞ±Ξ³ΟΞ±ΞΌΞΌΞ­Ξ½Ο‰Ξ½."
 
 msgid "Trash"
-msgstr "Φάκελος Διεγραμμένων"
+msgstr "Ξ¦Ξ¬ΞΊΞµΞ»ΞΏΟ‚ Ξ”ΞΉΞµΞ³ΟΞ±ΞΌΞΌΞ­Ξ½Ο‰Ξ½"
 
 msgid "discarded."
-msgstr "διαγραφούν."
+msgstr "Ξ΄ΞΉΞ±Ξ³ΟΞ±Ο†ΞΏΟΞ½."
 
 msgid "Junk Mail Rule is Disabled"
-msgstr "Ο Κανόνας Ανεπιθύμητης Αλληλογραφίας είναι απενεργοποιημένος"
+msgstr "Ξ ΞΞ±Ξ½ΟΞ½Ξ±Ο‚ Ξ‘Ξ½ΞµΟ€ΞΉΞΈΟΞΌΞ·Ο„Ξ·Ο‚ Ξ‘Ξ»Ξ»Ξ·Ξ»ΞΏΞ³ΟΞ±Ο†Ξ―Ξ±Ο‚ ΞµΞ―Ξ½Ξ±ΞΉ Ξ±Ο€ΞµΞ½ΞµΟΞ³ΞΏΟ€ΞΏΞΉΞ·ΞΌΞ­Ξ½ΞΏΟ‚"
 
 msgid "<s></s>"
 msgstr "<s></s>"
 
 msgid "Junk Mail"
-msgstr "Ανεπιθύμητη Αλληλογραφία (SPAM)"
+msgstr "Ξ‘Ξ½ΞµΟ€ΞΉΞΈΟΞΌΞ·Ο„Ξ· Ξ‘Ξ»Ξ»Ξ·Ξ»ΞΏΞ³ΟΞ±Ο†Ξ―Ξ± (SPAM)"
 
 msgid "matching any one of the Spam tests as follows:"
-msgstr "που επιτυγχάνουν σε οποιοδήποτε από τα Spam Τεστ:"
+msgstr "Ο€ΞΏΟ… ΞµΟ€ΞΉΟ„Ο…Ξ³Ο‡Ξ¬Ξ½ΞΏΟ…Ξ½ ΟƒΞµ ΞΏΟ€ΞΏΞΉΞΏΞ΄Ξ®Ο€ΞΏΟ„Ξµ Ξ±Ο€Ο Ο„Ξ± Spam Ξ¤ΞµΟƒΟ„:"
 
 msgid "Spam Tests:"
-msgstr "Έλεγχοι για Spam:"
+msgstr "ΞΞ»ΞµΞ³Ο‡ΞΏΞΉ Ξ³ΞΉΞ± Spam:"
 
 msgid ""
 "and where the sender does <em>not</em> match any of the addresses / "
 "expressions in your <strong>Whitelist</strong>"
 msgstr ""
-"και που ο αποστολέας <em>δεν</em> ταιριάζει στις διευθύνσεις της "
-"<strong>Λίστας Εξαιρέσεών</strong> σας"
+"ΞΊΞ±ΞΉ Ο€ΞΏΟ… ΞΏ Ξ±Ο€ΞΏΟƒΟ„ΞΏΞ»Ξ­Ξ±Ο‚ <em>Ξ΄ΞµΞ½</em> Ο„Ξ±ΞΉΟΞΉΞ¬Ξ¶ΞµΞΉ ΟƒΟ„ΞΉΟ‚ Ξ΄ΞΉΞµΟ…ΞΈΟΞ½ΟƒΞµΞΉΟ‚ Ο„Ξ·Ο‚ "
+"<strong>Ξ›Ξ―ΟƒΟ„Ξ±Ο‚ Ξ•ΞΎΞ±ΞΉΟΞ­ΟƒΞµΟΞ½</strong> ΟƒΞ±Ο‚"
 
 msgid ""
 "The messages that match the system's default <strong>SPAM</strong> checks"
 msgstr ""
-"Τα μηνύματα που ταιριάζουν στους προκαθορισμένους ελέγχους για <strong>SPAM</"
-"strong> του συστήματος"
+"Ξ¤Ξ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ± Ο€ΞΏΟ… Ο„Ξ±ΞΉΟΞΉΞ¬Ξ¶ΞΏΟ…Ξ½ ΟƒΟ„ΞΏΟ…Ο‚ Ο€ΟΞΏΞΊΞ±ΞΈΞΏΟΞΉΟƒΞΌΞ­Ξ½ΞΏΟ…Ο‚ ΞµΞ»Ξ­Ξ³Ο‡ΞΏΟ…Ο‚ Ξ³ΞΉΞ± <strong>SPAM</"
+"strong> Ο„ΞΏΟ… ΟƒΟ…ΟƒΟ„Ξ®ΞΌΞ±Ο„ΞΏΟ‚"
 
 msgid "stored in the <strong>Junk</strong> Folder."
-msgstr "αποθηκευτούν στον <strong>Φάκελο Αχρήστων</strong>."
+msgstr "Ξ±Ο€ΞΏΞΈΞ·ΞΊΞµΟ…Ο„ΞΏΟΞ½ ΟƒΟ„ΞΏΞ½ <strong>Ξ¦Ξ¬ΞΊΞµΞ»ΞΏ Ξ‘Ο‡ΟΞ®ΟƒΟ„Ο‰Ξ½</strong>."
 
 msgid "stored in the <strong>Trash</strong> Folder."
-msgstr "αποθηκευτούν στον <strong>Φάκελο Διαγραμμένων</strong>."
+msgstr "Ξ±Ο€ΞΏΞΈΞ·ΞΊΞµΟ…Ο„ΞΏΟΞ½ ΟƒΟ„ΞΏΞ½ <strong>Ξ¦Ξ¬ΞΊΞµΞ»ΞΏ Ξ”ΞΉΞ±Ξ³ΟΞ±ΞΌΞΌΞ­Ξ½Ο‰Ξ½</strong>."
 
 msgid ""
 "<strong>Whitelist</strong> - The following email addresses are whitelisted "
 "and will not end up in Junk folders or considered as SPAM:"
 msgstr ""
-"<strong>Λίστα Εξαιρέσεων (Whitelist)</strong> - Οι ακόλουθες διευθύνσεις "
-"έχουν εξαιρεθεί, και δε θα καταλήξουν στον φάκελο αχρήστων, ούτε θα "
-"θεωρηθούν ως SPAM:"
+"<strong>Ξ›Ξ―ΟƒΟ„Ξ± Ξ•ΞΎΞ±ΞΉΟΞ­ΟƒΞµΟ‰Ξ½ (Whitelist)</strong> - ΞΞΉ Ξ±ΞΊΟΞ»ΞΏΟ…ΞΈΞµΟ‚ Ξ΄ΞΉΞµΟ…ΞΈΟΞ½ΟƒΞµΞΉΟ‚ "
+"Ξ­Ο‡ΞΏΟ…Ξ½ ΞµΞΎΞ±ΞΉΟΞµΞΈΞµΞ―, ΞΊΞ±ΞΉ Ξ΄Ξµ ΞΈΞ± ΞΊΞ±Ο„Ξ±Ξ»Ξ®ΞΎΞΏΟ…Ξ½ ΟƒΟ„ΞΏΞ½ Ο†Ξ¬ΞΊΞµΞ»ΞΏ Ξ±Ο‡ΟΞ®ΟƒΟ„Ο‰Ξ½, ΞΏΟΟ„Ξµ ΞΈΞ± "
+"ΞΈΞµΟ‰ΟΞ·ΞΈΞΏΟΞ½ Ο‰Ο‚ SPAM:"
 
 #, php-format
 msgid "and %s more email addresses / expressions."
-msgstr "και %s  ακόμη διευθύνσεις email"
+msgstr "ΞΊΞ±ΞΉ %s  Ξ±ΞΊΟΞΌΞ· Ξ΄ΞΉΞµΟ…ΞΈΟΞ½ΟƒΞµΞΉΟ‚ email"
 
 #, php-format
 msgid "%s more entries..."
-msgstr "%s ακόμη εισαγωγές..."
+msgstr "%s Ξ±ΞΊΟΞΌΞ· ΞµΞΉΟƒΞ±Ξ³Ο‰Ξ³Ξ­Ο‚..."
 
 msgid "Custom Sieve Code"
-msgstr "Προσαρμοσμένος Κώδικας Sieve"
+msgstr "Ξ ΟΞΏΟƒΞ±ΟΞΌΞΏΟƒΞΌΞ­Ξ½ΞΏΟ‚ ΞΟΞ΄ΞΉΞΊΞ±Ο‚ Sieve"
 
 msgid "View Source"
-msgstr "Εμφάνιση Κώδικα"
+msgstr "Ξ•ΞΌΟ†Ξ¬Ξ½ΞΉΟƒΞ· ΞΟΞ΄ΞΉΞΊΞ±"
 
 #, php-format
 msgid "the header %s"
-msgstr "η κεφαλίδα %s"
+msgstr "Ξ· ΞΊΞµΟ†Ξ±Ξ»Ξ―Ξ΄Ξ± %s"
 
 #, php-format
 msgid "Header %s"
-msgstr "Κεφαλίδα %s"
+msgstr "ΞΞµΟ†Ξ±Ξ»Ξ―Ξ΄Ξ± %s"
 
 msgid "To or Cc"
-msgstr "Προς ή Κοινοπ."
+msgstr "Ξ ΟΞΏΟ‚ Ξ® ΞΞΏΞΉΞ½ΞΏΟ€."
 
 #, php-format
 msgid "the envelope %s"
-msgstr "ο φάκελος %s"
+msgstr "ΞΏ Ο†Ξ¬ΞΊΞµΞ»ΞΏΟ‚ %s"
 
 #, php-format
 msgid "Envelope %s"
-msgstr "Φάκελος %s"
+msgstr "Ξ¦Ξ¬ΞΊΞµΞ»ΞΏΟ‚ %s"
 
 #, php-format
 msgid "the address %s"
-msgstr "η διεύθυνση %s"
+msgstr "Ξ· Ξ΄ΞΉΞµΟΞΈΟ…Ξ½ΟƒΞ· %s"
 
 #, php-format
 msgid "Address %s"
-msgstr "Διεύθυνση %s"
+msgstr "Ξ”ΞΉΞµΟΞΈΟ…Ξ½ΟƒΞ· %s"
 
 msgid "message body"
-msgstr "σώμα μηνύματος"
+msgstr "ΟƒΟΞΌΞ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„ΞΏΟ‚"
 
 #, php-format
 msgid "index number %s"
@@ -1483,137 +1483,137 @@ msgid "(from end)"
 msgstr ""
 
 msgid "matches the regular expression"
-msgstr "ταιριάζει στο regular expression"
+msgstr "Ο„Ξ±ΞΉΟΞΉΞ¬Ξ¶ΞµΞΉ ΟƒΟ„ΞΏ regular expression"
 
 msgid "does not match the regular expression"
-msgstr "δεν ταιριάζει στο regular expression"
+msgstr "Ξ΄ΞµΞ½ Ο„Ξ±ΞΉΟΞΉΞ¬Ξ¶ΞµΞΉ ΟƒΟ„ΞΏ regular expression"
 
 msgid "exists"
-msgstr "υπάρχει"
+msgstr "Ο…Ο€Ξ¬ΟΟ‡ΞµΞΉ"
 
 msgid "does not exist"
-msgstr "δεν υπάρχει"
+msgstr "Ξ΄ΞµΞ½ Ο…Ο€Ξ¬ΟΟ‡ΞµΞΉ"
 
 msgid "This rule is currently <strong>DISABLED</strong>:"
-msgstr "Αυτός ο κανόνας είναι <strong>ΑΠΕΝΕΡΓΟΠΟΙΗΜΕΝΟΣ</strong>:"
+msgstr "Ξ‘Ο…Ο„ΟΟ‚ ΞΏ ΞΊΞ±Ξ½ΟΞ½Ξ±Ο‚ ΞµΞ―Ξ½Ξ±ΞΉ <strong>Ξ‘Ξ Ξ•ΞΞ•Ξ΅Ξ“ΞΞ ΞΞ™Ξ—ΞΞ•ΞΞΞ£</strong>:"
 
 msgid "DISABLED"
-msgstr "ΑΠΕΝΕΡΓΟΠΟΙΗΜΕΝΟΣ"
+msgstr "Ξ‘Ξ Ξ•ΞΞ•Ξ΅Ξ“ΞΞ ΞΞ™Ξ—ΞΞ•ΞΞΞ£"
 
 msgid "If"
-msgstr "Αν"
+msgstr "Ξ‘Ξ½"
 
 msgid "<em>any</em> of the following mail headers match: "
-msgstr "<em>οποιαδήποτε</em> από τις ακόλουθες κεφαλίδες ταιριάξει: "
+msgstr "<em>ΞΏΟ€ΞΏΞΉΞ±Ξ΄Ξ®Ο€ΞΏΟ„Ξµ</em> Ξ±Ο€Ο Ο„ΞΉΟ‚ Ξ±ΞΊΟΞ»ΞΏΟ…ΞΈΞµΟ‚ ΞΊΞµΟ†Ξ±Ξ»Ξ―Ξ΄ΞµΟ‚ Ο„Ξ±ΞΉΟΞΉΞ¬ΞΎΞµΞΉ: "
 
 msgid "<em>all</em> of the following mail headers match: "
-msgstr "<em>όλες</em> από τις ακόλουθες κεφαλίδες ταιριάξουν: "
+msgstr "<em>ΟΞ»ΞµΟ‚</em> Ξ±Ο€Ο Ο„ΞΉΟ‚ Ξ±ΞΊΟΞ»ΞΏΟ…ΞΈΞµΟ‚ ΞΊΞµΟ†Ξ±Ξ»Ξ―Ξ΄ΞµΟ‚ Ο„Ξ±ΞΉΟΞΉΞ¬ΞΎΞΏΟ…Ξ½: "
 
 msgid "the size of the message is"
-msgstr "το μέγεθος του μηνύματος είναι"
+msgstr "Ο„ΞΏ ΞΌΞ­Ξ³ΞµΞΈΞΏΟ‚ Ο„ΞΏΟ… ΞΌΞ·Ξ½ΟΞΌΞ±Ο„ΞΏΟ‚ ΞµΞ―Ξ½Ξ±ΞΉ"
 
 msgid " bigger"
-msgstr "μεγαλύτερο"
+msgstr "ΞΌΞµΞ³Ξ±Ξ»ΟΟ„ΞµΟΞΏ"
 
 msgid " smaller"
-msgstr "μικρότερο"
+msgstr "ΞΌΞΉΞΊΟΟΟ„ΞµΟΞΏ"
 
 msgid "For <strong>ALL</strong> incoming messages; "
-msgstr "Για <strong>ΌΛΑ</strong> τα εισερχόμενα μηνύματα· "
+msgstr "Ξ“ΞΉΞ± <strong>ΞΞ›Ξ‘</strong> Ο„Ξ± ΞµΞΉΟƒΞµΟΟ‡ΟΞΌΞµΞ½Ξ± ΞΌΞ·Ξ½ΟΞΌΞ±Ο„Ξ±Β· "
 
 msgid "ALL"
-msgstr "ΌΛΑ"
+msgstr "ΞΞ›Ξ‘"
 
 #, fuzzy
 msgid "always"
-msgstr "ημέρες"
+msgstr "Ξ·ΞΌΞ­ΟΞµΟ‚"
 
 msgid "and"
-msgstr "και"
+msgstr "ΞΊΞ±ΞΉ"
 
 msgid "then"
-msgstr "τότε"
+msgstr "Ο„ΟΟ„Ξµ"
 
 msgid "<em>keep</em> the message."
-msgstr "<em>κράτησέ</em> το μήνυμα."
+msgstr "<em>ΞΊΟΞ¬Ο„Ξ·ΟƒΞ­</em> Ο„ΞΏ ΞΌΞ®Ξ½Ο…ΞΌΞ±."
 
 msgid "Keep"
-msgstr "Κράτησε"
+msgstr "ΞΟΞ¬Ο„Ξ·ΟƒΞµ"
 
 msgid "<em>discard</em> the message."
-msgstr "<em>διέγραψέ</em> το μήνυμα."
+msgstr "<em>Ξ΄ΞΉΞ­Ξ³ΟΞ±ΟΞ­</em> Ο„ΞΏ ΞΌΞ®Ξ½Ο…ΞΌΞ±."
 
 msgid "<em>reject</em> it, sending this excuse back to the sender:"
-msgstr "<em>απόρριψέ το</em>, στέλντας την εξής δικαιολογία στον αποστολέα:"
+msgstr "<em>Ξ±Ο€ΟΟΟΞΉΟΞ­ Ο„ΞΏ</em>, ΟƒΟ„Ξ­Ξ»Ξ½Ο„Ξ±Ο‚ Ο„Ξ·Ξ½ ΞµΞΎΞ®Ο‚ Ξ΄ΞΉΞΊΞ±ΞΉΞΏΞ»ΞΏΞ³Ξ―Ξ± ΟƒΟ„ΞΏΞ½ Ξ±Ο€ΞΏΟƒΟ„ΞΏΞ»Ξ­Ξ±:"
 
 msgid "Redirect to"
-msgstr "Ανακατεύθυνση προς"
+msgstr "Ξ‘Ξ½Ξ±ΞΊΞ±Ο„ΞµΟΞΈΟ…Ξ½ΟƒΞ· Ο€ΟΞΏΟ‚"
 
 #, php-format
 msgid "<em>redirect</em> it to the email addresses: %s."
-msgstr "<em>ανακατεύθυνέ το</em> στις διευθύνσεις: %s."
+msgstr "<em>Ξ±Ξ½Ξ±ΞΊΞ±Ο„ΞµΟΞΈΟ…Ξ½Ξ­ Ο„ΞΏ</em> ΟƒΟ„ΞΉΟ‚ Ξ΄ΞΉΞµΟ…ΞΈΟΞ½ΟƒΞµΞΉΟ‚: %s."
 
 msgid "<em>redirect</em> it to the email address"
-msgstr "<em>ανακατεύθυνέ το</em> στη διεύθυνση"
+msgstr "<em>Ξ±Ξ½Ξ±ΞΊΞ±Ο„ΞµΟΞΈΟ…Ξ½Ξ­ Ο„ΞΏ</em> ΟƒΟ„Ξ· Ξ΄ΞΉΞµΟΞΈΟ…Ξ½ΟƒΞ·"
 
 #, php-format
 msgid "<em>file</em> it into the folder %s"
-msgstr "<em>αποθήκευσέ το</em> στον φάκελο %s"
+msgstr "<em>Ξ±Ο€ΞΏΞΈΞ®ΞΊΞµΟ…ΟƒΞ­ Ο„ΞΏ</em> ΟƒΟ„ΞΏΞ½ Ο†Ξ¬ΞΊΞµΞ»ΞΏ %s"
 
 #, php-format
 msgid "File into %s"
-msgstr "Αποθήκευση στον %s"
+msgstr "Ξ‘Ο€ΞΏΞΈΞ®ΞΊΞµΟ…ΟƒΞ· ΟƒΟ„ΞΏΞ½ %s"
 
 msgid "(Warning: Folder not available)"
-msgstr "(Προσοχή: Ο φάκελος δεν είναι διαθέσιμος)"
+msgstr "(Ξ ΟΞΏΟƒΞΏΟ‡Ξ®: Ξ Ο†Ξ¬ΞΊΞµΞ»ΞΏΟ‚ Ξ΄ΞµΞ½ ΞµΞ―Ξ½Ξ±ΞΉ Ξ΄ΞΉΞ±ΞΈΞ­ΟƒΞΉΞΌΞΏΟ‚)"
 
 #, fuzzy, php-format
 msgid "reply with a vacation / autoresponder message: "
-msgstr "απάντησε με το εξής μήνυμα διακοπών: "
+msgstr "Ξ±Ο€Ξ¬Ξ½Ο„Ξ·ΟƒΞµ ΞΌΞµ Ο„ΞΏ ΞµΞΎΞ®Ο‚ ΞΌΞ®Ξ½Ο…ΞΌΞ± Ξ΄ΞΉΞ±ΞΊΞΏΟ€ΟΞ½: "
 
 msgid "Also keep a local copy."
-msgstr "Επίσης κράτησε ένα τοπικό αντίγραφο."
+msgstr "Ξ•Ο€Ξ―ΟƒΞ·Ο‚ ΞΊΟΞ¬Ο„Ξ·ΟƒΞµ Ξ­Ξ½Ξ± Ο„ΞΏΟ€ΞΉΞΊΟ Ξ±Ξ½Ο„Ξ―Ξ³ΟΞ±Ο†ΞΏ."
 
 msgid " Also keep a copy in INBOX, marked as deleted."
 msgstr ""
-" Επίσης κράτησε ένα αντίγραφο στα ΕΙΣΕΡΧΟΜΕΝΑ, μαρκαρισμένο ως διαγραμμένο."
+" Ξ•Ο€Ξ―ΟƒΞ·Ο‚ ΞΊΟΞ¬Ο„Ξ·ΟƒΞµ Ξ­Ξ½Ξ± Ξ±Ξ½Ο„Ξ―Ξ³ΟΞ±Ο†ΞΏ ΟƒΟ„Ξ± Ξ•Ξ™Ξ£Ξ•Ξ΅Ξ§ΞΞΞ•ΞΞ‘, ΞΌΞ±ΟΞΊΞ±ΟΞΉΟƒΞΌΞ­Ξ½ΞΏ Ο‰Ο‚ Ξ΄ΞΉΞ±Ξ³ΟΞ±ΞΌΞΌΞ­Ξ½ΞΏ."
 
 msgid "Keep Deleted"
-msgstr "Κράτησε ως Διεγραμμένο"
+msgstr "ΞΟΞ¬Ο„Ξ·ΟƒΞµ Ο‰Ο‚ Ξ”ΞΉΞµΞ³ΟΞ±ΞΌΞΌΞ­Ξ½ΞΏ"
 
 msgid " Also notify using the method"
-msgstr " Επίσης ειδοποίησέ με χρησιμοποιώντας τη μέθοδο"
+msgstr " Ξ•Ο€Ξ―ΟƒΞ·Ο‚ ΞµΞΉΞ΄ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ­ ΞΌΞµ Ο‡ΟΞ·ΟƒΞΉΞΌΞΏΟ€ΞΏΞΉΟΞ½Ο„Ξ±Ο‚ Ο„Ξ· ΞΌΞ­ΞΈΞΏΞ΄ΞΏ"
 
 msgid "with"
-msgstr "με"
+msgstr "ΞΌΞµ"
 
 msgid "priority and the message"
-msgstr "προτεραιότητα και το μήνυμα"
+msgstr "Ο€ΟΞΏΟ„ΞµΟΞ±ΞΉΟΟ„Ξ·Ο„Ξ± ΞΊΞ±ΞΉ Ο„ΞΏ ΞΌΞ®Ξ½Ο…ΞΌΞ±"
 
 #, php-format
 msgid "Notify %s"
-msgstr "Ειδοποίηση στο %s"
+msgstr "Ξ•ΞΉΞ΄ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ· ΟƒΟ„ΞΏ %s"
 
 msgid "Then <strong>STOP</strong> processing rules."
-msgstr "Έπειτα, <strong>ΣΤΑΜΑΤΑ</strong> την επεξεργασία άλλων κανόνων."
+msgstr "ΞΟ€ΞµΞΉΟ„Ξ±, <strong>Ξ£Ξ¤Ξ‘ΞΞ‘Ξ¤Ξ‘</strong> Ο„Ξ·Ξ½ ΞµΟ€ΞµΞΎΞµΟΞ³Ξ±ΟƒΞ―Ξ± Ξ¬Ξ»Ξ»Ο‰Ξ½ ΞΊΞ±Ξ½ΟΞ½Ο‰Ξ½."
 
 msgid "Stop"
-msgstr "Στοπ"
+msgstr "Ξ£Ο„ΞΏΟ€"
 
 msgid "You have not defined the name for the new folder."
-msgstr "Δεν έχετε ορίσει το όνομα για τον νέο φάκελο."
+msgstr "Ξ”ΞµΞ½ Ξ­Ο‡ΞµΟ„Ξµ ΞΏΟΞ―ΟƒΞµΞΉ Ο„ΞΏ ΟΞ½ΞΏΞΌΞ± Ξ³ΞΉΞ± Ο„ΞΏΞ½ Ξ½Ξ­ΞΏ Ο†Ξ¬ΞΊΞµΞ»ΞΏ."
 
 msgid "Please try again."
-msgstr "Παρακαλώ ξαναπροσπαθήστε."
+msgstr "Ξ Ξ±ΟΞ±ΞΊΞ±Ξ»Ο ΞΎΞ±Ξ½Ξ±Ο€ΟΞΏΟƒΟ€Ξ±ΞΈΞ®ΟƒΟ„Ξµ."
 
 msgid "Illegal folder name.  Please select a different name"
-msgstr "¶κυρο όνομα φακέλου. Παρακαλώ επιλέξτε ένα διαφορετικό όνομα."
+msgstr "Ξ†ΞΊΟ…ΟΞΏ ΟΞ½ΞΏΞΌΞ± Ο†Ξ±ΞΊΞ­Ξ»ΞΏΟ…. Ξ Ξ±ΟΞ±ΞΊΞ±Ξ»Ο ΞµΟ€ΞΉΞ»Ξ­ΞΎΟ„Ξµ Ξ­Ξ½Ξ± Ξ΄ΞΉΞ±Ο†ΞΏΟΞµΟ„ΞΉΞΊΟ ΟΞ½ΞΏΞΌΞ±."
 
 msgid "None"
-msgstr "Κανένα"
+msgstr "ΞΞ±Ξ½Ξ­Ξ½Ξ±"
 
 #~ msgid "Vacation"
-#~ msgstr "Διακοπές"
+#~ msgstr "Ξ”ΞΉΞ±ΞΊΞΏΟ€Ξ­Ο‚"
 
 #~ msgid "Vacation Message"
-#~ msgstr "Μήνυμα Διακοπών"
+#~ msgstr "ΞΞ®Ξ½Ο…ΞΌΞ± Ξ”ΞΉΞ±ΞΊΞΏΟ€ΟΞ½"

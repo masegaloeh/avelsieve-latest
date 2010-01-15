@@ -169,7 +169,7 @@ function avelsieve_getrules(&$sieve, $scriptname = 'phpscript', &$rules, &$scrip
             $sievescript .= $line;
         }
     } else {
-        $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+        $prev = sq_bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
         textdomain ('avelsieve');
         $errormsg = _("Could not get SIEVE script from your IMAP server");
         $errormsg .= " " . $imapServerAddress.".<br />";

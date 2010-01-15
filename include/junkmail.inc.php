@@ -30,7 +30,7 @@ include_once(SM_PATH . 'plugins/avelsieve/include/html_main.inc.php');
 function junkmail_right_main_do() {
     global $PHP_SELF;
     
-    bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+    sq_bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
     textdomain ('avelsieve');
     
     require_once(SM_PATH . 'plugins/avelsieve/include/constants.inc.php');
@@ -124,7 +124,7 @@ function junkmail_right_main_do() {
 
     echo $ht->section_end() . $ht->all_sections_end();
     
-    bindtextdomain('squirrelmail', SM_PATH . 'locale');
+    sq_bindtextdomain('squirrelmail', SM_PATH . 'locale');
     textdomain('squirrelmail');
 }
 

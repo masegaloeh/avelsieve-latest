@@ -54,7 +54,7 @@ sqgetGlobalVar('logout', $logout, SQ_POST);
 
 sqgetGlobalVar('position', $position, SQ_FORM);
 
-$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+$prev = sq_bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
 $backend_class_name = 'DO_Sieve_'.$avelsieve_backend;
@@ -410,7 +410,7 @@ global $javascript_on;
 
 /* -------------------- Presentation Logic ------------------- */
 
-$prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
+$prev = sq_bindtextdomain ('squirrelmail', SM_PATH . 'locale');
 textdomain ('squirrelmail');
 if($popup) {
     displayHtmlHeader('');
@@ -418,7 +418,7 @@ if($popup) {
     displayPageHeader($color, 'None');
 }
 
-$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+$prev = sq_bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
 if(isset($_GET['mode'])) {

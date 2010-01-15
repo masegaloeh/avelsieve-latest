@@ -26,7 +26,7 @@ if (file_exists('../../include/init.php')) {
     
 require(SM_PATH . 'plugins/avelsieve/config/config.php');
 
-$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+$prev = sq_bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
 include_once(SM_PATH . 'functions/imap.php');
