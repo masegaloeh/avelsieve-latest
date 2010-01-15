@@ -29,7 +29,7 @@ if (file_exists('../../include/init.php')) {
 include_once(SM_PATH . 'functions/imap.php');
 require(SM_PATH . 'plugins/avelsieve/config/config.php');
 
-$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+$prev = sq_bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
 include_once(SM_PATH . 'functions/identity.php');
@@ -312,7 +312,7 @@ sqimap_logout($imapConnection);
 
 /* -------------- Presentation Logic ------------- */
 
-$prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
+$prev = sq_bindtextdomain ('squirrelmail', SM_PATH . 'locale');
 textdomain ('squirrelmail');
 if($popup) {
     displayHtmlHeader('');
@@ -320,7 +320,7 @@ if($popup) {
     displayPageHeader($color, 'None');
 }
 
-$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+$prev = sq_bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
 if(isset($edit)) {

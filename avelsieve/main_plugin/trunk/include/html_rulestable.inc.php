@@ -332,11 +332,11 @@ class avelsieve_html_rules extends avelsieve_html {
     function scriptinfo($scriptinfo) {
         $out = '';
         if(function_exists('getLongDateString')) {
-            bindtextdomain('squirrelmail', SM_PATH . 'locale');
+            sq_bindtextdomain('squirrelmail', SM_PATH . 'locale');
             textdomain('squirrelmail');
             $cr = getLongDateString($scriptinfo['created']);
             $mo = getLongDateString($scriptinfo['modified']);
-            bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+            sq_bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
             textdomain ('avelsieve');
             
             // $out = '<p><em>'. _("Last modified:").'</em> <strong>'.$mo.'</strong></p>';

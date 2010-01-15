@@ -37,7 +37,7 @@ function avelsieve_right_main_do() {
         junkmail_right_main_do();
     }
     
-    bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+    sq_bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
     textdomain ('avelsieve');
 
     if($mailbox == 'INBOX') {
@@ -82,7 +82,7 @@ function avelsieve_right_main_do() {
             }
         }
     }
-    bindtextdomain('squirrelmail', SM_PATH . 'locale');
+    sq_bindtextdomain('squirrelmail', SM_PATH . 'locale');
     textdomain('squirrelmail');
 }
 

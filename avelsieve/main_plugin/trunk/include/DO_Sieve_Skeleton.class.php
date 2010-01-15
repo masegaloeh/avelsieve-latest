@@ -76,7 +76,7 @@ class DO_Sieve_Skeleton extends DO_Sieve {
         /* ... */
         /* If error: */
         if(false) {
-            $prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+            $prev = sq_bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
             textdomain ('avelsieve');
             $errormsg = _("Could not get SIEVE script from your IMAP server");
             $errormsg .= " " . $imapServerAddress.".<br />";

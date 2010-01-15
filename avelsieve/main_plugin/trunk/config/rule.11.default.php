@@ -15,7 +15,7 @@
  * @subpackage avelsieve
  */
 
-$prev = bindtextdomain ('avelsieve_rule_11', SM_PATH . 'plugins/avelsieve/locale');
+$prev = sq_bindtextdomain ('avelsieve_rule_11', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve_rule_11');
 
 /**
@@ -165,7 +165,7 @@ $avelsieve_rules_settings[11] = array(
     )
 );
 
-bindtextdomain('squirrelmail', SM_PATH . 'locale');
+sq_bindtextdomain('squirrelmail', SM_PATH . 'locale');
 textdomain ('squirrelmail');
 
 ?>

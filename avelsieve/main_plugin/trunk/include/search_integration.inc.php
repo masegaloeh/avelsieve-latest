@@ -30,7 +30,7 @@ function avelsieve_search_integration_do() {
     $rule = asearch_to_avelsieve($mailbox_array, $biop_array, $unop_array, $where_array, $what_array, $exclude, $info);
 
     if(!empty($rule) && isset($_GET['submit'])) {
-        bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+        sq_bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
         textdomain ('avelsieve');
         
         $url = '../plugins/avelsieve/edit.php?addnew=1&amp;type=1&amp;serialized_rule='.rawurlencode(serialize($rule));
@@ -88,12 +88,12 @@ function avelsieve_search_integration_do() {
                     $sub_array_tmp = array();
                 }
 
-                bindtextdomain('squirrelmail', SM_PATH . 'locale');
+                sq_bindtextdomain('squirrelmail', SM_PATH . 'locale');
                 textdomain ('squirrelmail');
                 echo '<li>('. ($no+1). ') &quot;' .
                     asearch_get_query_display($color, $mailbox_array_tmp, $biop_array_tmp, $unop_array_tmp,
                     $where_array_tmp, $what_array_tmp, $exclude_array_tmp, $sub_array_tmp);
-                bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+                sq_bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
                 textdomain ('avelsieve');
             
                 if(isset($info['disabled_criteria_reasons'][$no])) {
@@ -114,7 +114,7 @@ function avelsieve_search_integration_do() {
         echo avelsieve_html::section_end();
         echo '</table>';
 
-        bindtextdomain('squirrelmail', SM_PATH . 'locale');
+        sq_bindtextdomain('squirrelmail', SM_PATH . 'locale');
         textdomain ('squirrelmail');
     }
 }

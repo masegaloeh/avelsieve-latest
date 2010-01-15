@@ -60,7 +60,7 @@ sqgetGlobalVar('sieve_capabilities', $sieve_capabilities, SQ_SESSION);
 */
 
 /* Set up locale, for the error messages. */
-$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+$prev = sq_bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
 if(isset($_SESSION['part'])) {
@@ -270,13 +270,13 @@ session_write_close();
 
 /* ----------------- start printing --------------- */
 
-$prev = bindtextdomain ('squirrelmail', SM_PATH . 'locale');
+$prev = sq_bindtextdomain ('squirrelmail', SM_PATH . 'locale');
 textdomain ('squirrelmail');
 
 // displayPageHeader($color, 'None', $xtra);
 displayPageHeader($color, 'None');
 
-$prev = bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+$prev = sq_bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
 textdomain ('avelsieve');
 
 print '

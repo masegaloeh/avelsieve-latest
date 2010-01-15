@@ -238,7 +238,7 @@ function avelsieve_register_jslibs() {
 function avelsieve_info() {
    return array(
        'english_name' => 'Avelsieve - Sieve Mail Filters',
-       'version' => '1.9.9',
+       'version' => '1.9.10svn',
        'summary' => 'An easy user interface for creating Sieve scripts on a Sieve-compliant (RFC 5028) server.',
        'details' => 'Avelsieve - Sieve Mail Filters for Squirrelmail - allows editing of Sieve mail filtering scripts on a Sieve-compliant (RFC 5028) server.'
    );

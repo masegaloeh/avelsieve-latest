@@ -26,7 +26,7 @@ function avelsieve_commands_menu_do() {
     global $passed_id, $passed_ent_id, $color, $mailbox,
            $message, $compose_new_win, $javascript_on;
         
-    bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+    sq_bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
     textdomain ('avelsieve');
     
     $output = array();
@@ -204,7 +204,7 @@ function avelsieve_commands_menu_do() {
         echo '</tr>';
     }
     
-    bindtextdomain('squirrelmail', SM_PATH . 'locale');
+    sq_bindtextdomain('squirrelmail', SM_PATH . 'locale');
     textdomain ('squirrelmail');
 
 }
