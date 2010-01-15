@@ -90,7 +90,7 @@ class avelsieve_action_vacation extends avelsieve_action {
             $errormsg[] = _("The number of days between vacation messages must be a positive number.");
         }
         if(!empty($val['vac_addresses'])) {
-            $onemailregex = "[a-zA-Z0-9]+[a-zA-Z0-9\._-]*@[a-zA-Z0-9_-]+[a-zA-Z0-9\._-]+";
+            $onemailregex = "[a-zA-Z0-9]+[a-zA-Z0-9\._\+-]*@[a-zA-Z0-9_-]+[a-zA-Z0-9\._-]+";
             if(!preg_match("/^$onemailregex(,$onemailregex)*$/" ,    $val['vac_addresses'])){
                 $errormsg[] = _("Incorrect email address(es). You must enter one or more valid email addresses, separated by comma.");
             }
