@@ -120,7 +120,7 @@ if ($logout) {
             $s->delete('phpscript');
         } */
     }
-    session_unregister('rules');
+    unset($_SESSION['rules']);
     
     header("Location: $location/../../src/options.php\n\n");
     // header("Location: $location/../../src/options.php?optpage=avelsieve\n\n");
