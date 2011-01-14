@@ -3,9 +3,15 @@
 <h3><a name="1.9.10">1.9.10 SVN - Devel Branch</a></h3>
 
 <ul>
+    <li>Fixed function calls that are deprecated since PHP 5.3. Many thanks to
+     <a href="http://www.rfc3092.net" target="_blank">Peter Senft</a> for the patches. 
+    </li>
+
     <li>Use <tt>sq_bindtextdomain()</tt> instead of <tt>bindtextdomain()</tt>, in order to make
     use of <tt>bindtextdomain_codeset()</tt> function. This solves some i18n problems in
     certain systems and locales.</li>
+
+    <li>Fix email address validation to allow for + sign in vacation box, too. Thanks to <i>jukka</i>. (#265)</li>
 
     <li>Change Greek Locale to UTF-8.</li>
 </ul>
