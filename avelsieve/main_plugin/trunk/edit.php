@@ -212,7 +212,7 @@ if(isset($previous_cond) && isset($new_cond)) {
 
 if(!empty($referrerUrl)) {
     $ruleobj->set_referrer($referrerUrl, $referrerArgs);
-    $redirectUrl = $referrerUrl;
+    $redirectUrl = html_entity_decode($referrerUrl);
     if(!empty($referrerArgs)) {
         $xtra = array();
         foreach($referrerArgs as $k=>$v) {

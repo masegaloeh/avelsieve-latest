@@ -322,7 +322,7 @@ function avelsieve_spam_highlight_update(&$rules) {
 function avelsieve_junkprune_ldapuserdata_update($username, $junkFolderDays) {
     global $plugins, $data_dir;
     if(in_array('ldapuserdata', $plugins)) {
-        if($_SESSION['ldap_prefs_cache']['junkprune'] != $junkFolderDays) {
+        if(!isset($_SESSION['ldap_prefs_cache']['junkprune']) || $_SESSION['ldap_prefs_cache']['junkprune'] != $junkFolderDays) {
             setPref($data_dir, $username, 'junkprune', $junkFolderDays);
             ldapuserdata_flush();
             return true;
