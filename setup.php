@@ -48,11 +48,7 @@ function squirrelmail_plugin_init_avelsieve() {
  */
 function avelsieve_optpage_register_block() {
     global $optpage_blocks, $avelsieve_enable_rules;
-    if (defined('SM_PATH')) {
-        bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
-    } else {
-        bindtextdomain ('avelsieve', '../plugins/avelsieve/locale');
-    }
+    sq_bindtextdomain ('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
     textdomain ('avelsieve');
 
     $optpage_blocks[] = array(
@@ -71,11 +67,6 @@ function avelsieve_optpage_register_block() {
         );
     }
 
-    if (defined('SM_PATH')) {
-        bindtextdomain('squirrelmail', SM_PATH . 'locale');
-    } else {
-        bindtextdomain ('squirrelmail', '../locale');
-    }
     textdomain('squirrelmail');
 }
 
@@ -88,13 +79,11 @@ function avelsieve_menuline_devel() {
     if($avelsieveheaderlink) {
         global $oTemplate, $nbsp;
 
-        bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+        sq_bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
         textdomain ('avelsieve');
         $output = makeInternalLink('plugins/avelsieve/table.php', _("Filters")) . '&nbsp;&nbsp;';
         
-        bindtextdomain('squirrelmail', SM_PATH . 'locale');
         textdomain ('squirrelmail');
-
         return array('menuline' => $output);
     }
 }
@@ -107,13 +96,12 @@ function avelsieve_menuline() {
     global $avelsieveheaderlink;
 
     if($avelsieveheaderlink) {
-        bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
+        sq_bindtextdomain('avelsieve', SM_PATH . 'plugins/avelsieve/locale');
         textdomain ('avelsieve');
         
         displayInternalLink('plugins/avelsieve/table.php',_("Filters"));
         echo "&nbsp;&nbsp;\n";
 
-        bindtextdomain('squirrelmail', SM_PATH . 'locale');
         textdomain ('squirrelmail');
     }
 }    
