@@ -18,9 +18,9 @@ include_once(SM_PATH . 'plugins/avelsieve/include/support.inc.php');
 include_once(SM_PATH . 'plugins/avelsieve/config/config.php');
     
 class DO_Sieve {
-    var $capabilities;
-    var $rules;
-    var $sieve;
+    public $capabilities;
+    public $rules;
+    public $sieve;
     
     /*
      * Condition kinds
@@ -38,24 +38,11 @@ class DO_Sieve {
      */
     public $condition_kinds;
 
-
-    /*
-    function init()
-    function listscripts()
-    function load()
-    function save()
-    function delete()
-    */
-
     /**
      * Constructor
      */
     function DO_Sieve() {
-        if(AVELSIEVE_DEBUG == 1) {
-            $this->sieveDebug = true;
-        } else {
-            $this->sieveDebug = false;
-        }
+        $this->sieveDebug = (AVELSIEVE_DEBUG == 1 ? true : false);
 
         $this->condition_kinds = array(
             'message' => array(
@@ -91,7 +78,7 @@ class DO_Sieve {
     * @param $cap capability to check for
     * @return boolean true if capability exists, false if it does not exist
     */
-    function capability_exists($cap) {
+    public function capability_exists($cap) {
         global $disable_avelsieve_capabilities;
         if(empty($this->capabilities)) {
             /* Abnormal start of a backend. We need to call init() explicitly
@@ -138,7 +125,7 @@ class DO_Sieve {
     * @param string $script
     * @return string
     */
-    function encode_script($script) {
+    public function encode_script($script) {
         global $languages, $squirrelmail_language, $default_charset;
     
         /* change $default_charset to user's charset */
@@ -183,7 +170,7 @@ class DO_Sieve {
     * @param string $script
     * @return string
     */
-    function decode_script($script) {
+    public static function decode_script($script) {
     
         global $languages, $squirrelmail_language, $default_charset;
     
