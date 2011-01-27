@@ -227,7 +227,7 @@ class avelsieve_html_edit_10 extends avelsieve_html_edit_spamrule {
      * @param array $rule
      * @return void
      */
-    function process_input(&$ns, $unused = false) {
+    function process_input(&$ns, $unused = false, $validate = true) {
         global $startitems;
         if(isset($ns['intermediate_action']['spamrule_switch_to_advanced'])) {
             // Just switched to advanced.

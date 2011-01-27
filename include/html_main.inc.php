@@ -339,7 +339,7 @@ class avelsieve_html {
         if($this->determineState($optname) === true) {
             return '';
         } else {
-            return 'style="display:none;" ';
+            return ' style="display:none;" ';
         }
     }
 }

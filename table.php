@@ -373,12 +373,28 @@ if( (!$conservative && isset($haschanged) ) ) {
     /* Commit changes */
     $s->login();
     $newscript = makesieverule($rules);
-    $s->save($newscript, 'phpscript');
-    avelsieve_spam_highlight_update($rules);
-    if(isset($_SESSION['haschanged'])) {
-        unset($_SESSION['haschanged']);
-    }
+    if($s->save($newscript, 'phpscript', false) === true) {
+        avelsieve_spam_highlight_update($rules);
+        if(isset($_SESSION['haschanged'])) {
+            unset($_SESSION['haschanged']);
+        }
+    } else {
+        // Revert
+        unset($_SESSION['rules']);
+        if(isset($_SESSION['haschanged'])) {
+            unset($_SESSION['haschanged']);
+        }
+        if(isset($_SESSION['comm'])) {
+            unset($_SESSION['comm']);
+        }
 
+        $errormsg = '<p>' . _("Could not save filtering rules in mail server.") . '</p>' .
+            '<p>' . sprintf(_('<a href="%s">Click here to continue to the table of filtering rules</a>, or press back in your browser to retry editing.'),
+                SM_PATH . 'plugins/avelsieve/table.php') . '</p>' ;
+    
+        print_errormsg($errormsg);
+        exit;
+    }
 }
 
 if(isset($rules)) {
