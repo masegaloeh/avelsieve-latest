@@ -48,14 +48,17 @@ $avelsieve_backend = 'ManageSieve';
 /* =================== ManageSieve Backend Options ======================== */
 /* ======================================================================== */
 
-/* Port where timsieved listens on the Cyrus IMAP server. Default is 2000. */
+/* Port where ManageSieve servers (e.g. Cyrus IMAP's timsieved) listens to.
+ * Default is 2000. Note that another possible port that your server might
+ * listen to, is 4190, which is now the official (IANA-assigned) port for
+ * Sieve. */
 
 global $sieveport;
 $sieveport = 2000;
 
 /**
  * @var string Space separated list of preferred SASL mechanisms for the
- * authentication to timsieved. e.g. "PLAIN DIGEST-MD5";*/
+ * authentication to ManageSieve server. e.g. "PLAIN DIGEST-MD5";*/
 
 global $sieve_preferred_sasl_mech;
 $sieve_preferred_sasl_mech = 'PLAIN';
@@ -246,9 +249,9 @@ $notifymethods = array(
 
 
 /* Capabilities to disable. If you would like to force avelsieve not to display
- * certain features, even though there _is_ a capability for them by
- * Cyrus/timsieved, you should specify these here. For instance, if you would
- * like to disable the notify extension, even though timsieved advertises it,
+ * certain features, even though there _is_ a capability for them in Sieve
+ * server, you should specify these here. For instance, if you would
+ * like to disable the notify extension, even though ManageSieve advertises it,
  * you should add 'notify' in this array: $force_disable_avelsieve_capability =
  * array("notify");. This will still leave the defined feature on, and if the
  * user can upload her own scripts then she can use that feature; this option
