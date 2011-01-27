@@ -238,7 +238,7 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
     * @param string $scriptname Name of script
     * @return true on success, false upon failure
     */
-    function save($newscript, $scriptname = 'phpscript') {
+    function save($newscript, $scriptname = 'phpscript', $handle_errors = true) {
         if(isset($this->sieve->error_raw)) {
             unset($this->sieve->error_raw);
         }
@@ -258,32 +258,34 @@ class DO_Sieve_ManageSieve extends DO_Sieve {
             return true;
     
         } else {
-            $errormsg = '<p>'. _("Unable to load script to server."); 
+            if($handle_errors === true) {
+                $errormsg = '<p>'. _("Unable to load script to server."); 
     
-            if(isset($this->sieve->error_raw)) {
-                $errormsg .= ' '. _("Server responded with:") . '<br /><blockquote>';
-                if (is_array($this->sieve->error_raw)) {
-                    foreach($this->sieve->error_raw as $error_raw) {
-                        $errormsg .= $error_raw . "<br />";
+                if(isset($this->sieve->error_raw)) {
+                    $errormsg .= ' '. _("Server responded with:") . '<br /><blockquote>';
+                    if (is_array($this->sieve->error_raw)) {
+                        foreach($this->sieve->error_raw as $error_raw) {
+                            $errormsg .= $error_raw . "<br />";
+                        }
+                    } else {
+                        $errormsg .= $this->sieve->error_raw . "<br />";
                     }
-                } else {
-                    $errormsg .= $this->sieve->error_raw . "<br />";
-                }
-                $errormsg .= '</blockquote><br/>' . _("Please contact your administrator.");
-            
-                /* The following serves for viewing the script that
-                * tried to be uploaded, for debugging purposes. */
-                if(AVELSIEVE_DEBUG > 0) {
-                    $errormsg .= '<br />(Debug mode) <strong>avelsieve bug</strong>: Script that probably is buggy
-                       follows. Please copy/paste it, together with the error message above and a short description of
-                       what you were attempting to do, and email it to the author, at the email address: <a
-                    href="mailto:'.AVELSIEVE_BUGREPORT_EMAIL.'">'.AVELSIEVE_BUGREPORT_EMAIL.'</a>.
-                    <br />
-                    <div style="border: 1px solid grey; width: 650px; overflow: auto; height: 300px; font-family: monospace; font-size:10px;">' .nl2br(htmlspecialchars($newscript)). "</div>";
+                    $errormsg .= '</blockquote><br/>' . _("Please contact your administrator.");
+                
+                    /* The following serves for viewing the script that
+                    * tried to be uploaded, for debugging purposes. */
+                    if(AVELSIEVE_DEBUG > 0) {
+                        $errormsg .= '<br />(Debug mode) <strong>avelsieve bug</strong>: Script that probably is buggy
+                           follows. Please copy/paste it, together with the error message above and a short description of
+                           what you were attempting to do, and email it to the author, at the email address: <a
+                        href="mailto:'.AVELSIEVE_BUGREPORT_EMAIL.'">'.AVELSIEVE_BUGREPORT_EMAIL.'</a>.
+                        <br />
+                        <div style="border: 1px solid grey; width: 650px; overflow: auto; height: 300px; font-family: monospace; font-size:10px;">' .nl2br(htmlspecialchars($newscript)). "</div>";
 
+                    }
                 }
+                print_errormsg($errormsg);
             }
-            print_errormsg($errormsg);
             return false;
         }
     }

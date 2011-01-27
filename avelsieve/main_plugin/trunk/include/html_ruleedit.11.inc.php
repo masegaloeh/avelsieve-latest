@@ -128,7 +128,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
 
                 // Informational text
                 if(isset($this->settings['spamrule_tests_info'][$key][$fv]['desc'])) {
-                    $out .= '<br/><div class="avelsieve_quoted" id="div_'.$jskey.'"'. ($this->js ? 'style="display:none"' : '') .'><blockquote>'.
+                    $out .= '<br/><div class="avelsieve_quoted" id="div_'.$jskey.'"'. ($this->js ? ' style="display:none"' : '') .'><blockquote>'.
                         '<img src="'.$this->iconuri.'information.png" alt="(i)" border="0" />'. ' ' .
                         $this->settings['spamrule_tests_info'][$key][$fv]['desc'].
                             ( isset($this->settings['spamrule_tests_info'][$key][$fv]['url']) ? 
@@ -225,7 +225,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
                 ($this->js ? 'onclick="'.$this->js_toggle_display('div_whitelist').'return true;"' : '' ) . '/>'.
                 '<label for="enable_whitelist">'. _("Enable Whitelist") . '</label>';
         
-        $out .= '<div id="div_whitelist" class="avelsieve_div"'. $this->stateVisibility('enable_whitelist') .'>' .
+        $out .= '<div id="div_whitelist" class="avelsieve_div" '. $this->stateVisibility('enable_whitelist') .'>' .
                 '<p>'. _("Messages sent from the addresses in your Whitelist will never end up in your Junk Mail folder, or considered as SPAM.").
                 '</p><p>';
         
@@ -285,7 +285,7 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
      * @param boolean $truncate_empty_conditions 
      * @return void
      */
-    function process_input(&$ns, $unused = false) {
+    function process_input(&$ns, $unused = false, $validate = true) {
         global $username;
 
         $vars = array('enable', 'junkmail_prune',

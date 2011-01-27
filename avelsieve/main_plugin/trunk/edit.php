@@ -172,7 +172,9 @@ if(isset($edit)) {
     if(isset($avelsieve_rules_settings[$type_get]['default_rule'])) {
         $ruleobj->set_rule_data($avelsieve_rules_settings[$type_get]['default_rule']);
     }
-    $ruleobj->process_input($_GET, true);
+    // Process the input but don't validate / don't emit any errors yet. User
+    // will submit via POST and we'll display anything strange, then.
+    $ruleobj->process_input($_GET, true, false);
 
 } elseif(!isset($edit) && isset($type_get) && !empty($_POST)) {
     /* Continuing to add a new rule */
@@ -254,7 +256,6 @@ if(isset($_POST['cancel'])) {
 } elseif(isset($_POST['addnew']) && !$changetype) {
     /* Add new rule */
     $ruleobj->process_input($_POST, true);
-
     if(empty($ruleobj->errmsg)) {
         if(isset($dup)) {
             // insert moving rule in place

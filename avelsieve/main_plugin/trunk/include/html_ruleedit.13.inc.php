@@ -83,10 +83,12 @@ class avelsieve_html_edit_13 extends avelsieve_html_edit {
      * @param array $rule
      * @return void
      */
-    function process_input(&$ns, $unused = false) {
+    function process_input(&$ns, $unused = false, $validate = true) {
         $this->rule['type'] = 13;
         if(!isset($ns['customrule'])){
-           $this->errmsg = _("Please enter a valid Sieve code snippet.");
+            if($validate) {
+                $this->errmsg = _("Please enter a valid Sieve code snippet.");
+            }
         } else {
            $code = trim($ns['customrule']);
         }
@@ -95,7 +97,9 @@ class avelsieve_html_edit_13 extends avelsieve_html_edit {
            $this->rule['code'] = $code;
         } else {
            $this->rule['code'] = '';
-           $this->errmsg = _("Please enter a valid Sieve code snippet.");
+            if($validate) {
+                $this->errmsg = _("Please enter a valid Sieve code snippet.");
+            }
         }
     }
 }

@@ -88,7 +88,7 @@ class avelsieve_html_edit_12 extends avelsieve_html_edit {
      * @param array $rule
      * @return void
      */
-    function process_input(&$ns, $unused = false) {
+    function process_input(&$ns, $unused = false, $validate = true) {
         $this->rule['type'] = 12;
         if(!isset($ns['whitelist'])) {
             return;

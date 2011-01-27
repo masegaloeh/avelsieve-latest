@@ -840,7 +840,7 @@ class avelsieve_html_edit extends avelsieve_html {
      *  of a folder on-the-spot, for various operations), instead of the
      *  current hack.
      */
-    function process_input(&$ns, $truncate_empty_conditions = false) {
+    function process_input(&$ns, $truncate_empty_conditions = false, $validate = true) {
         /* Reset current rule, as it will be overwritten from input */
         $this->rule = array();
 
