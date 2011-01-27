@@ -1,0 +1,1204 @@
+# translation of avelsieve.po to Turkish
+# AvelSieve Turkish Strings
+# Copyright (c) 2009 Serdar GULER.
+# FIRST AUTHOR <serdar.guler{at}gmail.com>, 2009.
+# EkoBIM :: http://comp.ieu.edu.tr
+msgid ""
+msgstr ""
+"Project-Id-Version: avelsieve\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-05-08 15:51+0300\n"
+"PO-Revision-Date: 2009-05-12 15:25+0000\n"
+"Last-Translator: Serdar GULER <serdar.guler{at}gmail.com>\n"
+"Language-Team: Turkish \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-9\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "You have to define at least one header match text."
+msgstr "Metine uygun en az bir tane baþlýk belirlemelisiniz"
+
+msgid "Add New Rule"
+msgstr "Yeni Kural Ekle"
+
+msgid "New Rule Wizard - Step"
+msgstr "Yeni Kural Sihirbazý - Adým"
+
+msgid "of"
+msgstr "dan"
+
+msgid "Rule Type"
+msgstr "Kural Tipi"
+
+msgid "Condition"
+msgstr "Koþul"
+
+msgid "Action"
+msgstr "Aksiyon"
+
+msgid "Confirmation"
+msgstr "Konfirmasyon"
+
+msgid ""
+"<p>You have chosen to keep every mail. This is the default action anyway, so "
+"you might want to start over with a rule that makes more sense. Select &quot;"
+"finished&quot; to save this rule nonetheless.</p>"
+msgstr "Tüm postalarý saklamayý seçtiniz. Bu zaten varsayýlan iþlemdir, bu nedenle daha anlamlý bir kuralla baþtan baþlamak isteyebilirsiniz. Yine de bu kuralý kaydetmek için &quot;tamamlandý&quot; yazýsýný seçiniz. "
+
+msgid ""
+"Please use the buttons on the bottom instead of your browser's reload, back "
+"and forward buttons, to build a rule."
+msgstr "Yeni bir kural yaratmak için; web tarayýcýnýzýn yenile, geri ve ileri butonlarýnýn yerine alttaki butonu kullanýn"
+
+#, fuzzy
+msgid "Mail Filtering Scripts"
+msgstr "Mail Filtreleme Betikleri"
+
+msgid "Message Filters"
+msgstr "Mesaj Filtreleri"
+
+msgid ""
+"Server-Side mail filtering enables you to add criteria in order to "
+"automatically forward, delete or place a given message into a folder."
+msgstr "Sunucu taraflý posta filtreleme 'otomatik olarak yönlendirmek, silmek ya da bu mesajý bir dosyaya kaydetmek' için ölçütler eklemenizi saðlar."
+
+msgid "Junk Mail Options"
+msgstr "Önemsiz  Posta (Junk) Seçenekleri"
+
+msgid ""
+"The Junk Mail Filter gathers all unwanted SPAM / Junk messages in your Junk "
+"folder."
+msgstr ""
+
+msgid "Filters"
+msgstr "Filtreler"
+
+msgid "Could not set active script on your IMAP server"
+msgstr "Betiðiniz IMAP sunucusu üzerinde aktif edilememiþtir"
+
+msgid "Please contact your administrator."
+msgstr "Lütfen Sistem Yöneticinize baþvurun "
+
+#, php-format
+msgid "Could not delete rule #%s: This type of rule cannot be deleted."
+msgstr "Kural silinemedi #%s: Bu tip filtreler silinemez."
+
+#, php-format
+msgid "Could not delete rules #%s: This type of rule cannot be deleted."
+msgstr "Kurallar silinemedi #%s: Bu tip filtreler silinemez."
+
+#, php-format
+msgid "The entered position, %s, is not valid."
+msgstr "Girdiðiniz (%s) pozisyon doðru deðil. "
+
+#, php-format
+msgid "The entered position, %s, is greater than the current number of rules."
+msgstr "Girdiðiniz (%s) pozisyon, þuanda ki kular numarasýndan daha büyük olmalý"
+
+msgid "Could not get SIEVE script from your IMAP server"
+msgstr "IMAP sunucunuzdan SIEVE betiði alýnamadý"
+
+#, fuzzy
+msgid "Error Encountered:"
+msgstr "Hata Oluþtu"
+
+msgid "Unable to load script to server."
+msgstr "Sunucuya betik yüklenemiyor."
+
+#, fuzzy, php-format
+msgid "Could not delete script from server %s."
+msgstr "Betik sunucudan silinemedi (%s)."
+
+#, fuzzy
+msgid "Could not set active script on your IMAP server "
+msgstr "Betiðiniz IMAP sunucusu üzerinde aktif edilememiþtir"
+
+#, fuzzy
+msgid "Could not delete script from server "
+msgstr "Betik sunucudan silinemedi"
+
+msgid "Could not log on to timsieved daemon on your IMAP server"
+msgstr "IMAP sunucu üzerinde ki timsieved servisine giriþ yapýlamadý"
+
+msgid "Server responded with:"
+msgstr "Sunucudan gelen yanýt:"
+
+msgid "AND (Every item must match)"
+msgstr "VE [AND] (Her öðe eþleþmelidir)"
+
+msgid "OR (Either item will match)"
+msgstr "VEYA [OR] (Her hangi bir öðe eþleþebilir)"
+
+#, fuzzy
+msgid "Rule"
+msgstr "Kural"
+
+#, fuzzy, php-format
+msgid "Add a new %s"
+msgstr "Yeni %s ekle"
+
+#, fuzzy
+msgid "SPAM Rule"
+msgstr "SPAM Filtresi"
+
+msgid "Junk Mail Rule"
+msgstr "Önemsiz Posta (Junk Mail) Filtresi"
+
+#, fuzzy, php-format
+msgid "Edit %s"
+msgstr "Düzenle (%s)"
+
+msgid "Whitelist"
+msgstr "Güvenilir Adresler Listesi (Whitelist)"
+
+#, fuzzy, php-format
+msgid "Add new %s"
+msgstr "Yeni %s ekle"
+
+msgid "Sieve Code"
+msgstr "Sieve Kodu"
+
+#, fuzzy
+msgid "Address"
+msgstr "Adres (Address)"
+
+#, fuzzy
+msgid ""
+"Perform an action depending on email addresses appearing in message headers."
+msgstr "Mesaj baþlýklarýnda görülen e-posta adreslerine göre iþlem gerçekleþtir."
+
+
+#, fuzzy
+msgid "Header"
+msgstr "Baþlýk (Header)"
+
+msgid ""
+"Perform an action on messages matching a specified header (From, To etc.)."
+msgstr "Belirli bir baþlýkla (Kimden, Kime, vs.) eþleþen mesajlar için iþlem gerçekleþtir. "
+
+
+msgid "Envelope"
+msgstr "Zarf (Envelope)"
+
+#, fuzzy
+msgid ""
+"Perform an action on messages matching a specified envelope header (Envelope "
+"FROM, TO)."
+msgstr "Belirli bir zarf baþlýðýyla (Zarf, Kimden,Kime) eþleþen mesajlar için iþlem gerçekleþtir. "
+
+
+msgid "Size"
+msgstr "Boyut (Size)"
+
+msgid "Perform an action on messages depending on their size."
+msgstr "Mesajlarýn boyutlarýna göre iþlem gerçekleþtir. "
+
+msgid "Body"
+msgstr "Gövde"
+
+msgid "Perform an action on messages depending on their content (body text)."
+msgstr "Mesajlarýn içeriklerine (gövde metni) göre iþlem gerçekleþtir. "
+
+msgid "All"
+msgstr "Hepsi (All)"
+
+msgid "Perform an action on <strong>all</strong> incoming messages."
+msgstr "Gelen tüm mesajlar üzerinde eylemi gerçekleþtirin"
+
+msgid "contains"
+msgstr "içerir"
+
+msgid "does not contain"
+msgstr "içermez"
+
+msgid "is"
+msgstr "ise"
+
+msgid "is not"
+msgstr "deðil ise"
+
+msgid "matches"
+msgstr "eþleþir"
+
+#, fuzzy
+msgid "wildcard"
+msgstr "(wildcard)"
+
+msgid "does not match"
+msgstr "eþleþmez"
+
+#, fuzzy
+msgid "regexp"
+msgstr "(regexp)"
+
+msgid "is greater than"
+msgstr "büyüktür"
+
+msgid "is greater or equal to"
+msgstr "büyük yada eþittir"
+
+msgid "is lower than"
+msgstr "küçüktür"
+
+msgid "is lower or equal to"
+msgstr "küçük yada eþittir"
+
+msgid "is equal to"
+msgstr "eþittir"
+
+msgid "is not equal to"
+msgstr "eþit deðildir"
+
+msgid "verbose"
+msgstr "ayrýntýlý"
+
+#, fuzzy
+msgid "Textual descriptions of the rules"
+msgstr "Kurallarýn metinsel açýklamalarý"
+
+msgid "terse"
+msgstr "özet"
+
+msgid "More suitable for viewing the table of rules at once"
+msgstr "Kurallar tablosunu hemen görmek için daha uygun. "
+
+msgid "source"
+msgstr "kaynak"
+
+msgid "Display SIEVE source"
+msgstr "SIEVE kaynaðýný göster"
+
+msgid "Low"
+msgstr "Düþük"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "High"
+msgstr "Yüksek"
+
+msgid "Delete"
+msgstr "Sil"
+
+msgid "Edit"
+msgstr "Düzenle"
+
+msgid "Duplicate"
+msgstr "Kopyala"
+
+msgid "Move Up"
+msgstr "Yukarý taþý"
+
+#, fuzzy
+msgid "Move to Top"
+msgstr "En üste taþý"
+
+msgid "Move Down"
+msgstr "Aþaðý taþý"
+
+#, fuzzy
+msgid "Move to Bottom"
+msgstr "En alta taþý"
+
+msgid "Junk Folder"
+msgstr "Önemsiz Posta (Junk Mail) Klasörü"
+
+#, php-format
+msgid ""
+"Store SPAM message in your Junk Folder. Messages older than %s days will be "
+"deleted automatically."
+msgstr "SPAM mesajlarý Önemsiz Posta Klasörüne depolar. %s günden daha eski mesajlar otomatik olarak silinir."
+
+msgid "Trash Folder"
+msgstr "Çöp Kutusu"
+
+msgid ""
+"Store SPAM message in your Trash Folder. You will have to purge the folder "
+"yourself."
+msgstr "SPAM mesajlarý Çöp Kutusunda depolar. Bu klasörü kendiniz temizleyebilirsiniz."
+
+#, fuzzy
+msgid "Discard"
+msgstr "Sil"
+
+msgid ""
+"Discard SPAM message. You will get no indication that the message ever "
+"arrived."
+msgstr "SPAM mesajlarý siler. Her hangi bir bildirim almazsýnýz. "
+
+msgid "Server-Side Mail Filtering"
+msgstr "Sunucu-Taraflý Mail Filtreleme"
+
+msgid "Successfully added new rule."
+msgstr "Yeni kural baþarý ile eklenmiþtir."
+
+#, fuzzy, php-format
+msgid "Successfully updated rule #%s"
+msgstr "Kural baþarý ile güncellenmiþtir #%s"
+
+#, fuzzy, php-format
+msgid "Successfully deleted rules #%s"
+msgstr "Kurallar baþarý ile silinmiþtir #%s"
+
+#, fuzzy, php-format
+msgid "Successfully deleted rule #%s"
+msgstr "Kural baþarý ile silinmiþtir #%s"
+
+msgid "You must correct the above errors before continuing."
+msgstr "Devam etmeden önce üstte belirtilen hatayý/hatalarý düzeltmelisiniz."
+
+msgid "No check"
+msgstr ""
+
+#, php-format
+msgid "Editing %s"
+msgstr ""
+
+#, php-format
+msgid "(Rule #%s)"
+msgstr "(Kural #%s)"
+
+#, fuzzy, php-format
+msgid "Add a new %s "
+msgstr "Yeni %s ekle"
+
+msgid "Configure Anti-SPAM Protection"
+msgstr "Anti-SPAM Korumasý yapýlandýrmasý"
+
+msgid ""
+"All incoming mail is checked for unsolicited commercial content (SPAM) and "
+"marked accordingly. This special rule allows you to configure what to do "
+"with such messages once they arrive to your Inbox."
+msgstr "Her postada istenmeyen reklam içeriði (SPAM) olup olmadýðý kontrol edilir ve ona göre iþaretlenir. Bu özel kural, gelen kutunuza böyle bir mesaj geldiðinde ne yapýlacaðýný yapýlandýrmanýzý saðlar. "
+
+#, php-format
+msgid ""
+"Select %s to add the predefined rule, or select the advanced SPAM filter to "
+"customize the rule."
+msgstr "Önceden tanýmlanmýþ kurala ekleme yapmak için %s seçin veya kuralý kiþiselleþtirmek için Geliþmiþ SPAM filtresi seçin "
+
+#, fuzzy
+msgid "Add Spam Rule"
+msgstr "Spam Filtresi Ekle"
+
+msgid "Advanced Spam Filter..."
+msgstr "Geliþmiþ SPAM filtresi..."
+
+msgid "Target Score"
+msgstr "Hedef Puan"
+
+#, php-format
+msgid ""
+"Messages with SPAM-Score higher than the target value, the maximum value "
+"being %s, will be considered SPAM."
+msgstr "SPAM-deðeri hedeflenen deðerden fazla olan mesajlar, en fazla %s olanlar SPAM olarak deðerlendirilir."
+
+msgid "SPAM Lists to check against"
+msgstr "Karþýdan kontrol için SPAM listeleri"
+
+msgid ""
+"Messages that match any of these header rules will never end up in Junk "
+"Folders or regarded as SPAM."
+msgstr "Bu baþlýklarýn herhangi biriyle eþleþen mesajlar asla Önemsiz Posta (Junk Mail) olarak deðerlendirilmez. Dosyalar SPAM olarak deðerlendirilir."
+
+msgid "STOP"
+msgstr "DUR"
+
+msgid "If this rule matches, do not check any rules after it."
+msgstr ""
+"Eðer bu filtre eþleþiyorsa, diðer filtreleri kontrol etme." 
+
+
+msgid "Apply Changes"
+msgstr "Deðiþiklikleri Uygula"
+
+msgid "Cancel"
+msgstr "Ýptal Et"
+
+#, fuzzy
+msgid "Information..."
+msgstr "Bilgi..."
+
+#, php-format
+msgid ""
+"There is currently no Junk Mail Filter, so we are suggesting the following "
+"default settings. To add the Junk Mail Filter, simply choose <em>&quot;%"
+"s&quot;</em>."
+msgstr "Henüz Önemsiz Posta Filtresi tanýmlanmamýþtýr bu yüzden aþaðýda ki varsayýlan ayarlarý öneririz. Önemsiz Posta (Junk Mail) Filtresi eklemek için <em>&quot;%s&quot;</em> butonuna týklayýn"
+
+#, fuzzy
+msgid "Enable Junk Mail Filtering"
+msgstr "Önemsiz Posta (Junk Mail) Filtrelemesini aktif et"
+
+msgid "Automatically delete Junk Messages"
+msgstr "Önemsiz Postalarý (Junk Mail) otomatik olarak sil"
+
+#, php-format
+msgid "when they are older than %s days"
+msgstr "%s günden eski olduðunda "
+
+msgid "Enable Whitelist"
+msgstr "Güvenilir Adresler listesini aktif et (Whitelist)"
+
+msgid ""
+"Messages sent from the addresses in your Whitelist will never end up in your "
+"Junk Mail folder, or considered as SPAM."
+msgstr "Güvenilir adresler listenizden gelen mesajlar asla Junk (Çöp) dosyasýna konmaz ya da SPAM olarak deðerlendirilmez.  "
+
+msgid "Edit Whitelist...."
+msgstr "Güvenilir Adresler listesini düzenle (Whitelist)"
+
+msgid "Automatically add all your Address Book Contacts in the Whitelist"
+msgstr "Adres defterindeki tüm kayýtlarý otomatik olarak izin verilenler listesine (whitelist) ekle"
+
+msgid "Configure Advanced Junk Mail Tests"
+msgstr "Geliþmiþ Önemsiz Posta (Junk Mail) testlerini yapýlandýr"
+
+#, fuzzy
+msgid "You have to enable at least one Junk Mail Test."
+msgstr "En az bir tane Önemsiz Posta (Junk Mail) Testini aktif etmelisiniz."
+
+msgid "Junk Mail Options have been saved."
+msgstr "Önemsiz Posta (Junk Mail) Seçenekleri Kaydedildi. "
+
+msgid "Editing Whitelist"
+msgstr "Güvenilir Adresler listesi düzenleniyor (Whitelist)"
+
+msgid ""
+"Messages coming from the email addresses that you enter here will never end "
+"up in your Junk folder or be considered as SPAM."
+msgstr "Buraya yazdýðýnýz posta adreslerinden gelen mesajlar asla Junk (Çöp) dosyasýna konmaz ya da SPAM olarak deðerlendirilmez."
+
+msgid ""
+"Enter <strong>one (1) email address per line</strong>. Note that you can "
+"also enter an incomplete address or a mail domain."
+msgstr "<strong>Her satýra bir eposta adresi</strong> girin.  Ayrýca tamamlanmamýþ eposta veya postaya ait alan adýda girebilirsiniz."
+
+msgid "Example:"
+msgstr "Örnek:"
+
+msgid "Whitelist has been updated."
+msgstr "Güvenilir Adresler listesini güncellendi (Whitelist)"
+
+#, php-format
+msgid "Editing Sieve Code (Rule #%s)"
+msgstr "Sieve kodu düzenleniyor (Rule #%s)"
+
+#, fuzzy
+msgid "Create New Custom Sieve Rule"
+msgstr "Yeni özel Sieve filtresi oluþtur"
+
+msgid "Custom Rule"
+msgstr "Özel Filtre"
+
+msgid "Please enter valid Sieve code in the textbox below."
+msgstr "Lütfen aþaðýdaki kutucuða geçerli Sieve kodunu girin."
+
+msgid ""
+"Note: The <tt>require</tt> command is not needed; it will be added "
+"automatically at the start of the script."
+msgstr "Not: <tt>require</tt> komutu gerekli deðildir; betiðin baþýnda  otomatik olarak eklenecektir. "
+
+#, php-format
+msgid "Sieve Capabilities supported: %s"
+msgstr "Desteklenen Sieve Özellikleri: %s"
+
+msgid "Please enter a valid Sieve code snippet."
+msgstr "Lütfen geçerli bir Sieve kod parçasýný girin."
+
+msgid "To: or Cc"
+msgstr ""
+
+msgid "The condition for the following rules is:"
+msgstr "Aþaðýda ki kurallara ait þart: "
+
+msgid "Less..."
+msgstr "Daha Az ..."
+
+msgid "More..."
+msgstr "Daha Fazla ..."
+
+msgid "bigger"
+msgstr "büyük"
+
+msgid "smaller"
+msgstr "küçük"
+
+msgid "than"
+msgstr " daha "
+
+msgid "KB (kilobytes)"
+msgstr "KB (Kilobyte)"
+
+msgid "MB (megabytes)"
+msgstr "MB (Megabyte)"
+
+msgid "All Messages"
+msgstr "Tüm mesajlar"
+
+msgid ""
+"The following action will be applied to <strong>all</strong> incoming "
+"messages that do not match any of the previous rules."
+msgstr ""
+"Aþaðýdaki iþlem önceki kurallarýn hiç birine uymayan tüm gelen mesajlar için uygulanacaktýr. "
+
+msgid "Choose what to do when this rule triggers, from one of the following:"
+msgstr "Aþaðýdaki seçeneklerden bu kural devreye girince ne yapýlacaðýný seçiniz. "
+
+
+#, fuzzy
+msgid "Add SPAM Rule"
+msgstr "SPAM filtresi ekle"
+
+msgid "Editing Mail Filtering Rule"
+msgstr "SPAM filtresi düzenleniyor"
+
+#, fuzzy
+msgid "Create New Mail Filtering Rule"
+msgstr "Yeni SPAM filtresi yarat"
+
+msgid "Additional Actions"
+msgstr "Ekstra eylemler"
+
+#, fuzzy
+msgid "You have to define at least one condition."
+msgstr "En az bir koþul tanýmlamalýsýnýz."
+
+msgid "Clear this Form"
+msgstr "Formu temizle"
+
+msgid "Start Over"
+msgstr "Baþtan baþla"
+
+msgid "Move back to step"
+msgstr "Bir önceki adýma geçiniz."
+
+msgid "Finished"
+msgstr "Tamamlandý"
+
+msgid "Move on to step"
+msgstr "Bir sonraki adýma geçiniz."
+
+msgid "Your new rule states:"
+msgstr "Yeni filtrenizin durumu:"
+
+msgid ""
+"If this is what you wanted, select Finished. You can also start over or "
+"cancel adding a rule altogether."
+msgstr "Eðer istemiþ olduðunuz buysa 'Tamamlandý' yazýsýný seçiniz. "
+
+msgid ""
+"Here you can add or delete filtering rules for your email account. These "
+"filters will always apply to your incoming mail, wherever you check your "
+"email."
+msgstr ""
+"Buradan, e-posta hesabýnýz için filtreleme kurallarýný ekleyip silebilirsiniz.  Bu filtreler postalarýnýzý nereden kontrol ederseniz edin her zaman gelen  postalarýnýza uygulanacaktýr."
+
+msgid ""
+"You don't have any rules yet. Feel free to add any with the button &quot;Add "
+"a New Rule&quot;. When you are done, please select &quot;Save Changes&quot; "
+"to get back to the main options screen."
+msgstr "Henüz bir kuralýnýz yok. <b>'Yeni Kural Ekle'</b> butonuyla kural ekleyebilirsiniz."
+#"Bitirdiðinizde ana seçenekler ekranýna dönmek için lütfen 'Deðiþiklikleri Kaydet' seçeneðine "
+#"týklayýn."
+
+msgid ""
+"When you are done with editing, <strong>remember to select &quot;Save "
+"Changes&quot;</strong> to activate your changes!"
+msgstr ""
+"Düzenleme iþini bitirdiðinizde deðiþiklikleri etkinleþtirmek için 'Deðiþiklikleri Kaydet' seçeneðine týklamayý unutmayýn."
+
+msgid "The following table summarizes your current mail filtering rules."
+msgstr "Aþaðýdaki tabloda mevcut posta filtreleme kurallarýna ait özetler bulunmaktadýr"
+
+msgid ""
+"Warning: In your rules, you have defined an action that refers to a folder "
+"that does not exist or a folder where you do not have permission to append "
+"to."
+msgstr "Uyarý: Kurallarýnýzda varolmayan ya da ekleme yapama yetkiniz olmayan bir dosyadan bahseden bir iþlem tanýmladýnýz. "
+
+#, php-format
+msgid ""
+"Note: A <a href=\"%s\">Vacation Autoresponder</a> is active (<a href=\"%s"
+"\">Rule #%s</a> in your current Mail Filtering Rules).<br/>Don't forget to "
+"disable it or delete it when you are back."
+msgstr ""
+
+msgid "No"
+msgstr "No"
+
+msgid "Options"
+msgstr "Seçenekler"
+
+msgid "Description of Rule"
+msgstr "Kural açýklamasý"
+
+msgid "Display as:"
+msgstr "Görüntüleme Türü:"
+
+#, fuzzy
+msgid "Position"
+msgstr "Konum"
+
+#, fuzzy
+msgid "Add a new Rule"
+msgstr "Yeni kural ekle"
+
+#, fuzzy
+msgid "Really delete selected rules?"
+msgstr "Seçili kurallarý silmek istediðinizden emin misiniz?"
+
+msgid "Enable"
+msgstr "Aktif et"
+
+msgid "Disable"
+msgstr "Devre dýþý býrak"
+
+msgid ""
+"When you are done, please click the button below to return to your webmail."
+msgstr "Bitirdiðinizde lütfen Webmail'e dönmek için aþaðýdaki butona týklayýnýz."
+
+msgid "Save Changes"
+msgstr "Deðiþiklikleri Kaydet"
+
+msgid "Created:"
+msgstr "Oluþturulma:"
+
+msgid "Last modified:"
+msgstr "Son düzenleme:"
+
+msgid "Current Mail Filtering Rules"
+msgstr "Güncel Posta Filtreleme Kurallarý"
+
+msgid "Close"
+msgstr "Kapat"
+
+msgid "No Filtering Rules Defined Yet"
+msgstr "Henüz filtreleme kurallarý tanýmlý deðil"
+
+#, fuzzy
+msgid "Really delete this rule?"
+msgstr "Seçili kuralý gerçekten sil?"
+
+#, fuzzy
+msgid "More Options..."
+msgstr "Diðer Seçenekler..."
+
+#, fuzzy
+msgid "Move to Position..."
+msgstr "Konuma taþý..."
+
+msgid "--------"
+msgstr ""
+
+#, fuzzy
+msgid "Duplicate this Rule"
+msgstr "Bu kuralý çoðalt"
+
+#, fuzzy
+msgid "Insert a New Rule here"
+msgstr "Buraya yeni kural ekle"
+
+msgid "Send this Rule by Email"
+msgstr "Kuralý eposta ile gönder"
+
+msgid "Go"
+msgstr "Git"
+
+msgid "Action for Selected Rules:"
+msgstr "Seçili kural(lar) için eylem"
+
+msgid "Junk Folder Information"
+msgstr "Önemsiz posta klasörü bilgileri"
+
+msgid "Messages in this folder have been identified as SPAM / Junk."
+msgstr "Bu klasördeki mesajlar SPAM / Önemsiz Posta (Junk Mail) olarak tanýmlanmýþtýr."
+
+#, php-format
+msgid ""
+"Note: Junk Mail is currently not enabled. Select &quot;%s&quot; to enable it."
+msgstr "Önemsiz Posta (Junk Mail) seçeneði aktif deðildir. Aktif etmek için &quot;%s&quot; seçin"
+
+msgid "Edit Junk Mail Options..."
+msgstr "Önemsiz posta (Junk Mail) seçeneklerini düzenle..."
+
+#, php-format
+msgid "Any messages older than %s days are automatically deleted."
+msgstr "%s günden daha eski mesajlar otomatik olarak silinir."
+
+msgid "Test for Forged Header"
+msgstr ""
+
+msgid "Automatically"
+msgstr "Atomatik olarak"
+
+msgid "Sender"
+msgstr "Gönderen"
+
+msgid "From"
+msgstr ""
+
+msgid "To"
+msgstr ""
+
+msgid "Subject"
+msgstr "Konu"
+
+#, fuzzy
+msgid "Create Filter"
+msgstr "Filtre oluþtur"
+
+msgid "Vacation Filter Reminder"
+msgstr "Tatil (Vacation) filtresi hatýrlatýcýsý"
+
+msgid "(Creates a new server-side filtering rule, based on the above criteria)"
+msgstr "(Üstteki kriterlere göre yeni sunucu-taraflý filtre oluþturulur)"
+
+msgid ""
+"Notice: The following criteria cannot be expressed as server-side filtering "
+"rules:"
+msgstr "Not: Aþaðýdaki kriterler sunucu-taraflý filtre olarak ifade edilememektedir."
+
+msgid "Reason:"
+msgstr "Sebep:"
+
+msgid "The Body extension is not supported in this server."
+msgstr "Bu uzantý sunucu tarafýndan desteklenmemektedir. "
+
+msgid ""
+"Note that Only From:, To:, Cc: and Subject: headers will be checked in the "
+"server filter."
+msgstr "Unutmayýn ki sadece Kimden:, Kime:, Bilgi: ve Konu: baþlýklarý sunucu filtresinin kontrolünden geçecektir. "
+
+msgid "These search expressions are not applicable during message delivery."
+msgstr "Bu arama ifadeleri mesaj gönderimi sýrasýnda uygulanabilir deðildir. "
+
+#, fuzzy
+msgid "Keep Message"
+msgstr "Mesajý sakla"
+
+msgid "Save the message in your INBOX."
+msgstr "Mesajý gelen kutusunda saklar"
+
+msgid "Silently discards the message; use with caution."
+msgstr "Her hangi bir uyarý vermeden mesajý siler; dikkatli kullanýn"
+
+msgid "Reject"
+msgstr "Reddet"
+
+msgid "Send the message back to the sender, along with an excuse"
+msgstr "Aþaðýdaki açýklama ile birlikte mesaj göndericisine geri yollanýr"
+
+msgid "Please do not send me large attachments."
+msgstr "Lütfen bana büyük boyutta ekler yollamayýnýz."
+
+msgid "Redirect"
+msgstr "Yönlendir"
+
+msgid "Automatically redirect the message to a different email address"
+msgstr "Mesajý otomatik olarak farklý eposta adresine yönlendirir"
+
+msgid "someone@example.org"
+msgstr "birisi@example.com"
+
+msgid "Keep a local copy as well."
+msgstr "Yerel bir kopyasýný sakla"
+
+msgid ""
+"Incorrect email address(es). You must enter one or more valid email "
+"addresses, separated by comma."
+msgstr "Girilen eposta adres(ler)i yanlýþ, lütfen en az bir geçerli eposta adresi girin. Çoklu adresler virgül ile ayrýlýr"
+
+#, fuzzy
+msgid "Move to Folder"
+msgstr "Klasöre Taþý"
+
+#, php-format
+msgid "Or specify a new folder: %s to be created under %s"
+msgstr "veya yeni bir klasör belirtin: %s, tanýmlayacaðýnýz bu klasör %s altýnda oluþturulacaktýr"
+
+msgid "Vacation"
+msgstr "Tatil Modu"
+
+msgid "This is an automated reply; I am away and will not be able to reply to you immediately."
+msgstr "Otomatik Cevap; Dýþarýda olduðum için size cevap dönemiyorum "
+
+
+msgid "I will get back to you as soon as I return."
+msgstr "Döndüðümde, en kýsa sürede cevap dönmeye çalýþacaðým."
+
+msgid ""
+"The notice will be sent only once to each person that sends you mail, and "
+"will not be sent to a mailing list address."
+msgstr "Bildiri size e-posta gönderen her kiþiye sadece bir kere gönderilecektir ve posta listelerine gönderilmeyecektir. "
+
+msgid "Subject:"
+msgstr "Konu:"
+
+#, fuzzy
+msgid "Optional subject of the vacation message."
+msgstr "Opsiyonel tatil mesajý konusu: "
+
+#, fuzzy
+msgid "Your Addresses:"
+msgstr "Adresiniz"
+
+msgid ""
+"A vacation message will be sent only if an email is sent explicitly to one "
+"of these addresses."
+msgstr "Mail özellikle bu adreslerden birine gönderilmiþse tatil mesajý iletilecektir."
+
+#, fuzzy
+msgid "Days:"
+msgstr "Günler:"
+
+msgid "days"
+msgstr "gün"
+
+msgid ""
+"A vacation message will not be resent to the same address, within this "
+"number of days."
+msgstr "Tatil modu mesajý ayný göndericilere üstte belirtilen gün(ler) içinde sadece bir kez yollanýr"
+
+#, fuzzy
+msgid "Message:"
+msgstr "Mesaj"
+
+msgid "The number of days between vacation messages must be a positive number."
+msgstr "Tatil modu mesajý için girdiðiniz gün sayýsý pozitif bir sayý olmalýdýr."
+
+msgid "Notify"
+msgstr "Bildir"
+
+#, fuzzy
+msgid "Send a notification "
+msgstr "Bildirimde bulun"
+
+msgid "Mobile Phone Message (SMS)"
+msgstr "SMS ile"
+
+msgid "Email notification"
+msgstr "E-Posta ile"
+
+msgid "Notification via Zephyr"
+msgstr "Zephyr ile"
+
+msgid "Notification via ICQ"
+msgstr "ICQ ile"
+
+msgid "Method"
+msgstr "Yöntem"
+
+msgid "Notification ID"
+msgstr "Bildirim ID"
+
+msgid "Destination"
+msgstr "Hedef"
+
+msgid "Priority"
+msgstr "Öncelik"
+
+msgid "Message"
+msgstr "Mesaj"
+
+msgid "Help: Valid variables are:"
+msgstr "Yardým: Kullanýlabilir deðiþkenler:"
+
+msgid "Also keep copy in INBOX, marked as deleted."
+msgstr "Ayrýca gelen kutunuzda, silinmiþ olarak iþaretlenmiþ bir kopyasýný saklar"
+
+msgid "The rule will have no effect for as long as it is disabled."
+msgstr "Kural devre dýþý olduðu sürece hiç bir etkisi yoktur."
+
+#, fuzzy
+msgid "Move to Junk"
+msgstr "Önemsiz klasörüne taþý"
+
+#, php-format
+msgid ""
+"Store message in your Junk Folder. Messages older than %s days will be "
+"deleted automatically."
+msgstr "Mesajlarý önemsiz klasörüne depolar. %s günden daha eski mesajlar otomatik olarak silinir."
+
+msgid "Note that you can set the number of days in Folder Preferences."
+msgstr "Klasör tercihlerindeki gün sayýsýný ayarlayabilirsiniz."
+
+#, fuzzy
+msgid "Move to Trash"
+msgstr "Çöp kutusuna taþý"
+
+msgid ""
+"Store message in your Trash Folder. You will have to purge the folder "
+"yourself."
+msgstr "Mesajlarý çöp kutusunda depolar. Klasörü kendiniz temizleyebilirsiniz."
+
+msgid ""
+"All messages considered as <strong>SPAM</strong> (unsolicited commercial "
+"messages)"
+msgstr "Tüm mesajlarý <strong>SPAM</strong> olarak say. (istenmeyen ticari iletiler olarak)"
+
+msgid "SPAM"
+msgstr ""
+
+msgid "unless"
+msgstr "olmadýkça"
+
+msgid "Whitelist:"
+msgstr "Güvenilir Adresler listesi (whitelist):"
+
+msgid "or"
+msgstr "veya"
+
+msgid "matching the Spam List(s):"
+msgstr "Spam liste(ler)i ile eþleþme"
+
+msgid "Spam List(s):"
+msgstr "Spam liste(ler)i:"
+
+#, fuzzy, php-format
+msgid "and with score greater than %s"
+msgstr "ve deðeri %s üstü olan"
+
+#, php-format
+msgid "Score > %s"
+msgstr "Deðeri > %s"
+
+msgid "will be"
+msgstr "olabilir"
+
+msgid "stored in the Junk Folder."
+msgstr "Önemsiz klasöründe tutulan"
+
+msgid "Junk"
+msgstr "Önemsiz posta klasörü"
+
+msgid "stored in the Trash Folder."
+msgstr "Çöp Kutusunda tutulan"
+
+msgid "Trash"
+msgstr "Çöp Kutusu"
+
+#, fuzzy
+msgid "discarded."
+msgstr "atýlmýþ."
+
+msgid "Junk Mail Rule is Disabled"
+msgstr "Önemsiz Posta (Junk Mail) Kurularý aktif deðildir."
+
+msgid "<s></s>"
+msgstr ""
+
+msgid "Junk Mail"
+msgstr "Önemsiz posta (Junk Mail)"
+
+msgid "matching any one of the Spam tests as follows:"
+msgstr "Aþaðýdaki Spam testlerinden herhangi biri ile eþleþiyor:"
+
+msgid "Spam Tests:"
+msgstr "Spam Testleri:"
+
+msgid ""
+"and where the sender does <em>not</em> match any of the addresses / "
+"expressions in your <strong>Whitelist</strong>"
+msgstr ""
+
+msgid ""
+"The messages that match the system's default <strong>SPAM</strong> checks"
+msgstr ""
+
+msgid "stored in the <strong>Junk</strong> Folder."
+msgstr "Önemsiz klasöründe saklanýr"
+
+msgid "stored in the <strong>Trash</strong> Folder."
+msgstr "Çöp kutusunda saklanýr"
+
+msgid ""
+"<strong>Whitelist</strong> - The following email addresses are whitelisted "
+"and will not end up in Junk folders or considered as SPAM:"
+msgstr "Güvenilir adresler listesi - Aþaðýdaki e-posta adresleri güvenilir adresler listesindedir ve asla Junk (Çöp) dosyasýna konmayacak ya da SPAM olarak deðerlendirilmeyecektir."
+
+#, php-format
+msgid "and %s more email addresses / expressions."
+msgstr "%s ve daha fazla e-posta adres(ler)ini ifadeler"
+
+#, php-format
+msgid "%s more entries..."
+msgstr "%s ve daha fazla kayýt(lar)ý..."
+
+#, fuzzy
+msgid "Custom Sieve Code"
+msgstr "Özel Sieve Kodu"
+
+msgid "View Source"
+msgstr "Kaynaðý Göster"
+
+#, fuzzy, php-format
+msgid "the header %s"
+msgstr "Header-ul"
+
+#, fuzzy, php-format
+msgid "Header %s"
+msgstr "Baþlýk %s"
+
+msgid "To or Cc"
+msgstr ""
+
+#, php-format
+msgid "the envelope %s"
+msgstr "Zarf %s"
+
+#, php-format
+msgid "Envelope %s"
+msgstr "Zarf %s"
+
+#, php-format
+msgid "the address %s"
+msgstr "Adres %s"
+
+#, fuzzy, php-format
+msgid "Address %s"
+msgstr "Adres %s"
+
+#, fuzzy
+msgid "message body"
+msgstr "Mesaj gövdesi"
+
+#, fuzzy
+msgid "matches the regular expression"
+msgstr "regex ile eþleþir"
+
+#, fuzzy
+msgid "does not match the regular expression"
+msgstr "regex ile eþleþmez"
+
+msgid "exists"
+msgstr "var"
+
+msgid "does not exist"
+msgstr "yok"
+
+msgid "This rule is currently <strong>DISABLED</strong>:"
+msgstr "Bu kural þu anda devre dýþý."
+
+msgid "DISABLED"
+msgstr "DEVRE DIÞI"
+
+msgid "If"
+msgstr "Þart"
+
+msgid "<em>any</em> of the following mail headers match: "
+msgstr "Aþaðýdaki herhangi bir posta baþlýðý ile eþleþ: "
+
+msgid "<em>all</em> of the following mail headers match: "
+msgstr "Aþaðýdaki tüm posta baþlýðý ile eþleþ: "
+
+msgid "the size of the message is"
+msgstr "mesaj boyutu"
+
+msgid " bigger"
+msgstr " büyüktür"
+
+msgid " smaller"
+msgstr " küçüktür"
+
+msgid "For <strong>ALL</strong> incoming messages; "
+msgstr "<strong>TÜM</strong> gelen mesajlar için; "
+
+msgid "ALL"
+msgstr "TÜM"
+
+msgid "and"
+msgstr "ve"
+
+msgid "then"
+msgstr "olduðunda"
+
+#, fuzzy
+msgid "<em>keep</em> the message."
+msgstr "mesajý <em>sakla</em>."
+
+#, fuzzy
+msgid "Keep"
+msgstr "Sakla"
+
+#, fuzzy
+msgid "<em>discard</em> the message."
+msgstr "mesajý <em>sil</em>."
+
+msgid "<em>reject</em> it, sending this excuse back to the sender:"
+msgstr ""
+"<em>reddet</em>bu nedenle gönderene geri gönderiliyor."
+
+
+msgid "Redirect to"
+msgstr "Yeniden yönlendir:"
+
+#, fuzzy, php-format
+msgid "<em>redirect</em> it to the email addresses: %s."
+msgstr "E-Posta adreslerine yönlendir: %s"
+
+msgid "<em>redirect</em> it to the email address"
+msgstr "E-Posta adresine yönlendir"
+
+#, fuzzy, php-format
+msgid "<em>file</em> it into the folder %s"
+msgstr ""
+
+#, php-format
+msgid "File into %s"
+msgstr ""
+
+msgid "(Warning: Folder not available)"
+msgstr "(Uyarý: Klasör mevcut deðil)"
+
+msgid "reply with this vacation message: "
+msgstr "bu mesaj ile cevapla: "
+
+#, fuzzy
+msgid "Vacation Message"
+msgstr "Tatil Mesajý"
+
+msgid "Also keep a local copy."
+msgstr "Ayrýca yerel bir kopyasýný sakla"
+
+msgid " Also keep a copy in INBOX, marked as deleted."
+msgstr " Ayrýca INBOX içerisine silinmiþ olarak iþaretlenmiþ bir kopyasýný saklar."
+
+#, fuzzy
+msgid "Keep Deleted"
+msgstr "Silinmiþ olarak tutun"
+
+msgid " Also notify using the method"
+msgstr " Ayrýca yöntemi kullanarak bildir"
+
+msgid "with"
+msgstr "ile"
+
+msgid "priority and the message"
+msgstr "öncelik ve mesaj"
+
+#, php-format
+msgid "Notify %s"
+msgstr "Bildir %s"
+
+#, fuzzy
+msgid "Then <strong>STOP</strong> processing rules."
+msgstr " Sonra kurallarý iþleme ve DUR"
+
+msgid "Stop"
+msgstr "Dur"
+
+msgid "You have not defined the name for the new folder."
+msgstr "Bu yeni klasörün adýný tanýmlý deðil."
+
+msgid "Please try again."
+msgstr "Lütfen tekrar deneyiniz."
+
+msgid "Illegal folder name.  Please select a different name"
+msgstr "Ýllegal klasör ismi, lütfen farklý bir isim seçiniz."
+
+#, fuzzy
+msgid "None"
+msgstr "Hiç biri"
+
+
