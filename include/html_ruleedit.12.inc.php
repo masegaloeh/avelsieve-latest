@@ -42,7 +42,8 @@ class avelsieve_html_edit_12 extends avelsieve_html_edit {
     function edit_rule($edit = false) {
         global $PHP_SELF, $color;
         
-        $out = '<form name="addrule" action="'.$PHP_SELF.'" method="POST">';
+        $out = '<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
+                "<input type=\"hidden\" name=\"smtoken\" value=\"" . sm_generate_security_token() . "\">";
 
         if($this->mode == 'edit') {
             $out .= '<input type="hidden" name="edit" value="'.$edit.'" />';

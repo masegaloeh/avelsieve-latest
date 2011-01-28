@@ -46,6 +46,11 @@ sqsession_is_active();
 sqgetGlobalVar('popup', $popup, SQ_GET);
 sqgetGlobalVar('haschanged', $haschanged, SQ_SESSION);
 
+if (!sqgetGlobalVar('smtoken',$submitted_token, SQ_FORM)) {
+    $submitted_token = '';
+}
+
+
 $location = get_location();
 
 sqgetGlobalVar('rules', $rules, SQ_SESSION);
@@ -271,6 +276,7 @@ if(isset($_GET['rule']) || isset($_POST['deleteselected']) ||
 // block:
 
 if($modifyEnable) {
+    sm_validate_security_token($submitted_token, 3600, TRUE);
 
     switch($modifyAction) {
         case 'mvup':
@@ -364,7 +370,7 @@ if($modifyEnable) {
 if (isset($_SESSION['returnnewrule'])) {
     /* There is a new rule to be added */
     $newrule = $_SESSION['returnnewrule'];
-    session_unregister('returnnewrule');
+    unset($_SESSION['returnnewrule']);
     $rules[] = $newrule;
     $haschanged = true;
 }

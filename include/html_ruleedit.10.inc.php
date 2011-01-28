@@ -65,7 +65,8 @@ class avelsieve_html_edit_10 extends avelsieve_html_edit_spamrule {
                 $data_dir, $username, $plugins, $junkfolder_days;
 
         $out = '<form name="addrule" action="'.$PHP_SELF.'" method="POST">';
-        $out .= '<input type="hidden" name="type" value="10" />';
+        $out .= '<input type="hidden" name="type" value="10" />'.
+                "<input type=\"hidden\" name=\"smtoken\" value=\"" . sm_generate_security_token() . "\">";
         
         if($this->mode == 'edit') {
             /* 'edit' */

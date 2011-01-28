@@ -40,14 +40,16 @@ class avelsieve_html_edit_13 extends avelsieve_html_edit {
 
       if ($this->mode == 'edit') {
          $out = '<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
+                "<input type=\"hidden\" name=\"smtoken\" value=\"" . sm_generate_security_token() . "\">".
                 '<input type="hidden" name="edit" value="'.$edit.'" />'.
          $this->table_header( sprintf( _("Editing Sieve Code (Rule #%s)"),  ($edit+1))).
          $this->all_sections_start();
       } else {
          $out = '<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
-         $this->table_header( _("Create New Custom Sieve Rule") ).
-         /* 'duplicate' or 'addnew' */
-         $this->all_sections_start();
+             "<input type=\"hidden\" name=\"smtoken\" value=\"" . sm_generate_security_token() . "\">".
+             $this->table_header( _("Create New Custom Sieve Rule") ).
+             /* 'duplicate' or 'addnew' */
+             $this->all_sections_start();
       }
 
       $out .= $this->print_errmsg();

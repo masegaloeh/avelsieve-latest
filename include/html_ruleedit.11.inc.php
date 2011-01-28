@@ -156,7 +156,8 @@ class avelsieve_html_edit_11 extends avelsieve_html_edit_spamrule {
         $default_rule = avelsieve_buildrule_11($this->settings['default_rule'], true); 
         $default_rule_desc = $default_rule[1]; 
         
-        $out = '<form name="addrule" action="'.$PHP_SELF.'" method="POST">';
+        $out = '<form name="addrule" action="'.$PHP_SELF.'" method="POST">'.
+                "<input type=\"hidden\" name=\"smtoken\" value=\"" . sm_generate_security_token() . "\">";
 
         if($this->mode == 'edit') {
             /* 'edit' */
