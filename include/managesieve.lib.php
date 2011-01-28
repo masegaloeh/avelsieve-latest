@@ -18,7 +18,7 @@
  *
  * @author Dan Ellis, Alexandros Vellis
  * @package sieve-php
- * @copyright Copyright 2002-2003, Dan Ellis, All Rights Reserved.  
+ * @copyright Copyright 2001-2003, Dan Ellis
  * @version 0.1.0
  */
 
