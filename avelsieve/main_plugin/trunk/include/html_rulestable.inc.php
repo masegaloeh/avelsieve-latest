@@ -297,7 +297,7 @@ class avelsieve_html_rules extends avelsieve_html {
         $desc = $avelsievetools[$name]['desc'];
         $img = $avelsievetools[$name]['img'];
 
-        $out = ' <a href="'.$url.'?rule='.$i.'&amp;'.$name.'='.$i.
+        $out = ' <a href="'.$url.'?rule='.$i.'&amp;'.$name.'='.$i. '&amp;smtoken='.sm_generate_security_token(). 
                 (!empty($xtra) ? '&amp;'.$xtra : '') .
                 '" rel="nofollow"';
     
@@ -391,7 +391,8 @@ class avelsieve_html_rules extends avelsieve_html {
         $null = null; // For plugin hooks and PHP4/5 compatibility
         
         $out = '<form name="rulestable" method="POST" action="table.php">'.
-                '<input name="position" value="" type="hidden" />';
+                '<input name="position" value="" type="hidden" />'.
+            "<input type=\"hidden\" name=\"smtoken\" value=\"" . sm_generate_security_token() . "\">";
 
         if(empty($this->rules)) {
             $out .= $this->table_header(_("No Filtering Rules Defined Yet")).
