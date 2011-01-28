@@ -13,10 +13,5 @@
  * @subpackage avelsieve
  */
 
-/** Includes */
-require_once('../../functions/strings.php');
-$location = get_location();
-header("Location: $location/src/webmail.php");
-exit();
+header("Location: ../../src/login.php");
 
-?>
