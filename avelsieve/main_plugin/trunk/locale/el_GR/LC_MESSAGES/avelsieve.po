@@ -404,9 +404,8 @@ msgstr ""
 "Αποθήκευσε το μήνυμα στο Φάκελο Διαγραμμένων. Θα πρέπει να κάνετε τακτικά "
 "εκκαθάριση αυτού του φακέλου."
 
-#, fuzzy
 msgid "Vacation / Autoresponder"
-msgstr "Υπενθύμιση Φίλτρου Αυτόματης Απάντησης Διακοπών"
+msgstr "Αυτόματη Απάντηση (Μήνυμα Διακοπών)"
 
 msgid ""
 "This is an automated reply; I am away and will not be able to reply to you "
@@ -434,12 +433,11 @@ msgstr "Προαιρετικό Θέμα του μηνύματος διακοπώ
 msgid "Your Addresses:"
 msgstr "Οι Διευθύνσεις σας:"
 
-#, fuzzy
 msgid ""
 "A vacation / autorespond message will be sent only if an email is sent "
 "explicitly to one of these addresses."
 msgstr ""
-"Ένα μήνυμα διακοπών θα σταλεί μόνο εφ όσον κάποιο email στέλνεται ρητά προς "
+"Μία αυτόματη απάντηση (μήνυμα διακοπών) θα σταλεί μόνο εφ όσον κάποιο email στέλνεται ρητά προς "
 "μία από τις ακόλουθες διευθύνσεις."
 
 msgid "Days:"
@@ -448,12 +446,11 @@ msgstr "Ημέρες:"
 msgid "days"
 msgstr "ημέρες"
 
-#, fuzzy
 msgid ""
 "A vacation / autorespond message will not be resent to the same address, "
 "within this number of days."
 msgstr ""
-"Ένα μήνυμα διακοπών δε θα σταλθεί ξανά στην ίδια διεύθυνση, μέσα σε αυτό το "
+"Μία αυτόματη απάντηση δε θα σταλθεί ξανά στην ίδια διεύθυνση, μέσα σε αυτό το "
 "διάστημα ημερών."
 
 msgid "Message:"
@@ -464,16 +461,14 @@ msgstr ""
 "Ο αριθμός ημερών μεταξύ των μηνυμάτων διακοπών πρέπει να έιναι ένας θετικός "
 "αριθμός."
 
-#, fuzzy
 msgid "Date"
-msgstr "Αναπαραγωγή"
+msgstr "Ημερομηνία"
 
 msgid "Received"
 msgstr ""
 
-#, fuzzy
 msgid "Year"
-msgstr "Κεφαλίδα"
+msgstr "Έτος"
 
 msgid "Month"
 msgstr ""
@@ -1567,7 +1562,6 @@ msgstr "Αποθήκευση στον %s"
 msgid "(Warning: Folder not available)"
 msgstr "(Προσοχή: Ο φάκελος δεν είναι διαθέσιμος)"
 
-#, fuzzy, php-format
 msgid "reply with a vacation / autoresponder message: "
 msgstr "απάντησε με το εξής μήνυμα διακοπών: "
 
@@ -1611,9 +1605,3 @@ msgstr "Άκυρο όνομα φακέλου. Παρακαλώ επιλέξτε 
 
 msgid "None"
 msgstr "Κανένα"
-
-#~ msgid "Vacation"
-#~ msgstr "Διακοπές"
-
-#~ msgid "Vacation Message"
-#~ msgstr "Μήνυμα Διακοπών"
