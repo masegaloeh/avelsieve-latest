@@ -321,7 +321,7 @@ class sieve {
         $this->auth = $this->user;
     else
         $this->auth = $auth;
-    $this->auth_types=$auth_types;    /* Allowed authentication types */
+    $this->auth_types = strtolower($auth_types);    /* Allowed authentication types */
     
     $this->broken_tls = false;
 
@@ -456,8 +456,8 @@ class sieve {
               }
               $this->modules = preg_split('/ /', $this->item[1]);
               if(is_array($this->modules)){
-                  foreach($this->modules as $this->module)
-                      $this->capabilities[$this->cap_type][$this->module]=true;
+                  foreach($this->modules as $m)
+                      $this->capabilities[$this->cap_type][strtolower($m)]=true;
               } /* end if */
               elseif(is_string($this->modules))
                   $this->capabilites[$this->cap_type][$this->modules]=true;
@@ -535,7 +535,7 @@ class sieve {
 
     /* Loop through each allowed authentication type and see if the server allows the type */
     foreach(explode(" ", $this->auth_types) as $auth_type) {
-        if ($this->capabilities["auth"][$auth_type]) {
+        if (isset($this->capabilities["auth"][$auth_type])) {
             /* We found an auth type that is allowed. */
             $this->auth_in_use = $auth_type;
         }
@@ -724,7 +724,7 @@ class sieve {
 
     switch ($this->auth_in_use) {
 
-        case "PLAIN":
+        case "plain":
             $auth=base64_encode($this->user."\0".$this->auth."\0".$this->pass);
    
             $this->len=strlen($auth);            
@@ -741,7 +741,7 @@ class sieve {
                return true;    
         break;
     
-        case "DIGEST-MD5":
+        case "digest-md5":
          // SASL DIGEST-MD5 support works with timsieved 1.1.0
          // follows rfc2831 for generating the $response to $challenge
          fputs($this->fp, "AUTHENTICATE \"DIGEST-MD5\"\r\n");
@@ -790,7 +790,7 @@ class sieve {
                return TRUE;    
              break;
     
-        case "CRAM-MD5":
+        case "cram-md5":
            // SASL CRAM-MD5 support works with timsieved 1.1.0
          // follows rfc2195 for generating the $response to $challenge
          // CRAM-MD5 does not support proxy of $auth by $user
@@ -816,7 +816,7 @@ class sieve {
                return TRUE;    
              break;
 
-    case "LOGIN":
+    case "login":
           $login=base64_encode($this->user);
           $pass=base64_encode($this->pass);
      
